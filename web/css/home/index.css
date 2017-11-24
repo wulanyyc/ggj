@@ -1,0 +1,246 @@
+.all-body {
+    width: 1100px;
+    margin: 0 auto;
+    /* width: 100%; */
+    height: 1100px;
+    font-family: "Microsoft YaHei" ! important;
+}
+.carousel {
+    float: left;
+    /* width:72%; */
+    width: 794px;
+    height: 360px;
+    margin-right: 16px;
+    background-color: blue;
+}
+.all-right {
+    float: right;
+    width: 290px;
+}
+.authority {
+    float: left;
+    /* width: 26%; */
+    width: 290px;
+    /* height: 360px; */
+    background-color: #FFFFFF;
+}
+.applay {
+    float: left;
+    margin-top: 30px;
+    margin-left: 20px;
+    height: 42px;
+    width: 246px;
+    text-align: center;
+    line-height: 42px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #5db2ff;
+}
+.applay a {
+    color: #ffffff;
+}
+.usually {
+    float: left;
+    margin-top: 30px;
+    margin-left: 20px;
+    height: 32px;
+    width: 246px;
+    font-size: 16px;
+    color: #5db2ff;
+    border-bottom: 1px solid #EEEEEE;
+}
+.usuage {
+    float: left;
+    margin-left: 20px;
+    width: 246px;
+}
+.new {
+    float: left;
+    margin-top: 16px;
+    margin-left: 20px;
+    height: 32px;
+    width: 246px;
+    font-size: 16px;
+    color: #5db2ff;
+    border-bottom: 1px solid #EEEEEE;
+}
+.usuage-info {
+    float: left;
+    /* margin-top: 18px; */
+    width: 246px;
+}
+.usuage-txt {
+    margin-top: 18px;
+    float: left;
+    font-size: 14px;
+    color: #333333;
+}
+.usuage-txt a, .usuage-date a {
+    color: #333333;
+}
+.usuage-date {
+    margin-top: 18px;
+    float: right;
+    font-size: 14px;
+    color: #333333;
+}
+.display {
+    margin-top: 20px;
+    float: left;
+    /* width: 72%; */
+    width: 794px;
+    margin-right: 16px;
+    background-color: #FFFFFF;
+}
+.display-product {
+    margin-left: 40px;
+    float: left;
+    height: 210px;
+    width: 330px;
+}
+.display-product-pic {
+    margin-top: 38px;
+    float: left;
+    height: 48px;
+    width: 294px;
+}
+.display-product-pic span {
+    margin-left: 18px;
+    font-size: 16px;
+}
+.display-product-pic .kpi {
+    color: #ff5656;
+}
+.display-product-pic .realtime {
+    color: #abdc00;
+}
+.display-product-pic .category {
+    color: #FFA200;
+}
+.display-product-pic .indicator {
+    color: #5db2ff;
+}
+.display-product-pic .chanpin {
+    color: #5db2ff;
+}
+.display-product-pic .chunhua {
+    color: #5DB2FF;
+}
+.display-product-txt-border {
+    float: left;
+    height: 82px;
+    width: 330px;
+    /* border-right: 1px solid #EEEEEE; */
+}
+.border-right {
+    border-right: 1px solid #EEEEEE;
+}
+.display-product-txt {
+    margin-top: 20px;
+    float: left;
+    font-size: 14px;
+    color: #333333;
+    height: 60px;
+    width: 294px;
+}
+.display-product-check {
+    float: left;
+    height: 25px;
+    width: 294px;
+}
+.display-product-check div{
+    float: right;
+}
+.display-product-check .noright{
+    margin-top: 2px;
+    margin-left: 4px;
+    font-size: 14px;
+    color: #999999;
+}
+.display-product-check .right{
+    margin-top: 1px;
+    margin-right: 4px;
+    font-size: 14px;
+    color: #5db2ff;
+}
+.display-product-topic {
+    width: 700px;
+}
+.display-product-topic .display-product-pic {
+    width: 660px;
+}
+.display-product-topic .display-product-txt {
+    width: 660px;
+}
+.display-product-topic .display-product-check {
+    width: 660px;
+}
+.other {
+    margin-top: 20px;
+    float: left;
+    /* width: 26%; */
+    width: 290px;
+    /* height: 130px; */
+    background-color: #FFFFFF;
+}
+.another {
+    margin-top: 20px;
+    float: left;
+    /* width: 26%; */
+    width: 290px;
+    /* height: 360px; */
+    background-color: #FFF;
+}
+.another-info {
+    float: left;
+    /* margin-top: 18px; */
+    width: 246px;
+    /* height: 60px; */
+}
+.another-txt {
+    margin-top: 20px;
+    float: left;
+    font-size: 14px;
+    color: #fff;
+    width: 40px;
+    margin-right: 6px;
+    /* height: 20px; */
+    text-align: center;
+    /* line-height: 20px; */
+}
+.another-date {
+    margin-top: 18px;
+    float: right;
+    font-size: 14px;
+    color: #333;
+    width: 200px;
+}
+.another-content {
+    margin-top: 18px;
+    float: right;
+    font-size: 14px;
+    color: #333;
+    width: 200px;
+}
+.upgrade {
+    background-color: #FEFEAC;
+}
+.distribute {
+    background-color: #ACFEAC;
+}
+.section-focus-pic {height: 360px;width: 794px;overflow: hidden;position: relative;}
+.section-focus-pic ul li {position: absolute;top: 0;left: 794px;width: 794px;height: 360px;}
+.section-focus-pic ul li h3 {/* position: absolute;bottom: 11px;left: 0;width:  400px;font-weight: normal;color: #FFF;margin-left:  20px;z-index:  111;font-size:  18px; font-family: "微软雅黑"; */}
+.section-focus-pic ul li div {/* position: absolute;bottom: 0;left: 0;height: 50px;background-color: #000;width: 794px;opacity:  0.6;filter:  alpha(opacity=60); */}
+.section-focus-pic .pages {width: 794px;height: 360px;}
+.section-focus-pic .controler {position: absolute;bottom: 20px;right: 20px;}
+.section-focus-pic .controler b {cursor: pointer;width: 20px;height: 10px;display: block;overflow: hidden;text-indent: 20px;background: url(imgs/news_index_icon.png) no-repeat -136px 3px; float: left;margin: 0 0 0 5px;}
+.section-focus-pic .controler b.down {background-position: -161px 1px;}
+.section-focus-pic .controler2 a {display: block; width: 40px;position: absolute;top: 120px;height: 40px;}
+.section-focus-pic .controler2 a i {cursor: pointer;display: block;width: 22px;height: 34px; background: url(imgs/star.png) no-repeat;}
+.section-focus-pic .controler2 .prev {left: 5px;}
+.section-focus-pic .controler2 .prev i {background-position: -34px -68px;_background: none;_filter:  progid: DXImageTransform.Microsoft.AlphaImageLoader(src='imgs/star_05.png');margin-left: 5px;}
+.section-focus-pic .controler2 .prev:hover i {left: 10px;background-position: -34px -24px;_background: none;_filter:  progid: DXImageTransform.Microsoft.AlphaImageLoader(src='imgs/star_03.png');}
+.section-focus-pic .controler2 .next {right: 10px;}
+.section-focus-pic .controler2 .next i {background-position: -62px -68px;_background: none;_filter:  progid: DXImageTransform.Microsoft.AlphaImageLoader(src='imgs/star_06.png');margin-left: 10px;}
+.section-focus-pic .controler2 .next:hover i {right: 10px;background-position: -62px -24px;_background: none;_filter:  progid: DXImageTransform.Microsoft.AlphaImageLoader(src='imgs/star_04.png');}

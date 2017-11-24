@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding-top: 3.5rem;
+}
+
+.search-top {
+    width: 40%;
+}
+
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+    .search-top {
+        width: 40%;
+    }
+
+    .first-product {
+        width: 48% !important;
+    }
+
+    .first-items {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+        position: relative !important;
+        flex-wrap: nowrap !important;
+    }
+
+    #promotion {
+        flex-wrap: wrap;
+    }
+
+    .promotion-item {
+        width: 98% !important;
+        margin-bottom: 1%;
+    }
+
+    #carouselIndicators, #carouselIndicators img {
+        height: 150px !important;
+    }
+
+    #guozhi {
+        flex-wrap: wrap;
+    }
+
+    #guozhi .card {
+        width: 98% !important;
+    }
+
+    .navbar-toggler {
+        display: none;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .search-top {
+        width: 50%;
+    }
+
+    .first-product {
+        width: 48% !important;
+    }
+
+    .first-items {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+        position: relative !important;
+    }
+
+    #promotion {
+        flex-wrap: wrap;
+    }
+
+    .promotion-item {
+        width: 98% !important;
+        margin-bottom: 1%;
+    }
+
+    #carouselIndicators, #carouselIndicators img {
+        height: 150px !important;
+    }
+
+    #guozhi {
+        flex-wrap: wrap;
+    }
+
+    #guozhi .card {
+        width: 98% !important;
+    }
+
+    .navbar-toggler {
+        display: none;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
