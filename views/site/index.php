@@ -122,6 +122,15 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     font-size: 16px;
   }
 
+  .orignal_price {
+    padding-left: 5px;
+    color: #ccc;
+    text-decoration: line-through;
+    color: #999;
+    font-size: 12px;
+    font-weight: normal;
+  }
+
   .unit {
     font-size: 12px;
     -webkit-transform:scale(0.8);
@@ -169,14 +178,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   #guozhi .card .card-header {
     color: #fff;border-radius: 0;
-  }
-
-  .orignal_price {
-    padding-left: 5px;
-    color: #ccc;
-    text-decoration: line-through;
-    color: #999;
-    font-size: 12px;
   }
 </style>
 

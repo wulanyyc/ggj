@@ -4,9 +4,9 @@ use app\components\MsaView;
 use app\widgets\UnitWidget;
 use app\widgets\CategoryWidget;
 
-$this->title = '商品列表';
+$this->title = '套餐列表';
 
-MsaView::registerJsFile($this,'/js/product/admin/index.js', 
+MsaView::registerJsFile($this,'/js/product/package/index.js', 
     ['position' => View::POS_END, 
         'depends' => [
             'app\assets\BootBoxAsset',
@@ -21,7 +21,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
     <div class='col-xs-12 col-md-12 col-lg-12'>
         <div class='widget'>
             <div class='widget-header '>
-                <span class='widget-caption'>商品列表</span>
+                <span class='widget-caption'>套餐列表</span>
                 <div class='widget-buttons'>
                     <a data-toggle='maximize' href='#'>
                         <i class='fa fa-expand'></i>
@@ -47,7 +47,6 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                             <th>ID</th>
                             <th>名称</th>
                             <th>价格</th>
-                            <th>单位</th>
                             <th>描述</th>
                             <th>标语</th>
                             <th>状态</th>
@@ -71,32 +70,12 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <input style='width:250px' type='text' placeholder='' name='name' class='input-sm'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>价格：</label>
-                    <input style='width:250px' type='text' placeholder='' name='price' class='input-sm'></input>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>单位：</label>
-                    <?= UnitWidget::widget() ?>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>品类：</label>
-                    <?= CategoryWidget::widget() ?>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>描述：</label>
                     <input style='width:250px' type='text' placeholder='' name='desc' class='input-sm'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>宣传语：</label>
                     <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm'></input>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>点击地址：</label>
-                    <input style='width:250px' type='text' placeholder='' name='link' class='input-sm'></input>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>图片地址：</label>
-                    <input style='width:250px' type='text' placeholder='' name='img' class='input-sm'></input>
                 </div>
             </form>
         </div>
@@ -108,22 +87,9 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
     <div class='row'>
         <div class='col-md-12'>
             <form name='edit_form' action='#' method='post' style='margin-left:10px' onsubmit='return false;'>
-                <!-- <input type='hidden' name='id' class='input-sm'></input> -->
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>名称：</label>
                     <input style='width:250px' type='text' placeholder='' name='name' class='input-sm name'></input>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>价格：</label>
-                    <input style='width:250px' type='text' placeholder='' name='price' class='input-sm price'></input>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>单位：</label>
-                    <?= UnitWidget::widget() ?>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>品类：</label>
-                    <?= CategoryWidget::widget() ?>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>描述：</label>
@@ -133,25 +99,17 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <label style='width:80px'>宣传语：</label>
                     <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm slogan'></input>
                 </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>点击地址：</label>
-                    <input style='width:250px' type='text' placeholder='' name='link' class='input-sm'></input>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>图片地址：</label>
-                    <input style='width:250px' type='text' placeholder='' name='img' class='input-sm'></input>
-                </div>
             </form>
         </div>
     </div>
 </div>
 
-<div id='tag_modal' style='display:none;min-width:600px'>
+<div id='product_modal' style='display:none;min-width:600px'>
     <div class='row'>
         <div class='col-md-12'>
-            <label style='width:80px'>标签：</label>
-            <select name='tag' multiple='multiple' style='width:350px;min-width:100px;margin-right:12px;'>
-                <?=$tagHtml;?>
+            <label style='width:80px'>产品：</label>
+            <select name='product' multiple='multiple' style='width:350px;min-width:100px;margin-right:12px;'>
+                <?=$productHtml;?>
             </select>
         </div>
     </div>

@@ -54,6 +54,18 @@ body {
     .navbar-toggler {
         display: none;
     }
+
+    #order_list {
+        width: 30% !important;
+    }
+
+    #order_scroll {
+        width: 68% !important;
+    }
+
+    .order-product {
+        width: 98% !important;
+    }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -96,6 +108,18 @@ body {
 
     .navbar-toggler {
         display: none;
+    }
+
+    #order_list {
+        width: 30% !important;
+    }
+
+    #order_scroll {
+        width: 68% !important;
+    }
+
+    .order-product {
+        width: 98% !important;
     }
 }
 

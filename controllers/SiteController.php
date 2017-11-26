@@ -58,7 +58,7 @@ class SiteController extends Controller
         $cn = Yii::$app->params['day_cn'];
         $dayofweek = date('w', time());
         if ($dayofweek == 0) {
-            $dayofweek == 7;
+            $dayofweek = 7;
         }
 
         $promotions = Yii::$app->params['day_promotion'][$dayofweek];

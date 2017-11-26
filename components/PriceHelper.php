@@ -34,7 +34,7 @@ class PriceHelper extends Component{
 
         $dayofweek = date('w', time());
         if ($dayofweek == 0) {
-            $dayofweek == 7;
+            $dayofweek = 7;
         }
 
         if ($promotions[$dayofweek]['id'] == $id) {

@@ -96,8 +96,8 @@ SiteAsset::register($this);
     <?= $content ?>
 </main>
 
-<hr>
 <footer>
+    <hr>
     <p style="padding-left: 1%;">&copy; 成都果果佳科技 2017</p>
 </footer>
 

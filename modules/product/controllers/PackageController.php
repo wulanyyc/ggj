@@ -4,19 +4,19 @@ namespace app\modules\product\controllers;
 
 use Yii;
 use app\controllers\AuthController;
+use app\modules\product\models\ProductPackage;
 use app\modules\product\models\ProductList;
-use app\modules\product\models\Tags;
-use app\modules\product\models\ProductTags;
+// use app\modules\product\models\Products;
+// use app\modules\product\models\ProductProducts;
 use yii\helpers\Html;
-// use app\components\CommonHelper;
 
-class AdminController extends AuthController
+class PackageController extends AuthController
 {
     public function actionIndex() {
-        $tagHtml = $this->getTagsHtml();
+        $productHtml = $this->getProductHtml();
         return $this->render('index',
             [
-                'tagHtml' => $tagHtml,
+                'productHtml' => $productHtml,
             ]
         );
     }
@@ -27,23 +27,23 @@ class AdminController extends AuthController
     public function actionTable() {
         $params = Yii::$app->request->post();
         if (!empty($params['query'])) {
-            $ret = ProductList::find()->select('id,name,price,unit,desc,slogan,disabled')
+            $ret = ProductPackage::find()->select('id,name,price,desc,slogan,disabled')
                 ->where(['like', 'name', $params['query']])
                 ->orWhere(['id' => intval($params['query'])])
                 ->offset($params['start'])->asArray()->all();
 
-            $total = ProductList::find()
+            $total = ProductPackage::find()
                 ->where(['like', 'name', $params['query']])
                 ->orWhere(['id' => intval($params['query'])])
                 ->count();
         }else {
-            $ret = ProductList::find()
-                ->select('id,name,price,unit,desc,slogan,disabled')
+            $ret = ProductPackage::find()
+                ->select('id,name,price,desc,slogan,disabled')
                 ->orderBy('id desc')->limit($params['length'])
                 ->offset($params['start'])
                 ->asArray()
                 ->all();
-            $total = ProductList::find()->count();
+            $total = ProductPackage::find()->count();
         }
 
         foreach($ret as $key => $value) {
@@ -55,7 +55,7 @@ class AdminController extends AuthController
 
             $ret[$key]['operation'] = "
             <a data-id='{$value['id']}' data-val='{$value['name']}' class='product-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
-            <a data-id='{$value['id']}' data-val='{$value['name']}' class='product-tag btn btn-xs btn-purple' href='javascript:void(0);'>标签</a>
+            <a data-id='{$value['id']}' data-val='{$value['name']}' class='product-set btn btn-xs btn-purple' href='javascript:void(0);'>关联产品</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' class='product-status btn btn-xs btn-info' href='javascript:void(0);'>状态</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' class='product-del btn btn-xs btn-danger' href='javascript:void(0);'>删除</a>";
         }
@@ -71,9 +71,9 @@ class AdminController extends AuthController
         $params = Yii::$app->request->get();
         $id = $params['id'];
 
-        $pl = new ProductList();
-        $ret = ProductList::find()
-            ->select('name,price,unit,desc,slogan')
+        $pl = new ProductPackage();
+        $ret = ProductPackage::find()
+            ->select('name,desc,slogan')
             ->where(['id' => $id])
             ->asArray()
             ->one();
@@ -92,7 +92,7 @@ class AdminController extends AuthController
             exit;
         }
 
-        $pl = new ProductList();
+        $pl = new ProductPackage();
         foreach($params as $key => $value){
             $pl ->$key = $value;
         }
@@ -119,7 +119,7 @@ class AdminController extends AuthController
 
         // echo json_encode($params);
 
-        $pl = ProductList::findOne($params['id']);
+        $pl = ProductPackage::findOne($params['id']);
         foreach($params as $key => $value){
             if($key != 'id'){
                 $pl->$key = $value;
@@ -142,7 +142,7 @@ class AdminController extends AuthController
             echo '参数不能为空';exit;
         }
 
-        $pl = ProductList::findOne($params['id']);
+        $pl = ProductPackage::findOne($params['id']);
 
         if($pl->delete()) {
             echo 'suc';
@@ -154,28 +154,21 @@ class AdminController extends AuthController
     /**
      * 标签设置
      */
-    public function actionTag() {
+    public function actionProduct() {
         $params = Yii::$app->request->post();
         if(empty($params)){
             echo '参数不能为空';exit;
         }
 
         $id = $params['id'];
-        $tags = $params['tag'];
+        $products = $params['pid'];
 
-        //删除old
-        ProductTags::deleteAll(['product_id' => $id]);
-
+        // print_r($products);exit;
         try {
-            if (!empty($tags)) {
-                $tag_key = 'tag_id';
-                $product_key = 'product_id';
-                foreach($tags as $key => $value){
-                    $productTagAdd = new ProductTags();
-                    $productTagAdd->$tag_key = $value;
-                    $productTagAdd->$product_key = $id;
-                    $productTagAdd->save();
-                }
+            if (!empty($products)) {
+                $pp = ProductPackage::findOne($id);
+                $pp->product_ids = implode(',', $products);
+                $pp->save();
             }
 
             echo 'suc';
@@ -197,7 +190,7 @@ class AdminController extends AuthController
         $status = $params['status'];
 
         try {
-            $pl = ProductList::findOne($id);
+            $pl = ProductPackage::findOne($id);
             $pl->disabled = $status;
             $pl->save();
 
@@ -210,26 +203,23 @@ class AdminController extends AuthController
     /**
      * 已有标签权限
      */
-    public function actionTagme() {
+    public function actionProductme() {
         $params = Yii::$app->request->post();
 
         $id = $params['id'];
-        $tags = ProductTags::find()->select('tag_id')->where(['product_id' => $id])->asArray()->all();
+        $data = ProductPackage::find()->select('product_ids')->where(['id' => $id])->asArray()->one();
 
-        $ret = [];
-        foreach($tags as $tag){
-            $ret[] = $tag['tag_id'];
-        }
+        $products = explode(',', $data['product_ids']);
 
-        echo json_encode($ret);
+        echo json_encode($products);
     }
 
     /**
      * 获取角色列表
      * @return string
      */
-    private function getTagsHtml(){
-        $ret = Tags::find()->select('id,name')->asArray()->all();
+    private function getProductHtml(){
+        $ret = ProductList::find()->select('id,name')->asArray()->all();
 
         $html = '';
         foreach($ret as $key => $value){
@@ -249,14 +239,14 @@ class AdminController extends AuthController
         foreach($data as $key => $value){
             $html .= '<tr>';
             foreach($value as $k => $v){
-                $html .= Html::tag('td', Html::encode($v));
+                $html .= Html::product('td', Html::encode($v));
             }
 
             //角色列表
             $roleNames = $this->getUserRoleNames($value['id']);
-            $html .= Html::tag('td', Html::encode($roleNames));
+            $html .= Html::product('td', Html::encode($roleNames));
 
-            $html .= Html::tag('td',"
+            $html .= Html::product('td',"
                 <a data-id='{$value['id']}' data-val='{$value['username']}' class='user-del btn btn-xs btn-danger' href='javascript:void(0);'>删除</a>
                 <a data-id='{$value['id']}' data-val='{$value['username']}' class='user-role btn btn-xs btn-purple' href='javascript:void(0);'>角色</a>
                 ");
