@@ -54,11 +54,12 @@ class AdminController extends AuthController
             }
 
             $ret[$key]['operation'] = "
-            <a data-id='{$value['id']}' data-val='{$value['name']}' class='product-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
-            <a data-id='{$value['id']}' data-val='{$value['name']}' class='product-tag btn btn-xs btn-purple' href='javascript:void(0);'>标签</a>
-            <a data-id='{$value['id']}' data-val='{$value['name']}' class='product-status btn btn-xs btn-info' href='javascript:void(0);'>状态</a>
-            <a data-id='{$value['id']}' data-val='{$value['name']}' class='product-del btn btn-xs btn-danger' href='javascript:void(0);'>删除</a>";
+            <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
+            <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-tag btn btn-xs btn-purple' href='javascript:void(0);'>标签</a>
+            <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-status btn btn-xs btn-info' href='javascript:void(0);'>状态</a>
+            <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-del btn btn-xs btn-danger' href='javascript:void(0);'>删除</a>";
         }
+
         $output = [];
         $output['data'] = $ret;
         $output['recordsTotal'] = $total;
@@ -73,7 +74,7 @@ class AdminController extends AuthController
 
         $pl = new ProductList();
         $ret = ProductList::find()
-            ->select('name,price,unit,desc,slogan')
+            ->select('name,price,unit,desc,slogan,category')
             ->where(['id' => $id])
             ->asArray()
             ->one();
@@ -94,14 +95,12 @@ class AdminController extends AuthController
 
         $pl = new ProductList();
         foreach($params as $key => $value){
-            $pl ->$key = $value;
+            $pl->$key = $value;
         }
 
-        $pl ->$key = $value;
-
-        if($pl->save()){
+        if ($pl->save()) {
             echo 'suc';
-        }else{
+        } else {
             echo 'fail';
         }
     }
@@ -112,23 +111,21 @@ class AdminController extends AuthController
      */
     public function actionEdit() {
         $params = Yii::$app->request->post();
-        if(empty($params)){
+        if (empty($params)) {
             echo '参数不能为空';
             exit;
         }
 
-        // echo json_encode($params);
-
         $pl = ProductList::findOne($params['id']);
-        foreach($params as $key => $value){
-            if($key != 'id'){
+        foreach($params as $key => $value) {
+            if ($key != 'id') {
                 $pl->$key = $value;
             }
         }
 
-        if($pl->save()){
+        if ($pl->save()) {
             echo 'suc';
-        }else{
+        } else {
             echo 'fail';
         }
     }
@@ -138,15 +135,15 @@ class AdminController extends AuthController
      */
     public function actionDel() {
         $params = Yii::$app->request->post();
-        if(empty($params)){
+        if (empty($params)) {
             echo '参数不能为空';exit;
         }
 
         $pl = ProductList::findOne($params['id']);
 
-        if($pl->delete()) {
+        if ($pl->delete()) {
             echo 'suc';
-        }else{
+        } else {
             echo '删除失败';
         }
     }

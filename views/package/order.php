@@ -1,6 +1,7 @@
 <?php 
 use yii\web\View;
 use app\components\MsaView;
+use app\assets\HashAsset;
 
 $this->title = '订制套餐';
 
@@ -11,6 +12,7 @@ MsaView::registerJsFile($this,'/js/package/order.js',
         ]
     ]
 );
+
 ?>
 
 <style type="text/css">
@@ -100,7 +102,7 @@ MsaView::registerJsFile($this,'/js/package/order.js',
     border-color: #53a93f;
   }
 
-  a.operator-left {
+  .operator-left {
     width:30px;
     text-align: center;
     border-right: 1px solid #ccc;
@@ -109,9 +111,10 @@ MsaView::registerJsFile($this,'/js/package/order.js',
     font-weight: bold;
     font-size: 18px;
     line-height: 24px;
+    cursor: pointer;
   }
 
-  a.operator-left.active {
+  .operator-left.active {
     border-right: 1px solid #53a93f;
     color: #53a93f;
   }
@@ -123,7 +126,7 @@ MsaView::registerJsFile($this,'/js/package/order.js',
     line-height: 24px;
   }
 
-  a.operator-right {
+  .operator-right {
     width: 30px;
     text-align: center;
     border-left: 1px solid #ccc;
@@ -132,9 +135,10 @@ MsaView::registerJsFile($this,'/js/package/order.js',
     font-weight: bold;
     font-size: 18px;
     line-height: 24px;
+    cursor: pointer;
   }
 
-  a.operator-right.active {
+  .operator-right.active {
     border-left: 1px solid #53a93f;
     color: #53a93f;
   }
@@ -150,13 +154,32 @@ MsaView::registerJsFile($this,'/js/package/order.js',
     width: 100%;
     bottom: 0px;
     background-color: #fff;
-    /*opacity: 0.9;*/
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     z-index: 10;
     border-top: 1px solid #f5f5f5; 
+  }
+
+  .order-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .product-content {
+    display: flex;flex-direction: row;flex-wrap: nowrap;justify-content: space-between;
+  }
+
+  #userinfo {
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0;
+    display: none;
   }
 
 </style>
@@ -167,18 +190,18 @@ MsaView::registerJsFile($this,'/js/package/order.js',
         私人订制
       </div>
 
-      <div id="items" style="margin-top: 1%;display: flex;flex-wrap: nowrap;justify-content: center;">
+      <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: center;">
         <div id="order_list" class="list-group" style="width:20%;">
           <a class="list-group-item list-group-item-action" href="#list-product">新鲜水果</a>
-          <a class="list-group-item list-group-item-action" href="#list-package">果汁套餐</a>
+          <a class="list-group-item list-group-item-action" href="#list-package">优惠套餐</a>
           <a class="list-group-item list-group-item-action" href="#list-tool">生活工具</a>
         </div>
         <div id="order_scroll" data-spy="scroll" data-target="#order_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;height:550px;width:78%;padding-left: 2%;padding-right: 2%;"">
           <h5 id="list-product">新鲜水果</h5>
-          <div style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-around;">
+          <div class="order-items">
             <?php foreach($fruits as $product) { ?>
             <div class="order-product">
-              <div class="product-content" style="display: flex;flex-direction: row;flex-wrap: nowrap;justify-content: space-between;">
+              <div class="product-content">
                 <div class="product-img" style="width: 40%;">
                   <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                 </div>
@@ -202,31 +225,136 @@ MsaView::registerJsFile($this,'/js/package/order.js',
                     <?php } ?>
                   </p>
                   <div class="operator" data-id=<?=$product['id'] ?> data-price=<?=$product['promotion_price'] ?>>
-                    <a class="operator-left operator-btn" href="#">-</a>
+                    <div class="operator-left operator-btn">-</div>
                     <span class="operator-num">0</span>
-                    <a class="operator-right operator-btn" href="#">+</a>
+                    <div class="operator-right operator-btn">+</div>
                   </div>
                 </div>
               </div>
             </div>
             <?php } ?>
           </div>
-          <h5 id="list-package">果汁套餐</h5>
-          <p>...</p>
+          <h5 id="list-package">优惠套餐</h5>
+          <div class="order-items">
+            <?php foreach($packages as $product) { ?>
+            <div class="order-product">
+              <div class="product-content">
+                <div class="product-img" style="width: 40%;">
+                  <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                </div>
+
+                <div class="product-desc" style="width: 58%;">
+                  <p class="title"><?=$product['name'] ?> <?=$product['desc'] ?></p>
+                  <p class="slogan"><?=$product['slogan'] ?></p>
+                  <p class="price">
+                    <span class="money">¥</span>
+                    <?php if ($product['price'] == $product['promotion_price']) { ?>
+                      <span class="realprice">
+                        <?=$product['price'] ?>
+                        <span class="money">元/<?=$product['unit'] ?></span>
+                      </span>
+                    <?php } else { ?>
+                      <span class="realprice">
+                        <?=$product['promotion_price'] ?>
+                        <span class="money">元/<?=$product['unit'] ?></span>
+                        <span class="orignal_price">¥ <?=$product['price'] ?></span>
+                      </span>
+                    <?php } ?>
+                  </p>
+                  <div class="operator" data-id=<?=$product['id'] ?> data-price=<?=$product['promotion_price'] ?>>
+                    <div class="operator-left operator-btn">-</div>
+                    <span class="operator-num">0</span>
+                    <div class="operator-right operator-btn">+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+          </div>
           <h5 id="list-tool">生活工具</h5>
-          <p>...</p>
+          <div class="order-items">
+            <?php foreach($tools as $product) { ?>
+            <div class="order-product">
+              <div class="product-content">
+                <div class="product-img" style="width: 40%;">
+                  <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                </div>
+
+                <div class="product-desc" style="width: 58%;">
+                  <p class="title"><?=$product['name'] ?> <?=$product['desc'] ?></p>
+                  <p class="slogan"><?=$product['slogan'] ?></p>
+                  <p class="price">
+                    <span class="money">¥</span>
+                    <?php if ($product['price'] == $product['promotion_price']) { ?>
+                      <span class="realprice">
+                        <?=$product['price'] ?>
+                        <span class="money">元/<?=$product['unit'] ?></span>
+                      </span>
+                    <?php } else { ?>
+                      <span class="realprice">
+                        <?=$product['promotion_price'] ?>
+                        <span class="money">元/<?=$product['unit'] ?></span>
+                        <span class="orignal_price">¥ <?=$product['price'] ?></span>
+                      </span>
+                    <?php } ?>
+                  </p>
+                  <div class="operator" data-id=<?=$product['id'] ?> data-price=<?=$product['promotion_price'] ?>>
+                    <div class="operator-left operator-btn">-</div>
+                    <span class="operator-num">0</span>
+                    <div class="operator-right operator-btn">+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+          </div>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
         </div>
       </div>
     </div>
 </div>
 
 <div id="tongji">
-  <div id="tips" style="color:#ccc;margin-left: 5px;margin-right: 5px;font-size: 12px;">大于39元,满69元包邮</div>
+  <div id="tips" style="color:#ccc;margin-left: 5px;margin-right: 5px;font-size: 12px;">满59元包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
     <div style="display: inline-block;color:red;width:80px;text-align: left;">
       <span class="money" style="font-size: 14px;font-weight: normal;">¥</span>
       <span class="realprice" style="font-size:22px;font-weight: normal;">0</span>
     </div>
   </div>
-  <div class='btn btn-secondary' id='order' style="width:80px;height: 40px;margin-right: 10px;">选好了</div>
+  <div class='btn btn-secondary' id='order' style="width:100px;height: 40px;margin-right: 10px;">29元起购</div>
+</div>
+
+<div class="card" id="userinfo">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+      订单信息<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_userinfo"></i>
+  </div>
+  <form style="width:94%;margin: 10px auto;" id="userinfo_form">
+    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
+      <input type="text" class="form-control" id="username" name="username" placeholder="联系人">
+    </div>
+
+    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
+      <input type="number" class="form-control" id="cellphone" name="cellphone" placeholder="手机号码">
+    </div>
+
+    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
+      <textarea id="address" name="address" style="width: 100%;border: 1px solid #ced4da;padding: 5px 10px;" placeholder="快递地址"></textarea>
+    </div>
+
+    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
+      <input type="text" class="form-control" name="code" id="code" placeholder="6位验证码" style="width:50%;">
+      <button type="button" class="btn btn-outline-danger" style="margin-left:5px;">手机验证码</button>
+    </div>
+
+    <button type="button" class="btn btn-success" id="pay" style="width:50%;margin-left:25%;margin-top:10px;">
+      去支付<span id="pay_money"></span>
+    </button>
+  </form>
 </div>

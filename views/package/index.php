@@ -79,7 +79,7 @@ MsaView::registerJsFile($this,'/js/package/index.js',
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格优惠：
             </div>
             <div>
-              价格享其它优惠后，再享<span style="color:red;font-weight: bold;">9</span>折，订单金额单次满<span style="color:red;font-weight: bold;">69</span>元，免运费，少于则加收<span style="color:red;font-weight: bold;">6</span>元快递费，单次金额不低于<span style="color:red;font-weight: bold;">39</span>元
+              价格享其它优惠后，再享<span style="color:red;font-weight: bold;">9</span>折，订单金额单次满<span style="color:red;font-weight: bold;">59</span>元，免运费，少于则加收<span style="color:red;font-weight: bold;">6</span>元快递费，单次金额不低于<span style="color:red;font-weight: bold;">29</span>元
             </div>
           </li>
 

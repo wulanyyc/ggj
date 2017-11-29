@@ -33,15 +33,14 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     background-color: #53a93f;
     font-size: 10px;
     -webkit-transform: scale(0.9);
-    opacity: 0.8;
-    /*margin-left: 5px;*/
+    opacity: 1;
     margin-bottom: 1%;
     text-align: center;
   }
 
   .first-item:hover {
     cursor: hand;
-    opacity: 1;
+    opacity: 0.9;
     text-decoration: none;
     color: #fff;
   }
@@ -77,21 +76,15 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     position: absolute;bottom: 0px;background-color: #53a93f;
     padding: 0;margin: 0;width:100%;
     text-align: center;color: #fff;
-    opacity: 0.5;
-    height:25px;
+    opacity: 0.9;
+    line-height: 20px;
   }
 
   .first-product .tip-text {
-    position: absolute;
-    bottom: 0px;
-    padding: 0;
-    margin: 0;
     width:100%;
     text-align: center;
     color: #fff;
-    line-height: 25px;
-    text-overflow: ellipsis;
-    display: hidden;
+    /*line-height: 14px;*/
     font-size: 12px;
   }
 
@@ -237,8 +230,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
               <div style="position: relative;">
                 <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                 <div class="tip-content">
-                  <p class="tip" style="height:25px;"></p>
-                  <p class="tip-text"><?=$product['slogan'] ?></p>
+                  <p class="tip"><span class="tip-text"><?=$product['slogan'] ?></span></p>
                 </div>
               </div>
               <p class="desc"><?=$product['name'] ?> <?=$product['desc'] ?></p>

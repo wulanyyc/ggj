@@ -1,5 +1,11 @@
 $(document).ready(function () {
     var cart = {};
+    var back = -1;
+
+    $('.list-group-item').click(function(){
+        back -= 1;
+        $.cookie('order-history-back', back);
+    });
 
     $('#order_scroll').scrollspy({ target: '#order_list' });
 
@@ -15,7 +21,7 @@ $(document).ready(function () {
 
         var id = $(this).parent().attr('data-id');
         var price = $(this).parent().attr('data-price');
-        cart[id] = {'num': num, 'price': price};
+        cart[id] = {'num': num, 'price': price, 'id': id};
 
         calculateTotal();
     });
@@ -50,13 +56,50 @@ $(document).ready(function () {
         total = Math.round(total * 100) / 100;
 
         $('#tongji .realprice').html(total);
-        if (total >= 39) {
+        if (total >= 29) {
             $('#order').removeClass('btn-secondary');
             $('#order').addClass('btn-success');
+            $('#order').html('选好了');
         } else {
             $('#order').addClass('btn-secondary');
             $('#order').removeClass('btn-success');
+            $('#order').html('29元起购');
         }
     }
+
+    $('#close_userinfo').click(function() {
+        $('#userinfo').hide();
+    });
+
+    $('#order').click(function() {
+        var money = $('#tongji .realprice').html();
+        if (money >= 29) {
+            $('#pay_money').html(money + "元");
+            $('#userinfo').show();
+        }
+    });
+
+    $('#pay').click(function() {
+        var formData = $('#userinfo_form').serialize();
+        var cartStr = JSON.stringify(cart);
+        var money = $('#tongji .realprice').html();
+        $.cookie('cellphone', $('#cellphone').val(), { path: '/' });
+
+        console.log($.cookie('cellphone'));
+
+        $.ajax({
+            url: '/package/pay',
+            type: 'post',
+            data: formData + '&cart=' + cartStr + '&money=' + money,
+            dataType: 'html',
+            success: function (data) {
+                if (data > 0) {
+                    location.href = "/order/detail?id=" + data;
+                } else {
+                    alert(data);
+                }
+            }
+        });
+    });
 });
 

@@ -72,6 +72,7 @@ $(document).ready(function () {
                 $('.desc').val(data.desc);
                 $('.slogan').val(data.slogan);
                 $('.unit').val(data.unit);
+                $('.category').val(data.category);
             }
         });
 
