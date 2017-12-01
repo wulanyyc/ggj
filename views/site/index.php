@@ -56,7 +56,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   .first-product {
     width:16%;
     margin-bottom: 8px;
-    /*margin-right: 1%;*/
   }
 
   .first-active {
@@ -84,7 +83,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     width:100%;
     text-align: center;
     color: #fff;
-    /*line-height: 14px;*/
     font-size: 12px;
   }
 
@@ -127,10 +125,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   .unit {
     font-size: 12px;
     -webkit-transform:scale(0.8);
-  }
-
-  #carouselIndicators, #carouselIndicators img {
-    height: 250px;
   }
 
   #promotion {
@@ -204,7 +198,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     <div class="promotion-item-left prom-package-left" style="background-color: #866D8D;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">预约套餐</div>
-        <div class="promotion-item-left-content-bottom">订制 高品质 享9折</div>
+        <div class="promotion-item-left-content-bottom">高品质 全场享9折</div>
       </div>
     </div>
     <div class="promotion-item-right prom-package-right" style="background-color: #D5CCDB;">

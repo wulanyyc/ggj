@@ -30,7 +30,7 @@ class AdminController extends AuthController
             $ret = ProductList::find()->select('id,name,price,unit,desc,slogan,disabled')
                 ->where(['like', 'name', $params['query']])
                 ->orWhere(['id' => intval($params['query'])])
-                ->offset($params['start'])->asArray()->all();
+                ->asArray()->all();
 
             $total = ProductList::find()
                 ->where(['like', 'name', $params['query']])
@@ -236,29 +236,4 @@ class AdminController extends AuthController
         return $html;
     }
 
-    /**
-     * 生成表格html
-     * @param array $data
-     * @return string
-     */
-    private function buildTableHtml($data){
-        $html = '';
-        foreach($data as $key => $value){
-            $html .= '<tr>';
-            foreach($value as $k => $v){
-                $html .= Html::tag('td', Html::encode($v));
-            }
-
-            //角色列表
-            $roleNames = $this->getUserRoleNames($value['id']);
-            $html .= Html::tag('td', Html::encode($roleNames));
-
-            $html .= Html::tag('td',"
-                <a data-id='{$value['id']}' data-val='{$value['username']}' class='user-del btn btn-xs btn-danger' href='javascript:void(0);'>删除</a>
-                <a data-id='{$value['id']}' data-val='{$value['username']}' class='user-role btn btn-xs btn-purple' href='javascript:void(0);'>角色</a>
-                ");
-            $html .= '</tr>';
-        }
-        return $html;
-    }
 }

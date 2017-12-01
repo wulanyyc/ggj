@@ -42,6 +42,17 @@ MsaView::registerJsFile($this,'/js/order/index.js',
   #info {
     padding: 5px;
   }
+
+  #detail {
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0;
+    display: none;
+    height: 60%;
+    overflow-y: scroll;
+  }
 </style>
 
 <div class="card" style="margin: 1%;">
@@ -68,8 +79,33 @@ MsaView::registerJsFile($this,'/js/order/index.js',
           <p class="label">总金额：</p>
           <p><?=$item['money'] ?></p>
         </div>
+        <div class="item">
+          <p class="label">特殊要求：</p>
+          <p><?=$item['memo'] ?></p>
+        </div>
+        <div class="item">
+          <button type="button" class="btn btn-success detail" data-id="<?=$item['id'] ?>" data-cart='<?=$item["cart"] ?>'>查看详情</button>
+        </div>
       </div>
     <?php } ?>
   </div>
+</div>
+
+<div class="card" id="detail">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+      订单详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_detail"></i>
+  </div>
+  <table class="table table-bordered" style="width: 98%;margin: 1% auto;font-size: 14px;">
+    <thead>
+      <tr>
+        <th scope="col">商品</th>
+        <th scope="col">数量</th>
+        <th scope="col">单价</th>
+      </tr>
+    </thead>
+    <tbody id="table-content">
+
+    </tbody>
+  </table>
 </div>
 

@@ -58,7 +58,7 @@ class UserController extends AuthController
                     ->where(['rootflag' => '0'])
                     ->andWhere(['like', 'username', $params['query']])
                     ->orWhere(['id' => intval($params['query'])])
-                    ->offset($params['start'])->asArray()->all();
+                    ->asArray()->all();
 
             $total = User::find()
                     ->where(['rootflag' => '0'])

@@ -67,7 +67,7 @@ class PackageController extends Controller
         $info = ProductList::find()->select('id,name,price,desc,slogan,link,img,unit,category')->where(['category' => '水果'])->asArray()->all();
 
         foreach($info as $key => $value) {
-            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id'], $value['price']) * 0.9;
+            $info[$key]['promotion_price'] = round(PriceHelper::getProductPrice($value['id'], $value['price']) * 0.9, 1);
             if (empty($value['img'])) {
                 $info[$key]['img'] = 'http://img.yis188.com/images/company/room.jpeg';
             }
@@ -80,7 +80,7 @@ class PackageController extends Controller
         $info = ProductList::find()->select('id,name,price,desc,slogan,link,img,unit,category')->where(['category' => '套餐'])->asArray()->all();
 
         foreach($info as $key => $value) {
-            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id'], $value['price']) * 0.9;
+            $info[$key]['promotion_price'] = round(PriceHelper::getProductPrice($value['id'], $value['price']) * 0.9, 1);
             if (empty($value['img'])) {
                 $info[$key]['img'] = 'http://img.yis188.com/images/company/room.jpeg';
             }
@@ -93,7 +93,7 @@ class PackageController extends Controller
         $info = ProductList::find()->select('id,name,price,desc,slogan,link,img,unit,category')->where(['category' => '工具'])->asArray()->all();
 
         foreach($info as $key => $value) {
-            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id'], $value['price']) * 0.9;
+            $info[$key]['promotion_price'] = round(PriceHelper::getProductPrice($value['id'], $value['price']) * 0.9, 1);
             if (empty($value['img'])) {
                 $info[$key]['img'] = 'http://img.yis188.com/images/company/room.jpeg';
             }

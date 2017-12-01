@@ -56,14 +56,14 @@ $(document).ready(function () {
         total = Math.round(total * 100) / 100;
 
         $('#tongji .realprice').html(total);
-        if (total >= 29) {
+        if (total >= 39) {
             $('#order').removeClass('btn-secondary');
             $('#order').addClass('btn-success');
             $('#order').html('选好了');
         } else {
             $('#order').addClass('btn-secondary');
             $('#order').removeClass('btn-success');
-            $('#order').html('29元起购');
+            $('#order').html('39元起购');
         }
     }
 
@@ -73,8 +73,14 @@ $(document).ready(function () {
 
     $('#order').click(function() {
         var money = $('#tongji .realprice').html();
-        if (money >= 29) {
-            $('#pay_money').html(money + "元");
+        if (money >= 39 && money < 59) {
+            money = parseFloat(money) + 6;
+            $('#pay_money').html(money);
+            $('#userinfo').show();
+            $('#express_fee_text').html('6元  <span style="color:#ccc;font-size:14px;">(满59元免运费)</span>');
+        } else {
+            $('#pay_money').html(money);
+            $('#express_fee_text').html('包邮');
             $('#userinfo').show();
         }
     });
@@ -82,10 +88,10 @@ $(document).ready(function () {
     $('#pay').click(function() {
         var formData = $('#userinfo_form').serialize();
         var cartStr = JSON.stringify(cart);
-        var money = $('#tongji .realprice').html();
-        $.cookie('cellphone', $('#cellphone').val(), { path: '/' });
+        var money = $('#pay_money').html();
 
-        console.log($.cookie('cellphone'));
+        $.cookie('cellphone', null, { path: '/' }); 
+        $.cookie('cellphone', $('#cellphone').val(), { path: '/' });
 
         $.ajax({
             url: '/package/pay',

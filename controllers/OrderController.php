@@ -76,4 +76,24 @@ class OrderController extends Controller
         ]);
     }
 
+    public function actionProduct() {
+        $params = Yii::$app->request->get();
+        $id = $params['id'];
+        $data = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+
+        $ret = [];
+        $cart = json_decode($data['cart'], true);
+        foreach($cart as $item) {
+            $pid = $item['id'];
+            $ret[] = ProductList::find()->select('id,name,unit')->where(['id' => $pid])->asArray()->one();
+        }
+
+        $html = '';
+        foreach($ret as $item) {
+            $html .= "<tr><td>" . $item['name'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $cart[$item['id']]['price'] . "/" . $item['unit'] . "</td></tr>";
+        }
+        
+        echo $html;
+    }
+
 }

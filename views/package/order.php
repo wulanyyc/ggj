@@ -81,7 +81,7 @@ MsaView::registerJsFile($this,'/js/package/order.js',
   }
 
   .orignal_price {
-    padding-left: 5px;
+    padding-left: 3px;
     color: #ccc;
     text-decoration: line-through;
     color: #999;
@@ -328,7 +328,7 @@ MsaView::registerJsFile($this,'/js/package/order.js',
       <span class="realprice" style="font-size:22px;font-weight: normal;">0</span>
     </div>
   </div>
-  <div class='btn btn-secondary' id='order' style="width:100px;height: 40px;margin-right: 10px;">29元起购</div>
+  <div class='btn btn-secondary' id='order' style="width:100px;height: 40px;margin-right: 10px;">39元起购</div>
 </div>
 
 <div class="card" id="userinfo">
@@ -353,8 +353,14 @@ MsaView::registerJsFile($this,'/js/package/order.js',
       <button type="button" class="btn btn-outline-danger" style="margin-left:5px;">手机验证码</button>
     </div>
 
+    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
+      <textarea id="memo" name="memo" style="width: 100%;border: 1px solid #ced4da;padding: 5px 10px;" placeholder="特殊要求"></textarea>
+    </div>
+
+    <div id="express_fee" style="color:red;">快递费：<span id="express_fee_text">6元</span></div>
+
     <button type="button" class="btn btn-success" id="pay" style="width:50%;margin-left:25%;margin-top:10px;">
-      去支付<span id="pay_money"></span>
+      去支付<span id="pay_money"></span>元
     </button>
   </form>
 </div>

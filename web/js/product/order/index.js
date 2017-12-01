@@ -1,76 +1,20 @@
 $(document).ready(function () {
     loadTable();
 
-    $('#add').click(function () {
-        bootbox.dialog({
-            message: $('#add_modal').html(),
-            title: '添加',
-            className: 'modal-primary',
-            buttons: {
-                success: {
-                    label: '提交',
-                    className: 'btn-success',
-                    callback: function () {
-                        $.ajax({
-                            url: '/product/package/add',
-                            type: 'post',
-                            dataType: 'html',
-                            data: $('.bootbox form').serialize(),
-                            success: function (data) {
-                                if (data !== 'suc') {
-                                    bootbox.alert(data);
-                                } else {
-                                    location.reload();
-                                }
-                            }
-                        });
-                        return false;
-                    }
-                }
-            }
-        });
-    });
-
-    // 删除
-    $('#list').delegate('.product-del', 'click', function () {
-        var id = $(this).attr('data-id');
-        var name = $(this).attr('data-val');
-        bootbox.confirm('确认删除: ' + name + '?', function (result) {
-            if (result) {
-                $.ajax({
-                    url: '/product/package/del',
-                    type: 'post',
-                    data: {
-                        'id': id
-                    },
-                    dataType: 'html',
-                    success: function (data) {
-                        if (data !== 'suc') {
-                            bootbox.alert(data);
-                        } else {
-                            location.reload();
-                        }
-                    }
-                });
-            }
-        });
-    });
-
     // 编辑
-    $('#list').delegate('.product-edit', 'click', function () {
+    $('#list').delegate('.order-edit', 'click', function () {
         var id = $(this).attr('data-id');
         $.ajax({
-            url: '/product/package/info',
+            url: '/product/order/info',
             type: 'get',
             data: {
                 'id': id
             },
             dataType: 'json',
             success: function (data) {
-                $('.name').val(data.name);
-                $('.price').val(data.price);
-                $('.desc').val(data.desc);
-                $('.slogan').val(data.slogan);
+                $('.username').val(data.username);
+                $('.cellphone').val(data.cellphone);
+                $('.address').val(data.address);
             }
         });
 
@@ -84,7 +28,7 @@ $(document).ready(function () {
                     className: 'btn-success',
                     callback: function () {
                         $.ajax({
-                            url: '/product/package/edit',
+                            url: '/product/order/edit',
                             type: 'post',
                             dataType: 'html',
                             data: $('.bootbox form').serialize()+"&id=" + id,
@@ -103,25 +47,74 @@ $(document).ready(function () {
         });
     });
 
-    $('#list').delegate('.product-set', 'click', function () {
+    $('#list').delegate('.order-express', 'click', function () {
         var id = $(this).attr('data-id');
         var name = $(this).attr('data-val');
         bootbox.dialog({
-            message: $('#product_modal').html(),
-            title: '设置套餐: ' + name,
+            message: $('#express_modal').html(),
+            title: '设置快递号: ' + name,
             className: 'modal-primary',
             buttons: {
                 success: {
                     label: '提交',
                     className: 'btn-success',
                     callback: function () {
-                        var pid = $('.bootbox select[name="product"]').val();
-                        // alert(pids);
+                        var num = $('.bootbox .express_num').val();
                         $.ajax({
-                            url: '/product/package/product',
+                            url: '/product/order/express',
                             type: 'post',
                             data: {
-                                'pid': pid,
+                                'express_num': num,
+                                'id': id
+                            },
+                            dataType: 'html',
+                            success: function (data) {
+                                if (data !== 'suc') {
+                                    bootbox.alert(data);
+                                } else {
+                                    location.reload();
+                                }
+                            }
+                        });
+
+                        return false;
+                    }
+                }
+            }
+        });
+
+        $.ajax({
+            url: '/product/order/expressme',
+            type: 'post',
+            data: {
+                'id': id
+            },
+            dataType: 'json',
+            success: function (data) {
+                $('.bootbox .express_num').val(data.express_num);
+            }
+        });
+    });
+
+
+    $('#list').delegate('.order-status', 'click', function () {
+        var id = $(this).attr('data-id');
+        var name = $(this).attr('data-val');
+        bootbox.dialog({
+            message: $('#status_modal').html(),
+            title: '设置状态: ' + name,
+            className: 'modal-primary',
+            buttons: {
+                success: {
+                    label: '提交',
+                    className: 'btn-success',
+                    callback: function () {
+                        var status = $('.bootbox select[name="status"]').val();
+                        $.ajax({
+                            url: '/product/order/status',
+                            type: 'post',
+                            data: {
+                                'status': status,
                                 'id': id
                             },
                             dataType: 'html',
@@ -145,60 +138,20 @@ $(document).ready(function () {
         });
 
         $.ajax({
-            url: '/product/package/productme',
+            url: '/product/order/statusme',
             type: 'post',
             data: {
                 'id': id
             },
             dataType: 'json',
             success: function (data) {
-                if (data.length > 0) {
-                    $('.bootbox select[name="product"]').val(data);
-                    $('.bootbox select').select2().trigger('change');
-                }
+                $('.bootbox select[name="status"]').val(data.status);
+                $('.bootbox select').select2().trigger('change');
             }
         });
     });
 
-
-    $('#list').delegate('.product-status', 'click', function () {
-        var id = $(this).attr('data-id');
-        var name = $(this).attr('data-val');
-        bootbox.dialog({
-            message: $('#status_modal').html(),
-            title: '设置状态: ' + name,
-            className: 'modal-primary',
-            buttons: {
-                success: {
-                    label: '提交',
-                    className: 'btn-success',
-                    callback: function () {
-                        var status = $('.bootbox select[name="disabled"]').val();
-                        $.ajax({
-                            url: '/product/package/status',
-                            type: 'post',
-                            data: {
-                                'status': status,
-                                'id': id
-                            },
-                            dataType: 'html',
-                            success: function (data) {
-                                if (data !== 'suc') {
-                                    bootbox.alert(data);
-                                } else {
-                                    location.reload();
-                                }
-                            }
-                        });
-
-                        return false;
-                    }
-                }
-            }
-        });
-    });
-
-    $('#query').change(function () {
+    $('#query, #status').change(function () {
         loadTable();
     });
 
@@ -208,21 +161,25 @@ $(document).ready(function () {
 
         config['columnDefs'] = [{
             sortable: false,
-            targets: [0, 1, 2, 3, 4, 5, 6]
+            targets: [0, 1, 2, 3, 4, 5, 6, 7]
         }];
 
         config['columns'] = [
             {data: 'id'},
-            {data: 'name'},
-            {data: 'price'},
-            {data: 'desc'},
-            {data: 'slogan'},
-            {data: 'disabled'},
+            {data: 'username'},
+            {data: 'cellphone'},
+            {data: 'money'},
+            {data: 'address'},
+            {data: 'status'},
+            {data: 'create_time'},
             {data: 'operation'}
         ];
         config['displayLength'] = 10;
 
-        $.grid.createServerTable('/product/package/table', {query: $('#query').val()}, 'list', config);
+        $.grid.createServerTable('/product/order/table', 
+            {query: $('#query').val(), status: $('#status').val()}, 
+            'list', config
+        );
         $.load.hide('#list');
     }
 });

@@ -16,7 +16,8 @@ $(document).ready(function () {
         }
     });
 
-    $.cookie('width', $(window).width());
+    $.cookie('width', null, { path: '/' }); 
+    $.cookie('width', $(window).width(), { path: '/' });
     $(window).resize(function(){
         location.reload();
     });

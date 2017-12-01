@@ -57,6 +57,10 @@ MsaView::registerJsFile($this,'/js/order/index.js',
             <p class="label">总金额：</p>
             <p><?=$data['money'] ?></p>
           </div>
+          <div class="item">
+            <p class="label">特殊要求：</p>
+            <p><?=$data['memo'] ?></p>
+          </div>
         </div>
 
         <table class="table table-bordered" style="margin-top: 10px;font-size: 14px;">

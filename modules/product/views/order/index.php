@@ -4,9 +4,9 @@ use app\components\MsaView;
 use app\widgets\UnitWidget;
 use app\widgets\CategoryWidget;
 
-$this->title = '套餐列表';
+$this->title = '订单列表';
 
-MsaView::registerJsFile($this,'/js/product/package/index.js', 
+MsaView::registerJsFile($this,'/js/product/order/index.js', 
     ['position' => View::POS_END, 
         'depends' => [
             'app\assets\BootBoxAsset',
@@ -33,12 +33,19 @@ MsaView::registerJsFile($this,'/js/product/package/index.js',
             </div>
             <div class='widget-body'>
                 <div style='margin-bottom:10px;position:relative;' class='buttons-preview'>
-                    <a class='btn btn-sm btn-primary' href='javascript:void(0);' id='add'>添加</a>
-                    <div class="form-group" style='width:30%;display:inline-block;position:absolute;top:-1px;left:55px;'>
+                    <div class="form-group" style='width:30%;display:inline-block;'>
                         <span class="input-icon">
                             <input type="text" class="form-control input-sm" name='query' value='' id='query'>
                             <i class="glyphicon glyphicon-search blue"></i>
                         </span>
+                    </div>
+                    <div class="form-group" style='display:inline-block;margin-left: 10px;'>
+                        <select name='status' id='status' style='width:100px;min-width:100px;margin-right:12px;'>
+                            <option value=''>全部</option>
+                            <?php foreach($status as $key => $value) { ?>
+                                <option value=<?=$key ?>><?=$value ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
                 <table id='list' class='hover grid' width='100%' cellspacing='0'>
@@ -46,10 +53,11 @@ MsaView::registerJsFile($this,'/js/product/package/index.js',
                         <tr class='table-title' role='row'>
                             <th>ID</th>
                             <th>名称</th>
-                            <th>价格</th>
-                            <th>描述</th>
-                            <th>标语</th>
+                            <th>手机号码</th>
+                            <th>总价</th>
+                            <th>地址</th>
                             <th>状态</th>
+                            <th>下单时间</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -61,7 +69,7 @@ MsaView::registerJsFile($this,'/js/product/package/index.js',
     </div>
 </div>
 
-<div id='add_modal' style='display:none;min-width:600px'>
+<!-- <div id='add_modal' style='display:none;min-width:600px'>
     <div class='row'>
         <div class='col-md-12'>
             <form name='add_form' action='#' method='post' style='margin-left:10px' onsubmit='return false;'>
@@ -80,7 +88,7 @@ MsaView::registerJsFile($this,'/js/product/package/index.js',
             </form>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <div id='edit_modal' style='display:none;min-width:600px'>
@@ -89,28 +97,28 @@ MsaView::registerJsFile($this,'/js/product/package/index.js',
             <form name='edit_form' action='#' method='post' style='margin-left:10px' onsubmit='return false;'>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>名称：</label>
-                    <input style='width:250px' type='text' placeholder='' name='name' class='input-sm name'></input>
+                    <input style='width:250px' type='text' placeholder='' name='username' class='input-sm username'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>描述：</label>
-                    <input style='width:250px' type='text' placeholder='' name='desc' class='input-sm desc'></input>
+                    <label style='width:80px'>手机号码：</label>
+                    <input style='width:250px' type='text' placeholder='' name='cellphone' class='input-sm cellphone'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>宣传语：</label>
-                    <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm slogan'></input>
+                    <label style='width:80px'>地址：</label>
+                    <textarea style='width:250px' name='address' class='input-sm address'></textarea>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<div id='product_modal' style='display:none;min-width:600px'>
+<div id='express_modal' style='display:none;min-width:600px'>
     <div class='row'>
         <div class='col-md-12'>
-            <label style='width:80px'>产品：</label>
-            <select name='product' multiple='multiple' style='width:350px;min-width:100px;margin-right:12px;'>
-                <?=$productHtml;?>
-            </select>
+            <div class='form-group' style='margin-top:10px'>
+                <label style='width:80px'>快递号：</label>
+                <input style='width:250px' type='text' placeholder='' name='express_num' class='input-sm express_num'></input>
+            </div>
         </div>
     </div>
 </div>
@@ -119,9 +127,10 @@ MsaView::registerJsFile($this,'/js/product/package/index.js',
     <div class='row'>
         <div class='col-md-12'>
             <label style='width:80px'>状态：</label>
-            <select name='disabled' style='width:350px;min-width:100px;margin-right:12px;'>
-                <option value="0">销售中</option>
-                <option value="1">下线</option>
+            <select name='status' style='width:350px;min-width:100px;margin-right:12px;'>
+                <?php foreach($status as $key => $value) { ?>
+                    <option value=<?=$key ?>><?=$value ?></option>
+                <?php } ?>
             </select>
         </div>
     </div>
