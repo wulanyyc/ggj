@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\product\models;
+namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class ProductOrder extends ActiveRecord
+class Customer extends ActiveRecord
 {
     /**
      * 数据库
@@ -15,15 +15,13 @@ class ProductOrder extends ActiveRecord
     }
 
     public static function tableName(){
-        return 'product_order';
+        return 'customer';
     }
     
     public function rules() {
         return [
-            [['username'], 'required'],
-            [['cellphone'], 'required'],
-            [['address'], 'required'],
-            [['money'], 'required'],
+            [['phone'], 'required'],
+            [['phone'], 'unique'],
         ];
     }
 }

@@ -36,7 +36,7 @@ class SpecialController extends Controller
 
         $ret = [];
         foreach($data as $key => $value) {
-            $info = ProductList::find()->select('name,link,img')->where(['id' => $value['id']])->asArray()->one();
+            $info = ProductList::find()->select('id,name,link,img')->where(['id' => $value['id']])->asArray()->one();
             $info['day'] = $key;
             $info['day_cn'] = $cn[$key];
             $ret[] = $info;

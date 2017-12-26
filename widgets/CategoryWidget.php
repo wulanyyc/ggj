@@ -10,6 +10,8 @@ use yii\base\Widget;
  */
 class CategoryWidget extends Widget
 {
+    public static $categorys = ['fruit' => '水果', 'package' => '套餐', 'nut' => '干果', 'tool' => '工具'];
+
     /**
      * 初始化
      */
@@ -21,16 +23,18 @@ class CategoryWidget extends Widget
      * 执行
      */
     public function run(){
-        $categorys = ['水果','套餐','干果','工具'];
-
         $html = '<select name="category" class="category" style="min-width:60px;">';
-        foreach($categorys as $category) {
+        foreach(self::$categorys as $key => $category) {
             $html .= <<<EOF
-            <option value="{$category}">{$category}</option>
+            <option value="{$key}">{$category}</option>
 EOF;
         }
         $html .= '</select>';
 
         return $html;
+    }
+
+    public static function getCn($category) {
+        return self::$categorys[$category];
     }
 }

@@ -68,8 +68,6 @@ class TagController extends AuthController
             $pl ->$key = $value;
         }
 
-        $pl ->$key = $value;
-
         if($pl->save()){
             echo 'suc';
         }else{

@@ -32,21 +32,34 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 </div>
             </div>
             <div class='widget-body'>
-                <div style='margin-bottom:10px;position:relative;' class='buttons-preview'>
-                    <a class='btn btn-sm btn-primary' href='javascript:void(0);' id='add'>添加</a>
-                    <div class="form-group" style='width:30%;display:inline-block;position:absolute;top:-1px;left:55px;'>
+                <form name="search_form" id="search_form" style='display: flex;justify-content: flex-start;flex-direction: row;'>
+                    <a class='btn btn-sm btn-primary' href='javascript:void(0);' id='add' style="height:30px !important;margin-right: 10px;">添加商品</a>
+                    <div class="form-group" style='width:20%;margin-right: 10px;'>
                         <span class="input-icon">
                             <input type="text" class="form-control input-sm" name='query' value='' id='query'>
                             <i class="glyphicon glyphicon-search blue"></i>
                         </span>
                     </div>
-                </div>
+
+                    <select name='status' id="search_status" style='width:100px;margin-right:10px;height:30px;'>
+                        <option value="1">销售中</option>
+                        <option value="3">待上线</option>
+                        <option value="2">下线</option>
+                    </select>
+
+                    <select name='booking_status' id="search_booking" style='width:100px;height:30px;'>
+                        <option value="0">全部</option>
+                        <option value="1">可预约</option>
+                        <option value="2">不可预约</option>
+                    </select>
+                </form>
                 <table id='list' class='hover grid' width='100%' cellspacing='0'>
                     <thead>
                         <tr class='table-title' role='row'>
                             <th>ID</th>
                             <th>名称</th>
                             <th>价格</th>
+                            <th>库存</th>
                             <th>单位</th>
                             <th>描述</th>
                             <th>标语</th>
@@ -73,6 +86,14 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>价格：</label>
                     <input style='width:250px' type='text' placeholder='' name='price' class='input-sm'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>库存：</label>
+                    <input style='width:250px' type='text' placeholder='' name='num' class='input-sm num'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>单次购买限制：</label>
+                    <input style='width:250px' type='text' placeholder='' name='buy_limit' class='input-sm buy_limit'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>单位：</label>
@@ -118,6 +139,14 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <input style='width:250px' type='text' placeholder='' name='price' class='input-sm price'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>库存：</label>
+                    <input style='width:250px' type='text' placeholder='' name='num' class='input-sm num'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>单次购买限制：</label>
+                    <input style='width:250px' type='text' placeholder='' name='buy_limit' class='input-sm buy_limit'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>单位：</label>
                     <?= UnitWidget::widget() ?>
                 </div>
@@ -160,11 +189,55 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
 <div id='status_modal' style='display:none;min-width:600px'>
     <div class='row'>
         <div class='col-md-12'>
-            <label style='width:80px'>状态：</label>
-            <select name='disabled' style='width:350px;min-width:100px;margin-right:12px;'>
-                <option value="0">销售中</option>
-                <option value="1">下线</option>
+            <label style='width:80px'>销售状态：</label>
+            <select name='status' style='width:350px;min-width:100px;margin-right:12px;'>
+                <option value="1">销售中</option>
+                <option value="2">下线</option>
             </select>
+        </div>
+    </div>
+</div>
+
+<div id='booking_modal' style='display:none;min-width:600px'>
+    <div class='row'>
+        <div class='col-md-12'>
+            <label style='width:80px'>预约设置：</label>
+            <select name='booking_status' style='width:350px;min-width:100px;margin-right:12px;'>
+                <option value="1">可预约</option>
+                <option value="2">不可预约</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id='inventory_modal' style='display:none;min-width:600px'>
+    <div class='row'>
+        <div class='col-md-12' style="margin-top: 10px;">
+            <label style='width:80px'>事项：</label>
+            <select name='operator' style='width:350px;margin-right:12px;'>
+                <option value="1">进货</option>
+                <option value="2">损耗</option>
+                <option value="3">赠送</option>
+                <option value="4">其它</option>
+            </select>
+        </div>
+
+        <div class='col-md-12' style="margin-top: 10px;">
+            <label style='width:80px;'>增/减：</label>
+            <select name='operator_func' style='width:350px;min-width:100px;margin-right:12px;'>
+                <option value="1">增加</option>
+                <option value="2">减少</option>
+            </select>
+        </div>
+
+        <div class='col-md-12' style="margin-top: 10px;">
+            <label style='width:80px'>数量：</label>
+            <input style='width:350px;display: inline-block;' type="text" class="form-control input-sm" name='num' value='' placeholder="整数" />
+        </div>
+
+        <div class='col-md-12' style="margin-top: 10px;">
+            <label style='width:80px'>成本价：</label>
+            <input style='width:350px;display: inline-block;' type="text" class="form-control input-sm" name='price' value='0' placeholder="成本价" />
         </div>
     </div>
 </div>

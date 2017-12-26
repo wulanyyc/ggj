@@ -14,13 +14,21 @@ MsaView::registerJsFile($this,'/js/special/index.js',
 ?>
 
 <style type="text/css">
+  .card {
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    margin: 1% 5px;
+  }
+
   #promotion {
     margin-top: 1%; display: flex;flex-direction: row;justify-content:flex-start;flex-wrap: wrap;
   }
 
-  .promotion-item {
+  a.promotion-item {
     width:48%;height:150px;border-radius: 3px;display: flex;flex-direction: row;margin-bottom: 1%;
-    margin-left: 1%;
+    margin-left: 1%;text-decoration: none;
   }
 
   .promotion-item-left {
@@ -41,6 +49,14 @@ MsaView::registerJsFile($this,'/js/special/index.js',
 
   .promotion-item-right {
     width:50%;height:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .promotion-item-right img {
+    height: 100%;
   }
 
   .day1-left {
@@ -100,13 +116,13 @@ MsaView::registerJsFile($this,'/js/special/index.js',
   }
 </style>
 
-<div class="card" style="margin:1%; border-radius: 0; border-color: #fff;">
+<div class="card">
     <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         <span class="first-title">天天享特价</span>
     </div>
     <div id="promotion">
       <?php foreach($data as $value) { ?>
-      <div class="promotion-item">
+      <a class="promotion-item" href="/buy?id=<?=$value['id'] ?>">
         <div class="promotion-item-left prom-shop-left day<?=$value['day'] ?>-left">
           <div class="promotion-item-left-content">
             <div class="promotion-item-left-content-top">星期<?=$value['day_cn'] ?></div>
@@ -115,9 +131,9 @@ MsaView::registerJsFile($this,'/js/special/index.js',
         </div>
 
         <div class="promotion-item-right prom-shop-right day<?=$value['day'] ?>-right">
-
+          <img src="/img/alpha_4x3.png"></img>
         </div>
-      </div>
+      </a>
       <?php } ?>
     </div>
 </div>

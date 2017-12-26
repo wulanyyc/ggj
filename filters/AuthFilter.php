@@ -38,18 +38,13 @@ class AuthFilter extends Behavior
      */
     public function beforeAction($event)
     {
-        //权限控制
+        // 权限控制
         $module = Yii::$app->controller->module->id;
         $controller = Yii::$app->controller->id;
 
-        // var_dump(Yii::$app);exit;
         $action = Yii::$app->controller->action->id;
-        // echo $action;exit;
-
-        // Yii::$app->controller->redirect('/home/index');
-        // Yii::$app->end();
         
-        //认证controller权限豁免
+        // 认证controller权限豁免
         if($module == 'basic' && $controller == 'auth'){
             return $event->isValid;
         }
@@ -73,26 +68,6 @@ class AuthFilter extends Behavior
             Yii::$app->session['username'] = $username;
             Yii::$app->session['uid'] = $userInfo['id'];
             Yii::$app->session['rootflag'] = $userInfo['rootflag'];
-            
-            // if (extension_loaded('redis')) {
-            //     if ($this->visitType == 'login') {
-            //         // 删除历史cache
-            //         $visitHistoryFlag = Yii::$app->request->cookies->get('visitFlag');
-            //         if (!empty($visitHistoryFlag)) {
-            //             $visitHistoryFlag = urldecode($visitHistoryFlag);
-            //             Yii::$app->cache->delete($visitHistoryFlag);
-            //         }
-                    
-            //         // 新建cookie与cache
-            //         $visitFlag = uniqid();
-            //         Yii::$app->response->cookies->add(new \yii\web\Cookie([
-            //             'name' => 'visitFlag',
-            //             'value' => $visitFlag
-            //         ]));
-                    
-            //         Yii::$app->cache->set($visitFlag, $username, 86400);
-            //     }
-            // }
         }
      
         if(!CommonHelper::checkRights()){
@@ -107,7 +82,6 @@ class AuthFilter extends Behavior
             throw new \yii\base\UserException('欢迎访问果果佳，若无平台或功能访问权限，请联系362798045@qq.com开通权限');
         }
         
-        // $this->addUserVisitLog();
         return $event->isValid;
     }
     

@@ -20,10 +20,8 @@ class ProductOrder extends ActiveRecord
     
     public function rules() {
         return [
-            [['username'], 'required'],
-            [['cellphone'], 'required'],
-            [['address'], 'required'],
-            [['money'], 'required'],
+            [['userphone'], 'required'],
+            [['cart_id'], 'required'],
         ];
     }
 }

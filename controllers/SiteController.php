@@ -24,24 +24,17 @@ class SiteController extends Controller
     public function actionIndex() {
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
-            'dayPromotionText' => $this->getDayPromotion(),
+            'dayPromotion' => $this->getDayPromotion(),
             'tags' => $this->getTags(),
             'products' => $this->getProducts(),
-            'newPromotionText' => $this->getNewPromotion(),
+            'newPromotion' => $this->getNewPromotion(),
+            'bookingDiscount' => Yii::$app->params['bookingDiscount'] * 10,
         ]);
     }
 
     public function actionLayout() {
         $params = Yii::$app->request->post();
         print_r($params);
-        // $width = $params['width'];
-        // if ($width <= 991) {
-        //     Yii::$app->params['layout'] = 'page';
-        // } else {
-        //     Yii::$app->params['layout'] = 'site';
-        // }
-
-        // echo Yii::$app->params['layout'];
     }
 
     private function getNewPromotion() {
@@ -49,9 +42,10 @@ class SiteController extends Controller
 
         $info = ProductList::find()->select('name,price,unit')->where(['id' => $promotions['id']])->asArray()->one();
 
-        $price = PriceHelper::getProductPrice($promotions['id'], $info['price']);
+        $price = PriceHelper::getProductPrice($promotions['id']);
         $text = $info['name'] . ' ' . $price . '元/' . $info['unit'];
-        return $text;
+
+        return ['text' => $text, 'img' => Yii::$app->params['new_promotion']['img']];
     }
 
     private function getDayPromotion() {
@@ -62,10 +56,10 @@ class SiteController extends Controller
         }
 
         $promotions = Yii::$app->params['day_promotion'][$dayofweek];
-        $info = ProductList::find()->select('name')->where(['id' => $promotions['id']])->asArray()->one();
+        $info = ProductList::find()->select('name,price')->where(['id' => $promotions['id']])->asArray()->one();
 
-        $text = '星期' . $cn[$dayofweek] . ' ' . $info['name'] . ' 特价';
-        return $text;
+        $text = '星期' . $cn[$dayofweek] . ' ' . $info['name'];
+        return ['text' => $text, 'img' => Yii::$app->params['day_promotion'][$dayofweek]['img'], 'id' => Yii::$app->params['day_promotion'][$dayofweek]['id']];
     }
 
     private function getTags() {
@@ -74,7 +68,7 @@ class SiteController extends Controller
     }
 
     private function getProducts() {
-        $info = ProductList::find()->select('id,name,price,desc,slogan,link,img,unit')->where(['category' => '水果'])->asArray()->all();
+        $info = ProductList::find()->select('id,name,price,desc,slogan,link,img,unit,booking_status')->where(['category' => 'fruit'])->andWhere(['>', 'num', 0])->asArray()->all();
 
         foreach($info as $key => $value) {
             $tagArr = [];
@@ -89,10 +83,17 @@ class SiteController extends Controller
             }
             $info[$key]['tag'] = implode(' ', $tagArr);
 
-            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id'], $value['price']);
+            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id']);
             if (empty($value['img'])) {
-                $info[$key]['img'] = 'http://img.yis188.com/images/company/room.jpeg';
+                $info[$key]['img'] = '/img/apple_4x3.png';
             }
+
+            if (($key - 5) % 6 == 0) {
+                $info[$key]['border_css'] = 'end';
+            } else {
+                $info[$key]['border_css'] = '';
+            }
+            
         }
 
         return $info;

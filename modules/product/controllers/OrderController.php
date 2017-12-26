@@ -4,7 +4,7 @@ namespace app\modules\product\controllers;
 
 use Yii;
 use app\controllers\AuthController;
-use app\modules\product\models\ProductOrder;
+use app\models\ProductOrder;
 use app\modules\product\models\ProductList;
 use yii\helpers\Html;
 
@@ -28,20 +28,20 @@ class OrderController extends AuthController
         }
 
         if (!empty($params['query'])) {
-            $ret = ProductOrder::find()->select('id,username,cellphone,address,money,status,create_time')
-                ->where(['like', 'username', $params['query']])
+            $ret = ProductOrder::find()->select('id,userphone,rec_name,rec_phone,rec_address,pay_money,status,create_time')
+                ->where(['like', 'rec_name', $params['query']])
                 ->orWhere(['id' => intval($params['query'])])
                 ->andWhere(['status' => $status])
                 ->asArray()->all();
 
             $total = ProductOrder::find()
-                ->where(['like', 'username', $params['query']])
+                ->where(['like', 'rec_name', $params['query']])
                 ->orWhere(['id' => intval($params['query'])])
                 ->andWhere(['status' => $status])
                 ->count();
         }else {
             $ret = ProductOrder::find()
-                ->select('id,username,cellphone,address,money,status,create_time')
+                ->select('id,userphone,rec_name,rec_phone,rec_address,pay_money,status,create_time')
                 ->where(['status' => $status])
                 ->orderBy('id desc')->limit($params['length'])
                 ->offset($params['start'])
@@ -54,9 +54,9 @@ class OrderController extends AuthController
             $ret[$key]['status'] = Yii::$app->params['order_status'][$ret[$key]['status']];
 
             $ret[$key]['operation'] = "
-            <a data-id='{$value['id']}' data-val='{$value['username']}' style='margin-top:5px !important;'  class='order-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
-            <a data-id='{$value['id']}' data-val='{$value['username']}' style='margin-top:5px !important;'  class='order-express btn btn-xs btn-purple' href='javascript:void(0);'>关联快递号</a>
-            <a data-id='{$value['id']}' data-val='{$value['username']}' style='margin-top:5px !important;' class='order-status btn btn-xs btn-info' href='javascript:void(0);'>状态</a>";
+            <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
+            <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-express btn btn-xs btn-purple' href='javascript:void(0);'>关联快递号</a>
+            <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;' class='order-status btn btn-xs btn-info' href='javascript:void(0);'>状态</a>";
         }
         $output = [];
         $output['data'] = $ret;
@@ -72,7 +72,7 @@ class OrderController extends AuthController
 
         $pl = new ProductOrder();
         $ret = ProductOrder::find()
-            ->select('username,address,cellphone')
+            ->select('rec_name,rec_address,rec_phone')
             ->where(['id' => $id])
             ->asArray()
             ->one();

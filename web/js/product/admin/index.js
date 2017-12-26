@@ -69,10 +69,12 @@ $(document).ready(function () {
             success: function (data) {
                 $('.name').val(data.name);
                 $('.price').val(data.price);
+                $('.num').val(data.num);
                 $('.desc').val(data.desc);
                 $('.slogan').val(data.slogan);
                 $('.unit').val(data.unit);
                 $('.category').val(data.category);
+                $('.buy_limit').val(data.buy_limit);
             }
         });
 
@@ -174,7 +176,7 @@ $(document).ready(function () {
                     label: '提交',
                     className: 'btn-success',
                     callback: function () {
-                        var status = $('.bootbox select[name="disabled"]').val();
+                        var status = $('.bootbox select[name="status"]').val();
                         $.ajax({
                             url: '/product/admin/status',
                             type: 'post',
@@ -199,7 +201,93 @@ $(document).ready(function () {
         });
     });
 
+    $('#list').delegate('.product-booking', 'click', function () {
+        var id = $(this).attr('data-id');
+        var name = $(this).attr('data-val');
+        bootbox.dialog({
+            message: $('#booking_modal').html(),
+            title: '设置预约状态: ' + name,
+            className: 'modal-primary',
+            buttons: {
+                success: {
+                    label: '提交',
+                    className: 'btn-success',
+                    callback: function () {
+                        var status = $('.bootbox select[name="booking_status"]').val();
+                        $.ajax({
+                            url: '/product/admin/booking',
+                            type: 'post',
+                            data: {
+                                'status': status,
+                                'id': id
+                            },
+                            dataType: 'html',
+                            success: function (data) {
+                                if (data !== 'suc') {
+                                    bootbox.alert(data);
+                                } else {
+                                    location.reload();
+                                }
+                            }
+                        });
+
+                        return false;
+                    }
+                }
+            }
+        });
+    });
+
+    $('#list').delegate('.product-inventory', 'click', function () {
+        var id = $(this).attr('data-id');
+        var name = $(this).attr('data-val');
+        bootbox.dialog({
+            message: $('#inventory_modal').html(),
+            title: '库存管理: ' + name,
+            className: 'modal-primary',
+            buttons: {
+                success: {
+                    label: '提交',
+                    className: 'btn-success',
+                    callback: function () {
+                        var operator_func = $('.bootbox select[name="operator_func"]').val();
+                        var num = $('.bootbox input[name="num"]').val();
+                        var operator = $('.bootbox select[name="operator"]').val();
+                        var price = $('.bootbox input[name="price"]').val();
+
+                        $.ajax({
+                            url: '/product/admin/inventory',
+                            type: 'post',
+                            data: {
+                                'operator_func': operator_func,
+                                'num': num,
+                                'operator': operator,
+                                'pid': id,
+                                'price': price
+                            },
+                            dataType: 'html',
+                            success: function (data) {
+                                if (data !== 'suc') {
+                                    bootbox.alert(data);
+                                } else {
+                                    location.reload();
+                                }
+                            }
+                        });
+
+                        return false;
+                    }
+                }
+            }
+        });
+    });
+
+
     $('#query').change(function () {
+        loadTable();
+    });
+
+    $('#search_form select').change(function(){
         loadTable();
     });
 
@@ -209,22 +297,30 @@ $(document).ready(function () {
 
         config['columnDefs'] = [{
             sortable: false,
-            targets: [0, 1, 2, 3, 4, 5, 6, 7]
+            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8]
         }];
 
         config['columns'] = [
             {data: 'id'},
             {data: 'name'},
             {data: 'price'},
+            {data: 'num'},
             {data: 'unit'},
             {data: 'desc'},
             {data: 'slogan'},
-            {data: 'disabled'},
+            {data: 'status'},
             {data: 'operation'}
         ];
         config['displayLength'] = 10;
 
-        $.grid.createServerTable('/product/admin/table', {query: $('#query').val()}, 'list', config);
+        $.grid.createServerTable('/product/admin/table', 
+            { 
+                query: $('#query').val(),
+                status: $('#search_status').val(),
+                booking_status: $('#search_booking').val() 
+            }, 
+            'list', config);
+
         $.load.hide('#list');
     }
 });

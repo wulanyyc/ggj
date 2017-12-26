@@ -9,7 +9,7 @@ $(document).ready(function () {
         });
 
         var tag = $(this).attr('data-tag');
-        $('.first-product').each(function(){
+        $('.product-item').each(function(){
             if (tag == 'all') {
                 $(this).show();
                 return ;
@@ -23,11 +23,11 @@ $(document).ready(function () {
         });
     });
 
-    $('.first-product-content').mouseover(function(){
+    $('.product-item-content').mouseover(function(){
         $(this).find('.tip-content').show();
     });
 
-    $('.first-product-content').mouseout(function(){
+    $('.product-item-content').mouseout(function(){
         $(this).find('.tip-content').hide();
     });
 });

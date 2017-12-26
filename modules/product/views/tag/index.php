@@ -3,7 +3,7 @@ use yii\web\View;
 use app\components\MsaView;
 use app\widgets\UnitWidget;
 
-$this->title = '商品-列表';
+$this->title = '商品-标签';
 
 MsaView::registerJsFile($this,'/js/product/tag/index.js', 
     ['position' => View::POS_END, 

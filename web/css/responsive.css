@@ -7,19 +7,56 @@ body {
     padding-top: 3.5rem;
 }
 
+main {
+    width: 100%;
+}
+
 .search-top {
     width: 40%;
 }
 
+.modal-open {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+    width: 100%;
+}
+
+.modal {
+    position: fixed;
+    top: auto; 
+    right: 0;
+    bottom: auto; 
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    outline: 0;
+}
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575px) {
-    .search-top {
-        width: 40%;
+    .navbar-brand {
+        margin-right: 0 !important;
+        /*margin-left: 2rem;*/
     }
 
-    .first-product {
-        width: 48% !important;
+    .search-top {
+        width: 50%;
+    }
+
+    .product-items {
+        justify-content: flex-start !important;
+    }
+
+    .product-item {
+        width: 50% !important;
+    }
+
+    .end {
+        border-right: 1px solid #f5f5f5 !important;
     }
 
     .first-items {
@@ -55,12 +92,12 @@ body {
         display: none;
     }
 
-    #order_list {
-        width: 30% !important;
+    #menu_list {
+        width: 25% !important;
     }
 
     #order_scroll {
-        width: 68% !important;
+        width: 73% !important;
     }
 
     .order-product {
@@ -70,12 +107,25 @@ body {
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767px) {
+    .navbar-brand {
+        margin-right: 0 !important;
+        /*margin-left: 2rem;*/
+    }
+
     .search-top {
         width: 50%;
     }
 
-    .first-product {
-        width: 48% !important;
+    .product-items {
+        justify-content: flex-start !important;
+    }
+
+    .product-item {
+        width: 50% !important;
+    }
+
+    .end {
+        border-right: 1px solid #f5f5f5 !important;
     }
 
     .first-items {
@@ -110,12 +160,12 @@ body {
         display: none;
     }
 
-    #order_list {
-        width: 30% !important;
+    #menu_list {
+        width: 25% !important;
     }
 
     #order_scroll {
-        width: 68% !important;
+        width: 73% !important;
     }
 
     .order-product {

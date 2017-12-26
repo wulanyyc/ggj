@@ -66,12 +66,12 @@ SiteAsset::register($this);
                 <a class="nav-link" href="/special">今日特价</a>
             </li>
 
-            <?php if ($controller == 'package') { ?>
+            <?php if ($controller == 'booking') { ?>
             <li class="nav-item active">
             <?php } else { ?>
             <li class="nav-item">
             <?php } ?>
-                <a class="nav-link" href="/package">预约套餐</a>
+                <a class="nav-link" href="/booking">预约套餐</a>
             </li>
 
             <?php if ($controller == 'contact') { ?>
@@ -85,11 +85,11 @@ SiteAsset::register($this);
     </div>
 
     <div class="d-inline search-top" style="position: relative;">
-        <input class="form-control mr-sm-2" type="text" placeholder="美丽健康，新鲜不贵" aria-label="美丽健康，新鲜不贵" style="padding-left: 30px;" />
+        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，新鲜不贵" aria-label="美丽健康，新鲜不贵" style="padding-left: 30px;" />
         <div style="position: absolute;left:8px;top:5px;"><i class="fa fa-search" aria-hidden="true"></i></div>
     </div>
 
-    <a style="display: inline-block;margin-left:10px;text-decoration: none;color: #fff;" href="/order">查看订单</a>
+    <a style="display: inline-block;margin-left:10px;text-decoration: none;color: #fff;" href="/customer">个人中心</a>
 </nav>
 
 <main>
@@ -98,7 +98,10 @@ SiteAsset::register($this);
 
 <footer>
     <hr>
-    <p style="padding-left: 1%;">&copy; 成都果果佳科技 2017</p>
+    <div style="display: flex;justify-content: flex-start;flex-direction: row;">
+        <p style="padding-left: 1%;">&copy; 成都果果佳科技 2017</p>
+        <a style="padding-left: 2%;text-decoration: none;color:black;" href="/contact">联系我们</a>
+    </div>
 </footer>
 
 <?php $this->endBody() ?>

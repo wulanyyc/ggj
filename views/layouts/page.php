@@ -24,9 +24,9 @@ SiteAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;opacity: 0.95;display: flex;flex-direction: row;justify-content: space-between;flex-wrap: nowrap;">
-    <a href="#" id="back" style="color:white;"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+    <div id="back" style="color:white;cursor: pointer;display: inline;"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
     <a class="navbar-brand" href="/" style="color:white;text-align: center;">果果佳</a>
-    <a style="display: inline-block;margin-left:10px;text-decoration: none;color: #fff;" href="/order">查看订单</a>
+    <a style="display: inline-block;margin-left:10px;text-decoration: none;color: #fff;" href="/customer">个人中心</a>
 </nav>
 
 <main>
@@ -35,7 +35,10 @@ SiteAsset::register($this);
 
 <footer>
     <hr>
-    <p style="padding-left: 1%;">&copy; 成都果果佳科技 2017</p>
+    <div style="display: flex;justify-content: flex-start;flex-direction: row;">
+        <p style="padding-left: 1%;">&copy; 成都果果佳科技 2017</p>
+        <a style="padding-left: 2%;text-decoration: none;color:black;" href="/contact">联系我们</a>
+    </div>
 </footer>
 
 <?php $this->endBody() ?>

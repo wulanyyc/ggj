@@ -12,9 +12,9 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
-                $('.username').val(data.username);
-                $('.cellphone').val(data.cellphone);
-                $('.address').val(data.address);
+                $('.rec_name').val(data.rec_name);
+                $('.rec_phone').val(data.rec_phone);
+                $('.rec_address').val(data.rec_address);
             }
         });
 
@@ -161,15 +161,16 @@ $(document).ready(function () {
 
         config['columnDefs'] = [{
             sortable: false,
-            targets: [0, 1, 2, 3, 4, 5, 6, 7]
+            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8]
         }];
 
         config['columns'] = [
             {data: 'id'},
-            {data: 'username'},
-            {data: 'cellphone'},
-            {data: 'money'},
-            {data: 'address'},
+            {data: 'userphone'},
+            {data: 'rec_name'},
+            {data: 'rec_phone'},
+            {data: 'pay_money'},
+            {data: 'rec_address'},
             {data: 'status'},
             {data: 'create_time'},
             {data: 'operation'}

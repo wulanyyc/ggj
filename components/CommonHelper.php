@@ -3,8 +3,6 @@ namespace app\components;
 
 use Yii;
 use yii\base\Component;
-use app\models\DataLocationTree;
-use app\models\LocationTree;
 use app\modules\right\models\User;
 use app\modules\right\models\Mod;
 use app\modules\right\models\RoleMod;
@@ -27,7 +25,6 @@ class CommonHelper extends Component{
         }
 
         $dbPassword = $data['password'];
-        // $mkPassword = md5($password . Yii::$app->params['salt']);
         $mkPassword = md5(substr(md5($username . '_' . $password), 0, 6) . Yii::$app->params['salt']);
 
         if ($dbPassword != $mkPassword) {
@@ -379,137 +376,6 @@ class CommonHelper extends Component{
         return date('Ymd', strtotime($day, strtotime($date)));
     }
 
-
-    /**
-     * 根据经纬度获取geohash
-     * @param  [type] $lat     [description]    纬度
-     * @param  [type] $lng     [description]    经度   
-     * @param  [type] $presion [description]    精确位数
-     * @return [type]          [description]    geohash值
-     */
-    public static function getGeohash($lat, $lng, $presion)
-    {
-        $geotools = new \League\Geotools\Geotools();
-        $coordToGeohash = new \League\Geotools\Coordinate\Coordinate($lat . ',' . $lng);
-        $encoded = $geotools->geohash()->encode($coordToGeohash, $presion); 
-        $geohash = $encoded->getGeohash();
-
-        return $geohash;
-    }
-
-
-    /**
-     * 根据经纬度获取geohash
-     * @param  [type] $lat     [description]    纬度
-     * @param  [type] $lng     [description]    经度   
-     * @param  [type] $presion [description]    精确位数
-     * @return [type]          [description]    geohash值
-     */
-    public static function encodeGeohash($lat, $lng, $presion = 7)
-    {
-        $geotools = new \League\Geotools\Geotools();
-        $coordToGeohash = new \League\Geotools\Coordinate\Coordinate($lat . ',' . $lng);
-        $encoded = $geotools->geohash()->encode($coordToGeohash, $presion); 
-        $geohash = $encoded->getGeohash();
-
-        return $geohash;
-    }
-
-
-    public static function decodeGeohash($geohash, $float = 0)
-    {
-        $geotools = new \League\Geotools\Geotools();
-        $decoded = $geotools->geohash()->decode($geohash);
-        $lat = $decoded->getCoordinate()->getLatitude();
-        $lng = $decoded->getCoordinate()->getLongitude();
-
-        if ($float) {
-            $lat = round($lat, $float);
-            $lng = round($lng, $float);
-        }
-
-        return ['lat' => $lat, 'lng' => $lng];
-    }
-
-
-    public function formatProvince($province)
-    {
-        if (empty($province)) {
-            return '';
-        }
-
-        $pattern = '/省/';
-        $existTitle = preg_match($pattern, $province);
-
-        $existDb = LocationTree::find()
-            ->select('title')
-            ->where("title like '" . $province . "%'")
-            ->andWhere(['type' => 'province'])
-            ->scalar();
-        
-        if (!$existTitle && $existDb) {
-            return $existDb;
-        }
-        return $province;
-    }
-
-
-    public function formatCity($city)
-    {
-        if (empty($city)) {
-            return '';
-        }
-
-        $pattern = '/市/';
-        $existTitle = preg_match($pattern, $city);
-
-        $existDb = LocationTree::find()
-            ->select('title')
-            ->where("title like '" . $city . "%'")
-            ->andWhere(['type' => 'city'])
-            ->scalar();
-        
-        if (!$existTitle && $existDb) {
-            return $existDb;
-        }
-
-        $length = mb_strlen($city);
-        if ($length <= 3 && !$existTitle) {
-            return $city . '市';
-        }
-
-        return $city;
-    }
-
-
-    /**
-     * [传入日期 ， 计算月数]
-     * @param  [int] $startDate     [开始月份]
-     * @param  [int] $endDate       [结束月份，默认当前月份]
-     * @return [int]                [月数]
-     */
-    public static function caculateMonths ($startDate, $endDate = 'now') 
-    {
-        if (empty($startDate)) {
-            $startDate = '201509';
-        }
-
-        $submitTime = strtotime($startDate);
-        $nowTime = strtotime($endDate);
-        $months = ceil(($nowTime - $submitTime) / (86400 * 30));
-        return $months;
-    }
-
-
-    public static function dealArr2SqlStr ($arr)
-    {
-        $str = "('";
-        $str .= implode("','",$arr);
-        $str .= "')";
-        return $str;
-    }
-
-
     public static function DownloadXls ($data)
     {
         header("Content-type:application/vnd.ms-excel");  //设置内容类型
@@ -526,24 +392,6 @@ class CommonHelper extends Component{
 
     public static function formatPrice ($price) {
         return '¥ ' . $price;
-    }
-
-    public static function checkPhone($phone) {
-        $reg ='/^(1(([34578][0-9])|(47)|[8][0126789]))\d{8}$/';
-        if(preg_match($reg, $phone)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public static function checkYdPhone($phone) {
-        $reg ='/^(134|135|136|137|138|139|147|150|151|152|157|158|159|178|182|183|184|187|188)/';
-        if(preg_match($reg, $phone)) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

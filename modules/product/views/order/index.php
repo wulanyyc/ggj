@@ -52,10 +52,11 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                     <thead>
                         <tr class='table-title' role='row'>
                             <th>ID</th>
-                            <th>名称</th>
-                            <th>手机号码</th>
+                            <th>下单号码</th>
+                            <th>收件人</th>
+                            <th>收件人号码</th>
                             <th>总价</th>
-                            <th>地址</th>
+                            <th>收件地址</th>
                             <th>状态</th>
                             <th>下单时间</th>
                             <th>操作</th>
@@ -97,15 +98,15 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
             <form name='edit_form' action='#' method='post' style='margin-left:10px' onsubmit='return false;'>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>名称：</label>
-                    <input style='width:250px' type='text' placeholder='' name='username' class='input-sm username'></input>
+                    <input style='width:250px' type='text' placeholder='' name='rec_name' class='input-sm rec_name'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>手机号码：</label>
-                    <input style='width:250px' type='text' placeholder='' name='cellphone' class='input-sm cellphone'></input>
+                    <input style='width:250px' type='text' placeholder='' name='rec_phone' class='input-sm rec_phone'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>地址：</label>
-                    <textarea style='width:250px' name='address' class='input-sm address'></textarea>
+                    <textarea style='width:250px' name='rec_address' class='input-sm rec_address'></textarea>
                 </div>
             </form>
         </div>
