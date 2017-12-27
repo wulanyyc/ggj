@@ -323,15 +323,15 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   </div>
 </div>
 
-<div class="card">
+<!-- <div class="card">
   <div id="memo" class="card-content">
     <input type='text' placeholder='选填:给商家留言(45字以内)' name='memo' id="memo" class='input-sm' maxlength=45 style="width:100%;border:none;line-height: 35px;"></input>
   </div>
-</div>
+</div> -->
 
-<br/>
-<br/>
-<br/>
+<!-- <br/> -->
+<!-- <br/>
+<br/> -->
 
 <div id="tongji">
   <div id="tips" style="color:red;margin-left: 5px;margin-right: 5px;font-size: 14px;">实付款:</div>
