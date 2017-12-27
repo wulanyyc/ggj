@@ -104,6 +104,8 @@ SiteAsset::register($this);
     </div>
 </footer>
 
+<div id="cover" class="cover"></div>
+
 <?php $this->endBody() ?>
 </body>
 </html>

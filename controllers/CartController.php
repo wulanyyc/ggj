@@ -32,9 +32,7 @@ class CartController extends Controller
      */
     public function actionIndex() {
         if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
+            Yii::$app->controller->redirect('/customer/login');
         }
 
         $params = Yii::$app->request->get();
@@ -158,12 +156,6 @@ EOF;
         }
 
         echo $html;
-    }
-
-    public function actionLogin() {
-        return $this->render('login', [
-            'controller' => Yii::$app->controller->id,
-        ]);
     }
 
     /*
