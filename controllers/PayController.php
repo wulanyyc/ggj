@@ -38,19 +38,15 @@ class PayController extends Controller
             ]);
         }
 
-        $phone = $_COOKIE['userphone'];
+        // $phone = $_COOKIE['userphone'];
 
-        $params = Yii::$app->request->get();
-        $id = isset($params['id']) ? $params['id'] : 0;
+        // $params = Yii::$app->request->get();
+        // $id = isset($params['id']) ? $params['id'] : 0;
 
-        $data = ProductOrder::find()->where(['userphone' => $phone])->orderBy('id desc')->asArray()->all();
+        // $data = ProductOrder::find()->where(['userphone' => $phone])->orderBy('id desc')->asArray()->all();
 
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
-            'data' => $data,
-            'status' => Yii::$app->params['order_status'],
-            'type' => Yii::$app->params['order_type'],
-            'orderType' => $orderType,
         ]);
     }
 
