@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
+use app\components\SmsHelper;
 
 class SmsController extends Controller
 {
@@ -34,10 +35,12 @@ class SmsController extends Controller
         if (SiteHelper::checkPhone($phone)) {
             $code = rand(1000, 9999);
             Yii::$app->redis->setex($phone . "_code", 120, $code);
+
+            SmsHelper::sendVcode($phone, ['code' => $code]);
             //TODO send code
-            echo $code;
+            echo 1;
         } else {
-            echo '';
+            echo '号码认证失败';
         }
 
         Yii::$app->end();

@@ -15,12 +15,16 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 ?>
 
 <style type="text/css">
+  .alert {
+    margin-bottom: 0;
+  }
+
   .card {
     border-radius: 0;
     border: none;
     border-bottom: 1px solid #eee;
     border-top: 1px solid #eee;
-    margin: 1% 0;
+    margin: 5px 0;
   }
 
   #menu_list a {
@@ -216,6 +220,9 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 <input type="hidden" value="<?=$orderType ?>" id="order_type" />
 
 <div style="position: fixed;top: 55px;">
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        预约单仅限大成都地区，每周1，3，5发货
+    </div>
     <div class="card">
       <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         预约列表

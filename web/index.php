@@ -11,8 +11,9 @@ if (YII_DEBUG) {
     defined('CACHE_PREFIX') || define('CACHE_PREFIX', 'ggj_prod');
 }
 
-require(__DIR__ . '/../../../yunlaba/yii2/vendor/autoload.php');
-require(__DIR__ . '/../../../yunlaba/yii2/vendor/yiisoft/yii2/Yii.php');
+require(__DIR__ . '/../../yii2/vendor/autoload.php');
+require(__DIR__ . '/../../yii2/vendor/aliyunsms/api_sdk/vendor/autoload.php');
+require(__DIR__ . '/../../yii2/vendor/yiisoft/yii2/Yii.php');
 
 
 $config = require(__DIR__ . '/../config/web.php');

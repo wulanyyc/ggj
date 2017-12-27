@@ -20,7 +20,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     border: none;
     border-bottom: 1px solid #eee;
     border-top: 1px solid #eee;
-    margin: 1% 0;
+    margin: 5px 0;
   }
 
   #menu_list a {

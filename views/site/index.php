@@ -15,12 +15,16 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 ?>
 
 <style type="text/css">
+  .alert {
+    margin-bottom: 0;
+  }
+
   .card {
     border-radius: 0;
     border: none;
     border-bottom: 1px solid #eee;
     border-top: 1px solid #eee;
-    margin: 1% 5px;
+    margin: 5px 5px;
   }
 
   .first-items {
@@ -149,7 +153,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   #promotion {
-    margin-top:6px; display: flex;flex-direction: row;justify-content:space-around;
+    margin-top:5px; display: flex;flex-direction: row;justify-content:space-around;
   }
 
   a.promotion-item {
@@ -219,6 +223,9 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 </style>
 
+<div class="alert alert-danger" role="alert" style="text-align: center;">
+  试运营阶段，仅限朋友购买！
+</div>
 <div id="promotion">
   <a class="promotion-item" href="/buy?id=1">
     <div class="promotion-item-left prom-shop-left" style="background-color: #53a93f;">

@@ -4,7 +4,7 @@ $(document).ready(function () {
         if (location.pathname == '/buy/booking') {
             var back = $.cookie('booking-history-back');
             if ($.cookie('booking-history-back') < 0) {
-                $.cookie('booking-history-back', null, '/');
+                $.cookie('booking-history-back', '', { expires: -1, path: '/' });
                 window.history.go(back);
             } else {
                 window.history.back();
@@ -12,7 +12,7 @@ $(document).ready(function () {
         } else if (location.pathname == '/buy') {
             var back = $.cookie('buy-history-back');
             if ($.cookie('buy-history-back') < 0) {
-                $.cookie('buy-history-back', null, '/');
+                $.cookie('buy-history-back', '', { expires: -1, path: '/'});
                 window.history.go(back);
             } else {
                 window.history.back();

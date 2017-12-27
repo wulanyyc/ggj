@@ -36,8 +36,8 @@ SiteAsset::register($this);
 <footer>
     <hr>
     <div style="display: flex;justify-content: flex-start;flex-direction: row;">
-        <p style="padding-left: 1%;">&copy; 成都果果佳科技 2017</p>
-        <a style="padding-left: 2%;text-decoration: none;color:black;" href="/contact">联系我们</a>
+        <p style="padding-left: 1%;">&copy; 成都果果佳科技&nbsp;蜀ICP备17043581号</p>
+        <a style="padding-left: 1%;text-decoration: none;color:black;" href="/contact">联系我们</a>
     </div>
 </footer>
 

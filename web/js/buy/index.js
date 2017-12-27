@@ -37,7 +37,7 @@ $(document).ready(function () {
 
     $('.list-group-item').click(function(){
         back -= 1;
-        $.cookie('buy-history-back', back, '/');
+        $.cookie('buy-history-back', back, { path: '/' });
     });
 
     $('#order_scroll').scrollspy({ target: '#menu_list' });
@@ -197,7 +197,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status == 'ok') {
-                    $.cookie('userphone', $('#userphone').val(), { path: '/' });
+                    $.cookie('userphone', $('#userphone').val(), { path: '/', expires: 30 });
                     $.cookie('secret', data.secret, { path: '/', expires: 30 });
                     $('#login').hide();
                     $('#getcode').val('');

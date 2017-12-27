@@ -5,7 +5,7 @@ $(document).ready(function () {
     clock = 0;
 
     function init() {
-        $('#order_scroll').css('height', $(window).height() - 185);
+        $('#order_scroll').css('height', $(window).height() - 235);
 
         var id = parseInt($('#scroll_id').val());
         if (id > 0) {
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
     $('.list-group-item').click(function(){
         back -= 1;
-        $.cookie('buy-history-back', back, '/');
+        $.cookie('booking-history-back', back, { path: '/' });
     });
 
     $('#order_scroll').scrollspy({ target: '#menu_list' });
@@ -187,7 +187,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status == 'ok') {
-                    $.cookie('userphone', $('#userphone').val(), { path: '/' });
+                    $.cookie('userphone', $('#userphone').val(), { path: '/', expires: 30 });
                     $.cookie('secret', data.secret, { path: '/', expires: 30 });
                     $('#login').hide();
                     $('#getcode').val('');
