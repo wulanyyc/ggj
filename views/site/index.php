@@ -224,9 +224,12 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 </style>
 
+<?php if (!empty(Yii::$app->params['hometip'])) { ?>
 <div class="alert alert-danger" role="alert" style="text-align: center;">
-  试运营阶段，仅限朋友购买！
+    <?=Yii::$app->params['hometip'] ?>
 </div>
+<?php } ?>
+
 <div id="promotion">
   <a class="promotion-item" href="/buy?id=1">
     <div class="promotion-item-left prom-shop-left" style="background-color: #53a93f;">
