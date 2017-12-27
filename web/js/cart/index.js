@@ -21,11 +21,13 @@ $(document).ready(function () {
 
     $('#ask').click(function(){
         $('#question').show();
+        $('#cover').show();
         $('body').addClass('forbid');
     });
 
     $('#close_question').click(function(){
         $('#question').hide();
+        $('#cover').hide();
         $('body').removeClass('forbid');
     });
 
@@ -51,21 +53,25 @@ $(document).ready(function () {
 
     $('#product_detail').click(function() {
         $('#detail').show();
+        $('#cover').show();
         $('body').addClass('forbid');
     });
 
     $('#close_detail').click(function(){
         $('#detail').hide();
+        $('#cover').hide();
         $('body').removeClass('forbid');
     });
 
     $('#add_address').click(function(){
         $('#address_info').show();
+        $('#cover').show();
         $('body').addClass('forbid');
     });
 
     $('#close_address').click(function(){
         $('#address_info').hide();
+        $('#cover').hide();
         $('body').removeClass('forbid');
     });
 
@@ -199,11 +205,13 @@ $(document).ready(function () {
             }
         });
         $('#all_address_info').show();
+        $('#cover').show();
         $('body').addClass('forbid');
     });
 
     $('#close_all_address').click(function(){
         $('#all_address_info').hide();
+        $('#cover').hide();
         $('body').removeClass('forbid');
     });
 
@@ -213,6 +221,7 @@ $(document).ready(function () {
         $('#rec_detail').val('');
         $('#all_address_info').hide();
         $('#address_info').show();
+        $('#cover').show();
         $('body').addClass('forbid');
     });
 
@@ -235,6 +244,7 @@ $(document).ready(function () {
         $('#all_address_info').hide();
         $('#address_info').show();
         $('body').addClass('forbid');
+        $('#cover').show();
     });
 
     $('#all_address_items').delegate('.del_address_item', 'click', function(){
@@ -303,11 +313,13 @@ $(document).ready(function () {
         });
         $('#coupon').show();
         $('body').addClass('forbid');
+        $('#cover').show();
     });
 
     $('#close_coupon').click(function(){
         $('#coupon').hide();
         $('body').removeClass('forbid');
+        $('#cover').hide();
     });
 
     $('#coupon_items').delegate('.coupon_item', 'click', function(){

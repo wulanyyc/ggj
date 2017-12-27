@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     $('.show_detail').click(function() {
         $('#detail').show();
+        $('#cover').show();
 
         $('body').addClass('forbid');
 
@@ -27,6 +28,7 @@ $(document).ready(function () {
     $('#close_detail').click(function(){
         $('#detail').hide();
         $('body').removeClass('forbid');
+        $('#cover').hide();
     });
 
     $('.edit').click(function(){
