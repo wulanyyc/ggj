@@ -132,7 +132,7 @@ $(document).ready(function () {
                 data: "phone=" + $('#userphone').val(),
                 dataType: 'html',
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     if (parseInt(data) > 0) {
                         clock = setInterval(function(){
                             timeLimit--;

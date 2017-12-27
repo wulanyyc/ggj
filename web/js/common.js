@@ -34,7 +34,7 @@ $(document).ready(function () {
     $(window).resize(function(){
         $.cookie('width', null, { path: '/' }); 
         $.cookie('width', $(window).width(), { path: '/' });
-        location.reload();
+        // location.reload();
     });
 
     $('#search_product').bind('keyup', function(event) {

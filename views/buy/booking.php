@@ -302,7 +302,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
       用户信息<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_login"></i>
   </div>
-  <form style="width:94%;margin: 10px auto;" id="login_form">
+  <div style="width:94%;margin: 10px auto;" id="login_form">
     <div style="margin-bottom: 10px;">
       <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码" value="<?=$orderData['userphone'] ?>"/>
     </div>
@@ -315,7 +315,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     <button type="button" class="btn btn-success" id="next" style="width:50%;margin-left:25%;margin-top:10px;">
       下一步
     </button>
-  </form>
+  </div>
 </div>
 
 <div class="card" id="userinfo">
