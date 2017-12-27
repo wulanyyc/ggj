@@ -3,7 +3,7 @@ use yii\web\View;
 use app\assets\SiteAsset;
 use app\components\MsaView;
 
-$this->title = '联系我们';
+$this->title = '反馈建议';
 
 MsaView::registerJsFile($this,'/js/customer/index.js', 
     ['position' => View::POS_END, 

@@ -2,7 +2,7 @@
 use yii\web\View;
 use app\assets\SiteAsset;
 
-$this->title = '预约套餐';
+$this->title = '预约规则';
 
 SiteAsset::register($this);
 ?>

@@ -3,7 +3,7 @@ use yii\web\View;
 use app\components\MsaView;
 use app\assets\HashAsset;
 
-$this->title = '用户中心';
+$this->title = '个人中心';
 
 MsaView::registerJsFile($this,'/js/customer/index.js', 
     ['position' => View::POS_END, 
