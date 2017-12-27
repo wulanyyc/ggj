@@ -32,11 +32,11 @@ class PayController extends Controller
      * @return
      */
     public function actionIndex() {
-        if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
-        }
+        // if (!SiteHelper::checkSecret()) {
+        //     return $this->render('login', [
+        //         'controller' => Yii::$app->controller->id,
+        //     ]);
+        // }
 
         // $phone = $_COOKIE['userphone'];
 
