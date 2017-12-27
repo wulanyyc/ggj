@@ -199,16 +199,6 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     border-radius: 0;
     display: none;
   }
-
-  #userinfo {
-    position: absolute;
-    z-index: 100;
-    bottom: 0;
-    width: 100%;
-    border-radius: 0;
-    display: none;
-  }
-
 </style>
 
 <input type="hidden" value="<?=$id ?>" id="scroll_id" />
@@ -316,33 +306,4 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
       下一步
     </button>
   </div>
-</div>
-
-<div class="card" id="userinfo">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
-      收货人信息<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_userinfo"></i>
-  </div>
-  <form style="width:94%;margin: 10px auto;" id="userinfo_form">
-    <input type="hidden" id="type" name="type"  value="0" />
-    <input type="hidden" value="<?=$expressFee ?>" name="express_fee" id="expressFeeReal" />
-    <input type="hidden" value="0" name="money" id="pay_money" />
-
-    <div style="margin-bottom: 10px;">
-      <input type="text" class="form-control" id="rec_name" name="rec_name" placeholder="收货人姓名" value="" />
-    </div>
-
-    <div style="margin-bottom: 10px;">
-      <input type="text" class="form-control" id="rec_phone" name="rec_phone" placeholder="收货人手机" value="" />
-    </div>
-
-    <div style="margin-bottom: 10px;">
-      <textarea id="rec_address" name="rec_address" style="width: 100%;border: 1px solid #ced4da;padding: 5px 10px;" placeholder="收货人地址"></textarea>
-    </div>
-
-    <div id="express_fee" style="color:red;">快递费：<span id="express_fee_text">6元</span></div>
-
-    <button type="button" class="btn btn-success" id="cart" style="width:50%;margin-left:25%;margin-top:10px;">
-      去下单
-    </button>
-  </form>
 </div>

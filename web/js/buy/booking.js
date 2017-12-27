@@ -103,15 +103,12 @@ $(document).ready(function () {
         }
     }
 
-    $('#close_userinfo').click(function() {
-        $('#userinfo').hide();
-    });
-
     $('#close_login').click(function() {
         $('#getcode').val('');
         $('#getcode').html('发送验证码');
         $('#getcode').removeAttr('disabled');
         $('#login').hide();
+        $('#cover').hide();
     });
 
     $('#getcode').click(function() {
@@ -147,11 +144,9 @@ $(document).ready(function () {
     });
 
     function order() {
-        // var formData = $('#userinfo_form').serialize();
         var cartStr = JSON.stringify(cart);
         var oid = $('#order_id').val();
 
-        // $.cookie('userphone', null, { path: '/' });
         var money = $('#tongji .realprice').html();
         var type = $('#order_type').val();
 
@@ -175,6 +170,7 @@ $(document).ready(function () {
             order();
         } else {
             $('#login').show();
+            $('#cover').hide();
         }
     });
 
@@ -198,6 +194,8 @@ $(document).ready(function () {
                 } else {
                     bootbox.alert(data.msg);
                 }
+
+                $('#cover').hide();
             }
         });
     });
