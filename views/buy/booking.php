@@ -212,7 +212,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 <div style="position: fixed;top: 55px;">
     <div class="card">
       <div class="card-header bg-white text-danger" style="position:relative;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-        预约单仅限大成都地区，每周1，3，5发货
+        预约单仅限大成都地区，每周1、3、5发货
       </div>
 
       <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;">

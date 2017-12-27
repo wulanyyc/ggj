@@ -78,9 +78,9 @@ ClipAsset::register($this);
     height: 45px;
     line-height: 45px;
     padding-bottom: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-left: 6px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-left: 3px;
     cursor: pointer;
   }
 
@@ -149,7 +149,8 @@ ClipAsset::register($this);
   <div class="status-item" data-type="1" <?php if ($orderType == 1) { echo "id='first'";} ?>>待付款</div>
   <div class="status-item" data-type="2" <?php if ($orderType == 2) { echo "id='first'";} ?>>待收货</div>
   <div class="status-item" data-type="3" <?php if ($orderType == 3) { echo "id='first'";} ?>>已完成</div>
-  <div class="status-item" data-type="5" <?php if ($orderType == 4) { echo "id='first'";} ?>>已删除</div>
+  <div class="status-item" data-type="5" <?php if ($orderType == 5) { echo "id='first'";} ?>>已删除</div>
+  <div class="status-item" data-type="4" <?php if ($orderType == 4) { echo "id='first'";} ?>>已退款</div>
 </div>
 
 <div id="info">
