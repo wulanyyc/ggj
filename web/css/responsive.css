@@ -72,7 +72,7 @@ main {
     .first-items {
         width: 100% !important;
         display: flex !important;
-        justify-content: flex-start !important;
+        justify-content: center !important;
         position: relative !important;
         flex-wrap: nowrap !important;
     }

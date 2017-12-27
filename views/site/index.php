@@ -40,13 +40,14 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .first-item {
     border: 1px solid #53a93f;
-    padding: 5px 10px 5px 10px;
+    padding: 5px;
     color: #fff;
     background-color: #53a93f;
     font-size: 10px;
-    -webkit-transform: scale(0.9);
+    /*-webkit-transform: scale(0.9);*/
     opacity: 1;
     margin-bottom: 1%;
+    margin-right: 1%;
     text-align: center;
   }
 
