@@ -47,7 +47,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     /*-webkit-transform: scale(0.9);*/
     opacity: 1;
     margin-bottom: 1%;
-    margin-right: 1%;
+    margin-right: 2%;
     text-align: center;
   }
 
