@@ -27,7 +27,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     font-size: 14px;
   }
 
@@ -83,7 +83,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   .card-content {
-    padding: 5px 15px;
+    padding: 3px 15px;
   }
 
   .forbid {
@@ -289,7 +289,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span id="ask" style="line-height: 40px;margin-left: 10px;color:#0C58B0;cursor: pointer;font-size: 13px;">优惠码规则？</span>
     </div>
     <hr style="margin-top: 0.5rem;margin-bottom: 0.5rem;"/>
-    <div style="margin-bottom:5px;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
+    <div style="margin-bottom:3px;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
       <p class="label" style="width:70%;">优惠券</p>
       <p style="font-size: 13px;cursor: pointer;">
         <?php if ($coupon > 0) { ?>
