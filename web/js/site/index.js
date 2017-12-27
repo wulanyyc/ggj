@@ -23,11 +23,11 @@ $(document).ready(function () {
         });
     });
 
-    $('.product-item-content').mouseover(function(){
-        $(this).find('.tip-content').show();
-    });
+    // $('.product-item-content').mouseover(function(){
+    //     $(this).find('.tip-content').show();
+    // });
 
-    $('.product-item-content').mouseout(function(){
-        $(this).find('.tip-content').hide();
-    });
+    // $('.product-item-content').mouseout(function(){
+    //     $(this).find('.tip-content').hide();
+    // });
 });

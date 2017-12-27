@@ -91,7 +91,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   .product-item .tip-content {
     display: none;
     position: absolute;bottom: 5px;background-color: #53a93f;
-    width: 100%;
+    width: 90%;
   }
 
   .product-item .tip {
@@ -209,8 +209,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     right:0px;
     bottom: 0px;
     /*background-color: red;*/
-    font-size:12px;
-    padding: 2px 8px;
+    font-size:13px;
+    padding: 1px 8px;
     color: #fff;
     /*opacity: 0.8;*/
     z-index: 10;
