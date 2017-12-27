@@ -20,7 +20,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     border: none;
     border-bottom: 1px solid #eee;
     border-top: 1px solid #eee;
-    margin: 1% 0%;
+    margin: 2px 0%;
   }
 
   .item {
@@ -111,7 +111,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   #address_info, #all_address_info {
-    height: 79%;
+    height: 90%;
     overflow-y: scroll;
   }
 
@@ -247,7 +247,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div class="card">
   <div id="products" class="card-content">
     <div style="display: flex;justify-content: space-between;flex-direction: row;align-items: center;">
-      <div style="position: relative;width:80%;height:90px;overflow: hidden;">
+      <div style="position: relative;width:80%;height:80px;overflow: hidden;">
         <?php foreach($data['product'] as $item) { ?>
         <div class="product" style="width:20%;height: 100%;line-height:90px;display: inline-block;">
           <img src="<?=$item['img'] ?>" style="height:100%;" />
@@ -284,7 +284,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div class="card">
   <div id="discount" class="card-content">
     <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: flex-start;">
-      <input type="text" class="form-control" name="code" id="code" placeholder="优惠码:好友手机号码" maxlength=11 style="width:50%;font-size: 14px;margin-left: 5px;" />
+      <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:好友手机号码" maxlength=11 style="width:50%;font-size: 14px;margin-left: 5px;" />
       <button type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">使用</button>
       <span id="ask" style="line-height: 40px;margin-left: 10px;color:#0C58B0;cursor: pointer;font-size: 13px;">优惠码规则？</span>
     </div>
@@ -325,7 +325,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card">
   <div id="memo" class="card-content">
-    <input type='text' placeholder='选填:给商家留言(45字以内)' name='memo' id="memo" class='input-sm' maxlength=100 style="width:100%;border:none;line-height: 35px;"></input>
+    <input type='text' placeholder='选填:给商家留言(45字以内)' name='memo' id="memo" class='input-sm' maxlength=45 style="width:100%;border:none;line-height: 35px;"></input>
   </div>
 </div>
 
@@ -470,7 +470,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         </div>
     </div>
 
-    <div style="display: flex;flex-direction: row;justify-content: center;position: absolute;bottom:20px;width: 100%;">
+    <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;">
       <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存并使用</button>
     </div>
   </form>
