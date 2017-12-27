@@ -277,7 +277,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 </div>
 
 <div id="tongji">
-  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 12px;margin-right: 5px;width:80px;" id="filter" data-filter=0>仅显示订购</button>
+  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 12px;margin-right: 5px;width:80px;display: none;" id="filter" data-filter=0>仅显示订购</button>
   <div id="tips" style="color:#aaa;margin-left: 5px;margin-right: 5px;font-size: 12px;">满<?=$buyGod ?>元包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
     <div style="display: inline-block;color:red;width:80px;text-align: left;">

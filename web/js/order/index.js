@@ -48,16 +48,18 @@ $(document).ready(function () {
 
     $('.del').click(function(){
         var oid = $(this).attr('data-id');
-        $.ajax({
-            url: '/order/del',
-            type: 'get',
-            data: {
-                id: oid
-            },
-            dataType: 'html',
-            success: function (data) {
-                location.reload();
-            }
+        $.helper.confirm('确定删除该订单', function(){
+            $.ajax({
+                url: '/order/del',
+                type: 'get',
+                data: {
+                    id: oid
+                },
+                dataType: 'html',
+                success: function (data) {
+                    location.reload();
+                }
+            });
         });
     });
 

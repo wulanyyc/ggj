@@ -67,6 +67,8 @@ $(document).ready(function () {
         var price = $(this).parent().attr('data-price');
         cart[id] = {'num': num, 'price': price, 'id': id};
 
+        $('#filter').show();
+
         calculateTotal();
     });
 
@@ -87,6 +89,10 @@ $(document).ready(function () {
                 cart[id].num = 0;
                 delete cart[id];
             }
+        }
+
+        if ($.isEmptyObject(cart)) {
+            $('#filter').hide();
         }
 
         calculateTotal();
@@ -232,9 +238,11 @@ $(document).ready(function () {
         if (type == 0) {
             $(this).attr("data-filter", 1);
             $(this).html("显示全部");
+            $(this).blur();
         } else {
             $(this).attr("data-filter", 0);
             $(this).html("仅显示订购");
+            $(this).blur();
         }
     });
 });
