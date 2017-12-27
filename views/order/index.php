@@ -78,7 +78,7 @@ ClipAsset::register($this);
     height: 45px;
     line-height: 45px;
     padding-bottom: 5px;
-    padding-left: 2px;
+    padding-left: 4px;
     padding-right: 2px;
     margin-left: 3px;
     cursor: pointer;
