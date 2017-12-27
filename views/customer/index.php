@@ -44,7 +44,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
       积分：<span class="text-success"><?=$info['score'] ?></span>
     </div>
   </div>
-  <div><button type="button" class="btn btn-outline-danger btn-sm" id="quit">退出</button></div>
+  <div><button type="button" class="btn btn-outline-success btn-sm" id="charge">充值</button></div>
 </div>
 
 <div class="card" id="order" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
@@ -84,4 +84,6 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 <br/>
 <br/>
 <br/>
+
+<button type="button" class="btn btn-danger" id="quit" style="width:80%;margin-left: 10%;">退出</button>
 

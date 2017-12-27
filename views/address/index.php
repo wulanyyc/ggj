@@ -90,7 +90,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
   }
 
   #address_info {
-    height: 80%;
+    height: 90%;
     overflow-y: scroll;
   }
 
@@ -153,7 +153,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
       地址管理
     </div>
 
-    <div style="height:80%;overflow-y: scroll;" id="all_address_items">
+    <div style="height:80%;" id="all_address_items">
       <?php foreach($address as $item) { ?>
       <div class="all_address_item">
           <div style="width: 80%;" class="address-content" data-id="<?=$item['id'] ?>">
@@ -232,7 +232,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
         </div>
     </div>
 
-    <div style="display: flex;flex-direction: row;justify-content: center;position: absolute;bottom:20px;width: 100%;">
+    <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;">
       <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存</button>
     </div>
   </form>
