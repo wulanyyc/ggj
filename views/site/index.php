@@ -208,11 +208,11 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     position: absolute;
     right:0px;
     bottom: 0px;
-    background-color: red;
+    /*background-color: red;*/
     font-size:12px;
     padding: 2px 8px;
     color: #fff;
-    opacity: 0.8;
+    /*opacity: 0.8;*/
     z-index: 10;
     letter-spacing: 1px;
   }
@@ -303,8 +303,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
               </p>
               <br/>
               <?php if ($product['booking_status'] == 1) { ?>
-              <div class="label">
-                <a href="/buy/booking?id=<?=$product['id'] ?>">预约享<?=$bookingDiscount ?>折</a>
+              <div class="label bg-success">
+                <a href="/buy/booking?id=<?=$product['id'] ?>">预约享<?=$bookingDiscount ?>折&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
               </div>
               <?php } ?>
             </a>

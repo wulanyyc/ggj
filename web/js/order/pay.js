@@ -10,4 +10,17 @@ $(document).ready(function () {
         var diff = $.helper.round(order_money - money, 1);
         $('#pay_price').html(diff);
     }
+
+    $('#pay').click(function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '/pay/add',
+            type: 'post',
+            dataType: 'json',
+            data: "id=" + id,
+            success: function (data) {
+                
+            }
+        });
+    });
 });

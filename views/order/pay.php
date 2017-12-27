@@ -50,8 +50,8 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
     }
 </style>
 
-<input id="cid" value="<?=$data['cart_id'] ?>" type="hidden" />
-<input id="oid" value="<?=$data['id'] ?>" type="hidden" />
+<!-- <input id="cid" value="<?=$data['cart_id'] ?>" type="hidden" /> -->
+<!-- <input id="oid" value="<?=$data['id'] ?>" type="hidden" /> -->
 
 <div class="card" style="height:90%;">
   <div class="item" style="justify-content: flex-end;">
@@ -89,6 +89,6 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
   <?php } ?>
 </div>
 
-<div id="pay" style="letter-spacing: 1px;font-size: 16px;">
+<div id="pay" style="letter-spacing: 1px;font-size: 16px;" data-id=<?=$data['id'] ?> >
   <span id="pay_text">需支付</span><span id="pay_price">0</span>元
 </div>
