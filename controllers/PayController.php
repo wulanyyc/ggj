@@ -105,6 +105,7 @@ class PayController extends Controller
     public function actionAlicallback() {
         $text = file_get_contents("php://input");
         Yii::error($text);
+        echo "test callback";
         Yii::$app->end();
     }
 }
