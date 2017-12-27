@@ -5,7 +5,7 @@ $(document).ready(function () {
     clock = 0;
 
     function init() {
-        $('#order_scroll').css('height', $(window).height() - 235);
+        $('#order_scroll').css('height', $(window).height() - 185);
 
         var id = parseInt($('#scroll_id').val());
         if (id > 0) {

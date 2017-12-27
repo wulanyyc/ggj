@@ -48,7 +48,11 @@ $(document).ready(function () {
 
     $('.del').click(function(){
         var oid = $(this).attr('data-id');
-        $.helper.confirm('确定删除该订单', function(){
+        $.helper.confirm('确定要删除该订单', function(result){
+            if (!result) {
+                return ;
+            }
+            
             $.ajax({
                 url: '/order/del',
                 type: 'get',
