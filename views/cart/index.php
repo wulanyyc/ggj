@@ -262,7 +262,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       </div>
     </div>
 
-    <hr/>
+    <hr style="margin-top: 0.5rem;margin-bottom: 0.5rem;" />
     <div class="item">
         <p class="label">配送方式：</p>
         <div class="form-check form-check-inline">
@@ -288,7 +288,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <button type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">使用</button>
       <span id="ask" style="line-height: 40px;margin-left: 10px;color:#0C58B0;cursor: pointer;font-size: 13px;">优惠码规则？</span>
     </div>
-    <hr style="margin-top: 0.7rem;margin-bottom: 0.7rem;"/>
+    <hr style="margin-top: 0.5rem;margin-bottom: 0.5rem;"/>
     <div style="margin-bottom:5px;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
       <p class="label" style="width:70%;">优惠券</p>
       <p style="font-size: 13px;cursor: pointer;">
@@ -329,10 +329,6 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   </div>
 </div> -->
 
-<!-- <br/> -->
-<!-- <br/>
-<br/> -->
-
 <div id="tongji">
   <div id="tips" style="color:red;margin-left: 5px;margin-right: 5px;font-size: 14px;">实付款:</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
@@ -354,7 +350,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span style="padding-right: 5px;">1: </span>
       <span>任何好友的手机号码即为优惠码，随机立减1%-5%的订单金额。</span>
     </p>
-    <p style="display: flex;flex-direction: row;justify-content: flex-start;">
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">2: </span>
       <span>订单支付成功后可为好友充该优惠的50%到其平台账户，赶快和好友一起来享受优惠吧。</span>
     </p>
