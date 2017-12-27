@@ -25,7 +25,7 @@ MsaView::registerJsFile($this,'/js/customer/login.js',
   <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
       登录平台
   </div>
-  <form style="width:94%;margin: 10px auto;" id="userinfo_form" onsubmit="return false">
+  <div style="width:94%;margin: 10px auto;">
     <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
       <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码">
     </div>
@@ -38,5 +38,5 @@ MsaView::registerJsFile($this,'/js/customer/login.js',
     <button type="button" class="btn btn-success" id="submit" style="width:50%;margin-left:25%;margin-top:10px;">
       提交
     </button>
-  </form>
+  </div>
 </div>
