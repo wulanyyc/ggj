@@ -45,7 +45,7 @@ class AlipayHelper extends Component{
         $aop->signType= Yii::$app->params['alipay'][$termiNal]['sign_type'];
         $aop->alipayrsaPublicKey = Yii::$app->params['alipay'][$termiNal]['alipay_public_key'];
 
-        $request = new \AlipayTradeWapPayRequest ();
+        $request = new \AlipayTradePagePayRequest ();
         $request->setBizContent(json_encode($params));
         $request->setNotifyUrl(Yii::$app->params['alipay'][$termiNal]['notify_url']);
         $request->setReturnUrl(Yii::$app->params['alipay'][$termiNal]['return_url']);

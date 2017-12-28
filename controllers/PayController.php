@@ -48,21 +48,38 @@ class PayController extends Controller
      * @return
      */
     public function actionIndex() {
-        // if (!SiteHelper::checkSecret()) {
-        //     return $this->render('login', [
-        //         'controller' => Yii::$app->controller->id,
-        //     ]);
-        // }
+        if (!SiteHelper::checkSecret()) {
+            Yii::$app->controller->redirect('/customer/login');
+        }
 
-        // $phone = $_COOKIE['userphone'];
+        $params = Yii::$app->request->get();
+        $trade_no = isset($params['trade_no']) ? $params['trade_no'] : '';
+        if (empty($trade_no)) {
+            Yii::$app->controller->redirect('/');
+            Yii::$app->end();
+        }
 
-        // $params = Yii::$app->request->get();
-        // $id = isset($params['id']) ? $params['id'] : 0;
+        // $out_trade_no = '20171228035945_8';
+        $data = Pay::find()->where(['trade_no' => $trade_no])->asArray()->one();
 
-        // $data = ProductOrder::find()->where(['userphone' => $phone])->orderBy('id desc')->asArray()->all();
+        switch ($data['pay_type']) {
+            case 0:
+                $data['pay_type'] = '钱包';
+                break;
+            case 1:
+                $data['pay_type'] = '支付宝';
+                break;
+            case 2:
+                $data['pay_type'] = '微信';
+                break;
+            default:
+                $data['pay_type'] = '钱包';
+                break;
+        }
 
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
+            'data' => $data,
         ]);
     }
 
