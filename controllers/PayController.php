@@ -122,8 +122,8 @@ class PayController extends Controller
 
     public function actionAliwap() {
         $arr = $_POST;
-        $alipaySevice = new \AlipayTradeService(Yii::$app->params['alipay']['wap']); 
-        $result = $alipaySevice->check($arr);
+
+        $result = AlipayHelper::check($arr, 'wap');
 
         if ($result) {
             $out_trade_no = $_POST['out_trade_no'];
@@ -157,8 +157,8 @@ class PayController extends Controller
 
     public function actionAlipc() {
         $arr = $_POST;
-        $alipaySevice = new \AlipayTradeService(Yii::$app->params['alipay']['pc']); 
-        $result = $alipaySevice->check($arr);
+        
+        $result = AlipayHelper::check($arr, 'wap');
 
         if ($result) {
             $out_trade_no = $_POST['out_trade_no'];
