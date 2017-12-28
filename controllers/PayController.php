@@ -93,7 +93,7 @@ class PayController extends Controller
                 'product_code' => 'QUICK_WAP_WAY'
             ];
 
-            $ret = AlipayHelper::wappay($payParams);
+            $ret = AlipayHelper::wappay($alipayParams);
         } else {
             $payData['online_money'] = 0;
             $payData['wallet_money'] = $payMoney;
