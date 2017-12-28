@@ -33,6 +33,21 @@ class SiteHelper extends Component{
         return 'pc';
     }
 
+    public static function getTermimal() {
+        $width = isset($_COOKIE['width']) ? $_COOKIE['width'] : 1280;
+        $terminal = isset($_COOKIE['terminal']) ? $_COOKIE['terminal'] : '';
+
+        if (empty($terminal)) {
+            if ($width <= 767) {
+                return 'wap';
+            }
+
+            return 'pc';
+        } else {
+            return $terminal;
+        }
+    }
+
     public static function checkPhone($phone) {
         $reg ='/^1\d{10}$/';
         if(preg_match($reg, $phone)) {

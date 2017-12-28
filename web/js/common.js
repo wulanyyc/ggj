@@ -6,10 +6,10 @@ $(document).ready(function () {
     system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
     if(system.win||system.mac||system.xll){
         $.cookie('terminal', 'pc', {path: '/'});
-        alert('pc');
+        // alert('pc');
     }else{  
         $.cookie('terminal', 'wap', {path: '/'});
-        alert('wap');
+        // alert('wap');
     }
 
     $('#back').click(function(){
