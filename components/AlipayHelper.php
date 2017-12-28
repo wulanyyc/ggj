@@ -17,11 +17,11 @@ class AlipayHelper extends Component{
 
         $alipay = new \AopClient;
         $alipay->gatewayUrl = Yii::$app->params['alipay'][$visitTerminal]['gatewayUrl'];
-        $alipay->appId = Yii::$app->params['alipay'][$visitTerminal]['appid'];
+        $alipay->appId = Yii::$app->params['alipay'][$visitTerminal]['app_id'];
         $alipay->rsaPrivateKey = Yii::$app->params['alipay'][$visitTerminal]['merchant_private_key'];
         $alipay->format = "json";
         $alipay->charset = Yii::$app->params['alipay'][$visitTerminal]['charset'];
-        $alipay->signType= "RSA2";
+        $alipay->signType= Yii::$app->params['alipay'][$visitTerminal]['sign_type'];;
         $alipay->alipayrsaPublicKey = Yii::$app->params['alipay'][$visitTerminal]['alipay_public_key'];
 
         $request = new \AlipayTradeWapPayRequest ();
