@@ -19,7 +19,7 @@ $(document).ready(function () {
             dataType: 'json',
             data: "id=" + id,
             success: function (data) {
-                if (data.payType == 1) {
+                if (data.pay_type == 1) {
                     $(body).append(data.html);
                 } else {
                     $.helper.alert(data);
