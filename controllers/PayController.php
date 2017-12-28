@@ -127,7 +127,7 @@ class PayController extends Controller
             $payData['pay_type'] = 0; // 余额支付
             $pid = $this->addRecord($payData);
 
-            $ret = '';
+            //TODO 扣除余额
 
             echo json_encode(['status' => 'ok', 'pay_type' => 0, 'html' => 'test']);
         }
