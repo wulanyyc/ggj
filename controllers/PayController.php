@@ -105,6 +105,8 @@ class PayController extends Controller
             Yii::$app->end();
         }
 
+        
+
         $payMoney = $data['pay_money'];
         $walletMoney = Customer::find()->select('money')->where(['phone' => $phone])->scalar();
 
@@ -126,7 +128,7 @@ class PayController extends Controller
             $alipayParams = [
                 'subject' => '果果佳订单',
                 'out_trade_no' => date('Ymdhis', time()) . '_' . $id,
-                'timeout_express' => '90m',
+                'timeout_express' => '30m',
                 'total_amount' => $realPayMoney,
                 'product_code' => 'QUICK_WAP_WAY'
             ];

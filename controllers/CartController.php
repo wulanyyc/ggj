@@ -5,8 +5,8 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
-use app\modules\product\models\ProductList;
 use app\components\PriceHelper;
+use app\modules\product\models\ProductList;
 use app\models\ProductCart;
 use app\models\ProductOrder;
 use app\models\Address;
@@ -33,13 +33,20 @@ class CartController extends Controller
     public function actionIndex() {
         if (!SiteHelper::checkSecret()) {
             Yii::$app->controller->redirect('/customer/login');
+            Yii::$app->end();
         }
 
         $params = Yii::$app->request->get();
         $id = $params['id'];
+
+        if (empty($id)) {
+            Yii::$app->controller->redirect('/');
+            Yii::$app->end();
+        }
+
         $data = ProductCart::find()->where(['id' => $id])->asArray()->one();
 
-        $data['express_fee'] = SiteHelper::calculateExpressFee($data['type'], $data['product_price']);
+        $data['express_fee'] = PriceHelper::calculateExpressFee(0, $data['type'], $data['product_price']);
 
         $phone = $_COOKIE['userphone'];
 
@@ -64,7 +71,7 @@ class CartController extends Controller
             'data' => $data,
             'address' => $this->getUserAddress($phone),
             'citymap' => Yii::$app->params['citymap']['成都'],
-            'coupon' => count(SiteHelper::getValidCoupon()),
+            'coupon' => count(PriceHelper::getValidCoupon()),
         ]);
     }
 
@@ -89,20 +96,19 @@ class CartController extends Controller
         unset($params['oid']);
 
         $params['userphone'] = $_COOKIE['userphone'];
-        // $params['express_fee'] = SiteHelper::calculateExpressFee($params['type'], $params['product_price']);
 
         if ($oid > 0) {
             $po = ProductCart::findOne($oid);
-            foreach($params as $key => $value){
-                $po->$key = $value;
-            }
-
         } else {
             $po = new ProductCart();
-            foreach($params as $key => $value){
-                $po->$key = $value;
-            }
         }
+
+        foreach($params as $key => $value){
+            $po->$key = $value;
+        }
+
+        $cart = json_decode($params['cart'], true);
+        $po->cart_num = count($cart);
 
         if($po->save()){
             echo $po->id;
@@ -132,7 +138,7 @@ class CartController extends Controller
     }
 
     public function actionCoupon() {
-        $data = SiteHelper::getValidCoupon();
+        $data = PriceHelper::getValidCoupon();
         $html = '';
 
         if (empty($data)) {

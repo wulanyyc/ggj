@@ -199,6 +199,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <input type="hidden" name="cart_type" id="cart_type" value="<?=$data['type'] ?>" />
 <input type="hidden" name="cart_id" id="cart_id" value="<?=$data['id'] ?>" />
 <input type="hidden" name="express_fee" id="express_fee" value="<?=$data['express_fee'] ?>" />
+<input type="hidden" name="cart_num" id="cart_num" value="<?=count($data['product']) ?>" />
 
 <div class="card">
   <div class="card-content" id="show_address_content">

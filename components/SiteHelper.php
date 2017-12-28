@@ -7,6 +7,8 @@ use app\models\Address;
 use app\models\Customer;
 use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
+use app\models\ProductOrder;
+use app\models\ProductCart;
 
 /**
  * 基础帮助类
@@ -76,46 +78,6 @@ class SiteHelper extends Component{
         return false;
     }
 
-    public static function calculateExpressFee($type, $productPrice) {
-        if ($type == 0) {
-            if ($productPrice < Yii::$app->params['buyGod']) {
-                return Yii::$app->params['expressFee'];
-            } else {
-                return 0;
-            }
-        }
-
-        if ($type == 1) {
-            if ($productPrice < Yii::$app->params['bookingGod']) {
-                return Yii::$app->params['expressFee'];
-            } else {
-                return 0;
-            }
-        }
-    }
-
-    public static function getValidCoupon() {
-        $currentDate = date('Ymd', time());
-        $phone = $_COOKIE['userphone'];
-        $tongyong = Coupon::find()->where(['type' => 2])
-            ->andWhere(['<=', 'start_date', $currentDate])
-            ->andWhere(['>=', 'end_date', $currentDate])
-            ->asArray()->all();
-
-        foreach($tongyong as $key => $item) {
-            $exsit = CouponUse::find()->where(['userphone' => $phone, 'use_status' => 2, 'cid' => $item['id']])->count();
-            if ($exsit > 0) {
-                unset($tongyong[$key]);
-            }
-        }
-
-        $lingqu = Coupon::findBySql("select c.* from coupon as c, coupon_use as u where c.id = u.cid and c.start_date <= " . $currentDate . " and c.end_date >=" . $currentDate . " and u.userphone=" . $phone . " and u.use_status = 1 and c.type = 1")->asArray()->all();
-
-        $data = array_merge($tongyong, $lingqu);
-
-        return $data;
-    }
-
     /**
      * 查询快递信息
      */
@@ -157,5 +119,12 @@ class SiteHelper extends Component{
         $ar = Customer::findOne($data['id']);
         $ar->score = $score;
         $ar->save();
+    }
+
+    // TODO 完善微信来源
+    public static function getSource() {
+        $terminal = self::getTermimal();
+
+        return $terminal;
     }
 }

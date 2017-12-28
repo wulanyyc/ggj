@@ -4,7 +4,6 @@ $(document).ready(function () {
         var express_fee = parseFloat($('#express_fee_show').html());
         var discount = parseFloat($('#discount_fee').html());
         var coupon = parseFloat($('#coupon_fee').html());
-        // var money = parseFloat($('#money').html());
 
         var real_price = parseFloat(product_price + express_fee - discount - coupon);
 
@@ -18,6 +17,7 @@ $(document).ready(function () {
     }
 
     calculateRealPrice();
+    $('#express_1').click();
 
     $('#ask').click(function(){
         $('#question').show();
@@ -42,6 +42,7 @@ $(document).ready(function () {
     });
 
     $('input[name="express_rule"]').change(function(){
+        // console.log($(this).val());
         if ($(this).val() == 1) {
             $('#express_fee_show').html(0);
         } else {
@@ -358,6 +359,7 @@ $(document).ready(function () {
                 type: $('#cart_type').val(),
                 address_id: $('.show_address').attr('data-id'),
                 cart_id: $('#cart_id').val(),
+                cart_num: $('#cart_num').val(),
                 memo: $('#memo').val(),
                 product_price: $('#product_price').html(),
                 pay_money: $('#realprice').html(),

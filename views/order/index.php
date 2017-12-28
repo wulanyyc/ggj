@@ -78,8 +78,8 @@ ClipAsset::register($this);
     height: 45px;
     line-height: 45px;
     padding-bottom: 5px;
-    padding-left: 4px;
-    padding-right: 2px;
+    padding-left: 6px;
+    padding-right: 4px;
     margin-left: 3px;
     cursor: pointer;
   }
@@ -150,18 +150,21 @@ ClipAsset::register($this);
   <div class="status-item" data-type="2" <?php if ($orderType == 2) { echo "id='first'";} ?>>待收货</div>
   <div class="status-item" data-type="3" <?php if ($orderType == 3) { echo "id='first'";} ?>>已完成</div>
   <div class="status-item" data-type="5" <?php if ($orderType == 5) { echo "id='first'";} ?>>已删除</div>
-  <div class="status-item" data-type="4" <?php if ($orderType == 4) { echo "id='first'";} ?>>已退款</div>
+  <!-- <div class="status-item" data-type="4" <?php if ($orderType == 4) { echo "id='first'";} ?>>已退款</div> -->
 </div>
 
 <div id="info">
   <?php foreach($data as $item) { ?>
   <div class="card order-item" data-type="<?=$item['status'] ?>">
-    <div class="card-header bg-white" style="border-bottom: 1px solid #ced4da;">
-      <div style="float:left;">果果佳</div>
-      <div style="float:right;font-size: 14px;color:#aaa;line-height: 20px;">
+    <div class="card-header bg-white" style="border-bottom: 1px solid #ced4da;display: flex;justify-content: space-between;align-items: center;">
+      <div style="display: inline-block;width:20%;">果果佳</div>
+      <div style="font-size: 14px;color:#aaa;line-height: 20px;display: inline-flex;justify-content: flex-end;align-items: center;">
         <?=$item['create_time'] ?>&nbsp;&nbsp;
-        <span class="badge badge-danger" style="font-size: 12px;"><?=$status[$item['status']] ?></span>
-        <span class="badge badge-success" style="font-size: 12px;"><?=$type[$item['type']] ?>单</span>
+        <span class="badge badge-danger" style="font-size: 12px;margin-right: 5px;"><?=$status[$item['status']] ?></span>
+        <span class="badge badge-success" style="font-size: 12px;margin-right: 5px;"><?=$type[$item['type']] ?>单</span>
+        <?php if ($item['status'] == 5) { ?>
+        <span data-id=<?=$item['id'] ?> style="font-size: 18px;"><i class="fa fa-trash" aria-hidden="true"></i></span>
+        <?php } ?>
       </div>
     </div>
     <div style="padding: 0.5rem 1rem;">
@@ -185,8 +188,8 @@ ClipAsset::register($this);
         <?php } ?> 
 
         <div style="font-size:14px;justify-content: flex-end;display: flex;flex-direction: row;margin-top:12px;">
-          <p>运输费：</p>
-          <p><span class="text-danger"><?=$item['express_fee'] ?></span>元</p>
+          <p>共</p>
+          <p><span class="text-danger"><?=$item['cart_num'] ?></span>件商品</p>
           &nbsp;&nbsp;&nbsp;
           <p>商品额：</p>
           <p><span class="text-danger"><?=$item['product_price'] ?></span>元</p>

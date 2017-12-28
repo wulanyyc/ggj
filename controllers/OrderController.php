@@ -42,7 +42,14 @@ class OrderController extends Controller
         $params = Yii::$app->request->get();
         $orderType = isset($params['type']) ? $params['type'] : 0;
 
-        $data = ProductOrder::find()->where(['userphone' => $phone])->orderBy('id desc')->asArray()->all();
+        $data = ProductOrder::find()->where(['userphone' => $phone])->andWhere(['!=', 'status', 4])->orderBy('id desc')->asArray()->all();
+
+        foreach($data as $key => $item) {
+            $data[$key]['product_price'] = PriceHelper::calculateOrderPrice($item['id']);
+            $up = ProductOrder::findOne($item['id']);
+            $up->product_price = $data[$key]['product_price'];
+            $up->save();
+        }
 
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
@@ -65,12 +72,9 @@ class OrderController extends Controller
             Yii::$app->end();
         }
 
-        if (!$this->checkOrderPrice($params)) {
-            echo '价格数据有误';
-            Yii::$app->end();
-        }
-
         $params['userphone'] = $_COOKIE['userphone'];
+
+        $params = $this->checkParams($params);
 
         $addressId = $params['address_id'];
         $info = Address::find()->where(['id' => $addressId])->asArray()->one();
@@ -78,6 +82,7 @@ class OrderController extends Controller
         $params['rec_name']    = $info['rec_name'];
         $params['rec_phone']   = $info['rec_phone'];
         $params['rec_address'] = $info['rec_city'] . $info['rec_district'] . $info['rec_detail'];
+        $params['source'] = SiteHelper::getSource();
 
         $exsitId = ProductOrder::find()->where(['cart_id' => $params['cart_id'], 'userphone' => $params['userphone']])->select('id')->scalar();
 
@@ -98,46 +103,34 @@ class OrderController extends Controller
         }
     }
 
-    private function checkOrderPrice($params) {
+    private function checkParams($params) {
         $cid = $params['cart_id'];
-        $express = $params['express_rule'];
+        $expressRule = $params['express_rule'];
 
-        $productPrice = ProductCart::find()->select('product_price')->where(['id' => $cid])->scalar();
+        $productPrice = PriceHelper::calculateProductPrice($cid);
+        $expressFee   = PriceHelper::calculateExpressFee($expressRule, $params['type'], $productPrice);
 
-        // check 快递费
-        if ($express == 1) {
-            $expressFee = 0;
-        } else {
-            $expressFee = SiteHelper::calculateExpressFee($params['type'], $productPrice);
-        }
-
-        if ($expressFee != $params['express_fee']) {
-            return false;
-        }
+        $params['product_price'] = $productPrice;
+        $params['express_fee'] = $expressFee;
 
         // check 朋友折扣
         if ($params['discount_fee'] > 0) {
             $discountPhone = $params['discount_phone'];
-            $userphone = $_COOKIE['userphone'];
+            $userphone     = $params['userphone'];
+
             $key = $userphone . '_' . $discountPhone . '_discount';
             $percent = Yii::$app->redis->get($key);
             $discountFee = round($productPrice * $percent, 1);
-
-            if ($discountFee != $params['discount_fee']) {
-                return false;
-            }
+            $params['discount_fee'] = $discountFee;
         }
 
         // check coupon
         if ($params['coupon_fee'] > 0) {
-            $couponFee = Coupon::findBySql("select sum(money) from coupon where id in (" . $params['coupon_ids'] . ")")->scalar();
-
-            if ($couponFee != $params['coupon_fee']) {
-                return false;
-            }
+            $couponFee = PriceHelper::calculateCounponFee($params['coupon_ids']);
+            $params['coupon_fee'] = $couponFee;
         }
 
-        return true;
+        return $params;
     }
 
     public function actionLogin() {
@@ -215,13 +208,13 @@ class OrderController extends Controller
 
         $params = Yii::$app->request->get();
         if(empty($params)){
-            echo '提交的参数不能为空';
+            Yii::$app->controller->redirect('/');
             Yii::$app->end();
         }
 
         $oid = isset($params['oid']) ? $params['oid'] : '';
         if (empty($oid)) {
-            echo '访问链接异常';
+            Yii::$app->controller->redirect('/');
             Yii::$app->end();
         }
 
@@ -229,7 +222,7 @@ class OrderController extends Controller
         $data = ProductOrder::find()->where(['userphone' => $phone, 'id' => $oid])->orderBy('id desc')->asArray()->one();
 
         if (empty($data)) {
-            echo '访问链接参数有误';
+            Yii::$app->controller->redirect('/');
             Yii::$app->end();
         }
 
