@@ -68,7 +68,7 @@ class PayController extends Controller
 
     public function actionAdd() {
         if (!SiteHelper::checkSecret()) {
-            echo '验证用户失败';
+            echo json_encode(['status' => 'fail', 'msg' => '验证用户失败']);
             Yii::$app->end();
         }
 
@@ -77,9 +77,14 @@ class PayController extends Controller
         $id = isset($params['id']) ? $params['id'] : 0;
 
         $data = ProductOrder::find()->where(['userphone' => $phone, 'id' => $id])->asArray()->one();
-        // print_r($data);exit;
+
         if (empty($data)) {
-            echo '请求参数有误';
+            echo json_encode(['status' => 'fail', 'msg' => '请求参数有误']);
+            Yii::$app->end();
+        }
+
+        if ($data['status'] == 2 || $data['status'] == 3) {
+            echo json_encode(['status' => 'fail', 'msg' => '该订单已支付']);
             Yii::$app->end();
         }
 
@@ -92,14 +97,14 @@ class PayController extends Controller
         $payData['out_trade_no'] = date('Ymdhis', time()) . '_' . $id;
 
         if ($walletMoney < $payMoney) {
+            $terminal = SiteHelper::getTermimal();
+
             $realPayMoney = round($payMoney - $walletMoney, 1);
 
             $payData['wallet_money'] = $walletMoney;
             $payData['online_money'] = $realPayMoney;
             $payData['pay_type'] = 1; // alipay支付
             $pid = $this->addRecord($payData);
-
-            $payType = 1;
 
             $alipayParams = [
                 'subject' => '果果佳订单',
@@ -109,18 +114,23 @@ class PayController extends Controller
                 'product_code' => 'QUICK_WAP_WAY'
             ];
 
-            $ret = AlipayHelper::wappay($alipayParams);
+            if ($terminal == 'wap') {
+                $ret = AlipayHelper::wappay($alipayParams);
+            } else {
+                $ret = AlipayHelper::pcpay($alipayParams);
+            }
+
+            echo json_encode(['status' => 'ok', 'pay_type' => 1, 'html' => $ret]);
         } else {
             $payData['online_money'] = 0;
             $payData['wallet_money'] = $payMoney;
             $payData['pay_type'] = 0; // 余额支付
             $pid = $this->addRecord($payData);
 
-            $payType = 0;
             $ret = '';
-        }
 
-        echo json_encode(['pay_type' => $payType, 'html' => $ret]);
+            echo json_encode(['status' => 'ok', 'pay_type' => 0, 'html' => 'test']);
+        }
     }
 
     private function addRecord($payData) {
@@ -162,8 +172,12 @@ class PayController extends Controller
                     $up->pay_result = 1;
                     $up->save();
 
-                     echo 'success';
-                     Yii::$app->end();
+                    $op = ProductOrder::findOne($checkData['order_id']);
+                    $op->status = 2;
+                    $op->save();
+
+                    echo 'success';
+                    Yii::$app->end();
                 }
             }
         }
@@ -173,10 +187,9 @@ class PayController extends Controller
 
     public function actionAlipc() {
         $this->enableCsrfValidation = false;
-
         $arr = $_POST;
 
-        $result = AlipayHelper::check($arr, 'wap');
+        $result = AlipayHelper::check($arr, 'pc');
 
         if ($result) {
             $out_trade_no = $_POST['out_trade_no'];
@@ -194,13 +207,17 @@ class PayController extends Controller
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
                 if ($total_amount == $checkData['online_money']) {
-                    $up = Pay::find()->where(['out_trade_no' => $out_trade_no]);
+                    $up = Pay::findOne($checkData['id']);
                     $up->trade_no = $trade_no;
                     $up->pay_result = 1;
                     $up->save();
 
-                     echo 'success';
-                     Yii::$app->end();
+                    $op = ProductOrder::findOne($checkData['order_id']);
+                    $op->status = 2;
+                    $op->save();
+
+                    echo 'success';
+                    Yii::$app->end();
                 }
             }
         }

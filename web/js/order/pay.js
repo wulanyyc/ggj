@@ -19,8 +19,18 @@ $(document).ready(function () {
             dataType: 'json',
             data: "id=" + id,
             success: function (data) {
-                if (data.pay_type == 1) {
-                    $("body").append(data.html);
+                if (data.status == 'ok') {
+                    if (data.pay_type == 1) {
+                        // 支付宝
+                        if (data.terminal == 'wap') {
+                            $("body").append(data.html);
+                        } else {
+                            $.helper.alert(data.html);
+                        }
+                    } else {
+                        // 钱包
+                        $.helper.alert(data.html);
+                    }
                 } else {
                     $.helper.alert(data);
                 }
