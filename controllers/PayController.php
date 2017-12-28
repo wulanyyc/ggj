@@ -28,6 +28,20 @@ class PayController extends Controller
         $this->layout = SiteHelper::getLayout();
     }
 
+    public function behaviors()
+    {
+        return [
+            'csrf' => [
+                'class' => NoCsrf::className(),
+                'controller' => $this,
+                'actions' => [
+                    'aliwap',
+                    'alipc',
+                ]
+            ]
+        ];
+    }
+
     /**
      * 入口
      * @return
