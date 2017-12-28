@@ -41,6 +41,12 @@ class CustomerController extends Controller
         }
     }
 
+    public function actionInfo() {
+        return $this->render('info', [
+            'controller' => Yii::$app->controller->id,
+        ]);
+    }
+
     public function actionLogin() {
         return $this->render('login', [
             'controller' => Yii::$app->controller->id,

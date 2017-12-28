@@ -76,6 +76,11 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
+<a href="/customer/info" class="card" id="info" style="padding: 10px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;text-decoration: none;color: black;">
+  <div style="width:90%;">个人信息</div>
+  <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
+</a>
+
 <a href="/contact" class="card" id="coupon" style="padding: 10px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;color:black;text-decoration: none;">
   <div style="width:90%;">联系我们</div>
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>

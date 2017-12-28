@@ -53,7 +53,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;绝对新鲜：
         </div>
         <div>
-          早上在水果市场进货，上午打包，顺丰发货，预计隔日上午送达。
+          早上在水果市场进货，上午打包，顺丰发货，预计当天下午或隔日上午送达。
         </div>
       </li>
 
@@ -71,7 +71,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;预约限制：
         </div>
         <div>
-        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">大成都</span>地区的预订订单，目前仅<span style="color:red;font-weight: bold;">周一、周三、周五</span>可发预订的订单，后期可增加发货日。
+        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">大成都</span>地区的预订订单，目前仅<span style="color:red;font-weight: bold;">周二、周四、周六</span>可发预订的订单，后期可增加发货日。
         </div>
       </li>
 

@@ -232,8 +232,9 @@ MsaView::registerJsFile($this,'/js/address/index.js',
         </div>
     </div>
 
-    <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;">
+    <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;align-items: center;">
       <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存</button>
+      <span id='close_address_bottom' style="padding-left: 15px;font-size: 14px;color:#0C58B0;">关闭</span>
     </div>
   </form>
 </div>

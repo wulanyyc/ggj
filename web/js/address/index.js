@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#all_address_info').css('height', $(window).height() - 56);
 
-    $('#close_address').click(function(){
+    $('#close_address, #close_address_bottom').click(function(){
         $('#address_info').hide();
         $('body').removeClass('forbid');
     });

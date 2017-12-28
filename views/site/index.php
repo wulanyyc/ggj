@@ -40,14 +40,14 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .first-item {
     border: 1px solid #53a93f;
-    padding: 5px;
+    padding: 5px 8px;
     color: #fff;
     background-color: #53a93f;
     font-size: 10px;
     /*-webkit-transform: scale(0.9);*/
     opacity: 1;
     margin-bottom: 1%;
-    margin-right: 2%;
+    margin-right: 1%;
     text-align: center;
   }
 
@@ -190,7 +190,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   #guozhi .card {
-    border-radius: 0; border-color: #fff;width: 24%;margin-bottom: 2%;height:200px;
+    border-radius: 0; border-color: #fff;width: 33%;margin-bottom: 2%;height:200px;
   }
 
   #guozhi .card .card-header {
@@ -259,8 +259,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   <a class="promotion-item" href="/booking">
     <div class="promotion-item-left prom-package-left" style="background-color: #866D8D;">
       <div class="promotion-item-left-content">
-        <div class="promotion-item-left-content-top">预约套餐</div>
-        <div class="promotion-item-left-content-bottom">高品质 全场享<?=$bookingDiscount ?>折</div>
+        <div class="promotion-item-left-content-top">优质预约</div>
+        <div class="promotion-item-left-content-bottom">绝对新鲜 全场享<?=$bookingDiscount ?>折</div>
       </div>
     </div>
     <div class="promotion-item-right prom-package-right" style="background-color: #D5CCDB;">
@@ -325,7 +325,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     <div id="guozhi">
       <div class="card" style="border: 1px solid #53a93f;">
           <div class="card-header" style="background-color: #53a93f;">
-              <span>美容养颜，缓解宿醉</span>
+              <span>家庭套餐</span>
           </div>
           <div class="package-item">
             牛油果+西柚+水
@@ -334,25 +334,25 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
       <div class="card" style="border: 1px solid #DD182B;">
           <div class="card-header" style="background-color: #DD182B;">
-              <span>皮肤抗氧化，消除细纹</span>
+              <span>美丽套餐</span>
           </div>
           <div class="package-item">
             牛油果+木瓜+柠檬+水
           </div>
       </div>
 
-      <div class="card" style="border: 1px solid #6E9BBB;">
+<!--       <div class="card" style="border: 1px solid #6E9BBB;">
           <div class="card-header" style="background-color: #6E9BBB;">
               <span>消除疲劳，排毒养颜</span>
           </div>
           <div class="package-item">
             苹果+香蕉+蜂蜜+梨
           </div>
-      </div>
+      </div> -->
 
       <div class="card" style="border: 1px solid #866D8D;">
           <div class="card-header" style="background-color: #866D8D;">
-              <span>抗衰美容、隆胸养颜</span>
+              <span>至尊套餐</span>
           </div>
           <div class="package-item">
             木瓜+牛奶+香蕉+橙

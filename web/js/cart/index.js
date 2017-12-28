@@ -25,7 +25,7 @@ $(document).ready(function () {
         $('body').addClass('forbid');
     });
 
-    $('#close_question').click(function(){
+    $('#close_question, #close_question_bottom').click(function(){
         $('#question').hide();
         $('#cover').hide();
         $('body').removeClass('forbid');
@@ -69,7 +69,7 @@ $(document).ready(function () {
         $('body').addClass('forbid');
     });
 
-    $('#close_address').click(function(){
+    $('#close_address, #close_address_bottom').click(function(){
         $('#address_info').hide();
         $('#cover').hide();
         $('body').removeClass('forbid');
@@ -209,7 +209,7 @@ $(document).ready(function () {
         $('body').addClass('forbid');
     });
 
-    $('#close_all_address').click(function(){
+    $('#close_all_address, #close_all_address_bottom').click(function(){
         $('#all_address_info').hide();
         $('#cover').hide();
         $('body').removeClass('forbid');
@@ -316,7 +316,7 @@ $(document).ready(function () {
         $('#cover').show();
     });
 
-    $('#close_coupon').click(function(){
+    $('#close_coupon, #close_coupon_bottom').click(function(){
         $('#coupon').hide();
         $('body').removeClass('forbid');
         $('#cover').hide();

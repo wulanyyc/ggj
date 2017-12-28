@@ -246,7 +246,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card">
   <div id="products" class="card-content">
-    <div style="display: flex;justify-content: space-between;flex-direction: row;align-items: center;">
+    <div id="product_detail" style="display: flex;justify-content: space-between;flex-direction: row;align-items: center;">
       <div style="position: relative;width:80%;height:80px;overflow: hidden;">
         <?php foreach($data['product'] as $item) { ?>
         <div class="product" style="width:20%;height: 100%;line-height:90px;display: inline-block;">
@@ -255,7 +255,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         <?php } ?>
       </div>
 
-      <div id="product_detail">
+      <div>
         <span style="font-size: 13px;cursor: pointer;">共<?=count($data['product']) ?>件&nbsp;&nbsp;
           <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         </span>
@@ -354,6 +354,8 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span style="padding-right: 5px;">2: </span>
       <span>订单支付成功后可为好友充该优惠的50%到其平台账户，赶快和好友一起来享受优惠吧。</span>
     </p>
+
+    <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;margin-top: 10%;">关闭</div>
   </div>
 </div>
 
@@ -414,6 +416,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
 
     <button id="inner_add_address" type="button" class="btn btn-danger" style="width:50%;margin-left:25%;font-size: 14px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址并使用</button>
+    <span id='close_all_address_bottom' style="padding-left: 15px;font-size: 14px;color:#0C58B0;">关闭</span>
 </div>
 
 <div class="card" id="address_info">
@@ -468,6 +471,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
     <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;">
       <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存并使用</button>
+      <span id='close_address_bottom' style="padding-left: 15px;font-size: 14px;color:#0C58B0;line-height: 31px;">关闭</span>
     </div>
   </form>
 </div>
@@ -479,5 +483,6 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div id="coupon_items" data-ids="" style="height: 75%;overflow-y: scroll;">
   </div>
   <button id="ok_coupon" type="button" class="btn btn-success" style="position: absolute;bottom:3%;width:40%;left:30%;">确定并使用</button>
+  <span id='close_coupon_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 16px;color:#0C58B0;">关闭</span>
 </div>
 
