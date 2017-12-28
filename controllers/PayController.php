@@ -58,11 +58,11 @@ class PayController extends Controller
         }
 
         $phone = $_COOKIE['userphone'];
-        $params = Yii::$app->request->get();
+        $params = Yii::$app->request->post();
         $id = isset($params['id']) ? $params['id'] : 0;
 
         $data = ProductOrder::find()->where(['userphone' => $phone, 'id' => $id])->asArray()->one();
-
+        // print_r($data);exit;
         if (empty($data)) {
             echo '请求参数有误';
             Yii::$app->end();
@@ -74,6 +74,7 @@ class PayController extends Controller
         $payData = [];
         $payData['order_id'] = $id;
         $payData['userphone'] = $phone;
+        $payData['out_trade_no'] = date('Ymdhis', time()) . '_' . $id;
 
         if ($walletMoney < $payMoney) {
             $payRealMoney = round($payMoney - $walletMoney, 1);
@@ -81,11 +82,12 @@ class PayController extends Controller
             $payData['online_money'] = $payRealMoney;
             $payData['pay_type'] = 1; // alipay支付
             $pid = $this->addRecord($payData);
+
             $payType = 1;
 
-            $payParams = [
+            $alipayParams = [
                 'subject' => 'order_' . $id,
-                'out_trade_no' => date('Ymdhis', time()) . $pid,
+                'out_trade_no' => date('Ymdhis', time()) . '_' . $id,
                 'timeout_express' => '90m',
                 'total_amount' => 1,
                 'product_code' => 'QUICK_WAP_WAY'
@@ -97,6 +99,7 @@ class PayController extends Controller
             $payData['wallet_money'] = $payMoney;
             $payData['pay_type'] = 0; // 余额支付
             $pid = $this->addRecord($payData);
+
             $payType = 0;
             $ret = [];
         }
