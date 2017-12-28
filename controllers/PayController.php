@@ -77,9 +77,10 @@ class PayController extends Controller
         $payData['out_trade_no'] = date('Ymdhis', time()) . '_' . $id;
 
         if ($walletMoney < $payMoney) {
-            $payRealMoney = round($payMoney - $walletMoney, 1);
+            $realPayMoney = round($payMoney - $walletMoney, 1);
+
             $payData['wallet_money'] = $walletMoney;
-            $payData['online_money'] = $payRealMoney;
+            $payData['online_money'] = $realPayMoney;
             $payData['pay_type'] = 1; // alipay支付
             $pid = $this->addRecord($payData);
 
@@ -89,7 +90,7 @@ class PayController extends Controller
                 'subject' => '果果佳支付订单',
                 'out_trade_no' => date('Ymdhis', time()) . '_' . $id,
                 'timeout_express' => '90m',
-                'total_amount' => 0.01,
+                'total_amount' => $realPayMoney,
                 'product_code' => 'QUICK_WAP_WAY'
             ];
 
@@ -119,15 +120,73 @@ class PayController extends Controller
         return $ar->id;
     }
 
-    public function actionAlicallback() {
-        $rawData = file_get_contents("php://input");
+    public function actionAliwap() {
+        $arr = $_POST;
+        $alipaySevice = new \AlipayTradeService(Yii::$app->params['alipay']['wap']); 
+        $result = $alipaySevice->check($arr);
 
-        $time = date('His', time());
-        $filename = Yii::getAlias('@runtime/ali_' . $time . '.txt');
-        file_put_contents($filename, $rawData);
-        
-        // Yii::error($text);
-        // echo "test callback";
-        Yii::$app->end();
+        if ($result) {
+            $out_trade_no = $_POST['out_trade_no'];
+
+            //支付宝交易号
+            $trade_no = $_POST['trade_no'];
+
+            //交易状态
+            $trade_status = $_POST['trade_status'];
+
+            // 交易金额
+            $total_amount = $_POST['total_amount'];
+
+            if($_POST['trade_status'] == 'TRADE_FINISHED' || $_POST['trade_status'] == 'TRADE_SUCCESS') {
+                $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
+
+                if ($total_amount == $checkData['online_money']) {
+                    $up = Pay::find()->where(['out_trade_no' => $out_trade_no]);
+                    $up->trade_no = $trade_no;
+                    $up->pay_result = 1;
+                    $up->save();
+
+                     echo 'success';
+                     Yii::$app->end();
+                }
+            }
+        }
+
+        echo 'fail';
+    }
+
+    public function actionAlipc() {
+        $arr = $_POST;
+        $alipaySevice = new \AlipayTradeService(Yii::$app->params['alipay']['pc']); 
+        $result = $alipaySevice->check($arr);
+
+        if ($result) {
+            $out_trade_no = $_POST['out_trade_no'];
+
+            //支付宝交易号
+            $trade_no = $_POST['trade_no'];
+
+            //交易状态
+            $trade_status = $_POST['trade_status'];
+
+            // 交易金额
+            $total_amount = $_POST['total_amount'];
+
+            if($_POST['trade_status'] == 'TRADE_FINISHED' || $_POST['trade_status'] == 'TRADE_SUCCESS') {
+                $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
+
+                if ($total_amount == $checkData['online_money']) {
+                    $up = Pay::find()->where(['out_trade_no' => $out_trade_no]);
+                    $up->trade_no = $trade_no;
+                    $up->pay_result = 1;
+                    $up->save();
+
+                     echo 'success';
+                     Yii::$app->end();
+                }
+            }
+        }
+
+        echo 'fail';
     }
 }

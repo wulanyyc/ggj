@@ -26,9 +26,10 @@ class AlipayHelper extends Component{
 
         $request = new \AlipayTradeWapPayRequest ();
         $request->setBizContent(json_encode($params));
-        $request->setNotifyUrl('http://guoguojia.vip/alipay.php');
-        $request->setReturnUrl('http://guoguojia.vip/pay');
-        $result = $alipay->pageExecute ($request); 
+        $request->setNotifyUrl(Yii::$app->params['alipay'][$visitTerminal]['notify_url']);
+        $request->setReturnUrl(Yii::$app->params['alipay'][$visitTerminal]['return_url']);
+        $result = $alipay->pageExecute ($request);
+
         return $result;
     }
 }
