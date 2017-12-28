@@ -26,7 +26,7 @@ class AlipayHelper extends Component{
 
         $request = new \AlipayTradeWapPayRequest ();
         $request->setBizContent(json_encode($params));
-        $result = $aop->pageExecute ( $request); 
+        $result = $alipay->pageExecute ( $request); 
         return $result;
     }
 }
