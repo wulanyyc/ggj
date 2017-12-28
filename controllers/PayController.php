@@ -15,6 +15,7 @@ use app\modules\product\models\CouponUse;
 use app\models\Customer;
 use app\models\Pay;
 use app\components\AlipayHelper;
+use app\components\NoCsrf;
 
 class PayController extends Controller
 {
