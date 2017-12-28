@@ -16,10 +16,14 @@ $(document).ready(function () {
         $.ajax({
             url: '/pay/add',
             type: 'post',
-            dataType: 'html',
+            dataType: 'json',
             data: "id=" + id,
             success: function (data) {
-                $.helper.alert(data);
+                if (data.payType == 1) {
+                    $(body).append(data.html);
+                } else {
+                    $.helper.alert(data);
+                }
             }
         });
     });

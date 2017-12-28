@@ -101,10 +101,10 @@ class PayController extends Controller
             $pid = $this->addRecord($payData);
 
             $payType = 0;
-            $ret = [];
+            $ret = '';
         }
 
-        echo json_encode(['pay_type' => $payType, 'data' => $ret]);
+        echo json_encode(['pay_type' => $payType, 'html' => $ret]);
     }
 
     private function addRecord($payData) {
