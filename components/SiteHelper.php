@@ -150,7 +150,7 @@ class SiteHelper extends Component{
     }
 
     public static function addCustomerScore($num) {
-        $phone = $_COOKIE['userphone']
+        $phone = $_COOKIE['userphone'];
         $data = Customer::find()->where(['phone' => $phone])->select('id,score')->scalar();
 
         $score = $data['score'] + $num;
