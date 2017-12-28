@@ -120,7 +120,8 @@ class PayController extends Controller
                 $ret = AlipayHelper::pcpay($alipayParams);
             }
 
-            echo json_encode(['status' => 'ok', 'pay_type' => 1, 'html' => $ret]);
+            echo json_encode(['status' => 'ok', 'pay_type' => 1, 'html' => $ret, 'terminal' => $terminal]);
+            Yii::$app->end();
         } else {
             $payData['online_money'] = 0;
             $payData['wallet_money'] = $payMoney;
@@ -130,6 +131,7 @@ class PayController extends Controller
             //TODO 扣除余额
 
             echo json_encode(['status' => 'ok', 'pay_type' => 0, 'html' => 'test']);
+            Yii::$app->end();
         }
     }
 

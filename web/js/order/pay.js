@@ -12,7 +12,15 @@ $(document).ready(function () {
     }
 
     $('#pay').click(function(){
+        if ($(this).attr('data-process') == 1) {
+            console.log('forbid');
+            return ;
+        }
+
+        $(this).attr('data-process', 1);
+
         var id = $(this).attr('data-id');
+
         $.ajax({
             url: '/pay/add',
             type: 'post',
@@ -34,6 +42,7 @@ $(document).ready(function () {
                 } else {
                     $.helper.alert(data);
                 }
+                $(this).attr('data-process', 0);
             }
         });
     });
