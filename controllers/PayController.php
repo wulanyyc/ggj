@@ -120,9 +120,14 @@ class PayController extends Controller
     }
 
     public function actionAlicallback() {
-        $text = file_get_contents("php://input");
-        Yii::error($text);
-        echo "test callback";
+        $rawData = file_get_contents("php://input");
+
+        $time = date('His', time());
+        $filename = Yii::getAlias('@runtime/ali_' . $time . '.txt');
+        file_put_contents($filename, $rawData);
+        
+        // Yii::error($text);
+        // echo "test callback";
         Yii::$app->end();
     }
 }
