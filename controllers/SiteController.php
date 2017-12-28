@@ -18,9 +18,9 @@ class SiteController extends Controller
         'current-skin',
     ];
 
-    public function init() {
-        $this->layout = SiteHelper::getLayout();
-    }
+    // public function init() {
+    //     $this->layout = SiteHelper::getLayout();
+    // }
 
     /**
      * 入口
