@@ -23,12 +23,12 @@ class AlipayHelper extends Component{
         $alipay->charset = Yii::$app->params['alipay'][$visitTerminal]['charset'];
         $alipay->signType= Yii::$app->params['alipay'][$visitTerminal]['sign_type'];;
         $alipay->alipayrsaPublicKey = Yii::$app->params['alipay'][$visitTerminal]['alipay_public_key'];
-        $alipay->notify_url= 'http://guoguojia.vip/alipay.php';
-        $alipay->return_url= 'http://guoguojia.vip/pay';
 
         $request = new \AlipayTradeWapPayRequest ();
         $request->setBizContent(json_encode($params));
-        $result = $alipay->pageExecute ( $request); 
+        $request->setNotifyUrl('http://guoguojia.vip/alipay.php');
+        $request->setReturnUrl('http://guoguojia.vip/pay');
+        $result = $alipay->pageExecute ($request); 
         return $result;
     }
 }
