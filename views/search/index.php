@@ -90,11 +90,11 @@ MsaView::registerJsFile($this,'/js/search/index.js',
     <?php foreach($products as $product) { ?>
       <div class="order-product">
         <a class="product-content" href="/buy?id=<?=$product['id'] ?>">
-          <div class="product-img" style="width: 40%;">
+          <div class="product-img" style="width: 20%;">
             <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
           </div>
 
-          <div class="product-desc" style="width: 58%;">
+          <div class="product-desc" style="width: 68%;">
             <p class="title"><?=$product['name'] ?> <?=$product['desc'] ?></p>
             <p class="slogan"><?=$product['slogan'] ?></p>
             <p class="price">
