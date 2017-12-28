@@ -33,7 +33,7 @@ class AlipayHelper extends Component{
         return $result;
     }
 
-    public function check($data, $terminal) {
+    public static function check($data, $terminal) {
         $aop = new \AopClient;
         $aop->alipayrsaPublicKey = Yii::$app->params['alipay'][$terminal]['alipay_public_key'];
 
