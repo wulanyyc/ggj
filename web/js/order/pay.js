@@ -20,7 +20,7 @@ $(document).ready(function () {
             data: "id=" + id,
             success: function (data) {
                 if (data.pay_type == 1) {
-                    $(body).append(data.html);
+                    $("body").append(data.html);
                 } else {
                     $.helper.alert(data);
                 }
