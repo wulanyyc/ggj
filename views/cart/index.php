@@ -282,12 +282,6 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card">
-  <div id="memo" class="card-content">
-    <input type='text' placeholder='选填:给商家留言(45字以内)' name='memo' id="memo" class='input-sm' maxlength=45 style="width:100%;border:none;line-height: 35px;"></input>
-  </div>
-</div>
-
-<div class="card">
   <div id="discount" class="card-content">
     <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: flex-start;">
       <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:好友手机号码" maxlength=11 style="width:50%;font-size: 14px;margin-left: 5px;" />
@@ -326,6 +320,12 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         <p class="label">优惠券：</p>
         <p style="color:red;">- ¥<span id="coupon_fee">0</span></p>
     </div>
+  </div>
+</div>
+
+<div class="card">
+  <div id="memo" class="card-content">
+    <input type='text' placeholder='选填:给商家留言(45字以内)' name='memo' id="memo" class='input-sm' maxlength=45 style="width:100%;border:none;line-height: 35px;"></input>
   </div>
 </div>
 
