@@ -121,6 +121,7 @@ class PayController extends Controller
     }
 
     public function actionAliwap() {
+        $this->enableCsrfValidation = false;
         $arr = $_POST;
 
         $result = AlipayHelper::check($arr, 'wap');
@@ -156,8 +157,10 @@ class PayController extends Controller
     }
 
     public function actionAlipc() {
+        $this->enableCsrfValidation = false;
+
         $arr = $_POST;
-        
+
         $result = AlipayHelper::check($arr, 'wap');
 
         if ($result) {
