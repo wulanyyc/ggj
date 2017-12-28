@@ -86,10 +86,10 @@ class PayController extends Controller
             $payType = 1;
 
             $alipayParams = [
-                'subject' => 'order_' . $id,
+                'subject' => '果果佳支付订单',
                 'out_trade_no' => date('Ymdhis', time()) . '_' . $id,
                 'timeout_express' => '90m',
-                'total_amount' => 1,
+                'total_amount' => 0.01,
                 'product_code' => 'QUICK_WAP_WAY'
             ];
 
