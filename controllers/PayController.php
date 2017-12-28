@@ -195,6 +195,8 @@ class PayController extends Controller
                     $op->status = 2;
                     $op->save();
 
+                    SiteHelper::addCustomerScore(round($total_amount));
+
                     echo 'success';
                     Yii::$app->end();
                 }
@@ -234,6 +236,8 @@ class PayController extends Controller
                     $op = ProductOrder::findOne($checkData['order_id']);
                     $op->status = 2;
                     $op->save();
+
+                    SiteHelper::addCustomerScore(round($total_amount));
 
                     echo 'success';
                     Yii::$app->end();
