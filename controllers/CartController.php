@@ -107,9 +107,6 @@ class CartController extends Controller
             $po->$key = $value;
         }
 
-        $cart = json_decode($params['cart'], true);
-        $po->cart_num = count($cart);
-
         if($po->save()){
             echo $po->id;
         }else{
