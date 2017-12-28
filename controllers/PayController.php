@@ -17,7 +17,7 @@ use app\models\Pay;
 
 class PayController extends Controller
 {
-    public $layout = 'page';
+    public $layout = 'wap';
 
     private $configKeys = [
         'current-skin',

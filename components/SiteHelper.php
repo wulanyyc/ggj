@@ -28,9 +28,9 @@ class SiteHelper extends Component{
         $width = isset($_COOKIE['width']) ? $_COOKIE['width'] : 1280;
 
         if ($width <= 767) {
-            return 'page';
+            return 'wap';
         }
-        return 'site';
+        return 'pc';
     }
 
     public static function checkPhone($phone) {

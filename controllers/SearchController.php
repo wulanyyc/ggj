@@ -10,7 +10,7 @@ use app\components\PriceHelper;
 
 class SearchController extends Controller
 {
-    public $layout = 'page';
+    public $layout = 'wap';
 
     private $configKeys = [
         'current-skin',

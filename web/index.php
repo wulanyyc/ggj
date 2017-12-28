@@ -13,6 +13,7 @@ if (YII_DEBUG) {
 
 require(__DIR__ . '/../../yii2/vendor/autoload.php');
 require(__DIR__ . '/../../yii2/vendor/aliyunsms/api_sdk/vendor/autoload.php');
+require(__DIR__ . '/../../yii2/vendor/alipaysdk/AopSdk.php');
 require(__DIR__ . '/../../yii2/vendor/yiisoft/yii2/Yii.php');
 
 

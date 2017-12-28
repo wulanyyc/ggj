@@ -8,7 +8,7 @@ use app\components\SiteHelper;
 
 class BookingController extends Controller
 {
-    public $layout = 'page';
+    public $layout = 'wap';
     public $bookingDiscount = 9;
     public $bookingLimit = 39;
     public $bookingGod = 59;

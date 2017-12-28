@@ -9,7 +9,7 @@ use app\components\SiteHelper;
 
 class SpecialController extends Controller
 {
-    public $layout = 'page';
+    public $layout = 'wap';
 
     private $configKeys = [
         'current-skin',

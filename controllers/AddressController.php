@@ -10,7 +10,7 @@ use app\models\Address;
 
 class AddressController extends Controller
 {
-    public $layout = 'page';
+    public $layout = 'wap';
 
     private $configKeys = [
         'current-skin',

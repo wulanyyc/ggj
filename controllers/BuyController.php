@@ -12,7 +12,7 @@ use app\widgets\CategoryWidget;
 
 class BuyController extends Controller
 {
-    public $layout = 'page';
+    public $layout = 'wap';
     public $bookingDiscount = 0.9; // 预订优惠折扣
     public $bookingLimit = 39; // 预订最低消费
     public $bookingGod = 59; // 预订免运费限额

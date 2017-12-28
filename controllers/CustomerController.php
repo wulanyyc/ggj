@@ -12,7 +12,7 @@ use app\models\FeedBack;
 
 class CustomerController extends Controller
 {
-    public $layout = 'page';
+    public $layout = 'wap';
 
     private $configKeys = [
         'current-skin',

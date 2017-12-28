@@ -8,7 +8,7 @@ use app\components\SiteHelper;
 
 class ContactController extends Controller
 {
-    public $layout = 'page';
+    public $layout = 'wap';
 
     private $configKeys = [
         'current-skin',

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
+use app\components\SiteHelper;
 use app\modules\product\models\ProductList;
 use app\modules\product\models\ProductTags;
 use app\modules\product\models\Tags;
@@ -11,11 +12,15 @@ use app\components\PriceHelper;
 
 class SiteController extends Controller
 {
-    public $layout = 'site';
+    public $layout = 'pc';
 
     private $configKeys = [
         'current-skin',
     ];
+
+    public function init() {
+        $this->layout = SiteHelper::getLayout();
+    }
 
     /**
      * 入口
