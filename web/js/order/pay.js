@@ -33,7 +33,8 @@ $(document).ready(function () {
                         if (data.terminal == 'wap') {
                             $("body").append(data.html);
                         } else {
-                            $.helper.alert(data.html);
+                            $("body").append(data.html);
+                            // $.helper.alert(data.html);
                         }
                     } else {
                         // 钱包

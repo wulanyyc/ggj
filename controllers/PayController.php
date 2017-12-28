@@ -134,6 +134,7 @@ class PayController extends Controller
             if ($terminal == 'wap') {
                 $ret = AlipayHelper::wappay($alipayParams);
             } else {
+                $alipayParams['product_code'] = 'FAST_INSTANT_TRADE_PAY';
                 $ret = AlipayHelper::pcpay($alipayParams);
             }
 
@@ -146,7 +147,6 @@ class PayController extends Controller
             $pid = $this->addRecord($payData);
 
             //TODO 扣除余额
-
             echo json_encode(['status' => 'ok', 'pay_type' => 0, 'html' => 'test']);
             Yii::$app->end();
         }
