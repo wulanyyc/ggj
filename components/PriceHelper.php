@@ -190,6 +190,34 @@ class PriceHelper extends Component{
         $up->save();
     }
 
+    /**
+     * 朋友钱包奖励
+     * type: plus, minus
+     */
+    public static function addFriendWallet($money, $phone, $reason = '') {
+        $data  = Customer::find()->where(['phone' => $phone])->select('id, money')->asArray()->one();
+
+        if (empty($data)) {
+            $add = new Customer();
+            $add->phone = $phone;
+            $add->save();
+            $data  = Customer::find()->where(['phone' => $phone])->select('id, money')->asArray()->one();
+        }
+
+        $newmoney = round($data['money'] + $money, 1);
+
+        $cmlar = new CustomerMoneyList();
+        $cmlar->money = $money;
+        $cmlar->func = 'plus';
+        $cmlar->reason = $reason;
+        $cmlar->cid = $data['id'];
+        $cmlar->save();
+
+        $up = Customer::findOne($data['id']);
+        $up->money = $newmoney;
+        $up->save();
+    }
+
     public static function getUpdateCart($cid) {
         $data = ProductCart::find()->where(['id' => $cid])->asArray()->one();
         $cart = json_decode($data['cart'], true);

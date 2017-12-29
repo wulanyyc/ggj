@@ -130,5 +130,14 @@ class SmsHelper extends Component{
     public static function sendVcode($phone, $params) {
         $template = "SMS_119091758";
         self::sendSms($phone, $template, $params);
+    }
+
+    /**
+     * 发送短信验证码
+     * @return stdClass
+     */
+    public static function sendDiscount($phone, $params) {
+        $template = "SMS_119925051";
+        self::sendSms($phone, $template, $params);
     } 
 }

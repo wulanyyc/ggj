@@ -172,7 +172,7 @@ class PayController extends Controller
             $payData['pay_type'] = 0; 
             $pid = $this->addRecord($payData);
 
-            PriceHelper::adjustWallet($payMoney, 'minus', '订单_' + $pid + "_" + $id);
+            PriceHelper::adjustWallet($payMoney, 'minus', 'pay_order_' + $pid + "_" + $id);
 
             // $up = Pay::findOne($pid);
             // $up->pay_result = 1;

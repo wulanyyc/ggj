@@ -10,6 +10,8 @@ use app\modules\product\models\CouponUse;
 use app\models\ProductOrder;
 use app\models\ProductCart;
 use app\models\Pay;
+use app\components\PriceHelper;
+use app\components\SmsHelper;
 
 /**
  * 基础帮助类
@@ -165,7 +167,23 @@ class SiteHelper extends Component{
             }
         }
 
+        // 更新支付积分
         self::addCustomerScore(round($data['online_money'] + $data['wallet_money']));
+
+        // 更新折扣
+        $discountData = ProductOrder::find()->where(['id' => $data['order_id']])
+            ->select('discount_fee, discount_phone, userphone, id')->asArray()->one();
+
+        if ($discountData['discount_fee'] > 0) {
+            $money = round($discountData['discount_fee'] * 0.5, 1);
+            PriceHelper::addFriendWallet($money, 'plus', 'friend_discount');
+
+            SmsHelper::sendDiscount($phone, [
+                'code' => substr($discountData['userphone'], -4, 0),
+                'order' => $discountData['id'],
+                'visit' => $discountData['id'],
+            ]);
+        }
     }
 
     public static function encrpytPhone($phone) {
