@@ -69,7 +69,7 @@ ClipAsset::register($this);
   }
 
   .status-header {
-    padding: 0 0 !important;
+    padding: 0 8px !important;
     background-color: #fff;
   }
 

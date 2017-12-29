@@ -37,7 +37,7 @@ MsaView::registerJsFile($this,'/js/friend/index.js',
     <div style="padding-left:10px;width:70%">没有查找到你感兴趣的信息，请检查访问链接</div>
   </div>
 
-  <a href="/customer/login" class="btn btn-outline-success btn-sm" style="width:66%;margin-left:17%;margin-top:10px;">登录系统</a>
+  <a href="/customer" class="btn btn-outline-success btn-sm" style="width:66%;margin-left:17%;margin-top:10px;">登录系统</a>
   <br/>
 </div>
 
