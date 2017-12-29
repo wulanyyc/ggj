@@ -20,8 +20,12 @@ use app\components\SmsHelper;
  */
 class SiteHelper extends Component{
     public static function addCustomer($phone) {
-      $exsit = Customer::find()->where(['phone' => $phone])->count();
-      if ($exsit == 0) {
+      $id = Customer::find()->where(['phone' => $phone])->select('id')->scalar();
+      if ($id > 0) {
+        $up = Customer::findOne($id);
+        $up->status = 1;
+        $up->save();
+      } else {
         $ar = new Customer();
         $ar->phone = $phone;
         $ar->status = 1;
