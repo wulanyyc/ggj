@@ -2,7 +2,7 @@
 use yii\web\View;
 use app\components\MsaView;
 
-$this->title = '支付详情';
+$this->title = '钱包支付详情';
 
 MsaView::registerJsFile($this,'/js/pay/index.js', 
     ['position' => View::POS_END, 
@@ -37,8 +37,8 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
     <img src='/img/order.png' style="width:90px;"/>
     <div style="margin-left:10px;font-size: 14px;">
       <div>支付方式：<span class="text-danger"><?=$data['pay_type'] ?></span></div>
-      <div>支付金额：<span class="text-danger">¥<?=$data['online_money'] ?></span></div>
-      <div>赠送积分：<span class="text-danger"><?=round($data['online_money'], 1) ?></span></div>
+      <div>支付金额：<span class="text-danger">¥<?=$data['wallet_money'] ?></span></div>
+      <div>赠送积分：<span class="text-danger"><?=round($data['wallet_money']) ?></span></div>
     </div>
   </div>
   <a href="/order?type=2" class="btn btn-outline-success btn-sm" style="width:66%;margin-left:17%;">查看订单</a>

@@ -99,7 +99,7 @@ class PayController extends Controller
         $data = Pay::find()->where(['id' => $id])->asArray()->one();
         $data['pay_type'] = '钱包';
 
-        return $this->render('index', [
+        return $this->render('wallet', [
             'controller' => Yii::$app->controller->id,
             'data' => $data,
         ]);
