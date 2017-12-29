@@ -215,7 +215,7 @@ class PayController extends Controller
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
                 if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
-                    SiteHelper::handlePayOkOrder($checkData['id']);
+                    SiteHelper::handlePayOkOrder($checkData['id'], $trade_no);
 
                     echo 'success';
                     Yii::$app->end();
@@ -248,7 +248,7 @@ class PayController extends Controller
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
                 if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
-                    SiteHelper::handlePayOkOrder($checkData['id']);
+                    SiteHelper::handlePayOkOrder($checkData['id'], $trade_no);
 
                     echo 'success';
                     Yii::$app->end();
