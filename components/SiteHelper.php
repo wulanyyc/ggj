@@ -176,7 +176,7 @@ class SiteHelper extends Component{
 
         if ($discountData['discount_fee'] > 0) {
             $money = round($discountData['discount_fee'] * 0.5, 1);
-            PriceHelper::addFriendWallet($money, 'plus', 'friend_discount');
+            PriceHelper::addFriendWallet($money, $discountData['discount_phone'], 'friend_discount');
 
             SmsHelper::sendDiscount($phone, [
                 'code' => substr($discountData['userphone'], -4, 0),
