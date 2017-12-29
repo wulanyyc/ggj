@@ -179,7 +179,7 @@ class SiteHelper extends Component{
             PriceHelper::addFriendWallet($money, $discountData['discount_phone'], 'friend_discount');
 
             SmsHelper::sendDiscount($discountData['discount_phone'], [
-                'code' => substr($discountData['userphone'], 0, -4),
+                'code' => substr($discountData['userphone'], 7),
                 'order' => $discountData['id'],
                 'visit' => $discountData['id'],
             ]);
