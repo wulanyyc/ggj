@@ -174,13 +174,6 @@ class PayController extends Controller
 
             PriceHelper::adjustWallet($payMoney, 'minus', 'pay_order_' + $pid + "_" + $id);
 
-            // $up = Pay::findOne($pid);
-            // $up->pay_result = 1;
-            // $up->save();
-
-            // $po = ProductOrder::findOne($id);
-            // $po->status = 2;
-            // $po->save();
             SiteHelper::handlePayOkOrder($pid);
 
             echo json_encode(['status' => 'ok', 'pay_type' => 0, 'id' => $pid]);
@@ -222,7 +215,7 @@ class PayController extends Controller
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
                 if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
-                    SiteHelper::handlePayOkOrder($pid);
+                    SiteHelper::handlePayOkOrder($checkData['id']);
 
                     echo 'success';
                     Yii::$app->end();
@@ -255,7 +248,7 @@ class PayController extends Controller
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
                 if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
-                    SiteHelper::handlePayOkOrder($pid);
+                    SiteHelper::handlePayOkOrder($checkData['id']);
 
                     echo 'success';
                     Yii::$app->end();
