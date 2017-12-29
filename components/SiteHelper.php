@@ -118,8 +118,7 @@ class SiteHelper extends Component{
         return $result;
     }
 
-    public static function addCustomerScore($num) {
-        $phone = $_COOKIE['userphone'];
+    public static function addCustomerScore($num, $phone) {
         $data = Customer::find()->where(['phone' => $phone])->select('id,score')->asArray()->one();
 
         $score = $data['score'] + $num;
@@ -172,7 +171,7 @@ class SiteHelper extends Component{
         }
 
         // 更新支付积分
-        self::addCustomerScore(round($data['online_money'] + $data['wallet_money']));
+        self::addCustomerScore(round($data['online_money'] + $data['wallet_money']), $data['userphone']);
 
         // 更新折扣
         $discountData = ProductOrder::find()->where(['id' => $data['order_id']])
