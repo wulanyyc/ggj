@@ -46,15 +46,20 @@ class BuyController extends Controller
         $cid = isset($params['cid']) ? $params['cid'] : 0;
         $orderType = 0;
 
-        $orderData = ProductCart::find()->where(['id' => $cid])->asArray()->one();
+        if ($cid != 0) {
+            $cart = PriceHelper::getUpdateCart($cid);
+        } else {
+            $cart = '';
+        }
 
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'id' => $id,
+            'cid' => $cid,
             'buyGod' => $this->buyGod,
             'buyLimit' => $this->buyLimit,
             'expressFee' => $this->expressFee,
-            'orderData' => $orderData,
+            'cart' => !empty($cart) ? json_encode($cart) : '',
             'products' => $this->getProducts($orderType),
             'categorys' => $this->getCategorys(),
             'orderType' => $orderType,
@@ -67,15 +72,20 @@ class BuyController extends Controller
         $cid = isset($params['cid']) ? $params['cid'] : 0;
         $orderType = 1;
 
-        $orderData = ProductCart::find()->where(['id' => $cid])->asArray()->one();
+        if ($cid != 0) {
+            $cart = PriceHelper::getUpdateCart($cid);
+        } else {
+            $cart = [];
+        }
 
         return $this->render('booking', [
             'controller' => Yii::$app->controller->id,
             'id' => $id,
+            'cid' => $cid,
             'buyGod' => $this->bookingGod,
             'buyLimit' => $this->bookingLimit,
             'expressFee' => $this->expressFee,
-            'orderData' => $orderData,
+            'cart' => !empty($cart) ? json_encode($cart) : '',
             'products' => $this->getProducts($orderType),
             'categorys' => $this->getCategorys(),
             'orderType' => $orderType,

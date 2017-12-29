@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\product\models;
+namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class CouponUse extends ActiveRecord
+class CustomerMoneyList extends ActiveRecord
 {
     /**
      * 数据库
@@ -15,13 +15,14 @@ class CouponUse extends ActiveRecord
     }
 
     public static function tableName(){
-        return 'coupon_use';
+        return 'customer_money_list';
     }
     
     public function rules() {
         return [
-            [['userphone'], 'required'],
+            [['money'], 'required'],
             [['cid'], 'required'],
+            [['func'], 'required'],
         ];
     }
 }

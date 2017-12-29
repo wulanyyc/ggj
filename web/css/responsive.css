@@ -32,7 +32,7 @@ main {
 
 .modal {
     position: fixed;
-    top: auto; 
+    top: 38%; 
     right: 0;
     bottom: auto; 
     left: 0;

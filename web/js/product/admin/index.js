@@ -75,6 +75,7 @@ $(document).ready(function () {
                 $('.unit').val(data.unit);
                 $('.category').val(data.category);
                 $('.buy_limit').val(data.buy_limit);
+                $('.img').val(data.img);
             }
         });
 

@@ -9,6 +9,7 @@ use app\models\Customer;
 use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
 use app\models\FeedBack;
+use app\models\ProductOrder;
 
 class CustomerController extends Controller
 {
@@ -34,9 +35,12 @@ class CustomerController extends Controller
         } else {
             $phone = $_COOKIE['userphone'];
             $info = Customer::find()->where(['phone' => $phone])->asArray()->one();
+            $cartid = ProductOrder::find()->select('cart_id')
+                ->where(['userphone' => $phone, 'status' => 1])->scalar();
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
                 'info' => $info,
+                'cartid' => $cartid,
             ]);
         }
     }

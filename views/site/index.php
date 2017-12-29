@@ -306,11 +306,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                 <?php } ?>
               </p>
               <br/>
-              <?php if ($product['booking_status'] == 1) { ?>
-              <div class="label bg-success">
-                <a href="/buy/booking?id=<?=$product['id'] ?>">预约享<?=$bookingDiscount ?>折&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
-              </div>
-              <?php } ?>
             </a>
           </div>
       <?php } ?>

@@ -42,12 +42,14 @@ class AdminController extends AuthController
         }
 
         if (!empty($params['query'])) {
-            $sqlCondition[] = " (name like " . $params['query'] . " or id like " . $params['query'] . ")";
+            $sqlCondition[] = " (`name` like '%" . $params['query'] . "%' or id = '" . $params['query'] . "')";
         }
 
         if (!empty($sqlCondition)) {
             $sql .= ' where ' . implode(' and ', $sqlCondition);
         }
+
+        // echo $sql;exit;
 
         $ret = ProductList::findBySql($sql)->asArray()->all();
         $total = ProductList::findBySql($sql)->count();
@@ -83,7 +85,7 @@ class AdminController extends AuthController
         $id = $params['id'];
 
         $ret = ProductList::find()
-            ->select('name,price,unit,num,desc,slogan,category,buy_limit')
+            ->select('name,price,unit,num,desc,slogan,category,buy_limit,img')
             ->where(['id' => $id])
             ->asArray()
             ->one();

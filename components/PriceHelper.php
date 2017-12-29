@@ -8,6 +8,8 @@ use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
 use app\models\ProductOrder;
 use app\models\ProductCart;
+use app\models\Customer;
+use app\models\CustomerMoneyList;
 
 /**
  * 基础帮助类
@@ -132,15 +134,15 @@ class PriceHelper extends Component{
     }
 
     // 计算产品价格
-    public static function calculateProductPrice($id) {
-        $data = ProductCart::find()->where(['id' => $id])->select('cart,type')->asArray()->one();
+    public static function calculateProductPrice($cartid) {
+        $data = ProductCart::find()->where(['id' => $cartid])->select('cart,type')->asArray()->one();
         // 计算产品价格
         $carts = json_decode($data['cart'], true);
 
         $productPrice = 0;
         foreach($carts as $item) {
-            $id = $item['id'];
-            $productPrice += $item['num'] * PriceHelper::getProductPrice($id, $data['type']);
+            $pid = $item['id'];
+            $productPrice += $item['num'] * PriceHelper::getProductPrice($pid, $data['type']);
         }
 
         $productPrice = round($productPrice, 1);
@@ -149,8 +151,8 @@ class PriceHelper extends Component{
     }
 
     // 计算订单价格
-    public static function calculateOrderPrice($id) {
-        $data = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+    public static function calculateOrderPrice($orderid) {
+        $data = ProductOrder::find()->where(['id' => $orderid])->asArray()->one();
 
         $productPrice = self::calculateProductPrice($data['cart_id']);
         $expressFee   = self::calculateExpressFee($data['express_rule'], $data['type'], $productPrice);
@@ -158,5 +160,44 @@ class PriceHelper extends Component{
         $discountFee  = $data['discount_fee'];
 
         return round($productPrice + $expressFee - $couponFee - $discountFee, 1);
+    }
+
+    /**
+     * 调整钱包余额
+     * type: plus, minus
+     */
+    public static function adjustWallet($money, $type = 'minus', $reason = '') {
+        $phone = $_COOKIE['userphone'];
+        $data  = Customer::find()->where(['phone' => $phone])->select('id, money')->asArray()->one();
+
+        if ($type == 'minus') {
+            $newmoney = round($data['money'] - $money, 1);
+        }
+
+        if ($type == 'plus') {
+            $newmoney = round($data['money'] + $money, 1);
+        }
+
+        $cmlar = new CustomerMoneyList();
+        $cmlar->money = $money;
+        $cmlar->func = $type;
+        $cmlar->reason = $reason;
+        $cmlar->cid = $data['id'];
+        $cmlar->save();
+
+        $up = Customer::findOne($data['id']);
+        $up->money = $newmoney;
+        $up->save();
+    }
+
+    public static function getUpdateCart($cid) {
+        $data = ProductCart::find()->where(['id' => $cid])->asArray()->one();
+        $cart = json_decode($data['cart'], true);
+
+        foreach($cart as $key => $value) {
+            $cart[$key]['price'] = PriceHelper::getProductPrice($value['id'], $data['type']);
+        }
+
+        return $cart;
     }
 }

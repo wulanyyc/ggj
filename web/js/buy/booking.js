@@ -57,8 +57,6 @@ $(document).ready(function () {
         var price = $(this).parent().attr('data-price');
         cart[id] = {'num': num, 'price': price, 'id': id};
 
-        $('#filter').show();
-        
         calculateTotal();
     });
 
@@ -79,10 +77,6 @@ $(document).ready(function () {
                 cart[id].num = 0;
                 delete cart[id];
             }
-        }
-
-        if ($.isEmptyObject(cart)) {
-            $('#filter').hide();
         }
 
         calculateTotal();

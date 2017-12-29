@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     $('#pay').click(function(){
         if ($(this).attr('data-process') == 1) {
-            console.log('forbid');
+            console.log('repeat pay');
             return ;
         }
 
@@ -30,18 +30,13 @@ $(document).ready(function () {
                 if (data.status == 'ok') {
                     if (data.pay_type == 1) {
                         // 支付宝
-                        if (data.terminal == 'wap') {
-                            $("body").append(data.html);
-                        } else {
-                            $("body").append(data.html);
-                            // $.helper.alert(data.html);
-                        }
+                        $("body").append(data.html);
                     } else {
                         // 钱包
-                        $.helper.alert(data.html);
+                        location.href='/pay/wallet?id=' + data.id;
                     }
                 } else {
-                    $.helper.alert(data);
+                    $.helper.alert(data.msg);
                 }
                 $(this).attr('data-process', 0);
             }

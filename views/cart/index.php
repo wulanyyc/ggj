@@ -26,13 +26,13 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   .item {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin-bottom: 4px;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .item .label {
-    width: 70px;
+    width: 90px;
   }
 
   p {
@@ -264,7 +264,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
 
     <hr style="margin-top: 0.5rem;margin-bottom: 0.5rem;" />
-    <div class="item">
+    <div class="item" style="justify-content: flex-start;">
         <p class="label">配送方式：</p>
         <div class="form-check form-check-inline">
           <label class="form-check-label">
@@ -334,10 +334,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <br/>
 
 <div id="tongji">
-  <div id="tips" style="color:red;margin-left: 5px;margin-right: 5px;font-size: 14px;">实付款:</div>
+  <div id="tips" style="color:red;margin-left: 5px;margin-right: 5px;font-size: 15px;">实付款:</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
     <div style="display: inline-block;color:red;width:80px;text-align: left;">
-      <span class="money" style="font-size: 14px;font-weight: normal;">¥</span>
+      <span class="money" style="font-size: 15px;font-weight: normal;">¥</span>
       <span class="realprice" style="font-size:22px;font-weight: normal;" id="realprice"></span>
     </div>
   </div>
@@ -352,14 +352,19 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div style="padding: 5%;">
     <p style="display: flex;flex-direction: row;justify-content: flex-start;">
       <span style="padding-right: 5px;">1: </span>
-      <span>任何好友的手机号码即为优惠码，随机立减1%-5%的订单金额。</span>
+      <span>任何好友的手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额。</span>
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">2: </span>
-      <span>订单支付成功后可为好友充该优惠的50%到其平台账户，赶快和好友一起来享受优惠吧。</span>
+      <span>订单支付成功后为好友充此次优惠的50%到其平台账户，赶快来一起享受优惠吧。</span>
     </p>
 
-    <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;margin-top: 10%;">关闭</div>
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
+      <span style="padding-right: 5px;">3: </span>
+      <span>折扣有效期为2小时，超时需重新提交此订单获取新优惠。</span>
+    </p>
+
+    <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;margin-top: 5%;">关闭</div>
   </div>
 </div>
 

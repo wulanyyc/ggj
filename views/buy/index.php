@@ -202,14 +202,14 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 <input type="hidden" value="<?=$buyGod ?>" id="buyGod" />
 <input type="hidden" value="<?=$buyLimit ?>" id="buyLimit" />
 <input type="hidden" value="<?=$expressFee ?>" id="expressFee" />
-<input type="hidden" value='<?=$orderData['cart'] ?>' id="buyCart" />
-<input type="hidden" value='<?=$orderData['id'] ?>' id="order_id" />
+<input type="hidden" value='<?=$cart ?>' id="buyCart" />
+<input type="hidden" value='<?=$cid ?>' id="order_id" />
 <input type="hidden" value="<?=$orderType ?>" id="order_type" />
 
 <div style="position: fixed;top: 55px;">
     <div class="card">
-      <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-        商品列表
+      <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+        商品列表<a href="/buy/booking" style="color:#53a93f;">预约享全场9折&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
       </div>
 
       <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;">
@@ -277,7 +277,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div id="tongji">
-  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 12px;margin-right: 5px;width:80px;display: none;" id="filter" data-filter=0>仅显示订购</button>
+  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 12px;margin-right: 5px;width:80px;" id="filter" data-filter=0>仅显示订购</button>
 
   <div id="tips" style="color:#aaa;margin-left: 5px;margin-right: 5px;font-size: 12px;">满<?=$buyGod ?>元包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
@@ -295,7 +295,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   </div>
   <div style="width:94%;margin: 10px auto;" id="login_form">
     <div style="margin-bottom: 10px;">
-      <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码" value="<?=$orderData['userphone'] ?>"/>
+      <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码" value=""/>
     </div>
 
     <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">

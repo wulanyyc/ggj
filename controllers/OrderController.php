@@ -45,10 +45,9 @@ class OrderController extends Controller
         $data = ProductOrder::find()->where(['userphone' => $phone])->andWhere(['!=', 'status', 4])->orderBy('id desc')->asArray()->all();
 
         foreach($data as $key => $item) {
-            $data[$key]['product_price'] = PriceHelper::calculateOrderPrice($item['id']);
-            $up = ProductOrder::findOne($item['id']);
-            $up->product_price = $data[$key]['product_price'];
-            $up->save();
+            if ($item['status'] == 1) {
+                $data[$key]['product_price'] = PriceHelper::calculateProductPrice($item['cart_id']);
+            }
         }
 
         return $this->render('index', [
@@ -120,6 +119,8 @@ class OrderController extends Controller
 
             $key = $userphone . '_' . $discountPhone . '_discount';
             $percent = Yii::$app->redis->get($key);
+            // 过期了设置为0
+            if (empty($percent)) $percent = 0;
             $discountFee = round($productPrice * $percent, 1);
             $params['discount_fee'] = $discountFee;
         }
@@ -129,6 +130,8 @@ class OrderController extends Controller
             $couponFee = PriceHelper::calculateCounponFee($params['coupon_ids']);
             $params['coupon_fee'] = $couponFee;
         }
+
+        $params['pay_money'] = round($productPrice + $expressFee - $params['coupon_fee'] - $params['discount_fee'], 1);
 
         return $params;
     }
@@ -141,19 +144,30 @@ class OrderController extends Controller
 
     public function actionProduct() {
         $params = Yii::$app->request->get();
-        $cid = $params['id'];
+        $cid = $params['cid'];
+        $id  = $params['id'];
+
         $data = ProductCart::find()->where(['id' => $cid])->asArray()->one();
+        $orderStatus = ProductOrder::find()->where(['id' => $id])->select('status')->scalar();
 
         $ret = [];
         $cart = json_decode($data['cart'], true);
         foreach($cart as $item) {
             $pid = $item['id'];
-            $ret[] = ProductList::find()->select('id,name,unit')->where(['id' => $pid])->asArray()->one();
+            $tmp = ProductList::find()->select('id,name,unit,price')->where(['id' => $pid])->asArray()->one();
+            if ($orderStatus == 1) {
+                $tmp['price'] = PriceHelper::getProductPrice($pid, $data['type']);
+            }
+            $ret[] = $tmp;
         }
 
         $html = '';
         foreach($ret as $item) {
-            $html .= "<tr><td>" . $item['name'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $cart[$item['id']]['price'] . "/" . $item['unit'] . "</td></tr>";
+            if ($orderStatus == 1) {
+                $html .= "<tr><td>" . $item['name'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $item['price'] . "元/" . $item['unit'] . "</td></tr>";
+            } else {
+                $html .= "<tr><td>" . $item['name'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $cart[$item['id']]['price'] . "元/" . $item['unit'] . "</td></tr>";
+            }
         }
         
         echo $html;
@@ -161,12 +175,11 @@ class OrderController extends Controller
 
     public function actionDel() {
         if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
+            echo '数据验证失败';
+            Yii::$app->end();
         }
 
-        $params = Yii::$app->request->get();
+        $params = Yii::$app->request->post();
         $id = $params['id'];
 
         $ar = ProductOrder::findOne($id);
@@ -179,6 +192,21 @@ class OrderController extends Controller
         }
     }
 
+
+    public function actionDelforever() {
+        if (!SiteHelper::checkSecret()) {
+            echo '数据验证失败';
+            Yii::$app->end();
+        }
+
+        $params = Yii::$app->request->post();
+        $id = $params['id'];
+
+        $ar = ProductOrder::findOne($id)->delete();
+        
+        echo 'ok';
+    }
+
     public function actionComplete() {
         if (!SiteHelper::checkSecret()) {
             return $this->render('login', [
@@ -186,7 +214,7 @@ class OrderController extends Controller
             ]);
         }
 
-        $params = Yii::$app->request->get();
+        $params = Yii::$app->request->post();
         $id = $params['id'];
 
         $ar = ProductOrder::findOne($id);
@@ -242,7 +270,7 @@ class OrderController extends Controller
             ]);
         }
 
-        $params = Yii::$app->request->get();
+        $params = Yii::$app->request->post();
         if(empty($params)){
             echo '提交的参数不能为空';
             Yii::$app->end();
@@ -254,7 +282,7 @@ class OrderController extends Controller
         $expressNum = ProductOrder::find()->select('express_num')->where(['userphone' => $phone, 'id' => $id])->scalar();
 
         if (empty($expressNum)) {
-            echo '访问链接有误';
+            echo '商家还未发货, 非预约单下单后24小时内发货';
             Yii::$app->end();
         }
 

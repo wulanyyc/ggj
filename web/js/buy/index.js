@@ -67,8 +67,6 @@ $(document).ready(function () {
         var price = $(this).parent().attr('data-price');
         cart[id] = {'num': num, 'price': price, 'id': id};
 
-        $('#filter').show();
-
         calculateTotal();
     });
 
@@ -89,10 +87,6 @@ $(document).ready(function () {
                 cart[id].num = 0;
                 delete cart[id];
             }
-        }
-
-        if ($.isEmptyObject(cart)) {
-            $('#filter').hide();
         }
 
         calculateTotal();
@@ -163,7 +157,6 @@ $(document).ready(function () {
         var cartStr = JSON.stringify(cart);
         var oid = $('#order_id').val();
 
-        // $.cookie('userphone', null, { path: '/' });
         var money = $('#tongji .realprice').html();
         var type = $('#order_type').val();
 

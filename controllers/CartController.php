@@ -44,24 +44,14 @@ class CartController extends Controller
             Yii::$app->end();
         }
 
-        $data = ProductCart::find()->where(['id' => $id])->asArray()->one();
-
-        $data['express_fee'] = PriceHelper::calculateExpressFee(0, $data['type'], $data['product_price']);
-
         $phone = $_COOKIE['userphone'];
+
+        // 修正购物车内为最新价格
+        $data = $this->getFixedData($id);
 
         // 安全校验
         if ($data['userphone'] != $phone) {
             Yii::$app->controller->redirect('/');
-        }
-
-        $cart = json_decode($data['cart'], true);
-
-        $data['product'] = [];
-        $data['product_cart'] = $cart;
-
-        foreach($cart as $key => $value) {
-            $data['product'][] = ProductList::find()->where(['id' => $value['id']])->asArray()->one();
         }
 
         $money = Customer::find()->select('money')->where(['phone' => $phone])->scalar();
@@ -72,7 +62,28 @@ class CartController extends Controller
             'address' => $this->getUserAddress($phone),
             'citymap' => Yii::$app->params['citymap']['成都'],
             'coupon' => count(PriceHelper::getValidCoupon()),
+            'discount_start' => Yii::$app->params['discount']['start'],
+            'discount_end'   => Yii::$app->params['discount']['end'],
         ]);
+    }
+
+    private function getFixedData($id) {
+        $data = ProductCart::find()->where(['id' => $id])->asArray()->one();
+        $cart = json_decode($data['cart'], true);
+
+        $data['product'] = [];
+        foreach($cart as $key => $value) {
+            $tmpProduct = ProductList::find()->where(['id' => $value['id']])->asArray()->one();
+            $tmpProduct['price'] = PriceHelper::getProductPrice($tmpProduct['id'], $data['type']);
+            $cart[$key]['price'] = $tmpProduct['price'];
+            $data['product'][] = $tmpProduct;
+        }
+
+        $data['product_cart'] = $cart;
+        $data['product_price'] = PriceHelper::calculateProductPrice($id);
+        $data['express_fee'] = PriceHelper::calculateExpressFee(0, $data['type'], $data['product_price']);
+
+        return $data;
     }
 
     public function actionAdd() {
@@ -176,8 +187,8 @@ EOF;
         if ($percent > 0) {
             echo $percent;
         } else {
-            $percent = rand(1, 5) / 100;
-            Yii::$app->redis->setex($key, 3600, $percent);
+            $percent = rand(Yii::$app->params['discount']['start'], Yii::$app->params['discount']['end']) / 100;
+            Yii::$app->redis->setex($key, 7200, $percent);
             echo $percent;
         }
     }

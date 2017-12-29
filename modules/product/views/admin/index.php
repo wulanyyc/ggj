@@ -32,7 +32,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 </div>
             </div>
             <div class='widget-body'>
-                <form name="search_form" id="search_form" style='display: flex;justify-content: flex-start;flex-direction: row;'>
+                <div id="search_form" style='display: flex;justify-content: flex-start;flex-direction: row;'>
                     <a class='btn btn-sm btn-primary' href='javascript:void(0);' id='add' style="height:30px !important;margin-right: 10px;">添加商品</a>
                     <div class="form-group" style='width:20%;margin-right: 10px;'>
                         <span class="input-icon">
@@ -52,7 +52,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                         <option value="1">可预约</option>
                         <option value="2">不可预约</option>
                     </select>
-                </form>
+                </div>
                 <table id='list' class='hover grid' width='100%' cellspacing='0'>
                     <thead>
                         <tr class='table-title' role='row'>
@@ -112,10 +112,6 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>点击地址：</label>
-                    <input style='width:250px' type='text' placeholder='' name='link' class='input-sm'></input>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>图片地址：</label>
                     <input style='width:250px' type='text' placeholder='' name='img' class='input-sm'></input>
                 </div>
@@ -163,12 +159,8 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm slogan'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>点击地址：</label>
-                    <input style='width:250px' type='text' placeholder='' name='link' class='input-sm'></input>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>图片地址：</label>
-                    <input style='width:250px' type='text' placeholder='' name='img' class='input-sm'></input>
+                    <input style='width:250px' type='text' placeholder='' name='img' class='input-sm img'></input>
                 </div>
             </form>
         </div>

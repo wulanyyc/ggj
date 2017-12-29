@@ -50,6 +50,7 @@ class PayController extends Controller
     public function actionIndex() {
         if (!SiteHelper::checkSecret()) {
             Yii::$app->controller->redirect('/customer/login');
+            Yii::$app->end();
         }
 
         $params = Yii::$app->request->get();
@@ -59,7 +60,6 @@ class PayController extends Controller
             Yii::$app->end();
         }
 
-        // $out_trade_no = '20171228035945_8';
         $data = Pay::find()->where(['trade_no' => $trade_no])->asArray()->one();
 
         switch ($data['pay_type']) {
@@ -76,6 +76,28 @@ class PayController extends Controller
                 $data['pay_type'] = '钱包';
                 break;
         }
+
+        return $this->render('index', [
+            'controller' => Yii::$app->controller->id,
+            'data' => $data,
+        ]);
+    }
+
+    public function actionWallet() {
+        if (!SiteHelper::checkSecret()) {
+            Yii::$app->controller->redirect('/customer/login');
+            Yii::$app->end();
+        }
+
+        $params = Yii::$app->request->get();
+        $id = isset($params['id']) ? $params['id'] : '';
+        if (empty($id)) {
+            Yii::$app->controller->redirect('/');
+            Yii::$app->end();
+        }
+
+        $data = Pay::find()->where(['id' => $id])->asArray()->one();
+        $data['pay_type'] = '钱包';
 
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
@@ -116,13 +138,14 @@ class PayController extends Controller
         $payData['out_trade_no'] = date('Ymdhis', time()) . '_' . $id;
 
         if ($walletMoney < $payMoney) {
+            // alipay支付
             $terminal = SiteHelper::getTermimal();
 
             $realPayMoney = round($payMoney - $walletMoney, 1);
 
             $payData['wallet_money'] = $walletMoney;
             $payData['online_money'] = $realPayMoney;
-            $payData['pay_type'] = 1; // alipay支付
+            $payData['pay_type'] = 1; 
             $pid = $this->addRecord($payData);
 
             $alipayParams = [
@@ -143,13 +166,24 @@ class PayController extends Controller
             echo json_encode(['status' => 'ok', 'pay_type' => 1, 'html' => $ret, 'terminal' => $terminal]);
             Yii::$app->end();
         } else {
+            // 余额支付
             $payData['online_money'] = 0;
             $payData['wallet_money'] = $payMoney;
-            $payData['pay_type'] = 0; // 余额支付
+            $payData['pay_type'] = 0; 
             $pid = $this->addRecord($payData);
 
-            //TODO 扣除余额
-            echo json_encode(['status' => 'ok', 'pay_type' => 0, 'html' => 'test']);
+            PriceHelper::adjustWallet($payMoney, 'minus', '订单_' + $pid + "_" + $id);
+
+            // $up = Pay::findOne($pid);
+            // $up->pay_result = 1;
+            // $up->save();
+
+            // $po = ProductOrder::findOne($id);
+            // $po->status = 2;
+            // $po->save();
+            SiteHelper::handlePayOkOrder($pid);
+
+            echo json_encode(['status' => 'ok', 'pay_type' => 0, 'id' => $pid]);
             Yii::$app->end();
         }
     }
@@ -187,17 +221,8 @@ class PayController extends Controller
             if($_POST['trade_status'] == 'TRADE_FINISHED' || $_POST['trade_status'] == 'TRADE_SUCCESS') {
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
-                if ($total_amount == $checkData['online_money']) {
-                    $up = Pay::findOne($checkData['id']);
-                    $up->trade_no = $trade_no;
-                    $up->pay_result = 1;
-                    $up->save();
-
-                    $op = ProductOrder::findOne($checkData['order_id']);
-                    $op->status = 2;
-                    $op->save();
-
-                    SiteHelper::addCustomerScore(round($total_amount));
+                if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
+                    SiteHelper::handlePayOkOrder($pid);
 
                     echo 'success';
                     Yii::$app->end();
@@ -229,17 +254,8 @@ class PayController extends Controller
             if($_POST['trade_status'] == 'TRADE_FINISHED' || $_POST['trade_status'] == 'TRADE_SUCCESS') {
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
-                if ($total_amount == $checkData['online_money']) {
-                    $up = Pay::findOne($checkData['id']);
-                    $up->trade_no = $trade_no;
-                    $up->pay_result = 1;
-                    $up->save();
-
-                    $op = ProductOrder::findOne($checkData['order_id']);
-                    $op->status = 2;
-                    $op->save();
-
-                    SiteHelper::addCustomerScore(round($total_amount));
+                if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
+                    SiteHelper::handlePayOkOrder($pid);
 
                     echo 'success';
                     Yii::$app->end();

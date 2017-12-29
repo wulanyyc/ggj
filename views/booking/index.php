@@ -71,7 +71,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;预约限制：
         </div>
         <div>
-        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">大成都</span>地区的预订订单，目前仅<span style="color:red;font-weight: bold;">周二、周四、周六</span>可发预订的订单，后期可增加发货日。
+        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">大成都</span>地区的预订订单，目前仅<span style="color:red;font-weight: bold;">周二、周六</span>可发预订的订单，后期可增加发货日。
         </div>
       </li>
 

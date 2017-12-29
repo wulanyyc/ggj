@@ -9,6 +9,7 @@ use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
 use app\models\ProductOrder;
 use app\models\ProductCart;
+use app\models\Pay;
 
 /**
  * 基础帮助类
@@ -113,7 +114,7 @@ class SiteHelper extends Component{
 
     public static function addCustomerScore($num) {
         $phone = $_COOKIE['userphone'];
-        $data = Customer::find()->where(['phone' => $phone])->select('id,score')->scalar();
+        $data = Customer::find()->where(['phone' => $phone])->select('id,score')->asArray()->one();
 
         $score = $data['score'] + $num;
         $ar = Customer::findOne($data['id']);
@@ -126,5 +127,48 @@ class SiteHelper extends Component{
         $terminal = self::getTermimal();
 
         return $terminal;
+    }
+
+    public static function handlePayOkOrder($payid, $trade_no = '') {
+        $data = Pay::find()->where(['id' => $payid])->asArray()->one();
+
+        // 更新支付状态
+        $up = Pay::findOne($payid);
+        $up->trade_no = $trade_no;
+        $up->pay_result = 1;
+        $up->save();
+
+        // 跟新订单状态
+        $op = ProductOrder::findOne($data['order_id']);
+        $op->status = 2;
+        $op->save();
+
+        // 更新券
+        $coupons = ProductOrder::find()->where(['id' => $data['order_id']])
+            ->select('coupon_fee, coupon_ids')->asArray()->one();
+
+        if ($coupons['coupon_fee'] > 0) {
+            $couponIds = explode(',', $coupons['coupon_ids']);
+            foreach($couponIds as $item) {
+                $exsit = CouponUse::find()->where(['cid' => $item, 'userphone' => $data['userphone']])->count();
+                if ($exsit > 0) {
+                    $add = CouponUse::findOne($item);
+                    $add->use_status = 2;
+                    $add->save();
+                } else {
+                    $add = new CouponUse();
+                    $add->userphone = $data['userphone'];
+                    $add->cid = $item;
+                    $add->use_status = 2;
+                    $add->save();
+                }
+            }
+        }
+
+        self::addCustomerScore(round($data['online_money'] + $data['wallet_money']));
+    }
+
+    public static function encrpytPhone($phone) {
+        return substr($phone, 0, 3) . '****' . substr($phone, 7);
     }
 }

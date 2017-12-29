@@ -10,12 +10,14 @@ $(document).ready(function () {
 
         $('body').addClass('forbid');
 
-        var id = $(this).attr('data-cid');
+        var cid = $(this).attr('data-cid');
+        var id = $(this).attr('data-id');
 
         $.ajax({
             url: '/order/product',
             type: 'get',
             data: {
+                cid: cid,
                 id: id
             },
             dataType: 'html',
@@ -55,13 +57,13 @@ $(document).ready(function () {
             
             $.ajax({
                 url: '/order/del',
-                type: 'get',
+                type: 'post',
                 data: {
                     id: oid
                 },
                 dataType: 'html',
                 success: function (data) {
-                    location.reload();
+                    refresh();
                 }
             });
         });
@@ -96,6 +98,7 @@ $(document).ready(function () {
 
     $('.express').click(function() {
         $('#express_info').show();
+        $('#cover').show();
 
         $('body').addClass('forbid');
 
@@ -105,7 +108,7 @@ $(document).ready(function () {
 
         $.ajax({
             url: '/order/expressinfo',
-            type: 'get',
+            type: 'post',
             data: {
                 id: id
             },
@@ -119,6 +122,7 @@ $(document).ready(function () {
 
     $('#close_express').click(function(){
         $('#express_info').hide();
+        $('#cover').hide();
         $('body').removeClass('forbid');
     });
 
@@ -137,18 +141,46 @@ $(document).ready(function () {
         var id = $(this).attr('data-id');
         $.ajax({
             url: '/order/complete',
-            type: 'get',
+            type: 'post',
             data: {
                 id: id
             },
             dataType: 'html',
             success: function (data) {
                 if (data == 'ok') {
-                    location.reload();
+                    refresh();
                 } else {
                     $.helper.alert("更新失败");
                 }
             }
         });
     });
+
+    $('.del_forever').click(function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '/order/delforever',
+            type: 'post',
+            data: {
+                id: id
+            },
+            dataType: 'html',
+            success: function (data) {
+                if (data == 'ok') {
+                    refresh();
+                } else {
+                    $.helper.alert("删除失败");
+                }
+            }
+        });
+    });
+
+    function refresh() {
+        var active_type = $('.status-item.active').attr('data-type');
+        if (active_type > 0) {
+            location.href = "/order?type=" + active_type;
+        } else {
+            location.href = "/order";
+        }
+    }
 });
