@@ -26,4 +26,8 @@ class WechatController extends Controller
             echo 'fail';
         }
     }
+
+    public function actionTest() {
+        echo WechatHelper::getAccessToken();
+    }
 }
