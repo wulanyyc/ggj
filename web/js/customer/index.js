@@ -1,7 +1,8 @@
 $(document).ready(function () {
     $('#quit').click(function(){
-        $.cookie('usephone', '', { expires: -1, path: '/' })
-        $.cookie('secret', '', { expires: -1, path: '/'})
+        $.cookie('usephone', '', {expires: -1, path: '/'});
+        $.cookie('secret', '', {expires: -1, path: '/'});
+        $.cookie('cid', '', {expires: -1, path: '/'})
         location.reload();
     });
 

@@ -44,22 +44,23 @@ class CartController extends Controller
             Yii::$app->end();
         }
 
-        $phone = $_COOKIE['userphone'];
+        $cid = $_COOKIE['cid'];
 
         // 修正购物车内为最新价格
         $data = $this->getFixedData($id);
 
         // 安全校验
-        if ($data['userphone'] != $phone) {
+        if ($data['customer_id'] != $cid) {
             Yii::$app->controller->redirect('/');
+            Yii::$app->end();
         }
 
-        $money = Customer::find()->select('money')->where(['phone' => $phone])->scalar();
+        // $money = Customer::find()->select('money')->where(['id' => $cid])->scalar();
 
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'data' => $data,
-            'address' => $this->getUserAddress($phone),
+            'address' => $this->getUserAddress($cid),
             'citymap' => Yii::$app->params['citymap']['成都'],
             'coupon' => count(PriceHelper::getValidCoupon()),
             'discount_start' => Yii::$app->params['discount']['start'],
@@ -106,7 +107,7 @@ class CartController extends Controller
         $oid = $params['oid'];
         unset($params['oid']);
 
-        $params['userphone'] = $_COOKIE['userphone'];
+        $params['customer_id'] = $_COOKIE['cid'];
 
         if ($oid > 0) {
             $po = ProductCart::findOne($oid);
@@ -176,12 +177,23 @@ EOF;
      * 使用好友手机号码，获取折扣
     */
     public function actionDiscount() {
-        $userphone = $_COOKIE['userphone'];
+        $cid = $_COOKIE['cid'];
 
         $params = Yii::$app->request->post();
         $friendPhone = $params['phone'];
 
-        $key = $userphone . '_' . $friendPhone . '_discount';
+        $userphone = SiteHelper::getCustomerPhone($cid);
+        if (!SiteHelper::checkPhone($friendPhone)) {
+            echo '好友手机格式有误';
+            Yii::$app->end();
+        }
+
+        if ($userphone == $friendPhone) {
+            echo '请使用好友的手机号码';
+            Yii::$app->end();
+        }
+
+        $key = $cid . '_' . $friendPhone . '_discount';
         $percent = Yii::$app->redis->get($key);
 
         if ($percent > 0) {
@@ -193,7 +205,7 @@ EOF;
         }
     }
 
-    private function getUserAddress($userphone) {
-        return Address::find()->where(['userphone' => $userphone])->orderBy('id desc')->asArray()->all();
+    private function getUserAddress($cid) {
+        return Address::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
     }
 }

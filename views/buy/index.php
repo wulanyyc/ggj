@@ -209,7 +209,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 <div style="position: fixed;top: 55px;">
     <div class="card">
       <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
-        商品列表<a href="/buy/booking" style="color:#53a93f;">预约享全场9折&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
+        商品列表<a href="/buy/booking" class="text-info"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约全场享9折</a>
       </div>
 
       <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;">

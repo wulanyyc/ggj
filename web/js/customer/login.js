@@ -43,8 +43,10 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status == 'ok') {
-                    $.cookie('userphone', $('#userphone').val(), { path: '/', expires: 30});
+                    // $.cookie('userphone', $('#userphone').val(), { path: '/', expires: 30});
                     $.cookie('secret', data.secret, { path: '/', expires: 30 });
+                    $.cookie('cid', data.cid, { path: '/', expires: 30 });
+
                     $('#login').hide();
                     $('#getcode').val('');
                     $('#getcode').html('发送验证码');

@@ -35,7 +35,7 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                 <div style='margin-bottom:10px;position:relative;' class='buttons-preview'>
                     <div class="form-group" style='width:30%;display:inline-block;'>
                         <span class="input-icon">
-                            <input type="text" class="form-control input-sm" name='query' value='' id='query'>
+                            <input type="text" placeholder="收件人" class="form-control input-sm" name='query' value='' id='query'>
                             <i class="glyphicon glyphicon-search blue"></i>
                         </span>
                     </div>

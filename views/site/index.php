@@ -24,7 +24,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     border: none;
     border-bottom: 1px solid #eee;
     border-top: 1px solid #eee;
-    margin: 5px 5px;
+    margin: 3px 5px;
   }
 
   .first-items {
@@ -44,7 +44,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     color: #fff;
     background-color: #53a93f;
     font-size: 10px;
-    /*-webkit-transform: scale(0.9);*/
     opacity: 1;
     margin-bottom: 1%;
     margin-right: 1%;
@@ -62,14 +61,18 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     flex-wrap: wrap;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     margin-top: 2px;
   }
 
   .product-item {
-    width:16%;
-    /*border-right: 1px solid #f5f5f5;*/
-    border-bottom: 1px solid #f5f5f5;
+    width:19%;
+    border: 1px solid #f5f5f5;
+    border-top: none;
+    margin-bottom: 5px;
+    border-radius: 3px;
+/*    margin-right: 1px;
+    margin-left: 1px;*/
   }
 
   .end {
@@ -90,14 +93,23 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-item .tip-content {
-    display: none;
-    position: absolute;bottom: 5px;background-color: #53a93f;
-    width: 90%;
+    /*display: none;*/
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #53a93f;
+    /*width: 90%;*/
+    width: 28px;
+    height: 100%;
+    padding:5px;
+    overflow-y: hidden;
   }
 
   .product-item .tip {
-    padding: 0;margin: 0;width:100%;
-    text-align: center;color: #fff;
+    padding: 0;margin: 0;
+    width:100%;
+    text-align: center;
+    color: #fff;
     opacity: 0.9;
     line-height: 20px;
     z-index: 100;
@@ -116,7 +128,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     font-size: 14px;
     height: 18px;
     line-height: 18px;
-    /*margin-top: 5px;*/
     padding-left: 10px;
   }
 
@@ -126,6 +137,11 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     font-size: 14px;
     height: 18px;
     line-height: 18px;
+    padding-left: 10px;
+  }
+
+  .slogan {
+    font-size: 14px;
     padding-left: 10px;
   }
 
@@ -185,20 +201,38 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     align-items: center;
   }
 
-  #guozhi {
-    margin-top: 1%;display: flex;flex-direction: row;justify-content:space-around;
+  #package {
+    margin-top: 5px;display: flex;flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
   }
 
-  #guozhi .card {
-    border-radius: 0; border-color: #fff;width: 33%;margin-bottom: 2%;height:200px;
+  #package .card {
+    border-radius: 0;width: 32%;margin-bottom: 2%;cursor: pointer;
   }
 
-  #guozhi .card .card-header {
+  #package .card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     color: #fff;border-radius: 0;
   }
 
   .package-item {
-    text-align: center;
+    height: auto;
+  }
+
+  .package-item-products{
+    display: flex;flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color:black;
+    text-decoration: none;
+  }
+
+  .package-item-product{
+    width: 48%;
   }
 
   .promotion-item-right img {
@@ -209,18 +243,63 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     position: absolute;
     right:0px;
     bottom: 0px;
-    /*background-color: red;*/
     font-size:13px;
     padding: 1px 8px;
     color: #fff;
-    /*opacity: 0.8;*/
     z-index: 10;
     letter-spacing: 1px;
   }
 
   .label a {
-    /*text-decoration: none;*/
     color: #fff;
+  }
+
+  .style_1 {
+    border: 1px solid #53a93f;
+  }
+
+  .header_1 {
+    background-color: #53a93f;
+  }
+
+  .border_1 {
+    border-top: 1px solid #53a93f;
+  }
+
+  .style_2 {
+    border: 1px solid #DD182B;
+  }
+
+  .header_2 {
+    background-color: #DD182B;
+  }
+
+  .border_2 {
+    border-top: 1px solid #DD182B;
+    /*background-color: #DD182B;*/
+  }
+
+  .style_3 {
+    border: 1px solid #866D8D;
+  }
+
+  .header_3 {
+    background-color: #866D8D;
+  }
+
+  .border_3 {
+    border-top: 1px solid #866D8D;
+    /*background-color: #866D8D;*/
+  }
+
+  .package-price {
+    position: absolute;bottom:0px;
+    width:100%;
+    display: flex;flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    height:40px;
+    line-height: 40px;
   }
 </style>
 
@@ -280,8 +359,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
         </div>
     </div>
     <div class="product-items">
-      <?php foreach($products as $product) { ?>
-          <div class="product-item <?=$product['border_css'] ?> <?=$product['tag'] ?>" style="position: relative;">
+      <?php foreach($fruits as $product) { ?>
+          <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
             <a class="product-item-content" href="/buy?id=<?=$product['id'] ?>">
               <div style="display: flex;justify-content: center;align-items: center;position: relative;flex-direction: row;">
                 <img class="card-img" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
@@ -305,6 +384,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                   </span>
                 <?php } ?>
               </p>
+              <!-- <p class="slogan"><?=$product['slogan'] ?></p> -->
               <br/>
             </a>
           </div>
@@ -317,41 +397,36 @@ MsaView::registerJsFile($this,'/js/site/index.js',
         <span class="first-title">特惠套餐</span>
     </div>
 
-    <div id="guozhi">
-      <div class="card" style="border: 1px solid #53a93f;">
-          <div class="card-header" style="background-color: #53a93f;">
-              <span>家庭套餐</span>
+    <div id="package">
+      <?php foreach($packages as $item) { ?>
+      <div class="card style_<?=$item['index'] ?>" data-link="/buy?id=<?=$item['id'] ?>" style="display: block;">
+          <div class="card-header header_<?=$item['index'] ?>">
+              <span><?=$item['name'] ?></span>
+              <span><?=$item['slogan'] ?></span>
           </div>
           <div class="package-item">
-            牛油果+西柚+水
+            <div class="package-item-products">
+              <?php foreach($item['list'] as $product) { ?>
+              <div class="package-item-product" style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;font-size:14px;">
+                <img src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" style="height:60px;"/>
+                <span style="display: inline-block;width:90px;"><?=$product['name'] ?></span>
+                <span><?=$product['num'] ?><?=$product['unit'] ?></span>
+              </div>
+              <?php } ?>
+            </div>
+            <br/>
+            <br/>
+            <div class="package-price border_<?=$item['index'] ?>" style="border-top: 1px solid #f5f5f5;">
+              <a href="/buy/booking?id=<?=$item['id'] ?>" style="font-size: 13px;color:#53a93f;text-decoration: none;">&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;预约享<?=$bookingDiscount ?>折</a>
+              <div>
+                <span style="font-size: 13px;"><?=$item['desc'] ?></span>
+                <span style="font-size: 13px;padding-right: 8px;">
+                  <span style="font-size: 18px;padding-left: 10px;font-weight: bold;color:red"><?=$item['price'] ?></span>&nbsp;元
+                </span>
+              </div>
+            </div>
           </div>
       </div>
-
-      <div class="card" style="border: 1px solid #DD182B;">
-          <div class="card-header" style="background-color: #DD182B;">
-              <span>美丽套餐</span>
-          </div>
-          <div class="package-item">
-            牛油果+木瓜+柠檬+水
-          </div>
-      </div>
-
-<!--       <div class="card" style="border: 1px solid #6E9BBB;">
-          <div class="card-header" style="background-color: #6E9BBB;">
-              <span>消除疲劳，排毒养颜</span>
-          </div>
-          <div class="package-item">
-            苹果+香蕉+蜂蜜+梨
-          </div>
-      </div> -->
-
-      <div class="card" style="border: 1px solid #866D8D;">
-          <div class="card-header" style="background-color: #866D8D;">
-              <span>至尊套餐</span>
-          </div>
-          <div class="package-item">
-            木瓜+牛奶+香蕉+橙
-          </div>
-      </div>
+      <?php } ?>
     </div>
 </div>

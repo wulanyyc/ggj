@@ -20,7 +20,7 @@ class CouponUse extends ActiveRecord
     
     public function rules() {
         return [
-            [['userphone'], 'required'],
+            [['customer_id'], 'required'],
             [['cid'], 'required'],
         ];
     }

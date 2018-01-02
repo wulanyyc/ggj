@@ -58,11 +58,11 @@ main {
     }
 
     .product-items {
-        justify-content: flex-start !important;
+        justify-content: space-between !important;
     }
 
     .product-item {
-        width: 50% !important;
+        width: 49% !important;
     }
 
     .end {
@@ -90,11 +90,11 @@ main {
         height: 150px !important;
     }
 
-    #guozhi {
+    #package {
         flex-wrap: wrap;
     }
 
-    #guozhi .card {
+    #package .card {
         width: 98% !important;
     }
 
@@ -112,6 +112,11 @@ main {
 
     .order-product {
         width: 98% !important;
+    }
+
+    .product-item {
+        border-left: none !important;
+        border-right: none !important;
     }
 }
 
@@ -158,11 +163,11 @@ main {
         height: 150px !important;
     }
 
-    #guozhi {
+    #package {
         flex-wrap: wrap;
     }
 
-    #guozhi .card {
+    #package .card {
         width: 98% !important;
     }
 
@@ -180,6 +185,11 @@ main {
 
     .order-product {
         width: 98% !important;
+    }
+
+    .product-item {
+        border-left: none !important;
+        border-right: none !important;
     }
 }
 

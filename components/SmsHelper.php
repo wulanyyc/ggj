@@ -137,7 +137,7 @@ class SmsHelper extends Component{
      * @return stdClass
      */
     public static function sendDiscount($phone, $params) {
-        $template = "SMS_119925051";
+        $template = "SMS_119915114";
         self::sendSms($phone, $template, $params);
     } 
 }

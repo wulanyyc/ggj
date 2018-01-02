@@ -43,7 +43,7 @@ SiteAsset::register($this);
 
 <div class="card">
   <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-    预订套餐
+    预约规则
   </div>
 
   <div id="rule" style="margin-top: 1%;">
@@ -71,7 +71,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;预约限制：
         </div>
         <div>
-        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">大成都</span>地区的预订订单，目前仅<span style="color:red;font-weight: bold;">周二、周六</span>可发预订的订单，后期可增加发货日。
+        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">大成都</span>地区的预约订单，目前仅<span style="color:red;font-weight: bold;">周二、周四、周六</span>可发预约的订单，后期可增加发货日。
         </div>
       </li>
 
@@ -80,7 +80,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格优惠：
         </div>
         <div>
-          价格享其它优惠后，全部再享<span style="color:red;font-weight: bold;"><?=$bookingDiscount ?></span>折，订单金额单次满<span style="color:red;font-weight: bold;"><?=$bookingGod ?></span>元，免运费，少于则加收<span style="color:red;font-weight: bold;"><?=$expressFee ?></span>元运费，单次预订金额不低于<span style="color:red;font-weight: bold;"><?=$bookingLimit ?></span>元。
+          价格享其它优惠后，全部再享<span style="color:red;font-weight: bold;"><?=$bookingDiscount ?></span>折，订单金额单次满<span style="color:red;font-weight: bold;"><?=$bookingGod ?></span>元，免运费，少于则加收<span style="color:red;font-weight: bold;"><?=$expressFee ?></span>元运费，单次预约金额不低于<span style="color:red;font-weight: bold;"><?=$bookingLimit ?></span>元。
         </div>
       </li>
 
@@ -93,4 +93,4 @@ SiteAsset::register($this);
     </ul>
 </div>
 
-<a class='btn btn-success' href='/buy/booking' id='order' style="width:30%;margin: 0 auto;margin-bottom: 2%;margin-top:-2px;">立即预订</a>
+<a class='btn btn-success' href='/buy/booking' id='order' style="width:30%;margin: 0 auto;margin-bottom: 2%;margin-top:-2px;">立即预约</a>

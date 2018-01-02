@@ -63,8 +63,12 @@ class SmsController extends Controller
         if ($realCode != $params['code']) {
             echo json_encode(['status' => 'fail', 'msg' => '验证失败']);
         } else {
-            SiteHelper::addCustomer($params['phone']);
-            echo json_encode(['status' => 'ok', 'secret' => SiteHelper::buildSecret($params['phone'])]);
+            $id = SiteHelper::addCustomer($params['phone']);
+            echo json_encode([
+                'status' => 'ok', 
+                'secret' => SiteHelper::buildSecret($params['phone']), 
+                'cid' => $id,
+            ]);
         }
 
         Yii::$app->end();

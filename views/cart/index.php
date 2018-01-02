@@ -432,15 +432,15 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
       收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_address"></i>
   </div>
-  <form id="address_form" name='address_form' action='#' method='post' style='margin:5%;' onsubmit='return false;'>
+  <form id="address_form" name='address_form' style='margin:5%;'>
     <input type="hidden" name="id" value='' id="edit_address_id" />
     <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;'>
         <label>收货人：</label>
-        <input type='text' placeholder='' name='rec_name' class='input-sm' id='rec_name' maxlength=45 value=''></input>
+        <input type='text' placeholder='' name='rec_name' class='input-sm' id='rec_name' maxlength=45 value='' />
     </div>
     <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;'>
         <label>手机号码：</label>
-        <input type='text' placeholder='' name='rec_phone' class='input-sm' id='rec_phone' size=11 value=''></input>
+        <input type='text' placeholder='' name='rec_phone' class='input-sm' id='phone' size=11 value='' />
     </div>
     <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;'>
         <label>所在城市：</label>

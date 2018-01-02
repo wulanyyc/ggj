@@ -7,6 +7,7 @@ use yii\web\Controller;
 use app\components\SiteHelper;
 use app\modules\product\models\ProductList;
 use app\modules\product\models\ProductTags;
+use app\models\ProductPackage;
 use app\modules\product\models\Tags;
 use app\components\PriceHelper;
 
@@ -27,15 +28,12 @@ class SiteController extends Controller
             'controller' => Yii::$app->controller->id,
             'dayPromotion' => $this->getDayPromotion(),
             'tags' => $this->getTags(),
-            'products' => $this->getProducts(),
+            'fruits' => $this->getFruits(),
+            'packages' => $this->getPackages(),
             'newPromotion' => $this->getNewPromotion(),
             'bookingDiscount' => Yii::$app->params['bookingDiscount'] * 10,
+            'terminal' => SiteHelper::getTermimal(),
         ]);
-    }
-
-    public function actionLayout() {
-        $params = Yii::$app->request->post();
-        print_r($params);
     }
 
     private function getNewPromotion() {
@@ -68,8 +66,8 @@ class SiteController extends Controller
         return $info;
     }
 
-    private function getProducts() {
-        $info = ProductList::find()->select('id,name,price,desc,slogan,link,img,unit,booking_status')->where(['category' => 'fruit'])->andWhere(['>', 'num', 0])->asArray()->all();
+    private function getFruits() {
+        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit')->where(['category' => 'fruit', 'status' => 1])->andWhere(['>', 'num', 0])->asArray()->all();
 
         foreach($info as $key => $value) {
             $tagArr = [];
@@ -88,13 +86,34 @@ class SiteController extends Controller
             if (empty($value['img'])) {
                 $info[$key]['img'] = '/img/apple_4x3.png';
             }
+        }
 
-            if (($key - 5) % 6 == 0) {
-                $info[$key]['border_css'] = 'end';
-            } else {
-                $info[$key]['border_css'] = '';
+        return $info;
+    }
+
+    private function getPackages() {
+        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit')->where(['category' => 'package', 'status' => 1])->andWhere(['>', 'num', 0])->asArray()->all();
+
+        foreach($info as $key => $value) {
+            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id']);
+            if (empty($value['img'])) {
+                $info[$key]['img'] = '/img/apple_4x3.png';
             }
-            
+
+            $info[$key]['index'] = $key % 3 + 1;
+            $list = ProductPackage::find()->select('product_id, num')->where(['product_package_id' => $value['id']])
+                ->orderBy('num desc')
+                ->asArray()->all();
+
+            $info[$key]['list'] = [];
+            foreach($list as $item) {
+                $tmp = ProductList::find()->select('id,name,price,desc,slogan,img,unit')->where(['id' => $item['product_id']])->asArray()->one();
+
+                if (!empty($tmp)) {
+                    $tmp['num'] = $item['num'];
+                    $info[$key]['list'][] = $tmp;
+                }
+            }
         }
 
         return $info;

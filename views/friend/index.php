@@ -39,7 +39,7 @@ MsaView::registerJsFile($this,'/js/friend/index.js',
         好友购物详情
   </div>
   <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 10px;margin-top:30px;">
-      <img src='/img/gift.png' style="width:90px;margin-bottom: 10px;"/>
+      <img src='/img/gift.png' style="width:90px;height:90px;margin-bottom: 10px;"/>
       <div class="show">好&nbsp;&nbsp;友:&nbsp;&nbsp;<?=$data['userphone'] ?></div>
       <div class="show">优惠码：您的手机号码</div>
       <div class="show">购买了<span class="text-danger"><?=$data['cart_num'] ?></span>件商品</div>

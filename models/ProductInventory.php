@@ -21,7 +21,6 @@ class ProductInventory extends ActiveRecord
     public function rules() {
         return [
             [['pid'], 'required'],
-            [['operator_func'], 'required'],
             [['num'], 'required'],
             [['operator'], 'required'],
             [['price'], 'required'],

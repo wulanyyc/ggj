@@ -35,7 +35,8 @@ class FriendController extends Controller
                 'id' => $id,
             ]);
         } else {
-            $data['userphone'] = SiteHelper::encrpytPhone($data['userphone']);
+            $phone = SiteHelper::getCustomerPhone($data['customer_id']);
+            $data['userphone'] = SiteHelper::encrpytPhone($phone);
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
                 'id' => $id,

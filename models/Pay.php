@@ -21,7 +21,7 @@ class Pay extends ActiveRecord
     public function rules() {
         return [
             [['order_id'], 'required'],
-            [['userphone'], 'required'],
+            [['customer_id'], 'required'],
             [['online_money'], 'required'],
             [['wallet_money'], 'required'],
         ];

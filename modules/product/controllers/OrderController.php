@@ -7,6 +7,7 @@ use app\controllers\AuthController;
 use app\models\ProductOrder;
 use app\modules\product\models\ProductList;
 use yii\helpers\Html;
+use app\components\SiteHelper;
 
 class OrderController extends AuthController
 {
@@ -28,7 +29,7 @@ class OrderController extends AuthController
         }
 
         if (!empty($params['query'])) {
-            $ret = ProductOrder::find()->select('id,userphone,rec_name,rec_phone,rec_address,pay_money,status,create_time')
+            $ret = ProductOrder::find()->select('id,customer_id,rec_name,rec_phone,rec_address,pay_money,status,create_time')
                 ->where(['like', 'rec_name', $params['query']])
                 ->orWhere(['id' => intval($params['query'])])
                 ->andWhere(['status' => $status])
@@ -41,7 +42,7 @@ class OrderController extends AuthController
                 ->count();
         }else {
             $ret = ProductOrder::find()
-                ->select('id,userphone,rec_name,rec_phone,rec_address,pay_money,status,create_time')
+                ->select('id,customer_id,rec_name,rec_phone,rec_address,pay_money,status,create_time')
                 ->where(['status' => $status])
                 ->orderBy('id desc')->limit($params['length'])
                 ->offset($params['start'])
@@ -51,6 +52,7 @@ class OrderController extends AuthController
         }
 
         foreach($ret as $key => $value) {
+            $ret[$key]['userphone'] = SiteHelper::getCustomerPhone($value['customer_id']);
             $ret[$key]['status'] = Yii::$app->params['order_status'][$ret[$key]['status']];
 
             $ret[$key]['operation'] = "

@@ -4,7 +4,7 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class FeedBack extends ActiveRecord
+class ProductPackage extends ActiveRecord
 {
     /**
      * 数据库
@@ -15,13 +15,14 @@ class FeedBack extends ActiveRecord
     }
 
     public static function tableName(){
-        return 'feedback';
+        return 'product_package';
     }
     
     public function rules() {
         return [
-            [['customer_id'], 'required'],
-            [['advice'], 'required'],
+            [['product_id'], 'required'],
+            [['product_package_id'], 'required'],
+            [['num'], 'required'],
         ];
     }
 }

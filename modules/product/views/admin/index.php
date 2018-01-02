@@ -61,6 +61,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                             <th>价格</th>
                             <th>库存</th>
                             <th>单位</th>
+                            <th>种类</th>
                             <th>描述</th>
                             <th>标语</th>
                             <th>状态</th>
@@ -109,7 +110,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>宣传语：</label>
-                    <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm'></input>
+                    <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm' maxlength="11"></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>图片地址：</label>
@@ -184,21 +185,25 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
             <label style='width:80px'>销售状态：</label>
             <select name='status' style='width:350px;min-width:100px;margin-right:12px;'>
                 <option value="1">销售中</option>
-                <option value="2">下线</option>
+                <option value="2">已下线</option>
+                <option value="3">待上线</option>
             </select>
         </div>
     </div>
 </div>
 
-<div id='booking_modal' style='display:none;min-width:600px'>
+<div id='connect_modal' style='display:none;min-width:600px'>
     <div class='row'>
-        <div class='col-md-12'>
-            <label style='width:80px'>预约设置：</label>
-            <select name='booking_status' style='width:350px;min-width:100px;margin-right:12px;'>
-                <option value="1">可预约</option>
-                <option value="2">不可预约</option>
-            </select>
-        </div>
+        <form name='connect_form' action='#' method='post' style='margin-left:10px' onsubmit='return false;'>
+            <?php foreach($products as $product) { ?>
+            <div class='col-md-3'>
+                <div class="form-group">
+                    <label for="product_<?=$product['id'] ?>"><?=$product['name'] ?></label>
+                    <input type="number" class="form-control connect-item product_<?=$product['id'] ?>" name="product_<?=$product['id'] ?>" placeholder="数量" value="" />
+                </div>
+            </div>
+            <?php } ?>
+        </form>
     </div>
 </div>
 
@@ -210,26 +215,18 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 <option value="1">进货</option>
                 <option value="2">损耗</option>
                 <option value="3">赠送</option>
-                <option value="4">其它</option>
-            </select>
-        </div>
-
-        <div class='col-md-12' style="margin-top: 10px;">
-            <label style='width:80px;'>增/减：</label>
-            <select name='operator_func' style='width:350px;min-width:100px;margin-right:12px;'>
-                <option value="1">增加</option>
-                <option value="2">减少</option>
+                <option value="4">线下销售</option>
             </select>
         </div>
 
         <div class='col-md-12' style="margin-top: 10px;">
             <label style='width:80px'>数量：</label>
-            <input style='width:350px;display: inline-block;' type="text" class="form-control input-sm" name='num' value='' placeholder="整数" />
+            <input style='width:350px;display: inline-block;' type="number" class="form-control input-sm" name='num' value='' placeholder="整数" />
         </div>
 
         <div class='col-md-12' style="margin-top: 10px;">
             <label style='width:80px'>成本价：</label>
-            <input style='width:350px;display: inline-block;' type="text" class="form-control input-sm" name='price' value='0' placeholder="成本价" />
+            <input style='width:350px;display: inline-block;' type="number" class="form-control input-sm" name='price' value='' placeholder="成本价" />
         </div>
     </div>
 </div>

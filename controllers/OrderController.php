@@ -37,12 +37,12 @@ class OrderController extends Controller
             ]);
         }
 
-        $phone = $_COOKIE['userphone'];
+        $cid = $_COOKIE['cid'];
 
         $params = Yii::$app->request->get();
         $orderType = isset($params['type']) ? $params['type'] : 0;
 
-        $data = ProductOrder::find()->where(['userphone' => $phone])->andWhere(['!=', 'status', 4])->orderBy('id desc')->asArray()->all();
+        $data = ProductOrder::find()->where(['customer_id' => $cid])->andWhere(['!=', 'status', 4])->orderBy('id desc')->asArray()->all();
 
         foreach($data as $key => $item) {
             if ($item['status'] == 1) {
@@ -71,7 +71,7 @@ class OrderController extends Controller
             Yii::$app->end();
         }
 
-        $params['userphone'] = $_COOKIE['userphone'];
+        $params['customer_id'] = $_COOKIE['cid'];
 
         $params = $this->checkParams($params);
 
@@ -83,7 +83,7 @@ class OrderController extends Controller
         $params['rec_address'] = $info['rec_city'] . $info['rec_district'] . $info['rec_detail'];
         $params['source'] = SiteHelper::getSource();
 
-        $exsitId = ProductOrder::find()->where(['cart_id' => $params['cart_id'], 'userphone' => $params['userphone']])->select('id')->scalar();
+        $exsitId = ProductOrder::find()->where(['cart_id' => $params['cart_id'], 'customer_id' => $params['customer_id']])->select('id')->scalar();
 
         if ($exsitId > 0) {
             $po = ProductOrder::findOne($exsitId);
@@ -103,10 +103,10 @@ class OrderController extends Controller
     }
 
     private function checkParams($params) {
-        $cid = $params['cart_id'];
+        $cartid = $params['cart_id'];
         $expressRule = $params['express_rule'];
 
-        $productPrice = PriceHelper::calculateProductPrice($cid);
+        $productPrice = PriceHelper::calculateProductPrice($cartid);
         $expressFee   = PriceHelper::calculateExpressFee($expressRule, $params['type'], $productPrice);
 
         $params['product_price'] = $productPrice;
@@ -115,9 +115,8 @@ class OrderController extends Controller
         // check 朋友折扣
         if ($params['discount_fee'] > 0) {
             $discountPhone = $params['discount_phone'];
-            $userphone     = $params['userphone'];
 
-            $key = $userphone . '_' . $discountPhone . '_discount';
+            $key = $params['customer_id'] . '_' . $discountPhone . '_discount';
             $percent = Yii::$app->redis->get($key);
             // 过期了设置为0
             if (empty($percent)) $percent = 0;
@@ -163,6 +162,7 @@ class OrderController extends Controller
 
         $html = '';
         foreach($ret as $item) {
+            // 待支付订单获取实时价格
             if ($orderStatus == 1) {
                 $html .= "<tr><td>" . $item['name'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $item['price'] . "元/" . $item['unit'] . "</td></tr>";
             } else {
@@ -235,26 +235,22 @@ class OrderController extends Controller
         }
 
         $params = Yii::$app->request->get();
-        if(empty($params)){
-            Yii::$app->controller->redirect('/');
-            Yii::$app->end();
-        }
-
         $oid = isset($params['oid']) ? $params['oid'] : '';
         if (empty($oid)) {
             Yii::$app->controller->redirect('/');
             Yii::$app->end();
         }
 
-        $phone = $_COOKIE['userphone'];
-        $data = ProductOrder::find()->where(['userphone' => $phone, 'id' => $oid])->orderBy('id desc')->asArray()->one();
+        $cid = $_COOKIE['cid'];
+        $data = ProductOrder::find()->where(['customer_id' => $cid, 'id' => $oid])
+            ->orderBy('id desc')->asArray()->one();
 
         if (empty($data)) {
             Yii::$app->controller->redirect('/');
             Yii::$app->end();
         }
 
-        $money = Customer::find()->select('money')->where(['phone' => $phone])->scalar();
+        $money = Customer::find()->select('money')->where(['id' => $cid])->scalar();
 
         return $this->render('pay', [
             'controller' => Yii::$app->controller->id,
@@ -278,8 +274,8 @@ class OrderController extends Controller
 
         $id = $params['id'];
 
-        $phone = $_COOKIE['userphone'];
-        $expressNum = ProductOrder::find()->select('express_num')->where(['userphone' => $phone, 'id' => $id])->scalar();
+        $cid = $_COOKIE['cid'];
+        $expressNum = ProductOrder::find()->select('express_num')->where(['customer_id' => $cid, 'id' => $id])->scalar();
 
         if (empty($expressNum)) {
             echo '商家还未发货, 非预约单下单后24小时内发货';

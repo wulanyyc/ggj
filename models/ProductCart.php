@@ -20,7 +20,7 @@ class ProductCart extends ActiveRecord
     
     public function rules() {
         return [
-            [['userphone'], 'required'],
+            [['customer_id'], 'required'],
             [['cart'], 'required'],
         ];
     }

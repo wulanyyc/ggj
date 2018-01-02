@@ -10,6 +10,7 @@ use app\models\ProductOrder;
 use app\models\ProductCart;
 use app\models\Customer;
 use app\models\CustomerMoneyList;
+use app\models\ProductPackage;
 
 /**
  * 基础帮助类
@@ -70,21 +71,22 @@ class PriceHelper extends Component{
     }
 
     public static function getValidCoupon() {
+        $cid = $_COOKIE['cid'];
+
         $currentDate = date('Ymd', time());
-        $phone = $_COOKIE['userphone'];
         $tongyong = Coupon::find()->where(['type' => 2])
             ->andWhere(['<=', 'start_date', $currentDate])
             ->andWhere(['>=', 'end_date', $currentDate])
             ->asArray()->all();
 
         foreach($tongyong as $key => $item) {
-            $exsit = CouponUse::find()->where(['userphone' => $phone, 'use_status' => 2, 'cid' => $item['id']])->count();
+            $exsit = CouponUse::find()->where(['customer_id' => $cid, 'use_status' => 2, 'cid' => $item['id']])->count();
             if ($exsit > 0) {
                 unset($tongyong[$key]);
             }
         }
 
-        $lingqu = Coupon::findBySql("select c.* from coupon as c, coupon_use as u where c.id = u.cid and c.start_date <= " . $currentDate . " and c.end_date >=" . $currentDate . " and u.userphone=" . $phone . " and u.use_status = 1 and c.type = 1")->asArray()->all();
+        $lingqu = Coupon::findBySql("select c.* from coupon as c, coupon_use as u where c.id = u.cid and c.start_date <= " . $currentDate . " and c.end_date >=" . $currentDate . " and u.customer_id=" . $cid . " and u.use_status = 1 and c.type = 1")->asArray()->all();
 
         $data = array_merge($tongyong, $lingqu);
 
@@ -167,25 +169,25 @@ class PriceHelper extends Component{
      * type: plus, minus
      */
     public static function adjustWallet($money, $type = 'minus', $reason = '') {
-        $phone = $_COOKIE['userphone'];
-        $data  = Customer::find()->where(['phone' => $phone])->select('id, money')->asArray()->one();
+        $cid = $_COOKIE['cid'];
+        $wallet  = Customer::find()->where(['id' => $cid])->select('money')->scalar();
 
         if ($type == 'minus') {
-            $newmoney = round($data['money'] - $money, 1);
+            $newmoney = round($wallet - $money, 1);
         }
 
         if ($type == 'plus') {
-            $newmoney = round($data['money'] + $money, 1);
+            $newmoney = round($wallet + $money, 1);
         }
 
         $cmlar = new CustomerMoneyList();
         $cmlar->money = $money;
         $cmlar->func = $type;
         $cmlar->reason = $reason;
-        $cmlar->cid = $data['id'];
+        $cmlar->cid = $cid;
         $cmlar->save();
 
-        $up = Customer::findOne($data['id']);
+        $up = Customer::findOne($cid);
         $up->money = $newmoney;
         $up->save();
     }
@@ -227,5 +229,49 @@ class PriceHelper extends Component{
         }
 
         return $cart;
+    }
+
+    /**
+     * 调整钱包积分
+     * type: plus, minus
+     */
+    public static function adjustScore($score, $type = 'minus') {
+        $cid = $_COOKIE['cid'];
+        $currentScore = Customer::find()->where(['id' => $cid])->select('score')->scalar();
+
+        if ($type == 'minus') {
+            $newscore = $currentScore - $score;
+        }
+
+        if ($type == 'plus') {
+            $newscore = $currentScore + $score;
+        }
+
+        $up = Customer::findOne($cid);
+        $up->score = $newscore;
+        $up->save();
+
+        return true;
+    }
+
+    public static function updatePackagePrice($id) {
+        $packageDiscount = 0.9;
+
+        $data = ProductPackage::find()->where(['product_package_id' => $id])->asArray()->all();
+
+        if (empty($data)) return;
+        if (ProductList::find()->where(['id' => $id])->count() == 0) return ;
+        $price = 0;
+
+        foreach($data as $item) {
+            $productPrice = ProductList::find()->select('price')->where(['id' => $item['product_id']])->scalar();
+            $price += $productPrice * $item['num'];
+        }
+
+        $price = round($price * $packageDiscount);
+
+        $up = ProductList::findOne($id);
+        $up->price = $price;
+        $up->save();
     }
 }

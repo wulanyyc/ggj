@@ -34,17 +34,21 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 </style>
 
 <div class="card" id="userinfo" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-  <div style="font-size: 60px;">
+  <div style="font-size: 50px;">
     <i class="fa fa-user-circle-o" aria-hidden="true"></i>
   </div>
-  <div style="width:50%;">
+  <div style="width:55%;">
+    <?php if (!empty($info['nick'])) { ?>
+    <div><?=$info['nick'] ?></div>
+    <?php } else { ?>
     <div><?=$info['phone'] ?></div>
+    <?php } ?>
     <div>
-      余额：<span class="text-danger"><?=$info['money'] ?></span>&nbsp;&nbsp;
+      余额：<span class="text-danger"><?=$info['money'] ?></span>&nbsp;
       积分：<span class="text-success"><?=$info['score'] ?></span>
     </div>
   </div>
-  <div><button type="button" class="btn btn-outline-info btn-sm" id="charge">充100享110</button></div>
+  <div><button type="button" class="btn btn-outline-info btn-sm" id="charge">充10返1</button></div>
 </div>
 
 <div class="card" id="order" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
@@ -71,7 +75,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 <a href="/customer/coupon" class="card" id="coupon" style="padding: 10px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;text-decoration: none;color: black;">
-  <div style="width:90%;">领优惠券</div>
+  <div style="width:90%;">优惠券</div>
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 <a href="/customer/score" class="card" id="score" style="padding: 10px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;text-decoration: none;color: black;">

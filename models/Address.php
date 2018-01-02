@@ -20,7 +20,7 @@ class Address extends ActiveRecord
     
     public function rules() {
         return [
-            [['userphone'], 'required'],
+            [['customer_id'], 'required'],
             [['rec_name'], 'required'],
             [['rec_phone'], 'required'],
             [['rec_district'], 'required'],

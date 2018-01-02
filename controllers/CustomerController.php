@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
+use app\components\PriceHelper;
 use app\models\Customer;
 use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
@@ -23,6 +24,21 @@ class CustomerController extends Controller
         $this->layout = SiteHelper::getLayout();
     }
 
+    public $scoreConfig = [
+        1 => [
+            'score' => 100,
+            'money' => 5,
+        ],
+        2 => [
+            'score' => 300,
+            'money' => 20,
+        ],
+        3 => [
+            'score' => 500,
+            'money' => 50,
+        ],
+    ];
+
     /**
      * 入口
      * @return
@@ -33,10 +49,10 @@ class CustomerController extends Controller
                 'controller' => Yii::$app->controller->id,
             ]);
         } else {
-            $phone = $_COOKIE['userphone'];
-            $info = Customer::find()->where(['phone' => $phone])->asArray()->one();
+            $id = $_COOKIE['cid'];
+            $info = Customer::find()->where(['id' => $id])->asArray()->one();
             $cartid = ProductOrder::find()->select('cart_id')
-                ->where(['userphone' => $phone, 'status' => 1])->scalar();
+                ->where(['customer_id' => $id, 'status' => 1])->scalar();
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
                 'info' => $info,
@@ -46,9 +62,46 @@ class CustomerController extends Controller
     }
 
     public function actionInfo() {
+        $id = $_COOKIE['cid'];
+        $data = Customer::find()->where(['id' => $id])->asArray()->one();
         return $this->render('info', [
             'controller' => Yii::$app->controller->id,
+            'data' => $data,
         ]);
+    }
+
+    public function actionScore() {
+        $id = $_COOKIE['cid'];
+        $config = $this->scoreConfig;
+
+        $data = Customer::find()->where(['id' => $id])->asArray()->one();
+
+        return $this->render('score', [
+            'controller' => Yii::$app->controller->id,
+            'config' => $config,
+            'data' => $data,
+        ]);
+    }
+
+    public function actionChange() {
+        $config = $this->scoreConfig;
+        $params = Yii::$app->request->post();
+        $id = isset($params['id']) ? $params['id'] : '';
+
+        if (empty($id)) {
+            return $this->render('login', [
+                'controller' => Yii::$app->controller->id,
+            ]);
+        }
+
+        $data = Customer::find()->where(['id' => $_COOKIE['cid']])->asArray()->one();
+        if ($data['score'] > $this->scoreConfig[$id]['score']) {
+            PriceHelper::adjustScore($this->scoreConfig[$id]['score'], 'minus');
+            PriceHelper::adjustWallet($this->scoreConfig[$id]['money'], 'plus', 'score_pay');
+            echo 'ok';
+        } else {
+            echo '积分不够';
+        }
     }
 
     public function actionLogin() {
@@ -63,13 +116,36 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function actionEdit() {
+        $params = Yii::$app->request->post();
+
+        $exsit = Customer::find()->where(['phone' => $params['phone']])->count();
+
+        if ($exsit > 0) {
+            echo json_encode(['status' => 'fail', 'msg' => '此号码已存在']);
+            Yii::$app->end();
+        }
+
+        $ar = Customer::findOne($_COOKIE['cid']);
+        $ar->phone = $params['phone'];
+        $ar->nick  = $params['nick'];
+        $ar->save();
+
+        if ($ar->save()) {
+            $secret = SiteHelper::buildSecret($params['phone']);
+            echo json_encode(['status' => 'ok', 'secret' => $secret, 'cid' => $_COOKIE['cid']]);
+        } else {
+            echo json_encode(['status' => 'fail', 'msg' => '修改失败']);
+        }
+    }
+
     public function actionAdvice() {
-        $phone = $_COOKIE['userphone'];
+        $cid = $_COOKIE['cid'];
         $params = Yii::$app->request->post();
         $advice = !empty($params['advice']) ? $params['advice'] : '';
 
         $ar = new FeedBack();
-        $ar->userphone = $phone;
+        $ar->customer_id = $cid;
         $ar->advice = $advice;
 
         if ($ar->save()) {
@@ -134,14 +210,14 @@ EOF;
 
     private function getCommon() {
         $currentDate = date('Ymd', time());
-        $phone = $_COOKIE['userphone'];
+        $cid = $_COOKIE['cid'];
         $tongyong = Coupon::find()->where(['type' => 2])
             ->andWhere(['<=', 'start_date', $currentDate])
             ->andWhere(['>=', 'end_date', $currentDate])
             ->asArray()->all();
 
         foreach($tongyong as $key => $item) {
-            $exsit = CouponUse::find()->where(['userphone' => $phone, 'use_status' => 2, 'cid' => $item['id']])->count();
+            $exsit = CouponUse::find()->where(['customer_id' => $cid, 'use_status' => 2, 'cid' => $item['id']])->count();
             if ($exsit > 0) {
                 unset($tongyong[$key]);
             }
@@ -152,14 +228,14 @@ EOF;
 
     private function getJob() {
         $currentDate = date('Ymd', time());
-        $phone = $_COOKIE['userphone'];
+        $cid = $_COOKIE['cid'];
         $job = Coupon::find()->where(['type' => 1])
             ->andWhere(['<=', 'start_date', $currentDate])
             ->andWhere(['>=', 'end_date', $currentDate])
             ->asArray()->all();
 
         foreach($job as $key => $item) {
-            $exsit = CouponUse::find()->where(['userphone' => $phone, 'use_status' => 2, 'cid' => $item['id']])->count();
+            $exsit = CouponUse::find()->where(['customer_id' => $cid, 'use_status' => 2, 'cid' => $item['id']])->count();
             if ($exsit > 0) {
                 unset($job[$key]);
             }

@@ -12,6 +12,7 @@ use app\models\ProductCart;
 use app\models\Pay;
 use app\components\PriceHelper;
 use app\components\SmsHelper;
+use app\modules\product\models\ProductList;
 
 /**
  * 基础帮助类
@@ -30,7 +31,10 @@ class SiteHelper extends Component{
         $ar->phone = $phone;
         $ar->status = 1;
         $ar->save();
+        $id = $ar->id;
       }
+
+      return $id;
     }
 
     public static function getLayout() {
@@ -71,12 +75,14 @@ class SiteHelper extends Component{
     }
 
     public static function checkSecret() {
-        $phone = isset($_COOKIE['userphone']) ? $_COOKIE['userphone'] : '';
+        $cid = isset($_COOKIE['cid']) ? $_COOKIE['cid'] : '';
         $secret = isset($_COOKIE['secret']) ? $_COOKIE['secret'] : '';
 
-        if (empty($phone) || empty($secret)) {
+        if (empty($cid) || empty($secret)) {
             return false;
         }
+
+        $phone = self::getCustomerPhone($cid);
 
         if ($secret == self::buildSecret($phone)) {
             return true;
@@ -118,11 +124,11 @@ class SiteHelper extends Component{
         return $result;
     }
 
-    public static function addCustomerScore($num, $phone) {
-        $data = Customer::find()->where(['phone' => $phone])->select('id,score')->asArray()->one();
+    public static function addCustomerScore($num, $id) {
+        $score = Customer::find()->where(['id' => $id])->select('score')->asArray()->scalar();
 
-        $score = $data['score'] + $num;
-        $ar = Customer::findOne($data['id']);
+        $score = $score + $num;
+        $ar = Customer::findOne($id);
         $ar->score = $score;
         $ar->save();
     }
@@ -148,6 +154,21 @@ class SiteHelper extends Component{
         $op->status = 2;
         $op->save();
 
+        // 更新库存
+        $cartId = ProductOrder::find()->where(['id' => $data['order_id']])->select('cart_id')->scalar();
+        $cartData = ProductCart::find()->where(['id' => $cartId])->select('cart,type')->asArray()->one();
+        $cartArr = json_decode($cartData['cart'], true);
+
+        if ($cartData['type'] == 0) {
+            foreach($cartArr as $item) {
+                $tmp = ProductList::find()->where(['id' => $item['id']])->asArray()->one();
+                $newInventory = $tmp['num'] - $item['num'];
+                $up = ProductList::findOne($item['id']);
+                $up->num = $newInventory;
+                $up->save();
+            }
+        }
+
         // 更新券
         $coupons = ProductOrder::find()->where(['id' => $data['order_id']])
             ->select('coupon_fee, coupon_ids')->asArray()->one();
@@ -155,14 +176,14 @@ class SiteHelper extends Component{
         if ($coupons['coupon_fee'] > 0) {
             $couponIds = explode(',', $coupons['coupon_ids']);
             foreach($couponIds as $item) {
-                $exsit = CouponUse::find()->where(['cid' => $item, 'userphone' => $data['userphone']])->count();
+                $exsit = CouponUse::find()->where(['cid' => $item, 'customer_id' => $data['customer_id']])->count();
                 if ($exsit > 0) {
                     $add = CouponUse::findOne($item);
                     $add->use_status = 2;
                     $add->save();
                 } else {
                     $add = new CouponUse();
-                    $add->userphone = $data['userphone'];
+                    $add->customer_id = $data['customer_id'];
                     $add->cid = $item;
                     $add->use_status = 2;
                     $add->save();
@@ -171,18 +192,19 @@ class SiteHelper extends Component{
         }
 
         // 更新支付积分
-        self::addCustomerScore(round($data['online_money'] + $data['wallet_money']), $data['userphone']);
+        self::addCustomerScore(round($data['online_money'] + $data['wallet_money']), $data['customer_id']);
 
         // 更新折扣
         $discountData = ProductOrder::find()->where(['id' => $data['order_id']])
-            ->select('discount_fee, discount_phone, userphone, id')->asArray()->one();
+            ->select('discount_fee, discount_phone, customer_id, id')->asArray()->one();
 
         if ($discountData['discount_fee'] > 0) {
             $money = round($discountData['discount_fee'] * 0.5, 1);
             PriceHelper::addFriendWallet($money, $discountData['discount_phone'], 'friend_discount');
 
+            $userphone = self::getCustomerPhone($discountData['customer_id']);
             SmsHelper::sendDiscount($discountData['discount_phone'], [
-                'code' => substr($discountData['userphone'], 7),
+                'code' => substr($userphone, 7),
                 'order' => $discountData['id'],
                 'visit' => $discountData['id'],
             ]);
@@ -191,5 +213,13 @@ class SiteHelper extends Component{
 
     public static function encrpytPhone($phone) {
         return substr($phone, 0, 3) . '****' . substr($phone, 7);
+    }
+
+    public static function getCustomerId($phone) {
+        return Customer::find()->where(['phone' => $phone])->select('id')->scalar();
+    }
+
+    public static function getCustomerPhone($cid) {
+        return Customer::find()->where(['id' => $cid])->select('phone')->scalar();
     }
 }

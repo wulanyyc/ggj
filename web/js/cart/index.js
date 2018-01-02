@@ -133,8 +133,9 @@ $(document).ready(function () {
             dataType: 'json',
             data: "id=" + id,
             success: function (data) {
+                document.getElementById("address_form").reset();
                 $('#rec_name').val(data.rec_name);
-                $('#rec_phone').val(data.rec_phone);
+                $('#phone').val(data.rec_phone);
                 $('#rec_city').val(data.rec_city);
                 $('#rec_district').val(data.rec_district);
                 $('#rec_detail').val(data.rec_detail);
@@ -171,8 +172,7 @@ $(document).ready(function () {
             label = $('.label_choose.active').html();
         }
 
-        if (!$.helper.validatePhone($('#rec_phone').val())){
-            console.log($('#rec_phone').val());
+        if (!$.helper.validatePhone($('#phone').val())){
             $.helper.alert('收件人手机号码格式不正确');
             return ;
         }
@@ -217,9 +217,7 @@ $(document).ready(function () {
     });
 
     $('#inner_add_address').click(function(){
-        $('#rec_name').val('');
-        $('#rec_phone').val('');
-        $('#rec_detail').val('');
+        document.getElementById("address_form").reset();
         $('#all_address_info').hide();
         $('#address_info').show();
         $('#cover').show();
@@ -271,11 +269,6 @@ $(document).ready(function () {
 
     $('#use_discount').click(function(){
         var phone = $('#code').val();
-        if (phone == $.cookie('userphone')) {
-            $.helper.alert('请使用好友的手机号码');
-            return ;
-        }
-
         if ($.helper.validatePhone(phone)) {
             $.ajax({
                 url: '/cart/discount',
@@ -283,12 +276,16 @@ $(document).ready(function () {
                 dataType: 'html',
                 data: "phone=" + phone,
                 success: function (data) {
-                    var percent = data;
-                    var pp = $('#product_price').html();
-                    var discount = $.helper.round(pp * percent, 1);
-                    console.log(discount);
-                    $('#discount_fee').html(discount);
-                    calculateRealPrice();
+                    console.log(data);
+                    if (data > 0) {
+                        var percent = data;
+                        var pp = $('#product_price').html();
+                        var discount = $.helper.round(pp * percent, 1);
+                        $('#discount_fee').html(discount);
+                        calculateRealPrice();
+                    } else {
+                        $.helper.alert(data);
+                    }
                 }
             });
         } else {

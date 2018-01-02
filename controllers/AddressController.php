@@ -6,7 +6,7 @@ use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
 use app\models\Address;
-
+use app\models\Customer;
 
 class AddressController extends Controller
 {
@@ -28,8 +28,8 @@ class AddressController extends Controller
         if (!SiteHelper::checkSecret()) {
             Yii::$app->controller->redirect('/customer/login');
         } else {
-            $phone = $_COOKIE['userphone'];
-            $address = Address::find()->where(['userphone' => $phone])->orderBy('id desc')->asArray()->all();
+            $cid = $_COOKIE['cid'];
+            $address = Address::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
 
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
@@ -40,9 +40,8 @@ class AddressController extends Controller
     }
 
     public function actionHtml() {
-        $phone = isset($_COOKIE['userphone']) ? $_COOKIE['userphone'] : '';
-
-        $address = Address::find()->where(['userphone' => $phone])->orderBy('id desc')->asArray()->all();
+        $cid = $_COOKIE['cid'];
+        $address = Address::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
         
         $html = '';
         foreach($address as $item) {
@@ -76,9 +75,8 @@ EOF;
     }
 
     public function actionCarthtml() {
-        $phone = isset($_COOKIE['userphone']) ? $_COOKIE['userphone'] : '';
-
-        $address = Address::find()->where(['userphone' => $phone])->orderBy('id desc')->asArray()->all();
+        $cid = $_COOKIE['cid'];
+        $address = Address::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
         
         $html = '';
         foreach($address as $item) {
@@ -118,7 +116,6 @@ EOF;
             Yii::$app->end();
         }
 
-        $phone = $_COOKIE['userphone'];
         $params = Yii::$app->request->post();
         $id = $params['id'];
 
@@ -135,7 +132,7 @@ EOF;
             Yii::$app->end();
         }
 
-        $params['userphone'] = $phone;
+        $params['customer_id'] =  $_COOKIE['cid'];;
 
         foreach($params as $key => $value) {
             $ar->$key = $value;
@@ -154,11 +151,11 @@ EOF;
             Yii::$app->end();
         }
 
-        $phone = $_COOKIE['userphone'];
+        $cid = $_COOKIE['cid'];
         $params = Yii::$app->request->get();
         $id = $params['id'];
 
-        $data = Address::find()->where(['userphone' => $phone, 'id' => $id])->asArray()->one();
+        $data = Address::find()->where(['customer_id' => $cid, 'id' => $id])->asArray()->one();
 
         echo json_encode($data);
     }
@@ -169,7 +166,6 @@ EOF;
             Yii::$app->end();
         }
 
-        $phone = $_COOKIE['userphone'];
         $params = Yii::$app->request->post();
         $id = $params['id'];
 

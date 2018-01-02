@@ -4,6 +4,7 @@ $(document).ready(function () {
     $('#close_address, #close_address_bottom').click(function(){
         $('#address_info').hide();
         $('body').removeClass('forbid');
+        $('#cover').hide();
     });
 
     $('#label_add').click(function(){
@@ -35,8 +36,9 @@ $(document).ready(function () {
             dataType: 'json',
             data: "id=" + id,
             success: function (data) {
+                document.getElementById("address_form").reset();
                 $('#rec_name').val(data.rec_name);
-                $('#rec_phone').val(data.rec_phone);
+                $('#phone').val(data.rec_phone);
                 $('#rec_city').val(data.rec_city);
                 $('#rec_district').val(data.rec_district);
                 $('#rec_detail').val(data.rec_detail);
@@ -73,7 +75,7 @@ $(document).ready(function () {
             label = $('.label_choose.active').html();
         }
 
-        if (!$.helper.validatePhone($('#rec_phone').val())){
+        if (!$.helper.validatePhone($('#phone').val())){
             $.helper.alert('收件人手机号码格式不正确');
             return ;
         }
@@ -90,16 +92,20 @@ $(document).ready(function () {
                     reloadAddress();
                 } else {
                     $.helper.alert(data);
+                    $('#cover').hide();
                 }
             }
         });
     });
 
     $('#inner_add_address').click(function(){
-        $('#rec_name').val('');
-        $('#rec_phone').val('');
-        $('#rec_detail').val('');
         $('#address_info').show();
+        // $('#address_form').reset();
+        document.getElementById("address_form").reset();
+        // $('#rec_name').val('');
+        // $('#rec_phone').val('');
+        // $('#rec_detail').val('');
+        $('#cover').show();
         $('body').addClass('forbid');
     });
 
@@ -109,6 +115,7 @@ $(document).ready(function () {
         initEditAddress(id);
 
         $('#address_info').show();
+        $('#cover').show();
         $('body').addClass('forbid');
     });
 

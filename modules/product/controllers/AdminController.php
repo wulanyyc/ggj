@@ -8,15 +8,20 @@ use app\modules\product\models\ProductList;
 use app\modules\product\models\Tags;
 use app\modules\product\models\ProductTags;
 use app\models\ProductInventory;
+use app\models\ProductPackage;
 use yii\helpers\Html;
+use app\widgets\CategoryWidget;
+use app\components\PriceHelper;
 
 class AdminController extends AuthController
 {
     public function actionIndex() {
         $tagHtml = $this->getTagsHtml();
+        $products = ProductList::find()->where(['!=', 'category', 'package'])->asArray()->all();
         return $this->render('index',
             [
-                'tagHtml' => $tagHtml,
+                'tagHtml'  => $tagHtml,
+                'products' => $products,
             ]
         );
     }
@@ -27,10 +32,7 @@ class AdminController extends AuthController
     public function actionTable() {
         $params = Yii::$app->request->post();
 
-        $searchDb = ProductList::find()->select('id,name,price,unit,desc,slogan,status');
-        $totalDb = ProductList::find();
-
-        $sql = "select id,`name`,price,num,unit,`desc`,slogan,status from product_list ";
+        $sql = "select id,`name`,price,num,unit,`desc`,slogan,status,category from product_list ";
         $sqlCondition = [];
 
         if (!empty($params['status'])) {
@@ -49,10 +51,11 @@ class AdminController extends AuthController
             $sql .= ' where ' . implode(' and ', $sqlCondition);
         }
 
-        // echo $sql;exit;
+        $totalSql = $sql;
+        $sql .= " order by id desc limit " . $params['start'] . ', ' . $params['length'];
 
         $ret = ProductList::findBySql($sql)->asArray()->all();
-        $total = ProductList::findBySql($sql)->count();
+        $total = ProductList::findBySql($totalSql)->count();
 
         foreach($ret as $key => $value) {
             if ($ret[$key]['status'] == 1) {
@@ -60,16 +63,21 @@ class AdminController extends AuthController
             } else if ($ret[$key]['status'] == 2){
                 $ret[$key]['status'] = "<span style='color:red'>已下线</span>";
             } else {
-                $ret[$key]['status'] = "<span style='color:yellow'>待上线</span>";
+                $ret[$key]['status'] = "<span style='color:purple'>待上线</span>";
             }
 
             $ret[$key]['operation'] = "
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-tag btn btn-xs btn-purple' href='javascript:void(0);'>标签</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-status btn btn-xs btn-info' href='javascript:void(0);'>销售状态</a>
-            <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-booking btn btn-xs btn-warning' href='javascript:void(0);'>预约设置</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-inventory btn btn-xs btn-dark' href='javascript:void(0);'>库存管理</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-del btn btn-xs btn-danger' href='javascript:void(0);'>删除</a>";
+
+            if ($ret[$key]['category'] == 'package') {
+                $ret[$key]['operation'] .= "&nbsp;<a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-connect btn btn-xs btn-warning' href='javascript:void(0);'>关联商品</a>";
+            }
+
+            $ret[$key]['category'] = CategoryWidget::$categorys[$ret[$key]['category']];
         }
 
         $output = [];
@@ -135,6 +143,16 @@ class AdminController extends AuthController
         }
 
         if ($pl->save()) {
+            //TODO 更新套餐价格
+            $packages = ProductPackage::find()->where(['product_id' => $params['id']])
+                ->select('product_package_id')->distinct(true)->asArray()->all();
+
+            if (!empty($packages)) {
+                foreach($packages as $package) {
+                    PriceHelper::updatePackagePrice($package['product_package_id']);
+                }
+            }
+
             echo 'suc';
         } else {
             echo 'fail';
@@ -152,7 +170,20 @@ class AdminController extends AuthController
 
         $pl = ProductList::findOne($params['id']);
 
+        //TODO 更新套餐价格
+
         if ($pl->delete()) {
+            //TODO 更新套餐价格
+            $packages = ProductPackage::find()->where(['product_id' => $params['id']])
+            ->select('product_package_id')->distinct(true)->asArray()->all();
+
+            if (!empty($packages)) {
+                ProductPackage::deleteAll(['product_id' => $params['id']]);
+                foreach($packages as $package) {
+                    PriceHelper::updatePackagePrice($package['product_package_id']);
+                }
+            }
+
             echo 'suc';
         } else {
             echo '删除失败';
@@ -215,27 +246,57 @@ class AdminController extends AuthController
         }
     }
 
-    /**
-     * 预约状态设置
-     */
-    public function actionBooking() {
+    public function actionPackageinfo() {
         $params = Yii::$app->request->post();
         if(empty($params)){
             echo '参数不能为空';exit;
         }
 
         $id = $params['id'];
-        $status = $params['status'];
+        $data = ProductPackage::find()->where(['product_package_id' => $id])
+            ->select('product_id,num')->asArray()->all();
 
-        try {
-            $pl = ProductList::findOne($id);
-            $pl->booking_status = $status;
-            $pl->save();
+        echo json_encode($data);
+    }
 
-            echo 'suc';
-        } catch (Exception $e) {
-            echo '设置失败';
+    /**
+     * 预约状态设置
+     */
+    public function actionConnect() {
+        $params = Yii::$app->request->post();
+        if(empty($params)){
+            echo '参数不能为空';exit;
         }
+
+        $id = $params['id'];
+        unset($params['id']);
+
+        $connects = [];
+        foreach($params as $key => $value) {
+            if ($value > 0) {
+                $tmp = explode('_', $key);
+                $connects[$tmp[1]] = $value;
+            }
+        }
+
+        if (empty($connects)) {
+            echo '没有关联任何商品';
+            Yii::$app->end();
+        }
+
+        ProductPackage::deleteAll(['product_package_id' => $id]);
+
+        foreach($connects as $key => $item) {
+            $ar = new ProductPackage();
+            $ar->product_id = $key;
+            $ar->product_package_id = $id;
+            $ar->num = $item;
+            $ar->save();
+        }
+
+        PriceHelper::updatePackagePrice($id);
+
+        echo 'suc';
     }
 
     /**
@@ -275,7 +336,7 @@ class AdminController extends AuthController
 
         if ($pl->save()) {
             $up = ProductList::findOne($params['pid']);
-            if ($params['operator_func'] == 1) {
+            if ($params['operator'] == 1) {
                 $up->num = $up->num + $params['num'];
             } else {
                 $up->num = $up->num - $params['num'];

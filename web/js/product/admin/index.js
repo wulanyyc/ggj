@@ -202,26 +202,35 @@ $(document).ready(function () {
         });
     });
 
-    $('#list').delegate('.product-booking', 'click', function () {
+    $('#list').delegate('.product-connect', 'click', function () {
         var id = $(this).attr('data-id');
         var name = $(this).attr('data-val');
+        $.ajax({
+            url: '/product/admin/packageinfo',
+            type: 'post',
+            data: 'id=' + id,
+            dataType: 'json',
+            success: function (data) {
+                for(var i in data) {
+                    // console.log('#product_' + data[i]['product_id']);
+                    $('.product_' + data[i]['product_id']).val(data[i]['num']);
+                }
+            }
+        });
+
         bootbox.dialog({
-            message: $('#booking_modal').html(),
-            title: '设置预约状态: ' + name,
+            message: $('#connect_modal').html(),
+            title: '关联套餐产品: ' + name,
             className: 'modal-primary',
             buttons: {
                 success: {
                     label: '提交',
                     className: 'btn-success',
                     callback: function () {
-                        var status = $('.bootbox select[name="booking_status"]').val();
                         $.ajax({
-                            url: '/product/admin/booking',
+                            url: '/product/admin/connect',
                             type: 'post',
-                            data: {
-                                'status': status,
-                                'id': id
-                            },
+                            data: $('.bootbox form').serialize() + '&id=' + id,
                             dataType: 'html',
                             success: function (data) {
                                 if (data !== 'suc') {
@@ -298,7 +307,7 @@ $(document).ready(function () {
 
         config['columnDefs'] = [{
             sortable: false,
-            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         }];
 
         config['columns'] = [
@@ -307,6 +316,7 @@ $(document).ready(function () {
             {data: 'price'},
             {data: 'num'},
             {data: 'unit'},
+            {data: 'category'},
             {data: 'desc'},
             {data: 'slogan'},
             {data: 'status'},

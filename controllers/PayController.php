@@ -111,11 +111,11 @@ class PayController extends Controller
             Yii::$app->end();
         }
 
-        $phone = $_COOKIE['userphone'];
+        $cid = $_COOKIE['cid'];
         $params = Yii::$app->request->post();
         $id = isset($params['id']) ? $params['id'] : 0;
 
-        $data = ProductOrder::find()->where(['userphone' => $phone, 'id' => $id])->asArray()->one();
+        $data = ProductOrder::find()->where(['customer_id' => $cid, 'id' => $id])->asArray()->one();
 
         if (empty($data)) {
             echo json_encode(['status' => 'fail', 'msg' => '请求参数有误']);
@@ -127,14 +127,18 @@ class PayController extends Controller
             Yii::$app->end();
         }
 
-        
+        $inventory = $this->checkInventory($id);
+        if (!$inventory['status']) {
+            echo json_encode(['status' => 'fail', 'msg' => $inventory['msg'] . '库存数量不足，请调整商品']);
+            Yii::$app->end();
+        }
 
         $payMoney = $data['pay_money'];
-        $walletMoney = Customer::find()->select('money')->where(['phone' => $phone])->scalar();
+        $walletMoney = Customer::find()->select('money')->where(['id' => $cid])->scalar();
 
         $payData = [];
         $payData['order_id'] = $id;
-        $payData['userphone'] = $phone;
+        $payData['customer_id'] = $cid;
         $payData['out_trade_no'] = date('Ymdhis', time()) . '_' . $id;
 
         if ($walletMoney < $payMoney) {
@@ -179,6 +183,23 @@ class PayController extends Controller
             echo json_encode(['status' => 'ok', 'pay_type' => 0, 'id' => $pid]);
             Yii::$app->end();
         }
+    }
+
+    private function checkInventory($orderId) {
+        $data     = ProductOrder::find()->where(['id' => $orderId])->asArray()->one();
+        $cartId   = $data['cart_id'];
+        $cartArr = ProductCart::find()->where(['id' => $cartId])->asArray()->one();
+        $cartJsonArr = json_decode($cartArr['cart'], true);
+
+        foreach($cartJsonArr as $item) {
+            $id  = $item['id'];
+            $tmp = ProductList::find()->where(['id' => $id])->asArray()->one();
+            if ($item['num'] > $tmp['num']) {
+                return ['status' => false, 'msg' => $tmp['name']];
+            }
+        }
+
+        return ['status' => true];
     }
 
     private function addRecord($payData) {

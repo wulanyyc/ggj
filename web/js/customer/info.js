@@ -72,9 +72,11 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status == 'ok') {
+                    $.cookie('secret', data.secret, { path: '/', expires: 30 });
+                    $.cookie('cid', data.cid, { path: '/', expires: 30 });
                     location.href="/customer";
                 } else {
-                    bootbox.alert(data.msg);
+                    $.helper.alert(data.msg);
                 }
             }
         });

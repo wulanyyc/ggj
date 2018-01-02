@@ -23,6 +23,10 @@ $(document).ready(function () {
         });
     });
 
+    $('#package .card').click(function(){
+        location.href= $(this).attr('data-link');
+    });
+
     // $('.product-item-content').mouseover(function(){
     //     $(this).find('.tip-content').show();
     // });

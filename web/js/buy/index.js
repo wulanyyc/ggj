@@ -13,10 +13,6 @@ $(document).ready(function () {
             $("#order_scroll").animate({scrollTop : scroll}, 600);
         }
 
-        if ($.cookie('userphone')) {
-            $('#userphone').val($.cookie('userphone'));
-        }
-
         var cartHistory = $('#buyCart').val();
 
         if (cartHistory.length > 0) {
@@ -176,7 +172,7 @@ $(document).ready(function () {
     }
 
     $('#order').click(function() {
-        if ($.cookie('userphone') && $.cookie('secret')) {
+        if ($.cookie('cid') && $.cookie('secret')) {
             order();
         } else {
             $('#login').show();
@@ -193,8 +189,10 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status == 'ok') {
-                    $.cookie('userphone', $('#userphone').val(), { path: '/', expires: 30 });
+                    // $.cookie('userphone', $('#userphone').val(), { path: '/', expires: 30 });
                     $.cookie('secret', data.secret, { path: '/', expires: 30 });
+                    $.cookie('cid', data.cid, { path: '/', expires: 30 });
+                    
                     $('#login').hide();
                     $('#getcode').val('');
                     $('#getcode').html('发送验证码');
