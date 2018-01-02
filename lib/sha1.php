@@ -1,6 +1,6 @@
 <?php
 
-include_once "errorCode.php";
+// include_once "errorCode.php";
 
 /**
  * SHA1 class
