@@ -3,6 +3,7 @@ namespace app\components;
 
 use Yii;
 use yii\base\Component;
+use app\components\WechatHelper;
 
 
 
@@ -12,7 +13,7 @@ use yii\base\Component;
  *
  */
 class WechatHelper extends Component{
-    public static $api = "https://api.weixin.qq.com";
+    public static $api = "https://api.weixin.qq.com/cgi-bin";
 
     public static function checkSignature() {
         $params = Yii::$app->request->get();
@@ -45,7 +46,7 @@ class WechatHelper extends Component{
 
         if (empty($cache)) {
             $config = self::getConfig();
-            $url = self::$api . '/cgi-bin/token?grant_type=client_credential&appid='. $config['wxid'] .'&secret=' . $config['appsecret'];
+            $url = self::$api . '/token?grant_type=client_credential&appid='. $config['wxid'] .'&secret=' . $config['appsecret'];
 
             $ret = self::curlRequest($url);
             $data = json_decode($ret, true);

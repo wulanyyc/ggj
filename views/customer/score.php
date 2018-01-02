@@ -115,7 +115,7 @@ $this->title = '积分商城';
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;">
       <span style="padding-right: 5px;">2: </span>
-      <span>关注官方微信cdggj, 参加活动获取积分。</span>
+      <span>关注官方微信ggj_cd, 参加活动获取积分。</span>
     </p>
   </div>
 </div>
