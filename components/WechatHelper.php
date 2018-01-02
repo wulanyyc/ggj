@@ -23,7 +23,7 @@ class WechatHelper extends Component{
         sort($tmp, SORT_STRING);
 
         $tmpStr = implode(',', $tmp);
-        $tmpStr = shal1($tmpStr);
+        $tmpStr = sha1($tmpStr);
 
         if ($signature == $tmpStr) {
             return true;
