@@ -67,7 +67,7 @@ class SiteController extends Controller
     }
 
     private function getFruits() {
-        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit')->where(['category' => 'fruit', 'status' => 1])->andWhere(['>', 'num', 0])->asArray()->all();
+        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'fruit', 'status' => 1])->asArray()->all();
 
         foreach($info as $key => $value) {
             $tagArr = [];
@@ -92,7 +92,7 @@ class SiteController extends Controller
     }
 
     private function getPackages() {
-        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit')->where(['category' => 'package', 'status' => 1])->andWhere(['>', 'num', 0])->asArray()->all();
+        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'package', 'status' => 1])->asArray()->all();
 
         foreach($info as $key => $value) {
             $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id']);

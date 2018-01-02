@@ -212,7 +212,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 <div style="position: fixed;top: 55px;">
     <div class="card">
       <div class="card-header bg-white" style="color: #53a93f;position:relative;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-        预约：绝对新鲜，顺丰配送，每周2、4、6发货
+        预约：<span style="font-size: 13px;">绝对新鲜，顺丰配送隔日达，每周1、3、5发货</span>
       </div>
 
       <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;">

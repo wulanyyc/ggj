@@ -330,7 +330,11 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     <div class="product-items">
       <?php foreach($fruits as $product) { ?>
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
+            <?php if ($product['num'] > 0) { ?>
             <a class="product-item-content" style="display: flex;justify-content: space-between;align-items: stretch;flex-direction: column;" href="/buy?id=<?=$product['id'] ?>">
+            <?php } else { ?>
+            <a class="product-item-content" style="display: flex;justify-content: space-between;align-items: stretch;flex-direction: column;" href="/buy/booking?id=<?=$product['id'] ?>">
+            <?php } ?>
               <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;">
                 <img class="card-img" style="width:40%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                 <div style="width:40%;">
