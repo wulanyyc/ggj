@@ -11,6 +11,14 @@ if (YII_DEBUG) {
     defined('CACHE_PREFIX') || define('CACHE_PREFIX', 'ggj_prod');
 }
 
+
+// wechat
+require(__DIR__ . '/../lib/sha1.php');
+require(__DIR__ . '/../lib/xmlparse.php');
+require(__DIR__ . '/../lib/wxBizMsgCrypt.php');
+require(__DIR__ . '/../lib/pkcs7Encoder.php');
+require(__DIR__ . '/../lib/errorCode.php');
+
 require(__DIR__ . '/../../yii2/vendor/autoload.php');
 require(__DIR__ . '/../../yii2/vendor/aliyunsms/api_sdk/vendor/autoload.php');
 require(__DIR__ . '/../../yii2/vendor/alipaysdk/AopSdk.php');

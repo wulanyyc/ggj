@@ -105,8 +105,14 @@ class BuyController extends Controller
     }
 
     private function getProducts($orderType) {
-        $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')->where(['status' => 1])
+        if ($orderType == 1) {
+            $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')
+            ->where(['status' => 1])->asArray()->all();
+        } else {
+            $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')->where(['status' => 1])->andWhere(['>', 'num', 0])
             ->asArray()->all();
+        }
+
 
         $ret = [];
         foreach($info as $key => $value) {
