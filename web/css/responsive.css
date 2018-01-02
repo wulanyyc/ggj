@@ -58,11 +58,11 @@ main {
     }
 
     .product-items {
-        justify-content: space-between !important;
+        justify-content: center; !important;
     }
 
     .product-item {
-        width: 49% !important;
+        width: 98% !important;
     }
 
     .end {
@@ -132,11 +132,11 @@ main {
     }
 
     .product-items {
-        justify-content: flex-start !important;
+        justify-content: center !important;
     }
 
     .product-item {
-        width: 50% !important;
+        width: 98% !important;
     }
 
     .end {

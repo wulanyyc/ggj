@@ -110,7 +110,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>宣传语：</label>
-                    <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm' maxlength="11"></input>
+                    <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm' maxlength="20"></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>图片地址：</label>
@@ -157,7 +157,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>宣传语：</label>
-                    <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm slogan'></input>
+                    <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm slogan' maxlength="20"></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>图片地址：</label>

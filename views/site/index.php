@@ -57,35 +57,24 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     color: #fff;
   }
 
+  .first-active {
+    border: 1px solid red;
+    background-color: red;
+  }
+
   .product-items {
     flex-wrap: wrap;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-top: 2px;
+    justify-content: space-around;
+    align-items: stretch;
+    margin-top: 5px;
   }
 
   .product-item {
-    width:19%;
+    width: 24%;
     border: 1px solid #f5f5f5;
-    border-top: none;
     margin-bottom: 5px;
-    border-radius: 3px;
-/*    margin-right: 1px;
-    margin-left: 1px;*/
-  }
-
-  .end {
-    border-right: none;
-  }
-
-  .card-img {
-    width:70%;
-  }
-
-  .first-active {
-    border: 1px solid red;
-    background-color: red;
   }
 
   a.product-item-content {
@@ -93,38 +82,18 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-item .tip-content {
-    /*display: none;*/
-    position: absolute;
-    top: 0px;
-    left: 0px;
     background-color: #53a93f;
-    /*width: 90%;*/
-    width: 28px;
-    height: 100%;
-    padding:5px;
-    overflow-y: hidden;
-  }
-
-  .product-item .tip {
-    padding: 0;margin: 0;
-    width:100%;
+    width: 100%;
+    padding: 5px;
     text-align: center;
     color: #fff;
-    opacity: 0.9;
     line-height: 20px;
-    z-index: 100;
-  }
-
-  .product-item .tip-text {
-    width:100%;
-    text-align: center;
-    color: #fff;
+    height: 30px;
     font-size: 12px;
   }
 
   p.desc {
     margin-bottom: 0px;
-    overflow: hidden;
     font-size: 14px;
     height: 18px;
     line-height: 18px;
@@ -361,31 +330,33 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     <div class="product-items">
       <?php foreach($fruits as $product) { ?>
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
-            <a class="product-item-content" href="/buy?id=<?=$product['id'] ?>">
-              <div style="display: flex;justify-content: center;align-items: center;position: relative;flex-direction: row;">
-                <img class="card-img" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
-                <div class="tip-content">
-                  <p class="tip"><span class="tip-text"><?=$product['slogan'] ?></span></p>
+            <a class="product-item-content" style="display: flex;justify-content: space-between;align-items: stretch;flex-direction: column;" href="/buy?id=<?=$product['id'] ?>">
+              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;">
+                <img class="card-img" style="width:40%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                <div style="width:40%;">
+                  <p class="desc"><?=$product['name'] ?></p>
+                  <p class="desc"><?=$product['desc'] ?></p>
+                  <p class="price">
+                    <span class="money">¥</span>
+                    <?php if ($product['price'] == $product['promotion_price']) { ?>
+                      <span class="realprice">
+                        <?=$product['price'] ?>
+                        <span class="money">元/<?=$product['unit'] ?></span>
+                      </span>
+                    <?php } else { ?>
+                      <span class="realprice">
+                        <?=$product['promotion_price'] ?>
+                        <span class="money">元/<?=$product['unit'] ?></span>
+                        <span class="orignal_price">¥ <?=$product['price'] ?></span>
+                      </span>
+                    <?php } ?>
+                  </p>
                 </div>
               </div>
-              <p class="desc"><?=$product['name'] ?> <?=$product['desc'] ?></p>
-              <p class="price">
-                <span class="money">¥</span>
-                <?php if ($product['price'] == $product['promotion_price']) { ?>
-                  <span class="realprice">
-                    <?=$product['price'] ?>
-                    <span class="money">元/<?=$product['unit'] ?></span>
-                  </span>
-                <?php } else { ?>
-                  <span class="realprice">
-                    <?=$product['promotion_price'] ?>
-                    <span class="money">元/<?=$product['unit'] ?></span>
-                    <span class="orignal_price">¥ <?=$product['price'] ?></span>
-                  </span>
-                <?php } ?>
-              </p>
-              <!-- <p class="slogan"><?=$product['slogan'] ?></p> -->
-              <br/>
+
+              <div class="tip-content">
+                  <?=$product['slogan'] ?>
+              </div>
             </a>
           </div>
       <?php } ?>
