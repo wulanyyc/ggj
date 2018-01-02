@@ -23,7 +23,7 @@ class WechatController extends Controller
         if (WechatHelper::checkSignature()) {
             echo $echostr;
         } else {
-            echo '';
+            echo 'fail';
         }
     }
 }

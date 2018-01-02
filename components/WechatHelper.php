@@ -22,7 +22,7 @@ class WechatHelper extends Component{
         $tmp = [$config['token'], $timestamp, $nonce];
         sort($tmp, SORT_STRING);
 
-        $tmpStr = implode(',', $tmp);
+        $tmpStr = implode($tmp);
         $tmpStr = sha1($tmpStr);
 
         if ($signature == $tmpStr) {
