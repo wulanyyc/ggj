@@ -52,7 +52,7 @@ class WechatHelper extends Component{
 
             if (isset($data['access_token'])) {
                 Yii::$app->redis->setex('access_token', $data['expires_in'] - 60, $data['access_token']);
-                return $data['access_token']
+                return $data['access_token'];
             } else {
                 return '';
             }
