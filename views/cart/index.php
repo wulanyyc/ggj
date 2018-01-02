@@ -205,6 +205,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div class="card-content" id="show_address_content">
       <?php if (empty($address)) { ?>
       <div class="no_address">
+        <br/>
         <button id="add_address" type="button" class="btn btn-outline-danger btn-sm" style="width:140px;margin-bottom: 10px;font-size: 14px;height:30px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
       </div>
       <div class="hide_address" data-id="">
@@ -364,7 +365,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span>折扣有效期为2小时，超时需重新提交此订单获取新优惠。</span>
     </p>
 
-    <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;margin-top: 5%;">关闭</div>
+    <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
   </div>
 </div>
 
