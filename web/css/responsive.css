@@ -118,6 +118,12 @@ main {
         border-left: none !important;
         border-right: none !important;
     }
+
+    .first-rec {
+        flex-direction: column !important;
+        flex-wrap: wrap;
+        justify-content: flex-start !important;
+    }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -190,6 +196,12 @@ main {
     .product-item {
         border-left: none !important;
         border-right: none !important;
+    }
+
+    .first-rec {
+        flex-direction: column !important;
+        flex-wrap: wrap;
+        justify-content: flex-start !important;
     }
 }
 

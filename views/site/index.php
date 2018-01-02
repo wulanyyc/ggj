@@ -27,27 +27,28 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     margin: 3px 5px;
   }
 
+  .first-rec {
+    color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;
+    display: flex;flex-direction: row;justify-content: space-between;align-items: center;
+  }
+
   .first-items {
     width:60%;
     flex-wrap: wrap;
     display: inline-flex;
     flex-direction: row;
     justify-content: flex-end;
-    position: absolute;
-    right: 5px;
-    top: 10px;
   }
 
   .first-item {
     border: 1px solid #53a93f;
-    padding: 5px 8px;
+    padding: 3px 6px;
     color: #fff;
     background-color: #53a93f;
-    font-size: 10px;
     opacity: 1;
-    margin-bottom: 1%;
-    margin-right: 1%;
+    margin-left: 1%;
     text-align: center;
+    font-size: 12px;
   }
 
   .first-item:hover {
@@ -318,7 +319,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 </div>
 
 <div class="card">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+    <div class="card-header bg-white first-rec">
         <span class="first-title">天天鲜果</span>
         <div class="first-items">
             <a href="#" class="first-item first-active" data-tag="all">全部</a>
@@ -337,7 +338,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
             <?php } ?>
               <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;">
                 <img class="card-img" style="width:40%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
-                <div style="width:40%;">
+                <div style="width:45%;">
                   <p class="desc"><?=$product['name'] ?></p>
                   <p class="desc"><?=$product['desc'] ?></p>
                   <p class="price">
