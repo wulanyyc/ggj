@@ -18,8 +18,8 @@ class WechatHelper extends Component{
         $timestamp = $params['timestamp'];
         $nonce = $params['nonce'];
 
-
-        $tmp = [Yii::$app->params['token'], $timestamp, $nonce];
+        $config = self::getConfig();
+        $tmp = [$config['token'], $timestamp, $nonce];
         sort($tmp, SORT_STRING);
 
         $tmpStr = implode(',', $tmp);
@@ -30,5 +30,9 @@ class WechatHelper extends Component{
         } else {
             return false;
         }
+    }
+
+    public static function getConfig() {
+        return Yii::$app->params['wechat'];
     }
 }
