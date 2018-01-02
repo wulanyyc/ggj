@@ -34,7 +34,7 @@ class WechatController extends Controller
     {
         $accessToken = WechatHelper::getAccessToken();
         $url = WechatHelper::$api . "/menu/create?access_token=" . $accessToken;
-        $ret = WechatHelper::curlRequest($url, json_encode(Yii::$app->params['wechat_menu']));
+        $ret = WechatHelper::curlRequest($url, json_encode(Yii::$app->params['wechat_menu'], JSON_UNESCAPED_UNICODE));
 
         var_dump($ret);
     }
