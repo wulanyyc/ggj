@@ -19,7 +19,7 @@ class SiteAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'js/base/bootstrap4/css/bootstrap.min.css',
-        'css/lib/font-awesome/css/font-awesome.css',
+        'css/lib/font-awesome/css/font-awesome.min.css',
         'css/responsive.css',
     ];
     public $js = [
@@ -27,9 +27,9 @@ class SiteAsset extends AssetBundle
         'js/base/yii.js',
         'js/base/bootstrap4/js/popper.min.js',
         'js/base/bootstrap4/js/bootstrap.min.js',
-        'js/lib/bootbox/bootbox.js',
+        'js/lib/bootbox/bootbox.min.js',
         'js/lib/jquery-cookie/jquery.cookie.js',
-        'js/lib/jquery.resize.js',
+        // 'js/lib/jquery.resize.js',
         'js/common.js',
     ];
     public $depends = [
