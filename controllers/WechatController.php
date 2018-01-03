@@ -116,6 +116,17 @@ class WechatController extends Controller
             CustomerWeixin::updateAll(['is_subscribe' => 0], ['openid' => $openid]);
         }
 
+        if ($event == 'CLICK') {
+            $key = $data['EventKey'];
+            if ($key == 'company') {
+                return '成立于2017年底，致力于为广大客户提供优质且价格合理的商品<br/>目前主营水果、干果等相关商品，采用预约制、零售的方式服务于普通用户和公司客户。以诚为本，全心全意为大家服务';
+            }
+
+            if ($key == 'service') {
+                return '客服：18980457783 (同微信号)';
+            }
+        }
+
         return '';
     }
 
