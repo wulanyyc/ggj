@@ -48,30 +48,23 @@ class WechatController extends Controller
                 $errCode = $parse->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $body, $receiveMsg);
 
                 if ($errCode == 0) {
-                    // $xmlparse = new \XMLParse();
-                    // $user = $xmlparse->extract($body)[2];
-                    $data = simplexml_load_string($receiveMsg, 'SimpleXMLElement', LIBXML_NOCDATA);
-                    $json = json_encode($data);
-                    $array = json_decode($json,TRUE);
-                    Yii::error($array);
-                    echo '';
-                    Yii::$app->end();
+                    $data = WechatHelper::xmlToArray($receiveMsg);
 
                     $replyMsg = WechatHelper::renderText([
-                        'user' => $user,
-                        'appid' => $config['wxid'],
-                        'msg' => $receiveMsg,
+                        'user'  => $data['FromUserName'],
+                        'appid' => $data['ToUserName'],
+                        'msg'   => "rep:" . $data['Content'],
                     ]);
 
-                    Yii::error($replyMsg);
+                    // Yii::error($replyMsg);
 
                     $encryptMsg = '';
                     $code = $parse->encryptMsg($replyMsg, $_GET['timestamp'], $_GET['nonce'], $encryptMsg);
 
                     if ($code == 0) {
-                        // header("Content-Type", "application/xml; charset=UTF-8");
+                        header("Content-Type", "application/xml; charset=UTF-8");
                         echo $encryptMsg;
-                        Yii::error($encryptMsg);
+                        // Yii::error($encryptMsg);
                         Yii::$app->end();
                     }
                 }

@@ -69,6 +69,14 @@ class WechatHelper extends Component{
         return sprintf($xml, $data['user'], $data['appid'], time(), $data['msg']);
     }
 
+    public static function xmlToArray($xml) {
+        $obj  = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+        $json = json_encode($obj);
+        $data = json_decode($json, TRUE);
+
+        return $data;
+    }
+
     /**
      * 远程调用api
      */
