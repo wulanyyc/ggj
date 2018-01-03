@@ -94,7 +94,6 @@ class WechatHelper extends Component{
         ksort($data, SORT_STRING);
 
         $tmpStr = http_build_query($data);
-        echo $tmpStr;exit;
         return sha1($tmpStr);
     }
 
