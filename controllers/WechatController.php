@@ -52,7 +52,7 @@ class WechatController extends Controller
                     $user = $xmlparse->extract($body)[2];
 
                     $replyMsg = WechatHelper::renderText([
-                        'toUser' => $user,
+                        'user' => $user,
                         'appid' => $config['wxid'],
                         'msg' => $receiveMsg,
                     ]);
