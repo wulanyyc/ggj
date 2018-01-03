@@ -10,7 +10,6 @@ use app\modules\product\models\ProductTags;
 use app\models\ProductPackage;
 use app\modules\product\models\Tags;
 use app\components\PriceHelper;
-use app\components\WechatHelper;
 
 class SiteController extends Controller
 {
@@ -25,7 +24,6 @@ class SiteController extends Controller
      * @return
      */
     public function actionIndex() {
-        $wechat = WechatHelper::getPageWechatData();
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'dayPromotion' => $this->getDayPromotion(),
@@ -34,8 +32,7 @@ class SiteController extends Controller
             'packages' => $this->getPackages(),
             'newPromotion' => $this->getNewPromotion(),
             'bookingDiscount' => Yii::$app->params['bookingDiscount'] * 10,
-            'terminal' => SiteHelper::getTermimal(),
-            'wechat'   => $wechat,
+            // 'terminal' => SiteHelper::getTermimal(),
         ]);
     }
 

@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use app\assets\SiteAsset;
 use app\assets\WechatAsset;
+use app\widgets\WechatWidget;
 
 $controller = Yii::$app->controller->id;
 
@@ -48,12 +49,6 @@ if (!empty($wechat)) {
 </head>
 <body>
 <?php $this->beginBody() ?>
-
-<input type="hidden" name="we_appid" value="<?=$wechat['appid'] ?>" id="we_appid" />
-<input type="hidden" name="we_timestamp" value="<?=$wechat['timestamp'] ?>" id="we_timestamp" />
-<input type="hidden" name="we_noncestr" value="<?=$wechat['noncestr'] ?>" id="we_noncestr" />
-<input type="hidden" name="we_signature" value="<?=$wechat['signature'] ?>" id="we_signature" />
-
 <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;">
     <a class="navbar-brand" href="/" style="color:white;">果果佳</a>
 
@@ -107,6 +102,7 @@ if (!empty($wechat)) {
 
 <main>
     <?= $content ?>
+    <?= WechatWidget::widget() ?>
 </main>
 
 <footer>

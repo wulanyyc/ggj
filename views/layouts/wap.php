@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use app\assets\SiteAsset;
 use app\assets\WechatAsset;
+use app\widgets\WechatWidget;
 
 $controller = Yii::$app->controller->id;
 
@@ -44,6 +45,7 @@ if (!empty($wechat)) {
 
 <main>
     <?= $content ?>
+    <?= WechatWidget::widget() ?>
 </main>
 
 <footer>

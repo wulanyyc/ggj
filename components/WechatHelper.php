@@ -183,9 +183,7 @@ class WechatHelper extends Component{
      * 随机生成16位字符串
      * @return string 生成的字符串
      */
-    public static function getNoncestr()
-    {
-
+    public static function getNoncestr() {
         $str = "";
         $str_pol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
         $max = strlen($str_pol) - 1;
