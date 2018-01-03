@@ -23,6 +23,9 @@ class WechatWidget extends Widget
      */
     public function run(){
         $wechat = WechatHelper::getPageWechatData();
+        if (empty($wechat)) {
+            return '';
+        }
         $html = <<<EOF
         <input type="hidden" name="we_appid" value="{$wechat['appid']}" id="we_appid" />
         <input type="hidden" name="we_timestamp" value="{$wechat['timestamp']}" id="we_timestamp" />

@@ -161,8 +161,14 @@ class WechatHelper extends Component{
     }
 
     public static function getPageWechatData() {
+        session_start();
         $wechatData = [];
+        
         if (isset($_GET['source']) && $_GET['source'] == 'wechat') {
+            $_SESSION['source'] = $_GET['source'];
+        }
+
+        if (isset($_SESSION['source'])) {
             $url = self::getCurrentUrl();
             $timestamp = time();
             $noncestr  = self::getNoncestr();
