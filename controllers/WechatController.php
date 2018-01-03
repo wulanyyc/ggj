@@ -49,7 +49,7 @@ class WechatController extends Controller
 
                 if ($errCode == 0) {
                     $xmlparse = new \XMLParse();
-                    $user = $xmlparse->extract($postData)[2];
+                    $user = $xmlparse->extract($body)[2];
 
                     $replyMsg = WechatHelper::renderText([
                         'toUser' => $user,
