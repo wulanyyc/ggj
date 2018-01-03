@@ -52,7 +52,7 @@ class WechatController extends Controller
 
                     $replyMsg = WechatHelper::renderText([
                         'user'  => $data['FromUserName'],
-                        'appid' => $data['ToUserName'],
+                        'wxid' => $data['ToUserName'],
                         'msg'   => "rep:" . $data['Content'],
                     ]);
 
