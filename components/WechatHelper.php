@@ -4,8 +4,8 @@ namespace app\components;
 use Yii;
 use yii\base\Component;
 use app\components\WechatHelper;
-
-
+use app\components\WechatHelper;
+use app\models\CustomerWeixin;
 
 /**
  * 基础帮助类
@@ -61,6 +61,14 @@ class WechatHelper extends Component{
         } else {
             return $cache;
         }
+    }
+
+    public static function getUserInfo($openid) {
+        $token = self::getAccessToken();
+        $url = self::$api . '/user/info?access_token=' . $token . '&openid='. $openid . '&lang=zh_CN';
+        $ret = self::curlRequest($url);
+
+        return json_decode($ret, true);
     }
 
     public static function renderText($data) {

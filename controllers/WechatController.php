@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\components\WechatHelper;
+use app\models\CustomerWeixin;
 
 class WechatController extends Controller
 {
@@ -49,14 +50,34 @@ class WechatController extends Controller
 
                 if ($errCode == 0) {
                     $data = WechatHelper::xmlToArray($receiveMsg);
+                    $msgType = $data['MsgType'];
 
-                    $replyMsg = WechatHelper::renderText([
-                        'user'  => $data['FromUserName'],
-                        'wxid' => $data['ToUserName'],
-                        'msg'   => "rep:" . $data['Content'],
-                    ]);
+                    // 文本类型
+                    if ($msgType == 'text') {
+                        $content = $this->handleText($data['Content']);
 
-                    // Yii::error($replyMsg);
+                        $replyMsg = WechatHelper::renderText([
+                            'user' => $data['FromUserName'],
+                            'wxid' => $data['ToUserName'],
+                            'msg'  => $content,
+                        ]);
+                    }
+
+                    // 事件类型
+                    if ($msgType == 'event') {
+                        $content = $this->handleEvent($data);
+
+                        $replyMsg = WechatHelper::renderText([
+                            'user' => $data['FromUserName'],
+                            'wxid' => $data['ToUserName'],
+                            'msg'  => $content,
+                        ]);
+                    }
+
+                    if (empty($replyMsg)) {
+                        echo '';
+                        Yii::$app->end();
+                    }
 
                     $encryptMsg = '';
                     $code = $parse->encryptMsg($replyMsg, time(), $_GET['nonce'], $encryptMsg);
@@ -64,13 +85,41 @@ class WechatController extends Controller
                     if ($code == 0) {
                         header("Content-Type", "application/xml; charset=UTF-8");
                         echo $encryptMsg;
-                        // Yii::error($encryptMsg);
                         Yii::$app->end();
-                        // exit;
                     }
                 }
             }
             echo '';
+        }
+    }
+
+    // TODO
+    private function handleText($content) {
+        return $content;
+    }
+
+    // TODO
+    private function handleEvent($data) {
+        $event  = $data['Event'];
+        $openid = $data['FromUserName'];
+
+        if ($event == 'subscribe') {
+            $userinfo = WechatHelper::getUserInfo($openid);
+            $ar = CustomerWeixin();
+            $ar->openid = $userinfo['openid'];
+            $ar->sex = $userinfo['sex'];
+            $ar->is_subscribe = $userinfo['subscribe'];
+            $ar->headimgurl = $userinfo['headimgurl'];
+            $ar->city = $userinfo['city'];
+            $ar->nickname = $userinfo['nickname'];
+            if (isset($userinfo['unionid'])) {
+                $ar->unionid = $userinfo['unionid'];
+            }
+            $ar->save();
+        }
+
+        if ($event == 'unsubscribe') {
+            WechatHelper::updateAll(['is_subscribe' => 0], ['openid' => $openid]);
         }
     }
 
