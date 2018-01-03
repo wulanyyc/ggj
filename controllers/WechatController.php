@@ -44,7 +44,7 @@ class WechatController extends Controller
 
             if ($encrypt == 'aes') {
                 $receiveMsg = '';
-                $parse = new \WXBizMsgCrypt($config['token'], $config['encodingAESKey'], $config['wxid']);
+                $parse = new \WXBizMsgCrypt($config['token'], $config['encodingAESKey'], $config['appid']);
                 $errCode = $parse->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $body, $receiveMsg);
 
                 if ($errCode == 0) {

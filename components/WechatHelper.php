@@ -47,7 +47,7 @@ class WechatHelper extends Component{
 
         if (empty($cache)) {
             $config = self::getConfig();
-            $url = self::$api . '/token?grant_type=client_credential&appid='. $config['wxid'] .'&secret=' . $config['appsecret'];
+            $url = self::$api . '/token?grant_type=client_credential&appid='. $config['appid'] .'&secret=' . $config['appsecret'];
 
             $ret = self::curlRequest($url);
             $data = json_decode($ret, true);
