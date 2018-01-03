@@ -24,12 +24,11 @@ class SiteAsset extends AssetBundle
     ];
     public $js = [
         'js/base/jquery.min.js',
-        'js/base/yii.js',
-        'js/base/bootstrap4/js/popper.min.js',
         'js/base/bootstrap4/js/bootstrap.min.js',
-        'js/lib/bootbox/bootbox.min.js',
+        'js/base/bootstrap4/js/popper.min.js',
         'js/lib/jquery-cookie/jquery.cookie.js',
-        // 'js/lib/jquery.resize.js',
+        'js/lib/bootbox/bootbox.min.js',
+        'js/base/yii.js',
         'js/common.js',
     ];
     public $depends = [
