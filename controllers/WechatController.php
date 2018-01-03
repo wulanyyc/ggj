@@ -12,6 +12,8 @@ class WechatController extends Controller
         'current-skin',
     ];
 
+    public $enableCsrfValidation = false;
+
     /**
      * 入口
      * @return
