@@ -85,7 +85,7 @@ SiteAsset::register($this);
     </div>
 
     <div class="d-inline search-top" style="position: relative;">
-        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，新鲜不贵" aria-label="美丽健康，新鲜不贵" style="padding-left: 30px;" />
+        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，新鲜不贵" aria-label="美丽健康，新鲜不贵" style="padding-left: 30px;font-size: 14px;" />
         <div style="position: absolute;left:8px;top:5px;"><i class="fa fa-search" aria-hidden="true"></i></div>
     </div>
 
@@ -99,9 +99,9 @@ SiteAsset::register($this);
 <footer>
     <hr/>
     <div style="display: flex;justify-content: space-between;flex-direction: row;border-top: 1px solid #f5f5f5;font-size: 15px;">
-        <p>&nbsp;&nbsp;&copy; 成都果果佳科技</p>
-        <p>蜀ICP备17043581号</p>
-        <a style="text-decoration: none;color:black;" href="/contact">联系我们&nbsp;&nbsp;</a>
+        <p>&nbsp;蜀ICP备17043581号</p>
+        <a style="text-decoration: none;color:black;" href="/">&copy; 成都果果佳科技</a>
+        <a style="text-decoration: none;color:black;" href="/contact">联系我们&nbsp;</a>
     </div>
 </footer>
 

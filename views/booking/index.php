@@ -18,7 +18,8 @@ SiteAsset::register($this);
 
   .label {
     display: inline-block;
-    width: 100px;
+    width: 110px;
+    color: #53a93f;
   }
 
   .item {
@@ -53,7 +54,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;绝对新鲜：
         </div>
         <div>
-          早上在水果市场进货，上午打包，下午顺丰发货隔日达。
+          早上在水果市场进货，上午打包，下午顺丰发货（<span style="color:red;font-weight: bold;">隔日达</span>）。
         </div>
       </li>
 
@@ -62,7 +63,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;水果丰富：
         </div>
         <div>
-        根据时令动态调整，如有特殊需求请联系我们。
+          品类根据时令动态调整，只卖好吃又健康的水果，如有特殊需求请联系我们。
         </div>
       </li>
 
@@ -71,26 +72,23 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;预约限制：
         </div>
         <div>
-        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">大成都</span>地区的预约订单，目前仅<span style="color:red;font-weight: bold;">周一、周三、周五</span>可发预约的订单，后期可增加发货日。
+        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">成都</span>各地区的订单，目前仅<span style="color:red;font-weight: bold;">周一、周三、周五</span>可发预约的订单。
         </div>
       </li>
 
       <li>
         <div class="label">
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格优惠：
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格实惠：
         </div>
         <div>
-          价格享其它优惠后，全部再享<span style="color:red;font-weight: bold;"><?=$bookingDiscount ?></span>折，订单金额单次满<span style="color:red;font-weight: bold;"><?=$bookingGod ?></span>元，免运费，少于则加收<span style="color:red;font-weight: bold;"><?=$expressFee ?></span>元运费，单次预约金额不低于<span style="color:red;font-weight: bold;"><?=$bookingLimit ?></span>元。
+          低于市场价，并在平台其它优惠基础上，全部再享<span style="color:red;font-weight: bold;"><?=$bookingDiscount ?></span>折。
         </div>
       </li>
 
-      <li>
-        <div class="label">
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;快递收货：
-        </div>
-        <div>收货后如发现水果有损坏等情况，请拍照后立即<a href="/contact">联系我们</a>，进行赔偿。</div>
-      </li>
     </ul>
 </div>
 
-<a class='btn btn-success' href='/buy/booking' id='order' style="width:30%;margin: 0 auto;margin-bottom: 2%;margin-top:-2px;">立即预约</a>
+<a class='btn btn-success' href='/buy/booking' id='order' style="width:30%;margin: 0 auto;margin-bottom: 1%;">立即预约</a>
+
+<br/>
+<br/>

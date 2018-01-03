@@ -265,19 +265,27 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
 
     <hr style="margin-top: 0.5rem;margin-bottom: 0.5rem;" />
-    <div class="item" style="justify-content: flex-start;">
+    <div class="item" style="justify-content: space-between;align-items: center;">
         <p class="label">配送方式：</p>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="0" checked> 
-            <span class="badge badge-success" style="padding:5px 10px;letter-spacing: 2px;">快递</span>
-          </label>
+        <div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" style="margin-top: 10px;" type="radio" name="express_rule" id="express_1" value="0" checked> 
+              <span class="badge badge-success" style="padding:5px 5px;letter-spacing: 1px;margin-top: 5px;">快递</span>
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" style="margin-top: 10px;" type="radio" name="express_rule" id="express_2" value="1">
+              <span class="badge badge-info" style="padding:5px 5px;letter-spacing: 1px;margin-top: 5px;">自提</span>
+            </label>
+          </div>
         </div>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="express_rule" id="express_2" value="1">
-            <span class="badge badge-info" style="padding:5px 10px;letter-spacing: 2px;">自提</span>
-          </label>
+
+        <div>
+          <span style="font-size: 13px;cursor: pointer;color:red;">选择送货时间&nbsp;&nbsp;
+            <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+          </span>
         </div>
     </div>
   </div>
@@ -362,7 +370,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">3: </span>
-      <span>折扣有效期为2小时，超时需重新提交此订单获取新优惠。</span>
+      <span>折扣有效期为2小时，超时需重新提交订单获取优惠。</span>
     </p>
 
     <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
@@ -426,7 +434,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
 
     <button id="inner_add_address" type="button" class="btn btn-danger" style="width:50%;margin-left:25%;font-size: 14px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址并使用</button>
-    <span id='close_all_address_bottom' style="padding-left: 15px;font-size: 14px;color:#0C58B0;">关闭</span>
+    <span id='close_all_address_bottom' style="padding-left: 25px;font-size: 14px;color:#0C58B0;">关闭</span>
 </div>
 
 <div class="card" id="address_info">
@@ -481,7 +489,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
     <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;">
       <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存并使用</button>
-      <span id='close_address_bottom' style="padding-left: 15px;font-size: 14px;color:#0C58B0;line-height: 31px;">关闭</span>
+      <span id='close_address_bottom' style="padding-left: 25px;font-size: 14px;color:#0C58B0;line-height: 31px;">关闭</span>
     </div>
   </form>
 </div>

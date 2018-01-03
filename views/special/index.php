@@ -118,7 +118,7 @@ MsaView::registerJsFile($this,'/js/special/index.js',
 
 <div class="card">
     <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-        <span class="first-title">天天享特价</span>
+        <span class="first-title">天天特价</span>
     </div>
     <div id="promotion">
       <?php foreach($data as $value) { ?>

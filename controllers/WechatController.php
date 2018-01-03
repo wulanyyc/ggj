@@ -17,13 +17,23 @@ class WechatController extends Controller
      * @return
      */
     public function actionIndex() {
-        $params = Yii::$app->request->get();
-        $echostr = $params['echostr'];
+        $method = Yii::$app->request->getMethod();
 
-        if (WechatHelper::checkSignature()) {
-            echo $echostr;
-        } else {
-            echo 'fail';
+        if ($method == 'GET') {
+            $params = Yii::$app->request->get();
+            $echostr = $params['echostr'];
+
+            if (WechatHelper::checkSignature()) {
+                echo $echostr;
+            } else {
+                echo '';
+            }
+        }
+
+        if ($method == 'POST') {
+            $params = Yii::$app->request->post();
+            Yii::error(json_encode($params));
+            echo '';
         }
     }
 
