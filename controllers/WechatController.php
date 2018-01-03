@@ -61,32 +61,27 @@ class WechatController extends Controller
                             'wxid' => $data['ToUserName'],
                             'msg'  => $content,
                         ]);
+
+                        $encryptMsg = '';
+                        $code = $parse->encryptMsg($replyMsg, time(), $_GET['nonce'], $encryptMsg);
+
+                        if ($code == 0) {
+                            header("Content-Type", "application/xml; charset=UTF-8");
+                            echo $encryptMsg;
+                            Yii::$app->end();
+                        }
                     }
 
                     // 事件类型
                     if ($msgType == 'event') {
-                        $content = $this->handleEvent($data);
+                        $this->handleEvent($data);
 
-                        echo '';
-                        Yii::$app->end();
-                    }
-
-                    if (empty($replyMsg)) {
-                        echo '';
-                        Yii::$app->end();
-                    }
-
-                    $encryptMsg = '';
-                    $code = $parse->encryptMsg($replyMsg, time(), $_GET['nonce'], $encryptMsg);
-
-                    if ($code == 0) {
-                        header("Content-Type", "application/xml; charset=UTF-8");
-                        echo $encryptMsg;
+                        echo 'success';
                         Yii::$app->end();
                     }
                 }
             }
-            echo '';
+            echo 'success';
         }
     }
 
