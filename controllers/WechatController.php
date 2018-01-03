@@ -102,21 +102,25 @@ class WechatController extends Controller
 
         if ($event == 'subscribe') {
             $userinfo = WechatHelper::getUserInfo($openid);
-            $ar = new CustomerWeixin();
-            $ar->openid = $userinfo['openid'];
-            $ar->sex = $userinfo['sex'];
-            $ar->is_subscribe = $userinfo['subscribe'];
-            $ar->headimgurl = $userinfo['headimgurl'];
-            $ar->city = $userinfo['city'];
-            $ar->nickname = $userinfo['nickname'];
-            if (isset($userinfo['unionid'])) {
-                $ar->unionid = $userinfo['unionid'];
+            Yii::error($userinfo);
+
+            if (!empty($userinfo)) {
+                $ar = new CustomerWeixin();
+                $ar->openid = $userinfo['openid'];
+                $ar->sex = $userinfo['sex'];
+                $ar->is_subscribe = $userinfo['subscribe'];
+                $ar->headimgurl = $userinfo['headimgurl'];
+                $ar->city = $userinfo['city'];
+                $ar->nickname = $userinfo['nickname'];
+                if (isset($userinfo['unionid'])) {
+                    $ar->unionid = $userinfo['unionid'];
+                }
+                $ar->save();
             }
-            $ar->save();
         }
 
         if ($event == 'unsubscribe') {
-            WechatHelper::updateAll(['is_subscribe' => 0], ['openid' => $openid]);
+            CustomerWeixin::updateAll(['is_subscribe' => 0], ['openid' => $openid]);
         }
     }
 
