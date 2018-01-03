@@ -50,7 +50,7 @@ class WechatHelper extends Component{
             $data = json_decode($ret, true);
 
             if (isset($data['access_token'])) {
-                Yii::$app->redis->setex('access_token', $data['expires_in'] - 60, $data['access_token']);
+                Yii::$app->redis->setex($key, $data['expires_in'] - 60, $data['access_token']);
                 return $data['access_token'];
             } else {
                 return '';
@@ -58,6 +58,43 @@ class WechatHelper extends Component{
         } else {
             return $cache;
         }
+    }
+
+    public static function getJsapiTicket() {
+        $key = 'jsapi_ticket';
+
+        $cache = Yii::$app->redis->get($key);
+
+        if (empty($cache)) {
+            $config = self::getConfig();
+            $url = self::$api . '/ticket/getticket?access_token=' . self::getAccessToken() . '&type=jsapi';
+
+            $ret = self::curlRequest($url);
+            $data = json_decode($ret, true);
+
+            if (isset($data['ticket'])) {
+                Yii::$app->redis->setex($key, $data['expires_in'] - 60, $data['ticket']);
+                return $data['ticket'];
+            } else {
+                return '';
+            }
+        } else {
+            return $cache;
+        }
+    }
+
+    public static function buildPageSignature($url, $timestamp, $noncestr) {
+        $data = [
+            'url' => $url,
+            'noncestr' => $noncestr,
+            'timestamp' => $timestamp,
+            'jsapi_ticket' => self::getJsapiTicket(),
+        ];
+
+        sort($data, SORT_STRING);
+
+        $tmpStr = http_build_query($data);
+        return sha1($tmpStr);
     }
 
     public static function getUserInfo($openid) {
@@ -117,5 +154,33 @@ class WechatHelper extends Component{
             curl_close($ch);
             return false;
         }
+    }
+
+    public static function getNoncestr() {
+        $cls = new \Prpcrypt();
+        return $cls->getRandomStr();
+    }
+
+    public static function getCurrentUrl() {
+        return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+    }
+
+    public static function getPageWechatData() {
+        $wechatData = [];
+        if (isset($_GET['source']) && $_GET['source'] == 'wechat') {
+            $url = self::getCurrentUrl();
+            $timestamp = time();
+            $noncestr  = self::getNoncestr();
+            $signature = self::buildPageSignature($url, $timestamp, $noncestr);
+
+            $wechatData = [
+                'timestamp' => $timestamp,
+                'noncestr'  => $noncestr,
+                'signature' => $signature,
+                'appid'     => Yii::$app->params['wechat']['appid'],
+            ];
+        }
+
+        return $wechatData;
     }
 }
