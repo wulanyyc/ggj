@@ -10,9 +10,9 @@ if (document.getElementById('we_appid')) {
 
     wx.ready(function(){
 
-    };
+    });
 
     wx.error(function(res){
         console.log(res);
-    };
+    });
 }
