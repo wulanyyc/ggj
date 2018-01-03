@@ -7,10 +7,7 @@ use app\widgets\WechatWidget;
 $controller = Yii::$app->controller->id;
 
 SiteAsset::register($this);
-
-if (!empty($wechat)) {
-    WechatAsset::register($this);
-}
+WechatAsset::register($this);
 
 ?>
 
