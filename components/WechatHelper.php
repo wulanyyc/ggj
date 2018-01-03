@@ -94,6 +94,7 @@ class WechatHelper extends Component{
         sort($data, SORT_STRING);
 
         $tmpStr = http_build_query($data);
+        echo $tmpStr;exit;
         return sha1($tmpStr);
     }
 
@@ -157,7 +158,11 @@ class WechatHelper extends Component{
     }
 
     public static function getCurrentUrl() {
-        return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+        if (!empty($_SERVER['QUERY_STRING'])) {
+            return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+        } else {
+            return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+        }
     }
 
     public static function getPageWechatData() {
