@@ -55,34 +55,32 @@ class WechatController extends Controller
                     // 文本类型
                     if ($msgType == 'text') {
                         $content = $this->handleText($data['Content']);
-
-                        $replyMsg = WechatHelper::renderText([
-                            'user' => $data['FromUserName'],
-                            'wxid' => $data['ToUserName'],
-                            'msg'  => $content,
-                        ]);
-
-                        $encryptMsg = '';
-                        $code = $parse->encryptMsg($replyMsg, time(), $_GET['nonce'], $encryptMsg);
-
-                        if ($code == 0) {
-                            header("Content-Type", "application/xml; charset=UTF-8");
-                            echo $encryptMsg;
-                            Yii::$app->end();
-                        }
                     }
 
                     // 事件类型
                     if ($msgType == 'event') {
-                        $this->handleEvent($data);
+                        $content = $this->handleEvent($data);
+                    }
 
-                        echo 'success';
+                    $replyMsg = WechatHelper::renderText([
+                        'user' => $data['FromUserName'],
+                        'wxid' => $data['ToUserName'],
+                        'msg'  => $content,
+                    ]);
+
+                    $encryptMsg = '';
+                    $code = $parse->encryptMsg($replyMsg, time(), $_GET['nonce'], $encryptMsg);
+
+                    if ($code == 0) {
+                        header("Content-Type", "application/xml; charset=UTF-8");
+                        echo $encryptMsg;
                         Yii::$app->end();
                     }
                 }
             }
-            echo 'success';
         }
+
+        echo '';
     }
 
     // TODO
@@ -97,11 +95,7 @@ class WechatController extends Controller
 
         if ($event == 'subscribe') {
             $userinfo = WechatHelper::getUserInfo($openid);
-            if (isset($userinfo['errcode'])) {
-                return '';
-            }
-
-            if (!empty($userinfo)) {
+            if (!isset($userinfo['errcode'])) {
                 $ar = new CustomerWeixin();
                 $ar->openid = $userinfo['openid'];
                 $ar->sex = $userinfo['sex'];
@@ -114,6 +108,8 @@ class WechatController extends Controller
                 }
                 $ar->save();
             }
+
+            return '欢迎关注成都果果佳';
         }
 
         if ($event == 'unsubscribe') {
