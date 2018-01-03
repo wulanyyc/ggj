@@ -9,7 +9,7 @@ if (document.getElementById('we_appid')) {
     });
 
     wx.ready(function(){
-
+        alert('ok');
     });
 
     wx.error(function(res){
