@@ -65,8 +65,8 @@ class WechatController extends Controller
                         header("Content-Type", "application/xml; charset=UTF-8");
                         echo $encryptMsg;
                         // Yii::error($encryptMsg);
-                        // Yii::$app->end();
-                        exit;
+                        Yii::$app->end();
+                        // exit;
                     }
                 }
             }
