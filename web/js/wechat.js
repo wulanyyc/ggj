@@ -7,4 +7,12 @@ if (document.getElementById('we_appid')) {
         signature: document.getElementById('we_signature').value,// 必填，签名，见附录1
         jsApiList: ['closeWindow'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
+
+    wx.ready(function(){
+
+    };
+
+    wx.error(function(res){
+        console.log(res);
+    };
 }
