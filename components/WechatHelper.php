@@ -17,6 +17,7 @@ class WechatHelper extends Component{
 
     public static function checkSignature() {
         $params = Yii::$app->request->get();
+
         $signature = $params['signature'];
         $timestamp = $params['timestamp'];
         $nonce = $params['nonce'];
@@ -60,6 +61,12 @@ class WechatHelper extends Component{
         } else {
             return $cache;
         }
+    }
+
+    public static function renderText($data) {
+        $xml = '<xml> <ToUserName>< ![CDATA[%s] ]></ToUserName> <FromUserName>< ![CDATA[%s] ]></FromUserName> <CreateTime>%s</CreateTime> <MsgType>< ![CDATA[text] ]></MsgType> <Content>< ![CDATA[%s] ]></Content> </xml>';
+
+        return sprintf($xml, $data['user'], $data['self'], time(), $data['msg']);
     }
 
     /**

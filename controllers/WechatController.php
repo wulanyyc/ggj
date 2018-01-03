@@ -33,8 +33,40 @@ class WechatController extends Controller
         }
 
         if ($method == 'POST') {
-            $params = Yii::$app->request->post();
-            Yii::error(json_encode($params));
+            if (!WechatHelper::checkSignature()) {
+                echo '';
+                Yii::$app->end();
+            }
+
+            $body = Yii::$app->request->getRawBody();
+            $encrypt = $_GET['encrypt_type'];
+            $config = WechatHelper::getConfig();
+
+            if ($encrypt == 'aes') {
+                $receiveMsg = '';
+                $parse = new \WXBizMsgCrypt($config['token'], $config['encodingAESKey'], $config['wxid']);
+                $errCode = $parse->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $body, $receiveMsg);
+
+                if ($errCode == 0) {
+                    $xmlparse = new \XMLParse();
+                    $user = $xmlparse->extract($postData)[2];
+
+                    $replyMsg = WechatHelper::renderText([
+                        'toUser' => $user,
+                        'appid' => $config['wxid'],
+                        'msg' => $receiveMsg,
+                    ]);
+
+                    $encryptMsg = '';
+                    $code = $parse->encryptMsg($replyMsg, $_GET['timestamp'], $_GET['nonce'], &$encryptMsg);
+
+                    if ($code == 0) {
+                        header("Content-Type", "application/xml; charset=UTF-8");
+                        echo $encryptMsg;
+                        Yii::$app->end();
+                    }
+                }
+            }
             echo '';
         }
     }
