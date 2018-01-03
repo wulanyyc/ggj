@@ -50,7 +50,7 @@ class WechatController extends Controller
                 if ($errCode == 0) {
                     // $xmlparse = new \XMLParse();
                     // $user = $xmlparse->extract($body)[2];
-                    $data = simplexml_load_string($receiveMsg);
+                    $data = simplexml_load_string($receiveMsg, 'SimpleXMLElement', LIBXML_NOCDATA);
                     $json = json_encode($data);
                     $array = json_decode($json,TRUE);
                     Yii::error($array);
