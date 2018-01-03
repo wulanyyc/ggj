@@ -157,11 +157,10 @@ class WechatHelper extends Component{
     }
 
     public static function getCurrentUrl() {
-        if (!empty($_SERVER['QUERY_STRING'])) {
-            return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
-        } else {
-            return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
-        }
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $url = $protocol . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI];
+
+        return $url;
     }
 
     public static function getPageWechatData() {
