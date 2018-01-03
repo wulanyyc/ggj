@@ -102,7 +102,9 @@ class WechatController extends Controller
 
         if ($event == 'subscribe') {
             $userinfo = WechatHelper::getUserInfo($openid);
-            Yii::error($userinfo);
+            if (isset($userinfo['errcode'])) {
+                return '';
+            }
 
             if (!empty($userinfo)) {
                 $ar = new CustomerWeixin();
@@ -122,6 +124,8 @@ class WechatController extends Controller
         if ($event == 'unsubscribe') {
             CustomerWeixin::updateAll(['is_subscribe' => 0], ['openid' => $openid]);
         }
+
+        return '';
     }
 
     public function actionTest() {
