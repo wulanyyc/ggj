@@ -3,8 +3,6 @@ namespace app\components;
 
 use Yii;
 use yii\base\Component;
-use app\components\WechatHelper;
-use app\components\WechatHelper;
 use app\models\CustomerWeixin;
 
 /**
