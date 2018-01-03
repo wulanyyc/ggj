@@ -93,9 +93,14 @@ class WechatHelper extends Component{
 
         ksort($data, SORT_STRING);
 
-        $tmpStr = http_build_query($data);
-        echo $tmpStr;exit;
-        return sha1($tmpStr);
+        $str = '';
+        foreach($data as $key => $value) {
+            $str . = $key . "=" . $value . '&';
+        }
+
+        $str = substr($str, 0, -1);
+
+        return sha1($str);
     }
 
     public static function getUserInfo($openid) {
