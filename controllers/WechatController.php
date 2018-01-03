@@ -102,7 +102,7 @@ class WechatController extends Controller
 
         if ($event == 'subscribe') {
             $userinfo = WechatHelper::getUserInfo($openid);
-            $ar = CustomerWeixin();
+            $ar = new CustomerWeixin();
             $ar->openid = $userinfo['openid'];
             $ar->sex = $userinfo['sex'];
             $ar->is_subscribe = $userinfo['subscribe'];

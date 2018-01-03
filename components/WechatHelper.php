@@ -3,7 +3,6 @@ namespace app\components;
 
 use Yii;
 use yii\base\Component;
-use app\models\CustomerWeixin;
 
 /**
  * 基础帮助类
