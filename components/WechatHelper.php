@@ -95,7 +95,7 @@ class WechatHelper extends Component{
 
         $str = '';
         foreach($data as $key => $value) {
-            $str . = $key . "=" . $value . '&';
+            $str .= $key . "=" . $value . '&';
         }
 
         $str = substr($str, 0, -1);
