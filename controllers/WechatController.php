@@ -56,15 +56,15 @@ class WechatController extends Controller
                         'msg'   => "rep:" . $data['Content'],
                     ]);
 
-                    Yii::error($replyMsg);
+                    // Yii::error($replyMsg);
 
                     $encryptMsg = '';
-                    $code = $parse->encryptMsg($replyMsg, $_GET['timestamp'], $_GET['nonce'], $encryptMsg);
+                    $code = $parse->encryptMsg($replyMsg, time(), $_GET['nonce'], $encryptMsg);
 
                     if ($code == 0) {
                         header("Content-Type", "application/xml; charset=UTF-8");
                         echo $encryptMsg;
-                        Yii::error($encryptMsg);
+                        // Yii::error($encryptMsg);
                         Yii::$app->end();
                     }
                 }
