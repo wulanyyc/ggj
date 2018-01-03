@@ -48,8 +48,12 @@ class WechatController extends Controller
                 $errCode = $parse->decryptMsg($_GET['msg_signature'], $_GET['timestamp'], $_GET['nonce'], $body, $receiveMsg);
 
                 if ($errCode == 0) {
-                    $xmlparse = new \XMLParse();
-                    $user = $xmlparse->extract($body)[2];
+                    // $xmlparse = new \XMLParse();
+                    // $user = $xmlparse->extract($body)[2];
+                    $data = simplexml_load_string($receiveMsg);
+                    Yii::error($data);
+                    echo '';
+                    Yii::$app->end();
 
                     $replyMsg = WechatHelper::renderText([
                         'user' => $user,
@@ -58,7 +62,7 @@ class WechatController extends Controller
                     ]);
 
                     Yii::error($replyMsg);
-                    
+
                     $encryptMsg = '';
                     $code = $parse->encryptMsg($replyMsg, $_GET['timestamp'], $_GET['nonce'], $encryptMsg);
 
