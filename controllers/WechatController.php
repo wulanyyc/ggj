@@ -67,11 +67,8 @@ class WechatController extends Controller
                     if ($msgType == 'event') {
                         $content = $this->handleEvent($data);
 
-                        $replyMsg = WechatHelper::renderText([
-                            'user' => $data['FromUserName'],
-                            'wxid' => $data['ToUserName'],
-                            'msg'  => $content,
-                        ]);
+                        echo '';
+                        Yii::$app->end();
                     }
 
                     if (empty($replyMsg)) {
