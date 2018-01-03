@@ -58,7 +58,7 @@ class WechatController extends Controller
                     ]);
 
                     $encryptMsg = '';
-                    $code = $parse->encryptMsg($replyMsg, $_GET['timestamp'], $_GET['nonce'], &$encryptMsg);
+                    $code = $parse->encryptMsg($replyMsg, $_GET['timestamp'], $_GET['nonce'], $encryptMsg);
 
                     if ($code == 0) {
                         header("Content-Type", "application/xml; charset=UTF-8");
