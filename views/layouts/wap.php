@@ -31,12 +31,6 @@ if (!empty($wechat)) {
 </head>
 <body>
 <?php $this->beginBody() ?>
-
-<input type="hidden" name="we_appid" value="<?=$wechat['appid'] ?>" id="we_appid" />
-<input type="hidden" name="we_timestamp" value="<?=$wechat['timestamp'] ?>" id="we_timestamp" />
-<input type="hidden" name="we_noncestr" value="<?=$wechat['noncestr'] ?>" id="we_noncestr" />
-<input type="hidden" name="we_signature" value="<?=$wechat['signature'] ?>" id="we_signature" />
-
 <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;display: flex;flex-direction: row;justify-content: space-between;flex-wrap: nowrap;">
     <div id="back" style="color:white;cursor: pointer;display: inline;"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
     <a class="navbar-brand" href="/" style="color:white;text-align: center;width: 60%;padding-left: 15%">果果佳</a>
