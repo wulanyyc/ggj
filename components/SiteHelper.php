@@ -47,18 +47,32 @@ class SiteHelper extends Component{
     }
 
     public static function getTermimal() {
-        $width = isset($_COOKIE['width']) ? $_COOKIE['width'] : 1280;
-        $terminal = isset($_COOKIE['terminal']) ? $_COOKIE['terminal'] : '';
+        // $width = isset($_COOKIE['width']) ? $_COOKIE['width'] : 1280;
+        $terminal = isset($_COOKIE['terminal']) ? $_COOKIE['terminal'] : 'wap';
 
-        if (empty($terminal)) {
-            if ($width <= 767) {
-                return 'wap';
-            }
+        return $terminal;
+        // if (empty($terminal)) {
+        //     if ($width <= 767) {
+        //         setcookie('terminal', 'wap', 0, '/');
+        //         return 'wap';
+        //     }
 
-            return 'pc';
-        } else {
-            return $terminal;
+        //     setcookie('terminal', 'pc', 0, '/');
+        //     return 'pc';
+        // } else {
+        //     return $terminal;
+        // }
+    }
+
+    // TODO 完善微信来源
+    public static function getSource() {
+        $terminal = self::getTermimal();
+
+        if (isset($_COOKIE['openid'])) {
+            return 'wechat';
         }
+
+        return $terminal;
     }
 
     public static function checkPhone($phone) {
@@ -131,13 +145,6 @@ class SiteHelper extends Component{
         $ar = Customer::findOne($id);
         $ar->score = $score;
         $ar->save();
-    }
-
-    // TODO 完善微信来源
-    public static function getSource() {
-        $terminal = self::getTermimal();
-
-        return $terminal;
     }
 
     public static function handlePayOkOrder($payid, $trade_no = '') {

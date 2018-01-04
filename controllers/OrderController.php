@@ -250,9 +250,7 @@ class OrderController extends Controller
             Yii::$app->end();
         }
 
-        session_start();
-        $isWechat = isset($_SESSION['openid']) ? true : false;
-        // var_dump($_SESSION);exit;
+        $isWechat = isset($_COOKIE['openid']) ? true : false;
 
         $money = Customer::find()->select('money')->where(['id' => $cid])->scalar();
 
