@@ -80,6 +80,12 @@ class CartController extends Controller
             $data['product'][] = $tmpProduct;
         }
 
+        if (count($data['product']) > 4) {
+            $data['show_product'] = array_slice($data['product'], 0, 4);
+        } else {
+            $data['show_product'] = $data['product'];
+        }
+
         $data['product_cart'] = $cart;
         $data['product_price'] = PriceHelper::calculateProductPrice($id);
         $data['express_fee'] = PriceHelper::calculateExpressFee(0, $data['type'], $data['product_price']);

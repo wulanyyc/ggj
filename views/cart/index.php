@@ -253,8 +253,8 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div class="card">
   <div id="products" class="card-content">
     <div id="product_detail" style="display: flex;justify-content: space-between;flex-direction: row;align-items: center;">
-      <div style="position: relative;width:80%;overflow: hidden;">
-        <?php foreach($data['product'] as $item) { ?>
+      <div style="position: relative;width:80%;overflow: hidden;height:70px;">
+        <?php foreach($data['show_product'] as $item) { ?>
         <div class="product" style="height: 70px;display: inline-block;">
           <img src="<?=$item['img'] ?>" style="height:100%;" />
         </div>
@@ -400,7 +400,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         <tr>
           <td><?=$item['name'] ?></td>
           <td><?=$data['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
-          <td><?=$data['product_cart'][$item['id']]['price'] * $data['product_cart'][$item['id']]['num'] ?></td>
+          <td><?=$data['product_cart'][$item['id']]['price'] * $data['product_cart'][$item['id']]['num'] ?>元</td>
         </tr>
       <?php } ?>
     </tbody>
