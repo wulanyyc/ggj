@@ -165,7 +165,11 @@ $(document).ready(function () {
                 if (data > 0) {
                     location.href = "/cart?id=" + data;
                 } else {
-                    bootbox.alert(data);
+                    $.helper.confirm(data, function(result) {
+                        if (result) {
+                            location.href = '/customer';
+                        }
+                    });
                 }
             }
         });

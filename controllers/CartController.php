@@ -95,7 +95,7 @@ class CartController extends Controller
 
     public function actionAdd() {
         if (!SiteHelper::checkSecret()) {
-            echo '验证用户失败';
+            echo '用户权限验证失败';
             Yii::$app->end();
         }
 
