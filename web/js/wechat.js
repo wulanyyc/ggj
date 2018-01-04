@@ -10,7 +10,7 @@ if (document.getElementById('we_appid')) {
 
     wx.ready(function(){
         // wx.hideAllNonBaseMenuItem();
-        alert('ok');
+        // alert('ok');
     });
 
     wx.error(function(res){
