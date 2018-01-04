@@ -252,7 +252,7 @@ class OrderController extends Controller
 
         session_start();
         $isWechat = isset($_SESSION['openid']) ? true : false;
-        var_dump($_SESSION);exit;
+        // var_dump($_SESSION);exit;
 
         $money = Customer::find()->select('money')->where(['id' => $cid])->scalar();
 
