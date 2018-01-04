@@ -265,29 +265,27 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
 
     <hr style="margin-top: 0.5rem;margin-bottom: 0.5rem;" />
-    <div class="item" style="justify-content: space-between;align-items: center;">
-        <p class="label">配送方式：</p>
-        <div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input class="form-check-input" style="margin-top: 10px;" type="radio" name="express_rule" id="express_1" value="0" checked> 
-              <span class="badge badge-success" style="padding:5px 5px;letter-spacing: 1px;margin-top: 5px;">快递</span>
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input class="form-check-input" style="margin-top: 10px;" type="radio" name="express_rule" id="express_2" value="1">
-              <span class="badge badge-info" style="padding:5px 5px;letter-spacing: 1px;margin-top: 5px;">自提</span>
-            </label>
-          </div>
+    <div class="item" style="justify-content: flex-start;align-items: center;">
+        <div class="label">配送方式：</div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="0" checked> 
+            <span class="badge badge-success" style="padding:5px 5px;letter-spacing: 1px;">快递</span>
+          </label>
         </div>
-
-        <div>
-          <span style="font-size: 13px;cursor: pointer;color:red;">选择送货时间&nbsp;&nbsp;
-            <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
-          </span>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="express_rule" id="express_2" value="1">
+            <span class="badge badge-info" style="padding:5px 5px;letter-spacing: 1px;">自提</span>
+          </label>
         </div>
     </div>
+
+    <div class="item" style="justify-content: flex-start;align-items: center;">
+        <div class="label">配送时间：</div>
+        <div style="font-size: 13px;">24小时内发货，预约单选最近的发货日<br/>如有特殊要求，请留言</div>
+    </div>
+
   </div>
 </div>
 
