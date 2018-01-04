@@ -33,7 +33,7 @@ class WechatController extends Controller
     public function actionMenu()
     {
         $accessToken = WechatHelper::getAccessToken();
-        $url = WechatHelper::$api . "/menu/create?access_token=" . $accessToken;
+        $url = WechatHelper::$api . "/cgi-bin/menu/create?access_token=" . $accessToken;
         $ret = WechatHelper::curlRequest($url, json_encode(Yii::$app->params['wechat_menu'], JSON_UNESCAPED_UNICODE));
 
         var_dump($ret);
@@ -42,7 +42,7 @@ class WechatController extends Controller
     public function actionMaterial()
     {
         $accessToken = WechatHelper::getAccessToken();
-        $url = WechatHelper::$api . "/material/batchget_material?access_token=" . $accessToken;
+        $url = WechatHelper::$api . "/cgi-bin/material/batchget_material?access_token=" . $accessToken;
         $params = [
             'type' => 'news',
             'offset' => 0,
