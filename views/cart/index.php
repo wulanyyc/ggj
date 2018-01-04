@@ -55,12 +55,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
   #detail {
     height: 60%;
-    overflow-y: scroll;
   }
 
   #coupon {
     height: 80%;
-    /*overflow-y: scroll;*/
   }
 
   #express_info {
@@ -387,24 +385,27 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
       商品详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_detail"></i>
   </div>
-  <table class="table table-bordered" style="margin-top: 10px;font-size: 13px;width:98%;margin:1% auto;">
-    <thead>
-      <tr>
-        <th scope="col">商品</th>
-        <th scope="col">数量</th>
-        <th scope="col">总价</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach($data['product'] as $item) { ?>
+  <div style="margin-top: 10px;font-size: 13px;width:98%;margin:1% auto;height: 70%;overflow-y: scroll;">
+    <table class="table table-bordered">
+      <thead>
         <tr>
-          <td><?=$item['name'] ?></td>
-          <td><?=$data['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
-          <td><?=$data['product_cart'][$item['id']]['price'] * $data['product_cart'][$item['id']]['num'] ?>元</td>
+          <th scope="col">商品</th>
+          <th scope="col">数量</th>
+          <th scope="col">总价</th>
         </tr>
-      <?php } ?>
-    </tbody>
+      </thead>
+      <tbody>
+        <?php foreach($data['product'] as $item) { ?>
+          <tr>
+            <td><?=$item['name'] ?></td>
+            <td><?=$data['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
+            <td><?=$data['product_cart'][$item['id']]['price'] * $data['product_cart'][$item['id']]['num'] ?>元</td>
+          </tr>
+        <?php } ?>
+      </tbody>
     </table>
+  </div>
+  <div class='btn btn-success btn-sm' id='close_detail_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
 </div>
 
 <div class="card" id="all_address_info">

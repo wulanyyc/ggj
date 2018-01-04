@@ -69,7 +69,7 @@ $(document).ready(function () {
         $('body').addClass('forbid');
     });
 
-    $('#close_detail').click(function(){
+    $('#close_detail, #close_detail_bottom').click(function(){
         $('#detail').hide();
         $('#cover').hide();
         $('body').removeClass('forbid');
