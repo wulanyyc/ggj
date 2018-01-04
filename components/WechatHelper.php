@@ -208,10 +208,11 @@ class WechatHelper extends Component{
             // init weixin user
             session_start();
             if (empty($_SESSION['openid'])) {
+                Yii::error('init page');
                 self::initWxPageVisit($code);
+            } else {
+                Yii::error($_SESSION['openid']);
             }
-
-            Yii::error($_SESSION['openid']);
 
             $wechatData = [
                 'timestamp' => $timestamp,
