@@ -181,7 +181,7 @@ class WechatHelper extends Component{
         $keyRefresh = 'page_refresh_token';
 
         $config = self::getConfig();
-        $url = self::$api . '/sns/oauth2/access_token?&appid='. $config['appid'] .'&secret=' . $config['appsecret'] . '&code=' . $code . '&grant_type=authorization_code';
+        $url = self::$api . '/sns/oauth2/access_token?appid='. $config['appid'] .'&secret=' . $config['appsecret'] . '&code=' . $code . '&grant_type=authorization_code';
 
         $ret = self::curlRequest($url);
         Yii::error($ret);
