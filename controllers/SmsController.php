@@ -96,4 +96,30 @@ class SmsController extends Controller
 
         Yii::$app->end();
     }
+
+    // only for change phone
+    public function actionInfovcode() {
+        $params = Yii::$app->request->post();
+        if (empty($params)) {
+            echo json_encode(['status' => 'fail', 'msg' => '提交的数据为空']);
+            Yii::$app->end();
+        }
+
+        if (empty($params['phone']) || empty($params['code'])) {
+            echo json_encode(['status' => 'fail', 'msg' => '提交的数据不全']);
+            Yii::$app->end();
+        }
+
+        $realCode = Yii::$app->redis->get($params['phone'] . "_code");
+
+        if ($realCode != $params['code']) {
+            echo json_encode(['status' => 'fail', 'msg' => '验证失败']);
+        } else {
+            echo json_encode([
+                'status' => 'ok',
+            ]);
+        }
+
+        Yii::$app->end();
+    }
 }

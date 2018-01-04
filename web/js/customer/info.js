@@ -49,7 +49,7 @@ $(document).ready(function () {
     $('#next').click(function(){
         clearInterval(clock);
         $.ajax({
-            url: '/sms/vcode',
+            url: '/sms/infovcode',
             type: 'post',
             data: "phone=" + $('#new_userphone').val() + "&code=" + $('#code').val(),
             dataType: 'json',
