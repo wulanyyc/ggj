@@ -211,6 +211,8 @@ class WechatHelper extends Component{
                 self::initWxPageVisit($code);
             }
 
+            Yii::error($_SESSION['openid']);
+
             $wechatData = [
                 'timestamp' => $timestamp,
                 'noncestr'  => $noncestr,
