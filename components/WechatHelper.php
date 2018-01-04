@@ -200,10 +200,6 @@ class WechatHelper extends Component{
         
         if (!empty($_GET['code'])) {
             $code = $_GET['code'];
-            $url = self::getCurrentUrl();
-            $timestamp = time();
-            $noncestr  = self::getNoncestr();
-            $signature = self::buildPageSignature($url, $timestamp, $noncestr);
 
             // init weixin user
             if (empty($_COOKIE['openid'])) {
@@ -212,14 +208,19 @@ class WechatHelper extends Component{
             } else {
                 Yii::error("testok:" . $_COOKIE['openid']);
             }
-
-            $wechatData = [
-                'timestamp' => $timestamp,
-                'noncestr'  => $noncestr,
-                'signature' => $signature,
-                'appid'     => Yii::$app->params['wechat']['appid'],
-            ];
         }
+
+        $url = self::getCurrentUrl();
+        $timestamp = time();
+        $noncestr  = self::getNoncestr();
+        $signature = self::buildPageSignature($url, $timestamp, $noncestr);
+
+        $wechatData = [
+            'timestamp' => $timestamp,
+            'noncestr'  => $noncestr,
+            'signature' => $signature,
+            'appid'     => Yii::$app->params['wechat']['appid'],
+        ];
 
         return $wechatData;
     }
