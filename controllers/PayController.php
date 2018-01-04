@@ -114,6 +114,7 @@ class PayController extends Controller
         $cid = $_COOKIE['cid'];
         $params = Yii::$app->request->post();
         $id = isset($params['id']) ? $params['id'] : 0;
+        $payType = isset($params['type']) ? $params['type'] : 0;
 
         $data = ProductOrder::find()->where(['customer_id' => $cid, 'id' => $id])->asArray()->one();
 
@@ -127,10 +128,13 @@ class PayController extends Controller
             Yii::$app->end();
         }
 
-        $inventory = $this->checkInventory($id);
-        if (!$inventory['status']) {
-            echo json_encode(['status' => 'fail', 'msg' => $inventory['msg'] . '库存数量不足，请调整商品']);
-            Yii::$app->end();
+        // 普通购买检验库存
+        if ($data['type'] == 0) {
+            $inventory = $this->checkInventory($id);
+            if (!$inventory['status']) {
+                echo json_encode(['status' => 'fail', 'msg' => $inventory['msg'] . '库存数量不足，请调整商品']);
+                Yii::$app->end();
+            }
         }
 
         $payMoney = $data['pay_money'];
@@ -143,32 +147,40 @@ class PayController extends Controller
 
         if ($walletMoney < $payMoney) {
             // alipay支付
-            $terminal = SiteHelper::getTermimal();
+            if ($payType == 1) {
+                $terminal = SiteHelper::getTermimal();
 
-            $realPayMoney = round($payMoney - $walletMoney, 1);
+                $realPayMoney = round($payMoney - $walletMoney, 1);
 
-            $payData['wallet_money'] = $walletMoney;
-            $payData['online_money'] = $realPayMoney;
-            $payData['pay_type'] = 1; 
-            $pid = $this->addRecord($payData);
+                $payData['wallet_money'] = $walletMoney;
+                $payData['online_money'] = $realPayMoney;
+                $payData['pay_type'] = 1; 
+                $pid = $this->addRecord($payData);
 
-            $alipayParams = [
-                'subject' => '果果佳订单',
-                'out_trade_no' => date('Ymdhis', time()) . '_' . $id,
-                'timeout_express' => '30m',
-                'total_amount' => $realPayMoney,
-                'product_code' => 'QUICK_WAP_WAY'
-            ];
+                $alipayParams = [
+                    'subject' => '果果佳订单',
+                    'out_trade_no' => date('Ymdhis', time()) . '_' . $id,
+                    'timeout_express' => '30m',
+                    'total_amount' => $realPayMoney,
+                    'product_code' => 'QUICK_WAP_WAY'
+                ];
 
-            if ($terminal == 'wap') {
-                $ret = AlipayHelper::wappay($alipayParams);
-            } else {
-                $alipayParams['product_code'] = 'FAST_INSTANT_TRADE_PAY';
-                $ret = AlipayHelper::pcpay($alipayParams);
+                if ($terminal == 'wap') {
+                    $ret = AlipayHelper::wappay($alipayParams);
+                } else {
+                    $alipayParams['product_code'] = 'FAST_INSTANT_TRADE_PAY';
+                    $ret = AlipayHelper::pcpay($alipayParams);
+                }
+
+                echo json_encode(['status' => 'ok', 'pay_type' => 1, 'html' => $ret]);
+                Yii::$app->end();
             }
 
-            echo json_encode(['status' => 'ok', 'pay_type' => 1, 'html' => $ret, 'terminal' => $terminal]);
-            Yii::$app->end();
+            // 微信支付
+            if ($payType == 2) {
+                echo json_encode(['status' => 'ok', 'pay_type' => 2, 'html' => '微信支付测试']);
+                Yii::$app->end();
+            }
         } else {
             // 余额支付
             $payData['online_money'] = 0;

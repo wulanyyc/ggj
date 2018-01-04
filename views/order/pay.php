@@ -50,9 +50,6 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
     }
 </style>
 
-<!-- <input id="cid" value="<?=$data['cart_id'] ?>" type="hidden" /> -->
-<!-- <input id="oid" value="<?=$data['id'] ?>" type="hidden" /> -->
-
 <div class="card" style="height:90%;">
   <div class="item" style="justify-content: flex-end;">
     <div class="label" style="line-height: 26px;">订单金额：</div>
@@ -68,7 +65,7 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
   <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         支付方式
   </div>
-  <?php if ($money > 0) { ?>
+  <?php if ($money >= $data['pay_money']) { ?>
   <div class="item" style="padding: .75rem 1.25rem;justify-content: space-between;border-bottom: 1px solid #f5f5f5" id="wallet">
     <div style="display: flex;flex-direction: row;align-items: center;">
       <img src="/img/wallet.png" style="width:32px;height:32px;"/>
@@ -79,16 +76,26 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
   <?php } ?>
 
   <?php if ($money < $data['pay_money']) { ?>
-  <div class="item" style="padding: .75rem 1.25rem;justify-content: space-between;" id="alipay">
+  <div class="item pay_tool" style="border-bottom: 1px solid #f5f5f5;padding: .5rem 1.25rem;justify-content: space-between;" id="wechat" data-id='wx'>
     <div style="display: flex;flex-direction: row;align-items: center;">
-      <img src="/img/zhifubao@2x.png" style="width:32px;height:32px;"/>
+      <img src="/img/wechat@2x.png" style="width:32px;height:32px;"/>
+      <div class="label" style="line-height: 32px;margin-left:8px;">微信</div>
+    </div>
+    <div style="font-size: 22px" class="text-danger status"><i class="fa fa-circle-o" aria-hidden="true"></i></div>
+  </div>
+
+  <?php if (!$isWechat) { ?>
+  <div class="item pay_tool" style="padding: .5rem 1.25rem;justify-content: space-between;" id="alipay" data-id="ali">
+    <div style="display: flex;flex-direction: row;align-items: center;">
+      <img src="/img/alipay.png" style="width:32px;height:32px;"/>
       <div class="label" style="line-height: 32px;margin-left:8px;">支付宝</div>
     </div>
-    <div style="font-size: 22px" class="text-danger"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
+    <div style="font-size: 22px" class="text-danger status"><i class="fa fa-circle-o" aria-hidden="true"></i></div>
   </div>
+  <?php } ?>
   <?php } ?>
 </div>
 
-<div id="pay" style="letter-spacing: 1px;font-size: 16px;" data-id=<?=$data['id'] ?> >
+<div id="pay" style="letter-spacing: 1px;font-size: 16px;" data-id=<?=$data['id'] ?> data-pay="0">
   <span id="pay_text">需支付</span><span id="pay_price">0</span>元
 </div>

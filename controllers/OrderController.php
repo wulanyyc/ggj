@@ -250,12 +250,16 @@ class OrderController extends Controller
             Yii::$app->end();
         }
 
+        session_start();
+        $isWechat = isset($_SESSION['openid']) ? true : false;
+
         $money = Customer::find()->select('money')->where(['id' => $cid])->scalar();
 
         return $this->render('pay', [
             'controller' => Yii::$app->controller->id,
             'data' => $data,
             'money' => $money,
+            'isWechat' => $isWechat,
         ]);
     }
 
