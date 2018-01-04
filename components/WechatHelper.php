@@ -191,9 +191,7 @@ class WechatHelper extends Component{
             Yii::$app->redis->setex($key, $data['expires_in'] - 60, $data['access_token']);
             Yii::$app->redis->setex($keyRefresh, 30 * 86400 - 3600, $data['refresh_token']);
 
-            session_start();
-            $_SESSION['openid'] = $data['openid'];
-            Yii::error("test:" . $_SESSION['openid']);
+            setcookie('openid', $data['openid'], 0, '/')
         }
     }
 
@@ -208,12 +206,11 @@ class WechatHelper extends Component{
             $signature = self::buildPageSignature($url, $timestamp, $noncestr);
 
             // init weixin user
-            session_start();
-            if (empty($_SESSION['openid'])) {
+            if (empty($_COOKIE['openid'])) {
                 Yii::error('init page');
                 self::initWxPageVisit($code);
             } else {
-                Yii::error("testok" . $_SESSION['openid']);
+                Yii::error("testok:" . $_COOKIE['openid']);
             }
 
             $wechatData = [
