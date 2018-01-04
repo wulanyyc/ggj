@@ -210,7 +210,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <?php if (empty($address)) { ?>
       <div class="no_address">
         <br/>
-        <button id="add_address" type="button" class="btn btn-outline-danger btn-sm" style="width:140px;margin-bottom: 10px;font-size: 14px;height:30px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+        <button id="add_address" type="button" class="btn btn-outline-danger btn-sm" style="width:140px;margin-bottom: 10px;font-size: 14px;height:30px;margin-top: 10px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
       </div>
       <div class="hide_address" data-id="">
         <div style="width: 98%;">
@@ -298,7 +298,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div class="card">
   <div id="discount" class="card-content">
     <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: space-between;">
-      <div style="display: flex;flex-direction: row;justify-content: flex-start;">
+      <div style="display: flex;flex-direction: row;justify-content: flex-start;flex-wrap: nowrap;">
         <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:好友手机号码" maxlength=11 style="width:70%;font-size: 14px;margin-left: 5px;height: 40px;" />
         <button type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">使用</button>
       </div>
