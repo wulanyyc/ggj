@@ -206,7 +206,6 @@ class WechatHelper extends Component{
 
             // init weixin user
             if (empty($_COOKIE['openid'])) {
-                // Yii::error('init page');
                 $status = self::initWxPageVisit($code);
                 if ($status == 'fail') return $wechatData;
 
@@ -221,7 +220,9 @@ class WechatHelper extends Component{
                     'signature' => $signature,
                     'appid'     => Yii::$app->params['wechat']['appid'],
                 ];
-            } else {
+            }
+        } else {
+            if (!empty($_COOKIE['openid'])) {
                 $url = self::getCurrentUrl();
                 $timestamp = time();
                 $noncestr  = self::getNoncestr();
