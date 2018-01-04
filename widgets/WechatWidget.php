@@ -32,6 +32,9 @@ class WechatWidget extends Widget
         <input type="hidden" name="we_noncestr" value="{$wechat['noncestr']}" id="we_noncestr" />
         <input type="hidden" name="we_signature" value="{$wechat['signature']}" id="we_signature" />
 EOF;
-        return $html;
+
+        $script = "<script src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script>";
+        $script .= "<script src='/js/wechat.js'></script>";
+        return $html . $script;
     }
 }

@@ -1,13 +1,13 @@
 <?php
 use yii\helpers\Html;
 use app\assets\SiteAsset;
-use app\assets\WechatAsset;
+// use app\assets\WechatAsset;
 use app\widgets\WechatWidget;
 
 $controller = Yii::$app->controller->id;
 
 SiteAsset::register($this);
-WechatAsset::register($this);
+// WechatAsset::register($this);
 
 ?>
 
