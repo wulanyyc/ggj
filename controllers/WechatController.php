@@ -96,13 +96,21 @@ class WechatController extends Controller
         if ($event == 'subscribe') {
             $userinfo = WechatHelper::getUserInfo($openid);
             if (!isset($userinfo['errcode'])) {
-                $ar = new CustomerWeixin();
+                $exsit = CustomerWeixin::find()->where(['openid' => $openid])->asArray()->one();
+
+                if (count($exsit) > 0) {
+                    $ar = CustomerWeixin::findOne($exsit['id']);
+                } else {
+                    $ar = new CustomerWeixin();
+                }
+
                 $ar->openid = $userinfo['openid'];
                 $ar->sex = $userinfo['sex'];
                 $ar->is_subscribe = $userinfo['subscribe'];
                 $ar->headimgurl = $userinfo['headimgurl'];
                 $ar->city = $userinfo['city'];
                 $ar->nickname = $userinfo['nickname'];
+                $ar->subscribe_time = $userinfo['subscribe_time'];
                 if (isset($userinfo['unionid'])) {
                     $ar->unionid = $userinfo['unionid'];
                 }

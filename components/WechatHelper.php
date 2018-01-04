@@ -60,6 +60,40 @@ class WechatHelper extends Component{
         }
     }
 
+    public static function getPageAccessToken() {
+        $key = 'page_access_token';
+        $keyRefresh = 'page_refresh_token';
+
+        $cache = Yii::$app->redis->get($key);
+
+        if (empty($cache)) {
+            $refreshToken = Yii::$app->redis->get($keyRefresh);
+            if (empty($refreshToken)) {
+                return '';
+            }
+
+            $config = self::getConfig();
+            $url = self::$api . '/sns/oauth2/refresh_token?appid='. $config['appid'] .'&grant_type=refresh_token&refresh_token=' . $refreshToken;
+
+            $ret = self::curlRequest($url);
+            $data = json_decode($ret, true);
+
+            if (isset($data['access_token'])) {
+                Yii::$app->redis->setex($key, $data['expires_in'] - 60, $data['access_token']);
+                Yii::$app->redis->setex($keyRefresh, 30 * 86400 - 3600, $data['refresh_token']);
+
+                session_start();
+                $_SESSION['openid'] = $data['openid'];
+
+                return $data['access_token'];
+            } else {
+                return '';
+            }
+        } else {
+            return $cache;
+        }
+    }
+
     public static function getJsapiTicket() {
         $key = 'jsapi_ticket';
 
@@ -111,6 +145,14 @@ class WechatHelper extends Component{
         return json_decode($ret, true);
     }
 
+    public static function getPageUserInfo($openid) {
+        $token = self::getPageAccessToken();
+        $url = self::$api . '/sns/userinfo?access_token=' . $token . '&openid='. $openid . '&lang=zh_CN';
+        $ret = self::curlRequest($url);
+
+        return json_decode($ret, true);
+    }
+
     public static function renderText($data) {
         $xml = '<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>';
 
@@ -123,6 +165,75 @@ class WechatHelper extends Component{
         $data = json_decode($json, TRUE);
 
         return $data;
+    }
+
+    public static function getCurrentUrl() {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+        return $url;
+    }
+
+    public static function initWxPageVisit($code) {
+        // https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+
+        $key = 'page_access_token';
+        $keyRefresh = 'page_refresh_token';
+
+        $config = self::getConfig();
+        $url = self::$api . '/sns/oauth2/access_token?&appid='. $config['appid'] .'&secret=' . $config['appsecret'] . '&code=' . $code . '&grant_type=authorization_code';
+
+        $ret = self::curlRequest($url);
+        $data = json_decode($ret, true);
+
+        if (isset($data['access_token'])) {
+            Yii::$app->redis->setex($key, $data['expires_in'] - 60, $data['access_token']);
+            Yii::$app->redis->setex($keyRefresh, 30 * 86400 - 3600, $data['refresh_token']);
+
+            session_start();
+            $_SESSION['openid'] = $data['openid'];
+        }
+    }
+
+    public static function getPageWechatData() {
+        $wechatData = [];
+        
+        if (!empty($_GET['code'])) {
+            $code = $_GET['code'];
+            $url = self::getCurrentUrl();
+            $timestamp = time();
+            $noncestr  = self::getNoncestr();
+            $signature = self::buildPageSignature($url, $timestamp, $noncestr);
+
+            // init weixin user
+            session_start();
+            if (empty($_SESSION['openid'])) {
+                self::initWxPageVisit($code);
+            }
+
+            $wechatData = [
+                'timestamp' => $timestamp,
+                'noncestr'  => $noncestr,
+                'signature' => $signature,
+                'appid'     => Yii::$app->params['wechat']['appid'],
+            ];
+        }
+
+        return $wechatData;
+    }
+
+    /**
+     * 随机生成16位字符串
+     * @return string 生成的字符串
+     */
+    public static function getNoncestr() {
+        $str = "";
+        $str_pol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+        $max = strlen($str_pol) - 1;
+        for ($i = 0; $i < 16; $i++) {
+            $str .= $str_pol[mt_rand(0, $max)];
+        }
+        return $str;
     }
 
     /**
@@ -160,51 +271,5 @@ class WechatHelper extends Component{
             curl_close($ch);
             return false;
         }
-    }
-
-    public static function getCurrentUrl() {
-        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
-        return $url;
-    }
-
-    public static function getPageWechatData() {
-        session_start();
-        $wechatData = [];
-        
-        if (isset($_GET['source']) && $_GET['source'] == 'wechat') {
-            $_SESSION['source'] = $_GET['source'];
-        }
-
-        if (isset($_SESSION['source'])) {
-            $url = self::getCurrentUrl();
-            $timestamp = time();
-            $noncestr  = self::getNoncestr();
-            $signature = self::buildPageSignature($url, $timestamp, $noncestr);
-
-            $wechatData = [
-                'timestamp' => $timestamp,
-                'noncestr'  => $noncestr,
-                'signature' => $signature,
-                'appid'     => Yii::$app->params['wechat']['appid'],
-            ];
-        }
-
-        return $wechatData;
-    }
-
-    /**
-     * 随机生成16位字符串
-     * @return string 生成的字符串
-     */
-    public static function getNoncestr() {
-        $str = "";
-        $str_pol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
-        $max = strlen($str_pol) - 1;
-        for ($i = 0; $i < 16; $i++) {
-            $str .= $str_pol[mt_rand(0, $max)];
-        }
-        return $str;
     }
 }

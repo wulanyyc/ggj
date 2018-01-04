@@ -9,7 +9,7 @@ if (document.getElementById('we_appid')) {
     });
 
     wx.ready(function(){
-        wx.hideAllNonBaseMenuItem();
+        // wx.hideAllNonBaseMenuItem();
     });
 
     wx.error(function(res){

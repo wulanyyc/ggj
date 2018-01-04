@@ -32,7 +32,6 @@ class SiteController extends Controller
             'packages' => $this->getPackages(),
             'newPromotion' => $this->getNewPromotion(),
             'bookingDiscount' => Yii::$app->params['bookingDiscount'] * 10,
-            // 'terminal' => SiteHelper::getTermimal(),
         ]);
     }
 
