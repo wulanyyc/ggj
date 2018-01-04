@@ -211,7 +211,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
         </select>
     </div>
     <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;justify-content: flex-start;padding-bottom: 10px;'>
-        <label style="width:30%;">详细地址：</label>
+        <label>详细地址：</label>
         <textarea style="width:68%;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
     </div>
     <div class='form-group' style='margin-top:10px;padding-bottom:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;justify-content: flex-start;' id="label_add_group">
