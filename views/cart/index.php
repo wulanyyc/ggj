@@ -299,7 +299,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div id="discount" class="card-content">
     <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: space-between;">
       <div style="display: flex;flex-direction: row;justify-content: flex-start;">
-        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:好友手机号码" maxlength=11 style="width:80%;font-size: 14px;margin-left: 5px;" />
+        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:好友手机号码" maxlength=11 style="width:70%;font-size: 14px;margin-left: 5px;height: 40px;" />
         <button type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">使用</button>
       </div>
       <span id="ask" style="line-height: 40px;margin-left: 35px;color:#0C58B0;cursor: pointer;font-size: 13px;">优惠码规则？</span>
