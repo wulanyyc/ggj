@@ -191,11 +191,7 @@ class WechatHelper extends Component{
             Yii::$app->redis->setex($key, $data['expires_in'] - 60, $data['access_token']);
             Yii::$app->redis->setex($keyRefresh, 30 * 86400 - 3600, $data['refresh_token']);
             setcookie('openid', $data['openid'], 0, '/');
-
-            return 'suc';
         }
-
-        return 'fail';
     }
 
     public static function getPageWechatData() {
@@ -206,35 +202,22 @@ class WechatHelper extends Component{
 
             // init weixin user
             if (empty($_COOKIE['openid'])) {
-                $status = self::initWxPageVisit($code);
-                if ($status == 'fail') return $wechatData;
-
-                $url = self::getCurrentUrl();
-                $timestamp = time();
-                $noncestr  = self::getNoncestr();
-                $signature = self::buildPageSignature($url, $timestamp, $noncestr);
-
-                $wechatData = [
-                    'timestamp' => $timestamp,
-                    'noncestr'  => $noncestr,
-                    'signature' => $signature,
-                    'appid'     => Yii::$app->params['wechat']['appid'],
-                ];
+                self::initWxPageVisit($code);
             }
-        } else {
-            if (!empty($_COOKIE['openid'])) {
-                $url = self::getCurrentUrl();
-                $timestamp = time();
-                $noncestr  = self::getNoncestr();
-                $signature = self::buildPageSignature($url, $timestamp, $noncestr);
+        }
 
-                $wechatData = [
-                    'timestamp' => $timestamp,
-                    'noncestr'  => $noncestr,
-                    'signature' => $signature,
-                    'appid'     => Yii::$app->params['wechat']['appid'],
-                ];
-            }
+        if (!empty($_COOKIE['openid'])) {
+            $url = self::getCurrentUrl();
+            $timestamp = time();
+            $noncestr  = self::getNoncestr();
+            $signature = self::buildPageSignature($url, $timestamp, $noncestr);
+
+            $wechatData = [
+                'timestamp' => $timestamp,
+                'noncestr'  => $noncestr,
+                'signature' => $signature,
+                'appid'     => Yii::$app->params['wechat']['appid'],
+            ];
         }
 
         return $wechatData;
