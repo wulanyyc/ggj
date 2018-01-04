@@ -236,7 +236,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
             <span id="show_rec_phone" style="padding-left: 5px;"><?=$address[0]['rec_phone'] ?></span>&nbsp;
             <span id="show_label" class="border border-success text-success"><?=$address[0]['label'] ?></span>
           </p>
-          <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;">
+          <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;font-size: 14px;">
             <span><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;</span>
             <span id="show_address"><?=$address[0]['rec_city'] ?><?=$address[0]['rec_district'] ?><?=$address[0]['rec_detail'] ?></span>
           </p>
@@ -253,9 +253,9 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div class="card">
   <div id="products" class="card-content">
     <div id="product_detail" style="display: flex;justify-content: space-between;flex-direction: row;align-items: center;">
-      <div style="position: relative;width:80%;height:80px;overflow: hidden;">
+      <div style="position: relative;width:80%;overflow: hidden;">
         <?php foreach($data['product'] as $item) { ?>
-        <div class="product" style="width:20%;height: 100%;line-height:90px;display: inline-block;">
+        <div class="product" style="height: 70px;display: inline-block;">
           <img src="<?=$item['img'] ?>" style="height:100%;" />
         </div>
         <?php } ?>
@@ -422,7 +422,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
             </p>
             <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;">
               <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-              <span>&nbsp;<?=$item['rec_city'] ?><?=$item['rec_district'] ?><?=$item['rec_detail'] ?></span>
+              <span style="font-size: 14px;">&nbsp;<?=$item['rec_city'] ?><?=$item['rec_district'] ?><?=$item['rec_detail'] ?></span>
             </p>
           </div>
 
@@ -470,7 +470,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         </select>
     </div>
     <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;justify-content: flex-start;padding-bottom: 10px;'>
-        <label style="width:30%;">详细地址：</label>
+        <label>详细地址：</label>
         <textarea style="width:68%;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
     </div>
     <div class='form-group' style='margin-top:10px;padding-bottom:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;justify-content: flex-start;' id="label_add_group">
