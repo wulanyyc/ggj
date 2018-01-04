@@ -268,7 +268,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       </div>
     </div>
 
-    <hr style="margin-top: 0.5rem;margin-bottom: 0.5rem;" />
+    <hr style="margin-top: 0.3rem;margin-bottom: 0.3rem;" />
     <div class="item" style="justify-content: space-between;align-items: center;">
         <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
           <p class="label">配送方式：</p>
