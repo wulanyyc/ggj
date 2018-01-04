@@ -39,7 +39,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
     <i class="fa fa-user-circle-o" aria-hidden="true"></i>
   </div>
   <?php } else { ?>
-  <img src=<?=$info['headimgurl'] ?> />
+  <img src=<?=$info['headimgurl'] ?> style="height:50px;border-radius: 10px;"/>
   <?php } ?>
   <div style="width:55%;">
     <?php if (!empty($info['nick'])) { ?>
