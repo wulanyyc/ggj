@@ -268,7 +268,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       </div>
     </div>
 
-    <hr style="margin-top: 0.3rem;margin-bottom: 0.3rem;" />
+    <hr style="margin-top:0px;margin-bottom: 3px;" />
     <div class="item" style="justify-content: space-between;align-items: center;">
         <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
           <p class="label">配送方式：</p>
@@ -302,7 +302,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <button type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">使用</button>
       <span id="ask" style="line-height: 40px;margin-left: 10px;color:#0C58B0;cursor: pointer;font-size: 13px;">优惠码规则？</span>
     </div>
-    <hr style="margin-top: 0.5rem;margin-bottom: 0.5rem;"/>
+    <hr style="margin-top: 8px;margin-bottom: 8px;"/>
     <div style="margin-bottom:3px;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
       <p class="label" style="width:70%;">优惠券</p>
       <p style="font-size: 13px;cursor: pointer;">
