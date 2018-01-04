@@ -184,6 +184,7 @@ class WechatHelper extends Component{
         $url = self::$api . '/sns/oauth2/access_token?appid='. $config['appid'] .'&secret=' . $config['appsecret'] . '&code=' . $code . '&grant_type=authorization_code';
 
         $ret = self::curlRequest($url);
+        Yii::error("testret:" . $ret);
         $data = json_decode($ret, true);
 
         if (isset($data['access_token'])) {
@@ -192,7 +193,7 @@ class WechatHelper extends Component{
 
             session_start();
             $_SESSION['openid'] = $data['openid'];
-            Yii::error("test:" . $ret);
+            Yii::error("test:" . $_SESSION['openid']);
         }
     }
 
