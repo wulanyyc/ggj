@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
 use app\components\SmsHelper;
+use app\models\CustomerWeixin;
 
 class SmsController extends Controller
 {
@@ -64,6 +65,22 @@ class SmsController extends Controller
             echo json_encode(['status' => 'fail', 'msg' => '验证失败']);
         } else {
             $id = SiteHelper::addCustomer($params['phone']);
+
+            // add customer_weixin
+            if (!empty($_COOKIE['openid'])) {
+                $exsitData = CustomerWeixin::find()->where(['openid' => $_COOKIE['openid']])->asArray()->one();
+                if (count($exsitData) > 0) {
+                    $up = CustomerWeixin::findOne($exsitData['id']);
+                    $up->customer_id = $exsitData['id'];
+                    $up->save();
+                } else {
+                    $ar = new CustomerWeixin();
+                    $ar->openid = $_COOKIE['openid'];
+                    $ar->customer_id = $id;
+                    $ar->save();
+                }
+            }
+
             echo json_encode([
                 'status' => 'ok', 
                 'secret' => SiteHelper::buildSecret($params['phone']), 

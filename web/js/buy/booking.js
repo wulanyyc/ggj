@@ -162,11 +162,11 @@ $(document).ready(function () {
     }
 
     $('#order').click(function() {
-        if ($.cookie('userphone') && $.cookie('secret')) {
+        if ($.cookie('cid') && $.cookie('secret')) {
             order();
         } else {
             $('#login').show();
-            $('#cover').hide();
+            $('#cover').show();
         }
     });
 
