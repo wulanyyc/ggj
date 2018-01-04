@@ -115,7 +115,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   #address_info, #all_address_info {
-    height: 90%;
+    height: 80%;
     overflow-y: scroll;
   }
 
