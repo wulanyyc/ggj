@@ -19,6 +19,18 @@ $(document).ready(function () {
     calculateRealPrice();
     $('#express_1').click();
 
+    $('#express_time').click(function(){
+        $('#express_info').show();
+        $('#cover').show();
+        $('body').addClass('forbid');
+    });
+
+    $('#close_express_info, #close_express_info_bottom').click(function(){
+        $('#express_info').hide();
+        $('#cover').hide();
+        $('body').removeClass('forbid');
+    });
+
     $('#ask').click(function(){
         $('#question').show();
         $('#cover').show();
@@ -42,7 +54,6 @@ $(document).ready(function () {
     });
 
     $('input[name="express_rule"]').change(function(){
-        // console.log($(this).val());
         if ($(this).val() == 1) {
             $('#express_fee_show').html(0);
         } else {

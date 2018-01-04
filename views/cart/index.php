@@ -39,7 +39,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     margin: 0;
   }
 
-  #question, #detail, #address_info, #all_address_info, #coupon {
+  #question, #detail, #address_info, #all_address_info, #coupon, #express_info {
     position: fixed;
     z-index: 100;
     bottom: 0;
@@ -61,6 +61,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   #coupon {
     height: 80%;
     /*overflow-y: scroll;*/
+  }
+
+  #express_info {
+    height: 44%;
   }
 
   footer {
@@ -265,27 +269,29 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
 
     <hr style="margin-top: 0.5rem;margin-bottom: 0.5rem;" />
-    <div class="item" style="justify-content: flex-start;align-items: center;">
-        <div class="label">配送方式：</div>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="0" checked> 
-            <span class="badge badge-success" style="padding:5px 5px;letter-spacing: 1px;">快递</span>
-          </label>
+    <div class="item" style="justify-content: space-between;align-items: center;">
+        <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
+          <p class="label">配送方式：</p>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
+              <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="0" checked> 
+              <span class="badge badge-success" style="letter-spacing: 1px;font-size: 12px;line-height: 18px;font-weight: normal;margin-top: 8px;">快递</span>
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
+              <input class="form-check-input" type="radio" name="express_rule" id="express_2" value="1">
+              <span class="badge badge-info" style="letter-spacing: 1px;font-size: 12px;line-height: 18px;font-weight: normal;margin-top: 8px;">自提</span>
+            </label>
+          </div>
         </div>
-        <div class="form-check form-check-inline">
-          <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="express_rule" id="express_2" value="1">
-            <span class="badge badge-info" style="padding:5px 5px;letter-spacing: 1px;">自提</span>
-          </label>
+
+        <div id="express_time">
+          <span style="font-size: 13px;cursor: pointer;color:red;">发货时间&nbsp;&nbsp;
+            <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+          </span>
         </div>
     </div>
-
-    <div class="item" style="justify-content: flex-start;align-items: center;">
-        <div class="label">配送时间：</div>
-        <div style="font-size: 13px;">24小时内发货，预约单选最近的发货日<br/>如有特殊要求，请留言</div>
-    </div>
-
   </div>
 </div>
 
@@ -502,3 +508,25 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <span id='close_coupon_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 16px;color:#0C58B0;">关闭</span>
 </div>
 
+
+<div class="card" id="express_info">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+      发货时间<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_express_info"></i>
+  </div>
+  <div style="padding: 5%;">
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;">
+      <span style="padding-right: 5px;">普通订单: </span>
+      <span>24小时内发货，预计隔日到达。</span>
+    </p>
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
+      <span style="padding-right: 5px;">预约订单: </span>
+      <span>发货时间为每周1、3、5上午。<br/>取最近的时间，预计隔日到达。</span>
+    </p>
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
+      <span style="padding-right: 5px;">特殊要求: </span>
+      <span>请留言或直接联系我们。</span>
+    </p>
+
+    <div class='btn btn-success btn-sm' id='close_express_info_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
+  </div>
+</div>
