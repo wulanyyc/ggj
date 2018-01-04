@@ -507,8 +507,8 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   </div>
   <div id="coupon_items" data-ids="" style="height: 75%;overflow-y: scroll;">
   </div>
-  <button id="ok_coupon" type="button" class="btn btn-success" style="position: absolute;bottom:3%;width:40%;left:30%;">确定并使用</button>
-  <span id='close_coupon_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 16px;color:#0C58B0;">关闭</span>
+  <button id="ok_coupon" type="button" class="btn btn-success btn-sm" style="position: absolute;bottom:3%;width:40%;left:30%;">确定并使用</button>
+  <span id='close_coupon_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 13px;color:#0C58B0;">关闭</span>
 </div>
 
 
