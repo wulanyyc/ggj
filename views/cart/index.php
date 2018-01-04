@@ -287,7 +287,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         </div>
 
         <div id="express_time">
-          <span style="font-size: 13px;cursor: pointer;color:red;">发货时间&nbsp;&nbsp;
+          <span style="font-size: 13px;cursor: pointer;">发货时间&nbsp;&nbsp;
             <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
           </span>
         </div>
@@ -297,10 +297,12 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card">
   <div id="discount" class="card-content">
-    <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: flex-start;">
-      <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:好友手机号码" maxlength=11 style="width:50%;font-size: 14px;margin-left: 5px;" />
-      <button type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">使用</button>
-      <span id="ask" style="line-height: 40px;margin-left: 10px;color:#0C58B0;cursor: pointer;font-size: 13px;">优惠码规则？</span>
+    <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: space-between;">
+      <div style="display: flex;flex-direction: row;justify-content: flex-start;">
+        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:好友手机号码" maxlength=11 style="width:80%;font-size: 14px;margin-left: 5px;" />
+        <button type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">使用</button>
+      </div>
+      <span id="ask" style="line-height: 40px;margin-left: 35px;color:#0C58B0;cursor: pointer;font-size: 13px;">优惠码规则？</span>
     </div>
     <hr style="margin-top: 8px;margin-bottom: 8px;"/>
     <div style="margin-bottom:3px;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
