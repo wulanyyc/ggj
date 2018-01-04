@@ -359,13 +359,21 @@ $(document).ready(function () {
     });
 
     $('#order').click(function(){
+        var address_id = $('.show_address').attr('data-id');
+        console.log(address_id);
+
+        if (address_id == undefined) {
+            $.helper.alert('请添加收货地址');
+            return ;
+        }
+
         $.ajax({
             url: '/order/add',
             type: 'post',
             dataType: 'html',
             data: {
                 type: $('#cart_type').val(),
-                address_id: $('.show_address').attr('data-id'),
+                address_id: address_id,
                 cart_id: $('#cart_id').val(),
                 cart_num: $('#cart_num').val(),
                 memo: $('#memo').val(),
