@@ -52,10 +52,17 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 </div>
 
 <div class="card" id="order" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
+  <?php if ($cartid > 0) { ?>
   <a href="/cart?id=<?=$cartid ?>" style="color:black;text-decoration: none;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">购物车</div>
   </a>
+  <?php } else { ?>
+  <a href="/buy" style="color:black;text-decoration: none;">
+    <div style="font-size: 25px;text-align: center;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+    <div style="font-size: 13px;text-align: center;">购物车</div>
+  </a>
+  <?php } ?>
   <a href="/order?type=1" style="color:black;text-decoration: none;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-credit-card" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">待付款</div>
