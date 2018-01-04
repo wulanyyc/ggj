@@ -1,6 +1,7 @@
 <?php
 namespace app\widgets;
 
+use Yii;
 use yii\base\Widget;
 use app\components\WechatHelper;
 
