@@ -10,7 +10,7 @@ use yii\base\Component;
  *
  */
 class WechatHelper extends Component{
-    public static $api = "https://api.weixin.qq.com/cgi-bin";
+    public static $api = "https://api.weixin.qq.com";
 
     public static function checkSignature() {
         $params = Yii::$app->request->get();
@@ -44,7 +44,7 @@ class WechatHelper extends Component{
 
         if (empty($cache)) {
             $config = self::getConfig();
-            $url = self::$api . '/token?grant_type=client_credential&appid='. $config['appid'] .'&secret=' . $config['appsecret'];
+            $url = self::$api . '/cgi-bin/token?grant_type=client_credential&appid='. $config['appid'] .'&secret=' . $config['appsecret'];
 
             $ret = self::curlRequest($url);
             $data = json_decode($ret, true);
@@ -101,7 +101,7 @@ class WechatHelper extends Component{
 
         if (empty($cache)) {
             $config = self::getConfig();
-            $url = self::$api . '/ticket/getticket?access_token=' . self::getAccessToken() . '&type=jsapi';
+            $url = self::$api . '/cgi-bin/ticket/getticket?access_token=' . self::getAccessToken() . '&type=jsapi';
 
             $ret = self::curlRequest($url);
             $data = json_decode($ret, true);
@@ -139,7 +139,7 @@ class WechatHelper extends Component{
 
     public static function getUserInfo($openid) {
         $token = self::getAccessToken();
-        $url = self::$api . '/user/info?access_token=' . $token . '&openid='. $openid . '&lang=zh_CN';
+        $url = self::$api . '/cgi-bin/user/info?access_token=' . $token . '&openid='. $openid . '&lang=zh_CN';
         $ret = self::curlRequest($url);
 
         return json_decode($ret, true);
