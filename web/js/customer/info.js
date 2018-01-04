@@ -68,7 +68,7 @@ $(document).ready(function () {
         $.ajax({
             url: '/customer/edit',
             type: 'post',
-            data: "phone=" + $('#userphone').val() + "&nick=" + $('#nick').val(),
+            data: "phone=" + $('#userphone').val(),
             dataType: 'json',
             success: function (data) {
                 if (data.status == 'ok') {

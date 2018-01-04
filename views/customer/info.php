@@ -37,9 +37,9 @@ MsaView::registerJsFile($this,'/js/customer/info.js',
       个人信息
   </div>
   <div style="width:94%;margin: 10px auto;">
-    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
+<!--     <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
       <input type="text" class="form-control" id="nick" name="nick" maxlength="10" placeholder="昵称（限10字）" value=<?=$data['nick'] ?>>
-    </div>
+    </div> -->
     <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;align-items: center;">
       <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码" readonly value=<?=$data['phone'] ?> />
       <span id='edit_phone' style="padding-left: 15px;font-size: 14px;color:#0C58B0;width: 130px;">修改号码&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>

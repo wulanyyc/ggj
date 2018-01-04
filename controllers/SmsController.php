@@ -7,6 +7,7 @@ use yii\web\Controller;
 use app\components\SiteHelper;
 use app\components\SmsHelper;
 use app\models\CustomerWeixin;
+use app\models\Customer;
 
 class SmsController extends Controller
 {
@@ -73,6 +74,11 @@ class SmsController extends Controller
                     $up = CustomerWeixin::findOne($exsitData['id']);
                     $up->customer_id = $exsitData['id'];
                     $up->save();
+
+                    $upCus = Customer::findOne($id);
+                    $upCus->nick = $exsitData['nickname'];
+                    $upCus->headimgurl  = $exsitData['headimgurl'];
+                    $upCus->save();
                 } else {
                     $ar = new CustomerWeixin();
                     $ar->openid = $_COOKIE['openid'];

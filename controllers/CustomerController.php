@@ -11,6 +11,7 @@ use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
 use app\models\FeedBack;
 use app\models\ProductOrder;
+// use app\models\CustomerWeixin;
 
 class CustomerController extends Controller
 {
@@ -63,6 +64,7 @@ class CustomerController extends Controller
 
     public function actionInfo() {
         $id = $_COOKIE['cid'];
+
         $data = Customer::find()->where(['id' => $id])->asArray()->one();
         return $this->render('info', [
             'controller' => Yii::$app->controller->id,
@@ -128,7 +130,7 @@ class CustomerController extends Controller
 
         $ar = Customer::findOne($_COOKIE['cid']);
         $ar->phone = $params['phone'];
-        $ar->nick  = $params['nick'];
+        // $ar->nick  = $params['nick'];
         $ar->save();
 
         if ($ar->save()) {
