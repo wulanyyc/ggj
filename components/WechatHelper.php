@@ -285,7 +285,7 @@ class WechatHelper extends Component{
             return $response;
         } else { 
             $error = curl_errno($ch);
-            Yii::error($error);
+            Yii::error("curl: " . $error);
             curl_close($ch);
             return false;
         }
