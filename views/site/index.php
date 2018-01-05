@@ -368,6 +368,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     </div>
 </div>
 
+<?php if (count($packages) > 0){ ?>
 <div class="card">
     <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         <span class="first-title">特惠套餐</span>
@@ -406,3 +407,4 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <?php } ?>
     </div>
 </div>
+<?php } ?>

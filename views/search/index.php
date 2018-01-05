@@ -22,7 +22,7 @@ MsaView::registerJsFile($this,'/js/search/index.js',
   }
 
   .product-content {
-    display: flex;flex-direction: row;flex-wrap: nowrap;justify-content:space-around;
+    display: flex;flex-direction: row;flex-wrap: nowrap;justify-content:space-around;align-items: center;
   }
 
   .order-product {
@@ -78,11 +78,20 @@ MsaView::registerJsFile($this,'/js/search/index.js',
     font-weight: normal;
   }
 
+  .search {
+      width: 90%;
+      margin: 10px auto;
+  }
 </style>
 
 <input type="hidden" id="kv" value="<?=$kv ?>" />
 
 <div class="card">
+    <div class="d-inline search" style="position: relative;">
+        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，新鲜不贵" aria-label="美丽健康，新鲜不贵" style="padding-left: 30px;font-size: 14px;" />
+        <div style="position: absolute;left:8px;top:5px;"><i class="fa fa-search" aria-hidden="true"></i></div>
+    </div>
+
     <?php if ($num == 0) { ?>
     <div style="text-align: center;margin-top: 20px;">未找到与<span style="color:red;"><?=$kv ?></span>相关的商品, 请重新查询！</div>
     <?php } else { ?>
@@ -117,5 +126,6 @@ MsaView::registerJsFile($this,'/js/search/index.js',
       </div>
     <?php } ?>
     </div>
+    <div style="text-align: center;font-size: 12px;padding:10px;color:#ccc;">没有更多商品了</div>
     <?php } ?>
 </div>

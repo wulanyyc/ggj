@@ -162,7 +162,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
               <span id="cipher_phone" style="padding-left: 5px;"><?=$item['rec_phone'] ?></span>&nbsp;
               <span class="border border-success text-success" style="font-size: 12px;padding:0px 10px;"><?=$item['label'] ?></span>
             </p>
-            <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;">
+            <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;font-size: 14px;">
               <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
               <span>&nbsp;<?=$item['rec_city'] ?><?=$item['rec_district'] ?><?=$item['rec_detail'] ?></span>
             </p>
@@ -179,7 +179,10 @@ MsaView::registerJsFile($this,'/js/address/index.js',
       <?php } ?>
     </div>
 
-    <button id="inner_add_address" type="button" class="btn btn-danger" style="width:50%;margin-left:25%;font-size: 14px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+    <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+      <button id="inner_add_address" type="button" class="btn btn-danger" style="width:50%;font-size: 14px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+      <div id="inner_back" style="margin-left:30px;" class="text-success">返回</div>
+    </div>
 </div>
 
 <div class="card" id="address_info">

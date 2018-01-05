@@ -52,7 +52,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
       积分：<span class="text-success"><?=$info['score'] ?></span>
     </div>
   </div>
-  <div><button type="button" class="btn btn-outline-info btn-sm" id="charge">充10返1</button></div>
+  <div><button type="button" class="btn btn-outline-info btn-sm" id="charge">充值优惠</button></div>
 </div>
 
 <div class="card" id="order" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-around;align-items: center;">

@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Html;
 use app\assets\SiteAsset;
-// use app\assets\WechatAsset;
 use app\widgets\WechatWidget;
+// use app\assets\WechatAsset;
 
 $controller = Yii::$app->controller->id;
 
@@ -23,19 +23,6 @@ SiteAsset::register($this);
     <style type="text/css">
         body {
             background-color: #f5f5f5;
-        }
-
-        #search {
-            position: relative;
-            font-size: 18px;
-            padding-top: 40px;
-            margin: -20px auto 0;
-        }
-
-        #search label {
-            position: absolute;
-            left: 17px;
-            top: 51px;
         }
 
         .navbar-toggler {

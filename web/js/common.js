@@ -10,7 +10,7 @@ $(document).ready(function () {
         $.cookie('terminal', 'wap', {path: '/'});
     }
 
-    $('#back').click(function(){
+    $('#back,#inner_back').click(function(){
         console.log(location.pathname);
         if (location.pathname == '/buy/booking') {
             var back = $.cookie('booking-history-back');
@@ -42,11 +42,11 @@ $(document).ready(function () {
     $.cookie('width', null, { path: '/' }); 
     $.cookie('width', $(window).width(), { path: '/' });
 
-    $(window).resize(function(){
-        $.cookie('width', null, { path: '/' }); 
-        $.cookie('width', $(window).width(), { path: '/' });
-        // location.reload();
-    });
+    // $(window).resize(function(){
+    //     $.cookie('width', null, { path: '/' }); 
+    //     $.cookie('width', $(window).width(), { path: '/' });
+    //     // location.reload();
+    // });
 
     $('#search_product').bind('keyup', function(event) {
         if (event.keyCode == 13) {

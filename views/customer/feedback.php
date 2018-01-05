@@ -55,4 +55,6 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
           <div>13880494109 (同微信号)</div>
       </div>
     </div>
+    <br/>
+    <button type="button" class="btn btn-success" id="inner_back" style="width:50%;margin-left:25%;margin-bottom: 10px;margin-top:5px;">返回</button>
 </div>
