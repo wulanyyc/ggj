@@ -209,7 +209,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 <input type="hidden" value='<?=$cid ?>' id="order_id" />
 <input type="hidden" value="<?=$orderType ?>" id="order_type" />
 
-<div style="position: fixed;top: 55px;">
+<div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
       <div class="card-header bg-white" style="color: #53a93f;position:relative;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         预约：<span style="font-size: 13px;">绝对新鲜，顺丰配送隔日达，每周1、5发货</span>

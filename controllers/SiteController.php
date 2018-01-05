@@ -61,7 +61,14 @@ class SiteController extends Controller
     }
 
     private function getTags() {
-        $info = Tags::find()->select('name,en_name')->asArray()->all();
+        $idArr = ProductList::find()->select('id')->where(['status' => 1])->andWhere(['!=', 'category', 'package'])->asArray()->all();
+
+        $ids = [];
+        foreach($idArr as $item) {
+            $ids[] = $item['id'];
+        }
+
+        $info = Tags::find()->select('name,en_name')->where(['product_id' => $ids])->asArray()->all();
         return $info;
     }
 

@@ -206,7 +206,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 <input type="hidden" value='<?=$cid ?>' id="order_id" />
 <input type="hidden" value="<?=$orderType ?>" id="order_type" />
 
-<div style="position: fixed;top: 55px;">
+<div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
       <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
         商品列表<a href="/buy/booking" class="text-info" style="font-size: 13px;margin-top: 5px;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;预约全场享9折</a>
