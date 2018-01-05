@@ -293,7 +293,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     </div>
   </a>
 
-  <a class="promotion-item" href="/buy?id=<?=$dayPromotion['id'] ?>">
+  <a class="promotion-item" href="/buy?id=<?=$dayPromotion['id'] ?>" style="display: none">
     <div class="promotion-item-left prom-discount-left" style="background-color: #DD182B;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">今日特价</div>
@@ -305,7 +305,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     </div>
   </a>
 
-  <a class="promotion-item" href="/booking">
+  <a class="promotion-item" href="/booking" style="display: none">
     <div class="promotion-item-left prom-package-left" style="background-color: #866D8D;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">优质预约</div>

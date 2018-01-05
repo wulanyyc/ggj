@@ -10,7 +10,8 @@ $(document).ready(function () {
         $.cookie('terminal', 'wap', {path: '/'});
     }
 
-    $('#back,#inner_back').click(function(){
+    $('#back, #inner_back').click(function(){
+        console.log(window.history.length);
         console.log(location.pathname);
         if (location.pathname == '/buy/booking') {
             var back = $.cookie('booking-history-back');

@@ -2,7 +2,7 @@
 use yii\web\View;
 use app\assets\SiteAsset;
 
-$this->title = '预约规则';
+$this->title = '预约须知';
 
 SiteAsset::register($this);
 ?>
@@ -44,7 +44,7 @@ SiteAsset::register($this);
 
 <div class="card">
   <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-    预约规则
+    预约须知
   </div>
 
   <div id="rule" style="margin-top: 1%;">
@@ -69,15 +69,6 @@ SiteAsset::register($this);
 
       <li>
         <div class="label">
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;预约限制：
-        </div>
-        <div>
-        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">成都</span>地区的订单，目前仅<span style="color:red;font-weight: bold;">周一、周三、周五</span>可发预约的订单。<span style="color:red;font-weight: bold;">如遇缺货无法完成订单，立即退款</span>。
-        </div>
-      </li>
-
-      <li>
-        <div class="label">
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格实惠：
         </div>
         <div>
@@ -85,6 +76,14 @@ SiteAsset::register($this);
         </div>
       </li>
 
+      <li>
+        <div class="label">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;预约限制：
+        </div>
+        <div>
+        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">成都</span>地区的订单，目前仅<span style="color:red;font-weight: bold;">周一、周五</span>可发预约的订单。<span style="color:red;font-weight: bold;">如遇缺货无法完成订单，立即退款</span>。
+        </div>
+      </li>
     </ul>
 </div>
 

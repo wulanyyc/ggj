@@ -105,12 +105,16 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
+<a href="/customer/refund" class="card" id="address" style="padding: 10px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;text-decoration: none;color: black;">
+  <div style="width:90%;">退款赔偿</div>
+  <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
+</a>
+
 <a href="/contact" class="card" id="contactus" style="padding: 10px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;color:black;text-decoration: none;">
   <div style="width:90%;">联系我们</div>
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
-<br/>
 <br/>
 <button type="button" class="btn btn-danger" id="quit" style="width:80%;margin-left: 10%;">退出</button>
 

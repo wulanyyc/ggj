@@ -523,7 +523,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">预约订单: </span>
-      <span>发货时间为每周1、3、5上午。<br/>取最近的时间，预计隔日到达。</span>
+      <span>发货时间为每周1、5上午。<br/>取最近的时间，预计隔日到达。</span>
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">特殊要求: </span>

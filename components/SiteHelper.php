@@ -38,30 +38,22 @@ class SiteHelper extends Component{
     }
 
     public static function getLayout() {
-        $width = isset($_COOKIE['width']) ? $_COOKIE['width'] : 1280;
+        $width = isset($_COOKIE['width']) ? $_COOKIE['width'] : 0;
+
+        if ($width == 0) {
+            return self::getTermimal();
+        }
 
         if ($width <= 767) {
             return 'wap';
         }
+
         return 'pc';
     }
 
     public static function getTermimal() {
-        // $width = isset($_COOKIE['width']) ? $_COOKIE['width'] : 1280;
         $terminal = isset($_COOKIE['terminal']) ? $_COOKIE['terminal'] : 'wap';
-
         return $terminal;
-        // if (empty($terminal)) {
-        //     if ($width <= 767) {
-        //         setcookie('terminal', 'wap', 0, '/');
-        //         return 'wap';
-        //     }
-
-        //     setcookie('terminal', 'pc', 0, '/');
-        //     return 'pc';
-        // } else {
-        //     return $terminal;
-        // }
     }
 
     // TODO 完善微信来源

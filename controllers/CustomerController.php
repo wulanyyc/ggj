@@ -72,6 +72,12 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function actionRefund() {
+        return $this->render('refund', [
+            'controller' => Yii::$app->controller->id,
+        ]);
+    }
+
     public function actionScore() {
         $id = $_COOKIE['cid'];
         $config = $this->scoreConfig;
