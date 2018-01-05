@@ -54,10 +54,10 @@ class SiteController extends Controller
         }
 
         $promotions = Yii::$app->params['day_promotion'][$dayofweek];
-        $info = ProductList::find()->select('name,price')->where(['id' => $promotions['id']])->asArray()->one();
+        $info = ProductList::find()->select('name,price,img')->where(['id' => $promotions['id']])->asArray()->one();
 
         $text = '星期' . $cn[$dayofweek] . ' ' . $info['name'];
-        return ['text' => $text, 'img' => Yii::$app->params['day_promotion'][$dayofweek]['img'], 'id' => Yii::$app->params['day_promotion'][$dayofweek]['id']];
+        return ['text' => $text, 'img' => $info['img'], 'id' => $info['id']];
     }
 
     private function getTags() {
