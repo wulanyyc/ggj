@@ -207,7 +207,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .promotion-item-right img {
-    height: 100%;
+    height: 90%;
   }
 
   .label {
@@ -282,38 +282,38 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
 <div id="promotion">
   <a class="promotion-item" href="/buy?id=1">
-    <div class="promotion-item-left prom-shop-left" style="background-color: #53a93f;">
+    <div class="promotion-item-left" style="background-color: #53a93f;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">新店特惠</div>
         <div class="promotion-item-left-content-bottom"><?=$newPromotion['text'] ?></div>
       </div>
     </div>
 
-    <div class="promotion-item-right prom-shop-right" style="background-color: #D0E3DC;">
+    <div class="promotion-item-right" style="background-color: #D0E3DC;">
       <img src="<?=$newPromotion['img'] ?>"></img>
     </div>
   </a>
 
   <a class="promotion-item" href="/buy?id=<?=$dayPromotion['id'] ?>">
-    <div class="promotion-item-left prom-discount-left" style="background-color: #DD182B;">
+    <div class="promotion-item-left" style="background-color: #DD182B;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">今日特价</div>
         <div class="promotion-item-left-content-bottom"><?=$dayPromotion['text'] ?></div>
       </div>
     </div>
-    <div class="promotion-item-right prom-discount-right" style="background-color: #F3CFD3;">
+    <div class="promotion-item-right" style="background-color: #F3CFD3;">
       <img src="<?=$dayPromotion['img'] ?>"></img>
     </div>
   </a>
 
   <a class="promotion-item" href="/booking">
-    <div class="promotion-item-left prom-package-left" style="background-color: #866D8D;">
+    <div class="promotion-item-left" style="background-color: #866D8D;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">优质预约</div>
         <div class="promotion-item-left-content-bottom">绝对新鲜 全场享<?=$bookingDiscount ?>折</div>
       </div>
     </div>
-    <div class="promotion-item-right prom-package-right" style="background-color: #D5CCDB;">
+    <div class="promotion-item-right" style="background-color: #D5CCDB;">
 
     </div>
   </a>
