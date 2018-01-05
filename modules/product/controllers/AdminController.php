@@ -32,16 +32,12 @@ class AdminController extends AuthController
     public function actionTable() {
         $params = Yii::$app->request->post();
 
-        $sql = "select id,`name`,price,num,unit,`desc`,slogan,status,category from product_list ";
+        $sql = "select id,`name`,price,num,unit,`desc`,slogan,status,booking_status,category from product_list ";
         $sqlCondition = [];
 
-        if (!empty($params['status'])) {
-            $sqlCondition[] = " status = " . $params['status'];
-        }
+        $sqlCondition[] = " status = " . $params['status'];
 
-        if (!empty($params['booking_status'])) {
-            $sqlCondition[] = " booking_status = " . $params['booking_status'];
-        }
+        $sqlCondition[] = " booking_status = " . $params['booking_status'];
 
         if (!empty($params['query'])) {
             $sqlCondition[] = " (`name` like '%" . $params['query'] . "%' or id = '" . $params['query'] . "')";
@@ -63,14 +59,20 @@ class AdminController extends AuthController
             } else if ($ret[$key]['status'] == 2){
                 $ret[$key]['status'] = "<span style='color:red'>已下线</span>";
             } else {
-                $ret[$key]['status'] = "<span style='color:purple'>待上线</span>";
+                $ret[$key]['status'] = "<span style='color:blue'>待上线</span>";
+            }
+
+            if ($ret[$key]['booking_status'] == 1) {
+                $ret[$key]['booking_status'] = "<span style='color:green'>可预约</span>";
+            } else {
+                $ret[$key]['booking_status'] = "<span style='color:red'>不可预约</span>";
             }
 
             $ret[$key]['operation'] = "
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-tag btn btn-xs btn-purple' href='javascript:void(0);'>标签</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-status btn btn-xs btn-info' href='javascript:void(0);'>销售状态</a>
-            <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-inventory btn btn-xs btn-dark' href='javascript:void(0);'>库存管理</a>
+            <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='booking-status btn btn-xs btn-primary' href='javascript:void(0);'>预约状态</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-del btn btn-xs btn-danger' href='javascript:void(0);'>删除</a>";
 
             if ($ret[$key]['category'] == 'package') {
@@ -246,6 +248,29 @@ class AdminController extends AuthController
         }
     }
 
+    /**
+     * 预约标签设置
+     */
+    public function actionBookingstatus() {
+        $params = Yii::$app->request->post();
+        if(empty($params)){
+            echo '参数不能为空';exit;
+        }
+
+        $id = $params['id'];
+        $status = $params['status'];
+
+        try {
+            $pl = ProductList::findOne($id);
+            $pl->booking_status = $status;
+            $pl->save();
+
+            echo 'suc';
+        } catch (Exception $e) {
+            echo '设置失败';
+        }
+    }
+
     public function actionPackageinfo() {
         $params = Yii::$app->request->post();
         if(empty($params)){
@@ -314,39 +339,6 @@ class AdminController extends AuthController
         }
 
         echo json_encode($ret);
-    }
-
-    /**
-     * 已有标签权限
-     */
-    public function actionInventory() {
-        $params = Yii::$app->request->post();
-
-        if(empty($params)){
-            echo '参数不能为空';
-            exit;
-        }
-
-        $params['operator_id'] = Yii::$app->session['uid'];
-
-        $pl = new ProductInventory();
-        foreach($params as $key => $value){
-            $pl->$key = $value;
-        }
-
-        if ($pl->save()) {
-            $up = ProductList::findOne($params['pid']);
-            if ($params['operator'] == 1) {
-                $up->num = $up->num + $params['num'];
-            } else {
-                $up->num = $up->num - $params['num'];
-            }
-            $up->save();
-
-            echo 'suc';
-        } else {
-            echo 'fail';
-        }
     }
 
     /**

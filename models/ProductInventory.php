@@ -23,7 +23,6 @@ class ProductInventory extends ActiveRecord
             [['pid'], 'required'],
             [['num'], 'required'],
             [['operator'], 'required'],
-            [['price'], 'required'],
         ];
     }
 }

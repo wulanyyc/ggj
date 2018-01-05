@@ -202,6 +202,43 @@ $(document).ready(function () {
         });
     });
 
+    $('#list').delegate('.booking-status', 'click', function () {
+        var id = $(this).attr('data-id');
+        var name = $(this).attr('data-val');
+        bootbox.dialog({
+            message: $('#booking_status_modal').html(),
+            title: '设置预约状态: ' + name,
+            className: 'modal-primary',
+            buttons: {
+                success: {
+                    label: '提交',
+                    className: 'btn-success',
+                    callback: function () {
+                        var status = $('.bootbox select[name="booking_status"]').val();
+                        $.ajax({
+                            url: '/product/admin/bookingstatus',
+                            type: 'post',
+                            data: {
+                                'status': status,
+                                'id': id
+                            },
+                            dataType: 'html',
+                            success: function (data) {
+                                if (data !== 'suc') {
+                                    bootbox.alert(data);
+                                } else {
+                                    location.reload();
+                                }
+                            }
+                        });
+
+                        return false;
+                    }
+                }
+            }
+        });
+    });
+
     $('#list').delegate('.product-connect', 'click', function () {
         var id = $(this).attr('data-id');
         var name = $(this).attr('data-val');
@@ -307,7 +344,7 @@ $(document).ready(function () {
 
         config['columnDefs'] = [{
             sortable: false,
-            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         }];
 
         config['columns'] = [
@@ -320,6 +357,7 @@ $(document).ready(function () {
             {data: 'desc'},
             {data: 'slogan'},
             {data: 'status'},
+            {data: 'booking_status'},
             {data: 'operation'}
         ];
         config['displayLength'] = 10;

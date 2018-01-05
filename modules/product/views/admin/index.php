@@ -33,7 +33,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
             </div>
             <div class='widget-body'>
                 <div id="search_form" style='display: flex;justify-content: flex-start;flex-direction: row;'>
-                    <a class='btn btn-sm btn-primary' href='javascript:void(0);' id='add' style="height:30px !important;margin-right: 10px;">添加商品</a>
+                    <a class='btn btn-sm btn-primary' href='javascript:void(0);' id='add' style="height:30px !important;margin-right: 10px;line-height: 20px;">添加商品</a>
                     <div class="form-group" style='width:20%;margin-right: 10px;'>
                         <span class="input-icon">
                             <input type="text" class="form-control input-sm" name='query' value='' id='query'>
@@ -48,9 +48,8 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     </select>
 
                     <select name='booking_status' id="search_booking" style='width:100px;height:30px;'>
-                        <option value="0">全部</option>
                         <option value="1">可预约</option>
-                        <option value="2">不可预约</option>
+                        <option value="0">不可预约</option>
                     </select>
                 </div>
                 <table id='list' class='hover grid' width='100%' cellspacing='0'>
@@ -65,6 +64,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                             <th>描述</th>
                             <th>标语</th>
                             <th>状态</th>
+                            <th>预约状态</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -88,10 +88,10 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <label style='width:80px'>价格：</label>
                     <input style='width:250px' type='text' placeholder='' name='price' class='input-sm'></input>
                 </div>
-                <div class='form-group' style='margin-top:10px'>
+   <!--              <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>库存：</label>
                     <input style='width:250px' type='text' placeholder='' name='num' class='input-sm num'></input>
-                </div>
+                </div> -->
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>单次购买限制：</label>
                     <input style='width:250px' type='text' placeholder='' name='buy_limit' class='input-sm buy_limit'></input>
@@ -135,10 +135,10 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <label style='width:80px'>价格：</label>
                     <input style='width:250px' type='text' placeholder='' name='price' class='input-sm price'></input>
                 </div>
-                <div class='form-group' style='margin-top:10px'>
+ <!--                <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>库存：</label>
                     <input style='width:250px' type='text' placeholder='' name='num' class='input-sm num'></input>
-                </div>
+                </div> -->
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>单次购买限制：</label>
                     <input style='width:250px' type='text' placeholder='' name='buy_limit' class='input-sm buy_limit'></input>
@@ -187,6 +187,18 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 <option value="1">销售中</option>
                 <option value="2">已下线</option>
                 <option value="3">待上线</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id='booking_status_modal' style='display:none;min-width:600px'>
+    <div class='row'>
+        <div class='col-md-12'>
+            <label style='width:80px'>预约状态：</label>
+            <select name='booking_status' style='width:350px;min-width:100px;margin-right:12px;'>
+                <option value="1">可预约</option>
+                <option value="0">不可预约</option>
             </select>
         </div>
     </div>
