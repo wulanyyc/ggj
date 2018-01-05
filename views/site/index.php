@@ -294,7 +294,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     </div>
   </a>
 
-  <a class="promotion-item" href="/buy?id=<?=$dayPromotion['id'] ?>" style="display: none">
+  <a class="promotion-item" href="/buy?id=<?=$dayPromotion['id'] ?>">
     <div class="promotion-item-left prom-discount-left" style="background-color: #DD182B;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">今日特价</div>
@@ -337,7 +337,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
             <?php } else { ?>
             <a class="product-item-content" style="display: flex;justify-content: space-between;align-items: stretch;flex-direction: column;" href="/buy/booking?id=<?=$product['id'] ?>">
             <?php } ?>
-              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:2%;">
+              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:5%;">
                 <img class="card-img" style="width:40%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                 <div style="width:45%;">
                   <p class="desc"><?=$product['name'] ?></p>
@@ -359,8 +359,9 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                   </p>
                 </div>
               </div>
+              <br/>
 
-              <div class="tip-content">
+              <div class="tip-content" style="position: absolute;bottom: 0px;">
                   <?=$product['slogan'] ?>
               </div>
             </a>
