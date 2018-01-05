@@ -314,7 +314,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       </div>
     </div>
     <div class="promotion-item-right" style="background-color: #D5CCDB;">
-
+      <img src="/img/booking.jpeg"></img>
     </div>
   </a>
 </div>
