@@ -306,7 +306,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     </div>
   </a>
 
-  <a class="promotion-item" href="/booking" style="display: none">
+  <a class="promotion-item" href="/booking">
     <div class="promotion-item-left prom-package-left" style="background-color: #866D8D;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">优质预约</div>
