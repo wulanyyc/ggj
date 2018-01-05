@@ -68,7 +68,14 @@ class SiteController extends Controller
             $ids[] = $item['id'];
         }
 
-        $info = Tags::find()->select('name,en_name')->where(['product_id' => $ids])->asArray()->all();
+        $tagIds = ProductTags::find()->select('id')->where(['product_id' => $ids])->distinct(true)->asArray()->All();
+
+        $tags = [];
+        foreach($tagIds as $item) {
+            $tags[] = $item['id'];
+        }
+
+        $info = Tags::find()->select('name,en_name')->where(['id' => $tags])->asArray()->all();
         return $info;
     }
 
