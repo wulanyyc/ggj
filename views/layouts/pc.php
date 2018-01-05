@@ -77,7 +77,7 @@ SiteAsset::register($this);
     </div>
 
     <div class="d-inline search-top" style="position: relative;">
-        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，新鲜不贵" aria-label="美丽健康，新鲜不贵" style="padding-left: 30px;font-size: 14px;" />
+        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，新鲜好吃" aria-label="美丽健康，新鲜不贵" style="padding-left: 30px;font-size: 14px;" />
         <div style="position: absolute;left:8px;top:5px;"><i class="fa fa-search" aria-hidden="true"></i></div>
     </div>
 
