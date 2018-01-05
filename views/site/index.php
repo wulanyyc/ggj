@@ -42,13 +42,14 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .first-item {
     border: 1px solid #53a93f;
-    padding: 3px 6px;
+    padding: 3px 5px;
     color: #fff;
     background-color: #53a93f;
-    opacity: 1;
-    margin-left: 1%;
+    /*opacity: 1;*/
+    /*margin-left: 1%;*/
     text-align: center;
     font-size: 12px;
+    transform: scale(0.9);
   }
 
   .first-item:hover {
