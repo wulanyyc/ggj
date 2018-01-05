@@ -337,7 +337,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
             <?php } else { ?>
             <a class="product-item-content" style="display: flex;justify-content: space-between;align-items: stretch;flex-direction: column;" href="/buy/booking?id=<?=$product['id'] ?>">
             <?php } ?>
-              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;">
+              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:2%;">
                 <img class="card-img" style="width:40%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                 <div style="width:45%;">
                   <p class="desc"><?=$product['name'] ?></p>

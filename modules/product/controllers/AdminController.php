@@ -33,10 +33,9 @@ class AdminController extends AuthController
         $params = Yii::$app->request->post();
 
         $sql = "select id,`name`,price,num,unit,`desc`,slogan,status,booking_status,category from product_list ";
+        
         $sqlCondition = [];
-
         $sqlCondition[] = " status = " . $params['status'];
-
         $sqlCondition[] = " booking_status = " . $params['booking_status'];
 
         if (!empty($params['query'])) {
