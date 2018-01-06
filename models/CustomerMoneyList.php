@@ -22,7 +22,7 @@ class CustomerMoneyList extends ActiveRecord
         return [
             [['money'], 'required'],
             [['cid'], 'required'],
-            [['func'], 'required'],
+            [['operator'], 'required'],
         ];
     }
 }

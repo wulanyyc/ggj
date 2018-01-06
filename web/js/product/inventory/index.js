@@ -35,6 +35,10 @@ $(document).ready(function () {
         loadTable();
     });
 
+    $('#product_id').change(function () {
+        loadTable();
+    });
+
     function loadTable() {
         $.load.show('#list');
         var config = {};
@@ -60,8 +64,7 @@ $(document).ready(function () {
         $.grid.createServerTable('/product/inventory/table', 
             { 
                 query: $('#query').val(),
-                status: $('#search_status').val(),
-                booking_status: $('#search_booking').val() 
+                id: $('#product_id').val()
             }, 
             'list', config);
 

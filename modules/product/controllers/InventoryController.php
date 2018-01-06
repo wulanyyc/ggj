@@ -11,7 +11,7 @@ use yii\helpers\Html;
 class InventoryController extends AuthController
 {
     public function actionIndex() {
-        $products = ProductList::find()->where(['!=', 'category', 'package'])->asArray()->all();
+        $products = ProductList::find()->asArray()->all();
         return $this->render('index',
             [
                 'products' => $products,
@@ -32,8 +32,12 @@ class InventoryController extends AuthController
             $sqlCondition[] = " (`pl.name` like '%" . $params['query'] . "%' or pi.id = '" . $params['query'] . "')";
         }
 
+        if (!empty($params['id'])) {
+            $sqlCondition[] = " pl.id = " . $params['id'];
+        }
+
         if (!empty($sqlCondition)) {
-            $sql .= implode(' and ', $sqlCondition);
+            $sql .= 'and ' . implode(' and ', $sqlCondition);
         }
 
         $totalSql = $sql;

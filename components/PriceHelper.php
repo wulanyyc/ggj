@@ -173,16 +173,16 @@ class PriceHelper extends Component{
         $wallet  = Customer::find()->where(['id' => $cid])->select('money')->scalar();
 
         if ($type == 'minus') {
-            $newmoney = round($wallet - $money, 1);
+            $newmoney = $wallet - $money;
         }
 
         if ($type == 'plus') {
-            $newmoney = round($wallet + $money, 1);
+            $newmoney = $wallet + $money;
         }
 
         $cmlar = new CustomerMoneyList();
         $cmlar->money = $money;
-        $cmlar->func = $type;
+        $cmlar->operator = $type;
         $cmlar->reason = $reason;
         $cmlar->cid = $cid;
         $cmlar->save();
@@ -196,21 +196,26 @@ class PriceHelper extends Component{
      * 朋友钱包奖励
      * type: plus, minus
      */
-    public static function addFriendWallet($money, $phone, $reason = '') {
+    public static function addFriendWallet($money, $phone, $reason = '', $operator = 'plus') {
         $data  = Customer::find()->where(['phone' => $phone])->select('id, money')->asArray()->one();
 
         if (empty($data)) {
             $add = new Customer();
             $add->phone = $phone;
+            $add->status = 2;
             $add->save();
             $data  = Customer::find()->where(['phone' => $phone])->select('id, money')->asArray()->one();
         }
 
-        $newmoney = round($data['money'] + $money, 1);
+        if ($operator == 'plus') {
+            $newmoney = $data['money'] + $money;
+        } else {
+            $newmoney = $data['money'] - $money;
+        }
 
         $cmlar = new CustomerMoneyList();
         $cmlar->money = $money;
-        $cmlar->func = 'plus';
+        $cmlar->operator = $operator;
         $cmlar->reason = $reason;
         $cmlar->cid = $data['id'];
         $cmlar->save();

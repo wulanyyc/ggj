@@ -60,6 +60,7 @@ MsaView::registerJsFile($this,'/js/right/mod/index.js',
                 <div style='margin-bottom:10px;' class='buttons-preview'>
                     <label>主菜单：</label>
                     <select id='cur_menu' style='width:20%;min-width:160px;margin-right:12px;'>
+                        <option value=""></option>
                         <?=$menuSelectHtml; ?>
                     </select>
                     <a class='btn btn-sm btn-primary' href='javascript:void(0);' id='add'>添加子菜单</a>

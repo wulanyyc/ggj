@@ -38,6 +38,11 @@ MsaView::registerJsFile($this,'/js/product/inventory/index.js',
                             <i class="glyphicon glyphicon-search blue"></i>
                         </span>
                     </div>
+                    <select name='product_id' id="product_id" style='width:100px;margin-right:10px;height:30px;'>
+                        <?php foreach($products as $product) { ?>
+                        <option value="<?=$product['id'] ?>"><?=$product['name'] ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
                 <table id='list' class='hover grid' width='100%' cellspacing='0'>
                     <thead>

@@ -565,4 +565,6 @@ $(document).ready(function () {
     $('#cur_menu').change(function () {
         location.href = '/right/mod/index?menu_id=' + $(this).val();
     });
+
+    // $('#cur_menu').select2().trigger('change');
 });
