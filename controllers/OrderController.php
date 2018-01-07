@@ -40,7 +40,7 @@ class OrderController extends Controller
         $cid = $_COOKIE['cid'];
 
         $params = Yii::$app->request->get();
-        $orderType = isset($params['type']) ? $params['type'] : 0;
+        $orderType = isset($params['type']) ? $params['type'] : 1;
 
         $data = ProductOrder::find()->where(['customer_id' => $cid])->andWhere(['!=', 'status', 4])->orderBy('id desc')->asArray()->all();
 
@@ -107,7 +107,7 @@ class OrderController extends Controller
         $expressRule = $params['express_rule'];
 
         $productPrice = PriceHelper::calculateProductPrice($cartid);
-        $expressFee   = PriceHelper::calculateExpressFee($expressRule, $params['type'], $productPrice);
+        $expressFee   = PriceHelper::calculateExpressFee($expressRule, $params['order_type'], $productPrice);
 
         $params['product_price'] = $productPrice;
         $params['express_fee'] = $expressFee;
@@ -155,7 +155,7 @@ class OrderController extends Controller
             $pid = $item['id'];
             $tmp = ProductList::find()->select('id,name,unit,price')->where(['id' => $pid])->asArray()->one();
             if ($orderStatus == 1) {
-                $tmp['price'] = PriceHelper::getProductPrice($pid, $data['type']);
+                $tmp['price'] = PriceHelper::getProductPrice($pid, $data['order_type']);
             }
             $ret[] = $tmp;
         }

@@ -159,7 +159,7 @@ $(document).ready(function () {
         $.ajax({
             url: '/cart/add',
             type: 'post',
-            data: 'cart=' + cartStr + "&oid=" + oid + "&product_price=" + money + "&type=" + type,
+            data: 'cart=' + cartStr + "&oid=" + oid + "&product_price=" + money + "&order_type=" + type,
             dataType: 'html',
             success: function (data) {
                 if (data > 0) {

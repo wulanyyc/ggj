@@ -35,6 +35,7 @@ class CartController extends Controller
             Yii::$app->controller->redirect('/customer/login');
             Yii::$app->end();
         }
+        // echo 1;exit;
 
         $params = Yii::$app->request->get();
         $id = $params['id'];
@@ -55,6 +56,7 @@ class CartController extends Controller
             Yii::$app->end();
         }
 
+        // echo 1;exit;
         // $money = Customer::find()->select('money')->where(['id' => $cid])->scalar();
 
         return $this->render('index', [
@@ -75,7 +77,7 @@ class CartController extends Controller
         $data['product'] = [];
         foreach($cart as $key => $value) {
             $tmpProduct = ProductList::find()->where(['id' => $value['id']])->asArray()->one();
-            $tmpProduct['price'] = PriceHelper::getProductPrice($tmpProduct['id'], $data['type']);
+            $tmpProduct['price'] = PriceHelper::getProductPrice($tmpProduct['id'], $data['order_type']);
             $cart[$key]['price'] = $tmpProduct['price'];
             $data['product'][] = $tmpProduct;
         }
@@ -88,7 +90,7 @@ class CartController extends Controller
 
         $data['product_cart'] = $cart;
         $data['product_price'] = PriceHelper::calculateProductPrice($id);
-        $data['express_fee'] = PriceHelper::calculateExpressFee(0, $data['type'], $data['product_price']);
+        $data['express_fee'] = PriceHelper::calculateExpressFee(0, $data['order_type'], $data['product_price']);
 
         return $data;
     }
@@ -140,7 +142,7 @@ class CartController extends Controller
         foreach($carts as $item) {
             $id = $item['id'];
             $price = ProductList::find()->where(['id' => $id])->select('price')->scalar();
-            $productPrice += $item['num'] * PriceHelper::getProductPrice($id, $params['type']);
+            $productPrice += $item['num'] * PriceHelper::getProductPrice($id, $params['order_type']);
         }
 
         $productPrice = round($productPrice, 1);

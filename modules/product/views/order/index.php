@@ -47,6 +47,13 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                             <?php } ?>
                         </select>
                     </div>
+                    <div class="form-group" style='display:inline-block;margin-left: 10px;'>
+                        <select name='order_type' id='order_type' style='width:100px;min-width:100px;margin-right:12px;'>
+                            <option value=''>全部</option>
+                            <option value='1'>普通购买</option>
+                            <option value='2'>预约</option>
+                        </select>
+                    </div>
                 </div>
                 <table id='list' class='hover grid' width='100%' cellspacing='0'>
                     <thead>

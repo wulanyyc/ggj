@@ -23,33 +23,31 @@ class OrderController extends AuthController
      */
     public function actionTable() {
         $params = Yii::$app->request->post();
-        $status = $params['status'];
-        if ($status == '') {
-            $status = array_keys(Yii::$app->params['order_status']);
+
+        $sql = "select id,customer_id,rec_name,rec_phone,rec_address,pay_money,status,create_time from product_order ";
+        
+        $sqlCondition = [];
+        if ($params['status'] > 0) {
+            $sqlCondition[] = " status = " . $params['status'];
+        }
+        
+        if ($params['order_type'] > 0) {
+            $sqlCondition[] = " order_type = " . $params['order_type'];
         }
 
         if (!empty($params['query'])) {
-            $ret = ProductOrder::find()->select('id,customer_id,rec_name,rec_phone,rec_address,pay_money,status,create_time')
-                ->where(['like', 'rec_name', $params['query']])
-                ->orWhere(['id' => intval($params['query'])])
-                ->andWhere(['status' => $status])
-                ->asArray()->all();
-
-            $total = ProductOrder::find()
-                ->where(['like', 'rec_name', $params['query']])
-                ->orWhere(['id' => intval($params['query'])])
-                ->andWhere(['status' => $status])
-                ->count();
-        }else {
-            $ret = ProductOrder::find()
-                ->select('id,customer_id,rec_name,rec_phone,rec_address,pay_money,status,create_time')
-                ->where(['status' => $status])
-                ->orderBy('id desc')->limit($params['length'])
-                ->offset($params['start'])
-                ->asArray()
-                ->all();
-            $total = ProductOrder::find()->count();
+            $sqlCondition[] = " (`rec_name` like '%" . $params['query'] . "%' or id = '" . $params['query'] . "')";
         }
+
+        if (!empty($sqlCondition)) {
+            $sql .= ' where ' . implode(' and ', $sqlCondition);
+        }
+
+        $totalSql = $sql;
+        $sql .= " order by id desc limit " . $params['start'] . ', ' . $params['length'];
+
+        $ret = ProductOrder::findBySql($sql)->asArray()->all();
+        $total = ProductOrder::findBySql($totalSql)->count();
 
         foreach($ret as $key => $value) {
             $ret[$key]['userphone'] = SiteHelper::getCustomerPhone($value['customer_id']);

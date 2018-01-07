@@ -164,7 +164,7 @@ ClipAsset::register($this);
           <?=$status[$item['status']] ?>
         </span>
         <span class="badge badge-success" style="font-size: 12px;margin-right: 5px;padding:5px;letter-spacing: 1px;">
-          <?=$type[$item['type']] ?>单
+          <?=$type[$item['order_type']] ?>单
         </span>
         <?php if ($item['status'] == 5) { ?>
         <span data-id=<?=$item['id'] ?> class="del_forever" style="font-size: 20px;"><i class="fa fa-trash" aria-hidden="true"></i></span>
@@ -208,9 +208,9 @@ ClipAsset::register($this);
     <div class="item" style="border-top: 1px solid #ced4da;padding: 0.5rem;justify-content: flex-end;">
         <?php if ($item['status'] == 1) { ?>
         <button type="button" class="btn btn-outline-warning btn-sm del" data-id="<?=$item['id'] ?>">删除订单</button>
-        <button type="button" class="btn btn-outline-info btn-sm edit" data-type="<?=$item['type'] ?>" data-cid="<?=$item['cart_id'] ?>">修改商品</button>
+        <button type="button" class="btn btn-outline-info btn-sm edit" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">修改商品</button>
         <button type="button" class="btn btn-outline-primary btn-sm show_detail" data-id="<?=$item['id'] ?>" data-cid="<?=$item['cart_id'] ?>">查看商品</button>
-        <button type="button" class="btn btn-outline-danger btn-sm pay" data-type="<?=$item['type'] ?>" data-cid="<?=$item['cart_id'] ?>">去支付</button>
+        <button type="button" class="btn btn-outline-danger btn-sm pay" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">去支付</button>
         <?php } ?>
 
         <?php if ($item['status'] == 2) { ?>
@@ -221,12 +221,12 @@ ClipAsset::register($this);
 
         <?php if ($item['status'] == 3) { ?>
         <button type="button" class="btn btn-outline-primary btn-sm show_detail" data-id="<?=$item['id'] ?>" data-cid="<?=$item['cart_id'] ?>">查看商品</button>
-        <button type="button" class="btn btn-outline-danger btn-sm edit" data-type="<?=$item['type'] ?>" data-cid="<?=$item['cart_id'] ?>">再次购买</button>
+        <button type="button" class="btn btn-outline-danger btn-sm edit" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">再次购买</button>
         <?php } ?>
 
         <?php if ($item['status'] == 5) { ?>
         <button type="button" class="btn btn-outline-primary btn-sm show_detail" data-id="<?=$item['id'] ?>" data-cid="<?=$item['cart_id'] ?>">查看商品</button>
-        <button type="button" class="btn btn-outline-danger btn-sm edit" data-type="<?=$item['type'] ?>" data-cid="<?=$item['cart_id'] ?>">重新购买</button>
+        <button type="button" class="btn btn-outline-danger btn-sm edit" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">重新购买</button>
         <?php } ?>
     </div>
   </div>

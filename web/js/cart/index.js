@@ -44,7 +44,7 @@ $(document).ready(function () {
     });
 
     $('#edit').click(function(){
-        var type = $('#cart_type').val();
+        var type = $('#order_type').val();
         var cid = $('#cart_id').val();
         if (type == 0) {
             location.href="/buy?cid=" + cid;
@@ -372,7 +372,7 @@ $(document).ready(function () {
             type: 'post',
             dataType: 'html',
             data: {
-                type: $('#cart_type').val(),
+                order_type: $('#order_type').val(),
                 address_id: address_id,
                 cart_id: $('#cart_id').val(),
                 cart_num: $('#cart_num').val(),

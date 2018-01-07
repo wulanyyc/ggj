@@ -44,7 +44,7 @@ class BuyController extends Controller
         $params = Yii::$app->request->get();
         $id = isset($params['id']) ? $params['id'] : 0;
         $cid = isset($params['cid']) ? $params['cid'] : 0;
-        $orderType = 0;
+        $orderType = 1;
 
         if ($cid != 0) {
             $cart = PriceHelper::getUpdateCart($cid);
@@ -70,7 +70,7 @@ class BuyController extends Controller
         $params = Yii::$app->request->get();
         $id = isset($params['id']) ? $params['id'] : 0;
         $cid = isset($params['cid']) ? $params['cid'] : 0;
-        $orderType = 1;
+        $orderType = 2;
 
         if ($cid != 0) {
             $cart = PriceHelper::getUpdateCart($cid);
@@ -105,10 +105,12 @@ class BuyController extends Controller
     }
 
     private function getProducts($orderType) {
-        if ($orderType == 1) {
+        if ($orderType == 2) {
             $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')
             ->where(['status' => 1])->asArray()->all();
-        } else {
+        }
+
+        if ($orderType == 1) {
             $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')->where(['status' => 1])->andWhere(['>', 'num', 0])
             ->asArray()->all();
         }

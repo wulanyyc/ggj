@@ -151,7 +151,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#query, #status').change(function () {
+    $('#query, #status, #order_type').change(function () {
         loadTable();
     });
 
@@ -178,7 +178,11 @@ $(document).ready(function () {
         config['displayLength'] = 10;
 
         $.grid.createServerTable('/product/order/table', 
-            {query: $('#query').val(), status: $('#status').val()}, 
+            {
+                query: $('#query').val(), 
+                status: $('#status').val(),
+                order_type: $('#order_type').val()
+            }, 
             'list', config
         );
         $.load.hide('#list');

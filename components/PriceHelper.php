@@ -20,9 +20,9 @@ use app\models\ProductPackage;
 class PriceHelper extends Component{
     /**
      * $id 产品id
-     * $type 订购类型  0: 普通  1: 预订
+     * $type 订购类型  1: 普通  2: 预订
      */
-    public static function getProductPrice($id, $type = 0) {
+    public static function getProductPrice($id, $type = 1) {
         $price = ProductList::find()->where(['id' => $id])->select('price')->scalar();
 
         if (empty($price)) {
@@ -35,11 +35,11 @@ class PriceHelper extends Component{
         // 店铺特价
         $price = self::getNewPromotion($id, $price);
 
-        if ($type == 0) {
+        if ($type == 1) {
             return round(Yii::$app->params['buyDiscount'] * $price, 1);
         }
 
-        if ($type == 1) {
+        if ($type == 2) {
             return round(Yii::$app->params['bookingDiscount'] * $price, 1);
         }
 
@@ -137,14 +137,14 @@ class PriceHelper extends Component{
 
     // 计算产品价格
     public static function calculateProductPrice($cartid) {
-        $data = ProductCart::find()->where(['id' => $cartid])->select('cart,type')->asArray()->one();
+        $data = ProductCart::find()->where(['id' => $cartid])->select('cart,order_type')->asArray()->one();
         // 计算产品价格
         $carts = json_decode($data['cart'], true);
 
         $productPrice = 0;
         foreach($carts as $item) {
             $pid = $item['id'];
-            $productPrice += $item['num'] * PriceHelper::getProductPrice($pid, $data['type']);
+            $productPrice += $item['num'] * PriceHelper::getProductPrice($pid, $data['order_type']);
         }
 
         $productPrice = round($productPrice, 1);
@@ -157,7 +157,7 @@ class PriceHelper extends Component{
         $data = ProductOrder::find()->where(['id' => $orderid])->asArray()->one();
 
         $productPrice = self::calculateProductPrice($data['cart_id']);
-        $expressFee   = self::calculateExpressFee($data['express_rule'], $data['type'], $productPrice);
+        $expressFee   = self::calculateExpressFee($data['express_rule'], $data['order_type'], $productPrice);
         $couponFee    = self::calculateCounponFee($data['coupon_ids']);
         $discountFee  = $data['discount_fee'];
 
@@ -230,7 +230,7 @@ class PriceHelper extends Component{
         $cart = json_decode($data['cart'], true);
 
         foreach($cart as $key => $value) {
-            $cart[$key]['price'] = PriceHelper::getProductPrice($value['id'], $data['type']);
+            $cart[$key]['price'] = PriceHelper::getProductPrice($value['id'], $data['order_type']);
         }
 
         return $cart;
