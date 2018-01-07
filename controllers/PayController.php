@@ -129,7 +129,7 @@ class PayController extends Controller
         }
 
         // 普通购买检验库存
-        if ($data['type'] == 0) {
+        if ($data['order_type'] == 1) {
             $inventory = $this->checkInventory($id);
             if (!$inventory['status']) {
                 echo json_encode(['status' => 'fail', 'msg' => $inventory['msg'] . '库存数量不足，请调整商品']);
