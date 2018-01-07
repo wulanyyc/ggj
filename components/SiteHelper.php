@@ -134,7 +134,7 @@ class SiteHelper extends Component{
      * 查询手机归属地
      */
     public static function getPhoneArea($phone) {
-        $host = "http://jisukdcx.market.alicloudapi.com";
+        $host = "http://jshmgsdmfb.market.alicloudapi.com";
         $path = "/shouji/query";
         $method = "GET";
         $appcode = Yii::$app->params['expressQuery']['appcode'];
