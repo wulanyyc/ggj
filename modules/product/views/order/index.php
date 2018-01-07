@@ -12,6 +12,7 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
             'app\assets\BootBoxAsset',
             'app\assets\SelectAsset',
             'app\assets\GridAsset',
+            'app\assets\DatePickerAsset',
         ]
     ]
 );
@@ -32,14 +33,25 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                 </div>
             </div>
             <div class='widget-body'>
-                <div style='margin-bottom:10px;position:relative;' class='buttons-preview'>
+                <div style='margin-bottom:10px;position:relative;display: flex;flex-direction: row;flex-wrap: wrap;' class='buttons-preview'>
                     <div class="form-group" style='width:30%;display:inline-block;'>
                         <span class="input-icon">
                             <input type="text" placeholder="收件人" class="form-control input-sm" name='query' value='' id='query'>
                             <i class="glyphicon glyphicon-search blue"></i>
                         </span>
                     </div>
-                    <div class="form-group" style='display:inline-block;margin-left: 10px;'>
+
+                    <label style="padding-left: 10px;">日期：</label>
+                    <div id="date-container">
+                        <div class="input-daterange input-group" id="datepicker" style="width:300px;margin-left:10px;">
+                            <input type="text" class="input-sm form-control" name="start" id="start_date"/>
+                            <span class="input-group-addon">to</span>
+                            <input type="text" class="input-sm form-control" name="end" id="end_date" />
+                        </div>
+                    </div>
+
+                    <label style="padding-left: 10px;">状态：</label>
+                    <div class="form-group" style='display:inline-block;'>
                         <select name='status' id='status' style='width:100px;min-width:100px;margin-right:12px;'>
                             <option value=''>全部</option>
                             <?php foreach($status as $key => $value) { ?>
@@ -47,7 +59,9 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="form-group" style='display:inline-block;margin-left: 10px;'>
+
+                    <label style="padding-left: 10px;">类型：</label>
+                    <div class="form-group" style='display:inline-block;'>
                         <select name='order_type' id='order_type' style='width:100px;min-width:100px;margin-right:12px;'>
                             <option value=''>全部</option>
                             <option value='1'>普通购买</option>

@@ -42,7 +42,7 @@ SiteAsset::register($this);
   <div class="item">
     <div class="label">微信公众号：</div>
     <div>
-      <img src="/img/qrcode.jpeg" style="width: 180px;border:1px solid #dedede;"></img>
+      <img src="/img/company.jpg" style="width: 180px;border:1px solid #dedede;"></img>
     </div>
   </div>
 

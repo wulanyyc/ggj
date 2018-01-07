@@ -36,7 +36,7 @@ $(document).ready(function () {
     $('.edit').click(function(){
         var type = $(this).attr('data-type');
         var cid = $(this).attr('data-cid');
-        if (type == 0) {
+        if (type == 1) {
             location.href="/buy?cid=" + cid;
         } else {
             location.href="/buy/booking?cid=" + cid;

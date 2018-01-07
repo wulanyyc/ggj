@@ -112,13 +112,13 @@ class PriceHelper extends Component{
         return $fee;
     }
 
-    // 计算邮费 $type: 购买类型
+    // 计算邮费 $type: 运输类型
     public static function calculateExpressFee($expressRule, $type, $productPrice) {
-        if ($expressRule == 1) {
+        if ($expressRule == 2) {
             return 0;
         }
 
-        if ($type == 0) {
+        if ($type == 1) {
             if ($productPrice < Yii::$app->params['buyGod']) {
                 return Yii::$app->params['expressFee'];
             } else {
@@ -126,7 +126,7 @@ class PriceHelper extends Component{
             }
         }
 
-        if ($type == 1) {
+        if ($type == 2) {
             if ($productPrice < Yii::$app->params['bookingGod']) {
                 return Yii::$app->params['expressFee'];
             } else {

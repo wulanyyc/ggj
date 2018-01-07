@@ -200,8 +200,12 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <input type="hidden" name="order_type" id="order_type" value="<?=$data['order_type'] ?>" />
 <input type="hidden" name="cart_id" id="cart_id" value="<?=$data['id'] ?>" />
+<input type="hidden" name="history_express_rule" id="history_express_rule" value="<?=$data['express_rule'] ?>" />
 <input type="hidden" name="express_fee" id="express_fee" value="<?=$data['express_fee'] ?>" />
 <input type="hidden" name="cart_num" id="cart_num" value="<?=count($data['product']) ?>" />
+<input type="hidden" name="std_express_fee" id="std_express_fee" value="<?=$stdExpressFee ?>" />
+<input type="hidden" name="buy_god" id="buy_god" value="<?=$buyGod ?>" />
+<input type="hidden" name="history_product_price" id="history_product_price" value="<?=$data['product_price'] ?>" />
 
 <div class="card">
   <div class="card-content" id="show_address_content">
@@ -210,7 +214,8 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         <br/>
         <button id="add_address" type="button" class="btn btn-outline-danger btn-sm" style="width:140px;margin-bottom: 10px;font-size: 14px;height:30px;margin-top: 10px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
       </div>
-      <div class="hide_address" data-id="">
+
+      <div class="show_address" data-id="" style="display: none;">
         <div style="width: 98%;">
           <p style="font-weight: bold;color:#333;">
             <span id="show_rec_name"></span>
@@ -243,6 +248,11 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
           <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         </div>
       </div>
+
+      <div class="no_address" style="display: none;">
+        <br/>
+        <button id="add_address" type="button" class="btn btn-outline-danger btn-sm" style="width:140px;margin-bottom: 10px;font-size: 14px;height:30px;margin-top: 10px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+      </div>
       <?php } ?>
     </div>
   </div>
@@ -272,13 +282,13 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
           <p class="label">配送方式：</p>
           <div class="form-check form-check-inline express_rule">
             <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
-              <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="0" checked> 
+              <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="1" checked> 
               <span class="badge badge-success" style="letter-spacing: 1px;font-size: 12px;line-height: 18px;font-weight: normal;margin-top: 8px;">快递</span>
             </label>
           </div>
           <div class="form-check form-check-inline express_rule">
             <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
-              <input class="form-check-input" type="radio" class="express_rule" name="express_rule" id="express_2" value="1">
+              <input class="form-check-input" type="radio" class="express_rule" name="express_rule" id="express_2" value="2">
               <span class="badge badge-info" style="letter-spacing: 1px;font-size: 12px;line-height: 18px;font-weight: normal;margin-top: 8px;">自提</span>
             </label>
           </div>
@@ -297,7 +307,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div id="discount" class="card-content">
     <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: space-between;">
       <div style="display: flex;flex-direction: row;justify-content: flex-start;flex-wrap: nowrap;">
-        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:好友手机号码" maxlength=11 style="width:70%;font-size: 14px;margin-left: 5px;height: 40px;" />
+        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:成都好友手机号码" maxlength=11 style="width: 180px;font-size: 13px;margin-left: 5px;height: 40px;" />
         <button type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">使用</button>
       </div>
       <span id="ask" style="line-height: 40px;color:#0C58B0;cursor: pointer;font-size: 13px;">优惠码规则？</span>

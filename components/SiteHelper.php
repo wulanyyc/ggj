@@ -130,6 +130,39 @@ class SiteHelper extends Component{
         return $result;
     }
 
+    /**
+     * 查询手机归属地
+     */
+    public static function getPhoneArea($phone) {
+        $host = "http://jisukdcx.market.alicloudapi.com";
+        $path = "/shouji/query";
+        $method = "GET";
+        $appcode = Yii::$app->params['expressQuery']['appcode'];
+        $headers = array();
+        array_push($headers, "Authorization:APPCODE " . $appcode);
+        $querys = "shouji=" . $phone;
+        $bodys = "";
+        $url = $host . $path . "?" . $querys;
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_FAILONERROR, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        if (1 == strpos("$".$host, "https://"))
+        {
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        }
+
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return $result;
+    }
+
     public static function addCustomerScore($num, $id) {
         $score = Customer::find()->where(['id' => $id])->select('score')->asArray()->scalar();
 

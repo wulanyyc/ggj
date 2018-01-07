@@ -42,7 +42,7 @@ class OrderController extends Controller
         $params = Yii::$app->request->get();
         $orderType = isset($params['type']) ? $params['type'] : 1;
 
-        $data = ProductOrder::find()->where(['customer_id' => $cid])->andWhere(['!=', 'status', 4])->orderBy('id desc')->asArray()->all();
+        $data = ProductOrder::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
 
         foreach($data as $key => $item) {
             if ($item['status'] == 1) {
@@ -89,6 +89,7 @@ class OrderController extends Controller
             $po = ProductOrder::findOne($exsitId);
         } else {
             $po = new ProductOrder();
+            $params['date'] = date('Ymd', time());
         }
         
         foreach($params as $key => $value){

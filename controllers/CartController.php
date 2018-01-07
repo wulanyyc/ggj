@@ -35,7 +35,6 @@ class CartController extends Controller
             Yii::$app->controller->redirect('/customer/login');
             Yii::$app->end();
         }
-        // echo 1;exit;
 
         $params = Yii::$app->request->get();
         $id = $params['id'];
@@ -45,19 +44,29 @@ class CartController extends Controller
             Yii::$app->end();
         }
 
-        $cid = $_COOKIE['cid'];
+        $exsit = ProductCart::find()->where(['id' => $id])->count();
+        if ($exsit == 0) {
+            Yii::$app->controller->redirect('/');
+            Yii::$app->end();
+        }
 
         // 修正购物车内为最新价格
         $data = $this->getFixedData($id);
 
         // 安全校验
+        $cid = $_COOKIE['cid'];
         if ($data['customer_id'] != $cid) {
             Yii::$app->controller->redirect('/');
             Yii::$app->end();
         }
 
-        // echo 1;exit;
-        // $money = Customer::find()->select('money')->where(['id' => $cid])->scalar();
+        if ($data['order_type'] == 1) {
+            $buyLimit = Yii::$app->params['buyLimit'];
+            $buyGod   = Yii::$app->params['buyGod'];
+        } else {
+            $buyLimit = Yii::$app->params['bookingLimit'];
+            $buyGod   = Yii::$app->params['bookingGod'];
+        }
 
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
@@ -67,6 +76,9 @@ class CartController extends Controller
             'coupon' => count(PriceHelper::getValidCoupon()),
             'discount_start' => Yii::$app->params['discount']['start'],
             'discount_end'   => Yii::$app->params['discount']['end'],
+            'buyLimit' => $buyLimit,
+            'buyGod'   => $buyGod,
+            'stdExpressFee' => Yii::$app->params['expressFee'],
         ]);
     }
 
@@ -90,7 +102,16 @@ class CartController extends Controller
 
         $data['product_cart'] = $cart;
         $data['product_price'] = PriceHelper::calculateProductPrice($id);
-        $data['express_fee'] = PriceHelper::calculateExpressFee(0, $data['order_type'], $data['product_price']);
+
+        $orderData = ProductOrder::find()->select('express_rule, express_fee')->where(['cart_id' => $id])->asArray()->one();
+
+        if (empty($orderData)) {
+            $data['express_rule'] = 1;
+            $data['express_fee'] = PriceHelper::calculateExpressFee($data['express_rule'], $data['order_type'], $data['product_price']);
+        } else {
+            $data['express_rule'] = $orderData['express_rule'];
+            $data['express_fee'] = $orderData['express_fee'];
+        }
 
         return $data;
     }
@@ -201,15 +222,22 @@ EOF;
             Yii::$app->end();
         }
 
-        $key = $cid . '_' . $friendPhone . '_discount';
-        $percent = Yii::$app->redis->get($key);
+        $areas = SiteHelper::getPhoneArea($friendPhone);
+        // $areaArr = json_decode($areas, true);
+        var_dump($areas);exit;
+        if ($areaArr['status'] == 0 && $areaArr['result']['province'] == '四川') {
+            $key = $cid . '_' . $friendPhone . '_discount';
+            $percent = Yii::$app->redis->get($key);
 
-        if ($percent > 0) {
-            echo $percent;
+            if ($percent > 0) {
+                echo $percent;
+            } else {
+                $percent = rand(Yii::$app->params['discount']['start'], Yii::$app->params['discount']['end']) / 100;
+                Yii::$app->redis->setex($key, 7200, $percent);
+                echo $percent;
+            }
         } else {
-            $percent = rand(Yii::$app->params['discount']['start'], Yii::$app->params['discount']['end']) / 100;
-            Yii::$app->redis->setex($key, 7200, $percent);
-            echo $percent;
+            echo '好友号码非四川境内';
         }
     }
 

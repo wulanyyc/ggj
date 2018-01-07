@@ -35,6 +35,10 @@ class OrderController extends AuthController
             $sqlCondition[] = " order_type = " . $params['order_type'];
         }
 
+        if ($params['start_date'] > 0 && $params['end_date'] > 0) {
+            $sqlCondition[] = " `date` >= " . $params['start_date'] . ' and  `date` <=' . $params['end_date'] ;
+        }
+
         if (!empty($params['query'])) {
             $sqlCondition[] = " (`rec_name` like '%" . $params['query'] . "%' or id = '" . $params['query'] . "')";
         }

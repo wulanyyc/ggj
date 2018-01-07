@@ -16,8 +16,9 @@ $(document).ready(function () {
         $("#realprice").html(real_price);
     }
 
+    $('#express_' + $('#history_express_rule').val()).attr('checked', 'checked');
+
     calculateRealPrice();
-    $('#express_1').click();
 
     $('#express_time').click(function(){
         $('#express_info').show();
@@ -55,9 +56,16 @@ $(document).ready(function () {
 
     $('input[name="express_rule"]').change(function(){
         if ($(this).val() == 1) {
-            $('#express_fee_show').html(0);
+            var product_price = parseFloat($('#product_price').val());
+            var buy_god = parseFloat($('#buy_god').val());
+
+            if (product_price > buy_god) {
+                $('#express_fee_show').html(0);
+            } else {
+                $('#express_fee_show').html($('#std_express_fee').val());
+            }
         } else {
-            $('#express_fee_show').html($("#express_fee").val());
+            $('#express_fee_show').html(0);
         }
 
         calculateRealPrice();
@@ -111,10 +119,8 @@ $(document).ready(function () {
 
 
     function refreshShowaddress(id) {
-        if ($('.show_address').length == 0) {
-            $('.hide_address').addClass('show_address').removeClass('hide_address');
-            $('.no_address').hide();
-        }
+        $('.show_address').show();
+        $('.no_address').hide();
 
         $.ajax({
             url: '/address/info',
@@ -269,6 +275,13 @@ $(document).ready(function () {
                     success: function (data) {
                         if (data == 'ok') {
                             reloadAddress();
+                            // TODO
+                            var showId = $('.show_address').attr('data-id');
+                            if (id == showId) {
+                                $('.no_address').show();
+                                $('.show_address').hide();
+                                $('.show_address').attr('data-id', '');
+                            }
                         } else {
                             $.helper.alert(data);
                         }
@@ -362,7 +375,7 @@ $(document).ready(function () {
         var address_id = $('.show_address').attr('data-id');
         console.log(address_id);
 
-        if (address_id == undefined) {
+        if (address_id == undefined || address_id == '') {
             $.helper.alert('请添加收货地址');
             return ;
         }
@@ -396,7 +409,4 @@ $(document).ready(function () {
         });
     });
 
-    // $('.express_rule').click(function(){
-    //     alert($('input[name="express_rule"]:checked').val());
-    // });
 });

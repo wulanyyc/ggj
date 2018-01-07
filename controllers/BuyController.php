@@ -47,6 +47,12 @@ class BuyController extends Controller
         $orderType = 1;
 
         if ($cid != 0) {
+            $exsit = ProductCart::find()->where(['id' => $cid])->count();
+            if ($exsit == 0) {
+                Yii::$app->controller->redirect('/buy');
+                Yii::$app->end();
+            }
+            
             $cart = PriceHelper::getUpdateCart($cid);
         } else {
             $cart = '';
@@ -73,6 +79,12 @@ class BuyController extends Controller
         $orderType = 2;
 
         if ($cid != 0) {
+            $exsit = ProductCart::find()->where(['id' => $cid])->count();
+            if ($exsit == 0) {
+                Yii::$app->controller->redirect('/buy/booking');
+                Yii::$app->end();
+            }
+
             $cart = PriceHelper::getUpdateCart($cid);
         } else {
             $cart = [];

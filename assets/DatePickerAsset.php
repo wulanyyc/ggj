@@ -18,14 +18,11 @@ class DatePickerAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'js/lib/datepicker/css/datepicker3.css',
-        'js/lib/datepicker/css/daterangepicker.css',
+        'js/lib/datepicker/css/bootstrap-datepicker3.min.css',
     ];
     public $js = [
-        'js/lib/datepicker/js/bootstrap-datepicker.js',
-        'js/lib/datepicker/js/locales/bootstrap-datepicker.zh-CN.js',
-        'js/lib/datepicker/js/moment.min.js',
-        'js/lib/datepicker/js/daterangepicker.js',
+        'js/lib/datepicker/js/bootstrap-datepicker.min.js',
+        'js/lib/datepicker/locales/bootstrap-datepicker.zh-CN.min.js',
     ];
     public $depends = [
         'app\assets\AppAsset',

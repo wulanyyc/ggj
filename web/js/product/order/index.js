@@ -1,6 +1,14 @@
 $(document).ready(function () {
     loadTable();
 
+    $('.input-daterange').datepicker({
+        format: "yyyymmdd",
+        language: "zh-CN",
+        autoclose: true,
+        todayHighlight: true,
+        todayHighlight: true
+    });
+
     // 编辑
     $('#list').delegate('.order-edit', 'click', function () {
         var id = $(this).attr('data-id');
@@ -151,7 +159,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#query, #status, #order_type').change(function () {
+    $('#query, #status, #order_type, #start_date, #end_date').change(function () {
         loadTable();
     });
 
@@ -181,7 +189,9 @@ $(document).ready(function () {
             {
                 query: $('#query').val(), 
                 status: $('#status').val(),
-                order_type: $('#order_type').val()
+                order_type: $('#order_type').val(),
+                start_date: $('#start_date').val(),
+                end_date: $('#end_date').val()
             }, 
             'list', config
         );

@@ -11,7 +11,7 @@ use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
 use app\models\FeedBack;
 use app\models\ProductOrder;
-// use app\models\CustomerWeixin;
+use app\models\ProductCart;
 
 class CustomerController extends Controller
 {
@@ -52,8 +52,11 @@ class CustomerController extends Controller
         } else {
             $id = $_COOKIE['cid'];
             $info = Customer::find()->where(['id' => $id])->asArray()->one();
-            $cartid = ProductOrder::find()->select('cart_id')
-                ->where(['customer_id' => $id, 'status' => 1])->scalar();
+            $cartid = ProductCart::find()->select('id')->scalar();
+            $cartOver = ProductOrder::find()->where(['cart_id' => $cartid, 'status' => [2,3,4]])->count();
+            if ($cartOver > 0) {
+                $cartid = 0;
+            }
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
                 'info' => $info,

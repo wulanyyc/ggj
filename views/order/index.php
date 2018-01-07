@@ -30,6 +30,7 @@ ClipAsset::register($this);
     font-size: 14px;
     /*align-items: ;*/
     flex-wrap: wrap;
+    padding: 0.5rem
   }
 
   .item button {
@@ -74,15 +75,15 @@ ClipAsset::register($this);
   }
 
   .status-item {
-    margin-right: 10px;
     display: inline-block;
     font-size: 14px;
     height: 45px;
     line-height: 45px;
     padding-bottom: 5px;
-    padding-left: 6px;
-    padding-right: 4px;
-    margin-left: 3px;
+    padding-left: 3px;
+    padding-right: 2px;
+    margin-left: 2px;
+    margin-right: 8px;
     cursor: pointer;
   }
 
@@ -151,6 +152,7 @@ ClipAsset::register($this);
   <div class="status-item" data-type="1" <?php if ($orderType == 1) { echo "id='first'";} ?>>待付款</div>
   <div class="status-item" data-type="2" <?php if ($orderType == 2) { echo "id='first'";} ?>>待收货</div>
   <div class="status-item" data-type="3" <?php if ($orderType == 3) { echo "id='first'";} ?>>已完成</div>
+  <div class="status-item" data-type="3" <?php if ($orderType == 4) { echo "id='first'";} ?>>已退款</div>
   <div class="status-item" data-type="5" <?php if ($orderType == 5) { echo "id='first'";} ?>>已删除</div>
 </div>
 
@@ -205,7 +207,7 @@ ClipAsset::register($this);
         </div>
     </div>
 
-    <div class="item" style="border-top: 1px solid #ced4da;padding: 0.5rem;justify-content: flex-end;">
+    <div class="item" style="border-top: 1px solid #ced4da;justify-content: flex-end;">
         <?php if ($item['status'] == 1) { ?>
         <button type="button" class="btn btn-outline-warning btn-sm del" data-id="<?=$item['id'] ?>">删除订单</button>
         <button type="button" class="btn btn-outline-info btn-sm edit" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">修改商品</button>
@@ -220,6 +222,11 @@ ClipAsset::register($this);
         <?php } ?>
 
         <?php if ($item['status'] == 3) { ?>
+        <button type="button" class="btn btn-outline-primary btn-sm show_detail" data-id="<?=$item['id'] ?>" data-cid="<?=$item['cart_id'] ?>">查看商品</button>
+        <button type="button" class="btn btn-outline-danger btn-sm edit" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">再次购买</button>
+        <?php } ?>
+
+        <?php if ($item['status'] == 4) { ?>
         <button type="button" class="btn btn-outline-primary btn-sm show_detail" data-id="<?=$item['id'] ?>" data-cid="<?=$item['cart_id'] ?>">查看商品</button>
         <button type="button" class="btn btn-outline-danger btn-sm edit" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">再次购买</button>
         <?php } ?>
