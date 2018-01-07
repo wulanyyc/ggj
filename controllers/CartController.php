@@ -223,8 +223,8 @@ EOF;
         }
 
         $areas = SiteHelper::getPhoneArea($friendPhone);
-        // $areaArr = json_decode($areas, true);
-        // var_dump($areas);exit;
+        $areaArr = json_decode($areas, true);
+
         if ($areaArr['status'] == 0 && $areaArr['result']['province'] == '四川') {
             $key = $cid . '_' . $friendPhone . '_discount';
             $percent = Yii::$app->redis->get($key);
