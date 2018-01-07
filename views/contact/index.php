@@ -1,6 +1,5 @@
 <?php 
 use yii\web\View;
-// use app\components\MsaView;
 use app\assets\SiteAsset;
 
 $this->title = '联系我们';
@@ -39,14 +38,6 @@ SiteAsset::register($this);
       <div class="label-text">客服电话：</div>
       <div>18980457783 (同微信号)</div>
   </div>
-
-<!--       <div class="item">
-      <div class="label-text">淘宝店：</div>
-      <div>
-        <a href="https://shop393108277.taobao.com" target="_blank" style="color:#337ab7">
-        成都果果佳&nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-      </div>
-  </div> -->
 
   <div class="item">
     <div class="label">微信公众号：</div>

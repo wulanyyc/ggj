@@ -270,15 +270,15 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     <div class="item" style="justify-content: space-between;align-items: center;">
         <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
           <p class="label">配送方式：</p>
-          <div class="form-check form-check-inline">
+          <div class="form-check form-check-inline express_rule">
             <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
               <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="0" checked> 
               <span class="badge badge-success" style="letter-spacing: 1px;font-size: 12px;line-height: 18px;font-weight: normal;margin-top: 8px;">快递</span>
             </label>
           </div>
-          <div class="form-check form-check-inline">
+          <div class="form-check form-check-inline express_rule">
             <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
-              <input class="form-check-input" type="radio" name="express_rule" id="express_2" value="1">
+              <input class="form-check-input" type="radio" class="express_rule" name="express_rule" id="express_2" value="1">
               <span class="badge badge-info" style="letter-spacing: 1px;font-size: 12px;line-height: 18px;font-weight: normal;margin-top: 8px;">自提</span>
             </label>
           </div>

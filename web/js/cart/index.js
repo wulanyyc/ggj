@@ -379,7 +379,7 @@ $(document).ready(function () {
                 memo: $('#memo').val(),
                 product_price: $('#product_price').html(),
                 pay_money: $('#realprice').html(),
-                express_rule: $('input[name="express_rule"]').val(),
+                express_rule: $('input[name="express_rule"]:checked').val(),
                 express_fee: $('#express_fee_show').html(),
                 discount_phone: $('#code').val(),
                 discount_fee: $('#discount_fee').html(),
@@ -395,4 +395,8 @@ $(document).ready(function () {
             }
         });
     });
+
+    // $('.express_rule').click(function(){
+    //     alert($('input[name="express_rule"]:checked').val());
+    // });
 });

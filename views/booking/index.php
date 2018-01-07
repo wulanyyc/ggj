@@ -54,7 +54,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;绝对新鲜：
         </div>
         <div>
-          早上在水果市场进货，上午打包，下午顺丰发货（<span style="color:red;font-weight: bold;">隔日达</span>）。
+          早上在水果市场进货，上午打包，下午快递发货（<span style="color:red;font-weight: bold;">隔日达</span>）。
         </div>
       </li>
 
