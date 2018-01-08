@@ -64,7 +64,14 @@ class OrderController extends AuthController
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;' class='order-status btn btn-xs btn-info' href='javascript:void(0);'>状态</a>";
 
             if ($ret[$key]['status'] == 2 || $ret[$key]['status'] == 3) {
-                $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-val='{$value['pay_money']}' style='margin-top:5px !important;'  class='order-refund btn btn-xs btn-danger' href='javascript:void(0);'>退款</a>";
+                $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' style='margin-top:5px !important;'  class='order-refund btn btn-xs btn-danger' href='javascript:void(0);'>退款</a>";
+            }
+
+            if ($ret[$key]['status'] == 1) {
+                $payData = Pay::find()->where(['order_id' => $value['id'], 'pay_result' => 0])->asArray()->one();
+                if (!empty($payData)) {
+                    $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-pid='{$payData['id']}' style='margin-top:5px !important;' class='order-refresh btn btn-xs btn-light' href='javascript:void(0);'>刷新状态</a>";
+                }
             }
             $ret[$key]['status'] = Yii::$app->params['order_status'][$ret[$key]['status']];
         }

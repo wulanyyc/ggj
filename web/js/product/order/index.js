@@ -9,6 +9,29 @@ $(document).ready(function () {
         todayHighlight: true
     });
 
+    // 状态刷新
+    $('#list').delegate('.order-refresh', 'click', function () {
+        var id = $(this).attr('data-id');
+
+        $.ajax({
+            url: '/product/order/refresh',
+            type: 'post',
+            data: {
+                'id': id
+            },
+            dataType: 'html',
+            success: function (data) {
+                if (data == 'ok') {
+                    bootbox.alert('退款成功');
+                    loadTable();
+                } else {
+                    bootbox.alert(data);
+                }
+            }
+        });
+    });
+
+    // 退款
     $('#list').delegate('.order-refund', 'click', function () {
         var money = $(this).attr('data-val');
         var id = $(this).attr('data-id');

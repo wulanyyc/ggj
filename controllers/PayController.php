@@ -137,8 +137,6 @@ class PayController extends Controller
             echo 'suc';
             Yii::$app->end();
         }
-
-        // var_dump($response);
     }
 
     public function actionAdd() {

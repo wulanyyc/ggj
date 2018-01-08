@@ -48,7 +48,7 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
   </div>
   <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 10px;margin:10px;">
     <img src="/img/cry.png" />
-    <div style="padding-left:10px;width:70%">请确认支付状态后，刷新订单或<a href="/contact">联系客服</a></div>
+    <div style="padding-left:10px;width:70%">你的订单号：<?=$data['id'] ?>。请确认支付状态后，刷新订单或<a href="/contact">联系客服</a></div>
   </div>
   <button type="button" class="btn btn-danger btn-sm" id="refresh" data-id="<?=$data['id'] ?>" style="width:66%;margin-left:17%;">刷新订单状态</button>
   <a href="/order?type=1" class="btn btn-outline-success btn-sm" style="width:66%;margin-left:17%;margin-top:10px;">查看订单</a>
