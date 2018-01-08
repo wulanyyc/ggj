@@ -179,9 +179,10 @@ class PayController extends Controller
         $payData = [];
         $payData['order_id'] = $id;
         $payData['customer_id'] = $cid;
-        $payData['out_trade_no'] = date('Ymdhis', time()) . '_' . $id;
+        $payData['out_trade_no'] = uniqid() . '_' . $id;
 
         $terminal = SiteHelper::getTermimal();
+        $payData['terminal'] = $terminal;
 
         if ($walletMoney < $payMoney) {
             // alipay支付
@@ -191,13 +192,13 @@ class PayController extends Controller
                 $payData['wallet_money'] = $walletMoney;
                 $payData['online_money'] = $realPayMoney;
                 $payData['pay_type'] = 1;
-                $payData['terminal'] = $terminal;
+                
 
                 $pid = $this->addRecord($payData);
 
                 $alipayParams = [
                     'subject' => '果果佳订单',
-                    'out_trade_no' => uniqid() . '_' . $id,
+                    'out_trade_no' => $payData['out_trade_no'],
                     'timeout_express' => '30m',
                     'total_amount' => $realPayMoney,
                     'product_code' => 'QUICK_WAP_WAY'
@@ -224,8 +225,6 @@ class PayController extends Controller
             $payData['online_money'] = 0;
             $payData['wallet_money'] = $payMoney;
             $payData['pay_type'] = 0;
-            $payData['terminal'] = $terminal;
-            $payData['out_trade_no'] = uniqid() . '_' . $id;
 
             $pid = $this->addRecord($payData);
 
