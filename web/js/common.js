@@ -5,7 +5,12 @@ $(document).ready(function () {
     system.mac = p.indexOf("Mac") == 0;
     system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
     if(system.win||system.mac||system.xll){
-        $.cookie('terminal', 'pc', {path: '/'});
+        var width = $(window).width();
+        if (width <= 767) {
+            $.cookie('terminal', 'wap', {path: '/'});
+        } else {
+            $.cookie('terminal', 'pc', {path: '/'});
+        }
     }else{  
         $.cookie('terminal', 'wap', {path: '/'});
     }

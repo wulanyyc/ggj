@@ -72,6 +72,15 @@ class BuyController extends Controller
         ]);
     }
 
+    public function actionType() {
+        $params = Yii::$app->request->get();
+        $id = isset($params['id']) ? $params['id'] : 0;
+        return $this->render('type', [
+            'controller' => Yii::$app->controller->id,
+            'id' => $id,
+        ]);
+    }
+
     public function actionBooking() {
         $params = Yii::$app->request->get();
         $id = isset($params['id']) ? $params['id'] : 0;

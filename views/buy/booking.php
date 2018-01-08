@@ -1,4 +1,5 @@
-<?php 
+<?php
+use Yii;
 use yii\web\View;
 use app\components\MsaView;
 
@@ -36,8 +37,8 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   .list-group-item.active {
-    background-color: #53a93f;
-    border-color: #53a93f;
+    background-color: #866D8D;
+    border-color: #866D8D;
   }
 
   .order-product {
@@ -110,7 +111,8 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   .operator.active {
-    border-color: #53a93f;
+    border-color: #866D8D;
+    color: #866D8D;
   }
 
   .operator-left {
@@ -126,8 +128,8 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   .operator-left.active {
-    border-right: 1px solid #53a93f;
-    color: #53a93f;
+    border-right: 1px solid #866D8D;
+    color: #866D8D;
   }
 
   .operator-num {
@@ -150,8 +152,8 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   .operator-right.active {
-    border-left: 1px solid #53a93f;
-    color: #53a93f;
+    border-left: 1px solid #866D8D;
+    color: #866D8D;
   }
 
   .inventory {
@@ -211,8 +213,9 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 
 <div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
-      <div class="card-header bg-white" style="color: #53a93f;position:relative;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-        预约：<span style="font-size: 13px;">绝对新鲜，快递隔日达，每周1、5发货</span>
+      <div class="card-header bg-white" style="color: #866D8D;position:relative;border-radius: 0;border-bottom: 2px solid #866D8D;display: flex;flex-direction: row;justify-content: space-between;">
+        预约商品列表
+        <a href="/buy/" class="text-info" style="font-size: 14px;margin-top: 5px;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;买现货享<?=Yii::$app->params['buyDiscount'] * 10 ?>折</a>
       </div>
 
       <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;">

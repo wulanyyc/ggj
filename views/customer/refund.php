@@ -37,7 +37,7 @@ $this->title = '退款赔偿细则';
       <br/>
       <p class="text-danger" style="font-size: 18px;">订单不能按时发货：</p>
       <p style="font-size: 14px;">
-      由于商家缺货或者其他不可控因素导致的无法正常发货，系统按原路自动退款<span class="text-info">（例：微信支付的订单，钱退回微信）</span>。
+      由于商家缺货或者其他不可控因素导致的无法正常发货，系统按支付方式自动退款<span class="text-info">（例：微信支付的订单，钱退回微信）</span>。
       </p>
 
       <br/>

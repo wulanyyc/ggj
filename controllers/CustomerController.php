@@ -28,15 +28,15 @@ class CustomerController extends Controller
     public $scoreConfig = [
         1 => [
             'score' => 100,
-            'money' => 5,
+            'money' => 2,
         ],
         2 => [
             'score' => 300,
-            'money' => 20,
+            'money' => 10,
         ],
         3 => [
             'score' => 500,
-            'money' => 50,
+            'money' => 20,
         ],
     ];
 

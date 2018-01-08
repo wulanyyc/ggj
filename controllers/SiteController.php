@@ -24,25 +24,29 @@ class SiteController extends Controller
      * @return
      */
     public function actionIndex() {
+        $orderType = isset($_COOKIE['order_type']) ? $_COOKIE['order_type'] : 0;
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'dayPromotion' => $this->getDayPromotion(),
             'tags' => $this->getTags(),
-            'fruits' => $this->getFruits(),
-            'packages' => $this->getPackages(),
-            'newPromotion' => $this->getNewPromotion(),
-            'bookingDiscount' => Yii::$app->params['bookingDiscount'] * 10,
+            'fruits' => $this->getFruits($orderType),
+            'packages' => $this->getPackages($orderType),
+            'newPromotion' => $this->getNewPromotion($orderType),
+            'orderType' => $orderType,
         ]);
     }
 
-    private function getNewPromotion() {
+    private function getNewPromotion($orderType) {
+        if ($orderType == 0) $orderType = 2;
+
         $promotions = Yii::$app->params['new_promotion'];
 
-        $info = ProductList::find()->select('name,price,unit')->where(['id' => $promotions['id']])->asArray()->one();
+        $info = ProductList::find()->select('name,price,unit,img')->where(['id' => $promotions['id']])->asArray()->one();
 
-        $price = PriceHelper::getProductPrice($promotions['id']);
+        $price = PriceHelper::getProductPrice($promotions['id'], $orderType);
         $text = $info['name'] . ' ' . $price . '元/' . $info['unit'];
 
+        // TODO 调整图片
         return ['text' => $text, 'img' => Yii::$app->params['new_promotion']['img']];
     }
 
@@ -54,7 +58,7 @@ class SiteController extends Controller
         }
 
         $promotions = Yii::$app->params['day_promotion'][$dayofweek];
-        $info = ProductList::find()->select('id,name,price,img')
+        $info = ProductList::find()->select('id,name,img')
             ->where(['id' => $promotions['id']])->asArray()->one();
 
         $text = '星期' . $cn[$dayofweek] . ' ' . $info['name'];
@@ -80,8 +84,15 @@ class SiteController extends Controller
         return $info;
     }
 
-    private function getFruits() {
-        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'fruit', 'status' => 1])->asArray()->all();
+    private function getFruits($orderType) {
+        if ($orderType == 0) $orderType = 2;
+
+        if ($orderType == 1) {
+            $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'fruit', 'status' => 1])->andWhere(['>', 'num', 0])->asArray()->all();
+        } else {
+            $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'fruit', 'status' => 1])->asArray()->all();
+        }
+
 
         foreach($info as $key => $value) {
             $tagArr = [];
@@ -96,7 +107,7 @@ class SiteController extends Controller
             }
             $info[$key]['tag'] = implode(' ', $tagArr);
 
-            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id']);
+            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id'], $orderType);
             if (empty($value['img'])) {
                 $info[$key]['img'] = '/img/apple_4x3.png';
             }
@@ -105,11 +116,17 @@ class SiteController extends Controller
         return $info;
     }
 
-    private function getPackages() {
-        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'package', 'status' => 1])->asArray()->all();
+    private function getPackages($orderType) {
+        if ($orderType == 0) $orderType = 2;
+        
+        if ($orderType == 1) {
+            $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'package', 'status' => 1])->andWhere(['>', 'num', 0])->asArray()->all();
+        } else {
+            $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'package', 'status' => 1])->asArray()->all();
+        }
 
         foreach($info as $key => $value) {
-            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id']);
+            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id'], $orderType);
             if (empty($value['img'])) {
                 $info[$key]['img'] = '/img/apple_4x3.png';
             }

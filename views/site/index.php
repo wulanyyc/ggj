@@ -1,4 +1,5 @@
-<?php 
+<?php
+use Yii;
 use yii\web\View;
 use app\components\MsaView;
 
@@ -45,8 +46,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     padding: 3px 5px;
     color: #fff;
     background-color: #53a93f;
-    /*opacity: 1;*/
-    /*margin-left: 1%;*/
     text-align: center;
     font-size: 12px;
     transform: scale(0.9);
@@ -81,6 +80,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   a.product-item-content {
     text-decoration: none;color:#000;
+    display: flex;justify-content: space-between;align-items: stretch;flex-direction: column;
   }
 
   .product-item .tip-content {
@@ -267,7 +267,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     position: absolute;bottom:0px;
     width:100%;
     display: flex;flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: baseline;
     height:40px;
     line-height: 40px;
@@ -281,7 +281,13 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 <?php } ?>
 
 <div id="promotion">
-  <a class="promotion-item" href="/buy?id=1">
+  <?php if ($orderType == 1) { ?>
+  <a class="promotion-item" href="/buy/?id=1">
+  <?php } else if ($orderType == 2) { ?>
+  <a class="promotion-item" href="/buy/booking?id=1">
+  <?php } else { ?>
+  <a class="promotion-item" href="/buy/type?id=1">
+  <?php } ?>
     <div class="promotion-item-left" style="background-color: #53a93f;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">新店特惠</div>
@@ -294,7 +300,13 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     </div>
   </a>
 
-  <a class="promotion-item" href="/buy?id=<?=$dayPromotion['id'] ?>">
+  <?php if ($orderType == 1) { ?>
+  <a class="promotion-item" href="/buy/?id=<?=$dayPromotion['id'] ?>">
+  <?php } else if ($orderType == 2){ ?>
+  <a class="promotion-item" href="/buy/booking?id=<?=$dayPromotion['id'] ?>">
+  <?php } else { ?>
+  <a class="promotion-item" href="/buy/type?id=<?=$dayPromotion['id'] ?>">
+  <?php } ?>
     <div class="promotion-item-left" style="background-color: #DD182B;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">今日特价</div>
@@ -309,8 +321,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   <a class="promotion-item" href="/booking">
     <div class="promotion-item-left" style="background-color: #866D8D;">
       <div class="promotion-item-left-content">
-        <div class="promotion-item-left-content-top">优质预约</div>
-        <div class="promotion-item-left-content-bottom">绝对新鲜 全场享<?=$bookingDiscount ?>折</div>
+        <div class="promotion-item-left-content-top">无忧套餐</div>
+        <div class="promotion-item-left-content-bottom">绝对新鲜 水果小管家</div>
       </div>
     </div>
     <div class="promotion-item-right" style="background-color: #D5CCDB;">
@@ -332,14 +344,17 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     <div class="product-items">
       <?php foreach($fruits as $product) { ?>
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
-            <?php if ($product['num'] > 0) { ?>
-            <a class="product-item-content" style="display: flex;justify-content: space-between;align-items: stretch;flex-direction: column;" href="/buy?id=<?=$product['id'] ?>">
+            <?php if ($orderType == 1) { ?>
+            <a class="product-item-content" href="/buy/?id=<?=$product['id'] ?>">
+            <?php } else if ($orderType == 2){ ?>
+            <a class="product-item-content" href="/buy/booking?id=<?=$product['id'] ?>">
             <?php } else { ?>
-            <a class="product-item-content" style="display: flex;justify-content: space-between;align-items: stretch;flex-direction: column;" href="/buy/booking?id=<?=$product['id'] ?>">
+            <a class="product-item-content" href="/buy/type?id=<?=$product['id'] ?>">
             <?php } ?>
-              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:5%;height:90%;">
-                <img class="card-img" style="width:40%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
-                <div style="width:45%;">
+
+              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:5%;height:90%;flex-wrap: nowrap;">
+                <img class="card-img" style="width:50%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                <div style="width:250px;">
                   <p class="desc"><?=$product['name'] ?></p>
                   <p class="desc"><?=$product['desc'] ?></p>
                   <p class="price">
@@ -378,7 +393,13 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
     <div id="package">
       <?php foreach($packages as $item) { ?>
-      <div class="card style_<?=$item['index'] ?>" data-link="/buy?id=<?=$item['id'] ?>" style="display: block;">
+      <?php if ($orderType == 1) { ?>
+      <div class="card style_<?=$item['index'] ?>" data-link="/buy/?id=<?=$item['id'] ?>" style="display: block;">
+      <?php } else if ($orderType == 2){ ?>
+      <div class="card style_<?=$item['index'] ?>" data-link="/buy/booking?id=<?=$item['id'] ?>" style="display: block;">
+      <?php } else { ?>
+      <div class="card style_<?=$item['index'] ?>" data-link="/buy/type?id=<?=$item['id'] ?>" style="display: block;">
+      <?php } ?>
           <div class="card-header header_<?=$item['index'] ?>">
               <span><?=$item['name'] ?></span>
               <span><?=$item['slogan'] ?></span>
@@ -396,7 +417,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
             <br/>
             <br/>
             <div class="package-price border_<?=$item['index'] ?>" style="border-top: 1px solid #f5f5f5;">
-              <a href="/buy/booking?id=<?=$item['id'] ?>" style="font-size: 13px;color:#53a93f;text-decoration: none;">&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;预约享<?=$bookingDiscount ?>折</a>
               <div>
                 <span style="font-size: 13px;"><?=$item['desc'] ?></span>
                 <span style="font-size: 13px;padding-right: 8px;">

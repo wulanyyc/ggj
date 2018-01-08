@@ -72,7 +72,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格实惠：
         </div>
         <div>
-          低于市场价，并在平台其它优惠基础上，全部再享<span style="color:red;font-weight: bold;"><?=$bookingDiscount ?></span>折。
+          低于市场价，并享受平台各种优惠。
         </div>
       </li>
 
@@ -81,13 +81,14 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;预约限制：
         </div>
         <div>
-        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">成都</span>地区的订单，目前仅<span style="color:red;font-weight: bold;">周一、周五</span>可发预约的订单。如遇缺货无法完成订单，立即退款。
+        为保证水果新鲜度，仅接受<span style="color:red;font-weight: bold;">成都</span>地区的订单，<span style="color:red;font-weight: bold;">周一、三、五</span>发货，二、四、六到货。如遇缺货无法完成订单，立即退款。
         </div>
       </li>
     </ul>
+  </div>
 </div>
 
-<a class='btn btn-success' href='/buy/booking' id='order' style="width:30%;margin: 0 auto;margin-bottom: 1%;">立即预约</a>
+<a class='btn btn-success' href='/buy/booking' id='order' style="width:30%;margin-left:35%;margin-bottom: 1%;">立即预约</a>
 
 <br/>
 <br/>

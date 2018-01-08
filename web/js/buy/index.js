@@ -9,8 +9,10 @@ $(document).ready(function () {
 
         var id = parseInt($('#scroll_id').val());
         if (id > 0) {
-            var scroll = $('#pid_' + id).offset().top - $('#order_scroll').offset().top;
-            $("#order_scroll").animate({scrollTop : scroll}, 600);
+            if ($('#pid_' + id).length > 0) {
+                var scroll = $('#pid_' + id).offset().top - $('#order_scroll').offset().top;
+                $("#order_scroll").animate({scrollTop : scroll}, 600);
+            }
         }
 
         var cartHistory = $('#buyCart').val();
