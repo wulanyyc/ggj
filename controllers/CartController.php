@@ -166,7 +166,7 @@ class CartController extends Controller
             $productPrice += $item['num'] * PriceHelper::getProductPrice($id, $params['order_type']);
         }
 
-        $productPrice = round($productPrice, 1);
+        $productPrice = round($productPrice, 2);
 
         if ($productPrice == $params['product_price']) {
             return true;

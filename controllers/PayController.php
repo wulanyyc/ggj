@@ -150,7 +150,7 @@ class PayController extends Controller
             if ($payType == 1) {
                 $terminal = SiteHelper::getTermimal();
 
-                $realPayMoney = round($payMoney - $walletMoney, 1);
+                $realPayMoney = round($payMoney - $walletMoney, 2);
 
                 $payData['wallet_money'] = $walletMoney;
                 $payData['online_money'] = $realPayMoney;

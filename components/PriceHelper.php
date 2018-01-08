@@ -38,11 +38,11 @@ class PriceHelper extends Component{
         $price = self::getNewPromotion($id, $price);
 
         if ($type == 1) {
-            return round(Yii::$app->params['buyDiscount'] * $price, 1);
+            return round(Yii::$app->params['buyDiscount'] * $price, 2);
         }
 
         if ($type == 2) {
-            return round(Yii::$app->params['bookingDiscount'] * $price, 1);
+            return round(Yii::$app->params['bookingDiscount'] * $price, 2);
         }
 
         return $price;
@@ -66,7 +66,7 @@ class PriceHelper extends Component{
         }
 
         if ($promotions[$dayofweek]['id'] == $id) {
-            $price = round($price * $promotions[$dayofweek]['discount'], 1);
+            $price = round($price * $promotions[$dayofweek]['discount'], 2);
         }
 
         return $price;
@@ -149,7 +149,7 @@ class PriceHelper extends Component{
             $productPrice += $item['num'] * PriceHelper::getProductPrice($pid, $data['order_type']);
         }
 
-        $productPrice = round($productPrice, 1);
+        $productPrice = round($productPrice, 2);
 
         return $productPrice;
     }
@@ -163,7 +163,7 @@ class PriceHelper extends Component{
         $couponFee    = self::calculateCounponFee($data['coupon_ids']);
         $discountFee  = $data['discount_fee'];
 
-        return round($productPrice + $expressFee - $couponFee - $discountFee, 1);
+        return round($productPrice + $expressFee - $couponFee - $discountFee, 2);
     }
 
     /**

@@ -231,7 +231,7 @@ class SiteHelper extends Component{
             ->select('discount_fee, discount_phone, customer_id, id')->asArray()->one();
 
         if ($discountData['discount_fee'] > 0) {
-            $money = round($discountData['discount_fee'] * 0.5, 1);
+            $money = round($discountData['discount_fee'] * 0.5, 2);
             PriceHelper::addFriendWallet($money, $discountData['discount_phone'], 'friend_discount');
 
             $userphone = self::getCustomerPhone($discountData['customer_id']);

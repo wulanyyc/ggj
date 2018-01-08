@@ -121,7 +121,7 @@ class OrderController extends Controller
             $percent = Yii::$app->redis->get($key);
             // 过期了设置为0
             if (empty($percent)) $percent = 0;
-            $discountFee = round($productPrice * $percent, 1);
+            $discountFee = round($productPrice * $percent, 2);
             $params['discount_fee'] = $discountFee;
         }
 
@@ -131,7 +131,7 @@ class OrderController extends Controller
             $params['coupon_fee'] = $couponFee;
         }
 
-        $params['pay_money'] = round($productPrice + $expressFee - $params['coupon_fee'] - $params['discount_fee'], 1);
+        $params['pay_money'] = round($productPrice + $expressFee - $params['coupon_fee'] - $params['discount_fee'], 2);
 
         return $params;
     }
