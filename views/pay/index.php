@@ -22,15 +22,12 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
   .card {
       border-radius: 0;
       border: none;
-      /*width: 50%;*/
-      /*border-bottom: 1px solid #eee;*/
-      /*border-top: 1px solid #eee;*/
   }
 
 </style>
 
 <?php if ($data['pay_result'] == 1){ ?>
-<div class="card" id="suc" style="background: url('/img/payok.jpeg') no-repeat;background-size: 100%">
+<div class="card" id="suc" style="background: url('/img/payok.jpeg') no-repeat;background-size: 100% 100%;">
   <div style="position: absolute; bottom: 30px;width: 100%;">
     <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 10px;margin:20px;">
       <div style="margin-left:10px;font-size: 14px;">
