@@ -132,7 +132,7 @@ class PayController extends Controller
 
         $response = AlipayHelper::query($data);
 
-        $resData = json_decode($response, true);
+        // $resData = json_decode($response, true);
 
         var_dump($response);
     }
