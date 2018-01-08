@@ -134,7 +134,7 @@ class PayController extends Controller
 
         // $resData = json_decode($response, true);
 
-        echo $response;
+        var_dump($response);
     }
 
     public function actionAdd() {
