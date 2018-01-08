@@ -234,12 +234,12 @@ class SiteHelper extends Component{
             $money = round($discountData['discount_fee'] * 0.5, 2);
             PriceHelper::addFriendWallet($money, $discountData['discount_phone'], 'friend_discount');
 
-            $userphone = self::getCustomerPhone($discountData['customer_id']);
-            SmsHelper::sendDiscount($discountData['discount_phone'], [
-                'code' => substr($userphone, 7),
-                'order' => $discountData['id'],
-                'visit' => $discountData['id'],
-            ]);
+            // $userphone = self::getCustomerPhone($discountData['customer_id']);
+            // SmsHelper::sendDiscount($discountData['discount_phone'], [
+            //     'code' => substr($userphone, 7),
+            //     'order' => $discountData['id'],
+            //     'visit' => $discountData['id'],
+            // ]);
         }
     }
 

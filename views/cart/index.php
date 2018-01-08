@@ -264,7 +264,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <div style="position: relative;width:80%;overflow: hidden;height:70px;">
         <?php foreach($data['show_product'] as $item) { ?>
         <div class="product" style="height: 70px;display: inline-block;">
-          <img src="<?=$item['img'] ?>" style="height:100%;" />
+          <img src="<?=$item['img'] ?>" style="height:100%;padding: 5%;" />
         </div>
         <?php } ?>
       </div>
