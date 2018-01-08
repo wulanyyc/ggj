@@ -145,16 +145,18 @@ class PayController extends Controller
         $payData['customer_id'] = $cid;
         $payData['out_trade_no'] = date('Ymdhis', time()) . '_' . $id;
 
+        $terminal = SiteHelper::getTermimal();
+
         if ($walletMoney < $payMoney) {
             // alipay支付
             if ($payType == 1) {
-                $terminal = SiteHelper::getTermimal();
-
                 $realPayMoney = round($payMoney - $walletMoney, 2);
 
                 $payData['wallet_money'] = $walletMoney;
                 $payData['online_money'] = $realPayMoney;
-                $payData['pay_type'] = 1; 
+                $payData['pay_type'] = 1;
+                $payData['terminal'] = $terminal;
+
                 $pid = $this->addRecord($payData);
 
                 $alipayParams = [
@@ -185,7 +187,9 @@ class PayController extends Controller
             // 余额支付
             $payData['online_money'] = 0;
             $payData['wallet_money'] = $payMoney;
-            $payData['pay_type'] = 0; 
+            $payData['pay_type'] = 0;
+            $payData['terminal'] = $terminal;
+
             $pid = $this->addRecord($payData);
 
             PriceHelper::adjustWallet($payMoney, 'minus', 'pay_order_' + $pid + "_" + $id);
