@@ -132,9 +132,13 @@ class PayController extends Controller
 
         $response = AlipayHelper::query($data);
 
-        // $resData = json_decode($response, true);
+        if ($response->alipay_trade_query_response->code == 10000) {
+            SiteHelper::handlePayOkOrder($id, $response->alipay_trade_query_response->trade_no);
+            echo 'suc';
+            Yii::$app->end();
+        }
 
-        var_dump($response);
+        // var_dump($response);
     }
 
     public function actionAdd() {
