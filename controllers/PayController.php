@@ -193,7 +193,7 @@ class PayController extends Controller
 
                 $alipayParams = [
                     'subject' => '果果佳订单',
-                    'out_trade_no' => date('Ymdhis', time()) . '_' . $id,
+                    'out_trade_no' => uniqid() . '_' . $id,
                     'timeout_express' => '30m',
                     'total_amount' => $realPayMoney,
                     'product_code' => 'QUICK_WAP_WAY'
@@ -221,6 +221,7 @@ class PayController extends Controller
             $payData['wallet_money'] = $payMoney;
             $payData['pay_type'] = 0;
             $payData['terminal'] = $terminal;
+            $payData['out_trade_no'] = uniqid() . '_' . $id;
 
             $pid = $this->addRecord($payData);
 
