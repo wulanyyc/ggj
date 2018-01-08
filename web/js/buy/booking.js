@@ -86,7 +86,7 @@ $(document).ready(function () {
             total += v.num * v.price;
         });
 
-        total = $.helper.round(total, 1);
+        total = $.helper.round(total, 2);
         var limit = parseFloat($('#buyLimit').val());
 
         $('#tongji .realprice').html(total);
