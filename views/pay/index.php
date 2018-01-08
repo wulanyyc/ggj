@@ -26,7 +26,7 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
 
 </style>
 
-<?php if ($data['pay_result'] == 1){ ?>
+<?php if (!empty($data) && $data['pay_result'] == 1){ ?>
 <div class="card" id="suc" style="background: url('/img/payok.jpeg') no-repeat;background-size: 100% 100%;">
   <div style="position: absolute; bottom: 30px;width: 100%;">
     <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 10px;margin:20px;">
@@ -44,7 +44,7 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
 <?php } else { ?>
 <div class="card" id="fail">
   <div class="card-header bg-white" style="text-align:center;position:relative;color: black;border-radius: 0;border-bottom: 1px solid #f5f5f5;">
-        订单支付失败
+        订单支付状态未知
   </div>
   <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 10px;margin:10px;">
     <img src="/img/cry.png" />
