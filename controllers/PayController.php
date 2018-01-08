@@ -136,6 +136,9 @@ class PayController extends Controller
             SiteHelper::handlePayOkOrder($id, $response->alipay_trade_query_response->trade_no);
             echo 'suc';
             Yii::$app->end();
+        } else {
+            echo $response->alipay_trade_query_response->msg;
+            Yii::$app->end();
         }
     }
 
