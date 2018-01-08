@@ -210,6 +210,7 @@ EOF;
 
         $params = Yii::$app->request->post();
         $friendPhone = $params['phone'];
+        $cartId = $params['cid'];
 
         $userphone = SiteHelper::getCustomerPhone($cid);
         if (!SiteHelper::checkPhone($friendPhone)) {
@@ -229,12 +230,14 @@ EOF;
             $key = $cid . '_' . $friendPhone . '_discount';
             $percent = Yii::$app->redis->get($key);
 
+            $productPrice = ProductCart::find()->where(['id' => $cartId])->select('product_price')->scalar();
+
             if ($percent > 0) {
-                echo $percent;
+                echo round($percent * $productPrice, 2);
             } else {
                 $percent = rand(Yii::$app->params['discount']['start'], Yii::$app->params['discount']['end']) / 100;
                 Yii::$app->redis->setex($key, 7200, $percent);
-                echo $percent;
+                echo round($percent * $productPrice, 2);
             }
         } else {
             echo '好友号码非四川境内或号码错误';

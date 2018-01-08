@@ -293,19 +293,21 @@ $(document).ready(function () {
 
     $('#use_discount').click(function(){
         var phone = $('#code').val();
+        var cid = $(this).attr('data-id');
+
         if ($.helper.validatePhone(phone)) {
             $.ajax({
                 url: '/cart/discount',
                 type: 'post',
                 dataType: 'html',
-                data: "phone=" + phone,
+                data: "phone=" + phone + '&cid=' + cid,
                 success: function (data) {
                     console.log(data);
                     if (data > 0) {
-                        var percent = data;
-                        var pp = $('#product_price').html();
-                        var discount = $.helper.round(pp * percent, 2);
-                        $('#discount_fee').html(discount);
+                        // var percent = data;
+                        // var pp = $('#product_price').html();
+                        // var discount = $.helper.round(pp * percent, 2);
+                        $('#discount_fee').html(data);
                         calculateRealPrice();
                     } else {
                         $.helper.alert(data);
