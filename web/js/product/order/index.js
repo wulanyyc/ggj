@@ -11,18 +11,18 @@ $(document).ready(function () {
 
     // 状态刷新
     $('#list').delegate('.order-refresh', 'click', function () {
-        var id = $(this).attr('data-id');
+        var pid = $(this).attr('data-pid');
 
         $.ajax({
-            url: '/product/order/refresh',
+            url: '/pay/refresh',
             type: 'post',
             data: {
-                'id': id
+                'id': pid
             },
             dataType: 'html',
             success: function (data) {
                 if (data == 'ok') {
-                    bootbox.alert('退款成功');
+                    bootbox.alert('已重新获取状态');
                     loadTable();
                 } else {
                     bootbox.alert(data);
