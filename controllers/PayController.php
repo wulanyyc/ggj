@@ -61,6 +61,9 @@ class PayController extends Controller
         }
 
         $data = Pay::find()->where(['trade_no' => $trade_no])->asArray()->one();
+        if (empty($data)) {
+            $data = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
+        }
 
         switch ($data['pay_type']) {
             case 0:
@@ -103,6 +106,38 @@ class PayController extends Controller
             'controller' => Yii::$app->controller->id,
             'data' => $data,
         ]);
+    }
+
+    public function actionRefresh() {
+        $params = Yii::$app->request->post();
+        $id = isset($params['id']) ? $params['id'] : 0;
+        if ($id == 0) {
+            echo '提交数据错误';
+            Yii::$app->end();
+        }
+
+        $data = Pay::find()->where(['id' => $id])->asArray()->one();
+
+        if (empty($data)) {
+            echo '提交数据错误';
+            Yii::$app->end();
+        }
+
+        if ($data['pay_result'] == 1) {
+            echo 'suc';
+            Yii::$app->end();
+        }
+
+        if ($data['pay_result'] == 2) {
+            echo '支付失败，请重新支付';
+            Yii::$app->end();
+        }
+
+        $response = AlipayHelper::query($data);
+
+        // $resData = json_decode($response, true);
+
+        echo $response;
     }
 
     public function actionAdd() {

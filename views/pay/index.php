@@ -50,7 +50,7 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
     <img src="/img/cry.png" />
     <div style="padding-left:10px;width:70%">请确认支付状态后，刷新订单</div>
   </div>
-  <button type="button" class="btn btn-danger btn-sm" id="refresh" style="width:66%;margin-left:17%;">刷新订单状态</button>
+  <button type="button" class="btn btn-danger btn-sm" id="refresh" data-id="<?=$data['id'] ?>" style="width:66%;margin-left:17%;">刷新订单状态</button>
   <a href="/order?type=1" class="btn btn-outline-success btn-sm" style="width:66%;margin-left:17%;margin-top:10px;">查看订单</a>
   <br/>
 </div>

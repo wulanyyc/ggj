@@ -87,4 +87,27 @@ class AlipayHelper extends Component{
 
         return $result;
     }
+
+    public static function query($data) {
+        $terminal = !empty($data['terminal']) ? $data['terminal'] : 'wap';
+
+        $aop = new \AopClient;
+        $aop->gatewayUrl = Yii::$app->params['alipay'][$terminal]['gatewayUrl'];
+        $aop->appId = Yii::$app->params['alipay'][$terminal]['app_id'];
+        $aop->rsaPrivateKey = Yii::$app->params['alipay'][$terminal]['merchant_private_key'];
+        $aop->format = "json";
+        $aop->charset = Yii::$app->params['alipay'][$terminal]['charset'];
+        $aop->signType= Yii::$app->params['alipay'][$terminal]['sign_type'];
+        $aop->alipayrsaPublicKey = Yii::$app->params['alipay'][$terminal]['alipay_public_key'];
+
+        $params = [];
+        $params['out_trade_no'] = $data['out_trade_no'];
+        // $params['trade_no'] = $data['trade_no'];
+
+        $request = new \AlipayTradeQueryRequest ();
+        $request->setBizContent(json_encode($params));
+        $result = $aop->Execute ($request);
+
+        return $result;
+    }
 }
