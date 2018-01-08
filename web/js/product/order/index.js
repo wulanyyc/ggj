@@ -30,9 +30,14 @@ $(document).ready(function () {
                         data: {
                             'id': id
                         },
-                        dataType: 'json',
+                        dataType: 'html',
                         success: function (data) {
-                            alert(data);
+                            if (data == 'ok') {
+                                bootbox.alert('退款成功');
+                                loadTable();
+                            } else {
+                                bootbox.alert(data);
+                            }
                         }
                     });
                 }

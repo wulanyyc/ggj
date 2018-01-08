@@ -282,22 +282,26 @@ class PriceHelper extends Component{
         $up->save();
     }
 
-    public static function refund($payid) {
-        $data = Pay::find()->where(['id' => $payid])->asArray()->one();
-        if ($data['pay_type'] == 0) {
-            self::adjustWallet($data['wallet_money'], 'plus', 'refund_' . $data['order_id']);
+    public static function refund($payData) {
+        if ($payData['pay_type'] == 0) {
+            self::adjustWallet($payData['wallet_money'], 'plus', 'refund_' . $payData['order_id']);
+            
+            $orderId = $payData['order_id'];
+            $up = ProductOrder::findOne($orderId);
+            $up->status = 4;
+            $up->save();
         }
 
-        if ($data['pay_type'] == 1) {
-            if ($data['wallet_money'] > 0) {
-                self::adjustWallet($data['wallet_money'], 'plus', 'refund_' . $data['order_id']);
+        if ($payData['pay_type'] == 1) {
+            if ($payData['wallet_money'] > 0) {
+                self::adjustWallet($payData['wallet_money'], 'plus', 'refund_' . $payData['order_id']);
             }
 
-            $result = AlipayHelper::refund($data);
+            $result = AlipayHelper::refund($payData);
             var_dump($result);
         }
 
-        if ($data['pay_type'] == 2) {
+        if ($payData['pay_type'] == 2) {
             
         }
 

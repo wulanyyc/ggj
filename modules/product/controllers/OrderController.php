@@ -85,7 +85,7 @@ class OrderController extends AuthController
         if (empty($payData)) {
             echo '未找到支付相关数据';
         } else {
-            echo PriceHelper::refund($payData['id']);
+            echo PriceHelper::refund($payData);
         }
     }
 

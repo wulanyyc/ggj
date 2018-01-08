@@ -22,28 +22,27 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
   .card {
       border-radius: 0;
       border: none;
-      border-bottom: 1px solid #eee;
-      border-top: 1px solid #eee;
+      /*width: 50%;*/
+      /*border-bottom: 1px solid #eee;*/
+      /*border-top: 1px solid #eee;*/
   }
 
 </style>
 
 <?php if ($data['pay_result'] == 1){ ?>
-<div class="card" id="suc">
-  <div class="card-header bg-white" style="text-align:center;position:relative;color: black;border-radius: 0;border-bottom: 1px solid #f5f5f5;">
-        订单支付成功
-  </div>
-  <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 10px;margin:20px;">
-    <img src='/img/order.png' style="width:90px;"/>
-    <div style="margin-left:10px;font-size: 14px;">
-      <div>支付方式：<span class="text-danger"><?=$data['pay_type'] ?></span></div>
-      <div>支付金额：<span class="text-danger">¥<?=$data['online_money'] ?></span></div>
-      <div>赠送积分：<span class="text-danger"><?=round($data['online_money'], 1) ?></span></div>
+<div class="card" id="suc" style="background: url('/img/payok.jpeg') no-repeat;background-size: 100%">
+  <div style="position: absolute; bottom: 30px;width: 100%;">
+    <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 10px;margin:20px;">
+      <div style="margin-left:10px;font-size: 14px;">
+        <div class="text-light">支付方式：<?=$data['pay_type'] ?></div>
+        <div class="text-light">支付金额：¥<?=$data['online_money'] ?></div>
+        <div class="text-light">赠送积分：<?=round($data['online_money'], 1) ?></div>
+      </div>
     </div>
+    <a href="/order?type=2" class="btn btn-outline-light btn-sm" style="width:66%;margin-left:17%;">查看订单</a>
+    <button type="button" class="btn btn-danger btn-sm" id="order" style="width:66%;margin-left:17%;margin-top:10px;">积分兑换</button>
+    <br/>
   </div>
-  <a href="/order?type=2" class="btn btn-outline-success btn-sm" style="width:66%;margin-left:17%;">查看订单</a>
-  <button type="button" class="btn btn-danger btn-sm" id="order" style="width:66%;margin-left:17%;margin-top:10px;">积分兑换</button>
-  <br/>
 </div>
 <?php } else { ?>
 <div class="card" id="fail">
