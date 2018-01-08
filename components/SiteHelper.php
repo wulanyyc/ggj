@@ -176,7 +176,7 @@ class SiteHelper extends Component{
         $data = Pay::find()->where(['id' => $payid])->asArray()->one();
 
         if ($data['pay_type'] != 0 && $data['wallet_money'] > 0) {
-            PriceHelper::adjustWallet($payData['customer_id'], $data['wallet_money'], 'minus', 'pay_order_' + $data['id'] + "_" + $data['order_id']);
+            PriceHelper::adjustWallet($data['customer_id'], $data['wallet_money'], 'minus', 'pay_order_' + $data['id'] + "_" + $data['order_id']);
         }
 
         // 更新支付状态
