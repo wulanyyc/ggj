@@ -54,16 +54,13 @@ class PayController extends Controller
         }
 
         $params = Yii::$app->request->get();
-        $trade_no = isset($params['trade_no']) ? $params['trade_no'] : '';
-        if (empty($trade_no)) {
+        $out_trade_no = isset($params['out_trade_no']) ? $params['out_trade_no'] : '';
+        if (empty($out_trade_no)) {
             Yii::$app->controller->redirect('/');
             Yii::$app->end();
         }
 
-        $data = Pay::find()->where(['trade_no' => $trade_no])->asArray()->one();
-        if (empty($data)) {
-            $data = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
-        }
+        $data = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
         switch ($data['pay_type']) {
             case 0:
