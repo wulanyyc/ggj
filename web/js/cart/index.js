@@ -6,11 +6,10 @@ $(document).ready(function () {
         var coupon = parseFloat($('#coupon_fee').html());
 
         var real_price = parseFloat(product_price + express_fee - discount - coupon);
+        var real_price = $.helper.round(real_price, 2);
 
         if (real_price < 0) {
             real_price = 0;
-        } else {
-            real_price = $.helper.round(real_price, 2);
         }
 
         $("#realprice").html(real_price);
@@ -304,9 +303,6 @@ $(document).ready(function () {
                 success: function (data) {
                     console.log(data);
                     if (data > 0) {
-                        // var percent = data;
-                        // var pp = $('#product_price').html();
-                        // var discount = $.helper.round(pp * percent, 2);
                         $('#discount_fee').html(data);
                         calculateRealPrice();
                     } else {

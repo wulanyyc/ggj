@@ -102,7 +102,9 @@ $(document).ready(function () {
     };
 
     $.helper.round = function(value, precise){
-        return Math.round(value * 10 * precise) / (10 * precise);
+        var num = new Number(value);
+        return num.toFixed(precise);
+        // return Math.toFixed(value, 2);
     };
 
     $.helper.copy = function(id) {
