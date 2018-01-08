@@ -170,8 +170,7 @@ class PriceHelper extends Component{
      * 调整钱包余额
      * type: plus, minus
      */
-    public static function adjustWallet($money, $type = 'minus', $reason = '') {
-        $cid = $_COOKIE['cid'];
+    public static function adjustWallet($cid, $money, $type = 'minus', $reason = '') {
         $wallet  = Customer::find()->where(['id' => $cid])->select('money')->scalar();
 
         if ($type == 'minus') {
@@ -284,7 +283,7 @@ class PriceHelper extends Component{
 
     public static function refund($payData) {
         if ($payData['pay_type'] == 0) {
-            self::adjustWallet($payData['wallet_money'], 'plus', 'refund_' . $payData['order_id']);
+            self::adjustWallet($payData['customer_id'], $payData['wallet_money'], 'plus', 'refund_' . $payData['order_id']);
             
             $orderId = $payData['order_id'];
             $up = ProductOrder::findOne($orderId);
@@ -294,7 +293,7 @@ class PriceHelper extends Component{
 
         if ($payData['pay_type'] == 1) {
             if ($payData['wallet_money'] > 0) {
-                self::adjustWallet($payData['wallet_money'], 'plus', 'refund_' . $payData['order_id']);
+                self::adjustWallet($payData['customer_id'], $payData['wallet_money'], 'plus', 'refund_' . $payData['order_id']);
             }
 
             $result = AlipayHelper::refund($payData);

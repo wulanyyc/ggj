@@ -108,7 +108,7 @@ class CustomerController extends Controller
         $data = Customer::find()->where(['id' => $_COOKIE['cid']])->asArray()->one();
         if ($data['score'] > $this->scoreConfig[$id]['score']) {
             PriceHelper::adjustScore($this->scoreConfig[$id]['score'], 'minus');
-            PriceHelper::adjustWallet($this->scoreConfig[$id]['money'], 'plus', 'score_pay');
+            PriceHelper::adjustWallet($data['id'], $this->scoreConfig[$id]['money'], 'plus', 'score_pay');
             echo 'ok';
         } else {
             echo '积分不够';

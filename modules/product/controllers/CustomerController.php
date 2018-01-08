@@ -186,8 +186,7 @@ class CustomerController extends AuthController
             echo '参数不能为空';exit;
         }
 
-        $phone = Customer::find()->select('phone')->where(['id' => $params['id']])->scalar();
-        PriceHelper::addFriendWallet($params['money'], $phone, $params['reason'], $params['operator']);
+        PriceHelper::adjustWallet($params['id'], $params['money'], $params['operator'], $params['reason']);
         echo 'suc';
     }
 
