@@ -292,12 +292,21 @@ class PriceHelper extends Component{
         }
 
         if ($payData['pay_type'] == 1) {
-            if ($payData['wallet_money'] > 0) {
-                self::adjustWallet($payData['customer_id'], $payData['wallet_money'], 'plus', 'refund_' . $payData['order_id']);
-            }
-
             $result = AlipayHelper::refund($payData);
-            var_dump($result);
+
+            if ($result->alipay_trade_refund_response->code == 10000) {
+                $orderId = $payData['order_id'];
+                $up = ProductOrder::findOne($orderId);
+                $up->status = 4;
+                $up->save();
+
+                if ($payData['wallet_money'] > 0) {
+                    self::adjustWallet($payData['customer_id'], $payData['wallet_money'], 'plus', 'refund_' . $payData['order_id']);
+                }
+            } else {
+                return '退款失败';
+            }
+            // var_dump($result);
         }
 
         if ($payData['pay_type'] == 2) {
