@@ -5,9 +5,11 @@ namespace app\modules\product\controllers;
 use Yii;
 use app\controllers\AuthController;
 use app\models\ProductOrder;
+use app\models\Pay;
 use app\modules\product\models\ProductList;
 use yii\helpers\Html;
 use app\components\SiteHelper;
+use app\components\PriceHelper;
 
 class OrderController extends AuthController
 {
@@ -55,12 +57,16 @@ class OrderController extends AuthController
 
         foreach($ret as $key => $value) {
             $ret[$key]['userphone'] = SiteHelper::getCustomerPhone($value['customer_id']);
-            $ret[$key]['status'] = Yii::$app->params['order_status'][$ret[$key]['status']];
 
             $ret[$key]['operation'] = "
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-express btn btn-xs btn-purple' href='javascript:void(0);'>关联快递号</a>
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;' class='order-status btn btn-xs btn-info' href='javascript:void(0);'>状态</a>";
+
+            if ($ret[$key]['status'] == 2 || $ret[$key]['status'] == 3) {
+                $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-val='{$value['pay_money']}' style='margin-top:5px !important;'  class='order-refund btn btn-xs btn-danger' href='javascript:void(0);'>退款</a>";
+            }
+            $ret[$key]['status'] = Yii::$app->params['order_status'][$ret[$key]['status']];
         }
         $output = [];
         $output['data'] = $ret;
@@ -68,6 +74,19 @@ class OrderController extends AuthController
         $output['recordsFiltered'] = $total;
 
         echo json_encode($output);
+    }
+
+    public function actionRefund() {
+        $params = Yii::$app->request->post();
+        $id = $params['id'];
+
+        $payData = Pay::find()->where(['order_id' => $id, 'pay_result' => 1])->asArray()->one();
+
+        if (empty($payData)) {
+            echo '未找到支付相关数据';
+        } else {
+            echo PriceHelper::refund($payData['id']);
+        }
     }
 
     public function actionInfo() {

@@ -11,6 +11,8 @@ use app\models\ProductCart;
 use app\models\Customer;
 use app\models\CustomerMoneyList;
 use app\models\ProductPackage;
+use app\models\Pay;
+use app\components\AlipayHelper;
 
 /**
  * 基础帮助类
@@ -278,5 +280,27 @@ class PriceHelper extends Component{
         $up = ProductList::findOne($id);
         $up->price = $price;
         $up->save();
+    }
+
+    public static function refund($payid) {
+        $data = Pay::find()->where(['id' => $payid])->asArray()->one();
+        if ($data['pay_type'] == 0) {
+            self::adjustWallet($data['wallet_money'], 'plus', 'refund_' . $data['order_id']);
+        }
+
+        if ($data['pay_type'] == 1) {
+            if ($data['wallet_money'] > 0) {
+                self::adjustWallet($data['wallet_money'], 'plus', 'refund_' . $data['order_id']);
+            }
+
+            $result = AlipayHelper::refund($data);
+            var_dump($result);
+        }
+
+        if ($data['pay_type'] == 2) {
+            
+        }
+
+        return 'ok';
     }
 }

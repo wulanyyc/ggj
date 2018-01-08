@@ -188,10 +188,10 @@ class SiteHelper extends Component{
 
         // 更新库存
         $cartId = ProductOrder::find()->where(['id' => $data['order_id']])->select('cart_id')->scalar();
-        $cartData = ProductCart::find()->where(['id' => $cartId])->select('cart,type')->asArray()->one();
+        $cartData = ProductCart::find()->where(['id' => $cartId])->select('cart,order_type')->asArray()->one();
         $cartArr = json_decode($cartData['cart'], true);
 
-        if ($cartData['type'] == 0) {
+        if ($cartData['order_type'] == 1) {
             foreach($cartArr as $item) {
                 $tmp = ProductList::find()->where(['id' => $item['id']])->asArray()->one();
                 $newInventory = $tmp['num'] - $item['num'];

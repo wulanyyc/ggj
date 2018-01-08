@@ -33,7 +33,7 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
   <div class="card-header bg-white" style="text-align:center;position:relative;color: black;border-radius: 0;border-bottom: 1px solid #f5f5f5;">
         订单支付成功
   </div>
-  <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 10px;margin:20px;">
+  <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 10px;margin:20px;">
     <img src='/img/order.png' style="width:90px;"/>
     <div style="margin-left:10px;font-size: 14px;">
       <div>支付方式：<span class="text-danger"><?=$data['pay_type'] ?></span></div>

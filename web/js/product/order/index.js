@@ -9,6 +9,37 @@ $(document).ready(function () {
         todayHighlight: true
     });
 
+    $('#list').delegate('.order-refund', 'click', function () {
+        var money = $(this).attr('data-val');
+        var id = $(this).attr('data-id');
+        bootbox.confirm({
+            message: "请确认是否退款" + money + '元',
+            buttons: {
+                cancel: {
+                    label: '取消'
+                },
+                confirm: {
+                    label: '确定'
+                }
+            },
+            callback: function(result) {
+                if (result) {
+                    $.ajax({
+                        url: '/product/order/refund',
+                        type: 'post',
+                        data: {
+                            'id': id
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                            alert(data);
+                        }
+                    });
+                }
+            }
+        });
+    });
+
     // 编辑
     $('#list').delegate('.order-edit', 'click', function () {
         var id = $(this).attr('data-id');
