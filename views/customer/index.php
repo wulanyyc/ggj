@@ -115,6 +115,5 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
-<br/>
-<button type="button" class="btn btn-danger" id="quit" style="width:80%;margin-left: 10%;">退出</button>
+<button type="button" class="btn btn-danger" id="quit" style="width:80%;margin-left: 10%;margin-top: 5px;">退出</button>
 
