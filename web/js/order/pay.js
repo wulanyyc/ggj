@@ -60,9 +60,9 @@ $(document).ready(function () {
                             $("body").append(data.html);
                         } else {
                             // 微信支付
-                            var wechat = $('#wechat').val();
+                            var isWechat = $('#isWechat').val();
                             // 微信内部支付
-                            if (wechat == 1) {
+                            if (isWechat == 1) {
                                 wx.chooseWXPay({
                                     timestamp: data.data.timeStamp,
                                     nonceStr: data.data.nonceStr,
