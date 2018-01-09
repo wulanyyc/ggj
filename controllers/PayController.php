@@ -269,10 +269,14 @@ class PayController extends Controller
                             'data' => $output, 'out_trade_no' => $payData['out_trade_no']]);
                     } else {
                         // 外部支付
-                        $output = [];
-                        $output['mweb_url'] = $ret['mweb_url'];
+                        if ($terminal == 'wap') {
+                            $output = [];
+                            $output['mweb_url'] = $ret['mweb_url'] . '&redirect_url=' . urlencode('http://guoguojia.vip/pay/?out_trade_no=' . $payData['out_trade_no']);
 
-                        echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output]);
+                            echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output]);
+                        } else {
+                            
+                        }
                     }
                 } else {
                     echo json_encode(['status' => 'fail', 'pay_type' => 2, 'msg' => $ret['return_msg']]);
