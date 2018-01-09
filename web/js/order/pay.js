@@ -69,13 +69,13 @@ $(document).ready(function () {
                                     paySign: data.data.paySign,
                                     success: function (res) {
                                         // 支付成功后的回调函数
-                                        alert(JSON.stringify(res));
-                                        // if (res.err_msg == "get_brand_wcpay_request:ok") {
-                                        //     location.href='/pay/?out_trade_no=' + data.out_trade_no;
-                                        // } else {
-                                        //     alert(res.err_msg);
-                                        //     $(this).attr('data-process', 0);
-                                        // }
+                                        // alert(JSON.stringify(res));
+                                        if (res.errMsg == "chooseWXPay:ok") {
+                                            location.href='/pay/?out_trade_no=' + data.out_trade_no;
+                                        } else {
+                                            $.helper.alert(res.errMsg);
+                                            $(this).attr('data-process', 0);
+                                        }
                                     }
                                 });
                             }
