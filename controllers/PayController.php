@@ -272,7 +272,7 @@ class PayController extends Controller
                         $output = [];
                         $output['mweb_url'] = $ret['mweb_url'];
 
-                        echo json_encode(['status' => 'fail', 'pay_type' => 2, 'data' => $output]);
+                        echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output]);
                     }
                 } else {
                     echo json_encode(['status' => 'fail', 'pay_type' => 2, 'msg' => $ret['return_msg']]);
