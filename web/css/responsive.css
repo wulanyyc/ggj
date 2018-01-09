@@ -216,7 +216,7 @@ main {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199px) {
     #suc.card{
-        width: 45% !important;
+        width: 30% !important;
         margin: 0 auto !important;
     }
 }
@@ -224,7 +224,7 @@ main {
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
     #suc.card{
-        width: 45% !important;
+        width: 30% !important;
         margin: 0 auto !important;
     }
 }
