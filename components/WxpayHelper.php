@@ -31,6 +31,8 @@ class WxpayHelper extends Component{
        $xml = self::buildXml($data);
        $postData = $xml->asXML();
 
+       return $postData;
+       
        $ret = WechatHelper::curlRequest(self::$api, $postData);
 
        return WechatHelper::xmlToArray($ret);

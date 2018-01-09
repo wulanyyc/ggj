@@ -236,7 +236,7 @@ class PayController extends Controller
                 ];
 
                 $ret = WxpayHelper::pay($wxpayParams);
-                echo json_encode(['status' => 'ok', 'pay_type' => 2, 'html' => json_encode($ret)]);
+                echo json_encode(['status' => 'ok', 'pay_type' => 2, 'html' => $ret]);
                 Yii::$app->end();
             }
         } else {
