@@ -22,7 +22,7 @@ $(document).ready(function () {
             dataType: 'html',
             success: function (data) {
                 if (data == 'ok') {
-                    bootbox.alert('已重新获取状态');
+                    bootbox.alert('刷新成功');
                     loadTable();
                 } else {
                     bootbox.alert(data);

@@ -38,6 +38,8 @@ class PayController extends Controller
                 'actions' => [
                     'aliwap',
                     'alipc',
+                    'wxwap',
+                    'wxscanpay',
                 ]
             ]
         ];
@@ -331,5 +333,13 @@ class PayController extends Controller
         }
 
         echo 'fail';
+    }
+
+    public function actionWxscanpay() {
+        echo 'success';
+    }
+
+    public function actionWxpay() {
+        echo 'success';
     }
 }

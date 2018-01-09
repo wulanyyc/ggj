@@ -306,7 +306,6 @@ class PriceHelper extends Component{
             } else {
                 return '退款失败';
             }
-            // var_dump($result);
         }
 
         if ($payData['pay_type'] == 2) {
