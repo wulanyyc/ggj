@@ -57,22 +57,6 @@ class WxpayHelper extends Component{
         return $xmlObj;
     }
 
-    public static function buildXml($data) {
-        $keys = array_keys($data);
-        sort($keys);
-
-        $str = '';
-        foreach($keys as $item) {
-            $str .= $item . "=" . $data[$item] . "&";
-        }
-
-        $str .= "key=" . Yii::$app->params['wechat']['key'];
-
-        $sign = md5($str);
-
-        return strtoupper($sign);
-    }
-
     public static function scanpay($params) {
 
     }
