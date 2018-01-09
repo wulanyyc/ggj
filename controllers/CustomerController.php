@@ -139,7 +139,7 @@ class CustomerController extends Controller
                 'controller' => Yii::$app->controller->id,
             ]);
         }
-        
+
         return $this->render('feedback', [
             'controller' => Yii::$app->controller->id,
         ]);
@@ -185,6 +185,12 @@ class CustomerController extends Controller
     }
 
     public function actionCoupon() {
+        if (!SiteHelper::checkSecret()) {
+            return $this->render('login', [
+                'controller' => Yii::$app->controller->id,
+            ]);
+        }
+
         $data =  $this->getCommon();
         $html = '';
 
