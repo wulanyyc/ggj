@@ -441,5 +441,6 @@ class PayController extends Controller
     public function actionQr() {
         $params = Yii::$app->request->get();
         print_r($params);
+        Yii::$app->end();
     }
 }
