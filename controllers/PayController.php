@@ -283,7 +283,7 @@ class PayController extends Controller
                             // TODO 电脑版的微信支付
                             $output = [];
                             $output['terminal'] = 'pc';
-                            $output['qrurl'] = '/pay/qr/?out_trade_no=' . $payData['out_trade_no'] . '&qrurl=' + urlencode($ret['code_url']);
+                            $output['qrurl'] = '/pay/qr/?out_trade_no=' . $payData['out_trade_no'] . '&qrurl=' . urlencode($ret['code_url']);
 
                             echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output]);
                         }
