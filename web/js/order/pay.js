@@ -75,7 +75,7 @@ $(document).ready(function () {
                                             location.href='/pay/?out_trade_no=' + data.out_trade_no;
                                         } else {
                                             $.helper.alert(res.errMsg);
-                                            $(this).attr('data-process', 0);
+                                            $('#pay').attr('data-process', 0);
                                         }
                                     }
                                 });
@@ -83,7 +83,6 @@ $(document).ready(function () {
                                 if (data.data.terminal == 'wap') {
                                     location.href= data.data.mweb_url;
                                 } else {
-                                    // alert(data.data.terminal + data.data.qrurl);
                                     location.href= data.data.qrurl;
                                 }
                             }
@@ -95,7 +94,7 @@ $(document).ready(function () {
                 } else {
                     $.helper.alert(data.msg);
                 }
-                $(this).attr('data-process', 0);
+                $('#pay').attr('data-process', 0);
             }
         });
     });
