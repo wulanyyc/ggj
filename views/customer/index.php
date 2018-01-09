@@ -24,7 +24,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
     }
 
     #order, #feedback, #info, #contactus {
-      margin-top: .4rem;
+      margin-top: .3rem;
       border-top: 1px solid #eee;
     }
 
@@ -115,5 +115,5 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
-<button type="button" class="btn btn-danger" id="quit" style="width:80%;margin-left: 10%;margin-top: 5px;">退出</button>
+<button type="button" class="btn btn-danger" id="quit" style="width:80%;margin-left: 10%;margin-top: 8px;">退出</button>
 
