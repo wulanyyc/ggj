@@ -383,7 +383,7 @@ class PayController extends Controller
             exit;
         }
         $time = 'wx_' . date('His', time());
-        $filename = Yii::$app->basePath . '/../runtime/' . $time . '.txt';
+        $filename = Yii::$app->basePath . '/runtime/' . $time . '.txt';
         file_put_contents($filename, $rawData);
         echo 'success';
     }
