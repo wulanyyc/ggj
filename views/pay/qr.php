@@ -31,6 +31,6 @@ MsaView::registerJsFile($this,'/js/pay/qr.js',
 <div class="card" id="qrcontent" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
     <p style="text-align: center;">微信扫码支付</p>
     <div id="qrcode" style="width:250px; height:250px;"></div>
-    <a class="btn btn-danger btn-sm" style="margin-top: 10px;" href="/pay/?out_trade_no=<?=$out_trade_no ?>">支付成功后，点击查看订单状态</a>
+    <a class="btn btn-danger btn-sm" style="margin-top: 20px;" href="/pay/?out_trade_no=<?=$out_trade_no ?>">支付成功后，点击查看订单状态</a>
 </div>
 

@@ -44,13 +44,13 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
 <?php } else { ?>
 <div class="card" id="fail">
   <div class="card-header bg-white" style="text-align:center;position:relative;color: black;border-radius: 0;border-bottom: 1px solid #f5f5f5;">
-        订单支付状态未知
+        订单支付状态未成功
   </div>
   <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 10px;margin:10px;">
     <img src="/img/cry.png" />
-    <div style="padding-left:10px;width:70%">你的订单号：<?=$data['id'] ?>。请确认支付状态后，刷新订单或<a href="/contact">联系客服</a></div>
+    <div style="padding-left:10px;width:70%">您的订单号：<?=$data['id'] ?><br/>请确认支付后，刷新订单或<a href="/contact">联系客服</a></div>
   </div>
-  <button type="button" class="btn btn-danger btn-sm" id="refresh" data-id="<?=$data['id'] ?>" style="width:66%;margin-left:17%;">刷新订单状态</button>
+  <button type="button" class="btn btn-danger btn-sm" id="refresh" data-id="<?=$data['id'] ?>" style="width:66%;margin-left:17%;">刷新订单</button>
   <a href="/order?type=1" class="btn btn-outline-success btn-sm" style="width:66%;margin-left:17%;margin-top:10px;">查看订单</a>
   <br/>
 </div>
