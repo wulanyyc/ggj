@@ -258,4 +258,18 @@ class SiteHelper extends Component{
     public static function getCustomerPhone($cid) {
         return Customer::find()->where(['id' => $cid])->select('phone')->scalar();
     }
+
+    public static function getClientIp(){
+        $cIP  = getenv($_SERVER['REMOTE_ADDR']);
+        $cIP1 = getenv($_SERVER['HTTP_X_FORWORD_FOR']);
+        $cIP2 = getenv($_SERVER['HTTP_CLIENT_IP']);
+        $cIP1 ? $cIP = $cIP1 ? null;
+        $cIP2 ? $cIP = $cIP2 ? null;
+
+        return $cIP;
+    }
+
+    public static function getServerIp(){
+       return gethostbyname($_SERVER['SERVER_NAME']);
+    }
 }

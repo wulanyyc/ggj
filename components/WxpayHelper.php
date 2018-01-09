@@ -4,6 +4,7 @@ namespace app\components;
 use Yii;
 use yii\base\Component;
 use app\components\WechatHelper;
+use app\components\SiteHelper;
 
 
 /**
@@ -22,7 +23,7 @@ class WxpayHelper extends Component{
         $data['nonce_str'] = uniqid();
         $data['out_trade_no'] = $params['out_trade_no'];
         $data['total_fee'] = $params['total_amount'];
-        $data['spbill_create_ip'] = "127.0.0.1";
+        $data['spbill_create_ip'] = SiteHelper::getClientIp();
         $data['notify_url'] = Yii::$app->params['wechat']['notify_url'];
         $data['trade_type'] = $params['product_code'];
 

@@ -202,7 +202,7 @@ class PayController extends Controller
                 $pid = $this->addRecord($payData);
 
                 $alipayParams = [
-                    'subject' => '果果佳订单',
+                    'subject' => '果果佳商城订单',
                     'out_trade_no' => $payData['out_trade_no'],
                     'timeout_express' => '30m',
                     'total_amount' => $realPayMoney,
@@ -210,8 +210,10 @@ class PayController extends Controller
                 ];
 
                 if ($terminal == 'wap') {
+                    // 手机支付
                     $ret = AlipayHelper::wappay($alipayParams);
                 } else {
+                    // 电脑扫码支付
                     $alipayParams['product_code'] = 'FAST_INSTANT_TRADE_PAY';
                     $ret = AlipayHelper::pcpay($alipayParams);
                 }
@@ -227,36 +229,48 @@ class PayController extends Controller
                 $payData['online_money'] = $realPayMoney;
                 $payData['pay_type'] = 2;
 
+                $isWechat = isset($_COOKIE['openid']) ? true : false;
+
+                if ($isWechat) {
+                    $payData['terminal'] = 'wechat';
+                }
+
                 $pid = $this->addRecord($payData);
 
                 $wxpayParams = [
-                    'subject' => '果果佳订单',
+                    'subject' => '果果佳商城订单',
                     'out_trade_no' => $payData['out_trade_no'],
                     'total_amount' => $realPayMoney * 100,  // 微信以分位单位
                     'product_code' => 'JSAPI'
                 ];
 
-                if (isset($_COOKIE['openid'])) {
+                if ($isWechat) {
                     $wxpayParams['openid'] = $_COOKIE['openid'];
                 } else {
-                    $wxpayParams['product_code'] = 'NATIVE';
+                    $wxpayParams['product_code'] = 'MWEB';
                 }
 
                 $ret = WxpayHelper::pay($wxpayParams);
 
                 if (isset($ret['return_code']) && $ret['return_code'] == 'SUCCESS') {
-                    $output = [];
-                    $output['appId'] = $ret['appid'];
-                    $output['nonceStr'] = $ret['nonce_str'];
-                    $output['signType'] = 'MD5';
-                    $output['package'] = "prepay_id=" . $ret['prepay_id'];
-                    $output['timeStamp'] = time();
+                    if ($isWechat) {
+                        // 微信内部浏览器支付
+                        $output = [];
+                        $output['appId'] = $ret['appid'];
+                        $output['nonceStr'] = $ret['nonce_str'];
+                        $output['signType'] = 'MD5';
+                        $output['package'] = "prepay_id=" . $ret['prepay_id'];
+                        $output['timeStamp'] = time();
 
-                    $paySign = WxpayHelper::buildSign($output);
-                    $output['paySign'] = $paySign;
+                        $paySign = WxpayHelper::buildSign($output);
+                        $output['paySign'] = $paySign;
 
-                    echo json_encode(['status' => 'ok', 'pay_type' => 2, 
-                        'data' => $output, 'out_trade_no' => $payData['out_trade_no']]);
+                        echo json_encode(['status' => 'ok', 'pay_type' => 2, 
+                            'data' => $output, 'out_trade_no' => $payData['out_trade_no']]);
+                    } else {
+                        // 外部支付
+                        echo json_encode(['status' => 'fail', 'pay_type' => 2, 'msg' => json_encode($ret)]);
+                    }
                 } else {
                     echo json_encode(['status' => 'fail', 'pay_type' => 2, 'msg' => $ret['return_msg']]);
                 }
