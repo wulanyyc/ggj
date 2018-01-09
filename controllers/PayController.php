@@ -16,6 +16,7 @@ use app\models\Customer;
 use app\models\Pay;
 use app\components\AlipayHelper;
 use app\components\NoCsrf;
+use app\components\WxpayHelper;
 
 class PayController extends Controller
 {
@@ -220,7 +221,22 @@ class PayController extends Controller
 
             // 微信支付
             if ($payType == 2) {
-                echo json_encode(['status' => 'ok', 'pay_type' => 2, 'html' => '微信支付测试']);
+                $realPayMoney = round($payMoney - $walletMoney, 2);
+                $payData['wallet_money'] = $walletMoney;
+                $payData['online_money'] = $realPayMoney;
+                $payData['pay_type'] = 2;
+
+                $pid = $this->addRecord($payData);
+
+                $wxpayParams = [
+                    'subject' => '果果佳订单',
+                    'out_trade_no' => $payData['out_trade_no'],
+                    'total_amount' => $realPayMoney,
+                    'product_code' => 'JSAPI'
+                ];
+
+                $ret = WxpayHelper::pay($wxpayParams);
+                echo json_encode(['status' => 'ok', 'pay_type' => 2, 'html' => json_encode($ret)]);
                 Yii::$app->end();
             }
         } else {
