@@ -42,16 +42,13 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
   </div>
 </div>
 <?php } else { ?>
-<div class="card" id="fail">
-  <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-    <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;width:300px;margin-top:50px;margin-bottom: 30px;">
-      <img src="/img/cry.png" />
-      <div style="padding-left:10px;width:70%">您的订单号：<?=$data['id'] ?><br/>请确认支付后，刷新订单或<a href="/contact">联系客服</a></div>
-    </div>
-    <button type="button" class="btn btn-danger btn-sm" id="refresh" data-id="<?=$data['id'] ?>" style="width:66%;">刷新订单</button>
-    <a href="/order?type=1" class="btn btn-outline-success btn-sm" style="width:66%;margin-top:10px;">查看订单</a>
+<div class="card" id="fail" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+  <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;width:300px;margin-top:50px;margin-bottom: 30px;">
+    <img src="/img/cry.png" />
+    <div style="padding-left:10px;width:70%">您的订单号：<?=$data['id'] ?><br/>请确认支付后，刷新订单或<a href="/contact">联系客服</a></div>
   </div>
-  <br/>
+  <button type="button" class="btn btn-danger btn-sm" id="refresh" data-id="<?=$data['id'] ?>" style="width:66%;">刷新订单</button>
+  <a href="/order?type=1" class="btn btn-outline-success btn-sm" style="width:66%;margin-top:10px;">查看订单</a>
 </div>
 <?php } ?>
 

@@ -42,14 +42,13 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
   </div>
 </div>
 <?php } else { ?>
-<div class="card" id="fail">
+<div class="card" id="fail" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
   <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 10px;margin:10px;">
     <img src="/img/cry.png" />
-    <div style="padding-left:10px;width:70%">你的订单号：<?=$data['id'] ?>。请确认钱包余额后，<a href="/contact">联系客服</a></div>
+    <div style="padding-left:10px;width:70%">您的订单号：<?=$data['id'] ?><br/>请确认钱包余额后，<a href="/contact">联系客服</a></div>
   </div>
 
-  <a href="/order?type=1" class="btn btn-outline-success btn-sm" style="width:66%;margin-left:17%;margin-top:10px;">查看订单</a>
-  <br/>
+  <a href="/order?type=1" class="btn btn-outline-success btn-sm" style="width:66%;margin-top:30px;">查看订单</a>
 </div>
 <?php } ?>
 
