@@ -241,13 +241,13 @@ class PayController extends Controller
                     'subject' => '果果佳商城订单',
                     'out_trade_no' => $payData['out_trade_no'],
                     'total_amount' => $realPayMoney * 100,  // 微信以分位单位
-                    'product_code' => 'JSAPI'
+                    'trade_type' => 'JSAPI'
                 ];
 
                 if ($isWechat) {
                     $wxpayParams['openid'] = $_COOKIE['openid'];
                 } else {
-                    $wxpayParams['product_code'] = 'MWEB';
+                    $wxpayParams['trade_type'] = 'MWEB';
                 }
 
                 $ret = WxpayHelper::pay($wxpayParams);

@@ -25,7 +25,7 @@ class WxpayHelper extends Component{
         $data['total_fee'] = $params['total_amount'];
         $data['spbill_create_ip'] = SiteHelper::getClientIp();
         $data['notify_url'] = Yii::$app->params['wechat']['notify_url'];
-        $data['trade_type'] = $params['product_code'];
+        $data['trade_type'] = $params['trade_type'];
 
         if (!empty($params['openid'])) {
             $data['openid'] = $params['openid'];
