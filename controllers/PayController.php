@@ -242,7 +242,23 @@ class PayController extends Controller
                 }
 
                 $ret = WxpayHelper::pay($wxpayParams);
-                echo json_encode(['status' => 'fail', 'pay_type' => 2, 'msg' => $ret]);
+
+                if (isset($ret['return_code']) && $ret['return_code'] == 'SUCCESS') {
+                    $output = [];
+                    $output['appId'] = $ret['appid'];
+                    $output['nonceStr'] = $ret['nonce_str'];
+                    $output['signType'] = 'MD5';
+                    $output['package'] = "prepay_id=" . $ret['prepay_id'];
+                    $output['timeStamp'] = time();
+
+                    $paySign = WxpayHelper::buildSign($output);
+                    $output['paySign'] = $paySign;
+
+                    echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output);
+                } else {
+                    echo json_encode(['status' => 'fail', 'pay_type' => 2, 'msg' => $ret['return_msg']]);
+                }
+                
                 Yii::$app->end();
             }
         } else {
