@@ -384,7 +384,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">3: </span>
-      <span>折扣有效期为2小时，超时需重新提交订单获取优惠。</span>
+      <span>折扣有效期为1小时，超时需重新提交订单获取优惠。</span>
     </p>
 
     <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>

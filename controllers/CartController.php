@@ -236,7 +236,7 @@ EOF;
                 echo round($percent * $productPrice, 2);
             } else {
                 $percent = rand(Yii::$app->params['discount']['start'], Yii::$app->params['discount']['end']) / 100;
-                Yii::$app->redis->setex($key, 7200, $percent);
+                Yii::$app->redis->setex($key, 3600, $percent);
                 echo round($percent * $productPrice, 2);
             }
         } else {
