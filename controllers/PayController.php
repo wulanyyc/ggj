@@ -407,7 +407,13 @@ class PayController extends Controller
     }
 
     public function actionWxscan() {
+        $rawData = file_get_contents('php://input');
+        $time = 'wx_' . date('YmdHis', time());
+        $filename = Yii::$app->basePath . '/runtime/' . $time . '.txt';
+        file_put_contents($filename, $rawData);
+
         echo 'success';
+        Yii::$app->end();
     }
 
     public function actionWx() {
