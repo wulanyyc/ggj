@@ -231,7 +231,7 @@ class PayController extends Controller
                 $wxpayParams = [
                     'subject' => '果果佳订单',
                     'out_trade_no' => $payData['out_trade_no'],
-                    'total_amount' => $realPayMoney,
+                    'total_amount' => $realPayMoney * 100,  // 微信以分位单位
                     'product_code' => 'JSAPI'
                 ];
 
