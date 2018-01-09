@@ -83,7 +83,8 @@ $(document).ready(function () {
                                 if (data.data.terminal == 'wap') {
                                     location.href= data.data.mweb_url;
                                 } else {
-                                    location.href= data.data.qrurl;
+                                    alert(data.data.qrurl);
+                                    // location.href= data.data.qrurl;
                                 }
                             }
                         }
