@@ -43,6 +43,7 @@ $(document).ready(function () {
 
         if (money < order_money && type == 0) {
             $.helper.alert('请选择支付方式');
+            $(this).attr('data-process', 0);
             return ;
         }
 
