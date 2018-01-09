@@ -261,8 +261,8 @@ class SiteHelper extends Component{
 
     public static function getClientIp() {
         $cIP  = getenv($_SERVER['REMOTE_ADDR']);
-        $cIP1 = getenv($_SERVER['HTTP_X_FORWORD_FOR']);
-        $cIP2 = getenv($_SERVER['HTTP_CLIENT_IP']);
+        $cIP1 = isset($_SERVER['HTTP_X_FORWORD_FOR']) ? getenv($_SERVER['HTTP_X_FORWORD_FOR']) : '';
+        $cIP2 = isset($_SERVER['HTTP_CLIENT_IP']) ? getenv($_SERVER['HTTP_CLIENT_IP']) : '';
 
         if (!empty($cIP1)) {
             $cIP = $cIP1;
