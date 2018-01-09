@@ -61,6 +61,7 @@ $(document).ready(function () {
                         } else {
                             // 微信支付
                             var wechat = $('#wechat').val();
+                            // 微信内部支付
                             if (wechat == 1) {
                                 wx.chooseWXPay({
                                     timestamp: data.data.timeStamp,
@@ -79,7 +80,11 @@ $(document).ready(function () {
                                     }
                                 });
                             } else {
-                                location.href= data.data.mweb_url;
+                                if (data.data.terminal == 'wap') {
+                                    location.href= data.data.mweb_url;
+                                } else {
+                                    location.href= data.data.qrurl;
+                                }
                             }
                         }
                     } else {

@@ -251,7 +251,6 @@ class PayController extends Controller
                         $wxpayParams['trade_type'] = 'MWEB';
                     } else {
                         $wxpayParams['trade_type'] = 'NATIVE';
-                        // $wxpayParams['product_id'] = 'NATIVE';
                     }
                 }
 
@@ -276,11 +275,17 @@ class PayController extends Controller
                         // 外部支付
                         if ($terminal == 'wap') {
                             $output = [];
+                            $output['terminal'] = 'wap';
                             $output['mweb_url'] = $ret['mweb_url'] . '&redirect_url=' . urlencode('http://guoguojia.vip/pay/?out_trade_no=' . $payData['out_trade_no']);
 
                             echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output]);
                         } else {
-                            echo json_encode(['status' => 'fail', 'pay_type' => 2, 'data' => $ret]);
+                            // TODO 电脑版的微信支付
+                            $output = [];
+                            $output['terminal'] = 'pc';
+                            $output['qrurl'] = '/pay/qr/?out_trade_no=' . $payData['out_trade_no'] . '&qrurl=' + urlencode($ret['code_url']);
+
+                            echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output]);
                         }
                     }
                 } else {
@@ -431,5 +436,10 @@ class PayController extends Controller
             echo 'fail';
             Yii::$app->end();
         }
+    }
+
+    public function actionQr() {
+        $params = Yii::$app->request->get();
+        print_r($params);
     }
 }
