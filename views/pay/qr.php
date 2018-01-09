@@ -22,6 +22,7 @@ MsaView::registerJsFile($this,'/js/pay/qr.js',
   .card {
       border-radius: 0;
       border: none;
+      width: 100%;
   }
 
 </style>
