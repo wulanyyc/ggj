@@ -440,7 +440,10 @@ class PayController extends Controller
 
     public function actionQr() {
         $params = Yii::$app->request->get();
-        print_r($params);
-        Yii::$app->end();
+        return $this->render('qr', [
+            'controller' => Yii::$app->controller->id,
+            'out_trade_no' => $params['out_trade_no'],
+            'url' => $params['qrurl'],
+        ]);
     }
 }
