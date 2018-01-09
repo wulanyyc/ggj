@@ -66,6 +66,12 @@ class CustomerController extends Controller
     }
 
     public function actionInfo() {
+        if (!SiteHelper::checkSecret()) {
+            return $this->render('login', [
+                'controller' => Yii::$app->controller->id,
+            ]);
+        }
+
         $id = $_COOKIE['cid'];
 
         $data = Customer::find()->where(['id' => $id])->asArray()->one();
@@ -82,6 +88,12 @@ class CustomerController extends Controller
     }
 
     public function actionScore() {
+        if (!SiteHelper::checkSecret()) {
+            return $this->render('login', [
+                'controller' => Yii::$app->controller->id,
+            ]);
+        }
+
         $id = $_COOKIE['cid'];
         $config = $this->scoreConfig;
 
@@ -122,6 +134,12 @@ class CustomerController extends Controller
     }
 
     public function actionFeedback() {
+        if (!SiteHelper::checkSecret()) {
+            return $this->render('login', [
+                'controller' => Yii::$app->controller->id,
+            ]);
+        }
+        
         return $this->render('feedback', [
             'controller' => Yii::$app->controller->id,
         ]);
