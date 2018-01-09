@@ -247,7 +247,12 @@ class PayController extends Controller
                 if ($isWechat) {
                     $wxpayParams['openid'] = $_COOKIE['openid'];
                 } else {
-                    $wxpayParams['trade_type'] = 'MWEB';
+                    if ($terminal == 'wap') { 
+                        $wxpayParams['trade_type'] = 'MWEB';
+                    } else {
+                        $wxpayParams['trade_type'] = 'NATIVE';
+                        // $wxpayParams['product_id'] = 'NATIVE';
+                    }
                 }
 
                 $ret = WxpayHelper::pay($wxpayParams);
@@ -275,7 +280,7 @@ class PayController extends Controller
 
                             echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output]);
                         } else {
-                            
+                            echo json_encode(['status' => 'fail', 'pay_type' => 2, 'data' => $ret]);
                         }
                     }
                 } else {
