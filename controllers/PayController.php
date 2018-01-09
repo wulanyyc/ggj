@@ -254,7 +254,7 @@ class PayController extends Controller
                     $paySign = WxpayHelper::buildSign($output);
                     $output['paySign'] = $paySign;
 
-                    echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output]);
+                    echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output, 'ret' => $ret]);
                 } else {
                     echo json_encode(['status' => 'fail', 'pay_type' => 2, 'msg' => $ret['return_msg']]);
                 }

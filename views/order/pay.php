@@ -78,7 +78,7 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
   <?php } ?>
 
   <?php if ($money < $data['pay_money']) { ?>
-    <?php if ($isWechat == 1) { ?>
+    <?php //if ($isWechat == 1) { ?>
     <div class="item pay_tool" style="border-bottom: 1px solid #f5f5f5;padding: .5rem 1.25rem;justify-content: space-between;" id="wechat" data-id='wx'>
       <div style="display: flex;flex-direction: row;align-items: center;">
         <img src="/img/wechat@2x.png" style="width:32px;height:32px;"/>
@@ -86,7 +86,7 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
       </div>
       <div style="font-size: 22px" class="text-danger status"><i class="fa fa-circle-o" aria-hidden="true"></i></div>
     </div>
-    <?php } ?>
+    <?php //} ?>
 
     <?php if ($isWechat == 0) { ?>
     <div class="item pay_tool" style="padding: .5rem 1.25rem;justify-content: space-between;" id="alipay" data-id="ali">
