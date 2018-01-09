@@ -235,6 +235,12 @@ class PayController extends Controller
                     'product_code' => 'JSAPI'
                 ];
 
+                if (isset($_COOKIE['openid'])) {
+                    $wxpayParams['openid'] = $_COOKIE['openid'];
+                } else {
+                    $wxpayParams['product_code'] = 'NATIVE';
+                }
+
                 $ret = WxpayHelper::pay($wxpayParams);
                 echo json_encode(['status' => 'fail', 'pay_type' => 2, 'msg' => $ret]);
                 Yii::$app->end();

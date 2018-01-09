@@ -15,27 +15,29 @@ class WxpayHelper extends Component{
     public static $api = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
 
     public static function pay($params) {
-       $data = [];
-       $data['appid'] = Yii::$app->params['wechat']['appid'];
-       $data['mch_id'] = Yii::$app->params['wechat']['mch_id'];
-       $data['body'] = $params['subject'];
-       $data['nonce_str'] = uniqid();
-       $data['out_trade_no'] = $params['out_trade_no'];
-       $data['total_fee'] = $params['total_amount'];
-       $data['spbill_create_ip'] = "127.0.0.1";
-       $data['notify_url'] = Yii::$app->params['wechat']['notify_url'];
-       $data['trade_type'] = $params['product_code'];
+        $data = [];
+        $data['appid'] = Yii::$app->params['wechat']['appid'];
+        $data['mch_id'] = Yii::$app->params['wechat']['mch_id'];
+        $data['body'] = $params['subject'];
+        $data['nonce_str'] = uniqid();
+        $data['out_trade_no'] = $params['out_trade_no'];
+        $data['total_fee'] = $params['total_amount'];
+        $data['spbill_create_ip'] = "127.0.0.1";
+        $data['notify_url'] = Yii::$app->params['wechat']['notify_url'];
+        $data['trade_type'] = $params['product_code'];
 
-       $sign = self::buildSign($data);
-       $data['sign'] = $sign;
-       $xml = self::buildXml($data);
-       $postData = $xml->asXML();
+        if (!empty($params['openid'])) {
+            $data['openid'] = $params['openid'];
+        }
 
-       // return $postData;
-       
-       $ret = WechatHelper::curlRequest(self::$api, $postData);
+        $sign = self::buildSign($data);
+        $data['sign'] = $sign;
+        $xml = self::buildXml($data);
+        $postData = $xml->asXML();
 
-       return WechatHelper::xmlToArray($ret);
+        $ret = WechatHelper::curlRequest(self::$api, $postData);
+
+        return WechatHelper::xmlToArray($ret);
     }
 
     public static function buildSign($data) {
