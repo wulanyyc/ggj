@@ -21,20 +21,20 @@ use app\modules\product\models\ProductList;
  */
 class SiteHelper extends Component{
     public static function addCustomer($phone) {
-      $id = Customer::find()->where(['phone' => $phone])->select('id')->scalar();
-      if ($id > 0) {
-        $up = Customer::findOne($id);
-        $up->status = 1;
-        $up->save();
-      } else {
-        $ar = new Customer();
-        $ar->phone = $phone;
-        $ar->status = 1;
-        $ar->save();
-        $id = $ar->id;
-      }
+        $id = Customer::find()->where(['phone' => $phone])->select('id')->scalar();
+        if ($id > 0) {
+            $up = Customer::findOne($id);
+            $up->status = 1;
+            $up->save();
+        } else {
+            $ar = new Customer();
+            $ar->phone = $phone;
+            $ar->status = 1;
+            $ar->save();
+            $id = $ar->id;
+        }
 
-      return $id;
+        return $id;
     }
 
     public static function getLayout() {
@@ -259,17 +259,23 @@ class SiteHelper extends Component{
         return Customer::find()->where(['id' => $cid])->select('phone')->scalar();
     }
 
-    public static function getClientIp(){
+    public static function getClientIp() {
         $cIP  = getenv($_SERVER['REMOTE_ADDR']);
         $cIP1 = getenv($_SERVER['HTTP_X_FORWORD_FOR']);
         $cIP2 = getenv($_SERVER['HTTP_CLIENT_IP']);
-        $cIP1 ? $cIP = $cIP1 ? null;
-        $cIP2 ? $cIP = $cIP2 ? null;
+
+        if (!empty($cIP1)) {
+            $cIP = $cIP1;
+        }
+
+        if (!empty($cIP2)) {
+            $cIP = $cIP2;
+        }
 
         return $cIP;
     }
 
     public static function getServerIp(){
-       return gethostbyname($_SERVER['SERVER_NAME']);
+        return gethostbyname($_SERVER['SERVER_NAME']);
     }
 }
