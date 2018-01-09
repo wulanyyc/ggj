@@ -17,6 +17,7 @@ use app\models\Pay;
 use app\components\AlipayHelper;
 use app\components\NoCsrf;
 use app\components\WxpayHelper;
+use app\components\WechatHelper;
 
 class PayController extends Controller
 {
@@ -254,7 +255,8 @@ class PayController extends Controller
                     $paySign = WxpayHelper::buildSign($output);
                     $output['paySign'] = $paySign;
 
-                    echo json_encode(['status' => 'ok', 'pay_type' => 2, 'data' => $output, 'ret' => $ret]);
+                    echo json_encode(['status' => 'ok', 'pay_type' => 2, 
+                        'data' => $output, 'out_trade_no' => $payData['out_trade_no']]);
                 } else {
                     echo json_encode(['status' => 'fail', 'pay_type' => 2, 'msg' => $ret['return_msg']]);
                 }
@@ -308,7 +310,7 @@ class PayController extends Controller
     }
 
     public function actionAliwap() {
-        $this->enableCsrfValidation = false;
+        // $this->enableCsrfValidation = false;
         $arr = $_POST;
 
         $result = AlipayHelper::check($arr, 'wap');
@@ -341,7 +343,7 @@ class PayController extends Controller
     }
 
     public function actionAlipc() {
-        $this->enableCsrfValidation = false;
+        // $this->enableCsrfValidation = false;
         $arr = $_POST;
 
         $result = AlipayHelper::check($arr, 'pc');
@@ -382,9 +384,26 @@ class PayController extends Controller
         if (empty($rawData)) {
             exit;
         }
-        $time = 'wx_' . date('His', time());
-        $filename = Yii::$app->basePath . '/runtime/' . $time . '.txt';
-        file_put_contents($filename, $rawData);
-        echo 'success';
+        
+        $data = WechatHelper::xmlToArray($rawData);
+        $out_trade_no = $data['out_trade_no'];
+        $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
+        $pay_money = $data['cash_fee']/100;
+        $trade_no  = $data['transaction_id'];
+
+        if ($data['result_code'] == 'SUCCESS' && $pay_money == $checkData['online_money'] 
+            && $checkData['pay_result'] != 1) {
+            SiteHelper::handlePayOkOrder($checkData['id'], $trade_no);
+
+            echo 'success';
+            Yii::$app->end();
+        } else {
+            $time = 'wx_error_' . date('YmdHis', time());
+            $filename = Yii::$app->basePath . '/runtime/' . $time . '.txt';
+            file_put_contents($filename, $rawData);
+
+            echo 'fail';
+            Yii::$app->end();
+        }
     }
 }

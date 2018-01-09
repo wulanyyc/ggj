@@ -58,7 +58,7 @@ $(document).ready(function () {
                             // 支付宝
                             $("body").append(data.html);
                         } else {
-                            // $.helper.alert('测试微信支付')
+                            // 微信支付
                             var wechat = $('#wechat').val();
                             if (wechat == 1) {
                                 wx.chooseWXPay({
@@ -69,7 +69,12 @@ $(document).ready(function () {
                                     paySign: data.data.paySign,
                                     success: function (res) {
                                         // 支付成功后的回调函数
-                                        $.helper.alert(res);
+                                        if (res.err_msg == "get_brand_wcpay_request:ok") {
+                                            location.href='/pay/?out_trade_no=' + data.out_trade_no;
+                                        } else {
+                                            alert(res.err_msg);
+                                            $(this).attr('data-process', 0);
+                                        }
                                     }
                                 });
                             }
