@@ -16,7 +16,8 @@ class WxpayHelper extends Component{
 
     public static function pay($params) {
        $data = [];
-       $data['appid'] = Yii::$app->params['wechat']['appid'];;
+       $data['appid'] = Yii::$app->params['wechat']['appid'];
+       $data['mch_id'] = Yii::$app->params['wechat']['mch_id'];
        $data['body'] = $params['subject'];
        $data['nonce_str'] = uniqid();
        $data['out_trade_no'] = $params['out_trade_no'];
