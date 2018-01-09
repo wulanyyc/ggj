@@ -43,9 +43,6 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
 </div>
 <?php } else { ?>
 <div class="card" id="fail">
-  <div class="card-header bg-white" style="text-align:center;position:relative;color: black;border-radius: 0;border-bottom: 1px solid #f5f5f5;">
-        订单支付状态未成功
-  </div>
   <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
     <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;width:300px;margin-top:50px;margin-bottom: 30px;">
       <img src="/img/cry.png" />

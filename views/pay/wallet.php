@@ -43,9 +43,6 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
 </div>
 <?php } else { ?>
 <div class="card" id="fail">
-  <div class="card-header bg-white" style="text-align:center;position:relative;color: black;border-radius: 0;border-bottom: 1px solid #f5f5f5;">
-        订单支付失败
-  </div>
   <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 10px;margin:10px;">
     <img src="/img/cry.png" />
     <div style="padding-left:10px;width:70%">你的订单号：<?=$data['id'] ?>。请确认钱包余额后，<a href="/contact">联系客服</a></div>
