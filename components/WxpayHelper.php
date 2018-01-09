@@ -53,8 +53,23 @@ class WxpayHelper extends Component{
 
     public static function buildXml($data) {
         $xmlObj = new \SimpleXMLElement('<xml></xml>');
-        $this->arrayToXml($data, $xmlObj);
+        self::arrayToXml($data, $xmlObj);
         return $xmlObj;
+    }
+
+    public static function arrayToXml($data, &$xmlObj) {
+        foreach($data as $key => $value) {
+            if (is_numeric($key)){
+                $key = 'item'.$key;
+            }
+
+            if (is_array($value)) {
+                $subnode = $xmlObj->addChild($key);
+                self::arrayToXml($value, $subnode);
+            } else {
+                $xmlObj->addChild("$key", htmlspecialchars("$value"));
+            }
+        }
     }
 
     public static function scanpay($params) {
