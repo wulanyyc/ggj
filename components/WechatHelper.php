@@ -196,7 +196,7 @@ class WechatHelper extends Component{
             setcookie('openid', $data['openid'], 0, '/');
 
             $cid = CustomerWeixin::find()->where(['openid' => $data['openid']])->select('customer_id')->scalar();
-
+            Yii::error('test_log:' . $cid);
             if ($cid > 0) {
                 Yii::error('test_log:' . $cid);
                 $phone = Customer::find()->where(['id' => $cid])->select('phone')->scalar();
