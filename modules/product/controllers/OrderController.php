@@ -64,7 +64,22 @@ class OrderController extends AuthController
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;' class='order-status btn btn-xs btn-info' href='javascript:void(0);'>状态</a>";
 
             if ($ret[$key]['status'] == 2 || $ret[$key]['status'] == 3) {
-                $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-val='{$value['pay_money']}' style='margin-top:5px !important;'  class='order-refund btn btn-xs btn-danger' href='javascript:void(0);'>退款</a>";
+                $orderId = $value['id'];
+                $payType = Pay::find()->select('pay_type')->where(['id' => $orderId])->scalar();
+
+                if ($payType == 0) {
+                    $text = "余额退款";
+                }
+
+                if ($payType == 1) {
+                    $text = "支付宝退款";
+                }
+
+                if ($payType == 2) {
+                    $text = "微信退款";
+                }
+
+                $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-val='{$value['pay_money']}' style='margin-top:5px !important;'  class='order-refund btn btn-xs btn-danger' href='javascript:void(0);'>{$text}</a>";
             }
 
             if ($ret[$key]['status'] == 1) {
