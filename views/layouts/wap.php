@@ -41,10 +41,10 @@ SiteAsset::register($this);
 
 <footer>
     <hr/>
-    <div style="display: flex;justify-content: space-between;flex-direction: row;border-top: 1px solid #f5f5f5;font-size: 14px;">
-        <p>&nbsp;蜀ICP备17043581号</p>
-        <a style="text-decoration: none;color:black;" href="/">&copy; 成都果果佳科技</a>
-        <a style="text-decoration: none;color:black;" href="/contact">联系我们&nbsp;</a>
+    <div style="display: flex;justify-content: center;flex-direction: row;border-top: 1px solid #f5f5f5;font-size: 14px;">
+        <p style="padding:0px 5px;">&nbsp;蜀ICP备17043581号</p>
+        <a style="text-decoration: none;color:black;padding:0px 5px;" href="/">&copy; 成都果果佳科技</a>
+        <a style="text-decoration: none;color:black;padding:0px 5px;" href="/contact">联系我们&nbsp;</a>
     </div>
 </footer>
 
