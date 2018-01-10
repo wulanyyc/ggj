@@ -13,6 +13,7 @@ use app\models\CustomerMoneyList;
 use app\models\ProductPackage;
 use app\models\Pay;
 use app\components\AlipayHelper;
+use app\components\SiteHelper;
 
 /**
  * 基础帮助类
@@ -73,7 +74,7 @@ class PriceHelper extends Component{
     }
 
     public static function getValidCoupon() {
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
 
         $currentDate = date('Ymd', time());
         $tongyong = Coupon::find()->where(['type' => 2])
@@ -242,7 +243,7 @@ class PriceHelper extends Component{
      * type: plus, minus
      */
     public static function adjustScore($score, $type = 'minus') {
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
         $currentScore = Customer::find()->where(['id' => $cid])->select('score')->scalar();
 
         if ($type == 'minus') {
