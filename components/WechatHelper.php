@@ -194,15 +194,6 @@ class WechatHelper extends Component{
             Yii::$app->redis->setex($key, $data['expires_in'] - 60, $data['access_token']);
             Yii::$app->redis->setex($keyRefresh, 30 * 86400 - 3600, $data['refresh_token']);
             setcookie('openid', $data['openid'], 0, '/');
-
-            $cid = CustomerWeixin::find()->where(['openid' => $data['openid']])->select('customer_id')->scalar();
-            Yii::error('test_log:' . $cid);
-            if ($cid > 0) {
-                Yii::error('test_log:' . $cid);
-                $phone = Customer::find()->where(['id' => $cid])->select('phone')->scalar();
-                setcookie('cid', $cid, 2592000, '/');
-                setcookie('secret', SiteHelper::buildSecret($phone), 2592000, '/');
-            }
         }
     }
 
@@ -230,6 +221,16 @@ class WechatHelper extends Component{
                 'signature' => $signature,
                 'appid'     => Yii::$app->params['wechat']['appid'],
             ];
+
+            if (empty($_COOKIE['cid'])) {
+                $cid = CustomerWeixin::find()->where(['openid' => $_COOKIE['openid']])->select('customer_id')->scalar();
+                if ($cid > 0) {
+                    Yii::error('test_log:' . $cid);
+                    $phone = Customer::find()->where(['id' => $cid])->select('phone')->scalar();
+                    setcookie('cid', $cid, 2592000, '/');
+                    setcookie('secret', SiteHelper::buildSecret($phone), 2592000, '/');
+                }
+            }
         }
 
         return $wechatData;
