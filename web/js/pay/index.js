@@ -7,10 +7,10 @@ $(document).ready(function () {
         $.ajax({
             url: '/pay/refresh',
             type: 'post',
-            dataType: 'html',
+            dataType: 'json',
             data: 'id=' + id, 
             success: function (data) {
-                if (data !== 'suc') {
+                if (data.status !== 'ok') {
                     bootbox.alert(data);
                 } else {
                     location.reload();

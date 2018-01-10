@@ -41,7 +41,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <?php } else { ?>
   <img src=<?=$info['headimgurl'] ?> style="height:60px;border-radius: 5px;"/>
   <?php } ?>
-  <div style="width:55%;">
+  <div style="width:80%;">
     <?php if (!empty($info['nick'])) { ?>
     <div><?=$info['nick'] ?></div>
     <?php } else { ?>
@@ -52,7 +52,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
       积分：<span class="text-success"><?=$info['score'] ?></span>
     </div>
   </div>
-  <div><button type="button" class="btn btn-outline-info btn-sm" id="charge">充值优惠</button></div>
+  <!-- <div><button type="button" class="btn btn-outline-info btn-sm" id="charge">充值享优惠</button></div> -->
 </div>
 
 <div class="card" id="order" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-around;align-items: center;">

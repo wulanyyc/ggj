@@ -1,13 +1,12 @@
 $(document).ready(function () {
     $('#quit').click(function(){
-        $.cookie('usephone', '', {expires: -1, path: '/'});
         $.cookie('secret', '', {expires: -1, path: '/'});
         $.cookie('cid', '', {expires: -1, path: '/'})
         location.reload();
     });
 
-    $('#submit').click(function(){
-        if ($('#advice').val().length == 0) {
+    $('#feedback').click(function(){
+        if ($('#advice').val() == '') {
             $.helper.alert('意见内容不能为空');
             return ;
         }
@@ -16,12 +15,12 @@ $(document).ready(function () {
             url: '/customer/advice',
             type: 'post',
             data: "advice=" + $('#advice').val(),
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                if (data == 'ok') {
+                if (data.status == 'ok') {
                     $.helper.alert('感谢您提供的宝贵意见');
                 } else {
-                    $.helper.alert(data);
+                    $.helper.alert(data.msg);
                 }
             }
         });

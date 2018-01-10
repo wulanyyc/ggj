@@ -20,9 +20,14 @@ $(document).ready(function () {
                 cid: cid,
                 id: id
             },
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                $('#table-content').html(data);
+                if (data.status == 'ok') {
+                    $('#table-content').html(data.data);
+                } else {
+                    $.helper.alert(data.msg);
+                }
+                
             }
         });
     });
@@ -61,9 +66,13 @@ $(document).ready(function () {
                 data: {
                     id: oid
                 },
-                dataType: 'html',
+                dataType: 'json',
                 success: function (data) {
-                    refresh();
+                    if (data.status == 'ok') {
+                        refresh();
+                    } else {
+                        $.helper.alert(data.msg);
+                    }
                 }
             });
         });
@@ -112,10 +121,14 @@ $(document).ready(function () {
             data: {
                 id: id
             },
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                $('#express_info_content').html(data);
-                $('#express_detail').find('.step').first().addClass('active');
+                if (data.status == 'ok') {
+                    $('#express_info_content').html(data.data);
+                    $('#express_detail').find('.step').first().addClass('active');
+                } else {
+                    $.helper.alert(data.msg);
+                }
             }
         });
     });
@@ -145,9 +158,9 @@ $(document).ready(function () {
             data: {
                 id: id
             },
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                if (data == 'ok') {
+                if (data.status == 'ok') {
                     refresh();
                 } else {
                     $.helper.alert("更新失败");
@@ -164,9 +177,9 @@ $(document).ready(function () {
             data: {
                 id: id
             },
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                if (data == 'ok') {
+                if (data.status == 'ok') {
                     refresh();
                 } else {
                     $.helper.alert("删除失败");

@@ -35,7 +35,13 @@ $(document).ready(function () {
             type: 'get',
             dataType: 'json',
             data: "id=" + id,
-            success: function (data) {
+            success: function (ret) {
+                if (ret.status != 'ok') {
+                    $.heler.alert(ret.msg);
+                    return ;
+                }
+
+                var data = ret.data;
                 document.getElementById("address_form").reset();
                 $('#rec_name').val(data.rec_name);
                 $('#phone').val(data.rec_phone);
@@ -62,9 +68,9 @@ $(document).ready(function () {
         $.ajax({
             url: '/address/html',
             type: 'get',
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                $('#all_address_items').html(data);
+                $('#all_address_items').html(data.data);
             }
         });
     }
@@ -83,15 +89,15 @@ $(document).ready(function () {
         $.ajax({
             url: '/address/add',
             type: 'post',
-            dataType: 'html',
+            dataType: 'json',
             data: $('#address_form').serialize()+"&label=" + label,
             success: function (data) {
-                if (data > 0) {
+                if (data.status == 'ok') {
                     $('#edit_address_id').val('');
                     $('#close_address').click();
                     reloadAddress();
                 } else {
-                    $.helper.alert(data);
+                    $.helper.alert(data.msg);
                     $('#cover').hide();
                 }
             }
@@ -100,13 +106,10 @@ $(document).ready(function () {
 
     $('#inner_add_address').click(function(){
         $('#address_info').show();
-        // $('#address_form').reset();
         document.getElementById("address_form").reset();
-        // $('#rec_name').val('');
-        // $('#rec_phone').val('');
-        // $('#rec_detail').val('');
         $('#cover').show();
         $('body').addClass('forbid');
+        $('#edit_address_id').val('');
     });
 
     $('#all_address_items').delegate('.edit_address_item', 'click', function(){
@@ -126,13 +129,13 @@ $(document).ready(function () {
                 $.ajax({
                     url: '/address/del',
                     type: 'post',
-                    dataType: 'html',
+                    dataType: 'json',
                     data: "id=" + id,
                     success: function (data) {
-                        if (data == 'ok') {
+                        if (data.status == 'ok') {
                             reloadAddress();
                         } else {
-                            $.helper.alert(data);
+                            $.helper.alert(data.msg);
                         }
                     }
                 });

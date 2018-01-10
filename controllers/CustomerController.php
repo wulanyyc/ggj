@@ -12,6 +12,7 @@ use app\modules\product\models\CouponUse;
 use app\models\FeedBack;
 use app\models\ProductOrder;
 use app\models\ProductCart;
+use app\filters\CustomerFilter;
 
 class CustomerController extends Controller
 {
@@ -23,6 +24,18 @@ class CustomerController extends Controller
 
     public function init() {
         $this->layout = SiteHelper::getLayout();
+    }
+
+    public function behaviors() {
+        return [
+            'customer' => [
+                'class' => CustomerFilter::className(),
+                'actions' => [
+                    'refund',
+                    'login',
+                ]
+            ]
+        ];
     }
 
     public $scoreConfig = [
@@ -45,34 +58,25 @@ class CustomerController extends Controller
      * @return
      */
     public function actionIndex() {
-        if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
-        } else {
-            $id = $_COOKIE['cid'];
-            $info = Customer::find()->where(['id' => $id])->asArray()->one();
-            $cartid = ProductCart::find()->select('id')->scalar();
-            $cartOver = ProductOrder::find()->where(['cart_id' => $cartid, 'status' => [2,3,4]])->count();
-            if ($cartOver > 0) {
-                $cartid = 0;
-            }
-            return $this->render('index', [
-                'controller' => Yii::$app->controller->id,
-                'info' => $info,
-                'cartid' => $cartid,
-            ]);
+        $id   = SiteHelper::getCustomerId();
+        $info = Customer::find()->where(['id' => $id])->asArray()->one();
+        $cartid = ProductCart::find()->select('id')->where(['customer_id' => $id])
+            ->orderBy('id desc')->limit(1)->scalar();
+
+        $cartOver = ProductOrder::find()->where(['cart_id' => $cartid, 'status' => [2,3,4]])->count();
+        if ($cartOver > 0) {
+            $cartid = 0;
         }
+
+        return $this->render('index', [
+            'controller' => Yii::$app->controller->id,
+            'info' => $info,
+            'cartid' => $cartid,
+        ]);
     }
 
     public function actionInfo() {
-        if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
-        }
-
-        $id = $_COOKIE['cid'];
+        $id = SiteHelper::getCustomerId();
 
         $data = Customer::find()->where(['id' => $id])->asArray()->one();
         return $this->render('info', [
@@ -88,13 +92,7 @@ class CustomerController extends Controller
     }
 
     public function actionScore() {
-        if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
-        }
-
-        $id = $_COOKIE['cid'];
+        $id = SiteHelper::getCustomerId();
         $config = $this->scoreConfig;
 
         $data = Customer::find()->where(['id' => $id])->asArray()->one();
@@ -109,7 +107,7 @@ class CustomerController extends Controller
     public function actionChange() {
         $config = $this->scoreConfig;
         $params = Yii::$app->request->post();
-        $id = isset($params['id']) ? $params['id'] : '';
+        $id     = isset($params['id']) ? $params['id'] : '';
 
         if (empty($id)) {
             return $this->render('login', [
@@ -117,13 +115,15 @@ class CustomerController extends Controller
             ]);
         }
 
-        $data = Customer::find()->where(['id' => $_COOKIE['cid']])->asArray()->one();
+        $cid  = SiteHelper::getCustomerId();
+        $data = Customer::find()->where(['id' => $cid])->asArray()->one();
+
         if ($data['score'] > $this->scoreConfig[$id]['score']) {
             PriceHelper::adjustScore($this->scoreConfig[$id]['score'], 'minus');
             PriceHelper::adjustWallet($data['id'], $this->scoreConfig[$id]['money'], 'plus', 'score_pay');
-            echo 'ok';
+            SiteHelper::render('ok');
         } else {
-            echo '积分不够';
+            SiteHelper::render('fail', '积分不够');
         }
     }
 
@@ -134,12 +134,6 @@ class CustomerController extends Controller
     }
 
     public function actionFeedback() {
-        if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
-        }
-
         return $this->render('feedback', [
             'controller' => Yii::$app->controller->id,
         ]);
@@ -151,25 +145,25 @@ class CustomerController extends Controller
         $exsit = Customer::find()->where(['phone' => $params['phone']])->count();
 
         if ($exsit > 0) {
-            echo json_encode(['status' => 'fail', 'msg' => '此号码已存在']);
-            Yii::$app->end();
+            SiteHelper::render('fail', '此号码已存在');
         }
 
-        $ar = Customer::findOne($_COOKIE['cid']);
+        $cid = SiteHelper::getCustomerId();
+        $ar  = Customer::findOne($cid);
         $ar->phone = $params['phone'];
-        // $ar->nick  = $params['nick'];
         $ar->save();
 
         if ($ar->save()) {
             $secret = SiteHelper::buildSecret($params['phone']);
-            echo json_encode(['status' => 'ok', 'secret' => $secret, 'cid' => $_COOKIE['cid']]);
+
+            SiteHelper::render('ok', ['secret' => $secret, 'cid' => SiteHelper::getCustomerId()]);
         } else {
-            echo json_encode(['status' => 'fail', 'msg' => '修改失败']);
+            SiteHelper::render('fail', '修改失败');
         }
     }
 
     public function actionAdvice() {
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
         $params = Yii::$app->request->post();
         $advice = !empty($params['advice']) ? $params['advice'] : '';
 
@@ -178,20 +172,14 @@ class CustomerController extends Controller
         $ar->advice = $advice;
 
         if ($ar->save()) {
-            echo 'ok';
+            SiteHelper::render('ok');
         } else {
-            echo '提交失败';
+            SiteHelper::render('fail', '提交失败');
         }
     }
 
     public function actionCoupon() {
-        if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
-        }
-
-        $data =  $this->getCommon();
+        $data = $this->getCommon();
         $html = '';
 
         if (empty($data)) {
@@ -213,7 +201,7 @@ EOF;
             }
         }
 
-        $jobData =  $this->getJob();
+        $jobData = $this->getJob();
         $jobHtml = '';
 
         if (empty($jobData)) {
@@ -245,7 +233,8 @@ EOF;
 
     private function getCommon() {
         $currentDate = date('Ymd', time());
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
+
         $tongyong = Coupon::find()->where(['type' => 2])
             ->andWhere(['<=', 'start_date', $currentDate])
             ->andWhere(['>=', 'end_date', $currentDate])
@@ -263,7 +252,8 @@ EOF;
 
     private function getJob() {
         $currentDate = date('Ymd', time());
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
+
         $job = Coupon::find()->where(['type' => 1])
             ->andWhere(['<=', 'start_date', $currentDate])
             ->andWhere(['>=', 'end_date', $currentDate])

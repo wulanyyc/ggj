@@ -308,7 +308,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: space-between;">
       <div style="display: flex;flex-direction: row;justify-content: flex-start;flex-wrap: nowrap;">
         <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:成都好友手机号码" maxlength=11 style="width: 180px;font-size: 13px;margin-left: 5px;height: 40px;" />
-        <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">使用</button>
+        <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">召唤术</button>
       </div>
       <span id="ask" style="line-height: 40px;color:#0C58B0;cursor: pointer;font-size: 13px;">优惠码规则？</span>
     </div>

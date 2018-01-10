@@ -28,8 +28,7 @@ class SmsController extends Controller
     public function actionGetcode() {
         $params = Yii::$app->request->post();
         if (empty($params)) {
-            echo '提交的数据为空';
-            Yii::$app->end();
+            SiteHelper::renderText('提交的数据为空');
         }
 
         $phone = isset($params['phone']) ? $params['phone'] : 0;
@@ -39,31 +38,27 @@ class SmsController extends Controller
             Yii::$app->redis->setex($phone . "_code", 120, $code);
 
             SmsHelper::sendVcode($phone, ['code' => $code]);
-            //TODO send code
-            echo 1;
-        } else {
-            echo '号码认证失败';
-        }
 
-        Yii::$app->end();
+            SiteHelper::renderText(1);
+        } else {
+            SiteHelper::renderText('号码认证失败');
+        }
     }
 
     public function actionVcode() {
         $params = Yii::$app->request->post();
         if (empty($params)) {
-            echo json_encode(['status' => 'fail', 'msg' => '提交的数据为空']);
-            Yii::$app->end();
+            SiteHelper::render('fail', '提交的数据为空');
         }
 
         if (empty($params['phone']) || empty($params['code'])) {
-            echo json_encode(['status' => 'fail', 'msg' => '提交的数据不全']);
-            Yii::$app->end();
+            SiteHelper::render('fail', '提交的数据不全');
         }
 
         $realCode = Yii::$app->redis->get($params['phone'] . "_code");
 
         if ($realCode != $params['code']) {
-            echo json_encode(['status' => 'fail', 'msg' => '验证失败']);
+            SiteHelper::render('fail', '验证码有误');
         } else {
             $id = SiteHelper::addCustomer($params['phone']);
 
@@ -87,39 +82,30 @@ class SmsController extends Controller
                 }
             }
 
-            echo json_encode([
-                'status' => 'ok', 
+            SiteHelper::render('ok', [
                 'secret' => SiteHelper::buildSecret($params['phone']), 
                 'cid' => $id,
             ]);
         }
-
-        Yii::$app->end();
     }
 
     // only for change phone
     public function actionInfovcode() {
         $params = Yii::$app->request->post();
         if (empty($params)) {
-            echo json_encode(['status' => 'fail', 'msg' => '提交的数据为空']);
-            Yii::$app->end();
+            SiteHelper::render('fail', '提交的数据为空');
         }
 
         if (empty($params['phone']) || empty($params['code'])) {
-            echo json_encode(['status' => 'fail', 'msg' => '提交的数据不全']);
-            Yii::$app->end();
+            SiteHelper::render('fail', '提交的数据不全');
         }
 
         $realCode = Yii::$app->redis->get($params['phone'] . "_code");
 
         if ($realCode != $params['code']) {
-            echo json_encode(['status' => 'fail', 'msg' => '验证失败']);
+            SiteHelper::render('fail', '验证码有误');
         } else {
-            echo json_encode([
-                'status' => 'ok',
-            ]);
+            SiteHelper::render('ok');
         }
-
-        Yii::$app->end();
     }
 }

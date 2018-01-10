@@ -18,6 +18,7 @@ use app\components\AlipayHelper;
 use app\components\NoCsrf;
 use app\components\WxpayHelper;
 use app\components\WechatHelper;
+use app\filters\CustomerFilter;
 
 class PayController extends Controller
 {
@@ -43,7 +44,16 @@ class PayController extends Controller
                     'wx',
                     'wxscan',
                 ]
-            ]
+            ],
+            'customer' => [
+                'class' => CustomerFilter::className(),
+                'actions' => [
+                    'aliwap',
+                    'alipc',
+                    'wx',
+                    'wxscan',
+                ]
+            ],
         ];
     }
 
@@ -52,11 +62,6 @@ class PayController extends Controller
      * @return
      */
     public function actionIndex() {
-        if (!SiteHelper::checkSecret()) {
-            Yii::$app->controller->redirect('/customer/login');
-            Yii::$app->end();
-        }
-
         $params = Yii::$app->request->get();
         $out_trade_no = isset($params['out_trade_no']) ? $params['out_trade_no'] : '';
         if (empty($out_trade_no)) {
@@ -88,11 +93,6 @@ class PayController extends Controller
     }
 
     public function actionWallet() {
-        if (!SiteHelper::checkSecret()) {
-            Yii::$app->controller->redirect('/customer/login');
-            Yii::$app->end();
-        }
-
         $params = Yii::$app->request->get();
         $id = isset($params['id']) ? $params['id'] : '';
         if (empty($id)) {
@@ -113,46 +113,35 @@ class PayController extends Controller
         $params = Yii::$app->request->post();
         $id = isset($params['id']) ? $params['id'] : 0;
         if ($id == 0) {
-            echo '提交数据错误';
-            Yii::$app->end();
+            SiteHelper::render('fail', '提交数据错误');
         }
 
         $data = Pay::find()->where(['id' => $id])->asArray()->one();
 
         if (empty($data)) {
-            echo '提交数据错误';
-            Yii::$app->end();
+            SiteHelper::render('fail', '提交数据错误');
         }
 
         if ($data['pay_result'] == 1) {
-            echo 'suc';
-            Yii::$app->end();
+            SiteHelper::render('ok');
         }
 
         if ($data['pay_result'] == 2) {
-            echo '支付失败，请重新支付';
-            Yii::$app->end();
+            SiteHelper::render('fail', '支付失败，请重新支付');
         }
 
         $response = AlipayHelper::query($data);
 
         if ($response->alipay_trade_query_response->code == 10000) {
             SiteHelper::handlePayOkOrder($id, $response->alipay_trade_query_response->trade_no);
-            echo 'suc';
-            Yii::$app->end();
+            SiteHelper::render('ok');
         } else {
-            echo $response->alipay_trade_query_response->msg;
-            Yii::$app->end();
+            SiteHelper::render('fail', $response->alipay_trade_query_response->msg);
         }
     }
 
     public function actionAdd() {
-        if (!SiteHelper::checkSecret()) {
-            echo json_encode(['status' => 'fail', 'msg' => '验证用户失败']);
-            Yii::$app->end();
-        }
-
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
         $params = Yii::$app->request->post();
         $id = isset($params['id']) ? $params['id'] : 0;
         $payType = isset($params['type']) ? $params['type'] : 0;
@@ -160,21 +149,18 @@ class PayController extends Controller
         $data = ProductOrder::find()->where(['customer_id' => $cid, 'id' => $id])->asArray()->one();
 
         if (empty($data)) {
-            echo json_encode(['status' => 'fail', 'msg' => '请求参数有误']);
-            Yii::$app->end();
+            SiteHelper::render('fail', '请求参数有误');
         }
 
         if ($data['status'] == 2 || $data['status'] == 3) {
-            echo json_encode(['status' => 'fail', 'msg' => '该订单已支付']);
-            Yii::$app->end();
+            SiteHelper::render('fail', '该订单已支付');
         }
 
         // 普通购买检验库存
         if ($data['order_type'] == 1) {
             $inventory = $this->checkInventory($id);
             if (!$inventory['status']) {
-                echo json_encode(['status' => 'fail', 'msg' => $inventory['msg'] . '库存数量不足，请调整商品']);
-                Yii::$app->end();
+                SiteHelper::render('fail', $inventory['msg'] . '库存数量不足，请调整商品');
             }
         }
 
@@ -312,8 +298,8 @@ class PayController extends Controller
     }
 
     private function checkInventory($orderId) {
-        $data     = ProductOrder::find()->where(['id' => $orderId])->asArray()->one();
-        $cartId   = $data['cart_id'];
+        $data = ProductOrder::find()->where(['id' => $orderId])->asArray()->one();
+        $cartId = $data['cart_id'];
         $cartArr = ProductCart::find()->where(['id' => $cartId])->asArray()->one();
         $cartJsonArr = json_decode($cartArr['cart'], true);
 

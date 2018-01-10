@@ -5,6 +5,7 @@ use Yii;
 use yii\base\Component;
 use app\models\Address;
 use app\models\Customer;
+use app\models\CustomerWeixin;
 use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
 use app\models\ProductOrder;
@@ -81,17 +82,25 @@ class SiteHelper extends Component{
     }
 
     public static function checkSecret() {
-        $cid = isset($_COOKIE['cid']) ? $_COOKIE['cid'] : '';
+        $cid    = isset($_COOKIE['cid']) ? $_COOKIE['cid'] : '';
         $secret = isset($_COOKIE['secret']) ? $_COOKIE['secret'] : '';
+        $openid = isset($_COOKIE['openid']) ? $_COOKIE['openid'] : '';
 
-        if (empty($cid) || empty($secret)) {
-            return false;
-        }
+        if (empty($openid)) {
+            if (empty($cid) || empty($secret)) {
+                return false;
+            }
 
-        $phone = self::getCustomerPhone($cid);
+            $phone = self::getCustomerPhone($cid);
 
-        if ($secret == self::buildSecret($phone)) {
-            return true;
+            if ($secret == self::buildSecret($phone)) {
+                return true;
+            }
+        } else {
+            $cid = CustomerWeixin::find()->select('customer_id')->where(['openid' => $openid])->scalar();
+            if ($cid > 0) {
+                return true;
+            }
         }
 
         return false;
@@ -251,10 +260,6 @@ class SiteHelper extends Component{
         return substr($phone, 0, 3) . '****' . substr($phone, 7);
     }
 
-    public static function getCustomerId($phone) {
-        return Customer::find()->where(['phone' => $phone])->select('id')->scalar();
-    }
-
     public static function getCustomerPhone($cid) {
         return Customer::find()->where(['id' => $cid])->select('phone')->scalar();
     }
@@ -272,5 +277,35 @@ class SiteHelper extends Component{
 
     public static function getServerIp(){
         return gethostbyname($_SERVER['SERVER_NAME']);
+    }
+
+    public static function getCustomerId() {
+        if (!empty($_COOKIE['cid'])) {
+            return $_COOKIE['cid'];
+        }
+
+        if (!empty($_COOKIE['openid'])) {
+            $cid = CustomerWeixin::find()->select('customer_id')->where(['openid' => $_COOKIE['openid']])->scalar();
+            if ($cid > 0) {
+                return $cid;
+            }
+        }
+
+        return 0;
+    }
+
+    public static function render($status, $data = '') {
+        if ($status == 'ok') {
+            echo json_encode(['status' => $status, 'data' => $data]);
+        } else {
+            echo json_encode(['status' => $status, 'msg' => $data]);
+        }
+        
+        Yii::$app->end();
+    }
+
+    public static function renderText($msg) {
+        echo $msg;
+        Yii::$app->end();
     }
 }

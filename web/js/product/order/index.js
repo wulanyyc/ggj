@@ -19,13 +19,13 @@ $(document).ready(function () {
             data: {
                 'id': pid
             },
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                if (data == 'ok') {
+                if (data.status == 'ok') {
                     bootbox.alert('刷新成功');
                     loadTable();
                 } else {
-                    bootbox.alert(data);
+                    bootbox.alert(data.msg);
                 }
             }
         });

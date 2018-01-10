@@ -104,7 +104,6 @@ $(document).ready(function () {
     $.helper.round = function(value, precise){
         var num = new Number(value);
         return num.toFixed(precise);
-        // return Math.toFixed(value, 2);
     };
 
     $.helper.copy = function(id) {

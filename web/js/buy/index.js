@@ -162,23 +162,24 @@ $(document).ready(function () {
             url: '/cart/add',
             type: 'post',
             data: 'cart=' + cartStr + "&oid=" + oid + "&product_price=" + money + "&order_type=" + type,
-            dataType: 'html',
-            success: function (data) {
-                if (data > 0) {
-                    location.href = "/cart?id=" + data;
+            dataType: 'json',
+            success: function (ret) {
+                if (ret.data > 0) {
+                    location.href = "/cart?id=" + ret.data;
                 } else {
-                    $.helper.confirm(data, function(result) {
-                        if (result) {
-                            location.href = '/customer';
-                        }
-                    });
+                    $.helper.alert(ret.msg);
+                    // $.helper.confirm(data, function(result) {
+                    //     if (result) {
+                    //         location.href = '/customer';
+                    //     }
+                    // });
                 }
             }
         });
     }
 
     $('#order').click(function() {
-        if ($.cookie('cid') && $.cookie('secret')) {
+        if (($.cookie('cid') && $.cookie('secret')) || $.cookie('openid')) {
             order();
         } else {
             $('#login').show();
@@ -196,8 +197,8 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.status == 'ok') {
                     // $.cookie('userphone', $('#userphone').val(), { path: '/', expires: 30 });
-                    $.cookie('secret', data.secret, { path: '/', expires: 30 });
-                    $.cookie('cid', data.cid, { path: '/', expires: 30 });
+                    $.cookie('secret', data.data.secret, { path: '/', expires: 30 });
+                    $.cookie('cid', data.data.cid, { path: '/', expires: 30 });
                     
                     $('#login').hide();
                     $('#getcode').val('');

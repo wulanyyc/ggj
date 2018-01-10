@@ -126,7 +126,13 @@ $(document).ready(function () {
             type: 'get',
             dataType: 'json',
             data: "id=" + id,
-            success: function (data) {
+            success: function (ret) {
+                if (ret.status == 'fail') {
+                    $.helper.alert(ret.msg);
+                    return ;
+                }
+
+                var data = ret.data;
                 $('.show_address').attr('data-id', data.id);
                 $('#show_rec_name').html(data.rec_name);
                 $('#show_rec_phone').html(data.rec_phone);
@@ -148,7 +154,13 @@ $(document).ready(function () {
             type: 'get',
             dataType: 'json',
             data: "id=" + id,
-            success: function (data) {
+            success: function (ret) {
+                if (ret.status == 'fail') {
+                    $.helper.alert(ret.msg);
+                    return ;
+                }
+
+                var data = ret.data;
                 document.getElementById("address_form").reset();
                 $('#rec_name').val(data.rec_name);
                 $('#phone').val(data.rec_phone);
@@ -175,9 +187,9 @@ $(document).ready(function () {
         $.ajax({
             url: '/address/carthtml',
             type: 'get',
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                $('#all_address_items').html(data);
+                $('#all_address_items').html(data.data);
             }
         });
     }
@@ -196,17 +208,17 @@ $(document).ready(function () {
         $.ajax({
             url: '/address/add',
             type: 'post',
-            dataType: 'html',
+            dataType: 'json',
             data: $('#address_form').serialize()+"&label=" + label,
-            success: function (data) {
-                if (data > 0) {
+            success: function (ret) {
+                if (ret.data > 0) {
                     $('#edit_address_id').val('');
                     $('#close_address').click();
                     $('#close_all_address').click();
-                    refreshShowaddress(data);
+                    refreshShowaddress(ret.data);
                     reloadAddress();
                 } else {
-                    $.helper.alert(data);
+                    $.helper.alert(ret.msg);
                 }
             }
         });
@@ -269,10 +281,10 @@ $(document).ready(function () {
                 $.ajax({
                     url: '/address/del',
                     type: 'post',
-                    dataType: 'html',
+                    dataType: 'json',
                     data: "id=" + id,
                     success: function (data) {
-                        if (data == 'ok') {
+                        if (data.status == 'ok') {
                             reloadAddress();
                             // TODO
                             var showId = $('.show_address').attr('data-id');
@@ -282,7 +294,7 @@ $(document).ready(function () {
                                 $('.show_address').attr('data-id', '');
                             }
                         } else {
-                            $.helper.alert(data);
+                            $.helper.alert(data.msg);
                         }
                     }
                 });
@@ -298,15 +310,15 @@ $(document).ready(function () {
             $.ajax({
                 url: '/cart/discount',
                 type: 'post',
-                dataType: 'html',
+                dataType: 'json',
                 data: "phone=" + phone + '&cid=' + cid,
                 success: function (data) {
                     console.log(data);
-                    if (data > 0) {
-                        $('#discount_fee').html(data);
+                    if (data.status == 'ok') {
+                        $('#discount_fee').html(data.data);
                         calculateRealPrice();
                     } else {
-                        $.helper.alert(data);
+                        $.helper.alert(data.msg);
                     }
                 }
             });
@@ -319,9 +331,13 @@ $(document).ready(function () {
         $.ajax({
             url: '/cart/coupon',
             type: 'post',
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                $('#coupon_items').html(data);
+                if (data.status == 'fail') {
+                    $.helper.alert(data.msg);
+                    return ;
+                }
+                $('#coupon_items').html(data.data);
                 var choosed = $('#coupon_items').attr('data-ids');
                 if (choosed.length > 0) {
                     var arr = choosed.split(',');
@@ -381,7 +397,7 @@ $(document).ready(function () {
         $.ajax({
             url: '/order/add',
             type: 'post',
-            dataType: 'html',
+            dataType: 'json',
             data: {
                 order_type: $('#order_type').val(),
                 address_id: address_id,
@@ -398,10 +414,10 @@ $(document).ready(function () {
                 coupon_fee: $('#coupon_fee').html()
             },
             success: function (data) {
-                if (data > 0) {
-                    location.href = "/order/pay?oid=" + data;
+                if (data.status == 'ok') {
+                    location.href = "/order/pay?oid=" + data.data;
                 } else {
-                    $.helper.alert(data);
+                    $.helper.alert(data.msg);
                 }
             }
         });

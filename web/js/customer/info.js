@@ -72,8 +72,8 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status == 'ok') {
-                    $.cookie('secret', data.secret, { path: '/', expires: 30 });
-                    $.cookie('cid', data.cid, { path: '/', expires: 30 });
+                    $.cookie('secret', data.data.secret, { path: '/', expires: 30 });
+                    $.cookie('cid', data.data.cid, { path: '/', expires: 30 });
                     location.href="/customer";
                 } else {
                     $.helper.alert(data.msg);

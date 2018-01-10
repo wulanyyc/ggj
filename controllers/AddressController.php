@@ -7,6 +7,7 @@ use yii\web\Controller;
 use app\components\SiteHelper;
 use app\models\Address;
 use app\models\Customer;
+use app\filters\CustomerFilter;
 
 class AddressController extends Controller
 {
@@ -20,27 +21,34 @@ class AddressController extends Controller
         $this->layout = SiteHelper::getLayout();
     }
 
+    public function behaviors() {
+        return [
+            'customer' => [
+                'class' => CustomerFilter::className(),
+                'actions' => [
+
+                ]
+            ]
+        ];
+    }
+
     /**
      * 入口
      * @return
      */
     public function actionIndex() {
-        if (!SiteHelper::checkSecret()) {
-            Yii::$app->controller->redirect('/customer/login');
-        } else {
-            $cid = $_COOKIE['cid'];
-            $address = Address::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
+        $cid = SiteHelper::getCustomerId();
+        $address = Address::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
 
-            return $this->render('index', [
-                'controller' => Yii::$app->controller->id,
-                'address' => $address,
-                'citymap' => Yii::$app->params['citymap']['成都'],
-            ]);
-        }
+        return $this->render('index', [
+            'controller' => Yii::$app->controller->id,
+            'address' => $address,
+            'citymap' => Yii::$app->params['citymap']['成都'],
+        ]);
     }
 
     public function actionHtml() {
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
         $address = Address::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
         
         $html = '';
@@ -71,11 +79,12 @@ class AddressController extends Controller
 EOF;
         }
 
-        echo $html;
+        // echo $html;
+        SiteHelper::render('ok', $html);
     }
 
     public function actionCarthtml() {
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
         $address = Address::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
         
         $html = '';
@@ -107,15 +116,11 @@ EOF;
 EOF;
         }
 
-        return $html;
+        // return $html;
+        SiteHelper::render('ok', $html);
     }
 
     public function actionAdd() {
-        if (!SiteHelper::checkSecret()) {
-            echo '验证用户失败';
-            Yii::$app->end();
-        }
-
         $params = Yii::$app->request->post();
         $id = $params['id'];
 
@@ -128,53 +133,45 @@ EOF;
         }
 
         if (!SiteHelper::checkPhone($params['rec_phone'])) {
-            echo '收货人手机格式不正确';
-            Yii::$app->end();
+            SiteHelper::render('fail', '收货人手机格式不正确');
         }
 
-        $params['customer_id'] =  $_COOKIE['cid'];;
+        $params['customer_id'] =  SiteHelper::getCustomerId();;
 
         foreach($params as $key => $value) {
             $ar->$key = $value;
         }
 
         if($ar->save()){
-            echo $ar->id;
+            SiteHelper::render('ok', $ar->id);
         }else{
-            echo '提交的数据不完整';
+            SiteHelper::render('fail', '提交的数据不完整');
         }
     }
 
     public function actionInfo() {
-        if (!SiteHelper::checkSecret()) {
-            echo '验证用户失败';
-            Yii::$app->end();
-        }
-
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
         $params = Yii::$app->request->get();
         $id = $params['id'];
 
         $data = Address::find()->where(['customer_id' => $cid, 'id' => $id])->asArray()->one();
 
-        echo json_encode($data);
+        // echo json_encode($data);
+        SiteHelper::render('ok', $data);
     }
 
     public function actionDel() {
-        if (!SiteHelper::checkSecret()) {
-            echo '验证用户失败';
-            Yii::$app->end();
-        }
-
         $params = Yii::$app->request->post();
         $id = $params['id'];
 
         $ar = Address::findOne($params['id']);
 
         if($ar->delete()){
-            echo 'ok';
+            // echo 'ok';
+            SiteHelper::render('ok');
         }else{
-            echo '删除失败';
+            // echo '删除失败';
+            SiteHelper::render('fail', '删除失败');
         }
     }
 }

@@ -15,12 +15,18 @@ $(document).ready(function () {
             url: '/customer/change',
             type: 'post',
             data: "id=" + id,
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                if (data == 'ok') {
-                    location.href="/customer";
+                if (data.status == 'ok') {
+                    $.helper.confirm('兑换成功，继续兑换？', function(result){
+                        if (!result) {
+                            location.href="/customer";
+                        } else {
+                            location.reload();
+                        }
+                    });
                 } else {
-                    $.helper.alert(data);
+                    $.helper.alert(data.msg);
                 }
             }
         });

@@ -13,6 +13,7 @@ use app\models\Address;
 use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
 use app\models\Customer;
+use app\filters\CustomerFilter;
 
 class CartController extends Controller
 {
@@ -26,16 +27,22 @@ class CartController extends Controller
         $this->layout = SiteHelper::getLayout();
     }
 
+    public function behaviors() {
+        return [
+            'customer' => [
+                'class' => CustomerFilter::className(),
+                'actions' => [
+                   
+                ]
+            ]
+        ];
+    }
+
     /**
      * 入口
      * @return
      */
     public function actionIndex() {
-        if (!SiteHelper::checkSecret()) {
-            Yii::$app->controller->redirect('/customer/login');
-            Yii::$app->end();
-        }
-
         $params = Yii::$app->request->get();
         $id = $params['id'];
 
@@ -54,7 +61,7 @@ class CartController extends Controller
         $data = $this->getFixedData($id);
 
         // 安全校验
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
         if ($data['customer_id'] != $cid) {
             Yii::$app->controller->redirect('/');
             Yii::$app->end();
@@ -117,26 +124,19 @@ class CartController extends Controller
     }
 
     public function actionAdd() {
-        if (!SiteHelper::checkSecret()) {
-            echo '用户权限验证失败';
-            Yii::$app->end();
-        }
-
         $params = Yii::$app->request->post();
-        if(empty($params)){
-            echo '提交的参数不能为空';
-            Yii::$app->end();
+        if (empty($params)){
+            SiteHelper::render('提交的参数不能为空');
         }
 
         if (!$this->checkProductPrice($params)) {
-            echo '提交的价格数据，验证失败';
-            Yii::$app->end();
+            SiteHelper::render('提交的价格数据，验证失败');
         }
 
         $oid = $params['oid'];
         unset($params['oid']);
 
-        $params['customer_id'] = $_COOKIE['cid'];
+        $params['customer_id'] = SiteHelper::getCustomerId();
 
         if ($oid > 0) {
             $po = ProductCart::findOne($oid);
@@ -148,10 +148,10 @@ class CartController extends Controller
             $po->$key = $value;
         }
 
-        if($po->save()){
-            echo $po->id;
-        }else{
-            echo '请完善订单信息';
+        if ($po->save()){
+            SiteHelper::render('ok', $po->id);
+        } else {
+            SiteHelper::render('添加失败，请完善信息');
         }
     }
 
@@ -180,7 +180,8 @@ class CartController extends Controller
         $html = '';
 
         if (empty($data)) {
-            $html = '很抱歉，您账户里没有可用的优惠券';
+            // $html = '很抱歉，您账户里没有可用的优惠券';
+            SiteHelper::render('fail', '很抱歉，您账户里没有可用的优惠券');
         } else {
             foreach($data as $key => $value) {
                 $value['start_date'] = date('Y.m.d', strtotime($value['start_date']));
@@ -199,14 +200,16 @@ EOF;
             }
         }
 
-        echo $html;
+        SiteHelper::render('ok', $html);
+        // echo $html;
+
     }
 
     /*
      * 使用好友手机号码，获取折扣
     */
     public function actionDiscount() {
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
 
         $params = Yii::$app->request->post();
         $friendPhone = $params['phone'];
@@ -214,13 +217,11 @@ EOF;
 
         $userphone = SiteHelper::getCustomerPhone($cid);
         if (!SiteHelper::checkPhone($friendPhone)) {
-            echo '好友手机格式有误';
-            Yii::$app->end();
+            SiteHelper::render('fail', '好友手机格式有误');
         }
 
         if ($userphone == $friendPhone) {
-            echo '请使用好友的手机号码';
-            Yii::$app->end();
+            SiteHelper::render('fail', '请使用成都好友的手机号码');
         }
 
         $areas = SiteHelper::getPhoneArea($friendPhone);
@@ -233,14 +234,16 @@ EOF;
             $productPrice = ProductCart::find()->where(['id' => $cartId])->select('product_price')->scalar();
 
             if ($percent > 0) {
-                echo round($percent * $productPrice, 2);
+                // echo round($percent * $productPrice, 2);
+                SiteHelper::render('ok', round($percent * $productPrice, 2));
             } else {
                 $percent = rand(Yii::$app->params['discount']['start'], Yii::$app->params['discount']['end']) / 100;
                 Yii::$app->redis->setex($key, 3600, $percent);
-                echo round($percent * $productPrice, 2);
+                // echo round($percent * $productPrice, 2);
+                SiteHelper::render('ok', round($percent * $productPrice, 2));
             }
         } else {
-            echo '好友号码非四川境内或号码错误';
+            SiteHelper::render('fail', '好友号码非四川境内或号码错误');
         }
     }
 

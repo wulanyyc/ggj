@@ -13,6 +13,8 @@ use app\models\Address;
 use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
 use app\models\Customer;
+use app\filters\CustomerFilter;
+
 
 class OrderController extends Controller
 {
@@ -26,18 +28,23 @@ class OrderController extends Controller
         $this->layout = SiteHelper::getLayout();
     }
 
+    public function behaviors() {
+        return [
+            'customer' => [
+                'class' => CustomerFilter::className(),
+                'actions' => [
+                   'login'
+                ]
+            ]
+        ];
+    }
+
     /**
      * 入口
      * @return
      */
     public function actionIndex() {
-        if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
-        }
-
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
 
         $params = Yii::$app->request->get();
         $orderType = isset($params['type']) ? $params['type'] : 1;
@@ -60,18 +67,12 @@ class OrderController extends Controller
     }
 
     public function actionAdd() {
-        if (!SiteHelper::checkSecret()) {
-            echo '验证用户失败';
-            Yii::$app->end();
-        }
-
         $params = Yii::$app->request->post();
         if(empty($params)){
-            echo '提交的参数不能为空';
-            Yii::$app->end();
+            SiteHelper::render('fail', '提交的参数不能为空');
         }
 
-        $params['customer_id'] = $_COOKIE['cid'];
+        $params['customer_id'] = SiteHelper::getCustomerId();
 
         $params = $this->checkParams($params);
 
@@ -97,9 +98,9 @@ class OrderController extends Controller
         }
 
         if($po->save()){
-            echo $po->id;
+            SiteHelper::render('ok', $po->id);
         }else{
-            echo '请完善订单信息';
+            SiteHelper::render('fail', '请完善订单信息');
         }
     }
 
@@ -171,15 +172,10 @@ class OrderController extends Controller
             }
         }
         
-        echo $html;
+        SiteHelper::render('ok', $html);
     }
 
     public function actionDel() {
-        if (!SiteHelper::checkSecret()) {
-            echo '数据验证失败';
-            Yii::$app->end();
-        }
-
         $params = Yii::$app->request->post();
         $id = $params['id'];
 
@@ -187,34 +183,23 @@ class OrderController extends Controller
         $ar->status = 5;
 
         if($ar->save()){
-            echo '已删除';
+            SiteHelper::render('ok');
         }else{
-            echo '删除失败';
+            SiteHelper::render('fail', '删除失败');
         }
     }
 
 
     public function actionDelforever() {
-        if (!SiteHelper::checkSecret()) {
-            echo '数据验证失败';
-            Yii::$app->end();
-        }
-
         $params = Yii::$app->request->post();
         $id = $params['id'];
 
         $ar = ProductOrder::findOne($id)->delete();
         
-        echo 'ok';
+        SiteHelper::render('ok');
     }
 
     public function actionComplete() {
-        if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
-        }
-
         $params = Yii::$app->request->post();
         $id = $params['id'];
 
@@ -222,19 +207,13 @@ class OrderController extends Controller
         $ar->status = 3;
 
         if($ar->save()){
-            echo 'ok';
+            SiteHelper::render('ok');
         }else{
-            echo 'fail';
+            SiteHelper::render('fail', '设置失败');
         }
     }
 
     public function actionPay() {
-        if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
-        }
-
         $params = Yii::$app->request->get();
         $oid = isset($params['oid']) ? $params['oid'] : '';
         if (empty($oid)) {
@@ -242,7 +221,7 @@ class OrderController extends Controller
             Yii::$app->end();
         }
 
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
         $data = ProductOrder::find()->where(['customer_id' => $cid, 'id' => $oid])
             ->orderBy('id desc')->asArray()->one();
 
@@ -251,7 +230,7 @@ class OrderController extends Controller
             Yii::$app->end();
         }
 
-        $isWechat = isset($_COOKIE['openid']) ? 1 : 0;
+        $isWechat = !empty($_COOKIE['openid']) ? 1 : 0;
 
         $money = Customer::find()->select('money')->where(['id' => $cid])->scalar();
 
@@ -264,26 +243,18 @@ class OrderController extends Controller
     }
 
     public function actionExpressinfo() {
-        if (!SiteHelper::checkSecret()) {
-            return $this->render('login', [
-                'controller' => Yii::$app->controller->id,
-            ]);
-        }
-
         $params = Yii::$app->request->post();
         if(empty($params)){
-            echo '提交的参数不能为空';
-            Yii::$app->end();
+            SiteHelper::render('提交的参数不能为空');
         }
 
         $id = $params['id'];
 
-        $cid = $_COOKIE['cid'];
+        $cid = SiteHelper::getCustomerId();
         $expressNum = ProductOrder::find()->select('express_num')->where(['customer_id' => $cid, 'id' => $id])->scalar();
 
         if (empty($expressNum)) {
-            echo '商家还未发货, 非预约单下单后24小时内发货';
-            Yii::$app->end();
+            SiteHelper::render('商家还未发货, 非预约单下单后24小时内发货');
         }
 
         $data = json_decode(SiteHelper::getExpressInfo($expressNum), true);
@@ -294,10 +265,10 @@ class OrderController extends Controller
         // $data = json_decode($str, true);
 
         if ($data['status'] != 0) {
-            echo "<div id='unknown'>很抱歉，平台未查到物流信息，您的快递单号：<input id='express_copy_num' value='" . $expressNum . "' type='text' readonly style='display:inline-block;' />&nbsp;<button type='button' class='btn btn-danger btn-sm' id='copy' data-clipboard-target='#express_copy_num'>复制</button></div>";
-            Yii::$app->end();
+            $html =  "<div id='unknown'>很抱歉，平台未查到物流信息，您的快递单号：<input id='express_copy_num' value='" . $expressNum . "' type='text' readonly style='display:inline-block;' />&nbsp;<button type='button' class='btn btn-danger btn-sm' id='copy' data-clipboard-target='#express_copy_num'>复制</button></div>";
+            SiteHelper::render('ok', $html);
         } else {
-            echo $this->buildExpressHtml($data);
+            SiteHelper::render('ok', $this->buildExpressHtml($data));
         }
     }
 
