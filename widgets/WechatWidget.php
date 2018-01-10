@@ -6,6 +6,7 @@ use yii\base\Widget;
 use app\components\WechatHelper;
 use app\models\CustomerWeixin;
 use app\models\Customer;
+use app\components\SiteHelper;
 
 /**
  * 面包屑
