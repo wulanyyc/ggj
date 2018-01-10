@@ -85,7 +85,7 @@ class OrderController extends AuthController
             if ($ret[$key]['status'] == 1) {
                 $payData = Pay::find()->where(['order_id' => $value['id'], 'pay_result' => 0])->asArray()->one();
                 if (!empty($payData)) {
-                    $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-pid='{$payData['id']}' style='margin-top:5px !important;' class='order-refresh btn btn-xs btn-light' href='javascript:void(0);'>刷新状态</a>";
+                    $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-pid='{$payData['id']}' style='margin-top:5px !important;' class='order-refresh btn btn-xs btn-dark' href='javascript:void(0);'>更新支付状态</a>";
                 }
             }
             $ret[$key]['status'] = Yii::$app->params['order_status'][$ret[$key]['status']];
