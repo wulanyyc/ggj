@@ -4,6 +4,7 @@ namespace app\widgets;
 use Yii;
 use yii\base\Widget;
 use app\components\WechatHelper;
+use app\models\CustomerWeixin;
 
 /**
  * 面包屑
@@ -38,7 +39,7 @@ class WechatWidget extends Widget
                 Yii::error('test_log:' . $phone);
             }
         }
-        
+
         $html = <<<EOF
         <input type="hidden" name="we_appid" value="{$wechat['appid']}" id="we_appid" />
         <input type="hidden" name="we_timestamp" value="{$wechat['timestamp']}" id="we_timestamp" />
