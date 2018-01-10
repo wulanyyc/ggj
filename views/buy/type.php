@@ -54,7 +54,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
 
 <div class="card" id="type_content" style="display: flex;align-items: center;justify-content: center;">
   <div class="card-header bg-white" style="font-size:24px;color: #53a93f;border-radius: 0;font-weight: bold;border:none;">
-        首次购买类型设置
+        购买默认类型设置
   </div>
   <div style="display: flex;flex-direction: row;justify-content: space-around;align-items: stretch;flex-wrap: nowrap;">
     <div class="card buy-type" style="border: 1px solid #D5CCDB;">
