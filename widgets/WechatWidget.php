@@ -31,17 +31,6 @@ class WechatWidget extends Widget
             return '';
         }
 
-        if (empty($_COOKIE['cid']) && !empty($_COOKIE['openid'])) {
-            $cid = CustomerWeixin::find()->where(['openid' => $_COOKIE['openid']])->select('customer_id')->scalar();
-            if ($cid > 0) {
-                Yii::error('test_log:' . $cid);
-                $phone = Customer::find()->where(['id' => $cid])->select('phone')->scalar();
-                setcookie('cid', $cid, 2592000, '/', 'guoguojia.vip');
-                setcookie('secret', SiteHelper::buildSecret($phone), 2592000, '/', 'guoguojia.vip');
-                Yii::error('test_log:' . $phone);
-            }
-        }
-
         $html = <<<EOF
         <input type="hidden" name="we_appid" value="{$wechat['appid']}" id="we_appid" />
         <input type="hidden" name="we_timestamp" value="{$wechat['timestamp']}" id="we_timestamp" />
