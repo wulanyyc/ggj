@@ -79,7 +79,7 @@ class AlipayHelper extends Component{
         $params['out_trade_no'] = $data['out_trade_no'];
         $params['trade_no'] = $data['trade_no'];
         $params['refund_amount'] = $data['online_money'];
-        $params['refund_reason'] = '后台人工正常退款';
+        $params['refund_reason'] = '果果佳后台退款';
 
         $request = new \AlipayTradeRefundRequest ();
         $request->setBizContent(json_encode($params));

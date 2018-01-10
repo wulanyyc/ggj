@@ -36,7 +36,7 @@ $(document).ready(function () {
         var money = $(this).attr('data-val');
         var id = $(this).attr('data-id');
         bootbox.confirm({
-            message: "请确认是否退款" + money + '元',
+            message: "请确认是否退款" + money + '元, 钱包：' + $(this).attr('data-wallet') + ', 线上：' + $(this).attr('data-online'),
             buttons: {
                 cancel: {
                     label: '取消'

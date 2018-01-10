@@ -282,6 +282,7 @@ class PriceHelper extends Component{
     }
 
     public static function refund($payData) {
+        // 钱包退款
         if ($payData['pay_type'] == 0) {
             self::adjustWallet($payData['customer_id'], $payData['wallet_money'], 'plus', 'refund_' . $payData['order_id']);
             
@@ -291,6 +292,7 @@ class PriceHelper extends Component{
             $up->save();
         }
 
+        // 支付宝退款
         if ($payData['pay_type'] == 1) {
             $result = AlipayHelper::refund($payData);
 
@@ -308,8 +310,22 @@ class PriceHelper extends Component{
             }
         }
 
+        // 微信退款
         if ($payData['pay_type'] == 2) {
-            
+            $result = WxpayHelper::refund($payData);
+
+            if ($result['return_code'] == 'SUCCESS') {
+                $orderId = $payData['order_id'];
+                $up = ProductOrder::findOne($orderId);
+                $up->status = 4;
+                $up->save();
+
+                if ($payData['wallet_money'] > 0) {
+                    self::adjustWallet($payData['customer_id'], $payData['wallet_money'], 'plus', 'refund_' . $payData['order_id']);
+                }
+            } else {
+                return '退款失败:' . $result['return_msg'];
+            }
         }
 
         return 'ok';
