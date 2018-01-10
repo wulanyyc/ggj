@@ -195,9 +195,10 @@ class WechatHelper extends Component{
             Yii::$app->redis->setex($keyRefresh, 30 * 86400 - 3600, $data['refresh_token']);
             setcookie('openid', $data['openid'], 0, '/');
 
-            $cid   = CustomerWeixin::find()->where(['openid' => $data['openid']])->select('customer_id')->scalar();
+            $cid = CustomerWeixin::find()->where(['openid' => $data['openid']])->select('customer_id')->scalar();
 
             if ($cid > 0) {
+                Yii::error('test_log:' . $cid);
                 $phone = Customer::find()->where(['id' => $cid])->select('phone')->scalar();
                 setcookie('cid', $cid, 2592000, '/');
                 setcookie('secret', SiteHelper::buildSecret($phone), 2592000, '/');
