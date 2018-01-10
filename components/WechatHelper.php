@@ -229,6 +229,7 @@ class WechatHelper extends Component{
                     $phone = Customer::find()->where(['id' => $cid])->select('phone')->scalar();
                     setcookie('cid', $cid, 2592000, '/');
                     setcookie('secret', SiteHelper::buildSecret($phone), 2592000, '/');
+                    Yii::error('test_log:' . $phone);
                 }
             }
         }
