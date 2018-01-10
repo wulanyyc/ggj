@@ -36,8 +36,8 @@ class WechatWidget extends Widget
             if ($cid > 0) {
                 Yii::error('test_log:' . $cid);
                 $phone = Customer::find()->where(['id' => $cid])->select('phone')->scalar();
-                setcookie('cid', $cid, 2592000, '/');
-                setcookie('secret', SiteHelper::buildSecret($phone), 2592000, '/');
+                setcookie('cid', $cid, 2592000, '/', 'guoguojia.vip');
+                setcookie('secret', SiteHelper::buildSecret($phone), 2592000, '/', 'guoguojia.vip');
                 Yii::error('test_log:' . $phone);
             }
         }
