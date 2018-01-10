@@ -3,6 +3,9 @@ namespace app\components;
 
 use Yii;
 use yii\base\Component;
+use app\models\CustomerWeixin;
+use app\models\Customer;
+use app\components\SiteHelper;
 
 /**
  * 基础帮助类
@@ -191,6 +194,14 @@ class WechatHelper extends Component{
             Yii::$app->redis->setex($key, $data['expires_in'] - 60, $data['access_token']);
             Yii::$app->redis->setex($keyRefresh, 30 * 86400 - 3600, $data['refresh_token']);
             setcookie('openid', $data['openid'], 0, '/');
+
+            $cid   = CustomerWeixin::find()->where(['openid' => $data['openid']])->select('customer_id')->scalar();
+
+            if ($cid > 0) {
+                $phone = Customer::find()->where(['id' => $cid])->select('phone')->scalar();
+                setcookie('cid', $cid, 2592000, '/');
+                setcookie('secret', SiteHelper::buildSecret($phone), 2592000, '/');
+            }
         }
     }
 
