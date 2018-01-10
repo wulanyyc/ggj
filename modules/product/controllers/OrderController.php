@@ -65,21 +65,21 @@ class OrderController extends AuthController
 
             if ($ret[$key]['status'] == 2 || $ret[$key]['status'] == 3) {
                 $orderId = $value['id'];
-                $payType = Pay::find()->select('pay_type')->where(['id' => $orderId])->scalar();
+                $payData = Pay::find()->where(['id' => $orderId])->asArray()->one();
 
-                if ($payType == 0) {
+                if ($payData['pay_type'] == 0) {
                     $text = "余额退款";
                 }
 
-                if ($payType == 1) {
+                if ($payData['pay_type']  == 1) {
                     $text = "支付宝退款";
                 }
 
-                if ($payType == 2) {
+                if ($payData['pay_type']  == 2) {
                     $text = "微信退款";
                 }
 
-                $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-val='{$value['pay_money']}' style='margin-top:5px !important;'  class='order-refund btn btn-xs btn-danger' href='javascript:void(0);'>{$text}</a>";
+                $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-val='{$value['pay_money']}' data-online='{$payData['online_money']}' data-wallet='{$payData['wallet_money']}' style='margin-top:5px !important;'  class='order-refund btn btn-xs btn-danger' href='javascript:void(0);'>{$text}</a>";
             }
 
             if ($ret[$key]['status'] == 1) {
