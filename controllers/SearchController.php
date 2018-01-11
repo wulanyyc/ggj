@@ -7,6 +7,7 @@ use yii\web\Controller;
 use app\components\SiteHelper;
 use app\modules\product\models\ProductList;
 use app\components\PriceHelper;
+use app\components\ProductHelper;
 
 class SearchController extends Controller
 {
@@ -42,7 +43,16 @@ class SearchController extends Controller
         $data = ProductList::find()->where(['like', 'name', $kv])->orWhere(['like', 'slogan', $kv])->asArray()->all();
 
         foreach($data as $key => $value) {
-            $data[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id']);
+            $data[$key]['link'] = ProductHelper::getProductLink($value['id']);
+
+            if ($value['booking_status'] != 2) {
+                $data[$key]['buy_price'] = PriceHelper::getProductPrice($value['id'], 1);
+            }
+
+            if ($value['booking_status'] != 3) {
+                $data[$key]['booking_price'] = PriceHelper::getProductPrice($value['id']);
+            }
+
             if (empty($value['img'])) {
                 $data[$key]['img'] = '/img/alpha_4x3.png';
             }
