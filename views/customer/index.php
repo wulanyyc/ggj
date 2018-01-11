@@ -36,7 +36,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 <div class="card" id="userinfo" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
   <?php if (empty($info['headimgurl'])) { ?>
   <div style="font-size: 50px;">
-    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+    <a href="/customer/info" style="color: black;"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
   </div>
   <?php } else { ?>
   <img src=<?=$info['headimgurl'] ?> style="height:60px;border-radius: 5px;"/>
