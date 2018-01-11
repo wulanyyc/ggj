@@ -143,7 +143,7 @@ class PayController extends Controller
 
         if ($data['pay_type'] == 2) {
             $response = WxpayHelper::query($data);
-            SiteHelper::render('fail', json_encode($response));
+            SiteHelper::render('fail', $response);
             // if ($response->alipay_trade_query_response->code == 10000) {
             //     SiteHelper::handlePayOkOrder($id, $response->alipay_trade_query_response->trade_no);
             //     SiteHelper::render('ok');
