@@ -61,7 +61,7 @@ class SiteHelper extends Component{
     public static function getSource() {
         $terminal = self::getTermimal();
 
-        if (isset($_COOKIE['openid'])) {
+        if (!empty($_COOKIE['openid'])) {
             return 'wechat';
         }
 

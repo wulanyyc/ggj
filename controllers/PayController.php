@@ -215,7 +215,7 @@ class PayController extends Controller
                 $payData['online_money'] = $realPayMoney;
                 $payData['pay_type'] = 2;
 
-                $isWechat = isset($_COOKIE['openid']) ? true : false;
+                $isWechat = !empty($_COOKIE['openid']) ? true : false;
 
                 if ($isWechat) {
                     $payData['terminal'] = 'wechat';

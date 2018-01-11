@@ -68,10 +68,16 @@ class CustomerController extends Controller
             $cartid = 0;
         }
 
+        $isWechat = false;
+        if (!empty($_COOKIE['openid'])) {
+            $isWechat = true;
+        }
+
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'info' => $info,
             'cartid' => $cartid,
+            'isWecaht' => $isWechat,
         ]);
     }
 
