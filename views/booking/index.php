@@ -18,7 +18,7 @@ SiteAsset::register($this);
 
   .label {
     display: inline-block;
-    width: 110px;
+    width: 120px;
     color: #53a93f;
   }
 
@@ -35,6 +35,7 @@ SiteAsset::register($this);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   .label {

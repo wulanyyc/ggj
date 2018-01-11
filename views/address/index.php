@@ -20,7 +20,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
     flex-direction: row;
     justify-content: flex-start;
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .item .label {
@@ -118,7 +118,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
   .label_choose {
     border: 1px solid #ccc;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     padding: 5px;
     width: 30%;
     display: inline-block;
@@ -134,7 +134,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
   #label_add {
     border: 1px dashed #ccc;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     padding: 5px;
     width: 80px;
     display: inline-block;
@@ -143,7 +143,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
   }
 
   #show_label {
-    font-size: 12px;padding:2px 10px;
+    font-size: 14px;padding:2px 10px;
   }
 
 </style>
@@ -160,9 +160,9 @@ MsaView::registerJsFile($this,'/js/address/index.js',
             <p style="font-weight: bold;color:#333;">
               <?=$item['rec_name'] ?>
               <span id="cipher_phone" style="padding-left: 5px;"><?=$item['rec_phone'] ?></span>&nbsp;
-              <span class="border border-success text-success" style="font-size: 12px;padding:0px 10px;"><?=$item['label'] ?></span>
+              <span class="border border-success text-success" style="font-size: 14px;padding:0px 10px;"><?=$item['label'] ?></span>
             </p>
-            <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;font-size: 14px;">
+            <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;font-size: 16px;">
               <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
               <span>&nbsp;<?=$item['rec_city'] ?><?=$item['rec_district'] ?><?=$item['rec_detail'] ?></span>
             </p>
@@ -180,7 +180,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
     </div>
 
     <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-      <button id="inner_add_address" type="button" class="btn btn-danger" style="width:50%;font-size: 14px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+      <button id="inner_add_address" type="button" class="btn btn-danger" style="width:50%;font-size: 16px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
       <div id="inner_back" style="margin-left:30px;" class="text-success">返回</div>
     </div>
 </div>
@@ -226,9 +226,9 @@ MsaView::registerJsFile($this,'/js/address/index.js',
           <div id="label_add">+</div>
           <div id="label_add_input" style="width:95%;display: none;">
             <div class="input-group">
-              <input type="text" class="form-control" maxlength=5 style="font-size: 12px;" placeholder="请输入标签名字,最多5个字" id="label_add_text" value="" />
+              <input type="text" class="form-control" maxlength=5 style="font-size: 14px;" placeholder="请输入标签名字,最多5个字" id="label_add_text" value="" />
               <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button" style="font-size: 12px;" id="label_add_input_ok">确定</button>
+                <button class="btn btn-secondary" type="button" style="font-size: 14px;" id="label_add_input_ok">确定</button>
               </span>
             </div>
           </div>
@@ -237,7 +237,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
 
     <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;align-items: center;">
       <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存</button>
-      <span id='close_address_bottom' style="padding-left: 15px;font-size: 14px;color:#0C58B0;">关闭</span>
+      <span id='close_address_bottom' style="padding-left: 15px;font-size: 16px;color:#0C58B0;">关闭</span>
     </div>
   </form>
 </div>
