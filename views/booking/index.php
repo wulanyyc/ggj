@@ -36,6 +36,7 @@ SiteAsset::register($this);
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-start;
   }
 
   .label {
