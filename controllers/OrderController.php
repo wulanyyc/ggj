@@ -49,7 +49,7 @@ class OrderController extends Controller
         $params = Yii::$app->request->get();
         $orderType = isset($params['type']) ? $params['type'] : 1;
 
-        $data = ProductOrder::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
+        $data = ProductOrder::find()->where(['customer_id' => $cid, 'deleteflag' => 0])->orderBy('id desc')->asArray()->all();
 
         foreach($data as $key => $item) {
             if ($item['status'] == 1) {
@@ -194,7 +194,9 @@ class OrderController extends Controller
         $params = Yii::$app->request->post();
         $id = $params['id'];
 
-        $ar = ProductOrder::findOne($id)->delete();
+        $ar = ProductOrder::findOne($id);
+        $ar->deleteflag = 1;
+        $ar->save();
         
         SiteHelper::render('ok');
     }
