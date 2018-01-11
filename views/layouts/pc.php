@@ -50,12 +50,12 @@ SiteAsset::register($this);
                 <a class="nav-link" href="/">首页</a>
             </li>
 
-            <?php if ($controller == 'special') { ?>
+            <?php if ($controller == 'promotion') { ?>
             <li class="nav-item active">
             <?php } else { ?>
             <li class="nav-item">
             <?php } ?>
-                <a class="nav-link" href="/special">今日特价</a>
+                <a class="nav-link" href="/promotion">今日特价</a>
             </li>
 
             <?php if ($controller == 'booking') { ?>

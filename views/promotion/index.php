@@ -1,16 +1,11 @@
 <?php 
 use yii\web\View;
 use app\components\MsaView;
+use app\assets\SiteAsset;
 
 $this->title = '今日特价';
 
-MsaView::registerJsFile($this,'/js/special/index.js', 
-    ['position' => View::POS_END, 
-        'depends' => [
-            'app\assets\SiteAsset',
-        ]
-    ]
-);
+SiteAsset::register($this);
 ?>
 
 <style type="text/css">

@@ -91,6 +91,7 @@ class OrderController extends Controller
         } else {
             $po = new ProductOrder();
             $params['date'] = date('Ymd', time());
+            $params['order_day_num'] = SiteHelper::getOrderDayNum();
         }
         
         foreach($params as $key => $value){

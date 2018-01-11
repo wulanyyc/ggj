@@ -7,7 +7,7 @@ use yii\web\Controller;
 use app\modules\product\models\ProductList;
 use app\components\SiteHelper;
 
-class SpecialController extends Controller
+class PromotionController extends Controller
 {
     public $layout = 'wap';
 
