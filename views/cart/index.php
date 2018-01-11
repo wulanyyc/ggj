@@ -369,7 +369,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="question">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
       优惠码<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_question"></i>
   </div>
   <div style="padding: 5%;">
@@ -392,7 +392,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="detail">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
       商品详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_detail"></i>
   </div>
   <div style="margin-top: 10px;font-size: 14px;width:98%;margin:1% auto;height: 70%;overflow-y: scroll;">
@@ -419,7 +419,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="all_address_info">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
       收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_all_address"></i>
     </div>
 
@@ -455,7 +455,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="address_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
       收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_address"></i>
   </div>
   <form id="address_form" name='address_form' style='margin:5%;'>
@@ -512,7 +512,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="coupon">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
       优惠券<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_coupon"></i>
   </div>
   <div id="coupon_items" data-ids="" style="height: 75%;overflow-y: scroll;">
@@ -523,7 +523,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 
 <div class="card" id="express_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
       发货时间<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_express_info"></i>
   </div>
   <div style="padding: 5%;">
