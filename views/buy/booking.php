@@ -116,7 +116,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   .operator-left {
-    width:40px;
+    width:60px;
     text-align: center;
     border-right: 1px solid #ccc;
     text-decoration: none;
@@ -141,7 +141,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   .operator-right {
-    width: 40px;
+    width: 60px;
     text-align: center;
     border-left: 1px solid #ccc;
     text-decoration: none;
@@ -216,7 +216,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     <div class="card">
       <div class="card-header bg-white" style="color: #866D8D;position:relative;border-radius: 0;border-bottom: 2px solid #866D8D;display: flex;flex-direction: row;justify-content: space-between;">
         预约商品列表
-        <a href="/buy/" class="text-info" style="font-size: 16px;margin-top: 5px;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;买现货享<?=Yii::$app->params['buyDiscount'] * 10 ?>折</a>
+        <a href="/buy/" class="text-info" style="font-size: 16px;margin-top: 5px;text-decoration: none;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;买现货享<?=Yii::$app->params['buyDiscount'] * 10 ?>折</a>
       </div>
 
       <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;">
