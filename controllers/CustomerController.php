@@ -77,7 +77,7 @@ class CustomerController extends Controller
             'controller' => Yii::$app->controller->id,
             'info' => $info,
             'cartid' => $cartid,
-            'isWecaht' => $isWechat,
+            'isWechat' => $isWechat,
         ]);
     }
 
