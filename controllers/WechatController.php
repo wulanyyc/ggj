@@ -117,7 +117,7 @@ class WechatController extends Controller
                 $ar->save();
             }
 
-            return '欢迎关注成都果果佳，新人享5元优惠券';
+            return '欢迎关注成都果果佳，立享5元优惠券';
         }
 
         if ($event == 'unsubscribe') {
@@ -129,7 +129,7 @@ class WechatController extends Controller
             if ($key == 'company') {
                 return '成都果果佳科技有限公司成立于2017年底，致力于为广大客户提供优质且价格合理的商品。
 
-目前主营水果、干果等相关商品，采用预约制、零售的方式服务于普通和公司客户。
+目前主营水果、干果等相关商品，采用预约制、零售的方式服务于广大客户。
 
 以诚为本，全心全意为大家服务';
             }
