@@ -19,6 +19,7 @@ SiteAsset::register($this);
   .label {
     display: inline-block;
     color: #53a93f;
+    width:38%;
   }
 
   .item {
