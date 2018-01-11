@@ -134,10 +134,12 @@ class WxpayHelper extends Component{
         //post提交方式
         curl_setopt($ch, CURLOPT_POST, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+
         //运行curl
         $data = curl_exec($ch);
 
-        Yii::error(var_dump($data));
+        Yii::error($xml);
+        Yii::error(Yii::$app->basePath . '/config/apiclient_cert.pem');
 
         //返回结果
         if($data){
