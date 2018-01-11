@@ -141,7 +141,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   .label_choose {
     border: 1px solid #ccc;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     padding: 5px;
     width: 30%;
     display: inline-block;
@@ -157,7 +157,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   #label_add {
     border: 1px dashed #ccc;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     padding: 5px;
     width: 80px;
     display: inline-block;
@@ -166,7 +166,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   #show_label {
-    font-size: 12px;padding:2px 10px;
+    font-size: 14px;padding:2px 10px;
   }
 
   #coupon_items {
@@ -180,7 +180,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   .coupon_item_label {
-    background-color: #53a93f;border-radius: 5px;font-size: 14px;width:56px;text-align: center;color:white;padding:5px 8px;
+    background-color: #53a93f;border-radius: 5px;font-size: 16px;width:56px;text-align: center;color:white;padding:5px 8px;
   }
 
   .coupon_item_text {
@@ -212,7 +212,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <?php if (empty($address)) { ?>
       <div class="no_address">
         <br/>
-        <button id="add_address" type="button" class="btn btn-outline-danger btn-sm" style="width:140px;margin-bottom: 10px;font-size: 14px;height:30px;margin-top: 10px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+        <button id="add_address" type="button" class="btn btn-outline-danger btn-sm" style="width:140px;margin-bottom: 10px;font-size: 16px;height:30px;margin-top: 10px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
       </div>
 
       <div class="show_address" data-id="" style="display: none;">
@@ -239,7 +239,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
             <span id="show_rec_phone" style="padding-left: 5px;"><?=$address[0]['rec_phone'] ?></span>&nbsp;
             <span id="show_label" class="border border-success text-success"><?=$address[0]['label'] ?></span>
           </p>
-          <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;font-size: 14px;">
+          <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;font-size: 16px;">
             <span><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;</span>
             <span id="show_address"><?=$address[0]['rec_city'] ?><?=$address[0]['rec_district'] ?><?=$address[0]['rec_detail'] ?></span>
           </p>
@@ -251,7 +251,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
       <div class="no_address" style="display: none;">
         <br/>
-        <button id="add_address" type="button" class="btn btn-outline-danger btn-sm" style="width:140px;margin-bottom: 10px;font-size: 14px;height:30px;margin-top: 10px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+        <button id="add_address" type="button" class="btn btn-outline-danger btn-sm" style="width:140px;margin-bottom: 10px;font-size: 16px;height:30px;margin-top: 10px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
       </div>
       <?php } ?>
     </div>
@@ -283,13 +283,13 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
           <div class="form-check form-check-inline express_rule">
             <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
               <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="1" checked> 
-              <span class="badge badge-success" style="letter-spacing: 1px;font-size: 12px;line-height: 18px;font-weight: normal;margin-top: 8px;">快递</span>
+              <span class="badge badge-success" style="letter-spacing: 1px;font-size: 14px;line-height: 18px;font-weight: normal;margin-top: 8px;">快递</span>
             </label>
           </div>
           <div class="form-check form-check-inline express_rule">
             <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
               <input class="form-check-input" type="radio" class="express_rule" name="express_rule" id="express_2" value="2">
-              <span class="badge badge-info" style="letter-spacing: 1px;font-size: 12px;line-height: 18px;font-weight: normal;margin-top: 8px;">自提</span>
+              <span class="badge badge-info" style="letter-spacing: 1px;font-size: 14px;line-height: 18px;font-weight: normal;margin-top: 8px;">自提</span>
             </label>
           </div>
         </div>
@@ -307,10 +307,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div id="discount" class="card-content">
     <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: space-between;">
       <div style="display: flex;flex-direction: row;justify-content: flex-start;flex-wrap: nowrap;">
-        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:成都好友手机号码" maxlength=11 style="width: 180px;font-size: 13px;margin-left: 5px;height: 40px;" />
+        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:成都好友手机号码" maxlength=11 style="width: 180px;font-size: 13px;height: 40px;" />
         <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">召唤术</button>
       </div>
-      <span id="ask" style="line-height: 40px;color:#0C58B0;cursor: pointer;font-size: 13px;">优惠码规则？</span>
+      <span id="ask" style="line-height: 40px;color:red;cursor: pointer;font-size: 13px;">优惠<?=$discount_start ?>%-<?=$discount_end ?>%？</span>
     </div>
     <hr style="margin-top: 8px;margin-bottom: 8px;"/>
     <div style="margin-bottom:3px;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
@@ -375,11 +375,11 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div style="padding: 5%;">
     <p style="display: flex;flex-direction: row;justify-content: flex-start;">
       <span style="padding-right: 5px;">1: </span>
-      <span>任何好友的手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额。</span>
+      <span>任何好友的成都手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额。</span>
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">2: </span>
-      <span>订单支付成功后为好友充此次优惠的50%到其平台账户，赶快来一起享受优惠吧。</span>
+      <span>订单支付成功后为好友充优惠额的50%到其平台账户，赶快来一起享受优惠吧。</span>
     </p>
 
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
@@ -431,11 +431,11 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
             <p style="font-weight: bold;color:#333;">
               <?=$item['rec_name'] ?>
               <span id="cipher_phone" style="padding-left: 5px;"><?=$item['rec_phone'] ?></span>&nbsp;
-              <span class="border border-success text-success" style="font-size: 12px;padding:0px 10px;"><?=$item['label'] ?></span>
+              <span class="border border-success text-success" style="font-size: 14px;padding:0px 10px;"><?=$item['label'] ?></span>
             </p>
             <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;">
               <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-              <span style="font-size: 14px;">&nbsp;<?=$item['rec_city'] ?><?=$item['rec_district'] ?><?=$item['rec_detail'] ?></span>
+              <span style="font-size: 16px;">&nbsp;<?=$item['rec_city'] ?><?=$item['rec_district'] ?><?=$item['rec_detail'] ?></span>
             </p>
           </div>
 
@@ -450,8 +450,8 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <?php } ?>
     </div>
 
-    <button id="inner_add_address" type="button" class="btn btn-danger" style="width:50%;margin-left:25%;font-size: 14px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址并使用</button>
-    <span id='close_all_address_bottom' style="padding-left: 25px;font-size: 14px;color:#0C58B0;">关闭</span>
+    <button id="inner_add_address" type="button" class="btn btn-danger" style="width:50%;margin-left:25%;font-size: 16px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址并使用</button>
+    <span id='close_all_address_bottom' style="padding-left: 25px;font-size: 16px;color:#0C58B0;">关闭</span>
 </div>
 
 <div class="card" id="address_info">
@@ -495,9 +495,9 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
           <div id="label_add">+</div>
           <div id="label_add_input" style="width:95%;display: none;">
             <div class="input-group">
-              <input type="text" class="form-control" maxlength=5 style="font-size: 12px;" placeholder="请输入标签名字,最多5个字" id="label_add_text" value="" />
+              <input type="text" class="form-control" maxlength=5 style="font-size: 14px;" placeholder="请输入标签名字,最多5个字" id="label_add_text" value="" />
               <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button" style="font-size: 12px;" id="label_add_input_ok">确定</button>
+                <button class="btn btn-secondary" type="button" style="font-size: 14px;" id="label_add_input_ok">确定</button>
               </span>
             </div>
           </div>
@@ -506,7 +506,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
     <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;">
       <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存并使用</button>
-      <span id='close_address_bottom' style="padding-left: 25px;font-size: 14px;color:#0C58B0;line-height: 31px;">关闭</span>
+      <span id='close_address_bottom' style="padding-left: 25px;font-size: 16px;color:#0C58B0;line-height: 31px;">关闭</span>
     </div>
   </form>
 </div>

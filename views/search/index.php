@@ -41,25 +41,25 @@ MsaView::registerJsFile($this,'/js/search/index.js',
   }
 
   .title {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 22px;
   }
 
   .slogan {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 18px;
     color: #aaa;
   }
 
   .money {
-    font-size: 12px;
+    font-size: 14px;
     -webkit-transform:scale(0.8);
   }
 
   .price {
     margin-bottom: 0px;
     color: red;
-    font-size: 12px;
+    font-size: 14px;
     height: 18px;
     line-height: 18px;
   }
@@ -74,7 +74,7 @@ MsaView::registerJsFile($this,'/js/search/index.js',
     color: #ccc;
     text-decoration: line-through;
     color: #999;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
   }
 
@@ -88,7 +88,7 @@ MsaView::registerJsFile($this,'/js/search/index.js',
 
 <div class="card">
     <div class="d-inline search" style="position: relative;">
-        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，新鲜好吃" aria-label="美丽健康，新鲜不贵" style="padding-left: 30px;font-size: 14px;" />
+        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，新鲜好吃" aria-label="美丽健康，新鲜不贵" style="padding-left: 30px;font-size: 16px;" />
         <div style="position: absolute;left:8px;top:5px;"><i class="fa fa-search" aria-hidden="true"></i></div>
     </div>
 
@@ -126,6 +126,6 @@ MsaView::registerJsFile($this,'/js/search/index.js',
       </div>
     <?php } ?>
     </div>
-    <div style="text-align: center;font-size: 12px;padding:10px;color:#ccc;">没有更多商品了</div>
+    <div style="text-align: center;font-size: 14px;padding:10px;color:#ccc;">没有更多商品了</div>
     <?php } ?>
 </div>

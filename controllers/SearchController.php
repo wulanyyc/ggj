@@ -38,6 +38,7 @@ class SearchController extends Controller
     }
 
     private function getProducts($kv) {
+        // TODO
         $data = ProductList::find()->where(['like', 'name', $kv])->orWhere(['like', 'slogan', $kv])->asArray()->all();
 
         foreach($data as $key => $value) {
