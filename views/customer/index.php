@@ -93,6 +93,10 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <div style="width:90%;">积分商场</div>
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
+<a href="/booking" class="card" id="score" style="padding: 10px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;text-decoration: none;color: black;">
+  <div style="width:90%;">预约须知</div>
+  <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
+</a>
 
 
 <a href="/customer/info" class="card" id="info" style="padding: 10px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;text-decoration: none;color: black;">
@@ -106,7 +110,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 </a>
 
 <a href="/customer/refund" class="card" id="address" style="padding: 10px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;text-decoration: none;color: black;">
-  <div style="width:90%;">退款赔偿</div>
+  <div style="width:90%;">理赔细则</div>
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
