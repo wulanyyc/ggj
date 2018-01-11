@@ -24,7 +24,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   #menu_list a {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .list-group-item {
@@ -59,25 +59,25 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .title {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 22px;
   }
 
   .slogan {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 18px;
     color: #aaa;
   }
 
   .money {
-    font-size: 12px;
+    font-size: 14px;
     -webkit-transform:scale(0.8);
   }
 
   .price {
     margin-bottom: 0px;
     color: red;
-    font-size: 12px;
+    font-size: 14px;
     height: 18px;
     line-height: 18px;
   }
@@ -92,7 +92,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     color: #ccc;
     text-decoration: line-through;
     color: #999;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
   }
 
@@ -111,14 +111,14 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .operator-left {
-    width:30px;
+    width:40px;
     text-align: center;
     border-right: 1px solid #ccc;
     text-decoration: none;
     color: #000;
     font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 24px;
+    line-height: 30px;
     cursor: pointer;
   }
 
@@ -128,21 +128,22 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .operator-num {
-    width: 40px;
+    width: 80px;
     text-align: center;
     border: none;
-    line-height: 24px;
+    line-height: 30px;
+    font-size: 20px;
   }
 
   .operator-right {
-    width: 30px;
+    width: 40px;
     text-align: center;
     border-left: 1px solid #ccc;
     text-decoration: none;
     color: #000;
     font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 24px;
+    line-height: 30px;
     cursor: pointer;
   }
 
@@ -152,7 +153,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .inventory {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 24px;
     color: #aaa;
   }
@@ -210,16 +211,16 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 <div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
       <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
-        现货商品列表<a href="/buy/booking" class="text-info" style="font-size: 14px;margin-top: 5px;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约</a>
+        现货商品列表<a href="/buy/booking" class="text-info" style="font-size: 16px;margin-top: 5px;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约</a>
       </div>
 
       <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;">
-        <div id="menu_list" class="list-group" style="width:20%;">
+        <div id="menu_list" class="list-group" style="width:12%;">
           <?php foreach($categorys as $key => $value) { ?>
             <a class="list-group-item list-group-item-action" href="#list-<?=$key ?>"><?=$value ?></a>
           <?php } ?>
         </div>
-        <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;width:78%;padding-left: 2%;padding-right: 2%;"">
+        <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;width:86%;padding-left: 2%;padding-right: 2%;"">
           <?php foreach($products as $key => $item) { ?>
           <h5 id="list-<?=$key ?>"><?=$categorys[$key] ?></h5>
           <div class="order-items">
@@ -278,12 +279,12 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div id="tongji">
-  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 12px;margin-right: 5px;width:80px;" id="filter" data-filter=0>仅显示订购</button>
+  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 14px;margin-right: 5px;width:80px;" id="filter" data-filter=0>仅显示订购</button>
 
-  <div id="tips" style="color:#aaa;margin-left: 5px;margin-right: 5px;font-size: 12px;">满<?=$buyGod ?>元包邮</div>
+  <div id="tips" style="color:#aaa;margin-left: 5px;margin-right: 5px;font-size: 14px;">满<?=$buyGod ?>元包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
     <div style="display: inline-block;color:red;width:80px;text-align: left;">
-      <span class="money" style="font-size: 14px;font-weight: normal;">¥</span>
+      <span class="money" style="font-size: 16px;font-weight: normal;">¥</span>
       <span class="realprice" style="font-size:22px;font-weight: normal;">0</span>
     </div>
   </div>
