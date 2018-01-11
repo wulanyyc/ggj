@@ -6,7 +6,7 @@ $(document).ready(function () {
         var coupon = parseFloat($('#coupon_fee').html());
 
         var real_price = parseFloat(product_price + express_fee - discount - coupon);
-        var real_price = $.helper.round(real_price, 2);
+        var real_price = $.helper.round(real_price, 1);
 
         if (real_price < 0) {
             real_price = 0;

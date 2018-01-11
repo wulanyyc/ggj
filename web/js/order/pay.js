@@ -24,7 +24,7 @@ $(document).ready(function () {
         $('#pay_price').html(order_money);
     } else {
         $('#pay_text').html("线上支付");
-        var diff = $.helper.round(order_money - money, 2);
+        var diff = $.helper.round(order_money - money, 1);
         $('#pay_price').html(diff);
 
         $('#wechat').click();
