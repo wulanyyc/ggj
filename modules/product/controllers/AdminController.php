@@ -35,6 +35,9 @@ class AdminController extends AuthController
         $sql = "select id,`name`,price,num,unit,`desc`,slogan,status,booking_status,category from product_list ";
         
         $sqlCondition = [];
+
+        $sqlCondition[] = " deleteflag = 0";
+
         if ($params['status'] > 0) {
             $sqlCondition[] = " status = " . $params['status'];
         }
@@ -99,7 +102,7 @@ class AdminController extends AuthController
         $id = $params['id'];
 
         $ret = ProductList::find()
-            ->select('name,price,unit,num,desc,slogan,category,buy_limit,img')
+            ->select('name,price,unit,num,desc,slogan,category,buy_limit,img,fresh_percent')
             ->where(['id' => $id])
             ->asArray()
             ->one();
@@ -175,10 +178,10 @@ class AdminController extends AuthController
         }
 
         $pl = ProductList::findOne($params['id']);
-
+        $pl->deleteflag = 1;
         //TODO 更新套餐价格
 
-        if ($pl->delete()) {
+        if ($pl->save()) {
             //TODO 更新套餐价格
             $packages = ProductPackage::find()->where(['product_id' => $params['id']])
             ->select('product_package_id')->distinct(true)->asArray()->all();

@@ -4,7 +4,7 @@ $(document).ready(function () {
         var type = $(this).attr('data-type');
         var url = $(this).attr('data-href');
 
-        $.cookie('order_type', type, { path: '/' });
+        $.cookie('order_type', type, { path: '/', expires: 90 });
         location.href = url;
     });
 });

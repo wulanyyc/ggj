@@ -3,6 +3,7 @@ use yii\web\View;
 use app\components\MsaView;
 use app\widgets\UnitWidget;
 use app\widgets\CategoryWidget;
+use app\widgets\FreshWidget;
 
 $this->title = '商品列表';
 
@@ -50,8 +51,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
 
                     <select name='booking_status' id="search_booking" style='width:100px;height:30px;'>
                         <option value="0">全部</option>
-                        <option value="1">可预约</option>
-                        <option value="2">不可预约</option>
+                        <option value="2">仅预约</option>
                     </select>
                 </div>
                 <table id='list' class='hover grid' width='100%' cellspacing='0'>
@@ -90,10 +90,10 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <label style='width:80px'>价格：</label>
                     <input style='width:250px' type='text' placeholder='' name='price' class='input-sm'></input>
                 </div>
-   <!--              <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>库存：</label>
-                    <input style='width:250px' type='text' placeholder='' name='num' class='input-sm num'></input>
-                </div> -->
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>新鲜度：</label>
+                    <?= FreshWidget::widget() ?>
+                </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>单次购买限制：</label>
                     <input style='width:250px' type='text' placeholder='' name='buy_limit' class='input-sm buy_limit'></input>
@@ -137,10 +137,10 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <label style='width:80px'>价格：</label>
                     <input style='width:250px' type='text' placeholder='' name='price' class='input-sm price'></input>
                 </div>
- <!--                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>库存：</label>
-                    <input style='width:250px' type='text' placeholder='' name='num' class='input-sm num'></input>
-                </div> -->
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>新鲜度：</label>
+                    <?= FreshWidget::widget() ?>
+                </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>单次购买限制：</label>
                     <input style='width:250px' type='text' placeholder='' name='buy_limit' class='input-sm buy_limit'></input>
@@ -199,8 +199,8 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
         <div class='col-md-12'>
             <label style='width:80px'>预约状态：</label>
             <select name='booking_status' style='width:350px;min-width:100px;margin-right:12px;'>
-                <option value="1">可预约</option>
-                <option value="2">不可预约</option>
+                <option value="1">无限制</option>
+                <option value="2">仅预约</option>
             </select>
         </div>
     </div>

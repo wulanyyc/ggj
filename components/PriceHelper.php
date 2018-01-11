@@ -26,8 +26,9 @@ class PriceHelper extends Component{
      * $type 订购类型  1: 普通  2: 预订
      */
     public static function getProductPrice($id, $type = 2) {
-        $price = ProductList::find()->where(['id' => $id])->select('price')->scalar();
+        $data = ProductList::find()->where(['id' => $id])->select('price, fresh_percent')->asArray()->one();
 
+        $price = $data['price'];
         if (empty($price)) {
             return 0;
         }
@@ -39,7 +40,7 @@ class PriceHelper extends Component{
         $price = self::getNewPromotion($id, $price);
 
         if ($type == 1) {
-            return round(Yii::$app->params['buyDiscount'] * $price, 2);
+            return round(Yii::$app->params['buyDiscount'] * $price * $data['fresh_percent'] / 100, 2);
         }
 
         if ($type == 2) {
