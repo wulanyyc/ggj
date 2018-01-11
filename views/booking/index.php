@@ -30,7 +30,7 @@ SiteAsset::register($this);
   }
 
   #rule li {
-    padding-left: 15px;
+    padding-left: 8px;
     padding-top: 8px;
     display: flex;
     flex-direction: row;
