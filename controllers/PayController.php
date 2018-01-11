@@ -58,7 +58,7 @@ class PayController extends Controller
     }
 
     /**
-     * 入口
+     * 微信、支付宝支付结果页
      * @return
      */
     public function actionIndex() {
@@ -92,6 +92,7 @@ class PayController extends Controller
         ]);
     }
 
+    // 钱包支付结果页
     public function actionWallet() {
         $params = Yii::$app->request->get();
         $id = isset($params['id']) ? $params['id'] : '';
@@ -116,19 +117,19 @@ class PayController extends Controller
             SiteHelper::render('fail', '提交数据错误');
         }
 
-        $data = Pay::find()->where(['id' => $id])->asArray()->one();
+        $data = Pay::find()->where(['order_id' => $id])->asArray()->one();
 
         if (empty($data)) {
             SiteHelper::render('fail', '提交数据错误');
         }
 
-        // if ($data['pay_result'] == 1) {
-        //     SiteHelper::render('ok');
-        // }
+        if ($data['pay_result'] == 1) {
+            SiteHelper::render('ok');
+        }
 
-        // if ($data['pay_result'] == 2) {
-        //     SiteHelper::render('fail', '支付失败，请重新支付');
-        // }
+        if ($data['pay_result'] == 2) {
+            SiteHelper::render('fail', '支付失败，请重新支付');
+        }
 
         if ($data['pay_type'] == 1) {
             $response = AlipayHelper::query($data);
@@ -143,13 +144,13 @@ class PayController extends Controller
 
         if ($data['pay_type'] == 2) {
             $response = WxpayHelper::query($data);
-            SiteHelper::render('fail', $response);
-            // if ($response->alipay_trade_query_response->code == 10000) {
-            //     SiteHelper::handlePayOkOrder($id, $response->alipay_trade_query_response->trade_no);
-            //     SiteHelper::render('ok');
-            // } else {
-            //     SiteHelper::render('fail', $response->alipay_trade_query_response->msg);
-            // }
+            if (isset($response['trade_state']) && $response['trade_state'] == 'SUCCESS') {
+                SiteHelper::handlePayOkOrder($id, $response['transaction_id']);
+                SiteHelper::render('ok');
+            } else {
+                $msg = isset($response['trade_state_desc']) ? $response['trade_state_desc'] : '更新失败';
+                SiteHelper::render('fail', $msg);
+            }
         }
 
         SiteHelper::render('fail', '钱包支付，状态不可更新');
@@ -331,7 +332,16 @@ class PayController extends Controller
 
     private function addRecord($payData) {
         $date = date("Ymd", time());
-        $ar = new Pay();
+        $orderId = $payData['order_id'];
+
+        $exsitArr = Pay::find()->where(['order_id' => $orderId])->asArray()->one();
+
+        if (count($exsitArr) > 0) {
+            $ar = Pay::findOne($exsitArr['id']);
+        } else {
+            $ar = new Pay();
+        }
+        
         foreach($payData as $key => $item) {
             $ar->$key = $item;
         }
