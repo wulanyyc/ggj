@@ -185,7 +185,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .product-content {
-    display: flex;flex-direction: row;flex-wrap: nowrap;justify-content: space-between;
+    display: flex;flex-direction: row;flex-wrap: nowrap;justify-content: space-around;
     align-items: center;
   }
 
