@@ -13,6 +13,7 @@ use app\models\CustomerMoneyList;
 use app\models\ProductPackage;
 use app\models\Pay;
 use app\components\AlipayHelper;
+use app\components\WxpayHelper;
 use app\components\SiteHelper;
 
 /**
@@ -20,7 +21,9 @@ use app\components\SiteHelper;
  * @author yangyuncai
  *
  */
-class PriceHelper extends Component{
+class PriceHelper extends Component {
+    public static $precison = 1;
+
     /**
      * $id 产品id
      * $type 订购类型  1: 普通  2: 预订
@@ -40,11 +43,11 @@ class PriceHelper extends Component{
         $price = self::getNewPromotion($id, $price);
 
         if ($type == 1) {
-            return round(Yii::$app->params['buyDiscount'] * $price * $data['fresh_percent'] / 100, 2);
+            return round(Yii::$app->params['buyDiscount'] * $price * $data['fresh_percent'] / 100, self::$precison);
         }
 
         if ($type == 2) {
-            return round(Yii::$app->params['bookingDiscount'] * $price, 2);
+            return round(Yii::$app->params['bookingDiscount'] * $price, self::$precison);
         }
 
         return $price;

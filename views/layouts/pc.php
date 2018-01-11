@@ -63,7 +63,7 @@ SiteAsset::register($this);
             <?php } else { ?>
             <li class="nav-item">
             <?php } ?>
-                <a class="nav-link" href="/booking">预约套餐</a>
+                <a class="nav-link" href="/booking">预约</a>
             </li>
 
             <?php if ($controller == 'contact') { ?>

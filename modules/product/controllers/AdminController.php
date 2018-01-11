@@ -70,9 +70,9 @@ class AdminController extends AuthController
             }
 
             if ($ret[$key]['booking_status'] == 1) {
-                $ret[$key]['booking_status'] = "<span style='color:green'>可预约</span>";
+                $ret[$key]['booking_status'] = "<span style='color:green'>无限制</span>";
             } else {
-                $ret[$key]['booking_status'] = "<span style='color:red'>不可预约</span>";
+                $ret[$key]['booking_status'] = "<span style='color:red'>仅预约</span>";
             }
 
             $ret[$key]['operation'] = "

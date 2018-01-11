@@ -10,6 +10,7 @@ use app\modules\product\models\ProductTags;
 use app\models\ProductPackage;
 use app\modules\product\models\Tags;
 use app\components\PriceHelper;
+use app\components\ProductHelper;
 
 class SiteController extends Controller
 {
@@ -24,30 +25,31 @@ class SiteController extends Controller
      * @return
      */
     public function actionIndex() {
+        // TODO price redis 优化
         $orderType = isset($_COOKIE['order_type']) ? $_COOKIE['order_type'] : 0;
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'dayPromotion' => $this->getDayPromotion(),
             'tags' => $this->getTags(),
-            'fruits' => $this->getFruits($orderType),
-            'packages' => $this->getPackages($orderType),
-            'newPromotion' => $this->getNewPromotion($orderType),
+            'fruits' => $this->getFruits(),
+            'packages' => $this->getPackages(),
+            'newPromotion' => $this->getNewPromotion(),
             'orderType' => $orderType,
         ]);
     }
 
-    private function getNewPromotion($orderType) {
-        if ($orderType == 0) $orderType = 2;
-
+    private function getNewPromotion() {
         $promotions = Yii::$app->params['new_promotion'];
 
-        $info = ProductList::find()->select('name,price,unit,img')->where(['id' => $promotions['id']])->asArray()->one();
+        $info = ProductList::find()->select('name,price,unit,img')
+            ->where(['id' => $promotions['id']])->asArray()->one();
 
-        $price = PriceHelper::getProductPrice($promotions['id'], $orderType);
-        $text = $info['name'] . ' ' . $price . '元/' . $info['unit'];
+        $text  = "营养均衡 " . $info['name'];
+
+        $link = ProductHelper::getProductLink($promotions['id']);
 
         // TODO 调整图片
-        return ['text' => $text, 'img' => Yii::$app->params['new_promotion']['img']];
+        return ['text' => $text, 'img' => Yii::$app->params['new_promotion']['img'], 'link' => $link];
     }
 
     private function getDayPromotion() {
@@ -62,11 +64,14 @@ class SiteController extends Controller
             ->where(['id' => $promotions['id']])->asArray()->one();
 
         $text = '星期' . $cn[$dayofweek] . ' ' . $info['name'];
-        return ['text' => $text, 'img' => $info['img'], 'id' => $info['id']];
+
+        $link = ProductHelper::getProductLink($promotions['id']);
+
+        return ['text' => $text, 'img' => $info['img'], 'id' => $info['id'], 'link' => $link];
     }
 
     private function getTags() {
-        $idArr = ProductList::find()->select('id')->where(['status' => 1, 'category' => ['fruit', 'nut']])->asArray()->all();
+        $idArr = ProductList::find()->select('id')->where(['status' => 1, 'category' => ['fruit']])->asArray()->all();
 
         $ids = [];
         foreach($idArr as $item) {
@@ -84,16 +89,9 @@ class SiteController extends Controller
         return $info;
     }
 
-    private function getFruits($orderType) {
-        if ($orderType == 0) $orderType = 2;
-
-        if ($orderType == 1) {
-            $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'fruit', 'status' => 1])->andWhere(['>', 'num', 0])->asArray()->all();
-        } else {
-            $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'fruit', 'status' => 1])->asArray()->all();
-        }
-
-
+    private function getFruits() {
+        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num,booking_status,fresh_percent')->where(['category' => 'fruit', 'status' => 1])->asArray()->all();
+ 
         foreach($info as $key => $value) {
             $tagArr = [];
             $tags = ProductTags::find()->select('tag_id')->where(['product_id' => $value['id']])->asArray()->all();
@@ -107,31 +105,43 @@ class SiteController extends Controller
             }
             $info[$key]['tag'] = implode(' ', $tagArr);
 
-            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id'], $orderType);
+            if ($value['booking_status'] != 2) {
+                $info[$key]['buy_price'] = PriceHelper::getProductPrice($value['id'], 1);
+            }
+
+            if ($value['booking_status'] != 3) {
+                $info[$key]['booking_price'] = PriceHelper::getProductPrice($value['id']);
+            }
+
             if (empty($value['img'])) {
                 $info[$key]['img'] = '/img/apple_4x3.png';
             }
+
+            $info[$key]['link'] = ProductHelper::getProductLink($value['id']);
         }
 
         return $info;
     }
 
-    private function getPackages($orderType) {
-        if ($orderType == 0) $orderType = 2;
-        
-        if ($orderType == 1) {
-            $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'package', 'status' => 1])->andWhere(['>', 'num', 0])->asArray()->all();
-        } else {
-            $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num')->where(['category' => 'package', 'status' => 1])->asArray()->all();
-        }
+    private function getPackages() {
+        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num,booking_status')->where(['category' => 'package', 'status' => 1])->asArray()->all();
 
         foreach($info as $key => $value) {
-            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id'], $orderType);
+            if ($value['booking_status'] != 2) {
+                $info[$key]['buy_price'] = PriceHelper::getProductPrice($value['id'], 1);
+            }
+
+            if ($value['booking_status'] != 3) {
+                $info[$key]['booking_price'] = PriceHelper::getProductPrice($value['id']);
+            }
+
             if (empty($value['img'])) {
                 $info[$key]['img'] = '/img/apple_4x3.png';
             }
 
             $info[$key]['index'] = $key % 3 + 1;
+            $info[$key]['link']  = ProductHelper::getProductLink($value['id']);
+
             $list = ProductPackage::find()->select('product_id, num')->where(['product_package_id' => $value['id']])
                 ->orderBy('num desc')
                 ->asArray()->all();
