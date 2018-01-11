@@ -215,7 +215,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 <div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
       <div class="card-header bg-white" style="color: #866D8D;position:relative;border-radius: 0;border-bottom: 2px solid #866D8D;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-        预约商品列表
+        预约商品
         <a href="/buy/" class="text-info" style="font-size: 16px;text-decoration: none;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;买现货享<?=Yii::$app->params['buyDiscount'] * 10 ?>折</a>
       </div>
 
@@ -290,8 +290,8 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 </div>
 
 <div class="card" id="login">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
-      用户信息<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_login"></i>
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+      用户信息<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;font-size: 16px;" id="close_login"></i>
   </div>
   <div style="width:94%;margin: 10px auto;" id="login_form">
     <div style="margin-bottom: 10px;">

@@ -211,7 +211,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 <div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
       <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-        现货商品列表<a href="/buy/booking" class="text-info" style="font-size: 16px;text-decoration: none;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约</a>
+        现售商品<a href="/buy/booking" class="text-info" style="font-size: 16px;text-decoration: none;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约</a>
       </div>
 
       <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;">
@@ -292,8 +292,8 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div class="card" id="login">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
-      用户信息<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_login"></i>
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+      用户信息<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;font-size: 16px;" id="close_login"></i>
   </div>
   <div style="width:94%;margin: 10px auto;" id="login_form">
     <div style="margin-bottom: 10px;">
