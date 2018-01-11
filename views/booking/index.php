@@ -19,7 +19,7 @@ SiteAsset::register($this);
   .label {
     display: inline-block;
     color: #53a93f;
-    width:38%;
+    /*width:38%;*/
   }
 
   .item {
@@ -39,9 +39,6 @@ SiteAsset::register($this);
     justify-content: flex-start;
   }
 
-  .label {
-    width:100px;
-  }
 </style>
 
 <div class="card">
