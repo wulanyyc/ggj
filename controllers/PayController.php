@@ -112,12 +112,12 @@ class PayController extends Controller
 
     public function actionRefresh() {
         $params = Yii::$app->request->post();
-        $id = isset($params['id']) ? $params['id'] : 0;
-        if ($id == 0) {
+        $pid = isset($params['pid']) ? $params['pid'] : 0;
+        if ($pid == 0) {
             SiteHelper::render('fail', '提交数据错误');
         }
 
-        $data = Pay::find()->where(['order_id' => $id])->asArray()->one();
+        $data = Pay::find()->where(['id' => $pid])->asArray()->one();
 
         if (empty($data)) {
             SiteHelper::render('fail', '提交数据错误');

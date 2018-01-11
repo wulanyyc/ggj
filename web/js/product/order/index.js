@@ -17,7 +17,7 @@ $(document).ready(function () {
             url: '/pay/refresh',
             type: 'post',
             data: {
-                'id': pid
+                'pid': pid
             },
             dataType: 'json',
             success: function (data) {
