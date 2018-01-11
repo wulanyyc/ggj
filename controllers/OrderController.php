@@ -245,7 +245,7 @@ class OrderController extends Controller
     public function actionExpressinfo() {
         $params = Yii::$app->request->post();
         if(empty($params)){
-            SiteHelper::render('提交的参数不能为空');
+            SiteHelper::render('fail', '提交的参数不能为空');
         }
 
         $id = $params['id'];
@@ -254,7 +254,7 @@ class OrderController extends Controller
         $expressNum = ProductOrder::find()->select('express_num')->where(['customer_id' => $cid, 'id' => $id])->scalar();
 
         if (empty($expressNum)) {
-            SiteHelper::render('商家还未发货, 非预约单下单后24小时内发货');
+            SiteHelper::render('fail', '商家还未发货, 非预约单下单后24小时内发货');
         }
 
         $data = json_decode(SiteHelper::getExpressInfo($expressNum), true);

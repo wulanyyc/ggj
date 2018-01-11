@@ -127,7 +127,7 @@ $(document).ready(function () {
                     $('#express_info_content').html(data.data);
                     $('#express_detail').find('.step').first().addClass('active');
                 } else {
-                    $.helper.alert(data.msg);
+                    $('#unknown').html(data.msg);
                 }
             }
         });

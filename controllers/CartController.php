@@ -126,11 +126,11 @@ class CartController extends Controller
     public function actionAdd() {
         $params = Yii::$app->request->post();
         if (empty($params)){
-            SiteHelper::render('提交的参数不能为空');
+            SiteHelper::render('fail', '提交的参数不能为空');
         }
 
         if (!$this->checkProductPrice($params)) {
-            SiteHelper::render('提交的价格数据，验证失败');
+            SiteHelper::render('fail', '提交的价格数据，验证失败');
         }
 
         $oid = $params['oid'];
@@ -151,7 +151,7 @@ class CartController extends Controller
         if ($po->save()){
             SiteHelper::render('ok', $po->id);
         } else {
-            SiteHelper::render('添加失败，请完善信息');
+            SiteHelper::render('fail', '添加失败，请完善信息');
         }
     }
 
