@@ -236,7 +236,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
                   <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                 </div>
 
-                <div class="product-desc" style="width: 58%;">
+                <div class="product-desc" style="width: 55%;">
                   <p class="title"><?=$product['name'] ?> <?=$product['desc'] ?></p>
                   <p class="slogan"><?=$product['slogan'] ?></p>
                   <p class="price">
