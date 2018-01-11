@@ -137,7 +137,7 @@ class WxpayHelper extends Component{
         //运行curl
         $data = curl_exec($ch);
 
-        Yii::error($data);
+        Yii::error(var_dump($data));
 
         //返回结果
         if($data){
