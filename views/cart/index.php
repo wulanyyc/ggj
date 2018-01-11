@@ -28,7 +28,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 4px;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .item .label {
@@ -270,7 +270,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       </div>
 
       <div>
-        <span style="font-size: 13px;cursor: pointer;">共<?=count($data['product']) ?>件&nbsp;&nbsp;
+        <span style="font-size: 14px;cursor: pointer;">共<?=count($data['product']) ?>件&nbsp;&nbsp;
           <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         </span>
       </div>
@@ -295,7 +295,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         </div>
 
         <div id="express_time">
-          <span style="font-size: 13px;cursor: pointer;">发货时间&nbsp;&nbsp;
+          <span style="font-size: 14px;cursor: pointer;">发货时间&nbsp;&nbsp;
             <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
           </span>
         </div>
@@ -307,15 +307,15 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div id="discount" class="card-content">
     <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: space-between;">
       <div style="display: flex;flex-direction: row;justify-content: flex-start;flex-wrap: nowrap;">
-        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:成都好友手机号码" maxlength=11 style="width: 180px;font-size: 13px;height: 40px;" />
-        <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">召唤术</button>
+        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="优惠码:好友的成都手机号" maxlength=11 style="width: 184px;font-size: 14px;height: 40px;" />
+        <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">开图腾</button>
       </div>
-      <span id="ask" style="line-height: 40px;color:red;cursor: pointer;font-size: 13px;">优惠<?=$discount_start ?>%-<?=$discount_end ?>%？</span>
+      <span id="ask" style="line-height: 40px;color:red;cursor: pointer;font-size: 14px;">优惠<?=$discount_start ?>%-<?=$discount_end ?>%？</span>
     </div>
     <hr style="margin-top: 8px;margin-bottom: 8px;"/>
     <div style="margin-bottom:3px;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
       <p class="label" style="width:70%;">优惠券</p>
-      <p style="font-size: 13px;cursor: pointer;">
+      <p style="font-size: 14px;cursor: pointer;">
         <?php if ($coupon > 0) { ?>
         可用<span class="text-danger"><?=$coupon ?></span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         <?php } else { ?>
@@ -357,10 +357,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <br/>
 
 <div id="tongji">
-  <div id="tips" style="color:red;margin-left: 5px;margin-right: 5px;font-size: 15px;">实付款:</div>
+  <div id="tips" style="color:red;margin-left: 5px;margin-right: 5px;font-size: 16px;">实付款:</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
     <div style="display: inline-block;color:red;width:80px;text-align: left;">
-      <span class="money" style="font-size: 15px;font-weight: normal;">¥</span>
+      <span class="money" style="font-size: 16px;font-weight: normal;">¥</span>
       <span class="realprice" style="font-size:22px;font-weight: normal;" id="realprice"></span>
     </div>
   </div>
@@ -375,7 +375,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div style="padding: 5%;">
     <p style="display: flex;flex-direction: row;justify-content: flex-start;">
       <span style="padding-right: 5px;">1: </span>
-      <span>任何好友的成都手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额。</span>
+      <span>任何好友的成都手机号即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额。</span>
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">2: </span>
@@ -395,7 +395,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
       商品详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_detail"></i>
   </div>
-  <div style="margin-top: 10px;font-size: 13px;width:98%;margin:1% auto;height: 70%;overflow-y: scroll;">
+  <div style="margin-top: 10px;font-size: 14px;width:98%;margin:1% auto;height: 70%;overflow-y: scroll;">
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -518,7 +518,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div id="coupon_items" data-ids="" style="height: 75%;overflow-y: scroll;">
   </div>
   <button id="ok_coupon" type="button" class="btn btn-success btn-sm" style="position: absolute;bottom:3%;width:40%;left:30%;">确定并使用</button>
-  <span id='close_coupon_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 13px;color:#0C58B0;">关闭</span>
+  <span id='close_coupon_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 14px;color:#0C58B0;">关闭</span>
 </div>
 
 
