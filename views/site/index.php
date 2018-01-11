@@ -166,7 +166,10 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .promotion-item-left-content-top {
-    text-align: center;font-size: 20px;color:#fff;height: 44px;line-height: 44px;border-top: 2px solid #fff;border-bottom: 2px solid #fff;font-weight: 400;width:100%;
+    text-align: center;font-size: 20px;color:#fff;
+    height: 44px;line-height: 44px;
+    /*border-top: 2px solid #fff;*/
+    border-bottom: 2px solid #fff;font-weight: 400;width:100%;
   }
 
   .promotion-item-left-content-bottom {
