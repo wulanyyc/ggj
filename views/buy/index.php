@@ -210,7 +210,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 
 <div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
-      <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+      <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
         现货商品列表<a href="/buy/booking" class="text-info" style="font-size: 16px;margin-top: 5px;text-decoration: none;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约</a>
       </div>
 

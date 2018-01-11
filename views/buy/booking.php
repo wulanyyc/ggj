@@ -214,7 +214,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 
 <div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
-      <div class="card-header bg-white" style="color: #866D8D;position:relative;border-radius: 0;border-bottom: 2px solid #866D8D;display: flex;flex-direction: row;justify-content: space-between;">
+      <div class="card-header bg-white" style="color: #866D8D;position:relative;border-radius: 0;border-bottom: 2px solid #866D8D;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
         预约商品列表
         <a href="/buy/" class="text-info" style="font-size: 16px;margin-top: 5px;text-decoration: none;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;买现货享<?=Yii::$app->params['buyDiscount'] * 10 ?>折</a>
       </div>
