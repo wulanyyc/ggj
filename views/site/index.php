@@ -118,6 +118,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     font-size: 14px;
     padding: 0px 4px;
     margin-right: 5px;
+    line-height: 20px;
   }
 
   .slogan {
