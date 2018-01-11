@@ -105,7 +105,7 @@ class WxpayHelper extends Component{
         return WechatHelper::xmlToArray($ret);
     }
 
-    public static function query($data) {
+    public static function query($params) {
         $api = 'https://api.mch.weixin.qq.com/pay/orderquery';
 
         $data = [];
