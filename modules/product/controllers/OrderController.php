@@ -65,10 +65,7 @@ class OrderController extends AuthController
 
             if ($ret[$key]['status'] == 2 || $ret[$key]['status'] == 3) {
                 $orderId = $value['id'];
-                $payData = Pay::find()->where(['id' => $orderId])->asArray()->one();
-                if ($orderId == 33) {
-                    print_r($payData);exit;
-                }
+                $payData = Pay::find()->where(['order_id' => $orderId])->asArray()->one();
 
                 if ($payData['pay_type'] == 0) {
                     $text = "余额退款";
