@@ -122,22 +122,37 @@ class PayController extends Controller
             SiteHelper::render('fail', '提交数据错误');
         }
 
-        if ($data['pay_result'] == 1) {
-            SiteHelper::render('ok');
+        // if ($data['pay_result'] == 1) {
+        //     SiteHelper::render('ok');
+        // }
+
+        // if ($data['pay_result'] == 2) {
+        //     SiteHelper::render('fail', '支付失败，请重新支付');
+        // }
+
+        if ($data['pay_type'] == 1) {
+            $response = AlipayHelper::query($data);
+
+            if ($response->alipay_trade_query_response->code == 10000) {
+                SiteHelper::handlePayOkOrder($id, $response->alipay_trade_query_response->trade_no);
+                SiteHelper::render('ok');
+            } else {
+                SiteHelper::render('fail', $response->alipay_trade_query_response->msg);
+            }
         }
 
-        if ($data['pay_result'] == 2) {
-            SiteHelper::render('fail', '支付失败，请重新支付');
+        if ($data['pay_type'] == 2) {
+            $response = WxpayHelper::query($data);
+            SiteHelper::render('fail', json_encode($response));
+            // if ($response->alipay_trade_query_response->code == 10000) {
+            //     SiteHelper::handlePayOkOrder($id, $response->alipay_trade_query_response->trade_no);
+            //     SiteHelper::render('ok');
+            // } else {
+            //     SiteHelper::render('fail', $response->alipay_trade_query_response->msg);
+            // }
         }
 
-        $response = AlipayHelper::query($data);
-
-        if ($response->alipay_trade_query_response->code == 10000) {
-            SiteHelper::handlePayOkOrder($id, $response->alipay_trade_query_response->trade_no);
-            SiteHelper::render('ok');
-        } else {
-            SiteHelper::render('fail', $response->alipay_trade_query_response->msg);
-        }
+        SiteHelper::render('fail', '钱包支付，状态不可更新');
     }
 
     public function actionAdd() {

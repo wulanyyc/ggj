@@ -242,7 +242,7 @@ class WechatHelper extends Component{
     /**
      * 远程调用api
      */
-    public static function curlRequest($url, $data = "", $header = array(), $timeout = 20) {
+    public static function curlRequest($url, $data = "", $header = array(), $timeout = 30) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);

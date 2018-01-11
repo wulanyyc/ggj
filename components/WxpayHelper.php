@@ -106,7 +106,22 @@ class WxpayHelper extends Component{
     }
 
     public static function query($data) {
+        $api = 'https://api.mch.weixin.qq.com/pay/orderquery';
 
+        $data = [];
+        $data['appid'] = Yii::$app->params['wechat']['appid'];
+        $data['mch_id'] = Yii::$app->params['wechat']['mch_id'];
+        $data['nonce_str'] = uniqid();
+        $data['out_trade_no'] = $params['out_trade_no'];
+
+        $sign = self::buildSign($data);
+        $data['sign'] = $sign;
+        $xml = self::buildXml($data);
+        $postData = $xml->asXML();
+
+        $ret = WechatHelper::curlRequest($api, $postData);
+
+        return WechatHelper::xmlToArray($ret);
     }
 
     public static function curl($xml, $url, $useCert = false, $second = 30) {
