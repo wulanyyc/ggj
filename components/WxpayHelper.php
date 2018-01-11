@@ -38,7 +38,11 @@ class WxpayHelper extends Component{
 
         $ret = WechatHelper::curlRequest(self::$api, $postData);
 
-        return WechatHelper::xmlToArray($ret);
+        if (!empty($ret)) {
+            return WechatHelper::xmlToArray($ret);
+        } else {
+            return [];
+        }
     }
 
     public static function buildSign($data) {
@@ -132,6 +136,9 @@ class WxpayHelper extends Component{
         curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
         //运行curl
         $data = curl_exec($ch);
+
+        Yii::error($error);
+
         //返回结果
         if($data){
             curl_close($ch);

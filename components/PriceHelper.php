@@ -315,7 +315,7 @@ class PriceHelper extends Component{
         if ($payData['pay_type'] == 2) {
             $result = WxpayHelper::refund($payData);
 
-            if ($result['return_code'] == 'SUCCESS') {
+            if (isset($result['return_code']) && $result['return_code'] == 'SUCCESS') {
                 $orderId = $payData['order_id'];
                 $up = ProductOrder::findOne($orderId);
                 $up->status = 4;
