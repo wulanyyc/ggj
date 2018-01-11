@@ -157,12 +157,12 @@ $(document).ready(function () {
                 if (ret.data > 0) {
                     location.href = "/cart?id=" + ret.data;
                 } else {
-                    $.helper.alert(ret.msg);
-                    // $.helper.confirm(data.msg, function(result) {
-                    //     if (result) {
-                    //         location.href = '/customer';
-                    //     }
-                    // });
+                    if (ret.msg == '用户验证失败') {
+                        $('#login').show();
+                        $('#cover').show();
+                    } else {
+                        $.helper.alert(ret.msg);
+                    }
                 }
             }
         });

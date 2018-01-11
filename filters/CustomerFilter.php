@@ -35,7 +35,7 @@ class CustomerFilter extends Behavior
         if (!in_array($action, $this->actions)) {
             if (Yii::$app->request->isAjax) {
                 if (!SiteHelper::checkSecret()) {
-                    SiteHelper::render('fail', '用户验证失败');
+                    SiteHelper::render('fail', '用户验证失败'); // 文案不要改，前台判断依赖
                 }
             } else {
                 if (!SiteHelper::checkSecret()) {
