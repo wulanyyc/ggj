@@ -135,7 +135,7 @@ class PayController extends Controller
             $response = AlipayHelper::query($data);
 
             if ($response->alipay_trade_query_response->code == 10000) {
-                SiteHelper::handlePayOkOrder($id, $response->alipay_trade_query_response->trade_no);
+                SiteHelper::handlePayOkOrder($pid, $response->alipay_trade_query_response->trade_no);
                 SiteHelper::render('ok');
             } else {
                 SiteHelper::render('fail', $response->alipay_trade_query_response->msg);
@@ -145,7 +145,7 @@ class PayController extends Controller
         if ($data['pay_type'] == 2) {
             $response = WxpayHelper::query($data);
             if (isset($response['trade_state']) && $response['trade_state'] == 'SUCCESS') {
-                SiteHelper::handlePayOkOrder($id, $response['transaction_id']);
+                SiteHelper::handlePayOkOrder($pid, $response['transaction_id']);
                 SiteHelper::render('ok');
             } else {
                 $msg = isset($response['trade_state_desc']) ? $response['trade_state_desc'] : '更新失败';
