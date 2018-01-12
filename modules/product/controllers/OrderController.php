@@ -21,6 +21,11 @@ class OrderController extends AuthController
         ]);
     }
 
+    public function actionTest() {
+        // 测试电子面单
+        
+    }
+
     /**
      * 表格
      */
