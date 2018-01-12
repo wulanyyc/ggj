@@ -71,7 +71,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;超值：
         </div>
         <div style="width:65%;">
-          69元含2种及以上进口水果，2种及以上时令水果
+          <?=$id ?>元含3种及以上进口水果，2种及以上时令水果
         </div>
       </li>
 
@@ -97,7 +97,7 @@ SiteAsset::register($this);
 </div>
 
 <br/>
-<a class='btn btn-success' href='/buy/booking/?id=20' id='order' style="width:30%;margin-left:35%;margin-bottom: 1%;">立即购买</a>
+<a class='btn btn-success' href='/buy/booking/?id=<?=$id ?>' id='order' style="width:30%;margin-left:35%;margin-bottom: 1%;">立即购买</a>
 <br/>
 
 <br/>
