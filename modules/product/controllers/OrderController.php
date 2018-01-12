@@ -6,10 +6,12 @@ use Yii;
 use app\controllers\AuthController;
 use app\models\ProductOrder;
 use app\models\Pay;
+use app\models\Address;
 use app\modules\product\models\ProductList;
 use yii\helpers\Html;
 use app\components\SiteHelper;
 use app\components\PriceHelper;
+use app\components\ExpressHelper;
 use app\models\ProductCart;
 
 class OrderController extends AuthController
@@ -23,7 +25,23 @@ class OrderController extends AuthController
 
     public function actionTest() {
         // 测试电子面单
-        
+        $id   = 9;
+        $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+
+        $data = [];
+        $data['id'] = uniqid() . '_' . $info['id'];
+        $data['rec_name'] = $info['rec_name'];
+        $data['rec_phone'] = $info['rec_phone'];
+        $data['rec_province'] = '四川省';
+        $data['rec_city'] = '成都市';
+        $data['rec_district'] = '青羊区';   // TODO 优化
+        $data['rec_detail'] = '万科金色领域15栋1805';// TODO 优化
+
+        $data['order_name'] = '水果';
+
+        $ret = ExpressHelper::getEorder($data);
+
+        print_r($ret);
     }
 
     /**
