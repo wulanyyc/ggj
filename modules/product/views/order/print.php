@@ -43,6 +43,7 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
 </style>
 
 <div class='row' style="background-color: white;padding: 3%;" id="print">
+    <h1>果果佳商城<?=$info['id'] ?>号订单</h1>
     <div id="info">
         <div class="item">
             <label>收件人：</label><span><?=$info['rec_name'] ?></span>
@@ -77,7 +78,7 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
         </div>
 
         <div class="item">
-            <label>下单人：</label><span><?=$info['customer_id'] ?>_<?=$info['id'] ?></span>
+            <label>下单人：</label><span><?=$info['customer_id'] ?></span>
         </div>
 
     </div>
