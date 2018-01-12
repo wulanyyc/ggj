@@ -114,11 +114,11 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .sale-badge {
     font-weight:bold;
-    border-radius: 5px;
-    font-size: 14px;
+    border-radius: 3px;
+    font-size: 12px;
     padding: 0px 4px;
     margin-right: 5px;
-    line-height: 20px;
+    line-height: 18px;
   }
 
   .slogan {
@@ -127,7 +127,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .money {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .realprice {
@@ -362,7 +362,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                         <span class="money">元/<?=$product['unit'] ?></span>
                       </span>
                     </div>
-                    <div style="margin-left:5px;font-size: 14px;">100%</div>
+                    <div style="margin-left:5px;font-size: 14px;color:#53a93f;">鲜100</div>
                   </div>
                   <?php } ?>
 
@@ -376,7 +376,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                         <span class="money">元/<?=$product['unit'] ?></span>
                       </span>
                     </div>
-                    <div style="margin-left:5px;font-size: 14px;"><?=$product['fresh_percent'] ?>%</div>
+                    <div style="margin-left:5px;font-size: 14px;color:#53a93f;">鲜<?=$product['fresh_percent'] ?></div>
                   </div>
                   <?php } ?>
                 </div>
