@@ -78,7 +78,7 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
         </div>
 
         <div class="item">
-            <label>下单人：</label><span><?=$info['customer_id'] ?></span>
+            <label>下单人ID：</label><span><?=$info['customer_id'] ?></span>
         </div>
 
     </div>
@@ -90,8 +90,8 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
             <thead>
             <tr>
               <th scope="col">商品</th>
-              <th scope="col">数量</th>
               <th scope="col">描述</th>
+              <th scope="col">数量</th>
               <th scope="col">总价</th>
             </tr>
             </thead>
@@ -99,8 +99,8 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
             <?php foreach($info['product'] as $item) { ?>
               <tr>
                 <td><?=$item['name'] ?></td>
-                <td><?=$info['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
                 <td><?=$item['desc'] ?></td>
+                <td><?=$info['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
                 <td><?=$info['product_cart'][$item['id']]['price'] * $info['product_cart'][$item['id']]['num'] ?>元</td>
               </tr>
             <?php } ?>
