@@ -475,7 +475,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         </select>
     </div>
     <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;align-items: center;flex-wrap: nowrap;'>
-        <label style="width:32%;">所在地区：</label>
+        <label style="width:30%;">所在地区：</label>
         <select style="width:60%;" name="rec_district" id="rec_district">
         <?php foreach($citymap as $item) { ?>
           <option value="<?=$item ?>"><?=$item ?></option>
