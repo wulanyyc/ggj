@@ -314,7 +314,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的成都手机号码" maxlength=11 style="width: 152px;font-size: 14px;height: 40px;" />
         <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">优惠码</button>
       </div>
-      <span id="ask" style="line-height: 40px;color:red;cursor: pointer;font-size: 13px;">享<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>
+      <span id="ask" style="line-height: 40px;color:red;cursor: pointer;font-size: 13px;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>
     </div>
     <hr style="margin-top: 8px;margin-bottom: 8px;"/>
     <div style="margin-bottom:3px;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
