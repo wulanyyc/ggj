@@ -103,7 +103,7 @@ $this->title = '积分商城';
       <?php } ?>
     </div>
     <br/>
-    <button type="button" class="btn btn-success" id="inner_back" style="width:50%;margin-left:25%;margin-bottom: 10px;margin-top:5px;">返回</button>
+    <button type="button" class="btn btn-success btn-sm" id="inner_back" style="width:50%;margin-left:25%;margin-bottom: 10px;margin-top:5px;">返回</button>
 </div>
 
 <div class="card" id="question">

@@ -38,7 +38,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
         反馈意见
       </div>
       <textarea name="advice" id="advice" style="width:96%;height:200px;margin: 2%; border:1px solid #ddd;" maxlength=200></textarea>
-      <button type="button" class="btn btn-danger" id="feedback" style="width:50%;margin-left:25%;margin-bottom: 10px;margin-top:5px;">提交意见</button>
+      <button type="button" class="btn btn-danger btn-sm" id="feedback" style="width:50%;margin-left:25%;margin-bottom: 10px;margin-top:5px;">提交意见</button>
     </div>
     <div class="card" style="margin: 1%;">
       <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
@@ -56,5 +56,5 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
       </div>
     </div>
     <br/>
-    <button type="button" class="btn btn-success" id="inner_back" style="width:50%;margin-left:25%;margin-bottom: 10px;margin-top:5px;">返回</button>
+    <button type="button" class="btn btn-success btn-sm" id="inner_back" style="width:50%;margin-left:25%;margin-bottom: 10px;margin-top:5px;">返回</button>
 </div>

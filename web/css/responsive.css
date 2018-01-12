@@ -208,8 +208,13 @@ main {
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991px) {
     #suc.card{
-        width: 45% !important;
+        width: 30% !important;
         margin: 0 auto !important;
+    }
+
+    #type_content {
+        width: 30%;
+        margin: 0 auto;
     }
 }
 
@@ -219,6 +224,11 @@ main {
         width: 30% !important;
         margin: 0 auto !important;
     }
+
+    #type_content {
+        width: 30%;
+        margin: 0 auto;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -226,5 +236,10 @@ main {
     #suc.card{
         width: 30% !important;
         margin: 0 auto !important;
+    }
+
+    #type_content {
+        width: 30%;
+        margin: 0 auto;
     }
 }

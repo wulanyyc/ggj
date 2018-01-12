@@ -180,7 +180,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
     </div>
 
     <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-      <button id="inner_add_address" type="button" class="btn btn-danger" style="width:50%;font-size: 16px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+      <button id="inner_add_address" type="button" class="btn btn-danger btn-sm" style="width:50%;font-size: 16px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
       <div id="inner_back" style="margin-left:30px;" class="text-success">返回</div>
     </div>
 </div>
@@ -228,7 +228,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
             <div class="input-group">
               <input type="text" class="form-control" maxlength=5 style="font-size: 14px;" placeholder="请输入标签名字,最多5个字" id="label_add_text" value="" />
               <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button" style="font-size: 14px;" id="label_add_input_ok">确定</button>
+                <button class="btn btn-secondary btn-sm" type="button" style="font-size: 14px;" id="label_add_input_ok">确定</button>
               </span>
             </div>
           </div>

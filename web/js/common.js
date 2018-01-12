@@ -16,8 +16,9 @@ $(document).ready(function () {
     }
 
     $('#back, #inner_back').click(function(){
-        console.log(window.history.length);
-        console.log(location.pathname);
+        // console.log(window.history.length);
+        // console.log(location.pathname);
+        console.log(history.length);
         if (location.pathname == '/buy/booking') {
             var back = $.cookie('booking-history-back');
             if ($.cookie('booking-history-back') < 0) {

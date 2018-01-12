@@ -346,9 +346,9 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <?php foreach($fruits as $product) { ?>
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
             <a class="product-item-content" href="<?=$product['link'] ?>">
-              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:5%;height:90%;flex-wrap: nowrap;">
-                <img class="card-img" style="width:40%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
-                <div style="width:58%;">
+              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:3%;height:90%;flex-wrap: nowrap;">
+                <img class="card-img" style="width:36%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                <div style="width:62%;">
                   <p class="desc"><?=$product['name'] ?></p>
                   <p class="desc"><?=$product['desc'] ?></p>
 
@@ -381,9 +381,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                   <?php } ?>
                 </div>
               </div>
-              <br/>
 
-              <div class="tip-content" style="position: absolute;bottom: 0px;">
+              <div class="tip-content">
                   <?=$product['slogan'] ?>
               </div>
             </a>
@@ -408,10 +407,10 @@ MsaView::registerJsFile($this,'/js/site/index.js',
           <div class="package-item">
             <div class="package-item-products">
               <?php foreach($item['list'] as $product) { ?>
-              <div class="package-item-product" style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;font-size:16px;">
+              <div class="package-item-product" style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;font-size:14px;flex-wrap: nowrap;">
                 <img src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" style="height:60px;"/>
-                <span style="display: inline-block;width:90px;"><?=$product['name'] ?></span>
-                <span><?=$product['num'] ?><?=$product['unit'] ?></span>
+                <span style="display: inline-block;width: 70px;overflow-x: hidden;"><?=$product['name'] ?></span>
+                <span style="padding-left: 5px;"><?=$product['num'] ?><?=$product['unit'] ?></span>
               </div>
               <?php } ?>
             </div>
@@ -421,13 +420,13 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                 <span style="font-size: 14px;padding-right: 16px;"><?=$item['desc'] ?></span>
                 <?php if (isset($item['booking_price'])) { ?>
                 <div class="sale-badge" style="border:1px solid #866D8D;color:#866D8D;line-height: 20px;height: 20px;">预约</div>
-                <span style="font-size: 18px;font-weight: bold;color:#866D8D;"><?=$item['booking_price'] ?></span>
+                <span style="font-size: 16px;font-weight: bold;color:#866D8D;"><?=$item['booking_price'] ?></span>
                 <span style="font-size: 14px;">&nbsp;元&nbsp;&nbsp;</span>
                 <?php } ?>
 
                 <?php if (isset($item['buy_price'])) { ?>
                 <div class="sale-badge" style="border:1px solid red;color: red; padding: 0px 3px;line-height: 20px;height: 20px;">现售</div>
-                <span style="font-size: 18px;font-weight: bold;color:red"><?=$item['buy_price'] ?></span>
+                <span style="font-size: 16px;font-weight: bold;color:red"><?=$item['buy_price'] ?></span>
                 <span style="font-size: 14px;">&nbsp;元&nbsp;&nbsp;</span>
                 <?php } ?>
             </div>

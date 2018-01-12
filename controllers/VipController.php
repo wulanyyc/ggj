@@ -25,7 +25,7 @@ class VipController extends Controller
      * @return
      */
     public function actionIndex() {
-        $id   = Yii::$app->params['vip_productid'];
+        $id = Yii::$app->params['vip_productid'];
         $price = PriceHelper::getProductPrice($id, 2);
 
         return $this->render('index', [

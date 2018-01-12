@@ -76,14 +76,14 @@ ClipAsset::register($this);
 
   .status-item {
     display: inline-block;
-    font-size: 14px;
+    font-size: 13px;
     height: 45px;
     line-height: 45px;
     padding-bottom: 5px;
     padding-left: 3px;
     padding-right: 2px;
     margin-left: 2px;
-    margin-right: 8px;
+    margin-right: 3px;
     cursor: pointer;
   }
 
@@ -162,10 +162,10 @@ ClipAsset::register($this);
     <div class="card-header bg-white" style="border-bottom: 1px solid #ced4da;display: flex;justify-content: space-between;align-items: center;">
       <div style="display: inline-block;width:20%;">果果佳</div>
       <div style="font-size: 14px;color:#aaa;line-height: 20px;display: inline-flex;justify-content: flex-end;align-items: center;">
-        <span class="badge badge-danger" style="font-size: 12px;margin-right: 5px;padding:5px;letter-spacing: 1px;">
+        <span class="badge badge-danger" style="font-size: 12px;margin-right: 6px;padding:6px;">
           <?=$status[$item['status']] ?>
         </span>
-        <span class="badge badge-success" style="font-size: 12px;margin-right: 5px;padding:5px;letter-spacing: 1px;">
+        <span class="badge badge-success" style="font-size: 12px;margin-right: 6px;padding:6px;">
           <?=$type[$item['order_type']] ?>单
         </span>
         <?php if ($item['status'] == 5) { ?>
@@ -195,7 +195,7 @@ ClipAsset::register($this);
 
         <div style="font-size:14px;justify-content: flex-end;display: flex;flex-direction: row;margin-top:12px;">
           <p>共</p>
-          <p><span class="text-danger"><?=$item['cart_num'] ?></span>件商品</p>
+          <p><span class="text-danger"><?=$item['cart_num'] ?></span>件</p>
           &nbsp;&nbsp;&nbsp;
           <p>商品额：</p>
           <p><span class="text-danger"><?=$item['product_price'] ?></span>元</p>
@@ -209,7 +209,7 @@ ClipAsset::register($this);
 
     <div class="item" style="border-top: 1px solid #ced4da;justify-content: flex-end;">
         <?php if ($item['status'] == 1) { ?>
-        <button type="button" class="btn btn-outline-warning btn-sm del" data-id="<?=$item['id'] ?>">删除订单</button>
+        <button type="button" class="btn btn-outline-warning btn-sm del" data-id="<?=$item['id'] ?>">删除</button>
         <button type="button" class="btn btn-outline-info btn-sm edit" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">修改商品</button>
         <button type="button" class="btn btn-outline-primary btn-sm show_detail" data-id="<?=$item['id'] ?>" data-cid="<?=$item['cart_id'] ?>">查看商品</button>
         <button type="button" class="btn btn-outline-danger btn-sm pay" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">去支付</button>

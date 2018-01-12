@@ -24,7 +24,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   #menu_list a {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .list-group-item {
@@ -211,7 +211,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 <div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
       <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-        现售商品<a href="/buy/booking" class="text-info" style="font-size: 16px;text-decoration: none;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约</a>
+        现售商品<a href="/buy/booking" class="text-info" style="font-size: 14px;text-decoration: none;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约</a>
       </div>
 
       <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;">
@@ -245,7 +245,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
                       <span class="realprice">
                         <?=$product['promotion_price'] ?>
                         <span class="money">元/<?=$product['unit'] ?></span>
-                        <span class="orignal_price">¥ <?=$product['price'] ?></span>
+                        <!-- <span class="orignal_price">¥ <?=$product['price'] ?></span> -->
                       </span>
                     <?php } ?>
                   </p>
@@ -279,16 +279,16 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div id="tongji">
-  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 14px;margin-right: 3px;width:85px;text-align: center;" id="filter" data-filter=0>仅显示订购</button>
+  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 14px;margin-right: 3px;text-align: center;padding:2px !important;" id="filter" data-filter=0>显示订购</button>
 
-  <div id="tips" style="color:#aaa;margin-left: 5px;margin-right: 3px;font-size: 14px;">满<?=$buyGod ?>元包邮</div>
+  <div id="tips" style="color:#aaa;margin-left: 1px;margin-right: 1px;font-size: 14px;">满<?=$buyGod ?>包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
-    <div style="display: inline-block;color:red;width:80px;text-align: left;">
+    <div style="display: inline-block;color:red;width:90px;text-align: left;">
       <span class="money" style="font-size: 16px;font-weight: normal;">¥</span>
       <span class="realprice" style="font-size:22px;font-weight: normal;">0</span>
     </div>
   </div>
-  <div class='btn btn-secondary' id='order' style="width:100px;height: 40px;margin-right: 10px;"><?=$buyLimit ?>元起购</div>
+  <div class='btn btn-secondary btn-sm' id='order' style="margin-right: 8px;width:80px;"><?=$buyLimit ?>元起购</div>
 </div>
 
 <div class="card" id="login">

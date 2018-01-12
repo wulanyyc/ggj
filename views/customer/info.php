@@ -42,7 +42,7 @@ MsaView::registerJsFile($this,'/js/customer/info.js',
       <span id='edit_phone' style="padding-left: 15px;font-size: 14px;color:#0C58B0;width: 130px;">修改号码&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>
     </div>
 
-    <button type="button" class="btn btn-success" id="submit" style="width:50%;margin-left:25%;margin-top:10px;">
+    <button type="button" class="btn btn-success btn-sm" id="submit" style="width:50%;margin-left:25%;margin-top:10px;">
       提交
     </button>
   </div>
@@ -62,7 +62,7 @@ MsaView::registerJsFile($this,'/js/customer/info.js',
       <button type="button" class="btn btn-outline-danger" style="margin-left:5px;width:100px;" id="getcode">短信验证码</button>
     </div>
 
-    <button type="button" class="btn btn-success" id="next" style="width:50%;margin-left:25%;margin-top:10px;">
+    <button type="button" class="btn btn-success btn-sm" id="next" style="width:50%;margin-left:25%;margin-top:10px;">
       确定
     </button>
   </div>

@@ -236,7 +236,7 @@ $(document).ready(function () {
             $(this).html("显示全部");
         } else {
             $(this).attr("data-filter", 0);
-            $(this).html("仅显示订购");
+            $(this).html("显示订购");
         }
     });
 });

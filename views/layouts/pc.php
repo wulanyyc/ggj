@@ -30,7 +30,7 @@ SiteAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;">
+<nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;display:flex;flex-direction: row;align-items: center;justify-content: space-between;flex-wrap: nowrap;">
     <a class="navbar-brand" href="/" style="color:white;">果果佳</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,7 +86,7 @@ SiteAsset::register($this);
         <div style="position: absolute;left:8px;top:5px;"><i class="fa fa-search" aria-hidden="true"></i></div>
     </div>
 
-    <a style="display: inline-block;margin-left:10px;text-decoration: none;color: #fff;" href="/customer">个人中心</a>
+    <a style="display: inline-block;text-decoration: none;color: #fff;font-size: 16px;" href="/customer">个人中心</a>
 </nav>
 
 <main>
@@ -96,10 +96,10 @@ SiteAsset::register($this);
 
 <footer>
     <hr/>
-    <div style="display: flex;justify-content: center;flex-direction: row;border-top: 1px solid #f5f5f5;font-size: 15px;">
-        <p style="padding:0px 5px;">&nbsp;蜀ICP备17043581号</p>
-        <a style="text-decoration: none;color:black;padding:0px 5px;" href="/">&copy; 成都果果佳科技</a>
-        <a style="text-decoration: none;color:black;padding:0px 5px;" href="/contact">联系我们&nbsp;</a>
+    <div style="display: flex;justify-content: center;flex-direction: row;border-top: 1px solid #f5f5f5;font-size: 14px;">
+        <p style="padding:0px 3px;">蜀ICP备17043581号</p>
+        <a style="text-decoration: none;color:black;padding:0px 3px;" href="/">&copy; 成都果果佳科技</a>
+        <a style="text-decoration: none;color:black;padding:0px 3px;" href="/contact">联系我们</a>
     </div>
 </footer>
 

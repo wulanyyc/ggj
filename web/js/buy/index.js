@@ -239,7 +239,7 @@ $(document).ready(function () {
             $(this).blur();
         } else {
             $(this).attr("data-filter", 0);
-            $(this).html("仅显示订购");
+            $(this).html("显示订购");
             $(this).blur();
         }
     });
