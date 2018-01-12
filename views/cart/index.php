@@ -460,31 +460,31 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   </div>
   <form id="address_form" name='address_form' style='margin:5%;'>
     <input type="hidden" name="id" value='' id="edit_address_id" />
-    <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;'>
-        <label>收货人：</label>
-        <input type='text' placeholder='' name='rec_name' class='input-sm' id='rec_name' maxlength=45 value='' />
+    <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;align-items: center;flex-wrap: nowrap;'>
+        <label style="width:30%;">收货人：</label>
+        <input style="width:60%;" type='text' placeholder='' name='rec_name' class='input-sm' id='rec_name' maxlength=45 value='' />
     </div>
-    <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;'>
-        <label>手机号码：</label>
-        <input type='text' placeholder='' name='rec_phone' class='input-sm' id='phone' size=11 value='' />
+    <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;align-items: center;flex-wrap: nowrap;'>
+        <label style="width:30%;">手机号码：</label>
+        <input style="width:60%;" type='text' placeholder='' name='rec_phone' class='input-sm' id='phone' size=11 value='' />
     </div>
-    <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;'>
-        <label>所在城市：</label>
-        <select name="rec_city" id="rec_city">
+    <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;align-items: center;flex-wrap: nowrap;'>
+        <label style="width:30%;">所在城市：</label>
+        <select style="width:60%;" name="rec_city" id="rec_city">
           <option value="成都">成都</option>
         </select>
     </div>
-    <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;'>
-        <label>所在地区：</label>
-        <select name="rec_district" id="rec_district">
+    <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;align-items: center;flex-wrap: nowrap;'>
+        <label style="width:32%;">所在地区：</label>
+        <select style="width:60%;" name="rec_district" id="rec_district">
         <?php foreach($citymap as $item) { ?>
           <option value="<?=$item ?>"><?=$item ?></option>
         <?php } ?>
         </select>
     </div>
     <div class='form-group' style='margin-top:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;justify-content: flex-start;padding-bottom: 10px;'>
-        <label>详细地址：</label>
-        <textarea style="width:72%;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
+        <label style="width:30%;">详细地址：</label>
+        <textarea style="width:60%;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
     </div>
     <div class='form-group' style='margin-top:10px;padding-bottom:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;justify-content: flex-start;' id="label_add_group">
         <label style="width:20%;">标签：</label>
