@@ -161,7 +161,7 @@ CookieAsset::register($this);
                         <hr>
                         <div class="row footer-bottom">
                             <ul class='list-inline text-center'>
-                                <li>©2017 成都果果佳科技 </li>
+                                <li>©2018 成都果果佳科技 </li>
                             </ul>
                         </div>
                     </div>

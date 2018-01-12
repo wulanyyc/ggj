@@ -10,6 +10,7 @@ use app\modules\product\models\ProductList;
 use yii\helpers\Html;
 use app\components\SiteHelper;
 use app\components\PriceHelper;
+use app\models\ProductCart;
 
 class OrderController extends AuthController
 {
@@ -88,6 +89,11 @@ class OrderController extends AuthController
                     $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-pid='{$payData['id']}' style='margin-top:5px !important;' class='order-refresh btn btn-xs btn-dark' href='javascript:void(0);'>更新支付状态</a>";
                 }
             }
+
+            if ($ret[$key]['status'] == 2) {
+                $ret[$key]['operation'] .= "  <a style='margin-top:5px !important;' class='order-print btn btn-xs btn-secondary' href='/product/order/print?id={$value['id']}'>打印订单</a>";
+            }
+
             $ret[$key]['status'] = Yii::$app->params['order_status'][$ret[$key]['status']];
         }
         $output = [];
@@ -96,6 +102,36 @@ class OrderController extends AuthController
         $output['recordsFiltered'] = $total;
 
         echo json_encode($output);
+    }
+
+    public function actionPrint() {
+        $params = Yii::$app->request->get();
+        $id = $params['id'];
+
+        if (empty($id)) {
+            echo '参数有误';
+            exit;
+        }
+
+        $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+        $cart = ProductCart::find()->where(['id' => $info['cart_id']])->asArray()->one();
+
+        $product = json_decode($cart['cart'], true);
+
+        foreach($product as $key => $value) {
+            $tmpProduct = ProductList::find()->where(['id' => $value['id']])->asArray()->one();
+            $info['product'][] = $tmpProduct;
+        }
+
+        $info['product_cart'] = $product;
+        $info['express_rule'] = ($info['express_rule'] == 1) ? '快递' : '自提';
+
+        // TODO 私人定制订单处理
+        // TODO 发票
+
+        return $this->render('print', [
+            'info' => $info,
+        ]);
     }
 
     public function actionRefund() {
