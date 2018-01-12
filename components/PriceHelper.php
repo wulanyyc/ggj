@@ -77,25 +77,52 @@ class PriceHelper extends Component {
         return $price;
     }
 
+    public static function createCoupon($couponid) {
+        $today = date('Ymd', time());
+        $info = Coupon::find()->where(['id' => $couponid])->asArray()->one();
+        if (empty($info)) return 0;
+
+        if ($today > $info['end_date']) {
+            return 0;
+        }
+
+        $type = $info['type'];
+
+        if ($type == 1) {
+            $exsit = CouponUse::find()->where(['cid' => $couponid])->count();
+            if ($exsit) {
+                return 0;
+            } else {
+                $ar = new CouponUse();
+                $ar->cid = $couponid;
+                $ar->customer_id = SiteHelper::getCustomerId();
+                $ar->save();
+
+                return $ar->id;
+            }
+        } else {
+            $ar = new CouponUse();
+            $ar->cid = $couponid;
+            $ar->customer_id = SiteHelper::getCustomerId();
+            $ar->save();
+
+            return $ar->id;
+        }
+    }
+
     public static function getValidCoupon() {
         $cid = SiteHelper::getCustomerId();
 
         $currentDate = date('Ymd', time());
-        $tongyong = Coupon::find()->where(['type' => 2])
-            ->andWhere(['<=', 'start_date', $currentDate])
-            ->andWhere(['>=', 'end_date', $currentDate])
-            ->asArray()->all();
 
-        foreach($tongyong as $key => $item) {
-            $exsit = CouponUse::find()->where(['customer_id' => $cid, 'use_status' => 2, 'cid' => $item['id']])->count();
-            if ($exsit > 0) {
-                unset($tongyong[$key]);
+        $data = CouponUse::find()->where(['customer_id' => $cid, 'use_status' => 1])->asArray()->all();
+
+        foreach ($data as $key => $item) {
+            $endDate = Coupon::find()->where(['id' => $item['cid']])->select('end_date')->scalar();
+            if ($currentDate > $endDate) {
+                unset($data[$key]);
             }
         }
-
-        $lingqu = Coupon::findBySql("select c.* from coupon as c, coupon_use as u where c.id = u.cid and c.start_date <= " . $currentDate . " and c.end_date >=" . $currentDate . " and u.customer_id=" . $cid . " and u.use_status = 1 and c.type = 1")->asArray()->all();
-
-        $data = array_merge($tongyong, $lingqu);
 
         return $data;
     }

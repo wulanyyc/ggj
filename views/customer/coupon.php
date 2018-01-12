@@ -63,19 +63,9 @@ $this->title = '优惠券管理';
 
 </style>
 
-<div class="card">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
-      使用规则
-    </div>
-    <div style="padding:5%;">
-      通用券：购买时可直接使用。<br/>
-      任务券：需要完成具体任务后系统赠送。
-    </div>
-</div>
-
 <div class="card" style="margin-top: 8px;">
     <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
-      通用券
+      我的券
     </div>
     <div style="padding:2%;">
       <?=$html ?>
@@ -84,7 +74,7 @@ $this->title = '优惠券管理';
 
 <div class="card" style="margin-top: 8px;">
     <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
-      任务券
+      更多券
     </div>
     <div style="padding:2%;">
       <?=$jobHtml ?>

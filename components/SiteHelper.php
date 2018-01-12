@@ -33,6 +33,9 @@ class SiteHelper extends Component{
             $ar->status = 1;
             $ar->save();
             $id = $ar->id;
+
+            // TODO 首单优惠，修改优惠id
+            PriceHelper::createCoupon(2);
         }
 
         return $id;

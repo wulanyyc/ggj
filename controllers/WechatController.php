@@ -101,6 +101,8 @@ class WechatController extends Controller
                 if (count($exsit) > 0) {
                     $ar = CustomerWeixin::findOne($exsit['id']);
                 } else {
+                    // TODO 关注公众号，修改优惠id
+                    PriceHelper::createCoupon(11);
                     $ar = new CustomerWeixin();
                 }
 
@@ -117,7 +119,7 @@ class WechatController extends Controller
                 $ar->save();
             }
 
-            return '欢迎关注成都果果佳，立享5元优惠券';
+            return '欢迎关注成都果果佳商城，关注享5元新人优惠券，首单再享5元消费优惠券';
         }
 
         if ($event == 'unsubscribe') {

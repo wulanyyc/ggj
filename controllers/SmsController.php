@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
 use app\components\SmsHelper;
+use app\components\PriceHelper;
 use app\models\CustomerWeixin;
 use app\models\Customer;
 

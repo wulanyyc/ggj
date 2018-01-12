@@ -73,8 +73,8 @@ MsaView::registerJsFile($this,'/js/product/coupon/index.js',
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:70px'>类型：</label>
                     <select style='width:250px' value="" name="type" class="type">
-                        <option value=1>需领取</option>
-                        <option value=2>全部可用</option>
+                        <option value=1>限单张</option>
+                        <option value=2>多张可用</option>
                     </select>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
@@ -106,8 +106,8 @@ MsaView::registerJsFile($this,'/js/product/coupon/index.js',
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:70px'>类型：</label>
                     <select style='width:250px' value="" name="type" class="type">
-                        <option value=1>需领取</option>
-                        <option value=2>全部可用</option>
+                        <option value=1>限单张</option>
+                        <option value=2>多张可用</option>
                     </select>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
