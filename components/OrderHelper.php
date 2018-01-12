@@ -101,20 +101,7 @@ class OrderHelper extends Component {
 
         if ($coupons['coupon_fee'] > 0) {
             $couponIds = explode(',', $coupons['coupon_ids']);
-            foreach($couponIds as $item) {
-                $exsit = CouponUse::find()->where(['cid' => $item, 'customer_id' => $data['customer_id']])->count();
-                if ($exsit > 0) {
-                    $add = CouponUse::findOne($item);
-                    $add->use_status = 2;
-                    $add->save();
-                } else {
-                    $add = new CouponUse();
-                    $add->customer_id = $data['customer_id'];
-                    $add->cid = $item;
-                    $add->use_status = 2;
-                    $add->save();
-                }
-            }
+            CouponUse::updateAll(['use_status' => 2], ['id' => $couponIds]);
         }
 
         // 更新支付积分
