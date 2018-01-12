@@ -99,7 +99,7 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
               <tr>
                 <td><?=$item['name'] ?></td>
                 <td><?=$info['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
-                <td><?=$info['product'][$item['id']]['desc'] ?></td>
+                <td><?=$item['desc'] ?></td>
                 <td><?=$info['product_cart'][$item['id']]['price'] * $info['product_cart'][$item['id']]['num'] ?>元</td>
               </tr>
             <?php } ?>
