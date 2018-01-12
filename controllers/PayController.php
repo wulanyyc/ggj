@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
+use app\components\OrderHelper;
 use app\modules\product\models\ProductList;
 use app\components\PriceHelper;
 use app\models\ProductCart;
@@ -135,7 +136,7 @@ class PayController extends Controller
             $response = AlipayHelper::query($data);
 
             if ($response->alipay_trade_query_response->code == 10000) {
-                SiteHelper::handlePayOkOrder($pid, $response->alipay_trade_query_response->trade_no);
+                OrderHelper::handlePayOkOrder($pid, $response->alipay_trade_query_response->trade_no);
                 SiteHelper::render('ok');
             } else {
                 SiteHelper::render('fail', $response->alipay_trade_query_response->msg);
@@ -145,7 +146,7 @@ class PayController extends Controller
         if ($data['pay_type'] == 2) {
             $response = WxpayHelper::query($data);
             if (isset($response['trade_state']) && $response['trade_state'] == 'SUCCESS') {
-                SiteHelper::handlePayOkOrder($pid, $response['transaction_id']);
+                OrderHelper::handlePayOkOrder($pid, $response['transaction_id']);
                 SiteHelper::render('ok');
             } else {
                 $msg = isset($response['trade_state_desc']) ? $response['trade_state_desc'] : '更新失败';
@@ -306,7 +307,7 @@ class PayController extends Controller
 
             PriceHelper::adjustWallet($payMoney, 'minus', 'pay_order_' + $pid + "_" + $id);
 
-            SiteHelper::handlePayOkOrder($pid);
+            OrderHelper::handlePayOkOrder($pid);
 
             echo json_encode(['status' => 'ok', 'pay_type' => 0, 'id' => $pid]);
             Yii::$app->end();
@@ -373,7 +374,7 @@ class PayController extends Controller
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
                 if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
-                    SiteHelper::handlePayOkOrder($checkData['id'], $trade_no);
+                    OrderHelper::handlePayOkOrder($checkData['id'], $trade_no);
 
                     echo 'success';
                     Yii::$app->end();
@@ -406,7 +407,7 @@ class PayController extends Controller
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
                 if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
-                    SiteHelper::handlePayOkOrder($checkData['id'], $trade_no);
+                    OrderHelper::handlePayOkOrder($checkData['id'], $trade_no);
 
                     echo 'success';
                     Yii::$app->end();
@@ -441,7 +442,7 @@ class PayController extends Controller
 
         if ($data['result_code'] == 'SUCCESS' && $pay_money == $checkData['online_money'] 
             && $checkData['pay_result'] != 1) {
-            SiteHelper::handlePayOkOrder($checkData['id'], $trade_no);
+            OrderHelper::handlePayOkOrder($checkData['id'], $trade_no);
 
             echo 'success';
             Yii::$app->end();

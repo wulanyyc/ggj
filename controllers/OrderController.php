@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
+use app\components\OrderHelper;
 use app\modules\product\models\ProductList;
 use app\components\PriceHelper;
 use app\models\ProductCart;
@@ -91,7 +92,7 @@ class OrderController extends Controller
         } else {
             $po = new ProductOrder();
             $params['date'] = date('Ymd', time());
-            $params['order_day_num'] = SiteHelper::getOrderDayNum();
+            $params['order_day_num'] = OrderHelper::getOrderDayNum();
         }
         
         foreach($params as $key => $value){
@@ -260,7 +261,7 @@ class OrderController extends Controller
             SiteHelper::render('fail', '商家还未发货, 非预约单下单后24小时内发货');
         }
 
-        $data = json_decode(SiteHelper::getExpressInfo($expressNum), true);
+        $data = json_decode(OrderHelper::getExpressInfo($expressNum), true);
 
         // $str = <<<EOF
         // {"status":"0","msg":"ok","result":{"number":"469766445769","type":"zto","list":[{"time":"2017-12-21 11:55:30","status":"[成都市] 快件已到达 成都文家场外光华,业务员 赵丹[18108229928] 正在派件"},{"time":"2017-12-21 05:37:09","status":"[成都市] 快件离开 成都中转 已发往 成都文家场外光华"},{"time":"2017-12-21 05:18:35","status":"[成都市] 快件已经到达 成都中转"},{"time":"2017-12-20 02:16:31","status":"[常州市] 快件离开 常州中转部 已发往 成都中转"},{"time":"2017-12-19 20:23:16","status":"[常州市] 快件已经到达 常州中转部"},{"time":"2017-12-19 17:44:23","status":"[常州市] 快件离开 金坛新 已发往 常州中转部"},{"time":"2017-12-19 15:31:55","status":"[常州市] 金坛新 的 樱桃饰品[18018228566] 已收件"}],"deliverystatus":"2","issign":"0"}}

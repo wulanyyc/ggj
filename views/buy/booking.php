@@ -16,6 +16,10 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 ?>
 
 <style type="text/css">
+  .navbar {
+    background-color: #866D8D !important;
+  }
+
   .alert {
     margin-bottom: 0;
   }
