@@ -82,6 +82,9 @@ class OrderController extends Controller
 
         $params['rec_name']    = $info['rec_name'];
         $params['rec_phone']   = $info['rec_phone'];
+        $params['rec_city']    = $info['rec_city'];
+        $params['rec_district'] = $info['rec_district'];
+        $params['rec_detail']  = $info['rec_detail'];
         $params['rec_address'] = $info['rec_city'] . $info['rec_district'] . $info['rec_detail'];
         $params['source'] = SiteHelper::getSource();
 
