@@ -2,13 +2,10 @@
 use yii\helpers\Html;
 use app\assets\SiteAsset;
 use app\widgets\WechatWidget;
-// use app\assets\WechatAsset;
 
 $controller = Yii::$app->controller->id;
 
 SiteAsset::register($this);
-// WechatAsset::register($this);
-
 ?>
 
 <?php $this->beginPage() ?>
@@ -64,6 +61,14 @@ SiteAsset::register($this);
             <li class="nav-item">
             <?php } ?>
                 <a class="nav-link" href="/booking">预约</a>
+            </li>
+
+            <?php if ($controller == 'vip') { ?>
+            <li class="nav-item active">
+            <?php } else { ?>
+            <li class="nav-item">
+            <?php } ?>
+                <a class="nav-link" href="/vip">私人定制</a>
             </li>
 
             <?php if ($controller == 'contact') { ?>

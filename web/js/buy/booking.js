@@ -45,6 +45,13 @@ $(document).ready(function () {
 
         num = parseInt(num) + 1;
 
+        var buyLimit = parseInt($(this).attr('data-buy-limit'));
+        if (buyLimit > 0) {
+            if (num > buyLimit) {
+                num = num - 1;
+            }
+        }
+
         $(this).parent().find('.operator-num').html(num);
         if (!$(this).parent().hasClass('active')) {
             $(this).parent().addClass('active');

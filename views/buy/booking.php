@@ -206,6 +206,10 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     border-radius: 0;
     display: none;
   }
+
+  .btn-success {
+    background-color: #866D8D !important;
+  }
 </style>
 
 <input type="hidden" value="<?=$id ?>" id="scroll_id" />
@@ -261,7 +265,12 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
                   <div class="operator" data-id=<?=$product['id'] ?> data-price=<?=$product['promotion_price'] ?>>
                     <div class="operator-left operator-btn">-</div>
                     <span class="operator-num">0</span>
-                    <div class="operator-right operator-btn">+</div>
+                    <div class="operator-right operator-btn" data-buy-limit="<?=$product['buy_limit'] ?>">+</div>
+                  </div>
+                  <div class="inventory">
+                    <?php if ($product['buy_limit'] > 0) { ?>
+                    限<?=$product['buy_limit'] ?><?=$product['unit'] ?>
+                    <?php } ?>
                   </div>
                 </div>
               </div>

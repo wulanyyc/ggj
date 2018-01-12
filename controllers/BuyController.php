@@ -67,7 +67,7 @@ class BuyController extends Controller
             'expressFee' => $this->expressFee,
             'cart' => !empty($cart) ? json_encode($cart) : '',
             'products' => $this->getProducts($orderType),
-            'categorys' => $this->getCategorys(),
+            'categorys' => $this->getCategorys($orderType),
             'orderType' => $orderType,
         ]);
     }
@@ -108,14 +108,23 @@ class BuyController extends Controller
             'expressFee' => $this->expressFee,
             'cart' => !empty($cart) ? json_encode($cart) : '',
             'products' => $this->getProducts($orderType),
-            'categorys' => $this->getCategorys(),
+            'categorys' => $this->getCategorys($orderType),
             'orderType' => $orderType,
         ]);
     }
 
-    private function getCategorys() {
-        $info = ProductList::find()->select('category')->where(['status' => 1])->distinct(true)
+    private function getCategorys($orderType) {
+        if ($orderType == 2) {
+            $info = ProductList::find()->select('category')
+            ->where(['status' => 1, 'deleteflag' =>  0])->andWhere(['!=', 'booking_status', 3])->distinct(true)
             ->asArray()->all();
+        }
+
+        if ($orderType == 1) {
+            $info = ProductList::find()->select('category')
+            ->where(['status' => 1, 'deleteflag' =>  0])->andWhere(['>', 'num', 0])->distinct(true)
+            ->asArray()->all();
+        }
 
         $ret = [];
         foreach($info as $item) {
@@ -128,11 +137,11 @@ class BuyController extends Controller
     private function getProducts($orderType) {
         if ($orderType == 2) {
             $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')
-            ->where(['status' => 1])->asArray()->all();
+            ->where(['status' => 1, 'deleteflag' =>  0])->andWhere(['!=', 'booking_status', 3])->asArray()->all();
         }
 
         if ($orderType == 1) {
-            $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')->where(['status' => 1])->andWhere(['>', 'num', 0])
+            $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')->where(['status' => 1, 'deleteflag' =>  0])->andWhere(['>', 'num', 0])->andWhere(['!=', 'booking_status', 2])
             ->asArray()->all();
         }
 

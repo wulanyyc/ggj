@@ -90,7 +90,7 @@ class SiteController extends Controller
     }
 
     private function getFruits() {
-        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num,booking_status,fresh_percent')->where(['category' => 'fruit', 'status' => 1])->asArray()->all();
+        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num,booking_status,fresh_percent')->where(['category' => 'fruit', 'status' => 1, 'deleteflag' =>  0])->asArray()->all();
  
         foreach($info as $key => $value) {
             $tagArr = [];
@@ -124,7 +124,7 @@ class SiteController extends Controller
     }
 
     private function getPackages() {
-        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num,booking_status')->where(['category' => 'package', 'status' => 1])->asArray()->all();
+        $info = ProductList::find()->select('id,name,price,desc,slogan,img,unit,num,booking_status')->where(['category' => 'package', 'status' => 1, 'deleteflag' =>  0])->asArray()->all();
 
         foreach($info as $key => $value) {
             if ($value['booking_status'] != 2) {
