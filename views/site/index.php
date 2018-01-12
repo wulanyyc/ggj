@@ -323,7 +323,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     <div class="promotion-item-left" style="background-color: #866D8D;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">无忧套餐</div>
-        <div class="promotion-item-left-content-bottom">私人定制 新鲜美味</div>
+        <div class="promotion-item-left-content-bottom">私人定制 果品优选</div>
       </div>
     </div>
     <div class="promotion-item-right" style="background-color: #D5CCDB;">

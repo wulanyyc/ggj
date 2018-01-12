@@ -62,7 +62,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;省事：
         </div>
         <div style="width:65%;">
-          合理补充营养，精心搭配。周周不一样，一次购买，多次享受
+          合理补充营养，精心搭配。每周不一样，一次购买，多次享受
         </div>
       </li>
 
@@ -96,25 +96,8 @@ SiteAsset::register($this);
   </div>
 </div>
 
-<div class="card">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-    订购
-  </div>
-  <div>
-    <div class="form-group" style="width:80%;display: flex;flex-direction: row;align-items: center;justify-content: center;margin-top: 10px;">
-      <label for="num" style="width:40%;text-align: right;margin-bottom: 0px;">订制周期：</label>
-      <select class="form-control" id="num">
-        <option value="1">1周</option>
-        <option value="2">2周</option>
-        <option value="2">3周</option>
-        <option value="6">半年</option>
-        <option value="12">1年</option>
-      </select>
-    </div>
-  </div>
-  <br/>
-  <a class='btn btn-success' href='/buy/booking' id='order' style="width:30%;margin-left:35%;margin-bottom: 1%;">立即购买</a>
-  <br/>
-</div>
+<br/>
+<a class='btn btn-success' href='/buy/booking/?id=20' id='order' style="width:30%;margin-left:35%;margin-bottom: 1%;">立即购买</a>
+<br/>
 
 <br/>
