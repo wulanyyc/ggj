@@ -288,15 +288,15 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 </div>
 
 <div id="tongji">
-  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 14px;margin-right: 3px;text-align: center;padding:2px !important;" id="filter" data-filter=0>显示订购</button>
-  <div id="tips" style="color:#aaa;margin-left: 5px;margin-right: 3px;font-size: 14px;">满<?=$buyGod ?>元包邮</div>
+  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 14px;margin-right: 5px;text-align: center;padding: 0px 5px !important;" id="filter" data-filter=0>显示订购</button>
+  <div id="tips" style="color:#aaa;margin-left: 5px;margin-right: 3px;font-size: 14px;">满<?=$buyGod ?>包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
-    <div style="display: inline-block;color:red;width:90px;text-align: left;">
+    <div style="display: inline-block;color:red;width:84px;text-align: left;">
       <span class="money" style="font-size: 16px;font-weight: normal;">¥</span>
       <span class="realprice" style="font-size:22px;font-weight: normal;">0</span>
     </div>
   </div>
-  <div class='btn btn-secondary btn-sm' id='order' style="margin-right: 8px;"><?=$buyLimit ?>元起购</div>
+  <div class='btn btn-secondary btn-sm' id='order' style="margin-right: 8px;width:80px;"><?=$buyLimit ?>元起购</div>
 </div>
 
 <div class="card" id="login">

@@ -82,11 +82,11 @@ SiteAsset::register($this);
     </div>
 
     <div class="d-inline search-top" style="position: relative;">
-        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，好吃不贵" aria-label="美丽健康，新鲜不贵" style="padding-left: 30px;font-size: 14px;" />
+        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，好吃不贵" aria-label="美丽健康，新鲜不贵" style="padding-left: 25px;font-size: 14px;" />
         <div style="position: absolute;left:8px;top:5px;"><i class="fa fa-search" aria-hidden="true"></i></div>
     </div>
 
-    <a style="display: inline-block;text-decoration: none;color: #fff;font-size: 16px;" href="/customer">个人中心</a>
+    <a style="display: inline-block;text-decoration: none;color: #fff;font-size: 16px;margin-left: 6px;" href="/customer">个人中心</a>
 </nav>
 
 <main>
