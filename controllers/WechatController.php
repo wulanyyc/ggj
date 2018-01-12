@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use app\components\WechatHelper;
 use app\models\CustomerWeixin;
+use app\components\PriceHelper;
 
 class WechatController extends Controller
 {
