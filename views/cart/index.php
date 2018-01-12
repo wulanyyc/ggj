@@ -283,13 +283,13 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
           <div class="form-check form-check-inline express_rule">
             <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
               <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="1" checked> 
-              <span class="badge badge-success" style="letter-spacing: 1px;font-size: 14px;line-height: 18px;font-weight: normal;margin-top: 8px;">快递</span>
+              <span class="badge badge-success" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">快递</span>
             </label>
           </div>
           <div class="form-check form-check-inline express_rule">
             <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
               <input class="form-check-input" type="radio" class="express_rule" name="express_rule" id="express_2" value="2">
-              <span class="badge badge-info" style="letter-spacing: 1px;font-size: 14px;line-height: 18px;font-weight: normal;margin-top: 8px;">自提</span>
+              <span class="badge badge-info" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">自提</span>
             </label>
           </div>
         </div>
@@ -307,10 +307,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div id="discount" class="card-content">
     <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: space-between;">
       <div style="display: flex;flex-direction: row;justify-content: flex-start;flex-wrap: nowrap;">
-        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的成都手机号" maxlength=11 style="width: 150px;font-size: 14px;height: 40px;" />
+        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的成都手机号码" maxlength=11 style="width: 152px;font-size: 14px;height: 40px;" />
         <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">优惠码</button>
       </div>
-      <span id="ask" style="line-height: 40px;color:red;cursor: pointer;font-size: 13px;"><?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>
+      <span id="ask" style="line-height: 40px;color:red;cursor: pointer;font-size: 13px;">享<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>
     </div>
     <hr style="margin-top: 8px;margin-bottom: 8px;"/>
     <div style="margin-bottom:3px;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
@@ -375,16 +375,16 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div style="padding: 5%;">
     <p style="display: flex;flex-direction: row;justify-content: flex-start;">
       <span style="padding-right: 5px;">1: </span>
-      <span>任何好友的成都手机号即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额。</span>
+      <span>好友的成都手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额</span>
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">2: </span>
-      <span>订单支付成功后为好友充优惠额的50%到其平台账户，赶快来一起享受优惠吧。</span>
+      <span>订单支付成功后为好友充优惠额的50%到其平台账户，赶快来一起享受优惠</span>
     </p>
 
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">3: </span>
-      <span>折扣有效期为1小时，超时需重新提交订单获取优惠。</span>
+      <span>折扣有效期为1小时，超时需重新提交订单</span>
     </p>
 
     <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
@@ -450,7 +450,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <?php } ?>
     </div>
 
-    <button id="inner_add_address" type="button" class="btn btn-danger btn-sm" style="width:50%;margin-left:25%;font-size: 14px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址并使用</button>
+    <button id="inner_add_address" type="button" class="btn btn-danger btn-sm" style="width:50%;margin-left:25%;font-size: 14px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加地址并使用</button>
     <span id='close_all_address_bottom' style="padding-left: 22px;font-size: 16px;color:#0C58B0;">关闭</span>
 </div>
 
@@ -529,19 +529,19 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div style="padding: 5%;">
     <p style="display: flex;flex-direction: row;justify-content: flex-start;">
       <span style="padding-right: 5px;">普通订单: </span>
-      <span style="width:72%;">24小时内发货，预计隔日到达。</span>
+      <span style="width:72%;">24小时内发货，隔日达</span>
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">预约订单: </span>
-      <span style="width:72%;">发货时间为每周1、5上午。<br/>取最近的时间，预计隔日到达。</span>
+      <span style="width:72%;">每周1、3、5上午发货。<br/>取最近的时间，隔日达</span>
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">私人定制: </span>
-      <span style="width:72%;">专职客服沟通具体发货日期和方式。</span>
+      <span style="width:72%;">客服沟通发货时间和方式</span>
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">特殊要求: </span>
-      <span style="width:72%;">请留言或直接联系我们。</span>
+      <span style="width:72%;">请留言或直接联系我们</span>
     </p>
 
     <div class='btn btn-success btn-sm' id='close_express_info_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
