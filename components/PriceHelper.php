@@ -77,7 +77,7 @@ class PriceHelper extends Component {
         return $price;
     }
 
-    public static function createCoupon($couponid) {
+    public static function createCoupon($couponid, $openid = '') {
         $today = date('Ymd', time());
         $info = Coupon::find()->where(['id' => $couponid])->asArray()->one();
         if (empty($info)) return 0;
@@ -96,6 +96,7 @@ class PriceHelper extends Component {
                 $ar = new CouponUse();
                 $ar->cid = $couponid;
                 $ar->customer_id = SiteHelper::getCustomerId();
+                $ar->openid = $openid;
                 $ar->save();
 
                 return $ar->id;
@@ -104,6 +105,7 @@ class PriceHelper extends Component {
             $ar = new CouponUse();
             $ar->cid = $couponid;
             $ar->customer_id = SiteHelper::getCustomerId();
+            $ar->openid = $openid;
             $ar->save();
 
             return $ar->id;

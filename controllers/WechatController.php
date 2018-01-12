@@ -103,7 +103,7 @@ class WechatController extends Controller
                     $ar = CustomerWeixin::findOne($exsit['id']);
                 } else {
                     // TODO 关注公众号，修改优惠id
-                    PriceHelper::createCoupon(11);
+                    PriceHelper::createCoupon(11, $openid]);
                     $ar = new CustomerWeixin();
                 }
 
