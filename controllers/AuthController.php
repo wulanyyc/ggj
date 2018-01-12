@@ -15,9 +15,9 @@ class AuthController extends Controller
      */
     public function behaviors() {
         return [
-            'browser' => [
-                'class' => 'app\filters\BrowserFilter',
-            ],
+            // 'browser' => [
+            //     'class' => 'app\filters\BrowserFilter',
+            // ],
             'auth' => [
                 'class' => 'app\filters\AuthFilter',
             ],
