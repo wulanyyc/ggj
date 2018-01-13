@@ -59,7 +59,7 @@ $(document).ready(function () {
                             // 支付宝
                             $("body").append(data.html);
 
-                            $.helper.payCheck();
+                            // $.helper.payCheck();
                         } else {
                             // 微信支付
                             var isWechat = $('#isWechat').val();
@@ -82,7 +82,7 @@ $(document).ready(function () {
                                     }
                                 });
 
-                                $.helper.payCheck();
+                                // $.helper.payCheck();
                             } else {
                                 if (data.data.terminal == 'wap') {
                                     location.href= data.data.mweb_url;
