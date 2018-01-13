@@ -112,4 +112,26 @@ $(document).ready(function () {
         obj.select();
         document.execCommand("Copy")
     }
+
+    $.helper.payCheck = function() {
+        bootbox.confirm({
+            message: '支付状态确认?',
+            buttons: {
+                cancel: {
+                    label: '取消'
+                },
+                confirm: {
+                    label: '已支付成功'
+                }
+            },
+            callback: function(result){
+                if (!result) {
+                    location.href = "/order?type=2";
+                } else {
+                    $('#pay').attr('data-process', 0);
+                    return ;
+                }
+            }
+        });
+    }
 });

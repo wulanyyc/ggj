@@ -56,31 +56,15 @@ $(document).ready(function () {
                 if (data.status == 'ok') {
                     if (data.pay_type > 0) {
                         if (data.pay_type == 1) {
-                            $.helper.confirm('支付状态确认?', function(result){
-                                if (!result) {
-                                    location.href = "/order?type=2";
-                                } else {
-                                    $(this).attr('data-process', 0);
-                                    return ;
-                                }
-                            });
-
                             // 支付宝
                             $("body").append(data.html);
+
+                            $.helper.payCheck();
                         } else {
                             // 微信支付
                             var isWechat = $('#isWechat').val();
                             // 微信内部支付
                             if (isWechat == 1) {
-                                $.helper.confirm('支付状态确认?', function(result){
-                                    if (!result) {
-                                        location.href = "/order?type=2";
-                                    } else {
-                                        $(this).attr('data-process', 0);
-                                        return ;
-                                    }
-                                });
-
                                 wx.chooseWXPay({
                                     timestamp: data.data.timeStamp,
                                     nonceStr: data.data.nonceStr,
@@ -97,6 +81,8 @@ $(document).ready(function () {
                                         }
                                     }
                                 });
+
+                                $.helper.payCheck();
                             } else {
                                 if (data.data.terminal == 'wap') {
                                     location.href= data.data.mweb_url;
