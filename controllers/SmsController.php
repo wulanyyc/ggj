@@ -64,11 +64,11 @@ class SmsController extends Controller
         } else {
             $id = SiteHelper::addCustomer($params['phone']);
 
-            // coupon connect
-            CouponUse::updateAll(['customer_id' => $id]);
-
             // add customer_weixin
             if (!empty($_COOKIE['openid'])) {
+                // coupon connect
+                CouponUse::updateAll(['customer_id' => $id], ['openid' => $_COOKIE['openid']]);
+                
                 $exsitData = CustomerWeixin::find()->where(['openid' => $_COOKIE['openid']])->asArray()->one();
                 if (count($exsitData) > 0) {
                     $up = CustomerWeixin::findOne($exsitData['id']);
