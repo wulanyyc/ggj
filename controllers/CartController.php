@@ -201,8 +201,6 @@ EOF;
         }
 
         SiteHelper::render('ok', $html);
-        // echo $html;
-
     }
 
     /*
@@ -234,13 +232,11 @@ EOF;
             $productPrice = ProductCart::find()->where(['id' => $cartId])->select('product_price')->scalar();
 
             if ($percent > 0) {
-                // echo round($percent * $productPrice, 2);
-                SiteHelper::render('ok', round($percent * $productPrice, 2));
+                SiteHelper::render('ok', round($percent * $productPrice, PriceHelper::$precison));
             } else {
                 $percent = rand(Yii::$app->params['discount']['start'], Yii::$app->params['discount']['end']) / 100;
                 Yii::$app->redis->setex($key, 3600, $percent);
-                // echo round($percent * $productPrice, 2);
-                SiteHelper::render('ok', round($percent * $productPrice, 2));
+                SiteHelper::render('ok', round($percent * $productPrice, PriceHelper::$precison));
             }
         } else {
             SiteHelper::render('fail', '好友号码非四川境内或号码错误');

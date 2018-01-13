@@ -82,6 +82,7 @@ $(document).ready(function () {
                                     }
                                 });
 
+                                $('#pay').attr('data-process', 0);
                                 // $.helper.payCheck();
                             } else {
                                 if (data.data.terminal == 'wap') {
