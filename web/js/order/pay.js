@@ -73,6 +73,7 @@ $(document).ready(function () {
                                     paySign: data.data.paySign,
                                     success: function (res) {
                                         // 支付成功后的回调函数
+                                        alert(res.errMsg);
                                         if (res.errMsg == "chooseWXPay:ok") {
                                             location.href = '/pay/?out_trade_no=' + data.out_trade_no;
                                         } else {
