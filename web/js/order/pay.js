@@ -56,6 +56,15 @@ $(document).ready(function () {
                 if (data.status == 'ok') {
                     if (data.pay_type > 0) {
                         if (data.pay_type == 1) {
+                            $.helper.confirm('支付状态确认?', function(result){
+                                if (!result) {
+                                    location.href = "/order?type=2";
+                                } else {
+                                    $(this).attr('data-process', 0);
+                                    return ;
+                                }
+                            });
+
                             // 支付宝
                             $("body").append(data.html);
                         } else {
@@ -63,6 +72,15 @@ $(document).ready(function () {
                             var isWechat = $('#isWechat').val();
                             // 微信内部支付
                             if (isWechat == 1) {
+                                $.helper.confirm('支付状态确认?', function(result){
+                                    if (!result) {
+                                        location.href = "/order?type=2";
+                                    } else {
+                                        $(this).attr('data-process', 0);
+                                        return ;
+                                    }
+                                });
+
                                 wx.chooseWXPay({
                                     timestamp: data.data.timeStamp,
                                     nonceStr: data.data.nonceStr,
@@ -72,7 +90,7 @@ $(document).ready(function () {
                                     success: function (res) {
                                         // 支付成功后的回调函数
                                         if (res.errMsg == "chooseWXPay:ok") {
-                                            location.href='/pay/?out_trade_no=' + data.out_trade_no;
+                                            location.href = '/pay/?out_trade_no=' + data.out_trade_no;
                                         } else {
                                             $.helper.alert(res.errMsg);
                                             $('#pay').attr('data-process', 0);
