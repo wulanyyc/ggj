@@ -77,7 +77,7 @@ class PriceHelper extends Component {
         return $price;
     }
 
-    public static function createCoupon($couponid, $openid = '') {
+    public static function createCoupon($couponid) {
         $today = date('Ymd', time());
         $info = Coupon::find()->where(['id' => $couponid])->asArray()->one();
         if (empty($info)) return 0;
@@ -87,6 +87,7 @@ class PriceHelper extends Component {
         }
 
         $type = $info['type'];
+        $openid = isset($_COOKIE['openid']) ? $_COOKIE['openid'] : '';
 
         if ($type == 1) {
             $exsit = CouponUse::find()->where(['cid' => $couponid])->count();

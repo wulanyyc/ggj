@@ -9,6 +9,7 @@ use app\components\SmsHelper;
 use app\components\PriceHelper;
 use app\models\CustomerWeixin;
 use app\models\Customer;
+use app\modules\product\models\CouponUse;
 
 class SmsController extends Controller
 {
@@ -73,8 +74,11 @@ class SmsController extends Controller
 
                     $upCus = Customer::findOne($id);
                     $upCus->nick = $exsitData['nickname'];
-                    $upCus->headimgurl  = $exsitData['headimgurl'];
+                    $upCus->headimgurl = $exsitData['headimgurl'];
                     $upCus->save();
+
+                    // coupon connect
+                    CouponUse::updateAll(['customer_id' => $id], ['openid' => $_COOKIE['openid']]);
                 } else {
                     $ar = new CustomerWeixin();
                     $ar->openid = $_COOKIE['openid'];
