@@ -127,6 +127,7 @@ $(document).ready(function () {
             },
             callback: function(result){
                 if (result) {
+                    $('#cover').hide();
                     location.href = "/order?type=2";
                 } else {
                     $('#pay').attr('data-process', 0);
