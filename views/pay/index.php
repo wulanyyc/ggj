@@ -37,7 +37,7 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
       </div>
     </div>
     <a href="/order?type=2" class="btn btn-outline-light btn-sm" style="width:66%;margin-left:17%;">查看订单</a>
-    <a type="button" class="btn btn-danger btn-sm" href="/customer/score" style="width:66%;margin-left:17%;margin-top:10px;">积分兑换</a>
+    <button type="button" class="btn btn-danger btn-sm" id="change" style="width:66%;margin-left:17%;margin-top:10px;">积分兑换</button>
     <br/>
   </div>
 </div>

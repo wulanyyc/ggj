@@ -18,4 +18,8 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#change').click(function(){
+        location.href = '/customer/score';
+    });
 });
