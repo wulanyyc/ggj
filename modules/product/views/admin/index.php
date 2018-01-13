@@ -60,6 +60,7 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                         <tr class='table-title' role='row'>
                             <th>ID</th>
                             <th>名称</th>
+                            <th>商家</th>
                             <th>价格</th>
                             <th>库存</th>
                             <th>单位</th>
@@ -86,6 +87,12 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>名称：</label>
                     <input style='width:250px' type='text' placeholder='' name='name' class='input-sm'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>商家：</label>
+                    <select name="seller_id">
+                        <?=$sellerHtml ?>
+                    </select>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>价格：</label>
@@ -133,6 +140,12 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>名称：</label>
                     <input style='width:250px' type='text' placeholder='' name='name' class='input-sm name'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>商家：</label>
+                    <select name="seller_id" class="seller_id">
+                        <?=$sellerHtml ?>
+                    </select>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>价格：</label>

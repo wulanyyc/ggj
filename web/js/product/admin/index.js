@@ -77,6 +77,7 @@ $(document).ready(function () {
                 $('.buy_limit').val(data.buy_limit);
                 $('.img').val(data.img);
                 $('.fresh_percent').val(data.fresh_percent);
+                $('.seller_id').val(data.seller_id);
             }
         });
 
@@ -345,12 +346,13 @@ $(document).ready(function () {
 
         config['columnDefs'] = [{
             sortable: false,
-            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
         }];
 
         config['columns'] = [
             {data: 'id'},
             {data: 'name'},
+            {data: 'seller_id'},
             {data: 'price'},
             {data: 'num'},
             {data: 'unit'},

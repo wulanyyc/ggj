@@ -114,6 +114,7 @@ $(document).ready(function () {
     }
 
     $.helper.payCheck = function() {
+        $('#cover').show();
         bootbox.confirm({
             message: '支付状态确认?',
             buttons: {
@@ -125,11 +126,11 @@ $(document).ready(function () {
                 }
             },
             callback: function(result){
-                if (!result) {
+                if (result) {
                     location.href = "/order?type=2";
                 } else {
                     $('#pay').attr('data-process', 0);
-                    return ;
+                    $('#cover').hide();
                 }
             }
         });

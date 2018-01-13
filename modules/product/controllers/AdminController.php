@@ -9,6 +9,7 @@ use app\modules\product\models\Tags;
 use app\modules\product\models\ProductTags;
 use app\models\ProductInventory;
 use app\models\ProductPackage;
+use app\models\Seller;
 use yii\helpers\Html;
 use app\widgets\CategoryWidget;
 use app\components\PriceHelper;
@@ -22,6 +23,7 @@ class AdminController extends AuthController
             [
                 'tagHtml'  => $tagHtml,
                 'products' => $products,
+                'sellerHtml' => $this->getSellerHtml(),
             ]
         );
     }
@@ -32,7 +34,7 @@ class AdminController extends AuthController
     public function actionTable() {
         $params = Yii::$app->request->post();
 
-        $sql = "select id,`name`,price,num,unit,`desc`,slogan,status,booking_status,category from product_list ";
+        $sql = "select id,`name`,price,num,unit,`desc`,slogan,status,booking_status,category,seller_id from product_list ";
         
         $sqlCondition = [];
 
@@ -75,6 +77,8 @@ class AdminController extends AuthController
                 $ret[$key]['booking_status'] = "<span style='color:red'>仅预约</span>";
             }
 
+            $ret[$key]['seller_id'] = Seller::find()->select('name')->where(['id' => $value['seller_id']])->scalar();
+
             $ret[$key]['operation'] = "
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-tag btn btn-xs btn-purple' href='javascript:void(0);'>标签</a>
@@ -102,7 +106,7 @@ class AdminController extends AuthController
         $id = $params['id'];
 
         $ret = ProductList::find()
-            ->select('name,price,unit,num,desc,slogan,category,buy_limit,img,fresh_percent')
+            ->select('name,price,unit,num,desc,slogan,category,buy_limit,img,fresh_percent,seller_id')
             ->where(['id' => $id])
             ->asArray()
             ->one();
@@ -354,6 +358,21 @@ class AdminController extends AuthController
      */
     private function getTagsHtml(){
         $ret = Tags::find()->select('id,name')->asArray()->all();
+
+        $html = '';
+        foreach($ret as $key => $value){
+            $html .= Html::tag('option', Html::encode($value['name']), ['value' => $value['id']]);
+        }
+
+        return $html;
+    }
+
+    /**
+     * 获取角色列表
+     * @return string
+     */
+    private function getSellerHtml(){
+        $ret = Seller::find()->select('id,name')->asArray()->all();
 
         $html = '';
         foreach($ret as $key => $value){
