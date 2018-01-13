@@ -334,7 +334,8 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status == 'fail') {
-                    $.helper.alert(data.msg);
+                    // $.helper.alert(data.msg);
+                    $('#coupon_items').html(data.msg);
                     return ;
                 }
                 $('#coupon_items').html(data.data);

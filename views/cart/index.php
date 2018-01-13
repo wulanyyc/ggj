@@ -381,14 +381,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span style="padding-right: 5px;">1: </span>
       <span>好友的成都手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额</span>
     </p>
+
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">2: </span>
       <span>订单支付成功后为好友充优惠额的50%到其平台账户，赶快来一起享受优惠</span>
-    </p>
-
-    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
-      <span style="padding-right: 5px;">3: </span>
-      <span>折扣有效期为1小时，超时需重新提交订单</span>
     </p>
 
     <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
