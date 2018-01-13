@@ -363,13 +363,13 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div id="tongji">
   <div id="tips" style="color:red;margin-left: 5px;margin-right: 5px;font-size: 14px;">实付款:</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
-    <div style="display: inline-block;color:red;width:90px;text-align: left;">
+    <div style="display: inline-block;color:red;width:80px;text-align: left;">
       <span class="money" style="font-size: 16px;font-weight: normal;">¥</span>
       <span class="realprice" style="font-size:20px;font-weight: normal;" id="realprice"></span>
     </div>
   </div>
   <div class='btn btn-outline-info btn-sm' id='edit' style="margin-right: 10px;">修改商品</div>
-  <div class='btn btn-success btn-sm' id='order' style="margin-right: 10px;">去下单</div>
+  <div class='btn btn-success' id='order' style="margin-right: 10px;">去下单</div>
 </div>
 
 <div class="card" id="question">
