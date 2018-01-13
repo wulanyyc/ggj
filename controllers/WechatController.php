@@ -95,6 +95,9 @@ class WechatController extends Controller
         $openid = $data['FromUserName'];
 
         if ($event == 'subscribe') {
+            // TODO 关注公众号，修改优惠id
+            PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
+
             $userinfo = WechatHelper::getUserInfo($openid);
             if (!isset($userinfo['errcode'])) {
                 $exsit = CustomerWeixin::find()->where(['openid' => $openid])->asArray()->one();
@@ -102,8 +105,6 @@ class WechatController extends Controller
                 if (count($exsit) > 0) {
                     $ar = CustomerWeixin::findOne($exsit['id']);
                 } else {
-                    // TODO 关注公众号，修改优惠id
-                    PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe']);
                     $ar = new CustomerWeixin();
                 }
 
