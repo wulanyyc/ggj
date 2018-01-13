@@ -66,8 +66,8 @@ class BuyController extends Controller
             'buyLimit' => $this->buyLimit,
             'expressFee' => $this->expressFee,
             'cart' => !empty($cart) ? json_encode($cart) : '',
-            'products' => $this->getProducts($orderType),
-            'categorys' => $this->getCategorys($orderType),
+            'products' => $this->getProducts($orderType, $id),
+            'categorys' => $this->getCategorys($orderType, $id),
             'orderType' => $orderType,
         ]);
     }
@@ -107,22 +107,28 @@ class BuyController extends Controller
             'buyLimit' => $this->bookingLimit,
             'expressFee' => $this->expressFee,
             'cart' => !empty($cart) ? json_encode($cart) : '',
-            'products' => $this->getProducts($orderType),
-            'categorys' => $this->getCategorys($orderType),
+            'products' => $this->getProducts($orderType, $id),
+            'categorys' => $this->getCategorys($orderType, $id),
             'orderType' => $orderType,
         ]);
     }
 
-    private function getCategorys($orderType) {
+    private function getCategorys($orderType, $id = 0) {
+        if ($id == 0) {
+            $seller = 1;
+        } else {
+            $seller = ProductList::find()->select('seller_id')->where(['id' => $id])->scalar();
+        }
+
         if ($orderType == 2) {
             $info = ProductList::find()->select('category')
-            ->where(['status' => 1, 'deleteflag' =>  0])->andWhere(['!=', 'booking_status', 3])->distinct(true)
+            ->where(['status' => 1, 'deleteflag' =>  0, 'seller_id' => $seller])->andWhere(['!=', 'booking_status', 3])->distinct(true)
             ->asArray()->all();
         }
 
         if ($orderType == 1) {
             $info = ProductList::find()->select('category')
-            ->where(['status' => 1, 'deleteflag' =>  0])->andWhere(['>', 'num', 0])->distinct(true)
+            ->where(['status' => 1, 'deleteflag' =>  0, 'seller_id' => $seller])->andWhere(['>', 'num', 0])->distinct(true)
             ->asArray()->all();
         }
 
@@ -134,14 +140,20 @@ class BuyController extends Controller
         return $ret;
     }
 
-    private function getProducts($orderType) {
+    private function getProducts($orderType, $id = 0) {
+        if ($id == 0) {
+            $seller = 1;
+        } else {
+            $seller = ProductList::find()->select('seller_id')->where(['id' => $id])->scalar();
+        }
+
         if ($orderType == 2) {
             $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')
-            ->where(['status' => 1, 'deleteflag' =>  0])->andWhere(['!=', 'booking_status', 3])->asArray()->all();
+            ->where(['status' => 1, 'deleteflag' =>  0, 'seller_id' => $seller])->andWhere(['!=', 'booking_status', 3])->asArray()->all();
         }
 
         if ($orderType == 1) {
-            $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')->where(['status' => 1, 'deleteflag' =>  0])->andWhere(['>', 'num', 0])->andWhere(['!=', 'booking_status', 2])
+            $info = ProductList::find()->select('id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')->where(['status' => 1, 'deleteflag' =>  0, 'seller_id' => $seller])->andWhere(['>', 'num', 0])->andWhere(['!=', 'booking_status', 2])
             ->asArray()->all();
         }
 
