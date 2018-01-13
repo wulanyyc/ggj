@@ -53,7 +53,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;质优：
         </div>
         <div style="width:65%;">
-          挑选平台果品最优的水果
+          挑选平台最佳的水果
         </div>
       </li>
 
@@ -62,7 +62,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;省事：
         </div>
         <div style="width:65%;">
-          合理补充营养，精心搭配。每周不一样，一次购买，多次享受
+          平台精心搭配，周周不一样
         </div>
       </li>
 
@@ -71,7 +71,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;超值：
         </div>
         <div style="width:65%;">
-          <?=$price ?>元含3种及以上进口水果，2种及以上时令水果
+          <?=$price ?>元含2种及以上进口水果，3种及以上时令水果
         </div>
       </li>
 
@@ -80,7 +80,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;客服：
         </div>
         <div style="width:65%;">
-          专职客服，及时响应您的需求
+          专职客服，关注每一个环节
         </div>
       </li>
 
@@ -89,7 +89,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;快递：
         </div>
         <div style="width:65%;">
-        限<span style="color:red;font-weight: bold;">成都</span>地区，每周发1次货，周1、3、5任选一天，隔日达。下单后客服跟进具体的发货日期
+        限成都地区，每周发1次货，下单后客服跟进具体的发货日期
         </div>
       </li>
     </ul>
