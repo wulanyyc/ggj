@@ -533,11 +533,11 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div style="padding: 5%;">
     <p style="display: flex;flex-direction: row;justify-content: flex-start;">
       <span style="padding-right: 5px;">普通订单: </span>
-      <span style="width:72%;">24小时内发货/span>
+      <span style="width:72%;">24小时内发货</span>
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">预约订单: </span>
-      <span style="width:72%;">每周1、3、5上午发货。<br/>取最近的时间发货</span>
+      <span style="width:72%;">每周2、4、6上午发货。<br/>取最近的时间发货</span>
     </p>
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">私人定制: </span>
