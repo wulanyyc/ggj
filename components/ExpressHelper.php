@@ -170,7 +170,7 @@ class ExpressHelper extends Component{
             $ip = $_SERVER['REMOTE_ADDR'];
         }
 
-        if(!$ip || is_private_ip($ip)) {
+        if(!$ip || self::is_private_ip($ip)) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, IP_SERVICE_URL);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
