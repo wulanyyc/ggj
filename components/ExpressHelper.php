@@ -33,7 +33,7 @@ class ExpressHelper extends Component{
         $requestData['Receiver']['ProvinceName'] = $params['rec_province'];
         $requestData['Receiver']['CityName']     = $params['rec_city'];
         $requestData['Receiver']['ExpAreaName']  = $params['rec_district'];
-        $requestData['Receiver']['Address']      = $params['rec_detail'];
+        $requestData['Receiver']['Address']      = $params['rec_address'];
 
         $requestData['Sender']['Name']         = Yii::$app->params['kdn']['sender_name'];
         $requestData['Sender']['Mobile']       = Yii::$app->params['kdn']['sender_phone'];

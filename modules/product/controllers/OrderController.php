@@ -272,9 +272,9 @@ class OrderController extends AuthController
         $data['rec_name'] = $info['rec_name'];
         $data['rec_phone'] = $info['rec_phone'];
         $data['rec_province'] = '四川省';
-        $data['rec_city'] = $info['city'];
-        $data['rec_district'] = $info['district'];
-        $data['rec_detail']   = $info['rec_address'];
+        $data['rec_city'] = $info['rec_city'];
+        $data['rec_district'] = $info['rec_district'];
+        $data['rec_address']   = $info['rec_detail'];
 
         $data['order_name'] = '水果';
 
