@@ -46,6 +46,7 @@ class OrderController extends AuthController
             $order = $ret['Order']['LogisticCode'];
 
             $html = ExpressHelper::buildForm($order);
+            echo $html;exit;
         }
 
         return $this->render('test', [
