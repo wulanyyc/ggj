@@ -47,13 +47,13 @@ class ExpressHelper extends Component{
 
         $jsonParam = json_encode($requestData, JSON_UNESCAPED_UNICODE);
 
-        return self::submitEOrder($jsonParam);
+        return self::submitEorder($jsonParam);
     }
 
     /**
         * Json方式 调用电子面单接口
     */
-    public static function submitEOrder($requestData){
+    public static function submitEorder($requestData) {
         $datas = array(
             'EBusinessID' => Yii::$app->params['kdn']['uid'],
             'RequestType' => '1007',
@@ -126,7 +126,7 @@ class ExpressHelper extends Component{
         $requestData = [
             [
                 'OrderCode' => $code,
-                'PortName'  => 'lenovo_wifi'
+                'PortName'  => Yii::$app->params['kdn']['print'],
             ]
         ];
 

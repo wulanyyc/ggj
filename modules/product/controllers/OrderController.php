@@ -94,6 +94,8 @@ class OrderController extends AuthController
 
             if ($ret[$key]['status'] == 2) {
                 $ret[$key]['operation'] .= "  <a style='margin-top:5px !important;' class='order-print btn btn-xs btn-secondary' href='/product/order/print?id={$value['id']}'>打印订单</a>";
+
+                $ret[$key]['operation'] .= "  <a style='margin-top:5px !important;' class='order-express-print btn btn-xs btn-secondary' href='/product/order/expressprint?id={$value['id']}'>电子面单</a>";
             }
 
             $ret[$key]['status'] = Yii::$app->params['order_status'][$ret[$key]['status']];
@@ -262,6 +264,19 @@ class OrderController extends AuthController
         $data = ProductOrder::find()->select('express_num')->where(['id' => $id])->asArray()->one();
 
         echo json_encode($data);
+    }
+
+    public function actionExpressprint() {
+        $params = Yii::$app->request->get();
+        $id = $params['id'];
+
+        $data = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+
+        $form = ExpressHelper::buildForm();
+
+        return $this->render('exprint', [
+            'html' => $form,
+        ]);
     }
 
     private function getExpressnum($id) {
