@@ -296,7 +296,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
       <span class="realprice" style="font-size:22px;font-weight: normal;">0</span>
     </div>
   </div>
-  <div class='btn btn-secondary btn-sm' id='order' style="margin-right: 8px;width:86px;"><?=$buyLimit ?>元起购</div>
+  <div class='btn btn-secondary' id='order' style="margin-right: 8px;width:86px;"><?=$buyLimit ?>元起购</div>
 </div>
 
 <div class="card" id="login">

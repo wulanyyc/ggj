@@ -535,10 +535,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span style="padding-right: 5px;">预约订单: </span>
       <span style="width:72%;">每周2、6上午发货。<br/>取最近的时间发货</span>
     </p>
-    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
+<!--     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">私人定制: </span>
       <span style="width:72%;">客服沟通发货时间和方式</span>
-    </p>
+    </p> -->
     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">特殊要求: </span>
       <span style="width:72%;">请留言或直接联系我们</span>
