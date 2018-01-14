@@ -69,6 +69,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
+    align-content: center;
     margin-top: 5px;
   }
 
@@ -346,7 +347,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <?php foreach($fruits as $product) { ?>
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
             <a class="product-item-content" href="<?=$product['link'] ?>">
-              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:3%;height:90%;flex-wrap: nowrap;align-items: center;align-content:stretch;">
+              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:3%;height:90%;flex-wrap: nowrap;">
                 <img class="card-img" style="width:36%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                 <div style="width:62%;">
                   <p class="desc"><?=$product['name'] ?></p>
