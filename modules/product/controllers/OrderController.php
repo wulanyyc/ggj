@@ -207,7 +207,7 @@ class OrderController extends AuthController
             $po->save();
 
             echo 'suc';
-        } catch (Exception $e) {
+        } else {
             echo '设置失败';
         }
     }
