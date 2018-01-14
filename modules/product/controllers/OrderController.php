@@ -198,6 +198,11 @@ class OrderController extends AuthController
         }
 
         $id = $params['id'];
+        $company = $params['express_company'];
+
+        $up = ProductOrder::findOne($id);
+        $up->express_company = $company;
+        $up->save();
 
         $num = $this->getExpressnum($id);
 
@@ -273,7 +278,7 @@ class OrderController extends AuthController
 
         $data['order_name'] = '水果';
 
-        $ret = ExpressHelper::getEorder($data);
+        $ret  = ExpressHelper::getEorder($data, $info['express_company']);
 
         $data = json_decode($ret, true);
 

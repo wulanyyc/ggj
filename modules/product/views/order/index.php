@@ -145,8 +145,6 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                     <option value="SF">顺丰</option>
                 </select>
             </div>
-
-            <button style='margin-left:100px;'  class='get-express btn btn-xs btn-purple'>获取快递单号</button>
         </div>
     </div>
 </div>

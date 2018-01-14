@@ -127,12 +127,12 @@ $(document).ready(function () {
                     label: '提交',
                     className: 'btn-success',
                     callback: function () {
-                        var num = $('.bootbox .express_num').val();
+                        var company = $('.bootbox .express_company').val();
                         $.ajax({
                             url: '/product/order/express',
                             type: 'post',
                             data: {
-                                'express_num': num,
+                                'express_company': company,
                                 'id': id
                             },
                             dataType: 'html',
