@@ -63,9 +63,9 @@ class ExpressHelper extends Component{
 
         $datas['DataSign'] = self::encrypt($requestData, Yii::$app->params['kdn']['apikey']);
 
-        $result = self::sendPost(Yii::$app->params['kdn']['eorderurl'], $datas);   
+        $result = self::sendPost(Yii::$app->params['kdn']['eorderurl'], $datas);
         
-        //根据公司业务处理返回的信息......
+        //根据公司业务处理返回的信息
         return $result;
     }
 
