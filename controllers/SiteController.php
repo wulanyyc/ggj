@@ -105,7 +105,7 @@ class SiteController extends Controller
             }
             $info[$key]['tag'] = implode(' ', $tagArr);
 
-            if ($value['booking_status'] != 2) {
+            if ($value['booking_status'] != 2 && $value['num'] > 0) {
                 $info[$key]['buy_price'] = PriceHelper::getProductPrice($value['id'], 1);
             }
 
