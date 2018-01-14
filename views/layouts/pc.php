@@ -63,14 +63,6 @@ SiteAsset::register($this);
                 <a class="nav-link" href="/booking">预约</a>
             </li>
 
-            <?php if ($controller == 'vip') { ?>
-            <li class="nav-item active">
-            <?php } else { ?>
-            <li class="nav-item">
-            <?php } ?>
-                <a class="nav-link" href="/vip">私人定制</a>
-            </li>
-
             <?php if ($controller == 'contact') { ?>
             <li class="nav-item active">
             <?php } else { ?>
