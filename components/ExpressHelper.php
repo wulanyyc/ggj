@@ -172,13 +172,13 @@ class ExpressHelper extends Component{
 
         if(!$ip || self::is_private_ip($ip)) {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, IP_SERVICE_URL);
+            curl_setopt($ch, CURLOPT_URL, Yii::$app->params['kdn']['ipServiceUrl']);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             $output = curl_exec($ch);
             return $output;
         }
         else{
-            return $res;
+            return $ip;
         }
     }
 }
