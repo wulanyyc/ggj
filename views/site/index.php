@@ -154,7 +154,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   a.promotion-item {
-    width:33%;height:150px;border-radius: 3px;display: flex;flex-direction: row;text-decoration: none;
+    width:49%;height:150px;border-radius: 3px;display: flex;flex-direction: row;text-decoration: none;
   }
 
   .promotion-item-left {
@@ -319,7 +319,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     </div>
   </a>
 
-  <a class="promotion-item" href="/vip/">
+<!--   <a class="promotion-item" href="/vip/">
     <div class="promotion-item-left" style="background-color: #866D8D;">
       <div class="promotion-item-left-content">
         <div class="promotion-item-left-content-top">无忧套餐</div>
@@ -329,7 +329,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     <div class="promotion-item-right" style="background-color: #D5CCDB;">
       <img src="/img/booking.jpeg"></img>
     </div>
-  </a>
+  </a> -->
 </div>
 
 <div class="card">
@@ -346,7 +346,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <?php foreach($fruits as $product) { ?>
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
             <a class="product-item-content" href="<?=$product['link'] ?>">
-              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:3%;height:90%;flex-wrap: nowrap;">
+              <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:3%;height:90%;flex-wrap: nowrap;align-items: center;align-content:stretch;">
                 <img class="card-img" style="width:36%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                 <div style="width:62%;">
                   <p class="desc"><?=$product['name'] ?></p>
