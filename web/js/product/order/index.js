@@ -240,6 +240,7 @@ $(document).ready(function () {
             {data: 'pay_money'},
             {data: 'rec_address'},
             {data: 'status'},
+            {data: 'express_company'},
             {data: 'express_num'},
             {data: 'create_time'},
             {data: 'operation'}

@@ -29,7 +29,7 @@ class OrderController extends AuthController
     public function actionTable() {
         $params = Yii::$app->request->post();
 
-        $sql = "select id,customer_id,rec_name,rec_phone,rec_address,pay_money,status,express_num,create_time from product_order ";
+        $sql = "select id,customer_id,rec_name,rec_phone,rec_address,pay_money,status,express_company,express_num,create_time from product_order ";
         
         $sqlCondition = [];
         if ($params['status'] > 0) {
