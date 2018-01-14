@@ -181,15 +181,4 @@ class ExpressHelper extends Component{
             return $res;
         }
     }
-
-    /**
-     * 电商Sign签名生成
-     * @param data 内容   
-     * @param appkey Appkey
-     * @return DataSign签名
-     */
-    public static function encrypt($data, $appkey) {
-        return urlencode(base64_encode(md5($data.$appkey)));
-    }
-
 }
