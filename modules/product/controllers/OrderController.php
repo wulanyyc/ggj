@@ -42,6 +42,7 @@ class OrderController extends AuthController
         $ret = ExpressHelper::getEorder($data);
 
         $html = '';
+        print_r($ret);exit;
         if (isset($ret['Success']) && $ret['Success'] == true) {
             $order = $ret['Order']['LogisticCode'];
 
