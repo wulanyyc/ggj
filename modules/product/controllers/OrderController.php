@@ -47,9 +47,9 @@ class OrderController extends AuthController
 
         if (isset($data['Success']) && $data['Success'] == true) {
             $order = $data['Order']['LogisticCode'];
-            echo $order;exit;
+            // echo $order;exit;
             $html = ExpressHelper::buildForm($order);
-            echo $html;exit;
+            // echo $html;exit;
         }
 
         return $this->render('test', [
