@@ -41,11 +41,16 @@ class OrderController extends AuthController
 
         $ret = ExpressHelper::getEorder($data);
 
+        $html = '';
         if (isset($ret['Success']) && $ret['Success'] == true) {
             $order = $ret['Order']['LogisticCode'];
 
-            ExpressHelper::buildForm($order);
+            $html = ExpressHelper::buildForm($order);
         }
+
+        return $this->render('test', [
+            'form' => $html,
+        ]);
     }
 
     /**
