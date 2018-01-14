@@ -49,7 +49,7 @@ class SiteController extends Controller
         $link = ProductHelper::getProductLink($promotions['id']);
 
         // TODO 调整图片
-        return ['text' => $text, 'img' => Yii::$app->params['new_promotion']['img'], 'link' => $link];
+        return ['text' => $text, 'img' => $info['img'], 'link' => $link];
     }
 
     private function getDayPromotion() {
