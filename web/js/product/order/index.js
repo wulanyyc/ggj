@@ -117,6 +117,7 @@ $(document).ready(function () {
     $('#list').delegate('.order-express', 'click', function () {
         var id = $(this).attr('data-id');
         var name = $(this).attr('data-val');
+
         bootbox.dialog({
             message: $('#express_modal').html(),
             title: '设置快递号: ' + name,
@@ -228,7 +229,7 @@ $(document).ready(function () {
 
         config['columnDefs'] = [{
             sortable: false,
-            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         }];
 
         config['columns'] = [
@@ -239,6 +240,8 @@ $(document).ready(function () {
             {data: 'pay_money'},
             {data: 'rec_address'},
             {data: 'status'},
+            {data: 'express_company'},
+            {data: 'express_num'},
             {data: 'create_time'},
             {data: 'operation'}
         ];

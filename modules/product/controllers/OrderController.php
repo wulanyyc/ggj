@@ -23,47 +23,13 @@ class OrderController extends AuthController
         ]);
     }
 
-    public function actionTest() {
-        // 测试电子面单
-        $id   = 9;
-        $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();
-
-        $data = [];
-        $data['id'] = uniqid() . '_' . $info['id'];
-        $data['rec_name'] = $info['rec_name'];
-        $data['rec_phone'] = $info['rec_phone'];
-        $data['rec_province'] = '四川省';
-        $data['rec_city'] = '成都市';
-        $data['rec_district'] = '青羊区';   // TODO 优化
-        $data['rec_detail'] = '万科金色领域15栋1805';// TODO 优化
-
-        $data['order_name'] = '水果';
-
-        $ret = ExpressHelper::getEorder($data);
-
-        $html = '';
-        // print_r($ret);exit;
-        $data = json_decode($ret, true);
-
-        if (isset($data['Success']) && $data['Success'] == true) {
-            $order = $data['Order']['LogisticCode'];
-            // echo $order;exit;
-            $html = ExpressHelper::buildForm($order);
-            // echo $html;exit;
-        }
-
-        return $this->render('test', [
-            'form' => $html,
-        ]);
-    }
-
     /**
      * 表格
      */
     public function actionTable() {
         $params = Yii::$app->request->post();
 
-        $sql = "select id,customer_id,rec_name,rec_phone,rec_address,pay_money,status,create_time from product_order ";
+        $sql = "select id,customer_id,rec_name,rec_phone,rec_address,pay_money,status,create_time,express_num,express_company from product_order ";
         
         $sqlCondition = [];
         if ($params['status'] > 0) {
@@ -97,7 +63,7 @@ class OrderController extends AuthController
 
             $ret[$key]['operation'] = "
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
-            <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-express btn btn-xs btn-purple' href='javascript:void(0);'>关联快递号</a>
+            <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-express btn btn-xs btn-purple' href='javascript:void(0);'>获取快递号</a>
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;' class='order-status btn btn-xs btn-info' href='javascript:void(0);'>状态设置</a>";
 
             if ($ret[$key]['status'] == 2 || $ret[$key]['status'] == 3) {
@@ -232,9 +198,10 @@ class OrderController extends AuthController
         }
 
         $id = $params['id'];
-        $num = $params['express_num'];
 
-        try {
+        $num = $this->getExpressnum($id);
+
+        if ($num != 0) {
             $po = ProductOrder::findOne($id);
             $po->express_num = $num;
             $po->save();
@@ -292,4 +259,30 @@ class OrderController extends AuthController
         echo json_encode($data);
     }
 
+    private function getExpressnum($id) {
+        $info   = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+
+        $data = [];
+        $data['id'] = date('Ymd', time()) . '_' . $info['id'];
+        $data['rec_name'] = $info['rec_name'];
+        $data['rec_phone'] = $info['rec_phone'];
+        $data['rec_province'] = '四川省';
+        $data['rec_city'] = $info['city'];
+        $data['rec_district'] = $info['district'];
+        $data['rec_detail']   = $info['rec_address'];
+
+        $data['order_name'] = '水果';
+
+        $ret = ExpressHelper::getEorder($data);
+
+        $data = json_decode($ret, true);
+
+        if (isset($data['Success']) && $data['Success'] == true) {
+            $order = $data['Order']['LogisticCode'];
+
+            return $order;
+        }
+
+        return 0;
+    }
 }

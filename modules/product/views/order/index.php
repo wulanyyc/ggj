@@ -80,6 +80,8 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                             <th>收件地址</th>
                             <th>状态</th>
                             <th>下单时间</th>
+                            <th>快递公司</th>
+                            <th>快递单号</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -138,9 +140,13 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
     <div class='row'>
         <div class='col-md-12'>
             <div class='form-group' style='margin-top:10px'>
-                <label style='width:80px'>快递号：</label>
-                <input style='width:250px' type='text' placeholder='' name='express_num' class='input-sm express_num'></input>
+                <label style='width:80px'>快递公司：</label>
+                <select name="express_company" class="input-sm express_company">
+                    <option value="SF">顺丰</option>
+                </select>
             </div>
+
+            <button style='margin-left:100px;'  class='get-express btn btn-xs btn-purple'>获取快递单号</button>
         </div>
     </div>
 </div>
