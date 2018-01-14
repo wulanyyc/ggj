@@ -79,9 +79,9 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                             <th>总价</th>
                             <th>收件地址</th>
                             <th>状态</th>
-                            <th>下单时间</th>
                             <th>快递公司</th>
                             <th>快递单号</th>
+                            <th>下单时间</th>
                             <th>操作</th>
                         </tr>
                     </thead>
