@@ -68,8 +68,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: stretch;
-    align-content: center;
+    /*align-items: stretch;*/
+    /*align-content: center;*/
     margin-top: 5px;
   }
 
