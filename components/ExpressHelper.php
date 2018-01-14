@@ -134,7 +134,7 @@ class ExpressHelper extends Component{
 
         $request_data_encode = urlencode($requestStr);
 
-        $data_sign = self::encrypt(self::getIp().$request_data_encode, APIKey);
+        $data_sign = self::encrypt(self::getIp() . $request_data_encode, Yii::$app->params['kdn']['apikey']);
 
         //是否预览，0-不预览 1-预览
         $is_priview = '0';
