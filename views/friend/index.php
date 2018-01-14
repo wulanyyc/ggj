@@ -41,8 +41,8 @@ MsaView::registerJsFile($this,'/js/friend/index.js',
   <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 10px;margin-top:30px;">
       <img src='/img/gift.png' style="width:90px;height:90px;margin-bottom: 10px;"/>
       <div class="show">好&nbsp;&nbsp;友:&nbsp;&nbsp;<?=$data['userphone'] ?></div>
-      <div class="show">优惠码：您的手机号码</div>
-      <div class="show">购买了<span class="text-danger"><?=$data['cart_num'] ?></span>件商品</div>
+      <div class="show">使用您的手机号作为优惠码</div>
+      <div class="show">购买新鲜水果</div>
       <div class="show">获得了<span class="text-danger"><?=$data['discount_fee'] ?></span>元折扣</div>
       <div class="show">特奖励<span class="text-danger"><?=round($data['discount_fee'] * 0.5, 1) ?></span>元到你的钱包</div>
       <a href="/customer" class="btn btn-danger btn-sm" id="order" style="width:66%;max-width:300px;margin-top:20px;">查看我的钱包</a>

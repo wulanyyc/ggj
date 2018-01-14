@@ -73,7 +73,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;快递发货：
             </div>
             <div>
-            限成都，每周<span style="color:red;font-weight: bold;">2、4、6</span>发货
+            限成都，每周<span style="color:red;font-weight: bold;">2、6</span>发货
             </div>
           </li>
         </ul>
