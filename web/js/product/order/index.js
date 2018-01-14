@@ -229,7 +229,7 @@ $(document).ready(function () {
 
         config['columnDefs'] = [{
             sortable: false,
-            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         }];
 
         config['columns'] = [
@@ -240,7 +240,6 @@ $(document).ready(function () {
             {data: 'pay_money'},
             {data: 'rec_address'},
             {data: 'status'},
-            {data: 'express_company'},
             {data: 'express_num'},
             {data: 'create_time'},
             {data: 'operation'}
