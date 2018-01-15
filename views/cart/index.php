@@ -314,12 +314,12 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
               <span class="badge badge-success" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">快递</span>
             </label>
           </div>
-          <div class="form-check form-check-inline express_rule">
+          <!-- <div class="form-check form-check-inline express_rule">
             <label class="form-check-label" style="display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;justify-content: -webkit-flex-start;display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
               <input class="form-check-input" type="radio" class="express_rule" name="express_rule" id="express_2" value="2">
               <span class="badge badge-info" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">自提</span>
             </label>
-          </div>
+          </div> -->
         </div>
 
         <div id="express_time">

@@ -259,6 +259,7 @@ ClipAsset::register($this);
     <thead>
       <tr>
         <th scope="col">商品</th>
+        <th scope="col">描述</th>
         <th scope="col">数量</th>
         <th scope="col">单价</th>
       </tr>
