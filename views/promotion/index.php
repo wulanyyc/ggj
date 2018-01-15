@@ -126,7 +126,7 @@ SiteAsset::register($this);
         </div>
 
         <div class="promotion-item-right prom-shop-right day<?=$value['day'] ?>-right">
-          <img src="/img/alpha_4x3.png"></img>
+          <img src="<?=$value['img'] ?>"></img>
         </div>
       </a>
       <?php } ?>

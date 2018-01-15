@@ -27,7 +27,7 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
 </style>
 
 <?php if (isset($data['pay_result']) && $data['pay_result'] == 1){ ?>
-<div class="card" id="suc" style="background: url('http://img.guoguojia.vip/img/payok_tiny.jpeg') no-repeat;background-size: 100% 100%;">
+<div class="card" id="suc" style="background: url('http://img.guoguojia.vip/img/payok_new.jpeg') no-repeat;background-size: 100% 100%;">
   <div style="position: absolute; bottom: 30px;width: 100%;">
     <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 10px;margin:20px;">
       <div style="margin-left:10px;font-size: 14px;">
