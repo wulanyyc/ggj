@@ -66,7 +66,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
     <div class="card buy-type">
       <div id="rule" style="margin-top: 1%;font-size: 14px;width:100%;">
         <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-          <img src="/img/booking.png" style="width: 90px;"/>
+          <img src="http://img.guoguojia.vip/img/booking.png" style="width: 90px;"/>
           <ul style="width:60%">
             <li>
               <div class="label" style="color: #866D8D;font-size: 16px;">
@@ -89,7 +89,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
         </div>
         <!-- <hr/> -->
         <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-            <img src="/img/sale.png" style="width: 90px;" /> 
+            <img src="http://img.guoguojia.vip/img/sale.png" style="width: 90px;" /> 
             <ul style="width:60%">
               <li>
                 <div class="label" style="font-size: 16px;">
