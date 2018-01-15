@@ -53,6 +53,10 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
     width:100px;
   }
 
+  .card {
+    border:none;
+  }
+
   footer {
     display: none;
   }
@@ -60,58 +64,61 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
 
 <div class="card" id="type_content" style="display: -webkit-flex;align-items: -webkit-center;justify-content: -webkit-center;display: flex;align-items: center;justify-content: center;">
     <div class="card buy-type">
-      <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;text-align: center;">
-        <span  style="color: #866D8D">预约</span> <span style="color:red;">vs</span> <span>现售</span>
-      </div>
-
       <div id="rule" style="margin-top: 1%;font-size: 14px;width:100%;">
-        <ul>
-          <li>
-            <div class="label" style="color: #866D8D">
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
-            </div>
-            <div>
-              国产水果进货日采购。进口水果供应商到货即采购，挑选平台同批次佳果，保证新鲜度和质量
-            </div>
-          </li>
+        <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+          <img src="/img/booking.png" style="width: 90px;"/>
+          <ul style="width:60%">
+            <li>
+              <div class="label" style="color: #866D8D;font-size: 16px;">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
+              </div>
+              <div>
+                国产水果当日采购<br/>进口水果供应商到货即采购<br/>精选佳果，保证新鲜度和质量
+              </div>
+            </li>
 
-          <li>
-            <div class="label" style="color: #866D8D">
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;快递发货：
-            </div>
-            <div>
-            限成都，每周<span style="color:red;font-weight: bold;"><?=Yii::$app->params['bookingSender'] ?></span>顺丰发货或联系我们协商
-            </div>
-          </li>
-        </ul>
-        <hr/>
-        <ul>
-          <li>
-            <div class="label">
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格实惠：
-            </div>
-            <div>
-              低于市场价，享全场95折
-            </div>
-          </li>
+            <li>
+              <div class="label" style="color: #866D8D;font-size: 16px;">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;顺丰发货：
+              </div>
+              <div>
+              限成都，每周<span style="color:red;font-weight: bold;"><?=Yii::$app->params['bookingSender'] ?></span>发货
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- <hr/> -->
+        <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
+            <img src="/img/sale.png" style="width: 90px;" /> 
+            <ul style="width:60%">
+              <li>
+                <div class="label" style="font-size: 16px;">
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格实惠：
+                </div>
+                <div>
+                  根据新鲜度，调整价格，实惠
+                </div>
+              </li>
 
-          <li>
-            <div class="label">
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;快递发货：
-            </div>
-            <div>
-            限成都，24小时内顺丰发货
-            </div>
-          </li>
-        </ul>
+              <li>
+                <div class="label"  style="font-size: 16px;">
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;顺丰发货：
+                </div>
+                <div>
+                限成都，24小时内发货
+                </div>
+              </li>
+            </ul>
+        </div>
       </div>
     </div>
 
-    <br/>
-    <div style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-around;display: flex;flex-direction: row;justify-content: space-around;width:100%;margin-top:1%;">
+    <a class="btn btn-success" href="/buy/booking?id=<?=$id ?>" style="width: 50%;margin-bottom: 10px;margin-top:10px;">去预约</a>
+    <a class="btn btn-danger" href="/buy/?id=<?=$id ?>" style="width: 50%;">买现货</a>
+    <!-- <div style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-around;display: flex;flex-direction: row;justify-content: space-around;width:100%;margin-top:1%;">
       <div class="choose_type" data-href='/buy/booking?id=<?=$id ?>' data-type=2 style="width:80px; height: 80px;border: 1px solid #866D8D;border-radius: 40px;background-color: #866D8D; margin-bottom: 1%;text-align: center;line-height: 80px;color:white;font-size: 16px;">爱预约</div>
 
       <div class="choose_type" data-type=1 style="width:80px; height: 80px;border: 1px solid #53a93f;border-radius: 40px;background-color: #53a93f; margin-bottom: 1%;text-align: center;line-height: 80px;color:white;font-size: 16px;" data-href='/buy/?id=<?=$id ?>'>买现货</div>
       </div>
-    </div>
+    </div> -->
 </div>
