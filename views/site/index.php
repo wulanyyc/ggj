@@ -468,6 +468,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
               <div class="tip-content">
                   <?=$product['slogan'] ?>
               </div>
+
+              <img src="http://img.guoguojia.vip/img/xx2.png" style="position: absolute;top:0;right:0;width:80px;" />
             </a>
           </div>
       <?php } ?>
