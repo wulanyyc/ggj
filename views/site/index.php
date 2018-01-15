@@ -266,7 +266,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .promotion-item-right img {
-    height: 90%;
+    height: 80%;
   }
 
   .label {

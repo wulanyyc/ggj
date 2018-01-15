@@ -79,6 +79,10 @@ main {
         display: block !important;
     }
 
+    .promotion-item-right img {
+        height: 70% !important;
+    }
+
     .end {
         border-right: 1px solid #f5f5f5 !important;
     }
