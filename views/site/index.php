@@ -303,7 +303,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       </div>
     </div>
 
-    <div class="promotion-item-right" style="background-color: #D0E3DC;">
+    <!--D0E3DC-->
+    <div class="promotion-item-right" style="background-color: #fff;">
       <img src="<?=$newPromotion['img'] ?>"></img>
     </div>
   </a>

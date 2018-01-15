@@ -44,7 +44,7 @@ class SiteController extends Controller
         $info = ProductList::find()->select('name,price,unit,img')
             ->where(['id' => $promotions['id']])->asArray()->one();
 
-        $text  = "营养均衡 " . $info['name'];
+        $text  = $info['name'];
 
         $link = ProductHelper::getProductLink($promotions['id']);
 
