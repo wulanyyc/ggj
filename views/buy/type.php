@@ -61,10 +61,10 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
         <ul>
           <li>
             <div class="label" style="color: #866D8D">
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;绝对新鲜：
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
             </div>
             <div>
-              早上进货，上午打包，下午发货
+              本地水果可现采购，进口水果供应商到货即采购，保证新鲜度
             </div>
           </li>
 
@@ -84,7 +84,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格实惠：
             </div>
             <div>
-              低于市场价，享全场<span style="color:red;font-weight: bold;"><?=Yii::$app->params['buyDiscount'] * 10 ?></span>折
+              低于市场价，享全场95折
             </div>
           </li>
 
@@ -93,7 +93,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;快递发货：
             </div>
             <div>
-            限成都，24小时内发货
+            限成都，24小时内顺丰发货
             </div>
           </li>
         </ul>
