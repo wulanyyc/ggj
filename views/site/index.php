@@ -344,6 +344,18 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
     padding:3%;height:90%;
   }
+
+  .discount {
+    font-size: 12px;padding-left:5px;padding-top: 2px;
+  }
+
+  .product-card-img {
+    width: 40%;
+  }
+
+  .product-card-content {
+    width: 58%;
+  }
 </style>
 
 <?php if (!empty(Yii::$app->params['hometip'])) { ?>
@@ -407,8 +419,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
             <a class="product-item-content" href="<?=$product['link'] ?>">
               <div class="product-item-content-inner">
-                <img class="card-img" style="width:36%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
-                <div style="width:62%;">
+                <img class="product-card-img" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                <div class="product-card-content">
                   <p class="title"><?=$product['name'] ?></p>
                   <p class="desc"><?=$product['desc'] ?></p>
 
@@ -423,7 +435,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                       </span>
                     </div>
 
-                    <div style="font-size: 13px;padding-left:4px;padding-top: 2px;">
+                    <div class="discount">
                       <?php if ($product['booking_price'] < $product['price']) { ?>
                       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                       <?=round($product['booking_price']/$product['price'], 2) * 10 ?>折
@@ -442,7 +454,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                         <span class="money">元/<?=$product['unit'] ?></span>
                       </span>
                     </div>
-                    <div style="font-size: 13px;padding-left:4px;padding-top: 2px;">
+                    <div class="discount">
                       <?php if ($product['buy_price'] < $product['price']) { ?>
                       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                       <?=round($product['buy_price']/$product['price'], 2) * 10 ?>折

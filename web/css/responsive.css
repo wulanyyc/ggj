@@ -47,14 +47,103 @@ main {
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 575px) {
+@media (max-width: 320px) {
+    .navbar-brand {
+        margin-right: 0 !important;
+    }
+
+    .search-top {
+        width: 50% !important;
+    }
+
+    .product-card-img {
+        width: 32% !important;
+    }
+
+    .product-card-content {
+        width: 66% !important;
+    }
+
+    .product-items {
+        display: block !important;
+    }
+
+    .product-item {
+        width: 100% !important;
+        margin-left: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+    }
+
+    .product-item-content {
+        display: block !important;
+    }
+
+    .end {
+        border-right: 1px solid #f5f5f5 !important;
+    }
+
+    .first-items {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        position: relative !important;
+        flex-wrap: nowrap !important;
+    }
+
+    #promotion {
+        flex-wrap: wrap;
+    }
+
+    .promotion-item {
+        width: 98% !important;
+        margin-bottom: 1%;
+    }
+
+    #carouselIndicators, #carouselIndicators img {
+        height: 150px !important;
+    }
+
+    #package {
+        flex-wrap: wrap;
+    }
+
+    #package .card {
+        width: 98% !important;
+    }
+
+    .navbar-toggler {
+        display: none;
+    }
+
+    #menu_list {
+        width: 26% !important;
+    }
+
+    #order_scroll {
+        width: 70% !important;
+    }
+
+    .order-product {
+        width: 98% !important;
+    }
+
+    .first-rec {
+        flex-direction: column !important;
+        flex-wrap: wrap;
+        justify-content: flex-start !important;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (min-width: 321px) and (max-width: 575px) {
     .navbar-brand {
         margin-right: 0 !important;
         /*margin-left: 2rem;*/
     }
 
     .search-top {
-        width: 50%;
+        width: 50% !important;
     }
 
     .product-items {
