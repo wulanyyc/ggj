@@ -399,8 +399,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
             <a class="product-item-content" href="<?=$product['link'] ?>">
               <div class="product-item-content-inner">
-                <img class="card-img" style="width:40%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
-                <div style="width:58%;">
+                <img class="card-img" style="width:36%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                <div style="width:62%;">
                   <p class="desc"><?=$product['name'] ?></p>
                   <p class="desc"><?=$product['desc'] ?></p>
 
