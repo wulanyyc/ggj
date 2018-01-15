@@ -470,6 +470,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
               </div>
 
               <img src="http://img.guoguojia.vip/img/xx2.png" style="position: absolute;top:0;right:0;width:80px;" />
+              <img src="http://img.guoguojia.vip/img/xiandu.png" style="position: absolute;top:0;left:0;width:80px;" />
             </a>
           </div>
       <?php } ?>
