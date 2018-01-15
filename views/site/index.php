@@ -399,8 +399,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
             <a class="product-item-content" href="<?=$product['link'] ?>">
               <div class="product-item-content-inner">
-                <img class="card-img" style="width:36%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
-                <div style="width:62%;">
+                <img class="card-img" style="width:40%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                <div style="width:58%;">
                   <p class="desc"><?=$product['name'] ?></p>
                   <p class="desc"><?=$product['desc'] ?></p>
 
@@ -414,7 +414,13 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                         <span class="money">元/<?=$product['unit'] ?></span>
                       </span>
                     </div>
-                    <div style="margin-left:5px;font-size: 14px;color:#53a93f;">鲜100</div>
+
+                    <div style="font-size: 14px;padding-left:5px;padding-top: 2px;">
+                      <?php if ($product['booking_price'] < $product['price']) { ?>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <?=round($product['booking_price']/$product['price'], 2) * 10 ?>折
+                      <?php } ?>
+                    </div>
                   </div>
                   <?php } ?>
 
@@ -428,7 +434,12 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                         <span class="money">元/<?=$product['unit'] ?></span>
                       </span>
                     </div>
-                    <div style="margin-left:5px;font-size: 14px;color:#53a93f;">鲜<?=$product['fresh_percent'] ?></div>
+                    <div style="font-size: 14px;padding-left:5px;padding-top: 2px;">
+                      <?php if ($product['buy_price'] < $product['price']) { ?>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <?=round($product['buy_price']/$product['price'], 2) * 10 ?>折
+                      <?php } ?>
+                    </div>
                   </div>
                   <?php } ?>
                 </div>

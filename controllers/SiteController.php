@@ -113,10 +113,6 @@ class SiteController extends Controller
                 $info[$key]['booking_price'] = PriceHelper::getProductPrice($value['id']);
             }
 
-            if (empty($value['img'])) {
-                $info[$key]['img'] = '/img/apple_4x3.png';
-            }
-
             $info[$key]['link'] = ProductHelper::getProductLink($value['id']);
         }
 

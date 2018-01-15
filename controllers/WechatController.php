@@ -121,7 +121,7 @@ class WechatController extends Controller
                 $ar->save();
             }
 
-            return '关注成都果果佳，享5元新人优惠券，首单再享5元';
+            return '欢迎关注成都果果佳，新人享5元优惠券，首单再享5元';
         }
 
         if ($event == 'unsubscribe') {
