@@ -80,7 +80,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;快递发货：
             </div>
             <div>
-            限成都，每周<span style="color:red;font-weight: bold;">1、6</span>顺丰发货或联系我们协商
+            限成都，每周<span style="color:red;font-weight: bold;"><?=Yii::$app->params['bookingSender'] ?></span>顺丰发货或联系我们协商
             </div>
           </li>
         </ul>

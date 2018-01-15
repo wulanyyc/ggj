@@ -86,7 +86,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;预约限制：
         </div>
         <div style="width:65%;">
-        为保证水果新鲜度，仅接受成都地区的订单，周<span style="color:red;font-weight: bold;">2、6</span>发货。如遇缺货无法完成订单，立即退款。
+        为保证水果新鲜度，仅接受成都地区的订单，周<span style="color:red;font-weight: bold;"><?=Yii::$app->params['bookingSender'] ?></span>发货。如遇缺货无法完成订单，立即退款。
         </div>
       </li>
     </ul>

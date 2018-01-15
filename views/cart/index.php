@@ -557,7 +557,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </p>
     <p style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">预约订单: </span>
-      <span style="width:72%;">每周2、6上午发货。<br/>取最近的时间发货</span>
+      <span style="width:72%;">每周<?=Yii::$app->params['bookingSender'] ?>上午发货。<br/>取最近的时间发货</span>
     </p>
 <!--     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">私人定制: </span>
