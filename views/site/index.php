@@ -77,11 +77,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-items {
-    flex-wrap: -webkit-wrap;
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-space-around;
-
     flex-wrap: wrap;
     display: flex;
     flex-direction: row;
@@ -98,10 +93,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   a.product-item-content {
     text-decoration: none;color:#000;
-    display: -webkit-flex;
-    justify-content: -webkit-space-between;
-    /*align-items: -webkit-stretch;*/
-    flex-direction: -webkit-column;
 
     display: flex;
     justify-content: space-between;

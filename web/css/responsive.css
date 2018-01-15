@@ -58,7 +58,6 @@ main {
     }
 
     .product-items {
-        display: -webkit-block !important;
         display: block !important;
     }
 
@@ -143,7 +142,6 @@ main {
     .product-item {
         width: 100% !important;
         margin-left: 0 !important;
-        float: none !important;
         border-left: none !important;
         border-right: none !important;
     }
