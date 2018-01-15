@@ -171,9 +171,9 @@ class OrderController extends Controller
         foreach($ret as $item) {
             // 待支付订单获取实时价格
             if ($orderStatus == 1) {
-                $html .= "<tr><td>" . $item['name'] . "</td><td>" . $cart[$item['id']]['desc'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $item['price'] . "元/" . $item['unit'] . "</td></tr>";
+                $html .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $item['price'] . "元/" . $item['unit'] . "</td></tr>";
             } else {
-                $html .= "<tr><td>" . $item['name'] . "</td><td>" . $cart[$item['id']]['desc'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $cart[$item['id']]['price'] . "元/" . $item['unit'] . "</td></tr>";
+                $html .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $cart[$item['id']]['price'] . "元/" . $item['unit'] . "</td></tr>";
             }
         }
         
