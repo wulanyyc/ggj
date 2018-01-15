@@ -90,7 +90,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
   }
 
   #address_info {
-    height: 90%;
+    height: 85%;
     overflow-y: scroll;
   }
 

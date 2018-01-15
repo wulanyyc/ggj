@@ -21,7 +21,7 @@ class QrcodeAsset extends AssetBundle
 
     ];
     public $js = [
-        'js/lib/qrcode/qrcode.min.js',
+        'http://js.guoguojia.vip/js/lib/qrcode/qrcode.min.js',
     ];
     public $depends = [
         'app\assets\SiteAsset'
