@@ -38,7 +38,7 @@ MsaView::registerJsFile($this,'/js/friend/index.js',
   <div class="card-header bg-white" style="text-align:center;position:relative;color: black;border-radius: 0;border-bottom: 1px solid #f5f5f5;">
         好友购物详情
   </div>
-  <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 10px;margin-top:30px;-webkit-display: flex;-webkit-flex-direction: column;-webkit-justify-content: center;-webkit-align-items: center;">
+  <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 10px;margin-top:30px;display: -webkit-flex;flex-direction: -webkit-column;justify-content: -webkit-center;align-items: -webkit-center;">
       <img src='/img/gift.png' style="width:90px;height:90px;margin-bottom: 10px;"/>
       <div class="show">好&nbsp;&nbsp;友:&nbsp;&nbsp;<?=$data['userphone'] ?></div>
       <div class="show">使用您的手机号作为优惠码</div>

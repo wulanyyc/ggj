@@ -30,20 +30,28 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .first-rec {
     color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;
-    display: flex;flex-direction: row;justify-content: space-between;align-items: center;
-    -webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-space-between;
+    align-items: -webkit-center;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .first-items {
     width:60%;
+    flex-wrap: -webkit-wrap;
+    display: -webkit-inline-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-flex-end;
+
     flex-wrap: wrap;
     display: inline-flex;
     flex-direction: row;
     justify-content: flex-end;
-    -webkit-flex-wrap: wrap;
-    -webkit-display: inline-flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: flex-end;
   }
 
   .first-item {
@@ -74,10 +82,10 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     flex-direction: row;
     justify-content: space-around;
 
-    -webkit-flex-wrap: wrap;
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: space-around;
+    flex-wrap: -webkit-wrap;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-space-around;
 
     margin-top: 5px;
   }
@@ -90,9 +98,15 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   a.product-item-content {
     text-decoration: none;color:#000;
-    display: flex;justify-content: space-between;align-items: stretch;flex-direction: column;
-    -webkit-display: flex;-webkit-justify-content: space-between;-webkit-align-items: stretch;
-    -webkit-flex-direction: column;
+    display: -webkit-flex;
+    justify-content: -webkit-space-between;
+    align-items: -webkit-stretch;
+    flex-direction: -webkit-column;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .product-item .tip-content {
@@ -120,17 +134,18 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     font-size: 16px;
     height: 20px;
     padding-left: 10px;
+
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    align-items: -webkit-center;
+    justify-content: -webkit-flex-start;
+    flex-wrap: -webkit-wrap;
+
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
-
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-align-items: center;
-    -webkit-justify-content: flex-start;
-    -webkit-flex-wrap: wrap;
   }
 
   .sale-badge {
@@ -176,30 +191,33 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     flex-direction: row;
     justify-content:space-around;
 
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content:space-around;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content:-webkit-space-around;
   }
 
   a.promotion-item {
     width:49%;height:150px;
     border-radius: 3px;
     text-decoration: none;
+
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+
     display: flex;
     flex-direction: row;
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
   }
 
   .promotion-item-left {
     width:50%;height:100%;opacity: 0.8;
+
+    display: -webkit-flex;
+    justify-content:-webkit-center;
+    align-items:-webkit-center;
+
     display: flex;
     justify-content:center;
     align-items:center;
-
-    -webkit-display: flex;
-    -webkit-justify-content:center;
-    -webkit-align-items:center;
   }
 
   .promotion-item-left-content {
@@ -209,7 +227,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   .promotion-item-left-content-top {
     text-align: center;font-size: 20px;color:#fff;
     height: 44px;line-height: 44px;
-    /*border-top: 2px solid #fff;*/
     border-bottom: 2px solid #fff;font-weight: 400;width:100%;
   }
 
@@ -224,24 +241,24 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     justify-content: center;
     align-items: center;
 
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: center;
-    -webkit-align-items: center;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-center;
+    align-items: -webkit-center;
   }
 
   #package {
     margin-top: 5px;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-space-around;
+    align-items: -webkit-stretch;
+    flex-wrap: -webkit-wrap;
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
     flex-wrap: wrap;
-
-    -webkit-flex-direction: row;
-    -webkit-justify-content: space-around;
-    -webkit-align-items: stretch;
-    -webkit-flex-wrap: wrap;
   }
 
   #package .card {
@@ -253,9 +270,9 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     flex-direction: row;
     justify-content: space-between;
 
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: space-between;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-space-between;
 
     color: #fff;border-radius: 0;
   }
@@ -265,31 +282,32 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .package-item-products{
-    display: flex;flex-direction: row;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-space-between;
+    flex-wrap: -webkit-wrap;
+
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: space-between;
-    -webkit-flex-wrap: wrap;
 
     color:black;
     text-decoration: none;
   }
 
   .package-item-product{
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-space-around;
+    align-items: -webkit-center;
+    flex-wrap: -webkit-nowrap;
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     flex-wrap: nowrap;
-
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: space-around;
-    -webkit-align-items: center;
-    -webkit-flex-wrap: nowrap;
 
     font-size:14px;
     width: 48%;
@@ -355,14 +373,15 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   .package-price {
     position: absolute;bottom:0px;
     width:100%;
+
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-flex-end;
+    align-items: -webkit-center;
+
     display: flex;flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: flex-end;
-    -webkit-align-items: center;
 
     height:40px;
     line-height: 40px;
@@ -370,17 +389,17 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-item-content-inner {
+    display: -webkit-flex;
+    justify-content: -webkit-center;
+    align-items: -webkit-center;
+    flex-direction: -webkit-row;
+    flex-wrap: -webkit-nowrap;
+
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;
-
-    -webkit-display: flex;
-    -webkit-justify-content: center;
-    -webkit-align-items: center;
-    -webkit-flex-direction: row;
-    -webkit-flex-wrap: nowrap;
 
     padding:3%;height:90%;
   }
@@ -446,7 +465,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <?php foreach($fruits as $product) { ?>
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
             <a class="product-item-content" href="<?=$product['link'] ?>">
-              <div class="product-item-content-inner" style="display: flex;justify-content: center;align-items: center;flex-direction: row;padding:3%;height:90%;flex-wrap: nowrap;">
+              <div class="product-item-content-inner">
                 <img class="card-img" style="width:36%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                 <div style="width:62%;">
                   <p class="desc"><?=$product['name'] ?></p>

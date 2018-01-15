@@ -32,7 +32,7 @@ MsaView::registerJsFile($this,'/js/friend/index.js',
   <div class="card-header bg-white" style="text-align:center;position:relative;color: black;border-radius: 0;border-bottom: 1px solid #f5f5f5;">
         好友购物详情
   </div>
-  <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 10px;margin:10px;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: center;-webkit-align-items: center;">
+  <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 10px;margin:10px;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-center;align-items: -webkit-center;">
     <img src="/img/cry.png" />
     <div style="padding-left:10px;width:70%">没有查找到你感兴趣的信息，请检查访问链接</div>
   </div>

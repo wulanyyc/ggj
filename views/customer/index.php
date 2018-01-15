@@ -30,7 +30,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
     a.show-item {
       padding: 10px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;text-decoration: none;color: black;
 
-      -webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;
+      display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: -webkit-center;
     }
 
     footer {
@@ -38,7 +38,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
     }
 </style>
 
-<div class="card" id="userinfo" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;">
+<div class="card" id="userinfo" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: -webkit-center;">
   <?php if (empty($info['headimgurl'])) { ?>
   <div style="font-size: 50px;">
     <a href="/customer/info" style="color: black;"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
@@ -60,7 +60,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <!-- <div><button type="button" class="btn btn-outline-info btn-sm" id="charge">充值享优惠</button></div> -->
 </div>
 
-<div class="card" id="order" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-around;align-items: center;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-around;-webkit-align-items: center;">
+<div class="card" id="order" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-around;align-items: center;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-around;align-items: -webkit-center;">
   <?php if ($cartid > 0) { ?>
   <a href="/cart?id=<?=$cartid ?>" style="color:black;text-decoration: none;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>

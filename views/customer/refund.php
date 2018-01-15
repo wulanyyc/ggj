@@ -24,7 +24,7 @@ $this->title = '退款赔偿细则';
 </style>
 
 <div class="card">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;">
+    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;">
       退款赔偿细则
     </div>
     <div style="padding:5%;">

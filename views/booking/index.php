@@ -38,11 +38,11 @@ SiteAsset::register($this);
     align-items: center;
     justify-content: flex-start;
 
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    -webkit-align-items: center;
-    -webkit-justify-content: flex-start;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    flex-wrap: -webkit-wrap;
+    align-items: -webkit-center;
+    justify-content: -webkit-flex-start;
   }
 
 </style>

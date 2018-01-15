@@ -20,9 +20,9 @@ $this->title = '积分商城';
     flex-direction: row;
     justify-content: flex-start;
 
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: flex-start;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-flex-start;
     margin-bottom: 5px;
     font-size: 14px;
   }
@@ -50,8 +50,8 @@ $this->title = '积分商城';
   .score_item {
     display: flex;flex-direction: row;justify-content: space-around;
     align-items: center;
-    -webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-around;
-    -webkit-align-items: center;
+    display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-around;
+    align-items: -webkit-center;
 
     border: 1px dashed #ccc;padding: 2%;width:100%;
     margin-bottom: 2%;
@@ -70,10 +70,10 @@ $this->title = '积分商城';
     justify-content: center;
     align-items: center;
 
-    -webkit-display: flex;
-    -webkit-flex-direction: column;
-    -webkit-justify-content: center;
-    -webkit-align-items: center;
+    display: -webkit-flex;
+    flex-direction: -webkit-column;
+    justify-content: -webkit-center;
+    align-items: -webkit-center;
   }
 
   .score_item_money {
@@ -100,7 +100,7 @@ $this->title = '积分商城';
 </style>
 
 <div class="card" id="score">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;">
+    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;">
       积分商城<span>目前：<span class="text-danger" id="current_score"><?=$data['score'] ?></span>分</span>
       <span style="color:#aaa;" id="ask">如何获取？</span>
     </div>
@@ -120,15 +120,15 @@ $this->title = '积分商城';
 </div>
 
 <div class="card" id="question">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;">
       如何获取积分<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_question"></i>
   </div>
   <div style="padding: 5%;">
-    <p style="display: flex;flex-direction: row;justify-content: flex-start;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;">
       <span style="padding-right: 5px;">1: </span>
       <span>购买商品获得等额消费积分。</span>
     </p>
-    <p style="display: flex;flex-direction: row;justify-content: flex-start;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;">
       <span style="padding-right: 5px;">2: </span>
       <span>关注官方微信ggj_cd, 参加活动获取积分。</span>
     </p>

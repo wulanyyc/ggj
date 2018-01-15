@@ -25,11 +25,11 @@ MsaView::registerJsFile($this,'/js/order/login.js',
       登录
   </div>
   <div style="width:94%;margin: 10px auto;" id="userinfo_form">
-    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
+    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;">
       <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码">
     </div>
 
-    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
+    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;">
       <input type="text" class="form-control" name="code" id="code" placeholder="4位验证码" style="width:50%;">
       <button type="button" class="btn btn-outline-danger" style="margin-left:5px;width:100px;" id="getcode">手机验证码</button>
     </div>

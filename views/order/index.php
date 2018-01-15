@@ -27,9 +27,9 @@ ClipAsset::register($this);
     flex-direction: row;
     justify-content: flex-start;
 
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: flex-start;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-flex-start;
 
     margin-bottom: 5px;
     font-size: 14px;
@@ -124,10 +124,10 @@ ClipAsset::register($this);
     justify-content: flex-start;
     align-items: center;
 
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: flex-start;
-    -webkit-align-items: center;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-flex-start;
+    align-items: -webkit-center;
   }
 
   #express_detail {
@@ -168,9 +168,9 @@ ClipAsset::register($this);
 <div id="info">
   <?php foreach($data as $item) { ?>
   <div class="card order-item" data-type="<?=$item['status'] ?>">
-    <div class="card-header bg-white" style="border-bottom: 1px solid #ced4da;display: flex;justify-content: space-between;align-items: center;-webkit-display: flex;-webkit-justify-content: space-between;-webkit-align-items: center;">
+    <div class="card-header bg-white" style="border-bottom: 1px solid #ced4da;display: flex;justify-content: space-between;align-items: center;display: -webkit-flex;justify-content: -webkit-space-between;align-items: -webkit-center;">
       <div style="display: inline-block;width:20%;">果果佳</div>
-      <div style="font-size: 14px;color:#aaa;line-height: 20px;display: inline-flex;justify-content: flex-end;align-items: center;-webkit-display: inline-flex;-webkit-justify-content: flex-end;-webkit-align-items: center;">
+      <div style="font-size: 14px;color:#aaa;line-height: 20px;display: inline-flex;justify-content: flex-end;align-items: center;display: -webkit-inline-flex;justify-content: -webkit-flex-end;align-items: -webkit-center;">
         <span class="badge badge-danger" style="font-size: 12px;margin-right: 6px;padding:6px;">
           <?=$status[$item['status']] ?>
         </span>
@@ -202,7 +202,7 @@ ClipAsset::register($this);
         </div>
         <?php } ?> 
 
-        <div style="font-size:14px;justify-content: flex-end;display: flex;flex-direction: row;margin-top:12px;-webkit-justify-content: flex-end;-webkit-display: flex;-webkit-flex-direction: row;">
+        <div style="font-size:14px;justify-content: flex-end;display: flex;flex-direction: row;margin-top:12px;justify-content: -webkit-flex-end;display: -webkit-flex;flex-direction: -webkit-row;">
           <p>共</p>
           <p><span class="text-danger"><?=$item['cart_num'] ?></span>件</p>
           &nbsp;&nbsp;&nbsp;
@@ -216,7 +216,7 @@ ClipAsset::register($this);
         </div>
     </div>
 
-    <div class="item" style="border-top: 1px solid #ced4da;justify-content: flex-end;-webkit-justify-content: flex-end;">
+    <div class="item" style="border-top: 1px solid #ced4da;justify-content: flex-end;justify-content: -webkit-flex-end;">
         <?php if ($item['status'] == 1) { ?>
         <button type="button" class="btn btn-outline-warning btn-sm del" data-id="<?=$item['id'] ?>">删除</button>
         <button type="button" class="btn btn-outline-info btn-sm edit" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">修改商品</button>
@@ -251,7 +251,7 @@ ClipAsset::register($this);
 </div>
 
 <div class="card" id="detail">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;">
       订单详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_detail"></i>
   </div>
   <table class="table table-bordered" style="width: 98%;margin: 1% auto;font-size: 14px;">
@@ -270,7 +270,7 @@ ClipAsset::register($this);
 
 
 <div class="card" id="express_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;">
       物流信息<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_express"></i>
   </div>
   <!-- <input type='hidden' value='' id='express_copy_num' /> -->

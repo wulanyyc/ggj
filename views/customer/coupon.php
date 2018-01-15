@@ -14,9 +14,9 @@ $this->title = '优惠券管理';
     flex-direction: row;
     justify-content: flex-start;
 
-    -webkit-display: flex;
-    -webkit-flex-direction: row;
-    -webkit-justify-content: flex-start;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-flex-start;
     margin-bottom: 5px;
     font-size: 14px;
   }
@@ -45,8 +45,8 @@ $this->title = '优惠券管理';
     display: flex;flex-direction: row;justify-content: space-around;
     align-items: center;
 
-    -webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-around;
-    -webkit-align-items: center;
+    display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-around;
+    align-items: -webkit-center;
     border: 1px dashed #ccc;padding: 2%;width:100%;
     margin-bottom: 2%;
   }
@@ -72,7 +72,7 @@ $this->title = '优惠券管理';
 </style>
 
 <div class="card" style="margin-top: 8px;">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;">
+    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;">
       我的券
     </div>
     <div style="padding:2%;">
@@ -81,7 +81,7 @@ $this->title = '优惠券管理';
 </div>
 
 <div class="card" style="margin-top: 8px;">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;">
+    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;">
       更多券
     </div>
     <div style="padding:2%;">
