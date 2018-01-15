@@ -305,7 +305,7 @@ class PayController extends Controller
 
             $pid = $this->addRecord($payData);
 
-            PriceHelper::adjustWallet($payMoney, 'minus', 'pay_order_' + $pid + "_" + $id);
+            PriceHelper::adjustWallet($cid, $payMoney, 'minus', 'pay_order_' + $pid + "_" + $id);
 
             OrderHelper::handlePayOkOrder($pid);
 
