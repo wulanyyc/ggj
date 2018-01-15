@@ -84,7 +84,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   .price {
-    margin-top: 8px;
+    margin-top: 10px;
     color: red;
     font-size: 14px;
     /*height: 18px;*/
