@@ -101,7 +101,9 @@ class OrderHelper extends Component {
 
         if ($coupons['coupon_fee'] > 0) {
             $couponIds = explode(',', $coupons['coupon_ids']);
-            CouponUse::updateAll(['use_status' => 2], ['id' => $couponIds]);
+            foreach($couponIds as $item) {
+                CouponUse::updateAll(['use_status' => 2], ['id' => $item]);
+            }
         }
 
         // 更新支付积分
