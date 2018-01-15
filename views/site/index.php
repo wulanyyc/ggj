@@ -100,12 +100,12 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     text-decoration: none;color:#000;
     display: -webkit-flex;
     justify-content: -webkit-space-between;
-    align-items: -webkit-stretch;
+    /*align-items: -webkit-stretch;*/
     flex-direction: -webkit-column;
 
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    /*align-items: stretch;*/
     flex-direction: column;
   }
 
