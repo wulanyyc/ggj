@@ -103,7 +103,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     font-size: 14px;
   }
 
-  .desc {
+  .title {
     margin-bottom: 4px;
     font-size: 16px;
     height: 18px;
@@ -111,10 +111,18 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     padding-left: 10px;
   }
 
+  .desc {
+    margin-bottom: 4px;
+    font-size: 14px;
+    height: 16px;
+    line-height: 16px;
+    padding-left: 10px;
+  }
+
   .price {
     margin-bottom: 6px;
     color: red;
-    font-size: 16px;
+    font-size: 15px;
     height: 20px;
     padding-left: 10px;
 
@@ -401,7 +409,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
               <div class="product-item-content-inner">
                 <img class="card-img" style="width:36%;" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                 <div style="width:62%;">
-                  <p class="desc"><?=$product['name'] ?></p>
+                  <p class="title"><?=$product['name'] ?></p>
                   <p class="desc"><?=$product['desc'] ?></p>
 
                   <?php if (isset($product['booking_price'])) { ?>
