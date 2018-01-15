@@ -415,7 +415,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                       </span>
                     </div>
 
-                    <div style="font-size: 14px;padding-left:5px;padding-top: 2px;">
+                    <div style="font-size: 12px;padding-left:2px;padding-top: 2px;">
                       <?php if ($product['booking_price'] < $product['price']) { ?>
                       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                       <?=round($product['booking_price']/$product['price'], 2) * 10 ?>折
@@ -434,7 +434,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                         <span class="money">元/<?=$product['unit'] ?></span>
                       </span>
                     </div>
-                    <div style="font-size: 14px;padding-left:5px;padding-top: 2px;">
+                    <div style="font-size: 12px;padding-left:2px;padding-top: 2px;">
                       <?php if ($product['buy_price'] < $product['price']) { ?>
                       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                       <?=round($product['buy_price']/$product['price'], 2) * 10 ?>折
