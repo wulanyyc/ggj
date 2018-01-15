@@ -100,7 +100,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     color: #fff;
     line-height: 20px;
     height: 30px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .title {
