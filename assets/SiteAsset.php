@@ -20,7 +20,7 @@ class SiteAsset extends AssetBundle
     public $css = [
         'http://css.guoguojia.vip/js/base/bootstrap4/css/bootstrap.min.css',
         '/css/lib/font-awesome/css/font-awesome.min.css',
-        '/css/responsive.css',
+        'http://css.guoguojia.vip/css/responsive.css',
     ];
     public $js = [
         'http://js.guoguojia.vip/js/base/jquery.min.js',
@@ -29,7 +29,7 @@ class SiteAsset extends AssetBundle
         'http://js.guoguojia.vip/js/lib/jquery-cookie/jquery.cookie.js',
         'http://js.guoguojia.vip/js/lib/bootbox/bootbox.min.js',
         'http://js.guoguojia.vip/js/base/yii.js',
-        'js/common.js',
+        'http://js.guoguojia.vip/js/common.js',
     ];
     public $depends = [
 
