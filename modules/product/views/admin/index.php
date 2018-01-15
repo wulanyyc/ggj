@@ -103,16 +103,16 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <input style='width:250px' type='number' placeholder='' name='num' class='input-sm'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>单位：</label>
+                    <?= UnitWidget::widget() ?>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>新鲜度：</label>
                     <?= FreshWidget::widget() ?>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>单次购买限制：</label>
                     <input style='width:250px' type='text' placeholder='' name='buy_limit' class='input-sm buy_limit'></input>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>单位：</label>
-                    <?= UnitWidget::widget() ?>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>品类：</label>
@@ -160,16 +160,16 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <input style='width:250px' type='number' placeholder='' name='num' class='input-sm num'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>单位：</label>
+                    <?= UnitWidget::widget() ?>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>新鲜度：</label>
                     <?= FreshWidget::widget() ?>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>单次购买限制：</label>
                     <input style='width:250px' type='text' placeholder='' name='buy_limit' class='input-sm buy_limit'></input>
-                </div>
-                <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>单位：</label>
-                    <?= UnitWidget::widget() ?>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>品类：</label>

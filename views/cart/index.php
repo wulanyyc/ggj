@@ -27,6 +27,11 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -webkit-justify-content: space-between;
+
     margin-bottom: 4px;
     font-size: 16px;
   }
@@ -80,6 +85,12 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -webkit-justify-content: flex-end;
+    -webkit-align-items: center;
+
     z-index: 10;
     border-top: 1px solid #f5f5f5;
   }
@@ -96,6 +107,11 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -webkit-justify-content: center;
+
     height: 100%;
     align-items: center;
   }
@@ -106,6 +122,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
   .address {
     justify-content: flex-start;
+    -webkit-justify-content: flex-start;
   }
 
   .all_address_item {
@@ -175,7 +192,12 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
   .coupon_item {
     display: flex;flex-direction: row;justify-content: space-between;
-    align-items: center;border: 1px dashed #ccc;padding: 2%;width:100%;
+    align-items: center;
+
+    -webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;
+    -webkit-align-items: center;
+
+    border: 1px dashed #ccc;padding: 2%;width:100%;
     margin-bottom: 2%;
   }
 
@@ -198,7 +220,9 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   #address_form .form-group {
-    margin-top:10px;display: flex;flex-direction: row;align-items: center;flex-wrap: nowrap;
+    margin-top:10px;
+    display: flex;flex-direction: row;align-items: center;flex-wrap: nowrap;
+    -webkit-display: flex;-webkit-flex-direction: row;-webkit-align-items: center;-webkit-flex-wrap: nowrap;
   }
 </style>
 
@@ -226,7 +250,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
             <span id="show_rec_phone" style="padding-left: 5px;"></span>&nbsp;
             <span id="show_label" class="border border-success text-success"></span>
           </p>
-          <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;">
+          <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
             <span><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;</span>
             <span id="show_address"></span>
           </p>
@@ -243,7 +267,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
             <span id="show_rec_phone" style="padding-left: 5px;"><?=$address[0]['rec_phone'] ?></span>&nbsp;
             <span id="show_label" class="border border-success text-success"><?=$address[0]['label'] ?></span>
           </p>
-          <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;font-size: 16px;">
+          <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;font-size: 16px;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
             <span><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;</span>
             <span id="show_address"><?=$address[0]['rec_city'] ?><?=$address[0]['rec_district'] ?><?=$address[0]['rec_detail'] ?></span>
           </p>
@@ -264,7 +288,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card">
   <div id="products" class="card-content">
-    <div id="product_detail" style="display: flex;justify-content: space-between;flex-direction: row;align-items: center;">
+    <div id="product_detail" style="display: flex;justify-content: space-between;flex-direction: row;align-items: center;-webkit-display: flex;-webkit-justify-content: space-between;-webkit-flex-direction: row;-webkit-align-items: center;">
       <div style="position: relative;width:80%;overflow: hidden;height:70px;">
         <?php foreach($data['show_product'] as $item) { ?>
         <div class="product" style="height: 70px;display: inline-block;">
@@ -281,17 +305,17 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
 
     <hr style="margin-top:0px;margin-bottom: 3px;" />
-    <div class="item" style="justify-content: space-between;align-items: center;">
-        <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
+    <div class="item" style="justify-content: space-between;align-items: center;-webkit-justify-content: space-between;-webkit-align-items: center;">
+        <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;-webkit-display: flex;-webkit-flex-direction: row;-webkit-align-items: center;-webkit-justify-content: flex-start;">
           <p class="label">配送方式：</p>
           <div class="form-check form-check-inline express_rule">
-            <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
+            <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;-webkit-display: flex;-webkit-flex-direction: row;-webkit-align-items: center;-webkit-justify-content: flex-start;">
               <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="1" checked> 
               <span class="badge badge-success" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">快递</span>
             </label>
           </div>
           <div class="form-check form-check-inline express_rule">
-            <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
+            <label class="form-check-label" style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start;-webkit-display: flex;-webkit-flex-direction: row;-webkit-align-items: center;-webkit-justify-content: flex-start;">
               <input class="form-check-input" type="radio" class="express_rule" name="express_rule" id="express_2" value="2">
               <span class="badge badge-info" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">自提</span>
             </label>
@@ -309,15 +333,15 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card">
   <div id="discount" class="card-content">
-    <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: space-between;">
-      <div style="display: flex;flex-direction: row;justify-content: flex-start;flex-wrap: nowrap;">
+    <div style="margin-top:5px;display: flex;flex-direction: row;justify-content: space-between;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;">
+      <div style="display: flex;flex-direction: row;justify-content: flex-start;flex-wrap: nowrap;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;-webkit-flex-wrap: nowrap;">
         <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的成都手机号码" maxlength=11 style="width: 152px;font-size: 14px;height: 40px;" />
         <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">优惠码</button>
       </div>
       <span id="ask" style="line-height: 40px;color:red;cursor: pointer;font-size: 13px;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>
     </div>
     <hr style="margin-top: 8px;margin-bottom: 8px;"/>
-    <div style="margin-bottom:3px;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
+    <div style="margin-bottom:3px;display: flex;flex-direction: row;justify-content: space-between;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;" id="choose_coupon">
       <p class="label" style="width:72%;">优惠券</p>
       <p style="font-size: 13px;cursor: pointer;">
         <?php if ($coupon > 0) { ?>
@@ -373,16 +397,16 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="question">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;">
       优惠码<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_question"></i>
   </div>
   <div style="padding: 5%;">
-    <p style="display: flex;flex-direction: row;justify-content: flex-start;">
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
       <span style="padding-right: 5px;">1: </span>
       <span>好友的成都手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额</span>
     </p>
 
-    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
       <span style="padding-right: 5px;">2: </span>
       <span>订单支付成功后为好友充优惠额的50%到其平台账户，赶快来一起享受优惠</span>
     </p>
@@ -392,7 +416,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="detail">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;">
       商品详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_detail"></i>
   </div>
   <div style="margin-top: 10px;font-size: 14px;width:98%;margin:1% auto;height: 72%;overflow-y: scroll;">
@@ -419,7 +443,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="all_address_info">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;">
       收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_all_address"></i>
     </div>
 
@@ -433,7 +457,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
               <span id="cipher_phone" style="padding-left: 5px;"><?=$item['rec_phone'] ?></span>&nbsp;
               <span class="border border-success text-success" style="font-size: 14px;padding:0px 10px;"><?=$item['label'] ?></span>
             </p>
-            <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;">
+            <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;-webkit-display: flex;flex-direction: row;-webkit-justify-content: flex-start;">
               <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
               <span style="font-size: 16px;">&nbsp;<?=$item['rec_city'] ?><?=$item['rec_district'] ?><?=$item['rec_detail'] ?></span>
             </p>
@@ -455,7 +479,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="address_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;">
       收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_address"></i>
   </div>
   <form id="address_form" name='address_form' style='margin:5%;'>
@@ -486,7 +510,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         <label style="width:30%;">详细地址：</label>
         <textarea class="form-control" style="width:65%;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
     </div>
-    <div class='form-group' style='margin-top:10px;padding-bottom:10px;display: flex;flex-direction: row;justify-content: flex-start;' id="label_add_group">
+    <div class='form-group' style='margin-top:10px;padding-bottom:10px;display: flex;flex-direction: row;justify-content: flex-start;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;' id="label_add_group">
         <label style="width:30%;">标签：</label>
         <div style="width:68%;">
           <div class="label_choose active">家</div>
@@ -504,7 +528,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         </div>
     </div>
 
-    <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;">
+    <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: center;">
       <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存并使用</button>
       <span id='close_address_bottom' style="padding-left: 25px;font-size: 16px;color:#0C58B0;line-height: 31px;">关闭</span>
     </div>
@@ -512,7 +536,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="coupon">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;">
       优惠券<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_coupon"></i>
   </div>
   <div id="coupon_items" data-ids="" style="height: 72%;overflow-y: scroll;">
@@ -523,15 +547,15 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 
 <div class="card" id="express_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;">
       发货时间<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_express_info"></i>
   </div>
   <div style="padding: 5%;">
-    <p style="display: flex;flex-direction: row;justify-content: flex-start;">
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
       <span style="padding-right: 5px;">普通订单: </span>
       <span style="width:72%;">24小时内发货</span>
     </p>
-    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
       <span style="padding-right: 5px;">预约订单: </span>
       <span style="width:72%;">每周2、6上午发货。<br/>取最近的时间发货</span>
     </p>
@@ -539,7 +563,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span style="padding-right: 5px;">私人定制: </span>
       <span style="width:72%;">客服沟通发货时间和方式</span>
     </p> -->
-    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
+    <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
       <span style="padding-right: 5px;">特殊要求: </span>
       <span style="width:72%;">请留言或直接联系我们</span>
     </p>

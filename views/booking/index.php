@@ -37,6 +37,12 @@ SiteAsset::register($this);
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -webkit-align-items: center;
+    -webkit-justify-content: flex-start;
   }
 
 </style>
