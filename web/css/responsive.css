@@ -58,7 +58,8 @@ main {
     }
 
     .product-items {
-        justify-content: center; !important;
+        /*justify-content: center; !important;*/
+        display: block !important;
     }
 
     .product-item {
@@ -138,7 +139,8 @@ main {
     }
 
     .product-items {
-        justify-content: center !important;
+        /*justify-content: center !important;*/
+        display: block !important;
     }
 
     .product-item {
