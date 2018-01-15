@@ -266,7 +266,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
                       <span class="realprice">
                         <?=$product['promotion_price'] ?>
                         <span class="money">元/<?=$product['unit'] ?></span>
-                        <!-- <span class="orignal_price">¥ <?=$product['price'] ?></span> -->
+                        <span class="orignal_price">¥ <?=$product['price'] ?></span>
                       </span>
                     <?php } ?>
                   </p>

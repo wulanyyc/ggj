@@ -153,7 +153,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .realprice {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .orignal_price {
@@ -346,7 +346,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .discount {
-    font-size: 12px;padding-left:5px;padding-top: 2px;
+    font-size: 12px;padding-left:5px;padding-top: 5px;
   }
 
   .product-card-img {
