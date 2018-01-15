@@ -77,35 +77,26 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-items {
-    flex-wrap: -webkit-wrap;
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-space-around;
-
-    flex-wrap: wrap;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-
+    display: block;
     margin-top: 5px;
   }
 
   .product-item {
-    width: 33%;
+    width: 32%;
     border: 1px solid #f5f5f5;
     margin-bottom: 5px;
+    margin-left: 1%;
+    float: left;
   }
 
   a.product-item-content {
     text-decoration: none;color:#000;
     display: -webkit-flex;
     justify-content: -webkit-space-between;
-    /*align-items: -webkit-stretch;*/
     flex-direction: -webkit-column;
 
     display: flex;
     justify-content: space-between;
-    /*align-items: stretch;*/
     flex-direction: column;
   }
 
