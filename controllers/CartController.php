@@ -218,13 +218,13 @@ EOF;
         }
 
         if ($userphone == $friendPhone) {
-            SiteHelper::render('fail', '请使用成都好友的手机号码');
+            SiteHelper::render('fail', '不能使用自己的手机号码');
         }
 
         $areas = SiteHelper::getPhoneArea($friendPhone);
         $areaArr = json_decode($areas, true);
 
-        if ($areaArr['status'] == 0 && $areaArr['result']['province'] == '四川') {
+        if ($areaArr['status'] == 0) {
             $key = $cid . '_' . $friendPhone . '_discount';
             $percent = Yii::$app->redis->get($key);
 
@@ -238,7 +238,7 @@ EOF;
                 SiteHelper::render('ok', round($percent * $productPrice, PriceHelper::$precison));
             }
         } else {
-            SiteHelper::render('fail', '好友号码非四川境内或号码错误');
+            SiteHelper::render('fail', '好友手机号码错误, 请检查');
         }
     }
 

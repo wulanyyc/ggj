@@ -335,7 +335,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div id="discount" class="card-content">
     <div style="margin-top:5px;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;display: flex;flex-direction: row;justify-content: space-between;">
       <div style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;flex-wrap: -webkit-nowrap;display: flex;flex-direction: row;justify-content: flex-start;flex-wrap: nowrap;">
-        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的成都手机号码" maxlength=11 style="width: 152px;font-size: 14px;height: 40px;" />
+        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的手机号码" maxlength=11 style="width: 152px;font-size: 14px;height: 40px;" />
         <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">优惠码</button>
       </div>
       <span id="ask" style="line-height: 40px;color:red;cursor: pointer;font-size: 13px;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>
@@ -403,7 +403,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div style="padding: 5%;">
     <p style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;">
       <span style="padding-right: 5px;">1: </span>
-      <span>好友的成都手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额</span>
+      <span>成都居住好友的手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额</span>
     </p>
 
     <p style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
