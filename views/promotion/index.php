@@ -51,7 +51,7 @@ SiteAsset::register($this);
   }
 
   .promotion-item-right img {
-    height: 100%;
+    height: 80%;
   }
 
   .day1-left {
