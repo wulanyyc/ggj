@@ -185,22 +185,23 @@ class CustomerController extends Controller
     }
 
     public function actionCoupon() {
-        $data = $this->getCommon();
+        $data = PriceHelper::getValidCoupon();
         $html = '';
 
         if (empty($data)) {
             $html = '很抱歉，您账户里没有可用的通用券';
         } else {
             foreach($data as $key => $value) {
-                $value['start_date'] = date('Y.m.d', strtotime($value['start_date']));
-                $value['end_date']   = date('Y.m.d', strtotime($value['end_date']));
+                $info = Coupon::find()->where(['id' => $value['cid']])->asArray()->one();
+                $info['start_date'] = date('Y.m.d', strtotime($info['start_date']));
+                $info['end_date']   = date('Y.m.d', strtotime($info['end_date']));
 
                 $html .= <<<EOF
                 <div class="coupon_item">
-        <p class="coupon_item_label">{$value['name']}</p>
+        <p class="coupon_item_label">{$info['name']}</p>
         <div class="coupon_item_text">
-          <p class="coupon_item_money text-danger">{$value['money']}元</p>
-          <p class="coupon_item_date">{$value['start_date']}～{$value['end_date']}有效</p>
+          <p class="coupon_item_money text-danger">{$info['money']}元</p>
+          <p class="coupon_item_date">{$info['start_date']}～{$info['end_date']}有效</p>
         </div>
     </div>
 EOF;
