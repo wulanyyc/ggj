@@ -162,11 +162,10 @@ class CartController extends Controller
         $productPrice = 0;
         foreach($carts as $item) {
             $id = $item['id'];
-            // $price = ProductList::find()->where(['id' => $id])->select('price')->scalar();
             $productPrice += $item['num'] * PriceHelper::getProductPrice($id, $params['order_type']);
         }
 
-        // $productPrice = round($productPrice, PriceHelper::$precison);
+        $productPrice = round($productPrice, PriceHelper::$precison);
 
         if ($productPrice == $params['product_price']) {
             return true;

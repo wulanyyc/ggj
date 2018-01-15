@@ -46,7 +46,7 @@ $(document).ready(function () {
     $('#edit').click(function(){
         var type = $('#order_type').val();
         var cid = $('#cart_id').val();
-        if (type == 0) {
+        if (type == 1) {
             location.href="/buy?cid=" + cid;
         } else {
             location.href="/buy/booking?cid=" + cid;
