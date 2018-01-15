@@ -77,26 +77,35 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-items {
-    display: block;
+    flex-wrap: -webkit-wrap;
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    justify-content: -webkit-space-around;
+
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
     margin-top: 5px;
   }
 
   .product-item {
-    width: 32%;
+    width: 33%;
     border: 1px solid #f5f5f5;
     margin-bottom: 5px;
-    margin-left: 1%;
-    float: left;
   }
 
   a.product-item-content {
     text-decoration: none;color:#000;
     display: -webkit-flex;
     justify-content: -webkit-space-between;
+    /*align-items: -webkit-stretch;*/
     flex-direction: -webkit-column;
 
     display: flex;
     justify-content: space-between;
+    /*align-items: stretch;*/
     flex-direction: column;
   }
 
@@ -242,13 +251,13 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     margin-top: 5px;
     flex-direction: -webkit-row;
     justify-content: -webkit-space-around;
-    /*align-items: -webkit-stretch;*/
+    align-items: -webkit-stretch;
     flex-wrap: -webkit-wrap;
 
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    /*align-items: stretch;*/
+    align-items: stretch;
     flex-wrap: wrap;
   }
 
