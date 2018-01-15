@@ -35,6 +35,7 @@ class SiteController extends Controller
             'packages' => $this->getPackages(),
             'newPromotion' => $this->getNewPromotion(),
             'orderType' => $orderType,
+            'homeTip' => Yii::$app->params['hometip'],
         ]);
     }
 

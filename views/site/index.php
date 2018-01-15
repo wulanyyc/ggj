@@ -358,9 +358,9 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 </style>
 
-<?php if (!empty(Yii::$app->params['hometip'])) { ?>
+<?php if (strlen($homeTip) > 0) { ?>
 <div class="alert alert-danger" role="alert" style="text-align: center;">
-    <?=Yii::$app->params['hometip'] ?>
+    <?=$homeTip ?>
 </div>
 <?php } ?>
 
