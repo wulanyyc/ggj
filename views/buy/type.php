@@ -71,7 +71,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
             </div>
             <div>
-              本地水果可当日采购。进口水果供应商到货即采购，挑选平台同批次佳果，保证新鲜度和质量
+              本地水果可进货当日采购。进口水果供应商到货即采购，挑选平台同批次佳果，保证新鲜度和质量
             </div>
           </li>
 
@@ -80,7 +80,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;快递发货：
             </div>
             <div>
-            限成都，每周<span style="color:red;font-weight: bold;">1、6</span>顺丰发货
+            限成都，每周<span style="color:red;font-weight: bold;">1、6</span>顺丰发货或联系我们协商
             </div>
           </li>
         </ul>
