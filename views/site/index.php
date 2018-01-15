@@ -469,7 +469,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                   <?=$product['slogan'] ?>
               </div>
 
-              <img src="http://img.guoguojia.vip/img/xx2.png" style="position: absolute;top:0;right:0;width:80px;" />
+              <!-- <img src="http://img.guoguojia.vip/img/xx2.png" style="position: absolute;top:0;right:0;width:80px;" /> -->
               <img src="http://img.guoguojia.vip/img/xiandu.png" style="position: absolute;top:10px;left:30%;width:40px;" />
             </a>
           </div>
