@@ -39,7 +39,7 @@ SiteAsset::register($this);
   }
 
   .promotion-item-left-content-bottom {
-    color:#fff;font-size:20px;line-height: 44px;padding:3px;text-align: center;
+    color:#fff;font-size:15px;line-height: 44px;padding:3px;text-align: center;
   }
 
   .promotion-item-right {
