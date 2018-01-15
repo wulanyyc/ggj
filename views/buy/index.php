@@ -78,7 +78,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     margin-bottom: 0px;
     color: red;
     font-size: 14px;
-    height: 18px;
+    /*height: 18px;*/
     line-height: 18px;
   }
 
