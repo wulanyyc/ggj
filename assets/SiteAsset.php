@@ -19,7 +19,7 @@ class SiteAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'http://css.guoguojia.vip/js/base/bootstrap4/css/bootstrap.min.css',
-        'http://css.guoguojia.vip/css/lib/font-awesome/css/font-awesome.min.css',
+        '/css/lib/font-awesome/css/font-awesome.min.css',
         '/css/responsive.css',
     ];
     public $js = [
