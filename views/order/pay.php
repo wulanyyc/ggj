@@ -24,15 +24,15 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
     }
 
     .item {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-
       display: -webkit-flex;
       flex-direction: -webkit-row;
       justify-content: -webkit-flex-start;
       align-items: -webkit-center;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
 
       font-size: 16px;
       padding: 5px 10px;
@@ -59,11 +59,11 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
 <input type='hidden' id="isWechat" value=<?=$isWechat ?> />
 
 <div class="card" style="height:90%;">
-  <div class="item" style="justify-content: flex-end;justify-content: -webkit-flex-end;">
+  <div class="item" style="justify-content: -webkit-flex-end;justify-content: flex-end;">
     <div class="label" style="line-height: 26px;">订单金额：</div>
     <div><span class="text-danger" id="order_money"><?=$data['pay_money'] ?></span>元</div>
   </div>
-  <div class="item" style="justify-content: flex-end;justify-content: -webkit-flex-end;padding: 0px 10px;margin-bottom: 5px;">
+  <div class="item" style="justify-content: -webkit-flex-end;justify-content: flex-end;padding: 0px 10px;margin-bottom: 5px;">
     <div class="label" style="line-height: 26px;">钱包：</div>
     <div><span class="text-danger" id="wallet"><?=$money ?></span>元</div>
   </div>
@@ -74,8 +74,8 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
         支付方式
   </div>
   <?php if ($money >= $data['pay_money']) { ?>
-  <div class="item" style="padding: .75rem 1.25rem;justify-content: space-between;justify-content: -webkit-space-between;border-bottom: 1px solid #f5f5f5" id="wallet">
-    <div style="display: flex;flex-direction: row;align-items: center;display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;">
+  <div class="item" style="padding: .75rem 1.25rem;justify-content: -webkit-space-between;justify-content: space-between;border-bottom: 1px solid #f5f5f5" id="wallet">
+    <div style="display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;display: flex;flex-direction: row;align-items: center;">
       <img src="/img/wallet.png" style="width:32px;height:32px;"/>
       <div class="label" style="line-height: 32px;margin-left:8px;">钱包</div>
     </div>
@@ -84,8 +84,8 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
   <?php } ?>
 
   <?php if ($money < $data['pay_money']) { ?>
-    <div class="item pay_tool" style="border-bottom: 1px solid #f5f5f5;padding: .5rem 1.25rem;justify-content: space-between;justify-content: -webkit-space-between;" id="wechat" data-id='wx'>
-      <div style="display: flex;flex-direction: row;align-items: center;display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;">
+    <div class="item pay_tool" style="border-bottom: 1px solid #f5f5f5;padding: .5rem 1.25rem;justify-content: -webkit-space-between;justify-content: space-between;" id="wechat" data-id='wx'>
+      <div style="display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;display: flex;flex-direction: row;align-items: center;">
         <img src="/img/wechat@2x.png" style="width:32px;height:32px;"/>
         <div class="label" style="line-height: 32px;margin-left:8px;">微信</div>
       </div>
@@ -93,8 +93,8 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
     </div>
 
     <?php if ($isWechat == 0) { ?>
-    <div class="item pay_tool" style="padding: .5rem 1.25rem;justify-content: space-between;justify-content: -webkit-space-between;" id="alipay" data-id="ali">
-      <div style="display: flex;flex-direction: row;align-items: center;display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;">
+    <div class="item pay_tool" style="padding: .5rem 1.25rem;justify-content: -webkit-space-between;justify-content: space-between;" id="alipay" data-id="ali">
+      <div style="display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;display: flex;flex-direction: row;align-items: center;">
         <img src="/img/alipay.png" style="width:32px;height:32px;"/>
         <div class="label" style="line-height: 32px;margin-left:8px;">支付宝</div>
       </div>

@@ -15,6 +15,11 @@ MsaView::registerJsFile($this,'/js/search/index.js',
 
 <style type="text/css">
   .order-items {
+    display: -webkit-flex;
+    flex-direction: -webkit-row;
+    flex-wrap: -webkit-wrap;
+    justify-content: -webkit-flex-start;
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -22,6 +27,7 @@ MsaView::registerJsFile($this,'/js/search/index.js',
   }
 
   .product-content {
+    display: -webkit-flex;flex-direction: -webkit-row;flex-wrap: -webkit-nowrap;justify-content:-webkit-space-around;align-items: -webkit-center;
     display: flex;flex-direction: row;flex-wrap: nowrap;justify-content:space-around;align-items: center;
   }
 
@@ -63,6 +69,9 @@ MsaView::registerJsFile($this,'/js/search/index.js',
     font-size: 16px;
     height: 18px;
     line-height: 18px;
+    display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;justify-content: -webkit-flex-start;
+    flex-wrap: -webkit-wrap;
+    
     display: flex;flex-direction: row;align-items: center;justify-content: flex-start;
     flex-wrap: wrap;
   }

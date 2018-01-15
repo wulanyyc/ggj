@@ -30,23 +30,23 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
   .item {
     padding-left: 20px;
     margin-bottom: 1%;
-    display: flex;
-    flex-direction: row;
-
     display: -webkit-flex;
     flex-direction: -webkit-row;
+
+    display: flex;
+    flex-direction: row;
   }
 
   #rule li {
     padding-left: 15px;
     padding-top: 8px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
     display: -webkit-flex;
     flex-direction: -webkit-row;
     flex-wrap: -webkit-wrap;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .label {
@@ -58,7 +58,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
   }
 </style>
 
-<div class="card" id="type_content" style="display: flex;align-items: center;justify-content: center;display: -webkit-flex;align-items: -webkit-center;justify-content: -webkit-center;">
+<div class="card" id="type_content" style="display: -webkit-flex;align-items: -webkit-center;justify-content: -webkit-center;display: flex;align-items: center;justify-content: center;">
     <div class="card buy-type">
       <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;text-align: center;">
         <span  style="color: #866D8D">预约</span> <span style="color:red;">vs</span> <span>现售</span>
@@ -108,7 +108,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
     </div>
 
     <br/>
-    <div style="display: flex;flex-direction: row;justify-content: space-around;width:100%;margin-top:1%;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-around;">
+    <div style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-around;display: flex;flex-direction: row;justify-content: space-around;width:100%;margin-top:1%;">
       <div class="choose_type" data-href='/buy/booking?id=<?=$id ?>' data-type=2 style="width:80px; height: 80px;border: 1px solid #866D8D;border-radius: 40px;background-color: #866D8D; margin-bottom: 1%;text-align: center;line-height: 80px;color:white;font-size: 16px;">爱预约</div>
 
       <div class="choose_type" data-type=1 style="width:80px; height: 80px;border: 1px solid #53a93f;border-radius: 40px;background-color: #53a93f; margin-bottom: 1%;text-align: center;line-height: 80px;color:white;font-size: 16px;" data-href='/buy/?id=<?=$id ?>'>买现货</div>
