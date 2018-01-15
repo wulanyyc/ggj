@@ -99,6 +99,10 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <input style='width:250px' type='text' placeholder='' name='price' class='input-sm'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>库存：</label>
+                    <input style='width:250px' type='number' placeholder='' name='num' class='input-sm'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>新鲜度：</label>
                     <?= FreshWidget::widget() ?>
                 </div>
@@ -150,6 +154,10 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>价格：</label>
                     <input style='width:250px' type='text' placeholder='' name='price' class='input-sm price'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>库存：</label>
+                    <input style='width:250px' type='number' placeholder='' name='num' class='input-sm num'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>新鲜度：</label>

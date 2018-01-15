@@ -101,8 +101,8 @@ class CartController extends Controller
             $data['product'][] = $tmpProduct;
         }
 
-        if (count($data['product']) > 4) {
-            $data['show_product'] = array_slice($data['product'], 0, 4);
+        if (count($data['product']) > 3) {
+            $data['show_product'] = array_slice($data['product'], 0, 3);
         } else {
             $data['show_product'] = $data['product'];
         }
