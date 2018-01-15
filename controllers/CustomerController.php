@@ -267,7 +267,7 @@ EOF;
             ->asArray()->all();
 
         foreach($job as $key => $item) {
-            $exsit = CouponUse::find()->where(['customer_id' => $cid, 'use_status' => 2, 'cid' => $item['id']])->count();
+            $exsit = CouponUse::find()->where(['customer_id' => $cid, 'cid' => $item['id']])->count();
             if ($exsit > 0) {
                 unset($job[$key]);
             }
