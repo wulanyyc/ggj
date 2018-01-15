@@ -56,10 +56,10 @@ SiteAsset::register($this);
     <ul>
       <li>
         <div class="label">
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;绝对新鲜：
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
         </div>
         <div style="width:65%;">
-          早上在水果市场进货，上午打包，下午快递发货。
+          国产水果进货日采购。进口水果供应商到货即采购，挑选平台同批次佳果，保证新鲜度和质量
         </div>
       </li>
 

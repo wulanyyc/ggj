@@ -71,7 +71,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
             </div>
             <div>
-              国产水果可进货日采购。进口水果供应商到货即采购，挑选平台同批次佳果，保证新鲜度和质量
+              国产水果进货日采购。进口水果供应商到货即采购，挑选平台同批次佳果，保证新鲜度和质量
             </div>
           </li>
 
