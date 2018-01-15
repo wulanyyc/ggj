@@ -99,6 +99,10 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   .operator {
     display: flex;
     flex-direction: row;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-top: 8px;
@@ -169,6 +173,12 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -webkit-justify-content: flex-end;
+    -webkit-align-items: center;
+
     z-index: 10;
     border-top: 1px solid #f5f5f5; 
   }
@@ -178,11 +188,25 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -webkit-justify-content: flex-start;
   }
 
   .product-content {
-    display: flex;flex-direction: row;flex-wrap: nowrap;justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
     align-items: center;
+
+    -webkit-display: flex;
+    -webkit-flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -webkit-justify-content: space-around;
+    -webkit-align-items: center;
   }
 
   #login {
@@ -206,11 +230,11 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 
 <div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
-      <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+      <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;">
         现售商品<a href="/buy/booking" class="text-info" style="font-size: 14px;text-decoration: none;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约</a>
       </div>
 
-      <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;">
+      <div id="items" style="margin-top: 10px;display: flex;flex-wrap: nowrap;justify-content: space-around;-webkit-display: flex;-webkit-flex-wrap: nowrap;-webkit-justify-content: space-around;">
         <div id="menu_list" class="list-group" style="width:12%;">
           <?php foreach($categorys as $key => $value) { ?>
             <a class="list-group-item list-group-item-action" href="#list-<?=$key ?>"><?=$value ?></a>
@@ -288,7 +312,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div class="card" id="login">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;align-items: center;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: space-between;-webkit-align-items: center;">
       用户信息<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;font-size: 16px;" id="close_login"></i>
   </div>
   <div style="width:94%;margin: 10px auto;" id="login_form">
@@ -296,7 +320,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
       <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码" value=""/>
     </div>
 
-    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
+    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;-webkit-display: flex;-webkit-flex-direction: row;-webkit-justify-content: flex-start;">
       <input type="text" class="form-control" name="code" id="code" placeholder="4位验证码" style="width:50%;" />
       <button type="button" class="btn btn-outline-danger" style="margin-left:5px;width:100px;" id="getcode">短信验证码</button>
     </div>
