@@ -251,13 +251,13 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     margin-top: 5px;
     flex-direction: -webkit-row;
     justify-content: -webkit-space-around;
-    align-items: -webkit-stretch;
+    /*align-items: -webkit-stretch;*/
     flex-wrap: -webkit-wrap;
 
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: stretch;
+    /*align-items: stretch;*/
     flex-wrap: wrap;
   }
 
