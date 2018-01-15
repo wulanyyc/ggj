@@ -30,11 +30,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .first-rec {
     color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-space-between;
-    align-items: -webkit-center;
-
+ 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -43,10 +39,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .first-items {
     width:60%;
-    flex-wrap: -webkit-wrap;
-    display: -webkit-inline-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-flex-end;
 
     flex-wrap: wrap;
     display: inline-flex;
@@ -126,12 +118,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     height: 20px;
     padding-left: 10px;
 
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    align-items: -webkit-center;
-    justify-content: -webkit-flex-start;
-    flex-wrap: -webkit-wrap;
-
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -178,9 +164,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   #promotion {
     margin-top:5px;
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content:-webkit-space-around;
 
     display: flex;
     flex-direction: row;
@@ -192,19 +175,12 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     border-radius: 3px;
     text-decoration: none;
 
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-
     display: flex;
     flex-direction: row;
   }
 
   .promotion-item-left {
     width:50%;height:100%;opacity: 0.8;
-
-    display: -webkit-flex;
-    justify-content:-webkit-center;
-    align-items:-webkit-center;
 
     display: flex;
     justify-content:center;
@@ -227,10 +203,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .promotion-item-right {
     width:50%;height:100%;
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-center;
-    align-items: -webkit-center;
 
     display: flex;
     flex-direction: row;
@@ -240,10 +212,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   #package {
     margin-top: 5px;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-space-around;
-    align-items: -webkit-stretch;
-    flex-wrap: -webkit-wrap;
 
     display: flex;
     flex-direction: row;
@@ -257,10 +225,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   #package .card-header {
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-space-between;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -273,11 +237,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .package-item-products{
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-space-between;
-    flex-wrap: -webkit-wrap;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -288,12 +247,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .package-item-product{
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-space-around;
-    align-items: -webkit-center;
-    flex-wrap: -webkit-nowrap;
-
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -365,11 +318,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     position: absolute;bottom:0px;
     width:100%;
 
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-flex-end;
-    align-items: -webkit-center;
-
     display: flex;flex-direction: row;
     justify-content: flex-end;
     align-items: center;
@@ -380,12 +328,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-item-content-inner {
-    display: -webkit-flex;
-    justify-content: -webkit-center;
-    align-items: -webkit-center;
-    flex-direction: -webkit-row;
-    flex-wrap: -webkit-nowrap;
-
     display: flex;
     justify-content: center;
     align-items: center;
