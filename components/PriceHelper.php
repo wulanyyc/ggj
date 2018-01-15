@@ -117,11 +117,11 @@ class PriceHelper extends Component {
     }
 
     public static function getValidCoupon() {
-        $cid = SiteHelper::getCustomerId();
+        $customer_id = SiteHelper::getCustomerId();
 
         $currentDate = date('Ymd', time());
 
-        $data = CouponUse::find()->where(['customer_id' => $cid, 'use_status' => 1])->asArray()->all();
+        $data = CouponUse::find()->where(['customer_id' => $customer_id, 'use_status' => 1])->asArray()->all();
 
         foreach ($data as $key => $item) {
             $endDate = Coupon::find()->where(['id' => $item['cid']])->select('end_date')->scalar();
@@ -142,8 +142,9 @@ class PriceHelper extends Component {
         $coupons = explode(',', $ids);
         $fee = 0;
         foreach($data as $item) {
-            foreach($coupons as $cid) {
-                if ($item['id'] == $cid) {
+            foreach($coupons as $id) {
+                if ($item['cid'] == $id) {
+                    $money = Coupon::find()->select('money')->where(['id' => $id])->scalar();
                     $fee += $item['money'];
                 }
             }
