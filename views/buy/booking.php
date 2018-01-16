@@ -291,7 +291,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
                   </div>
                   <div class="inventory">
                     <?php if ($product['buy_limit'] > 0) { ?>
-                    特价限<?=$product['buy_limit'] ?><?=$product['unit'] ?>
+                    <span style="color:red">特价限<?=$product['buy_limit'] ?><?=$product['unit'] ?></span>
                     <?php } ?>
                   </div>
                 </div>

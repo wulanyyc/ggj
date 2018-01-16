@@ -278,7 +278,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
                   <div class="inventory">
                     库存<?=$product['num'] ?></span><?=$product['unit'] ?>
                     <?php if ($product['buy_limit'] > 0) { ?>
-                    &nbsp;&nbsp;特价限<?=$product['buy_limit'] ?><?=$product['unit'] ?>
+                    &nbsp;&nbsp;<span style="color:red">特价限<?=$product['buy_limit'] ?><?=$product['unit'] ?></span>
                     <?php } ?>
                   </div>
                 </div>
