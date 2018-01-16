@@ -93,7 +93,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
             <ul style="width:60%">
               <li>
                 <div class="label" style="font-size: 16px;">
-                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格实惠：
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜实惠：
                 </div>
                 <div>
                   新鲜实惠, 低于市场价
