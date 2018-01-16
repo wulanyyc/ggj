@@ -126,5 +126,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 
 <?php if (!$isWechat) { ?>
 <button type="button" class="btn btn-danger btn-sm" id="quit" style="width:80%;margin-left: 10%;margin-top: 6px;">退出</button>
+<?php } else { ?>
+<a class="btn btn-success btn-sm" href="/site" style="width:80%;margin-left: 10%;margin-top: 6px;text-decoration: none;">逛商城</button>
 <?php } ?>
 
