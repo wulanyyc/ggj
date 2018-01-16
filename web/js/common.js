@@ -19,8 +19,8 @@ $(document).ready(function () {
         var wechat = $('#we_appid').val().length > 0 ? true : false;
 
         if (wechat) {
-            var reg = new RegExp("/\/customer/");
-            if (reg.test(location.pathname)) {
+            // var reg = new RegExp("/\/customer/");
+            if (/\/customer\/.+/.test(location.pathname)) {
                 location.href = '/customer/index';
             }
         }
