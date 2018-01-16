@@ -16,7 +16,7 @@ $(document).ready(function () {
     }
 
     $('#back, #inner_back').click(function(){
-        var wechat = (strlen($('#we_appid').val()) > 0) ? true : false;
+        var wechat = $('#we_appid').val().length > 0 ? true : false;
 
         alert(wechat);
         if (wechat) {
