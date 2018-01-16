@@ -176,7 +176,7 @@ $(document).ready(function () {
     }
 
     $('#order').click(function() {
-        if ($.cookie('cid') && $.cookie('secret')) {
+        if (($.cookie('cid') && $.cookie('secret')) || $.cookie('openid')) {
             order();
         } else {
             $('#login').show();
