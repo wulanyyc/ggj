@@ -16,11 +16,11 @@ $(document).ready(function () {
     }
 
     $('#back, #inner_back').click(function(){
-        if ($('#we_appid')) {
+        console.log($('#we_appid').val());
+        if ($('#we_appid').val() != undefined) {
             var wechat = $('#we_appid').val().length > 0 ? true : false;
 
             if (wechat) {
-                // var reg = new RegExp("/\/customer/");
                 if (/\/customer\/.+/.test(location.pathname)) {
                     location.href = '/customer/index';
                 }
