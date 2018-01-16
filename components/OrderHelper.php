@@ -64,25 +64,25 @@ class OrderHelper extends Component {
 
     public static function handlePayOkOrder($payid, $trade_no = '') {
         $data = Pay::find()->where(['id' => $payid])->asArray()->one();
-        Yii::error('test:' . $trade_no);
+        // Yii::error('test:' . $trade_no);
 
         if ($data['pay_type'] != 0 && $data['wallet_money'] > 0) {
             PriceHelper::adjustWallet($data['customer_id'], $data['wallet_money'], 'minus', 'pay_order_' + $data['id'] + "_" + $data['order_id']);
         }
 
-        Yii::error('test:' . $payid);
+        // Yii::error('test:' . $payid);
         // 更新支付状态
         $up = Pay::findOne($payid);
         $up->trade_no = $trade_no;
         $up->pay_result = 1;
         $up->save();
 
-        Yii::error('test:' . $data['order_id']);
+        // Yii::error('test:' . $data['order_id']);
         // 跟新订单状态
         $op = ProductOrder::findOne($data['order_id']);
         $op->status = 2;
         $op->save();
-        Yii::error('test: ok');
+        // Yii::error('test: ok');
 
         // 更新库存
         $cartId = ProductOrder::find()->where(['id' => $data['order_id']])->select('cart_id')->scalar();
