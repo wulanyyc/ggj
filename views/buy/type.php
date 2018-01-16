@@ -96,7 +96,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;价格实惠：
                 </div>
                 <div>
-                  根据新鲜度，调整价格，实惠
+                  新鲜实惠, 低于市场价
                 </div>
               </li>
 
