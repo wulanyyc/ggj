@@ -73,7 +73,7 @@ $this->title = '优惠券管理';
 
 <div class="card" style="margin-top: 8px;">
     <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;">
-      我的券
+      我的可用券<span style="font-size: 12px;color:red;padding-left: 5px;">（已自动领取，直接使用）</span>
     </div>
     <div style="padding:2%;">
       <?=$html ?>
