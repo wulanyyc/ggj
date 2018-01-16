@@ -16,9 +16,10 @@ $(document).ready(function () {
     }
 
     $('#back, #inner_back').click(function(){
-        // console.log(window.history.length);
-        // console.log(location.pathname);
-        console.log(history.length);
+        var wechat = (strlen($('#we_appid').val()) > 0) ? true : false;
+
+        console.log(wechat);
+        
         if (location.pathname == '/buy/booking') {
             var back = $.cookie('booking-history-back');
             if ($.cookie('booking-history-back') < 0) {
@@ -36,11 +37,9 @@ $(document).ready(function () {
                 window.history.back();
             }
         } else if (location.pathname == '/cart'){
-            // $("#edit").click();
             window.history.back();
         } else if ( location.pathname == '/order/pay'){
             window.history.back();
-            // location.href = '/cart?id=' + $('#cid').val() + '&oid=' + $('#oid').val();
         } else {
             window.history.back();
         }
