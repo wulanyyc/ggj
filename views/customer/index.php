@@ -114,10 +114,10 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
-<a href="/customer/refund" class="card show-item" id="address">
+<!-- <a href="/customer/refund" class="card show-item" id="address">
   <div style="width:90%;">理赔细则</div>
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
-</a>
+</a> -->
 
 <a href="/contact" class="card show-item" id="contactus">
   <div style="width:90%;">联系我们</div>
