@@ -18,6 +18,7 @@ $(document).ready(function () {
     $('#back, #inner_back').click(function(){
         var wechat = (strlen($('#we_appid').val()) > 0) ? true : false;
 
+        alert(wechat);
         if (wechat) {
             var reg = new RegExp("/\/customer\/.+/");
             if (reg.test(location.pathname)) {
