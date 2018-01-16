@@ -18,11 +18,10 @@ $(document).ready(function () {
     $('#back, #inner_back').click(function(){
         var wechat = $('#we_appid').val().length > 0 ? true : false;
 
-        alert(wechat);
         if (wechat) {
-            var reg = new RegExp("/\/customer\/.+/");
+            var reg = new RegExp("/\/customer/");
             if (reg.test(location.pathname)) {
-                location.href = '/customer';
+                location.href = '/customer/index';
             }
         }
 
