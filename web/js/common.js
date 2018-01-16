@@ -16,12 +16,14 @@ $(document).ready(function () {
     }
 
     $('#back, #inner_back').click(function(){
-        var wechat = $('#we_appid').val().length > 0 ? true : false;
+        if ($('#we_appid')) {
+            var wechat = $('#we_appid').val().length > 0 ? true : false;
 
-        if (wechat) {
-            // var reg = new RegExp("/\/customer/");
-            if (/\/customer\/.+/.test(location.pathname)) {
-                location.href = '/customer/index';
+            if (wechat) {
+                // var reg = new RegExp("/\/customer/");
+                if (/\/customer\/.+/.test(location.pathname)) {
+                    location.href = '/customer/index';
+                }
             }
         }
 

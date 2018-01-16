@@ -5,6 +5,9 @@ $(document).ready(function () {
         location.reload();
     });
 
+    $('#top_right_link').html('首页');
+    $('#top_right_link').attr('href', '/');
+
     $('#feedback').click(function(){
         if ($('#advice').val() == '') {
             $.helper.alert('意见内容不能为空');
