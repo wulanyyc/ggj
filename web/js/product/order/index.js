@@ -229,7 +229,7 @@ $(document).ready(function () {
 
         config['columnDefs'] = [{
             sortable: false,
-            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         }];
 
         config['columns'] = [

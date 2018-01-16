@@ -75,10 +75,12 @@ class OrderHelper extends Component {
         $up->pay_result = 1;
         $up->save();
 
+        Yii::error('test:' . $data['order_id']);
         // 跟新订单状态
         $op = ProductOrder::findOne($data['order_id']);
         $op->status = 2;
         $op->save();
+        Yii::error('test: ok');
 
         // 更新库存
         $cartId = ProductOrder::find()->where(['id' => $data['order_id']])->select('cart_id')->scalar();
