@@ -64,11 +64,13 @@ class OrderHelper extends Component {
 
     public static function handlePayOkOrder($payid, $trade_no = '') {
         $data = Pay::find()->where(['id' => $payid])->asArray()->one();
+        Yii::error('test:' . $trade_no);
 
         if ($data['pay_type'] != 0 && $data['wallet_money'] > 0) {
             PriceHelper::adjustWallet($data['customer_id'], $data['wallet_money'], 'minus', 'pay_order_' + $data['id'] + "_" + $data['order_id']);
         }
 
+        Yii::error('test:' . $payid);
         // 更新支付状态
         $up = Pay::findOne($payid);
         $up->trade_no = $trade_no;
