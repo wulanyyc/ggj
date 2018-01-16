@@ -18,8 +18,13 @@ $(document).ready(function () {
     $('#back, #inner_back').click(function(){
         var wechat = (strlen($('#we_appid').val()) > 0) ? true : false;
 
-        console.log(wechat);
-        
+        if (wechat) {
+            var reg = new RegExp("/\/customer\/.+/");
+            if (reg.test(location.pathname)) {
+                location.href = '/customer';
+            }
+        }
+
         if (location.pathname == '/buy/booking') {
             var back = $.cookie('booking-history-back');
             if ($.cookie('booking-history-back') < 0) {
