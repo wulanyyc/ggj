@@ -31,7 +31,7 @@ class UserController extends AuthController
             echo '参数不能为空';exit;
         }
 
-        $password = CommonHelper::makeDefaultPassword($params['username']);
+        $password = CommonHelper::makePassword($params['username'], substr($params['username'], 0, 6));
         $params['password'] = $password;
 
         $user = new User();
