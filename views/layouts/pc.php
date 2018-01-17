@@ -27,7 +27,7 @@ SiteAsset::register($this);
             border-color: rgba(255,255,255,.2);
         }
 
- /*       .navbar {
+        .navbar {
             display: table;
         }
 
@@ -41,7 +41,7 @@ SiteAsset::register($this);
 
         .top-customer {
             display: table-cell;
-        }*/
+        }
     </style>
 </head>
 <body>
@@ -76,7 +76,7 @@ SiteAsset::register($this);
             <?php } else { ?>
             <li class="nav-item">
             <?php } ?>
-                <a class="nav-link" href="/booking">预约</a>
+                <a class="nav-link" href="/buy/type">购买须知</a>
             </li>
 
             <?php if ($controller == 'contact') { ?>

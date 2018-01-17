@@ -37,9 +37,9 @@ MsaView::registerJsFile($this,'/js/customer/info.js',
       个人信息
   </div>
   <div style="width:94%;margin: 10px auto;">
-    <div style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;align-items: -webkit-center;display: flex;flex-direction: row;justify-content: flex-start;align-items: center;margin-bottom: 10px;">
-      <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码" readonly value=<?=$data['phone'] ?> />
-      <span id='edit_phone' style="padding-left: 15px;font-size: 14px;color:#0C58B0;width: 130px;">修改号码&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>
+    <div style="margin-bottom: 10px;display: table;">
+      <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码" readonly value=<?=$data['phone'] ?> style="display: table-cell;width:200px;" />
+      <span id='edit_phone' style="padding-left: 15px;font-size: 14px;color:#0C58B0;width: 130px;">修改号码&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;display: table-cell;"></i></span>
     </div>
 
     <button type="button" class="btn btn-success btn-sm" id="submit" style="width:50%;margin-left:25%;margin-top:10px;">
@@ -49,16 +49,17 @@ MsaView::registerJsFile($this,'/js/customer/info.js',
 </div>
 
 <div class="card" id="edit_phone_card">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;display: flex;flex-direction: row;justify-content: space-between;">
-      修改号码<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_phone"></i>
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+      修改号码
+      <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 10px;" id="close_phone"></i>
   </div>
   <div style="width:94%;margin: 10px auto;">
     <div style="margin-bottom: 10px;">
       <input type="number" class="form-control" id="new_userphone" name="new_userphone" placeholder="手机号码" value=""/>
     </div>
 
-    <div style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
-      <input type="text" class="form-control" name="code" id="code" placeholder="4位验证码" style="width:50%;" />
+    <div style="margin-bottom: 10px;">
+      <input type="text" class="form-control" name="code" id="code" placeholder="4位验证码" style="width:50%;display: inline-block;" />
       <button type="button" class="btn btn-outline-danger" style="margin-left:5px;width:100px;" id="getcode">短信验证码</button>
     </div>
 

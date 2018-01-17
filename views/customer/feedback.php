@@ -18,10 +18,6 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   .item {
     padding-left: 20px;
     margin-bottom: 1%;
-    display: flex;
-    flex-direction: row;
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
   }
 
   .label-text {

@@ -192,7 +192,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
   .coupon_item_text {
     display: table-cell;
-    padding: 1%;
+    padding-left: 2%;
   }
 
   .coupon_item_money {

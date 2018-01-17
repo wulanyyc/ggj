@@ -98,8 +98,8 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <div style="width:90%;">积分商场</div>
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
-<a href="/booking" class="card show-item" id="score">
-  <div style="width:90%;">预约须知</div>
+<a href="/buy/type" class="card show-item" id="score">
+  <div style="width:90%;">购买须知</div>
   <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 

@@ -10,13 +10,6 @@ $this->title = '优惠券管理';
 
 <style type="text/css">
   .item {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-flex-start;
     margin-bottom: 5px;
     font-size: 14px;
   }
@@ -42,21 +35,20 @@ $this->title = '优惠券管理';
   }
 
   .coupon_item {
-    display: flex;flex-direction: row;justify-content: space-around;
-    align-items: center;
-
-    display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-around;
-    align-items: -webkit-center;
     border: 1px dashed #ccc;padding: 2%;width:100%;
     margin-bottom: 2%;
+    display: table;
   }
 
   .coupon_item_label {
-    background-color: #53a93f;border-radius: 5px;font-size: 14px;width:56px;text-align: center;color:white;padding:5px 8px;
+    background-color: #53a93f;border-radius: 5px;font-size: 14px;width:56px;
+    text-align: center;color:white;padding:5px 8px;
+    display: table-cell;
   }
 
   .coupon_item_text {
-    margin-left: 2%;
+    padding-left: 2%;
+    display: table-cell;
   }
 
   .coupon_item_money {
@@ -67,12 +59,13 @@ $this->title = '优惠券管理';
     width: 40px;
     font-size: 22px;
     text-align: center;
+    display: table-cell;
   }
 
 </style>
 
 <div class="card" style="margin-top: 8px;">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: center;">
+    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       我的可用券<span style="font-size: 14px;color:red;padding-left: 5px;">已领取，可直接使用</span>
     </div>
     <div style="padding:2%;">
@@ -81,7 +74,7 @@ $this->title = '优惠券管理';
 </div>
 
 <div class="card" style="margin-top: 8px;">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;">
+    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       更多券
     </div>
     <div style="padding:2%;">

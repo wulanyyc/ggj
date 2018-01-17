@@ -16,9 +16,6 @@ MsaView::registerJsFile($this,'/js/address/index.js',
 
 <style type="text/css">
   .item {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     margin-bottom: 5px;
     font-size: 16px;
   }
@@ -53,10 +50,6 @@ MsaView::registerJsFile($this,'/js/address/index.js',
     width: 100%;
     bottom: 0px;
     background-color: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
     z-index: 10;
     border-top: 1px solid #f5f5f5;
   }
@@ -70,11 +63,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
   }
 
   .all_address_item {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     height: 100%;
-    align-items: center;
   }
 
   .show_address {
@@ -82,7 +71,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
   }
 
   .address {
-    justify-content: flex-start;
+    /*justify-content: flex-start;*/
   }
 
   .all_address_item {
@@ -147,86 +136,88 @@ MsaView::registerJsFile($this,'/js/address/index.js',
   }
 
   #address_form .form-group {
-    margin-top:10px;display: flex;flex-direction: row;align-items: center;flex-wrap: nowrap;
+    margin-top:10px;
+    /*display: flex;flex-direction: row;align-items: center;flex-wrap: nowrap;*/
   }
 
 </style>
 
 <div class="card" id="all_address_info" style="width:100%;height:100%;">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
+    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       地址管理
     </div>
 
     <div style="height:80%;" id="all_address_items">
       <?php foreach($address as $item) { ?>
-      <div class="all_address_item">
-          <div style="width: 80%;" class="address-content" data-id="<?=$item['id'] ?>">
+      <div class="all_address_item" style="display: table;width: 100%;">
+          <div style="width: 80%;display: table-cell;" class="address-content" data-id="<?=$item['id'] ?>">
             <p style="font-weight: bold;color:#333;">
               <?=$item['rec_name'] ?>
               <span id="cipher_phone" style="padding-left: 5px;"><?=$item['rec_phone'] ?></span>&nbsp;
               <span class="border border-success text-success" style="font-size: 14px;padding:0px 10px;"><?=$item['label'] ?></span>
             </p>
-            <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;font-size: 16px;">
+            <p style="color:#a3a3a3;font-size: 16px;">
               <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
               <span>&nbsp;<?=$item['rec_city'] ?><?=$item['rec_district'] ?><?=$item['rec_detail'] ?></span>
             </p>
           </div>
 
-          <div data-id="<?=$item['id'] ?>" class="edit_address_item" style="width: 10%">
+          <div data-id="<?=$item['id'] ?>" class="edit_address_item" style="width: 10%;display: table-cell;vertical-align: middle;">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
           </div>
 
-          <div data-id="<?=$item['id'] ?>" class="del_address_item" style="width: 10%">
+          <div data-id="<?=$item['id'] ?>" class="del_address_item" style="width: 10%;display: table-cell;vertical-align: middle;">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
           </div>
       </div>
       <?php } ?>
     </div>
 
-    <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-      <button id="inner_add_address" type="button" class="btn btn-danger btn-sm" style="width:50%;font-size: 16px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
-      <div id="inner_back" style="margin-left:30px;" class="text-success">返回</div>
+    <div style="">
+      <button id="inner_add_address" type="button" class="btn btn-danger btn-sm" style="width:45%;margin-left:25%;font-size: 16px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+      <div id="inner_back" style="margin-left:30px;display: inline-block;" class="text-success">返回</div>
     </div>
 </div>
 
 <div class="card" id="address_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: flex;flex-direction: row;justify-content: space-between;">
-      收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_address"></i>
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+      收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_address"></i>
   </div>
   <form id="address_form" name='address_form' style='margin:5%;' autocomplete="off">
     <input type="hidden" name="id" value='' id="edit_address_id" />
-    <div class='form-group'>
-        <label style="width:30%;">收货人：</label>
-        <input class="form-control" style="width:65%;" type='text' placeholder='' name='rec_name' class='input-sm' id='rec_name' maxlength=45 value='' />
+    <div class='form-group' style="display: table;width: 100%;">
+        <label style="width:30%; display: table-cell;">收货人：</label>
+        <input class="form-control" style="width:65%;display: table-cell;" type='text' placeholder='' name='rec_name' class='input-sm' id='rec_name' maxlength=45 value='' />
     </div>
-    <div class='form-group'>
-        <label style="width:30%;">手机号码：</label>
-        <input class="form-control" style="width:65%;" type='text' placeholder='' name='rec_phone' class='input-sm' id='phone' value='' />
+    <div class='form-group' style="display: table;width: 100%;">
+        <label style="width:30%;display: table-cell;">手机号码：</label>
+        <input class="form-control" style="width:65%;display: table-cell;" type='text' placeholder='' name='rec_phone' class='input-sm' id='phone' value='' />
     </div>
-    <div class='form-group'>
-        <label style="width:30%;">所在城市：</label>
+    <div class='form-group' style="display: table;width: 100%;">
+        <label style="width:30%;display: table-cell;">所在城市：</label>
         <select class="form-control" style="width:65%;" name="rec_city" id="rec_city">
           <option value="成都">成都</option>
         </select>
     </div>
-    <div class='form-group'>
-        <label style="width:30%;">所在地区：</label>
-        <select class="form-control" style="width:65%;" name="rec_district" id="rec_district">
+    <div class='form-group' style="display: table;width: 100%;">
+        <label style="width:30%;display: table-cell;">所在地区：</label>
+        <select class="form-control" style="width:65%;display: table-cell;" name="rec_district" id="rec_district">
         <?php foreach($citymap as $item) { ?>
           <option value="<?=$item ?>"><?=$item ?></option>
         <?php } ?>
         </select>
     </div>
-    <div class='form-group'>
-        <label style="width:30%;">详细地址：</label>
-        <textarea class="form-control" style="width:65%;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
+    <div class='form-group' style="display: table;width: 100%;">
+        <label style="width:30%;display: table-cell;">详细地址：</label>
+        <textarea class="form-control" style="width:65%;display: table-cell;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
     </div>
-    <div class='form-group' style='margin-top:10px;padding-bottom:10px;border-bottom: 1px solid #f5f5f5;display: flex;flex-direction: row;justify-content: flex-start;' id="label_add_group">
-        <label style="width:30%;">标签：</label>
-        <div style="width:68%;">
+    <div class='form-group' style='display: table;margin-top:10px;padding-bottom:10px;border-bottom: 1px solid #f5f5f5;display: table;width: 100%;' id="label_add_group">
+        <label style="width:30%;display: table-cell;">标签：</label>
+        <div style="width:68%;display: table-cell;">
           <div class="label_choose active">家</div>
           <div class="label_choose">公司</div>
           <div class="label_choose">学校</div>
+          <div class="label_choose">其它</div>
           <div id="label_add">+</div>
           <div id="label_add_input" style="width:95%;display: none;">
             <div class="input-group">
@@ -239,7 +230,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
         </div>
     </div>
 
-    <div style="display: flex;flex-direction: row;justify-content: center;width: 100%;align-items: center;">
+    <div style="width: 100%;align-items: center;">
       <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存</button>
       <span id='close_address_bottom' style="padding-left: 15px;font-size: 16px;color:#0C58B0;">关闭</span>
     </div>
