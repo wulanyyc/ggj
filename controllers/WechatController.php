@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use app\components\WechatHelper;
 use app\models\CustomerWeixin;
+use app\models\Customer;
 use app\components\PriceHelper;
 
 class WechatController extends Controller
@@ -119,6 +120,25 @@ class WechatController extends Controller
                     $ar->unionid = $userinfo['unionid'];
                 }
                 $ar->save();
+
+                $exsitCus = Customer::find()->where(['openid' => $openid])->asArray()->one();
+                if (count($exsitCus) > 0) {
+                    $cusar = Customer::findOne($exsitCus['id']);
+                } else {
+                    $cusar = new Customer();
+                }
+
+                $cusar->openid = $userinfo['openid'];
+                $cusar->sex = $userinfo['sex'];
+                $cusar->headimgurl = $userinfo['headimgurl'];
+                $cusar->city = $userinfo['city'];
+                $cusar->nick = $userinfo['nickname'];
+                $cusar->subscribe_time = $userinfo['subscribe_time'];
+                if (isset($userinfo['unionid'])) {
+                    $cusar->unionid = $userinfo['unionid'];
+                }
+                $cusar->save();
+
             }
 
             return '欢迎关注成都果果佳，新人享5元优惠券，首单再享5元';

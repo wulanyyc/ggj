@@ -20,8 +20,6 @@ class Customer extends ActiveRecord
     
     public function rules() {
         return [
-            [['phone'], 'required'],
-            [['phone'], 'unique'],
         ];
     }
 }
