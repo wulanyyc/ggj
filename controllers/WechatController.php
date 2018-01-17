@@ -115,16 +115,36 @@ class WechatController extends Controller
                     $ar->save();
 
                     $exsitCus = Customer::find()->where(['openid' => $openid])->asArray()->one();
-                    $cusar = Customer::findOne($exsitCus['id']);
-                    $cusar->openid = $userinfo['openid'];
-                    $cusar->sex = $userinfo['sex'];
-                    $cusar->headimgurl = $userinfo['headimgurl'];
-                    $cusar->city = $userinfo['city'];
-                    $cusar->nick = $userinfo['nickname'];
-                    if (isset($userinfo['unionid'])) {
-                        $cusar->unionid = $userinfo['unionid'];
+                    if (empty($exsitCus)) {
+                        $cusar = new Customer();
+                        $cusar->openid = $userinfo['openid'];
+                        $cusar->sex = $userinfo['sex'];
+                        $cusar->headimgurl = $userinfo['headimgurl'];
+                        $cusar->city = $userinfo['city'];
+                        $cusar->nick = $userinfo['nickname'];
+                        $cusar->status = 2;
+                        if (isset($userinfo['unionid'])) {
+                            $cusar->unionid = $userinfo['unionid'];
+                        }
+                        $cusar->save();
+
+                        // TODO 关注公众号，修改优惠id
+                        PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
+                        // TODO 首单优惠，修改优惠id
+                        PriceHelper::createCoupon(Yii::$app->params['coupon']['login'], $openid);
+                    } else {
+                        $cusar = Customer::findOne($exsitCus['id']);
+                        $cusar->openid = $userinfo['openid'];
+                        $cusar->sex = $userinfo['sex'];
+                        $cusar->headimgurl = $userinfo['headimgurl'];
+                        $cusar->city = $userinfo['city'];
+                        $cusar->nick = $userinfo['nickname'];
+                        if (isset($userinfo['unionid'])) {
+                            $cusar->unionid = $userinfo['unionid'];
+                        }
+                        $cusar->save();
                     }
-                    $cusar->save();
+
                 } else {
                     $ar = new CustomerWeixin();
                     $ar->openid = $userinfo['openid'];
