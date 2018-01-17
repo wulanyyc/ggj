@@ -235,11 +235,11 @@ $(document).ready(function () {
 
         if (type == 0) {
             $(this).attr("data-filter", 1);
-            $(this).html("显示全部");
+            $(this).html("显全部");
             $(this).blur();
         } else {
             $(this).attr("data-filter", 0);
-            $(this).html("显示订购");
+            $(this).html("显订购");
             $(this).blur();
         }
     });

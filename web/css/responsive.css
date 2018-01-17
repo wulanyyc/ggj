@@ -111,11 +111,11 @@ main {
     }
 
     #menu_list {
-        width: 23% !important;
+        width: 28% !important;
     }
 
-    #order_scroll {
-        width: 73% !important;
+    #order_scroll_container {
+        width: 71% !important;
     }
 
     .order-product {
@@ -203,8 +203,8 @@ main {
         width: 23% !important;
     }
 
-    #order_scroll {
-        width: 70% !important;
+    #order_scroll_container {
+        width: 76% !important;
     }
 
     .order-product {
@@ -274,8 +274,8 @@ main {
         width: 23% !important;
     }
 
-    #order_scroll {
-        width: 73% !important;
+    #order_scroll_container {
+        width: 76% !important;
     }
 
     .order-product {
