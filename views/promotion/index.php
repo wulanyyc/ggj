@@ -17,49 +17,55 @@ SiteAsset::register($this);
     margin: 5px; 5px;
   }
 
-  #promotion {
+  #promotion-page {
     margin-top: 1%;
-    display: -webkit-flex;flex-direction: -webkit-row;justify-content:-webkit-flex-start;flex-wrap: -webkit-wrap;
-    display: flex;flex-direction: row;justify-content:flex-start;flex-wrap: wrap;
   }
 
-  a.promotion-item {
-    width:48%;height:150px;border-radius: 3px;display: flex;flex-direction: row;margin-bottom: 1%;
-    margin-left: 1%;text-decoration: none;
+  a.promotion-page-item {
+    display: block;
+    width:98%;
+    border-radius: 3px;
+    text-decoration: none;
+    margin: 0 auto;
+    margin-bottom: 2%;
   }
 
-  .promotion-item-left {
-    width:50%;height:100%;opacity: 0.8;
-    display: -webkit-flex;justify-content:-webkit-center;align-items:-webkit-center;
-    display: flex;justify-content:center;align-items:center;
+  .promotion-page-item-top {
+    width:100%;
+    height: 100px;
+    opacity: 0.8;
   }
 
-  .promotion-item-left-content {
-    height:50%;width:65%;
+  .promotion-page-item-top-content {
+    height:100%;width:68%;margin: 0 auto;
   }
 
-  .promotion-item-left-content-top {
-    text-align: center;font-size: 20px;color:#fff;height: 44px;line-height: 44px;border-bottom: 2px solid #fff;font-weight: 400;width:100%;
+  .promotion-page-item-top-content-top {
+    text-align: center;
+    font-size: 20px;
+    color:#fff;
+    height: 55px;
+    line-height: 55px;
+    border-bottom: 2px solid #fff;
+    font-weight: 400;width:100%;
   }
 
-  .promotion-item-left-content-bottom {
-    color:#fff;font-size:15px;line-height: 44px;padding:3px;text-align: center;
+  .promotion-page-item-top-content-bottom {
+    color:#fff;
+    font-size:16px;
+    line-height: 44px;
+    padding:3px;
+    text-align: center;
   }
 
-  .promotion-item-right {
-    width:50%;height:100%;
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-center;
-    align-items: -webkit-center;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  .promotion-page-item-bottom {
+    width:100%;
+    height:250px;
+    text-align: center;
+    line-height: 250px;
   }
 
-  .promotion-item-right img {
+  .promotion-page-item-bottom img {
     height: 80%;
   }
 
@@ -124,17 +130,17 @@ SiteAsset::register($this);
     <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         <span class="first-title">天天特价</span>
     </div>
-    <div id="promotion">
+    <div id="promotion-page">
       <?php foreach($data as $value) { ?>
-      <a class="promotion-item" href="/buy?id=<?=$value['id'] ?>">
-        <div class="promotion-item-left prom-shop-left day<?=$value['day'] ?>-left">
-          <div class="promotion-item-left-content">
-            <div class="promotion-item-left-content-top">星期<?=$value['day_cn'] ?></div>
-            <div class="promotion-item-left-content-bottom"><?=$value['name'] ?></div>
+      <a class="promotion-page-item" href="/buy?id=<?=$value['id'] ?>">
+        <div class="promotion-page-item-top prom-shop-left day<?=$value['day'] ?>-left">
+          <div class="promotion-page-item-top-content">
+            <div class="promotion-page-item-top-content-top">星期<?=$value['day_cn'] ?></div>
+            <div class="promotion-page-item-top-content-bottom"><?=$value['name'] ?></div>
           </div>
         </div>
 
-        <div class="promotion-item-right prom-shop-right day<?=$value['day'] ?>-right">
+        <div class="promotion-page-item-bottom prom-shop-right day<?=$value['day'] ?>-right">
           <img src="<?=$value['img'] ?>"></img>
         </div>
       </a>

@@ -300,6 +300,11 @@ main {
         width: 30%;
         margin: 0 auto;
     }
+
+    a.promotion-page-item {
+        display: inline-table !important;
+        width: 49% !important;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -313,6 +318,11 @@ main {
         width: 30%;
         margin: 0 auto;
     }
+
+    a.promotion-page-item {
+        display: inline-table !important;
+        width: 49% !important;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -325,5 +335,10 @@ main {
     #type_content {
         width: 30%;
         margin: 0 auto;
+    }
+
+    a.promotion-page-item {
+        display: inline-table !important;
+        width: 49% !important;
     }
 }
