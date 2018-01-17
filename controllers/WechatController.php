@@ -121,6 +121,7 @@ class WechatController extends Controller
                     $cusar->headimgurl = $userinfo['headimgurl'];
                     $cusar->city = $userinfo['city'];
                     $cusar->nick = $userinfo['nickname'];
+                    $cusar->status = 2;
                     if (isset($userinfo['unionid'])) {
                         $cusar->unionid = $userinfo['unionid'];
                     }
