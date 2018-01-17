@@ -336,14 +336,14 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card">
   <div id="discount" class="card-content">
-    <div style="margin-top:5px;display: table;">
+<!--     <div style="margin-top:5px;display: table;">
       <div class="left-content">
         <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的手机号码" maxlength=11 style="width: 128px;font-size: 14px;height: 40px;display: inline-block;" />
         <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-left:5px;display: inline-block;">优惠码</button>
       </div>
       <div id="ask" class="right-arrow" style="color:red;cursor: pointer;font-size: 13px;width:20%;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
     </div>
-    <hr style="margin-top: 8px;margin-bottom: 8px;"/>
+    <hr style="margin-top: 8px;margin-bottom: 8px;"/> -->
     <div style="margin-bottom:3px;display: table;" id="choose_coupon">
       <p class="label left-content" style="width:72%;">优惠券</p>
       <p style="font-size: 13px;cursor: pointer;width:18%;" class="right-arrow" id="coupon_detail">

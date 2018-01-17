@@ -44,18 +44,20 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
         text-align: center;
         background-color: #e93b3d;
     }
+
+    .pay_tool {
+      padding: .75rem 1.25rem;border-bottom: 1px solid #f5f5f5;display: table;width: 100%;
+    }
 </style>
 
 <input type='hidden' id="isWechat" value=<?=$isWechat ?> />
 
 <div class="card" style="height:90%;">
-  <div class="item" style="">
-    <div class="label" style="line-height: 26px;">订单金额：</div>
-    <div><span class="text-danger" id="order_money"><?=$data['pay_money'] ?></span>元</div>
+  <div class="item" style="text-align: right;">
+    <span class="label" style="line-height: 26px;">订单金额：</span><span class="text-danger" id="order_money"><?=$data['pay_money'] ?></span>元
   </div>
-  <div class="item" style="padding: 0px 10px;margin-bottom: 5px;">
-    <div class="label" style="line-height: 26px;">钱包：</div>
-    <div><span class="text-danger" id="wallet"><?=$money ?></span>元</div>
+  <div class="item" style="text-align: right;">
+    <span class="label" style="line-height: 26px;">钱包：</span><span class="text-danger" id="wallet"><?=$money ?></span>元
   </div>
 </div>
 
@@ -64,31 +66,31 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
         支付方式
   </div>
   <?php if ($money >= $data['pay_money']) { ?>
-  <div class="item" style="padding: .75rem 1.25rem;border-bottom: 1px solid #f5f5f5" id="wallet">
-    <div style="">
-      <img src="/img/wallet.png" style="width:32px;height:32px;"/>
-      <div class="label" style="line-height: 32px;margin-left:8px;">钱包</div>
+  <div class="item pay_tool" id="wallet">
+    <div style="display: table-cell;vertical-align: middle;">
+      <img src="/img/wallet.png" style="width:32px;height:32px;display: inline-block;"/>
+      <div class="label" style="line-height: 32px;margin-left:8px;display: inline-block;">钱包</div>
     </div>
-    <div style="font-size: 22px" class="text-danger"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
+    <div style="font-size: 22px;display: table-cell;text-align: right;" class="text-danger"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
   </div>
   <?php } ?>
 
   <?php if ($money < $data['pay_money']) { ?>
-    <div class="item pay_tool" style="border-bottom: 1px solid #f5f5f5;padding: .5rem 1.25rem;" id="wechat" data-id='wx'>
-      <div style="">
-        <img src="/img/wechat@2x.png" style="width:32px;height:32px;"/>
-        <div class="label" style="line-height: 32px;margin-left:8px;">微信</div>
+    <div class="item pay_tool" id="wechat" data-id='wx'>
+      <div style="display: table-cell;vertical-align: middle;">
+        <img src="/img/wechat@2x.png" style="width:32px;height:32px;display: inline-block;"/>
+        <div class="label" style="line-height: 32px;margin-left:8px;display: inline-block;">微信</div>
       </div>
-      <div style="font-size: 22px" class="text-danger status"><i class="fa fa-circle-o" aria-hidden="true"></i></div>
+      <div style="font-size: 22px;display: table-cell;text-align: right;" class="text-danger status"><i class="fa fa-circle-o" aria-hidden="true"></i></div>
     </div>
 
     <?php if ($isWechat == 0) { ?>
-    <div class="item pay_tool" style="padding: .5rem 1.25rem;" id="alipay" data-id="ali">
-      <div style="">
-        <img src="/img/alipay.png" style="width:32px;height:32px;"/>
-        <div class="label" style="line-height: 32px;margin-left:8px;">支付宝</div>
+    <div class="item pay_tool" id="alipay" data-id="ali">
+      <div style="display: table-cell;vertical-align: middle;">
+        <img src="/img/alipay.png" style="width:32px;height:32px;display: inline-block;"/>
+        <div class="label" style="line-height: 32px;margin-left:8px;display: inline-block;">支付宝</div>
       </div>
-      <div style="font-size: 22px" class="text-danger status"><i class="fa fa-circle-o" aria-hidden="true"></i></div>
+      <div style="font-size: 22px;display: table-cell;text-align: right;" class="text-danger status"><i class="fa fa-circle-o" aria-hidden="true"></i></div>
     </div>
     <?php } ?>
   <?php } ?>
