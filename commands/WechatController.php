@@ -59,14 +59,14 @@ class WechatController extends Controller
     public function actionSync() {
         $arr = CustomerWeixin::find()->asArray()->all();
         foreach($arr as $key => $value) {
-            if ($value['customer_id'] > 0) {
-                $up = Customer::findOne($value['customer_id']);
-                $up->openid = $value['openid'];
-                $up->unionid = $value['unionid'];
-                $up->save();
-            } else {
-                $exsit = CustomerWeixin::find()->where(['openid' => $value['openid']])->count();
-                if ($exsit > 0) continue;
+            // if ($value['customer_id'] > 0) {
+            //     $up = Customer::findOne($value['customer_id']);
+            //     $up->openid = $value['openid'];
+            //     $up->unionid = $value['unionid'];
+            //     $up->save();
+            // } else {
+                // $arr = CustomerWeixin::find()->where(['openid' => $value['openid']])->asArray()->one();
+                // if (!empty($arr)) continue;
 
                 $add = new Customer();
                 $add->openid = $value['openid'];
@@ -76,7 +76,13 @@ class WechatController extends Controller
                 $add->city = $value['city'];
                 $add->sex = $value['sex'];
                 $add->save();
-            }
+
+                $up = CustomerWeixin::findOne($value['id']);
+                $up->customer_id = $add->id;
+                $up->save();
+
+
+            // }
         }
     }
 }
