@@ -1,5 +1,4 @@
 <?php
-use Yii;
 use yii\web\View;
 use app\components\MsaView;
 
@@ -15,6 +14,13 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
 ?>
 
 <style type="text/css">
+  #type_content {
+    display: table;
+    /*vertical-align: middle;*/
+    background-color: #fff;
+    width: 100%;
+  }
+
   .buy-type {
     border-radius: 0;
     width: 98%;
@@ -30,23 +36,13 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
   .item {
     padding-left: 20px;
     margin-bottom: 1%;
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-
-    display: flex;
-    flex-direction: row;
   }
 
-  #rule li {
+  #type_content li {
     padding-left: 15px;
     padding-top: 8px;
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    flex-wrap: -webkit-wrap;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    list-style: none;
+    width: 100%;
   }
 
   .label {
@@ -57,71 +53,66 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
     border:none;
   }
 
-  #type_content {
-    display: table-cell;
-    vertical-align: middle;
-  }
-
   footer {
     display: none;
   }
 </style>
 
-<div class="card" id="type_content">
-    <div class="card buy-type">
-      <div id="rule" style="margin-top: 1%;font-size: 14px;width:100%;">
-        <div style="display: table-row;">
-          <div style="display: table-cell;vertical-align: middle;text-align: center;">
-            <img src="http://img.guoguojia.vip/img/booking.png" style="width: 90px;"/>
+<div id="type_content">
+    <div style="display: table;width: 100%;margin-top: 15%">
+      <div style="display: table-row;width: 100%">
+        <div style="width: 35%;display: table-cell;vertical-align: middle;text-align: right;padding-right: 10px;">
+          <img src="http://img.guoguojia.vip/img/booking.png" style="width: 90px;"/>
+        </div>
+        <ul style="width: 65%;display: table-cell;vertical-align: middle;">
+          <li>
+            <div class="label" style="color: #866D8D;font-size: 16px;">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
+            </div>
+            <div>
+              国产水果当日采购<br/>进口水果供应商到货即采购<br/>精选佳果，保证新鲜度和质量
+            </div>
+          </li>
+
+          <li>
+            <div class="label" style="color: #866D8D;font-size: 16px;">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;顺丰发货：
+            </div>
+            <div>
+            限成都，每周<span style="color:red;font-weight: bold;"><?=$bookingSender ?></span>发货
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div style="display: table-row;">
+          <div style="width: 35%; display: table-cell;vertical-align: middle;text-align: right;padding-right: 10px;">
+            <img src="http://img.guoguojia.vip/img/sale.png" style="width: 90px;" /> 
           </div>
-          <ul style="width:60%;display: table-cell;">
+          <ul style="width: 65%;display: table-cell;vertical-align: middle;">
             <li>
-              <div class="label" style="color: #866D8D;font-size: 16px;">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
+              <div class="label" style="font-size: 16px;">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜实惠：
               </div>
               <div>
-                国产水果当日采购<br/>进口水果供应商到货即采购<br/>精选佳果，保证新鲜度和质量
+                新鲜实惠, 低于市场价
               </div>
             </li>
 
             <li>
-              <div class="label" style="color: #866D8D;font-size: 16px;">
+              <div class="label"  style="font-size: 16px;">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;顺丰发货：
               </div>
               <div>
-              限成都，每周<span style="color:red;font-weight: bold;"><?=Yii::$app->params['bookingSender'] ?></span>发货
+              限成都，24小时内发货
               </div>
             </li>
           </ul>
-        </div>
-        <!-- <hr/> -->
-        <div style="display: table-row;">
-            <div style="display: table-cell;vertical-align: middle;text-align: center;">
-              <img src="http://img.guoguojia.vip/img/sale.png" style="width: 90px;" /> 
-            </div>
-            <ul style="width:60%">
-              <li>
-                <div class="label" style="font-size: 16px;">
-                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜实惠：
-                </div>
-                <div>
-                  新鲜实惠, 低于市场价
-                </div>
-              </li>
-
-              <li>
-                <div class="label"  style="font-size: 16px;">
-                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;顺丰发货：
-                </div>
-                <div>
-                限成都，24小时内发货
-                </div>
-              </li>
-            </ul>
-        </div>
       </div>
     </div>
 
-    <a class="btn btn-success" href="/buy/booking?id=<?=$id ?>" style="width: 50%;margin-left:25%;margin-top:10px;">去预约</a>
-    <a class="btn btn-danger" href="/buy/?id=<?=$id ?>" style="width: 50%;margin-left:25%;margin-top:10px;">买现货</a>
+    <br/>
+    <a class="btn btn-success" href="/buy/booking?id=<?=$id ?>" style="width: 50%;margin-left:25%;margin-top:20px;">去预约</a>
+    <br/>
+    <a class="btn btn-danger" href="/buy/?id=<?=$id ?>" style="width: 50%;margin-left:25%;margin-top:20px;">买现货</a>
 </div>

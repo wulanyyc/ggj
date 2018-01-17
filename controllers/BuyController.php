@@ -78,6 +78,7 @@ class BuyController extends Controller
         return $this->render('type', [
             'controller' => Yii::$app->controller->id,
             'id' => $id,
+            'bookingSender' => Yii::$app->params['bookingSender'],
         ]);
     }
 
