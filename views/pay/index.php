@@ -29,7 +29,7 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
 <?php if (isset($data['pay_result']) && $data['pay_result'] == 1){ ?>
 <div class="card" id="suc" style="background: url('http://img.guoguojia.vip/img/payok_adjust.jpeg') no-repeat;background-size: 100% 100%;">
   <div style="position: absolute; bottom: 30px;width: 100%;">
-    <div style="display: -webkit-flex;flex-direction: -webkit-column;justify-content: -webkit-center;align-items: -webkit-center;display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 10px;margin:20px;">
+    <div style="padding: 10px;margin:20px;text-align: center;">
       <div style="margin-left:10px;font-size: 14px;">
         <div class="text-light">支付方式：<?=$data['pay_type'] ?></div>
         <div class="text-light">支付金额：¥<?=$data['online_money'] ?></div>
@@ -42,8 +42,8 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
   </div>
 </div>
 <?php } else { ?>
-<div class="card" id="fail" style="display: -webkit-flex;flex-direction: -webkit-column;justify-content: -webkit-center;align-items: -webkit-center;display: flex;flex-direction: column;justify-content: center;align-items: center;">
-  <div style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-center;align-items: -webkit-center;display: flex;flex-direction: row;justify-content: center;align-items: center;width:300px;margin-top:50px;margin-bottom: 30px;">
+<div class="card" id="fail">
+  <div style="width:300px;margin-top:50px;margin-bottom: 30px;text-align: center;">
     <img src="/img/cry.png" />
     <div style="padding-left:10px;width:70%">您的订单号：<?=$data['id'] ?><br/>请确认支付后，刷新订单或<a href="/contact">联系客服</a></div>
   </div>
