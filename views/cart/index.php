@@ -23,21 +23,20 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     margin: 2px 0%;
   }
 
-  .item {
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-space-between;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
+  #fee .item {
     margin-bottom: 4px;
     font-size: 16px;
+    width: 100%;
+    position: relative;
   }
 
-  .item .label {
+  #fee .item .label {
     width: 90px;
+    display: inline-block;
+  }
+
+  #fee .price {
+    color:red;position: absolute;right:5px;display: inline-block;
   }
 
   p {
@@ -81,18 +80,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     width: 100%;
     bottom: 0px;
     background-color: #fff;
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-flex-end;
-    align-items: -webkit-center;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-
     z-index: 10;
     border-top: 1px solid #f5f5f5;
+    display: table-cell;
+    text-align: right;
   }
 
   .card-content {
@@ -104,16 +95,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   .no_address, .show_address, .all_address_item {
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-center;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
     height: 100%;
-    align-items: center;
   }
 
   .show_address {
@@ -121,8 +103,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   .address {
-    justify-content: -webkit-flex-start;
-    justify-content: flex-start;
+
   }
 
   .all_address_item {
@@ -191,22 +172,27 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   .coupon_item {
-    display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;
-    align-items: -webkit-center;
-
-    display: flex;flex-direction: row;justify-content: space-between;
-    align-items: center;
-
-    border: 1px dashed #ccc;padding: 2%;width:100%;
+    border: 1px dashed #ccc;
+    padding: 2%;
+    width:100%;
     margin-bottom: 2%;
+    display: table;
   }
 
   .coupon_item_label {
-    background-color: #53a93f;border-radius: 5px;font-size: 16px;width:56px;text-align: center;color:white;padding:5px 8px;
+    background-color: #53a93f;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 56px;
+    text-align: center;
+    color: white;
+    padding: 5px;
+    display: table-cell;
   }
 
   .coupon_item_text {
-    margin-left: 2%;
+    display: table-cell;
+    padding: 1%;
   }
 
   .coupon_item_money {
@@ -217,12 +203,30 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     width: 40px;
     font-size: 22px;
     text-align: center;
+    display: table-cell;
   }
 
   #address_form .form-group {
     margin-top:10px;
-    display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;flex-wrap: -webkit-nowrap;
-    display: flex;flex-direction: row;align-items: center;flex-wrap: nowrap;
+  }
+
+  .show_address {
+    width: 100%;
+    display: table;
+  }
+
+  .right-arrow {
+    width: 16%;display: table-cell;vertical-align: middle;
+    text-align: right;
+  }
+
+  .left-content {
+    display: table-cell;vertical-align: middle;
+  }
+
+  .icon {
+    display: inline-block;
+    width: 15px;
   }
 </style>
 
@@ -235,6 +239,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <input type="hidden" name="buy_god" id="buy_god" value="<?=$buyGod ?>" />
 <input type="hidden" name="history_product_price" id="history_product_price" value="<?=$data['product_price'] ?>" />
 
+<!-- address start -->
 <div class="card">
   <div class="card-content" id="show_address_content">
       <?php if (empty($address)) { ?>
@@ -244,35 +249,35 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       </div>
 
       <div class="show_address" data-id="" style="display: none;">
-        <div style="width: 98%;">
+        <div class="left-content">
           <p style="font-weight: bold;color:#333;">
             <span id="show_rec_name"></span>
             <span id="show_rec_phone" style="padding-left: 5px;"></span>&nbsp;
             <span id="show_label" class="border border-success text-success"></span>
           </p>
-          <p style="color:#a3a3a3;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;">
+          <p style="color:#a3a3a3;">
             <span><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;</span>
             <span id="show_address"></span>
           </p>
         </div>
-        <div>
+        <div class="right-arrow" style="width:3%;">
           <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         </div>
       </div>
       <?php } else { ?>
       <div class="show_address" data-id="<?=$address[0]['id'] ?>">
-        <div style="width: 98%;">
-          <p style="font-weight: bold;color:#333;">
+        <div class="left-content">
+          <p style="font-weight: bold;color:#333;display: inline-block;">
             <span id="show_rec_name"><?=$address[0]['rec_name'] ?></span>
             <span id="show_rec_phone" style="padding-left: 5px;"><?=$address[0]['rec_phone'] ?></span>&nbsp;
             <span id="show_label" class="border border-success text-success"><?=$address[0]['label'] ?></span>
           </p>
-          <p style="color:#a3a3a3;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;font-size: 16px;">
+          <p style="color:#a3a3a3;font-size: 16px;display: inline-block;">
             <span><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;</span>
             <span id="show_address"><?=$address[0]['rec_city'] ?><?=$address[0]['rec_district'] ?><?=$address[0]['rec_detail'] ?></span>
           </p>
         </div>
-        <div>
+        <div class="right-arrow" style="width:3%;">
           <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         </div>
       </div>
@@ -286,43 +291,41 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   </div>
 </div>
 
+<!-- product start -->
 <div class="card">
-  <div id="products" class="card-content">
-    <div id="product_detail" style="display: -webkit-flex;justify-content: -webkit-space-between;flex-direction: -webkit-row;align-items: -webkit-center;display: flex;justify-content: space-between;flex-direction: row;align-items: center;">
-      <div style="position: relative;width:80%;overflow: hidden;height:70px;">
+  <div id="products" class="card-content" style="width: 100%;">
+    <div id="product_detail" style="width: 100%;">
+      <div class="left-content" style="position: relative;width:80%;overflow: hidden;height:70px;">
         <?php foreach($data['show_product'] as $item) { ?>
-        <div class="product" style="height: 70px;display: inline-block;">
+        <div class="product" style="height: 70px;display: table-cell;vertical-align: middle;">
           <img src="<?=$item['img'] ?>" style="height:100%;padding: 5%;" />
         </div>
         <?php } ?>
       </div>
 
-      <div>
-        <span style="font-size: 13px;cursor: pointer;">共<?=count($data['product']) ?>件&nbsp;&nbsp;
+      <div class="right-arrow" id="product-arrow">
+        <div style="font-size: 13px;cursor: pointer;text-align: right;">共<?=count($data['product']) ?>件&nbsp;&nbsp;
           <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
-        </span>
+        </div>
       </div>
     </div>
 
     <hr style="margin-top:0px;margin-bottom: 3px;" />
-    <div class="item" style="justify-content: -webkit-space-between;align-items: -webkit-center;justify-content: space-between;align-items: center;">
-        <div style="display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;justify-content: -webkit-flex-start;display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
-          <p class="label">配送方式：</p>
-          <div class="form-check form-check-inline express_rule">
-            <label class="form-check-label" style="display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;justify-content: -webkit-flex-start;display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
-              <input class="form-check-input" type="radio" name="express_rule" id="express_1" value="1" checked> 
+    <div class="item" style="display: table;width: 100%;padding-bottom: 5px;">
+        <div style="display: table-cell;width: 80%;vertical-align: middle;">
+          <p class="label" style="display: inline-block;">配送方式：</p>
+            <div style="display: inline-block;" data-id="1" class="express_rule">
+              <div class="icon" data-id="1"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
               <span class="badge badge-success" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">快递</span>
-            </label>
-          </div>
-          <!-- <div class="form-check form-check-inline express_rule">
-            <label class="form-check-label" style="display: -webkit-flex;flex-direction: -webkit-row;align-items: -webkit-center;justify-content: -webkit-flex-start;display: flex;flex-direction: row;align-items: center;justify-content: flex-start;">
-              <input class="form-check-input" type="radio" class="express_rule" name="express_rule" id="express_2" value="2">
+            </div>
+
+            <div style="display: inline-block;" data-id="2" class="express_rule">
+              <span class="icon" data-id="2"><i class="fa fa-square-o" aria-hidden="true"></i></span>
               <span class="badge badge-info" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">自提</span>
-            </label>
-          </div> -->
+            </div>
         </div>
 
-        <div id="express_time">
+        <div id="express_time" class="right-arrow">
           <span style="font-size: 13px;cursor: pointer;">发货&nbsp;&nbsp;
             <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
           </span>
@@ -333,19 +336,19 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card">
   <div id="discount" class="card-content">
-    <div style="margin-top:5px;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;display: flex;flex-direction: row;justify-content: space-between;">
-      <div style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;flex-wrap: -webkit-nowrap;display: flex;flex-direction: row;justify-content: flex-start;flex-wrap: nowrap;">
-        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的手机号码" maxlength=11 style="width: 152px;font-size: 14px;height: 40px;" />
-        <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-top:5px;margin-left:5px;">优惠码</button>
+    <div style="margin-top:5px;display: table;">
+      <div class="left-content">
+        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的手机号码" maxlength=11 style="width: 128px;font-size: 14px;height: 40px;display: inline-block;" />
+        <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-left:5px;display: inline-block;">优惠码</button>
       </div>
-      <span id="ask" style="line-height: 40px;color:red;cursor: pointer;font-size: 13px;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>
+      <div id="ask" class="right-arrow" style="color:red;cursor: pointer;font-size: 13px;width:20%;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
     </div>
     <hr style="margin-top: 8px;margin-bottom: 8px;"/>
-    <div style="margin-bottom:3px;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;display: flex;flex-direction: row;justify-content: space-between;" id="choose_coupon">
-      <p class="label" style="width:72%;">优惠券</p>
-      <p style="font-size: 13px;cursor: pointer;">
+    <div style="margin-bottom:3px;display: table;" id="choose_coupon">
+      <p class="label left-content" style="width:72%;">优惠券</p>
+      <p style="font-size: 13px;cursor: pointer;width:18%;" class="right-arrow" id="coupon_detail">
         <?php if ($coupon > 0) { ?>
-        可用<span class="text-danger"><?=$coupon ?></span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+        可用<span class="text-danger" style="font-weight: bold;font-size: 14px;"><?=$coupon ?></span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         <?php } else { ?>
         可用<span class="text-danger">0</span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         <?php } ?>
@@ -358,19 +361,19 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div id="fee" class="card-content">
     <div class="item">
         <p class="label">商品金额：</p>
-        <p style="color:red;">¥<span id="product_price"><?=$data['product_price'] ?></span></p>
+        <p class="price">¥<span id="product_price"><?=$data['product_price'] ?></span></p>
     </div>
     <div class="item">
         <p class="label">运费：</p>
-        <p style="color:red;">+ ¥<span id="express_fee_show"><?=$data['express_fee'] ?></span></p>
+        <p class="price">+ ¥<span id="express_fee_show"><?=$data['express_fee'] ?></span></p>
     </div>
     <div class="item">
         <p class="label">优惠码：</p>
-        <p style="color:red;">- ¥<span id="discount_fee">0</span></p>
+        <p class="price">- ¥<span id="discount_fee">0</span></p>
     </div>
     <div class="item">
         <p class="label">优惠券：</p>
-        <p style="color:red;">- ¥<span id="coupon_fee">0</span></p>
+        <p class="price">- ¥<span id="coupon_fee">0</span></p>
     </div>
   </div>
 </div>
@@ -385,28 +388,29 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <br/>
 
 <div id="tongji">
-  <div id="tips" style="color:red;margin-left: 5px;margin-right: 5px;font-size: 14px;">实付款:</div>
-  <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;">
-    <div style="display: inline-block;color:red;width:80px;text-align: left;">
+  <div id="tips" style="color:red;margin-left: 5px;margin-right: 5px;font-size: 14px;display: inline-block;">实付款:</div>
+  <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;display: inline-block;">
+    <div style="display: inline-block;color:red;width:72px;text-align: left;">
       <span class="money" style="font-size: 16px;font-weight: normal;">¥</span>
       <span class="realprice" style="font-size:20px;font-weight: normal;" id="realprice"></span>
     </div>
   </div>
-  <div class='btn btn-outline-info btn-sm' id='edit' style="margin-right: 10px;">修改商品</div>
-  <div class='btn btn-success' id='order' style="margin-right: 10px;">去下单</div>
+  <div class='btn btn-outline-info btn-sm' id='edit' style="margin-right: 10px;display: inline-block;">修改商品</div>
+  <div class='btn btn-success' id='order' style="margin-right: 10px;display: inline-block;">去下单</div>
 </div>
 
 <div class="card" id="question">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: -webkit-center;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-      优惠码<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_question"></i>
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+      优惠码
+      <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 10px;" id="close_question"></i>
   </div>
   <div style="padding: 5%;">
-    <p style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;">
+    <p style="">
       <span style="padding-right: 5px;">1: </span>
-      <span>成都居住好友的手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额</span>
+      <span>成都好友的手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额</span>
     </p>
 
-    <p style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
+    <p style="margin-top: 5px;">
       <span style="padding-right: 5px;">2: </span>
       <span>订单支付成功后为好友充优惠额的50%到其平台账户，赶快来一起享受优惠</span>
     </p>
@@ -424,6 +428,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <thead>
         <tr>
           <th scope="col">商品</th>
+          <th scope="col">描述</th>
           <th scope="col">数量</th>
           <th scope="col">总价</th>
         </tr>
@@ -432,6 +437,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         <?php foreach($data['product'] as $item) { ?>
           <tr>
             <td><?=$item['name'] ?></td>
+            <td><?=$item['desc'] ?></td>
             <td><?=$data['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
             <td><?=$data['product_cart'][$item['id']]['price'] * $data['product_cart'][$item['id']]['num'] ?>元</td>
           </tr>
@@ -443,79 +449,80 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="all_address_info">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: -webkit-center;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-      收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_all_address"></i>
+    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+      收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_all_address"></i>
     </div>
 
     <div style="height:80%;overflow-y: scroll;" id="all_address_items">
       <?php foreach($address as $item) { ?>
-      <div class="all_address_item">
-          <div style="width: 10%" class="address-status" data-id="<?=$item['id'] ?>"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
-          <div style="width: 72%;" class="address-content" data-id="<?=$item['id'] ?>">
+      <div class="all_address_item" style="display: table;width: 100%;">
+          <div style="width: 10%;display: table-cell;vertical-align: middle;" class="address-status" data-id="<?=$item['id'] ?>"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
+          <div style="width: 72%;display: table-cell;vertical-align: middle;" class="address-content" data-id="<?=$item['id'] ?>">
             <p style="font-weight: bold;color:#333;">
               <?=$item['rec_name'] ?>
               <span id="cipher_phone" style="padding-left: 5px;"><?=$item['rec_phone'] ?></span>&nbsp;
               <span class="border border-success text-success" style="font-size: 14px;padding:0px 10px;"><?=$item['label'] ?></span>
             </p>
-            <p style="color:#a3a3a3;display: -webkit-flex;flex-direction: row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;">
+            <p style="color:#a3a3a3;">
               <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
               <span style="font-size: 16px;">&nbsp;<?=$item['rec_city'] ?><?=$item['rec_district'] ?><?=$item['rec_detail'] ?></span>
             </p>
           </div>
 
-          <div data-id="<?=$item['id'] ?>" class="edit_address_item" style="width: 10%">
+          <div data-id="<?=$item['id'] ?>" class="edit_address_item" style="width: 10%;display: table-cell;vertical-align: middle;">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
           </div>
 
-          <div data-id="<?=$item['id'] ?>" class="del_address_item" style="width: 10%">
+          <div data-id="<?=$item['id'] ?>" class="del_address_item" style="width: 10%;display: table-cell;vertical-align: middle;">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
           </div>
       </div>
       <?php } ?>
     </div>
 
-    <button id="inner_add_address" type="button" class="btn btn-danger btn-sm" style="width:50%;margin-left:25%;font-size: 14px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加地址并使用</button>
+    <button id="inner_add_address" type="button" class="btn btn-danger btn-sm" style="width:40%;margin-left:25%;font-size: 14px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加地址并使用</button>
     <span id='close_all_address_bottom' style="padding-left: 22px;font-size: 16px;color:#0C58B0;">关闭</span>
 </div>
 
 <div class="card" id="address_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: -webkit-center;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-      收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_address"></i>
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+      收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 15px;" id="close_address"></i>
   </div>
   <form id="address_form" name='address_form' style='margin:5%;'>
     <input type="hidden" name="id" value='' id="edit_address_id" />
-    <div class='form-group'>
-        <label style="width:30%;">收货人：</label>
-        <input style="width:65%;" type='text' placeholder='' name='rec_name' class='form-control input-sm' id='rec_name' maxlength=45 value='' />
+    <div class='form-group' style="display: table;width: 100%;margin-bottom: 5px;">
+        <label style="width:30%;display: table-cell;">收货人：</label>
+        <input style="width:65%;display: table-cell;" type='text' placeholder='' name='rec_name' class='form-control input-sm' id='rec_name' maxlength=45 value='' />
     </div>
-    <div class='form-group'>
-        <label style="width:30%;">手机号码：</label>
-        <input style="width:65%;" type='text' placeholder='' name='rec_phone' class='form-control input-sm' id='phone' size=11 value='' />
+    <div class='form-group' style="display: table;width: 100%;margin-bottom: 5px;">
+        <label style="width:30%;display: table-cell;">手机号码：</label>
+        <input style="width:65%;display: table-cell;" type='text' placeholder='' name='rec_phone' class='form-control input-sm' id='phone' size=11 value='' />
     </div>
-    <div class='form-group'>
-        <label style="width:30%;">所在城市：</label>
-        <select class="form-control" style="width:65%;" name="rec_city" id="rec_city">
+    <div class='form-group' style="display: table;width: 100%;margin-bottom: 5px;">
+        <label style="width:30%;display: table-cell;">所在城市：</label>
+        <select class="form-control" style="width:65%;display: table-cell;" name="rec_city" id="rec_city">
           <option value="成都市">成都市</option>
         </select>
     </div>
-    <div class='form-group'>
-        <label style="width:30%;">所在地区：</label>
-        <select class="form-control" style="width:65%;" name="rec_district" id="rec_district">
+    <div class='form-group' style="display: table;width: 100%;margin-bottom: 5px;">
+        <label style="width:30%;display: table-cell;">所在地区：</label>
+        <select class="form-control" style="width:65%;display: table-cell;" name="rec_district" id="rec_district">
         <?php foreach($citymap as $item) { ?>
           <option value="<?=$item ?>"><?=$item ?></option>
         <?php } ?>
         </select>
     </div>
-    <div class='form-group'>
-        <label style="width:30%;">详细地址：</label>
-        <textarea class="form-control" style="width:65%;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
+    <div class='form-group' style="display: table;width: 100%;margin-bottom: 5px;">
+        <label style="width:30%;display: table-cell;">详细地址：</label>
+        <textarea class="form-control" style="width:65%;display: table-cell;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
     </div>
-    <div class='form-group' style='margin-top:10px;padding-bottom:10px;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;' id="label_add_group">
-        <label style="width:30%;">标签：</label>
-        <div style="width:68%;">
+    <div class='form-group' style='margin-top:5px;padding-bottom:5px;display: table;width: 100%;' id="label_add_group">
+        <label style="width:30%;display: table-cell;">标签：</label>
+        <div style="width:68%;display: table-cell;">
           <div class="label_choose active">家</div>
           <div class="label_choose">公司</div>
           <div class="label_choose">学校</div>
+          <div class="label_choose">其它</div>
           <div id="label_add">+</div>
           <div id="label_add_input" style="width:95%;display: none;">
             <div class="input-group">
@@ -528,16 +535,17 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         </div>
     </div>
 
-    <div style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-center;display: flex;flex-direction: row;justify-content: center;width: 100%;">
-      <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存并使用</button>
+    <div style="width: 100%;">
+      <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:140px;margin-left:30%;">保存并使用</button>
       <span id='close_address_bottom' style="padding-left: 25px;font-size: 16px;color:#0C58B0;line-height: 31px;">关闭</span>
     </div>
   </form>
 </div>
 
 <div class="card" id="coupon">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: -webkit-center;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-      优惠券<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_coupon"></i>
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+      优惠券
+      <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_coupon"></i>
   </div>
   <div id="coupon_items" data-ids="" style="height: 72%;overflow-y: scroll;">
   </div>
@@ -555,14 +563,12 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span style="padding-right: 5px;">普通订单: </span>
       <span style="width:72%;">24小时内发货</span>
     </p>
+
     <p style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">预约订单: </span>
-      <span style="width:72%;">每周<?=Yii::$app->params['bookingSender'] ?>上午发货。<br/>取最近的时间发货</span>
+      <span style="width:72%;">每周<?=Yii::$app->params['bookingSender'] ?>上午发货，取最近的时间发货</span>
     </p>
-<!--     <p style="display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
-      <span style="padding-right: 5px;">私人定制: </span>
-      <span style="width:72%;">客服沟通发货时间和方式</span>
-    </p> -->
+
     <p style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
       <span style="padding-right: 5px;">特殊要求: </span>
       <span style="width:72%;">请留言或直接联系我们</span>

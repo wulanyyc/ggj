@@ -144,6 +144,22 @@ main {
     .zhang_img {
         left: 28% !important;
     }
+
+    #ask.right-arrow {
+        width: 25% !important;
+    }
+
+    #express_time.right-arrow {
+        width: 19% !important;
+    }
+
+    #coupon_detail.right-arrow {
+        width: 23% !important;
+    }
+
+    #product-arrow.right-arrow {
+        width: 19% !important;
+    }
 }
 
 /* Extra small devices (portrait phones, less than 576px) */

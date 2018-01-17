@@ -53,10 +53,18 @@ $(document).ready(function () {
         }
     });
 
-    $('input[name="express_rule"]').change(function(){
-        if ($(this).val() == 1) {
+    $('.express_rule').click(function(){
+        $('.express_rule .icon').each(function(){
+            $(this).html('<i class="fa fa-square-o" aria-hidden="true"></i>');
+        });
+
+        $(this).find('.icon').html('<i class="fa fa-check-square-o" aria-hidden="true"></i>');
+
+        if ($(this).attr('data-id') == 1) {
             var product_price = parseFloat($('#product_price').val());
             var buy_god = parseFloat($('#buy_god').val());
+
+            $('#history_express_rule').val(1);
 
             if (product_price > buy_god) {
                 $('#express_fee_show').html(0);
@@ -64,6 +72,7 @@ $(document).ready(function () {
                 $('#express_fee_show').html($('#std_express_fee').val());
             }
         } else {
+            $('#history_express_rule').val($(this).attr('data-id'));
             $('#express_fee_show').html(0);
         }
 
@@ -406,7 +415,7 @@ $(document).ready(function () {
                 memo: $('#memo').val(),
                 product_price: $('#product_price').html(),
                 pay_money: $('#realprice').html(),
-                express_rule: $('input[name="express_rule"]:checked').val(),
+                express_rule: $('#history_express_rule').val(),
                 express_fee: $('#express_fee_show').html(),
                 discount_phone: $('#code').val(),
                 discount_fee: $('#discount_fee').html(),
