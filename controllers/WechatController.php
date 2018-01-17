@@ -139,9 +139,6 @@ class WechatController extends Controller
                     }
                     $ar->save();
 
-                    // TODO 关注公众号，修改优惠id
-                    PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
-
                     $cusar = new Customer();
                     $cusar->openid = $userinfo['openid'];
                     $cusar->sex = $userinfo['sex'];
@@ -154,6 +151,8 @@ class WechatController extends Controller
                     }
                     $cusar->save();
 
+                    // TODO 关注公众号，修改优惠id
+                    PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
                     // TODO 首单优惠，修改优惠id
                     PriceHelper::createCoupon(Yii::$app->params['coupon']['login'], $openid);
                 }
