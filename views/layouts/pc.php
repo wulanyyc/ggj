@@ -30,7 +30,7 @@ SiteAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;display:flex;flex-direction: row;align-items: center;justify-content: space-between;flex-wrap: nowrap;">
+<nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;">
     <a class="navbar-brand" href="/" style="color:white;">果果佳</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">

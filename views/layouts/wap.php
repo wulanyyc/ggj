@@ -27,7 +27,7 @@ SiteAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;display: flex;flex-direction: row;justify-content: space-between;flex-wrap: nowrap;">
+<nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;">
     <div id="back" style="color:white;cursor: pointer;display: inline;"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
     <a class="navbar-brand" href="/" style="color:white;text-align: center;width: 60%;padding-left: 15%">果果佳</a>
     <a style="display: inline-block;margin-left:10px;text-decoration: none;color: #fff;" href="/customer" id="top_right_link">个人中心</a>

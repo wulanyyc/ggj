@@ -332,6 +332,10 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     margin-top: 5px;
     position: absolute;bottom: 0px;
   }
+
+  .zhang_img {
+    position: absolute;top:5px;left:38%;width:40px;
+  }
 </style>
 
 <?php if (strlen($homeTip) > 0) { ?>
@@ -450,7 +454,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
               </div>
               <!-- </div> -->
 
-              <img src="http://img.guoguojia.vip/img/xiandu.png" style="position: absolute;top:5px;left:38%;width:40px;" />
+              <img src="http://img.guoguojia.vip/img/xiandu.png" class="zhang_img"/>
             </a>
 
             <div class="tip-content">

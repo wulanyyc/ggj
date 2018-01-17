@@ -121,6 +121,29 @@ main {
     .order-product {
         width: 98% !important;
     }
+
+    .label-items {
+        display: block !important;
+        float: none !important;
+        margin-top: 5px;
+    }
+
+    .label-item {
+        font-size: 12px !important;
+        padding: 3px 3px !important;
+    }
+
+    .promotion-item-right img {
+        height: 120px !important;
+    }
+
+    .product-card-img img {
+        height: 100px !important;
+    }
+
+    .zhang_img {
+        left: 28% !important;
+    }
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
@@ -188,6 +211,11 @@ main {
         width: 98% !important;
     }
 
+    .label-items {
+        display: block !important;
+        float: none !important;
+        margin-top: 5px;
+    }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -252,6 +280,12 @@ main {
 
     .order-product {
         width: 98% !important;
+    }
+
+    .label-items {
+        display: block !important;
+        float: none !important;
+        margin-top: 5px;
     }
 }
 
