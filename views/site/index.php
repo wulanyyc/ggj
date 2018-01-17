@@ -20,6 +20,63 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     margin-bottom: 0;
   }
 
+  #promotion {
+    width: 100%;
+    margin: 0 auto;
+    display: table;
+  }
+
+  a.promotion-item {
+    display: table-cell;
+    width: 50%;
+    padding: 5px;
+
+    border-radius: 3px;
+    text-decoration: none;
+  }
+
+  .promotion-item-left {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+    opacity: 0.9;
+    text-align: center;
+  }
+
+  .promotion-item-left-content {
+    width:70%;margin: auto;
+  }
+
+  .promotion-item-left-content-top {
+    text-align: center;
+    font-size: 20px;
+    color:#fff;
+    height: 44px;
+    line-height: 44px;
+    border-bottom: 2px solid #fff;
+    font-weight: 400;
+    width:100%;
+  }
+
+  .promotion-item-left-content-bottom {
+    color:#fff;
+    font-size:14px;
+    line-height: 26px;
+    padding:3px;
+    text-align: center;
+  }
+
+  .promotion-item-right {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+    text-align:center;
+  }
+
+  .promotion-item-right img {
+    height: 140px;
+  }
+
   .card {
     border-radius: 0;
     border: none;
@@ -28,27 +85,19 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     margin: 3px 5px;
   }
 
-  .first-rec {
-    color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;
- 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  .label-rec {
+    color: #53a93f;
+    border-radius: 0;
+    border-bottom: 2px solid #92BC2C;
   }
 
-  .first-items {
-    width:60%;
-
-    flex-wrap: wrap;
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: flex-end;
+  .label-items {
+    float: right;
   }
 
-  .first-item {
+  .label-item {
     border: 1px solid #53a93f;
-    padding: 3px 5px;
+    padding: 3px 4px;
     color: #fff;
     background-color: #53a93f;
     text-align: center;
@@ -56,40 +105,50 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     transform: scale(0.9);
   }
 
-  .first-item:hover {
+  .label-item:hover {
     cursor: hand;
     opacity: 0.9;
     text-decoration: none;
     color: #fff;
   }
 
-  .first-active {
+  .label-active {
     border: 1px solid red;
     background-color: red;
   }
 
   .product-items {
-    flex-wrap: wrap;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-
     margin-top: 5px;
+    width: 100%;
   }
 
   .product-item {
+    display: inline-table;
     width: 33%;
     border: 1px solid #f5f5f5;
     margin-bottom: 5px;
   }
 
   a.product-item-content {
-    text-decoration: none;color:#000;
+    text-decoration: none;
+    color: #000;
+    display: table;
+  }
 
-    display: flex;
-    justify-content: space-between;
-    /*align-items: stretch;*/
-    flex-direction: column;
+  .product-card-img {
+    display: table-cell;
+    width:40%;
+    vertical-align: middle;
+  }
+
+  .product-card-img img {
+    height: 150px;
+  }
+
+  .product-card-content {
+    display: table-cell;
+    width: 58%;
+    vertical-align: middle;
   }
 
   .product-item .tip-content {
@@ -106,7 +165,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   .title {
     margin-bottom: 4px;
     font-size: 16px;
-    height: 18px;
+    /*height: 18px;*/
     line-height: 18px;
     padding-left: 10px;
   }
@@ -114,7 +173,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   .desc {
     margin-bottom: 4px;
     font-size: 14px;
-    height: 16px;
+    /*height: 16px;*/
     line-height: 16px;
     padding-left: 10px;
   }
@@ -123,23 +182,20 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     margin-bottom: 6px;
     color: red;
     font-size: 15px;
-    height: 20px;
+    /*height: 20px;*/
     padding-left: 10px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
   }
 
   .sale-badge {
-    font-weight:bold;
+    font-weight: bold;
     border-radius: 3px;
     font-size: 12px;
     padding: 0px 4px;
-    margin-right: 5px;
+    margin-right: 3px;
     line-height: 18px;
+    width: 40px;
+    text-align: center;
+    display: inline-block;
   }
 
   .slogan {
@@ -170,103 +226,49 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     -webkit-transform:scale(0.8);
   }
 
-  #promotion {
-    margin-top:5px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content:space-around;
-  }
-
-  a.promotion-item {
-    width:49%;height:150px;
-    border-radius: 3px;
-    text-decoration: none;
-
-    display: flex;
-    flex-direction: row;
-  }
-
-  .promotion-item-left {
-    width:50%;height:100%;opacity: 0.8;
-
-    display: flex;
-    justify-content:center;
-    align-items:center;
-  }
-
-  .promotion-item-left-content {
-    height:50%;width:70%;
-  }
-
-  .promotion-item-left-content-top {
-    text-align: center;font-size: 20px;color:#fff;
-    height: 44px;line-height: 44px;
-    border-bottom: 2px solid #fff;font-weight: 400;width:100%;
-  }
-
-  .promotion-item-left-content-bottom {
-    color:#fff;font-size:14px;line-height: 26px;padding:3px;text-align: center;
-  }
-
-  .promotion-item-right {
-    width:50%;height:100%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  .discount {
+    font-size: 12px;
+    padding-left: 5px;
+    padding-top: 5px;
+    display: inline-block;
   }
 
   #package {
     margin-top: 5px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: stretch;
-    flex-wrap: wrap;
+    width: 100%;
+    display: table-row;
   }
 
-  #package .card {
-    border-radius: 0;width: 32%;margin-bottom: 2%;
+  #package .package-content {
+    width: 33%;
+    display: table-cell;
+    text-decoration: none;color:black;
+    position: relative;
   }
 
-  #package .card-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    color: #fff;border-radius: 0;
+  .package-content-header {
+    color: #fff;
+    border-radius: 0;
+    padding: 3%;
+    font-size: 16px;
   }
+
 
   .package-item {
     height: auto;
   }
 
   .package-item-products{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
     color:black;
     text-decoration: none;
+    display: table;
   }
 
   .package-item-product{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: nowrap;
-
-    font-size:14px;
-    width: 48%;
-  }
-
-  .promotion-item-right img {
-    height: 80%;
+    font-size: 14px;
+    display: table-row;
+    vertical-align: middle;
+    margin-top: 5px;
   }
 
   .label {
@@ -319,42 +321,16 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .border_3 {
     border-top: 1px solid #866D8D;
-    /*background-color: #866D8D;*/
   }
 
   .package-price {
-    position: absolute;bottom:0px;
     width:100%;
-
-    display: flex;flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-
     height:40px;
-    line-height: 40px;
     border-top: 1px solid #f5f5f5;
-  }
-
-  .product-item-content-inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: nowrap;
-
-    padding:3%;height:90%;
-  }
-
-  .discount {
-    font-size: 12px;padding-left:5px;padding-top: 5px;
-  }
-
-  .product-card-img {
-    width: 40%;
-  }
-
-  .product-card-content {
-    width: 58%;
+    text-align: right;
+    line-height: 40px;
+    margin-top: 5px;
+    position: absolute;bottom: 0px;
   }
 </style>
 
@@ -366,28 +342,33 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
 <div id="promotion">
   <a class="promotion-item" href="<?=$newPromotion['link'] ?>">
-    <div class="promotion-item-left" style="background-color: #53a93f;">
-      <div class="promotion-item-left-content">
-        <div class="promotion-item-left-content-top">果果特惠</div>
-        <div class="promotion-item-left-content-bottom"><?=$newPromotion['text'] ?></div>
+    <div style="display: table;width:100%;">
+      <div class="promotion-item-left" style="background-color: #53a93f;">
+        <div class="promotion-item-left-content">
+          <div class="promotion-item-left-content-top">果果特惠</div>
+          <div class="promotion-item-left-content-bottom"><?=$newPromotion['text'] ?></div>
+        </div>
       </div>
-    </div>
 
-    <!--D0E3DC-->
-    <div class="promotion-item-right" style="background-color: #D0E3DC;">
-      <img src="<?=$newPromotion['img'] ?>"></img>
+      <div class="promotion-item-right" style="background-color: #D0E3DC;">
+        <img src="<?=$newPromotion['img'] ?>"></img>
+      </div>
     </div>
   </a>
 
-  <a class="promotion-item" href="<?=$dayPromotion['link'] ?>">
-    <div class="promotion-item-left" style="background-color: #DD182B;">
-      <div class="promotion-item-left-content">
-        <div class="promotion-item-left-content-top">今日特价</div>
-        <div class="promotion-item-left-content-bottom"><?=$dayPromotion['text'] ?></div>
+  <a class="promotion-item promotion-item-down" href="<?=$dayPromotion['link'] ?>">
+    <div style="display: table;width:100%;">
+      <div class="promotion-item-left" style="background-color: #DD182B;">
+        <div class="promotion-item-left-content">
+          <div class="promotion-item-left-content-top">今日特价</div>
+          <div class="promotion-item-left-content-bottom"><?=$dayPromotion['text'] ?></div>
+        </div>
       </div>
-    </div>
-    <div class="promotion-item-right" style="background-color: #F3CFD3;">
-      <img src="<?=$dayPromotion['img'] ?>"></img>
+
+      <div class="promotion-item-right" style="background-color: #F3CFD3;">
+        <img src="<?=$dayPromotion['img'] ?>"></img>
+      </div>
+
     </div>
   </a>
 
@@ -405,73 +386,76 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 </div>
 
 <div class="card">
-    <div class="card-header bg-white first-rec">
-        <span class="first-title">天天鲜果</span>
-        <div class="first-items">
-            <a href="#" class="first-item first-active" data-tag="all">全部</a>
+    <div class="card-header bg-white label-rec">
+        <span class="label-title">天天鲜果</span>
+        <div class="label-items">
+            <a href="#" class="label-item label-active" data-tag="all">全部</a>
             <?php foreach($tags as $tag) { ?>
-              <a href="#" class="first-item" data-tag="<?=$tag['en_name'] ?>"><?=$tag['name'] ?></a>
+              <a href="#" class="label-item" data-tag="<?=$tag['en_name'] ?>"><?=$tag['name'] ?></a>
             <?php } ?>
         </div>
     </div>
+
     <div class="product-items">
       <?php foreach($fruits as $product) { ?>
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
             <a class="product-item-content" href="<?=$product['link'] ?>">
-              <div class="product-item-content-inner">
-                <img class="product-card-img" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
-                <div class="product-card-content">
-                  <p class="title"><?=$product['name'] ?></p>
-                  <p class="desc"><?=$product['desc'] ?></p>
-
-                  <?php if (isset($product['booking_price'])) { ?>
-                  <div class="price">
-                    <div class="sale-badge" style="border:1px solid #866D8D;color:#866D8D;">预约</div>
-                    <div>
-                      <span class="money" style="color:#866D8D;">¥</span>
-                      <span class="realprice" style="color:#866D8D;">
-                        <?=$product['booking_price'] ?>
-                        <span class="money">元/<?=$product['unit'] ?></span>
-                      </span>
-                    </div>
-
-                    <div class="discount">
-                      <?php if ($product['booking_price'] < $product['price']) { ?>
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <?=round($product['booking_price']/$product['price'], 2) * 10 ?>折
-                      <?php } ?>
-                    </div>
-                  </div>
-                  <?php } ?>
-
-                  <?php if (isset($product['buy_price'])) { ?>
-                  <div class="price">
-                    <div class="sale-badge" style="border:1px solid red;">现售</div>
-                    <div>
-                      <span class="money">¥</span>
-                      <span class="realprice">
-                        <?=$product['buy_price'] ?>
-                        <span class="money">元/<?=$product['unit'] ?></span>
-                      </span>
-                    </div>
-                    <div class="discount">
-                      <?php if ($product['buy_price'] < $product['price']) { ?>
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <?=round($product['buy_price']/$product['price'], 2) * 10 ?>折
-                      <?php } ?>
-                    </div>
-                  </div>
-                  <?php } ?>
-                </div>
+              <div class="product-card-img">
+                <img src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
               </div>
 
-              <div class="tip-content">
+              <div class="product-card-content">
+                <p class="title"><?=$product['name'] ?></p>
+                <p class="desc"><?=$product['desc'] ?></p>
+
+                <?php if (isset($product['booking_price'])) { ?>
+                <div class="price">
+                  <div class="sale-badge" style="border:1px solid #866D8D;color:#866D8D;">预约</div>
+                  <div style="display: inline-block;">
+                    <span class="money" style="color:#866D8D;">¥</span>
+                    <span class="realprice" style="color:#866D8D;">
+                      <?=$product['booking_price'] ?>
+                      <span class="money">元/<?=$product['unit'] ?></span>
+                    </span>
+                  </div>
+
+                  <div class="discount">
+                    <?php if ($product['booking_price'] < $product['price']) { ?>
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <?=round($product['booking_price']/$product['price'], 2) * 10 ?>折
+                    <?php } ?>
+                  </div>
+                </div>
+                <?php } ?>
+
+                <?php if (isset($product['buy_price'])) { ?>
+                <div class="price">
+                  <div class="sale-badge" style="border:1px solid red;">现售</div>
+                  <div style="display: inline-block;">
+                    <span class="money">¥</span>
+                    <span class="realprice">
+                      <?=$product['buy_price'] ?>
+                      <span class="money">元/<?=$product['unit'] ?></span>
+                    </span>
+                  </div>
+
+                  <div class="discount">
+                    <?php if ($product['buy_price'] < $product['price']) { ?>
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <?=round($product['buy_price']/$product['price'], 2) * 10 ?>折
+                    <?php } ?>
+                  </div>
+                </div>
+                <?php } ?>
+              </div>
+              <!-- </div> -->
+
+              <img src="http://img.guoguojia.vip/img/xiandu.png" style="position: absolute;top:5px;left:38%;width:40px;" />
+            </a>
+
+            <div class="tip-content">
                   <?=$product['slogan'] ?>
               </div>
-
-              <!-- <img src="http://img.guoguojia.vip/img/xx2.png" style="position: absolute;top:0;right:0;width:80px;" /> -->
-              <img src="http://img.guoguojia.vip/img/xiandu.png" style="position: absolute;top:10px;left:30%;width:40px;" />
-            </a>
           </div>
       <?php } ?>
     </div>
@@ -480,13 +464,14 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 <?php if (count($packages) > 0){ ?>
 <div class="card">
     <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-        <span class="first-title">特惠套餐</span>
+        <span class="label-title">特惠套餐</span>
     </div>
 
     <div id="package">
       <?php foreach($packages as $item) { ?>
-      <a class="card style_<?=$item['index'] ?>" href="<?=$item['link'] ?>" style="display: block;text-decoration: none;color:black;">
-          <div class="card-header header_<?=$item['index'] ?>">
+      <!-- <div class="package-container" style="display: table-cell;padding: 1%;"> -->
+      <a class="style_<?=$item['index'] ?> package-content" href="<?=$item['link'] ?>">
+          <div class="header_<?=$item['index'] ?> package-content-header">
               <span><?=$item['name'] ?></span>
               <span><?=$item['slogan'] ?></span>
           </div>
@@ -494,9 +479,11 @@ MsaView::registerJsFile($this,'/js/site/index.js',
             <div class="package-item-products">
               <?php foreach($item['list'] as $product) { ?>
               <div class="package-item-product">
-                <img src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" style="height:60px;"/>
-                <span style="display: inline-block;width: 70px;overflow-x: hidden;"><?=$product['name'] ?></span>
-                <span style="padding-left: 5px;"><?=$product['num'] ?><?=$product['unit'] ?></span>
+                <div style="display: table-cell;vertical-align: middle;width:40%;text-align: center;">
+                  <img src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" style="width: 40%;"/>
+                </div>
+                <div style="display: table-cell;vertical-align: middle;width:45%;"><?=$product['name'] ?></div>
+                <div style="display: table-cell;vertical-align: middle;text-align: center;"><?=$product['num'] ?><?=$product['unit'] ?></div>
               </div>
               <?php } ?>
             </div>
@@ -518,6 +505,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
             </div>
           </div>
       </a>
+      <!-- </div> -->
       <?php } ?>
     </div>
 </div>

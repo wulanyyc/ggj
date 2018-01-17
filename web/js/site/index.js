@@ -1,11 +1,11 @@
 $(document).ready(function () {
     $('.carousel').carousel();
 
-    $('.first-item').click(function(e){
+    $('.label-item').click(function(e){
         e.preventDefault();
-        $('.first-item').each(function(){
-            $(this).removeClass('first-active');
-            $(e.target).addClass('first-active');
+        $('.label-item').each(function(){
+            $(this).removeClass('label-active');
+            $(e.target).addClass('label-active');
         });
 
         var tag = $(this).attr('data-tag');
@@ -26,12 +26,4 @@ $(document).ready(function () {
     $('#package .card').click(function(){
         location.href= $(this).attr('data-link');
     });
-
-    // $('.product-item-content').mouseover(function(){
-    //     $(this).find('.tip-content').show();
-    // });
-
-    // $('.product-item-content').mouseout(function(){
-    //     $(this).find('.tip-content').hide();
-    // });
 });
