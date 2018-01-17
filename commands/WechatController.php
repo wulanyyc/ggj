@@ -65,6 +65,9 @@ class WechatController extends Controller
                 $up->unionid = $value['unionid'];
                 $up->save();
             } else {
+                $exsit = CustomerWeixin::find()->where(['openid' => $value['openid']])->count();
+                if ($exsit > 0) continue;
+
                 $add = new Customer();
                 $add->openid = $value['openid'];
                 $add->unionid = $value['unionid'];
