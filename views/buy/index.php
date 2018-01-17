@@ -284,7 +284,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div id="tongji" style="display: table-cell;vertical-align: middle;text-align: right;">
-  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 14px;margin-right: 8px;text-align: center;padding:0px 5px !important;display: inline-block;" id="filter" data-filter=0>显订购</button>
+  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 14px;margin-right: 2px;text-align: center;padding:0px 4px !important;display: inline-block;" id="filter" data-filter=0>显订购</button>
 
   <div id="tips" style="color:#aaa;margin-left: 1px;margin-right: 1px;font-size: 14px;display: inline-block;">满<?=$buyGod ?>包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;display: inline-block;">
