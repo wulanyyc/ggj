@@ -66,13 +66,13 @@ class WechatController extends Controller
                 $up->save();
             } else {
                 $add = new Customer();
-                $up->openid = $value['openid'];
-                $up->unionid = $value['unionid'];
-                $up->nick = $value['nickname'];
-                $up->headimgurl = $value['headimgurl'];
-                $up->city = $value['city'];
-                $up->sex = $value['sex'];
-                $up->save();
+                $add->openid = $value['openid'];
+                $add->unionid = $value['unionid'];
+                $add->nick = $value['nickname'];
+                $add->headimgurl = $value['headimgurl'];
+                $add->city = $value['city'];
+                $add->sex = $value['sex'];
+                $add->save();
             }
         }
     }
