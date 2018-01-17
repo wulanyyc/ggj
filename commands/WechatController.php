@@ -10,6 +10,7 @@ namespace app\commands;
 use Yii;
 use yii\console\Controller;
 use app\components\WechatHelper;
+use app\components\PriceHelper;
 use app\models\CustomerWeixin;
 use app\models\Customer;
 
@@ -65,8 +66,8 @@ class WechatController extends Controller
             //     $up->unionid = $value['unionid'];
             //     $up->save();
             // } else {
-                // $arr = CustomerWeixin::find()->where(['openid' => $value['openid']])->asArray()->one();
-                // if (!empty($arr)) continue;
+                $arr = CustomerWeixin::find()->where(['openid' => $value['openid']])->asArray()->one();
+                if (!empty($arr)) continue;
 
                 $add = new Customer();
                 $add->openid = $value['openid'];
@@ -81,7 +82,10 @@ class WechatController extends Controller
                 $up->customer_id = $add->id;
                 $up->save();
 
-
+                // TODO 关注公众号，修改优惠id
+                PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
+                // TODO 首单优惠，修改优惠id
+                PriceHelper::createCoupon(Yii::$app->params['coupon']['login'], $openid);
             // }
         }
     }
