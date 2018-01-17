@@ -10,6 +10,8 @@ namespace app\commands;
 use Yii;
 use yii\console\Controller;
 use app\components\WechatHelper;
+use app\models\CustomerWeixin;
+use app\models\Customer;
 
 
 /**
@@ -52,5 +54,26 @@ class WechatController extends Controller
         $ret = WechatHelper::curlRequest($url, http_build_query($params));
 
         var_dump($ret);
+    }
+
+    public function actionSync() {
+        $arr = CustomerWeixin::find()->asArray()->all();
+        foreach($arr as $key => $value) {
+            if ($value['customer_id'] > 0) {
+                $up = Customer::findOne($value['customer_id']);
+                $up->openid = $value['openid'];
+                $up->unionid = $value['unionid'];
+                $up->save();
+            } else {
+                $add = new Customer();
+                $up->openid = $value['openid'];
+                $up->unionid = $value['unionid'];
+                $up->nick = $value['nickname'];
+                $up->headimgurl = $value['headimgurl'];
+                $up->city = $value['city'];
+                $up->sex = $value['sex'];
+                $up->save();
+            }
+        }
     }
 }
