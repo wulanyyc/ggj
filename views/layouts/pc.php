@@ -30,8 +30,8 @@ SiteAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;">
-    <a class="navbar-brand" href="/" style="color:white;">果果佳</a>
+<nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #53a93f;display: table;width: 100%;">
+    <a class="navbar-brand" href="/" style="color:white;display: table-cell;padding-right: 5px;">果果佳</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -73,12 +73,11 @@ SiteAsset::register($this);
         </ul>
     </div>
 
-    <div class="d-inline search-top" style="position: relative;">
-        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，好吃不贵" aria-label="美丽健康，新鲜不贵" style="padding-left: 25px;font-size: 14px;" />
-        <div style="position: absolute;left:8px;top:5px;"><i class="fa fa-search" aria-hidden="true"></i></div>
+    <div class="d-inline search-top" style="display: table-cell;">
+        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder="美丽健康，好吃不贵" aria-label="美丽健康，新鲜不贵" style="font-size: 14px;width: 100%;" />
     </div>
 
-    <a style="display: inline-block;text-decoration: none;color: #fff;font-size: 16px;margin-left: 6px;" href="/customer">个人中心</a>
+    <a style="display: table-cell;text-decoration: none;color: #fff;font-size: 16px;text-align: right;width: 70px;" href="/customer">个人中心</a>
 </nav>
 
 <main>
