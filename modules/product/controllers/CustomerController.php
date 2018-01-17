@@ -46,9 +46,9 @@ class CustomerController extends AuthController
 
         foreach($ret as $key => $value) {
             if ($ret[$key]['status'] == 1) {
-                $ret[$key]['status'] = "<span style='color:green'>已激活</span>";
+                $ret[$key]['status'] = "<span style='color:green'>微信</span>";
             } else if ($ret[$key]['status'] == 2){
-                $ret[$key]['status'] = "<span style='color:red'>未激活</span>";
+                $ret[$key]['status'] = "<span style='color:red'>手机</span>";
             }
 
             $ret[$key]['operation'] = "

@@ -64,28 +64,26 @@ class SmsController extends Controller
         } else {
             $id = SiteHelper::addCustomer($params['phone']);
 
-            // add customer_weixin
-            if (!empty($_COOKIE['openid'])) {
-                // coupon connect
-                CouponUse::updateAll(['customer_id' => $id], ['openid' => $_COOKIE['openid']]);
+            // if (!empty($_COOKIE['openid'])) {
+            //     CouponUse::updateAll(['customer_id' => $id], ['openid' => $_COOKIE['openid']]);
                 
-                $exsitData = CustomerWeixin::find()->where(['openid' => $_COOKIE['openid']])->asArray()->one();
-                if (count($exsitData) > 0) {
-                    $up = CustomerWeixin::findOne($exsitData['id']);
-                    $up->customer_id = $exsitData['id'];
-                    $up->save();
+            //     $exsitData = CustomerWeixin::find()->where(['openid' => $_COOKIE['openid']])->asArray()->one();
+            //     if (count($exsitData) > 0) {
+            //         $up = CustomerWeixin::findOne($exsitData['id']);
+            //         $up->customer_id = $exsitData['id'];
+            //         $up->save();
 
-                    $upCus = Customer::findOne($id);
-                    $upCus->nick = $exsitData['nickname'];
-                    $upCus->headimgurl = $exsitData['headimgurl'];
-                    $upCus->save();
-                } else {
-                    $ar = new CustomerWeixin();
-                    $ar->openid = $_COOKIE['openid'];
-                    $ar->customer_id = $id;
-                    $ar->save();
-                }
-            }
+            //         $upCus = Customer::findOne($id);
+            //         $upCus->nick = $exsitData['nickname'];
+            //         $upCus->headimgurl = $exsitData['headimgurl'];
+            //         $upCus->save();
+            //     } else {
+            //         $ar = new CustomerWeixin();
+            //         $ar->openid = $_COOKIE['openid'];
+            //         $ar->customer_id = $id;
+            //         $ar->save();
+            //     }
+            // }
 
             SiteHelper::render('ok', [
                 'secret' => SiteHelper::buildSecret($params['phone']), 

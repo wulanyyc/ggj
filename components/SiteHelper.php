@@ -23,9 +23,7 @@ use app\modules\product\models\ProductList;
 class SiteHelper extends Component{
     public static function addCustomer($phone) {
         $id = Customer::find()->where(['phone' => $phone])->select('id')->scalar();
-        // TODO 首单优惠，修改优惠id
-        PriceHelper::createCoupon(Yii::$app->params['coupon']['login']);
-        
+
         if ($id > 0) {
             $up = Customer::findOne($id);
             $up->status = 1;
@@ -36,6 +34,9 @@ class SiteHelper extends Component{
             $ar->status = 1;
             $ar->save();
             $id = $ar->id;
+
+            // TODO 首单优惠，修改优惠id
+            PriceHelper::createCoupon(Yii::$app->params['coupon']['login']);
         }
 
         return $id;
@@ -161,7 +162,14 @@ class SiteHelper extends Component{
         return gethostbyname($_SERVER['SERVER_NAME']);
     }
 
-    public static function getCustomerId() {
+    public static function getCustomerId($openid = "") {
+        if (!empty($openid)) {
+            $cid = Customer::find()->select('id')->where(['openid' => $openid])->scalar();
+            if ($cid > 0) {
+                return $cid;
+            }
+        }
+
         if (!empty($_COOKIE['cid'])) {
             return $_COOKIE['cid'];
         }

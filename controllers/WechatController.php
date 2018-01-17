@@ -96,49 +96,66 @@ class WechatController extends Controller
         $openid = $data['FromUserName'];
 
         if ($event == 'subscribe') {
-            // TODO 关注公众号，修改优惠id
-            PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
-
             $userinfo = WechatHelper::getUserInfo($openid);
             if (!isset($userinfo['errcode'])) {
                 $exsit = CustomerWeixin::find()->where(['openid' => $openid])->asArray()->one();
 
                 if (count($exsit) > 0) {
                     $ar = CustomerWeixin::findOne($exsit['id']);
+                    $ar->openid = $userinfo['openid'];
+                    $ar->sex = $userinfo['sex'];
+                    $ar->is_subscribe = $userinfo['subscribe'];
+                    $ar->headimgurl = $userinfo['headimgurl'];
+                    $ar->city = $userinfo['city'];
+                    $ar->nickname = $userinfo['nickname'];
+                    $ar->subscribe_time = $userinfo['subscribe_time'];
+                    if (isset($userinfo['unionid'])) {
+                        $ar->unionid = $userinfo['unionid'];
+                    }
+                    $ar->save();
+
+                    $exsitCus = Customer::find()->where(['openid' => $openid])->asArray()->one();
+                    $cusar = Customer::findOne($exsitCus['id']);
+                    $cusar->openid = $userinfo['openid'];
+                    $cusar->sex = $userinfo['sex'];
+                    $cusar->headimgurl = $userinfo['headimgurl'];
+                    $cusar->city = $userinfo['city'];
+                    $cusar->nick = $userinfo['nickname'];
+                    if (isset($userinfo['unionid'])) {
+                        $cusar->unionid = $userinfo['unionid'];
+                    }
+                    $cusar->save();
                 } else {
                     $ar = new CustomerWeixin();
-                }
+                    $ar->openid = $userinfo['openid'];
+                    $ar->sex = $userinfo['sex'];
+                    $ar->is_subscribe = $userinfo['subscribe'];
+                    $ar->headimgurl = $userinfo['headimgurl'];
+                    $ar->city = $userinfo['city'];
+                    $ar->nickname = $userinfo['nickname'];
+                    $ar->subscribe_time = $userinfo['subscribe_time'];
+                    if (isset($userinfo['unionid'])) {
+                        $ar->unionid = $userinfo['unionid'];
+                    }
+                    $ar->save();
 
-                $ar->openid = $userinfo['openid'];
-                $ar->sex = $userinfo['sex'];
-                $ar->is_subscribe = $userinfo['subscribe'];
-                $ar->headimgurl = $userinfo['headimgurl'];
-                $ar->city = $userinfo['city'];
-                $ar->nickname = $userinfo['nickname'];
-                $ar->subscribe_time = $userinfo['subscribe_time'];
-                if (isset($userinfo['unionid'])) {
-                    $ar->unionid = $userinfo['unionid'];
-                }
-                $ar->save();
+                    // TODO 关注公众号，修改优惠id
+                    PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
 
-                $exsitCus = Customer::find()->where(['openid' => $openid])->asArray()->one();
-                if (count($exsitCus) > 0) {
-                    $cusar = Customer::findOne($exsitCus['id']);
-                } else {
                     $cusar = new Customer();
-                }
+                    $cusar->openid = $userinfo['openid'];
+                    $cusar->sex = $userinfo['sex'];
+                    $cusar->headimgurl = $userinfo['headimgurl'];
+                    $cusar->city = $userinfo['city'];
+                    $cusar->nick = $userinfo['nickname'];
+                    if (isset($userinfo['unionid'])) {
+                        $cusar->unionid = $userinfo['unionid'];
+                    }
+                    $cusar->save();
 
-                $cusar->openid = $userinfo['openid'];
-                $cusar->sex = $userinfo['sex'];
-                $cusar->headimgurl = $userinfo['headimgurl'];
-                $cusar->city = $userinfo['city'];
-                $cusar->nick = $userinfo['nickname'];
-                $cusar->subscribe_time = $userinfo['subscribe_time'];
-                if (isset($userinfo['unionid'])) {
-                    $cusar->unionid = $userinfo['unionid'];
+                    // TODO 首单优惠，修改优惠id
+                    PriceHelper::createCoupon(Yii::$app->params['coupon']['login'], $openid);
                 }
-                $cusar->save();
-
             }
 
             return '欢迎关注成都果果佳，新人享5元优惠券，首单再享5元';

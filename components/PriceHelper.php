@@ -88,10 +88,6 @@ class PriceHelper extends Component {
 
         $type = $info['type'];
 
-        if (empty($openid)) {
-            $openid = isset($_COOKIE['openid']) ? $_COOKIE['openid'] : '';
-        }
-
         if ($type == 1) {
             $exsit = CouponUse::find()->where(['cid' => $couponid])->count();
             if ($exsit) {
@@ -99,8 +95,7 @@ class PriceHelper extends Component {
             } else {
                 $ar = new CouponUse();
                 $ar->cid = $couponid;
-                $ar->customer_id = SiteHelper::getCustomerId();
-                $ar->openid = $openid;
+                $ar->customer_id = SiteHelper::getCustomerId($openid);
                 $ar->save();
 
                 return $ar->id;
@@ -108,8 +103,7 @@ class PriceHelper extends Component {
         } else {
             $ar = new CouponUse();
             $ar->cid = $couponid;
-            $ar->customer_id = SiteHelper::getCustomerId();
-            $ar->openid = $openid;
+            $ar->customer_id = SiteHelper::getCustomerId($openid);
             $ar->save();
 
             return $ar->id;
