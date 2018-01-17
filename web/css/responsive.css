@@ -321,6 +321,22 @@ main {
         display: inline-table !important;
         width: 49% !important;
     }
+
+    .navbar {
+        display: flex !important;
+    }
+
+    .navbar-brand {
+        display: inline !important;
+    }
+
+    .search-top {
+        display: inline-block !important;
+    }
+
+    .top-customer {
+        display: inline !important;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -339,6 +355,22 @@ main {
         display: inline-table !important;
         width: 49% !important;
     }
+
+    .navbar {
+        display: flex !important;
+    }
+
+    .navbar-brand {
+        display: inline !important;
+    }
+
+    .search-top {
+        display: inline-block !important;
+    }
+
+    .top-customer {
+        display: inline !important;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -356,5 +388,21 @@ main {
     a.promotion-page-item {
         display: inline-table !important;
         width: 49% !important;
+    }
+
+    .navbar {
+        display: flex !important;
+    }
+
+    .navbar-brand {
+        display: inline-block !important;
+    }
+
+    .search-top {
+        display: inline-block !important;
+    }
+
+    .top-customer {
+        display: inline-block !important;
     }
 }
