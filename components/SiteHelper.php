@@ -170,16 +170,16 @@ class SiteHelper extends Component{
             }
         }
 
-        if (!empty($_COOKIE['cid'])) {
-            return $_COOKIE['cid'];
-        }
-
         if (!empty($_COOKIE['openid'])) {
             $cid = Customer::find()->select('id')->where(['openid' => $_COOKIE['openid']])->scalar();
             if ($cid > 0) {
                 setcookie('cid', $cid, time() + 86400 * 30, '/');
                 return $cid;
             }
+        }
+
+        if (!empty($_COOKIE['cid'])) {
+            return $_COOKIE['cid'];
         }
 
         return 0;
