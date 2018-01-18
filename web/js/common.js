@@ -44,7 +44,8 @@ $(document).ready(function () {
                 window.history.back();
             }
         } else if (location.pathname == '/cart'){
-            window.history.back();
+            $('#edit').click();
+            // window.history.back();
         } else if ( location.pathname == '/order/pay'){
             window.history.back();
         } else {

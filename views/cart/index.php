@@ -398,7 +398,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span class="realprice" style="font-size:20px;font-weight: normal;" id="realprice"></span>
     </div>
   </div>
-  <div class='btn btn-outline-info btn-sm' id='edit' style="margin-right: 8px;display: inline-block;"><i class="fa fa-cart-plus" aria-hidden="true"></i>&nbsp;购物车</div>
+  <div class='btn btn-outline-secondary btn-sm' id='edit' style="margin-right: 8px;display: inline-block;"><i class="fa fa-cart-plus" aria-hidden="true"></i>&nbsp;购物车</div>
   <div class='btn btn-success' id='order' style="margin-right: 10px;display: inline-block;">去下单</div>
 </div>
 
@@ -426,7 +426,6 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
           <th scope="col">商品</th>
           <th scope="col">描述</th>
           <th scope="col">数量</th>
-          <th scope="col">总价</th>
         </tr>
       </thead>
       <tbody>
@@ -435,7 +434,6 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
             <td><?=$item['name'] ?></td>
             <td><?=$item['desc'] ?></td>
             <td><?=$data['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
-            <td><?=$data['product_cart'][$item['id']]['price'] * $data['product_cart'][$item['id']]['num'] ?>元</td>
           </tr>
         <?php } ?>
       </tbody>
