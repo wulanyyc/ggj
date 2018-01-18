@@ -223,7 +223,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
           </div>
         </div>
         <div style="display: table-cell;width:87%;" id="order_scroll_container">
-          <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;padding-left: 2%;padding-right: 2%;width: 100%;margin-top: -4%;">
+          <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;padding-left: 2%;padding-right: 2%;width: 100%;margin-top: -2%;">
             <?php foreach($products as $key => $item) { ?>
             <h6 id="list-<?=$key ?>" style="font-size: 14px;font-weight: normal;"><?=$categorys[$key] ?></h6>
             <div class="order-items">
