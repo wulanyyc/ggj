@@ -60,15 +60,18 @@ class WechatController extends Controller
     public function actionSync() {
         $arr = CustomerWeixin::find()->asArray()->all();
         foreach($arr as $key => $value) {
-            // if ($value['customer_id'] > 0) {
-            //     $up = Customer::findOne($value['customer_id']);
-            //     $up->openid = $value['openid'];
-            //     $up->unionid = $value['unionid'];
-            //     $up->save();
-            // } else {
-                $arr = CustomerWeixin::find()->where(['openid' => $value['openid']])->asArray()->one();
-                if (!empty($arr)) continue;
+            $exsitArr = Customer::find()->where(['openid' => $value['openid']])->asArray()->one();
 
+            if (!empty($exsitArr)) {
+                $add = Customer::findOne($exsitArr['id']);
+                $add->openid = $value['openid'];
+                $add->unionid = $value['unionid'];
+                $add->nick = $value['nickname'];
+                $add->headimgurl = $value['headimgurl'];
+                $add->city = $value['city'];
+                $add->sex = $value['sex'];
+                $add->save();
+            } else {
                 $add = new Customer();
                 $add->openid = $value['openid'];
                 $add->unionid = $value['unionid'];
@@ -86,7 +89,7 @@ class WechatController extends Controller
                 PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
                 // TODO 首单优惠，修改优惠id
                 PriceHelper::createCoupon(Yii::$app->params['coupon']['login'], $openid);
-            // }
+            }
         }
     }
 }
