@@ -262,12 +262,12 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
                       <?php if ($product['price'] == $product['promotion_price']) { ?>
                         <span class="realprice">
                           <?=$product['price'] ?>
-                          <span class="money">元/<?=$product['unit'] ?></span>
+                          <!-- <span class="money">元/<?=$product['unit'] ?></span> -->
                         </span>
                       <?php } else { ?>
                         <span class="realprice">
                           <?=$product['promotion_price'] ?>
-                          <span class="money">元/<?=$product['unit'] ?></span>
+                          <!-- <span class="money">元/<?=$product['unit'] ?></span> -->
                           <span class="orignal_price">¥ <?=$product['price'] ?></span>
                         </span>
                       <?php } ?>
