@@ -40,19 +40,19 @@ class ProductHelper extends Component {
             return '/buy/?id=' . $data['id'];
         }
 
-        if (empty($_COOKIE['order_type'])) {
-            return '/buy/type/?id=' . $data['id'];
-        }
+        // if (empty($_COOKIE['order_type'])) {
+        //     return '/buy/type/?id=' . $data['id'];
+        // }
 
-        if ($_COOKIE['order_type'] == 2) {
-            $link = '/buy/booking/?id=' . $data['id'];
-        } else {
+        // if ($_COOKIE['order_type'] == 2) {
+        //     $link = '/buy/booking/?id=' . $data['id'];
+        // } else {
             if ($data['num'] > 0) {
                 $link = '/buy/?id=' . $data['id'];
             } else {
                 $link = '/buy/booking/?id=' . $data['id'];
             }
-        }
+        // }
 
         return $link;
     }

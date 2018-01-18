@@ -28,7 +28,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   a.promotion-item {
     display: table-cell;
-    width: 50%;
+    width: 33%;
     padding: 5px;
 
     border-radius: 3px;
@@ -139,6 +139,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     display: table-cell;
     width:40%;
     vertical-align: middle;
+    position: relative;
   }
 
   .product-card-img img {
@@ -334,7 +335,12 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .zhang_img {
-    position: absolute;top:5px;left:38%;width:40px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    /*left:38%;*/
+    width: 40px;
+    height: 40px !important;
   }
 </style>
 
@@ -376,17 +382,19 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     </div>
   </a>
 
-<!--   <a class="promotion-item" href="/vip/">
-    <div class="promotion-item-left" style="background-color: #866D8D;">
-      <div class="promotion-item-left-content">
-        <div class="promotion-item-left-content-top">无忧套餐</div>
-        <div class="promotion-item-left-content-bottom">私人定制 果品优选</div>
+  <a class="promotion-item" href="/buy/booking">
+    <div style="display: table;width:100%;">
+      <div class="promotion-item-left" style="background-color: #866D8D;">
+        <div class="promotion-item-left-content">
+          <div class="promotion-item-left-content-top">预约享9折</div>
+          <div class="promotion-item-left-content-bottom">每周2、6 发顺丰</div>
+        </div>
+      </div>
+      <div class="promotion-item-right" style="background-color: #D5CCDB;">
+        <img src="http://img.guoguojia.vip/img/product/clz_box.png"></img>
       </div>
     </div>
-    <div class="promotion-item-right" style="background-color: #D5CCDB;">
-      <img src="/img/booking.jpeg"></img>
-    </div>
-  </a> -->
+  </a>
 </div>
 
 <div class="card">
@@ -406,6 +414,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
             <a class="product-item-content" href="<?=$product['link'] ?>">
               <div class="product-card-img">
                 <img src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                <img src="http://img.guoguojia.vip/img/xiandu.png" class="zhang_img" />
               </div>
 
               <div class="product-card-content">
@@ -453,8 +462,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                 <?php } ?>
               </div>
               <!-- </div> -->
-
-              <img src="http://img.guoguojia.vip/img/xiandu.png" class="zhang_img"/>
             </a>
 
             <div class="tip-content">
