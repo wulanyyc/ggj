@@ -28,7 +28,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .list-group-item {
-    padding: .75rem .75rem;
+    padding: .5rem .5rem;
   }
 
   .list-group-item.active {

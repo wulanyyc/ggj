@@ -249,7 +249,6 @@ $(document).ready(function () {
         } else {
             $(this).find('#cart_icon').html('<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>');
             $(this).attr("data-filter", 0);
-  
         }
     });
 });
