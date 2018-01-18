@@ -37,7 +37,13 @@ $(document).ready(function () {
 
     $('.list-group-item').click(function(){
         back -= 1;
-        $.cookie('booking-history-back', back, { path: '/' });
+        $.cookie('buy-history-back', back, { path: '/' });
+        $('.list-group-item').removeClass('active');
+        $(this).addClass('active');
+
+        if ($(this).attr('id') != 'list-shop' && $(this).attr('id') != 'list-today') {
+            $(".order-product").show();
+        }
     });
 
     $('#order_scroll').scrollspy({ target: '#menu_list' });
@@ -250,6 +256,30 @@ $(document).ready(function () {
             $(this).find('#cart_icon').html('<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>');
             $(this).attr("data-filter", 0);
         }
+    });
+
+    $("#list-shop").click(function(){
+        var special = $('#special').val();
+        $(".order-product").each(function(){
+            var id = $(this).attr('data-id');
+            if (id == special) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+
+    $("#list-today").click(function(){
+        var today = $('#today').val();
+        $(".order-product").each(function(){
+            var id = $(this).attr('data-id');
+            if (id == today) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
     });
 });
 

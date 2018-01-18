@@ -212,6 +212,8 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 <input type="hidden" value='<?=$cart ?>' id="buyCart" />
 <input type="hidden" value='<?=$cid ?>' id="order_id" />
 <input type="hidden" value="<?=$orderType ?>" id="order_type" />
+<input type="hidden" value="<?=$special ?>" id="special" />
+<input type="hidden" value="<?=$today ?>" id="today" />
 
 <div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
@@ -224,8 +226,10 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
         <div style="display: table-cell;width:12%;" id="menu_list">
           <div class="list-group" style="width:100%;">
             <?php foreach($categorys as $key => $value) { ?>
-              <a class="list-group-item list-group-item-action" href="#list-<?=$key ?>"><?=$value ?></a>
+            <a class="list-group-item list-group-item-action" href="#list-<?=$key ?>"><?=$value ?></a>
             <?php } ?>
+            <a class="list-group-item list-group-item-action" href="#list-shop" id="list-shop">果果特惠</a>
+            <a class="list-group-item list-group-item-action" href="#list-today" id="list-today">今日特价</a>
           </div>
         </div>
 

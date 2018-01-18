@@ -58,6 +58,7 @@ class BuyController extends Controller
             $cart = '';
         }
 
+        $dayofweek = date('w', time());
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'id' => $id,
@@ -69,6 +70,8 @@ class BuyController extends Controller
             'products' => $this->getProducts($orderType, $id),
             'categorys' => $this->getCategorys($orderType, $id),
             'orderType' => $orderType,
+            'special' => Yii::$app->params['new_promotion']['id'],
+            'today' => Yii::$app->params['day_promotion'][$dayofweek]['id'],
         ]);
     }
 
@@ -100,6 +103,7 @@ class BuyController extends Controller
             $cart = [];
         }
 
+        $dayofweek = date('w', time());
         return $this->render('booking', [
             'controller' => Yii::$app->controller->id,
             'id' => $id,
@@ -111,6 +115,8 @@ class BuyController extends Controller
             'products' => $this->getProducts($orderType, $id),
             'categorys' => $this->getCategorys($orderType, $id),
             'orderType' => $orderType,
+            'special' => Yii::$app->params['new_promotion']['id'],
+            'today' => Yii::$app->params['day_promotion'][$dayofweek]['id'],
         ]);
     }
 
