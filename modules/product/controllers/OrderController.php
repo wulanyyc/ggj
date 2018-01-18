@@ -206,11 +206,12 @@ class OrderController extends AuthController
         $up->express_company = $company;
         $up->save();
 
-        $num = $this->getExpressnum($id);
+        $order = $this->getExpressnum($id);
 
-        if ($num != 0) {
+        if (!empty($order)) {
             $po = ProductOrder::findOne($id);
-            $po->express_num = $num;
+            $po->express_num   = $order['LogisticCode'];
+            $po->express_order = $order['OrderCode'];
             $po->save();
 
             echo 'suc';
@@ -304,9 +305,9 @@ class OrderController extends AuthController
         if (isset($data['Success']) && $data['Success'] == true) {
             $order = $data['Order']['LogisticCode'];
 
-            return $order;
+            return $data['Order'];
         }
 
-        return 0;
+        return [];
     }
 }
