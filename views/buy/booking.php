@@ -314,7 +314,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   </div>
   <div id="tips" style="color:#aaa;margin-left: 1px;margin-right: 1px;font-size: 12px;display: inline-block;">满<?=$buyGod ?>包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;display: inline-block;">
-    <div style="display: inline-block;color:red;width:76px;text-align: left;">
+    <div style="display: inline-block;color:red;width:80px;text-align: left;">
       <span class="money" style="font-size: 14px;font-weight: normal;">¥</span>
       <span class="realprice" style="font-size:18px;font-weight: normal;">0</span>
     </div>

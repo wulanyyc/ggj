@@ -26,4 +26,14 @@ $(document).ready(function () {
     $('#package .card').click(function(){
         location.href= $(this).attr('data-link');
     });
+
+    $('.booking_price').click(function(e){
+        e.preventDefault();
+        location.href = $(this).attr('data-link');
+    });
+
+    $('.buy_price').click(function(){
+        e.preventDefault();
+        location.href = $(this).attr('data-link');
+    });
 });

@@ -422,7 +422,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                 <p class="desc"><?=$product['desc'] ?></p>
 
                 <?php if (isset($product['booking_price'])) { ?>
-                <div class="price">
+                <div class="price booking_price" data-link="/buy/booking?id=<?=$product['id'] ?>">
                   <div class="sale-badge" style="border:1px solid #866D8D;color:#866D8D;">预约</div>
                   <div style="display: inline-block;">
                     <span class="money" style="color:#866D8D;">¥</span>
@@ -442,7 +442,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                 <?php } ?>
 
                 <?php if (isset($product['buy_price'])) { ?>
-                <div class="price">
+                <div class="price buy_price" data-link="/buy/?id=<?=$product['id'] ?>">
                   <div class="sale-badge" style="border:1px solid red;">现售</div>
                   <div style="display: inline-block;">
                     <span class="money">¥</span>
