@@ -88,14 +88,16 @@ class PriceHelper extends Component {
 
         $type = $info['type'];
 
+        $customerId = SiteHelper::getCustomerId($openid);
+
         if ($type == 1) {
-            $exsit = CouponUse::find()->where(['cid' => $couponid])->count();
+            $exsit = CouponUse::find()->where(['cid' => $couponid, 'customer_id' => $customerId])->count();
             if ($exsit) {
                 return 0;
             } else {
                 $ar = new CouponUse();
                 $ar->cid = $couponid;
-                $ar->customer_id = SiteHelper::getCustomerId($openid);
+                $ar->customer_id = $customerId;
                 $ar->save();
 
                 return $ar->id;
@@ -103,7 +105,7 @@ class PriceHelper extends Component {
         } else {
             $ar = new CouponUse();
             $ar->cid = $couponid;
-            $ar->customer_id = SiteHelper::getCustomerId($openid);
+            $ar->customer_id = $customerId;
             $ar->save();
 
             return $ar->id;
