@@ -72,25 +72,32 @@ class PayController extends Controller
 
         $data = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
-        switch ($data['pay_type']) {
-            case 0:
-                $data['pay_type'] = '钱包';
-                break;
-            case 1:
-                $data['pay_type'] = '支付宝';
-                break;
-            case 2:
-                $data['pay_type'] = '微信';
-                break;
-            default:
-                $data['pay_type'] = '钱包';
-                break;
-        }
+        if (!empty($data)) {
+            switch ($data['pay_type']) {
+                case 0:
+                    $data['pay_type'] = '钱包';
+                    break;
+                case 1:
+                    $data['pay_type'] = '支付宝';
+                    break;
+                case 2:
+                    $data['pay_type'] = '微信';
+                    break;
+                default:
+                    $data['pay_type'] = '钱包';
+                    break;
+            }
 
-        return $this->render('index', [
-            'controller' => Yii::$app->controller->id,
-            'data' => $data,
-        ]);
+            return $this->render('index', [
+                'controller' => Yii::$app->controller->id,
+                'data' => $data,
+            ]);
+        } else {
+            return $this->render('error', [
+                'controller' => Yii::$app->controller->id,
+                'data' => '未找到支付订单：' . $out_trade_no . "的信息",
+            ]);
+        }
     }
 
     // 钱包支付结果页
