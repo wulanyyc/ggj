@@ -39,6 +39,11 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   .order-product {
     width: 33%;
     margin-bottom: 10px;
+    padding: 1%;
+  }
+
+  .order-product.active {
+    background-color: #f8f8f8;
   }
 
   .product-content {

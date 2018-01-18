@@ -298,7 +298,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div class="card">
   <div id="products" class="card-content" style="width: 100%;">
     <div id="product_detail" style="width: 100%;">
-      <div class="left-content" style="position: relative;overflow: hidden;height:70px;">
+      <div style="position: relative;overflow: hidden;height:70px;display: inline-block;width:80%;">
         <?php foreach($data['show_product'] as $item) { ?>
         <div class="product" style="height:70px;display: table-cell;vertical-align: middle;">
           <img src="<?=$item['img'] ?>" style="height:80%;padding: 5%;" />
@@ -306,10 +306,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
         <?php } ?>
       </div>
 
-      <div class="right-arrow" id="product-arrow">
-        <div style="font-size: 13px;cursor: pointer;text-align: right;">共<?=count($data['product']) ?>件&nbsp;&nbsp;
+      <div style="height: 70px;line-height: 70px;text-align: right;width:18%;display: inline-block;position: absolute;right:16px;">
+        <span style="font-size: 13px;cursor: pointer;text-align: right;">共<?=count($data['product']) ?>件&nbsp;&nbsp;
           <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
-        </div>
+        </span>
       </div>
     </div>
 

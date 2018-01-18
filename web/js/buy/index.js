@@ -12,6 +12,8 @@ $(document).ready(function () {
             if ($('#pid_' + id).length > 0) {
                 var scroll = $('#pid_' + id).offset().top - $('#order_scroll').offset().top;
                 $("#order_scroll").animate({scrollTop : scroll}, 600);
+
+                $('#pid_' + id).addClass('active');
             }
         }
 
