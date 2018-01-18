@@ -133,6 +133,7 @@ class ExpressHelper extends Component{
         // $requestStr = json_encode($requestData);
 
         $requestStr = '[{"OrderCode":"' . $code . '","PortName":"Lenovo M7206W Printer"}]';
+        echo $requestStr;exit;
 
         $request_data_encode = urlencode($requestStr);
 
