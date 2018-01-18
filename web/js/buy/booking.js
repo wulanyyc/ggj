@@ -37,7 +37,7 @@ $(document).ready(function () {
 
     $('.list-group-item').click(function(){
         back -= 1;
-        $.cookie('buy-history-back', back, { path: '/' });
+        $.cookie('booking-history-back', back, { path: '/' });
         $('.list-group-item').removeClass('active');
         $(this).addClass('active');
 

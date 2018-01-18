@@ -1,5 +1,4 @@
 <?php
-use Yii;
 use yii\web\View;
 use app\components\MsaView;
 
@@ -24,12 +23,21 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     margin: 5px 0;
   }
 
+  #items {
+    width: 100%;
+    display: table;
+  }
+
   #menu_list a {
     font-size: 13px;
   }
 
   .list-group-item {
     padding: .5rem .5rem;
+  }
+
+  div.list-group-item {
+    font-size: 12px;
   }
 
   .list-group-item.active {
@@ -41,6 +49,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     width: 33%;
     margin-bottom: 10px;
     padding: 1%;
+    display: inline-block;
   }
 
   .order-product.active {
@@ -228,12 +237,12 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
             <?php foreach($categorys as $key => $value) { ?>
             <a class="list-group-item list-group-item-action" href="#list-<?=$key ?>"><?=$value ?></a>
             <?php } ?>
-            <a class="list-group-item list-group-item-action" href="#list-shop" id="list-shop">果果特惠</a>
-            <a class="list-group-item list-group-item-action" href="#list-today" id="list-today">今日特价</a>
+            <div class="list-group-item list-group-item-action" id="list-shop">果果特惠</div>
+            <div class="list-group-item list-group-item-action" id="list-today">今日特价</div>
           </div>
         </div>
 
-        <div style="display: table-cell;width:87%" id="order_scroll_container">
+        <div style="display: table-cell;width:87%;vertical-align: middle;" id="order_scroll_container">
           <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;width:100%;padding-left: 2%;padding-right: 2%;"">
             <?php foreach($products as $key => $item) { ?>
             <h6 id="list-<?=$key ?>"><?=$categorys[$key] ?></h6>
@@ -272,11 +281,6 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
                           </span>
                       </span>
                     </p>
-       <!--              <div class="operator" data-id=<?=$product['id'] ?> data-price=<?=$product['promotion_price'] ?>>
-                      <div class="operator-left operator-btn">-</div>
-                      <span class="operator-num">0</span>
-                      <div class="operator-right operator-btn" data-buy-limit="<?=$product['buy_limit'] ?>">+</div>
-                    </div> -->
                     <div class="inventory">
                       <?php if ($product['buy_limit'] > 0) { ?>
                       <span style="color:red">特价限<?=$product['buy_limit'] ?><?=$product['unit'] ?></span>

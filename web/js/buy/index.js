@@ -35,15 +35,21 @@ $(document).ready(function () {
 
     init();
 
-    $('.list-group-item').click(function(){
+    $('a.list-group-item').click(function(){
         back -= 1;
         $.cookie('buy-history-back', back, { path: '/' });
+        $(".order-product").show();
+        $('.list-group-item').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    $('div.list-group-item').click(function(){
         $('.list-group-item').removeClass('active');
         $(this).addClass('active');
 
-        if ($(this).attr('id') != 'list-shop' && $(this).attr('id') != 'list-today') {
-            $(".order-product").show();
-        }
+        // if ($(this).attr('id') != 'list-shop' && $(this).attr('id') != 'list-today') {
+        //     $(".order-product").show();
+        // }
     });
 
     $('#order_scroll').scrollspy({ target: '#menu_list' });

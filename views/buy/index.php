@@ -23,6 +23,11 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     margin: 5px 0;
   }
 
+  #items {
+    width: 100%;
+    display: table;
+  }
+
   #menu_list a {
     font-size: 13px;
   }
@@ -36,10 +41,15 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     border-color: #53a93f;
   }
 
+  div.list-group-item {
+    font-size: 12px;
+  }
+
   .order-product {
     width: 33%;
     margin-bottom: 10px;
     padding: 1%;
+    display: inline-block;
   }
 
   .order-product.active {
@@ -225,12 +235,12 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
             <?php foreach($categorys as $key => $value) { ?>
             <a class="list-group-item list-group-item-action" href="#list-<?=$key ?>"><?=$value ?></a>
             <?php } ?>
-            <a class="list-group-item list-group-item-action" href="#list-shop" id="list-shop">果果特惠</a>
-            <a class="list-group-item list-group-item-action" href="#list-today" id="list-today">今日特价</a>
+            <div class="list-group-item list-group-item-action" id="list-shop">果果特惠</div>
+            <div class="list-group-item list-group-item-action" id="list-today">今日特价</div>
           </div>
         </div>
-        <div style="display: table-cell;width:87%;" id="order_scroll_container">
-          <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;padding-left: 2%;padding-right: 2%;width: 100%;margin-top: -2%;">
+        <div style="display: table-cell;width:87%;vertical-align: top;" id="order_scroll_container">
+          <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;padding-left: 2%;padding-right: 2%;width: 100%;">
             <?php foreach($products as $key => $item) { ?>
             <h6 id="list-<?=$key ?>" style="font-size: 14px;font-weight: normal;"><?=$categorys[$key] ?></h6>
             <div class="order-items">
