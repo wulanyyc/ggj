@@ -170,7 +170,10 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     background-color: #fff;
 
     z-index: 10;
-    /*border-top: 1px solid #f5f5f5; */
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    border-top: 1px solid #f5f5f5; 
   }
 
   .order-items {
@@ -288,7 +291,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     </div>
 </div>
 
-<div id="tongji" style="display: table-cell;vertical-align: middle;text-align: right;">
+<div id="tongji">
   <div style="display: inline-block;font-size: 25px;position: absolute;left:15px;top:-20px;background-color: #53a93f;width:50px;height: 50px;border-radius: 25px;text-align: center;color:#fff;" id="filter" data-filter=0>
     <span id="cart_icon"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span>
     <div id="cart_num" style="position: absolute;z-index:100;right:-5px; top:-5px;color:#fff;font-size: 12px;background-color: red;height:20px;width:20px;text-align: center;border-radius: 10px;line-height: 20px;">
