@@ -38,8 +38,8 @@ MsaView::registerJsFile($this,'/js/customer/info.js',
   </div>
   <div style="width:94%;margin: 10px auto;">
     <div style="margin-bottom: 10px;display: table;">
-      <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码" readonly value=<?=$data['phone'] ?> style="display: table-cell;width:200px;" />
-      <span id='edit_phone' style="padding-left: 15px;font-size: 14px;color:#0C58B0;width: 130px;">修改号码&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;display: table-cell;"></i></span>
+      <input type="number" class="form-control" id="userphone" name="userphone" placeholder="手机号码" readonly value=<?=$data['phone'] ?> style="display: table-cell;" />
+      <span id='edit_phone' style="padding-left: 15px;font-size: 14px;color:#0C58B0;width: 130px;display: table-cell;">修改号码&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></span>
     </div>
 
     <button type="button" class="btn btn-success btn-sm" id="submit" style="width:50%;margin-left:25%;margin-top:10px;">
