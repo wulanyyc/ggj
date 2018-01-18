@@ -137,7 +137,7 @@ class ExpressHelper extends Component{
         $data_sign = self::encrypt(self::getIp() . $request_data_encode, Yii::$app->params['kdn']['apikey']);
 
         //是否预览，0-不预览 1-预览
-        $is_priview = '0';
+        $is_priview = '1';
 
         //组装表单
         $form = '<form id="form1" method="POST" action="'. Yii::$app->params['kdn']['printorderurl'] .'"><input type="text" name="RequestData" value="'. $requestStr .'"/><input type="text" name="EBusinessID" value="' . Yii::$app->params['kdn']['uid'] . '"/><input type="text" name="DataSign" value="'. $data_sign .'"/><input type="text" name="IsPriview" value="' . $is_priview . '"/></form><script>form1.submit();</script>';
