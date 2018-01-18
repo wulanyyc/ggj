@@ -273,8 +273,8 @@ class OrderController extends AuthController
 
         $data = ProductOrder::find()->where(['id' => $id])->asArray()->one();
 
-        if (!empty($data['express_num'])) {
-            $form = ExpressHelper::buildForm($data['express_num']);
+        if (!empty($data['express_order'])) {
+            $form = ExpressHelper::buildForm($data['express_order']);
         } else {
             $form = '没有快递单号';
         }
