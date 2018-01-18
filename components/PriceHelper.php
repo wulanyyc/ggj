@@ -182,7 +182,7 @@ class PriceHelper extends Component {
         
         foreach($carts as $key => $item) {
             $id = $item['id'];
-            if ($item['limit'] > 0 && $item['num'] > $item['limit']) {
+            if (isset($item['limit']) && $item['limit'] > 0 && $item['num'] > $item['limit']) {
                 $orignalPrice = ProductList::find()->where(['id' => $id])->select('price')->scalar();
                 $productPrice += ($item['num'] - $item['limit']) * $orignalPrice + $item['limit'] * PriceHelper::getProductPrice($id, $data['order_type']);
             } else {
