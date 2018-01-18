@@ -189,7 +189,7 @@ class CustomerController extends Controller
         $html = '';
 
         if (empty($data)) {
-            $html = '很抱歉，您账户里没有可用的通用券';
+            $html = '没有可用的通用券';
         } else {
             foreach($data as $key => $value) {
                 $info = Coupon::find()->where(['id' => $value['cid']])->asArray()->one();
@@ -212,7 +212,7 @@ EOF;
         $jobHtml = '';
 
         if (empty($jobData)) {
-            $jobHtml = '很抱歉，您账户里没有可获取的任务券';
+            $jobHtml = '没有可获取的任务券';
         } else {
             foreach($jobData as $key => $value) {
                 $value['start_date'] = date('Y.m.d', strtotime($value['start_date']));
