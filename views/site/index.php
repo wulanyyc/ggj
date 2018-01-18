@@ -143,7 +143,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-card-img img {
-    height: 150px;
+    height: 140px;
   }
 
   .product-card-content {
