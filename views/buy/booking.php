@@ -16,14 +16,6 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 ?>
 
 <style type="text/css">
-  .navbar {
-    background-color: #866D8D !important;
-  }
-
-  .alert {
-    margin-bottom: 0;
-  }
-
   .card {
     border-radius: 0;
     border: none;
@@ -33,7 +25,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   #menu_list a {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .list-group-item {
@@ -48,19 +40,31 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   .order-product {
     width: 33%;
     margin-bottom: 10px;
+    padding: 1%;
   }
 
-  a.product-content {
-    text-decoration: none;
-    color:#000;
+  .order-product.active {
+    background-color: #f8f8f8;
+  }
+
+  .product-content {
+    display: table-row;
   }
 
   .product-img {
-    width: 30%;
+    width: 35%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .product-img img {
+    width: 80%;
   }
 
   .product-desc {
-    width: 67%;
+    width: 64%;
+    display: table-cell;
   }
 
   .product-desc p {
@@ -68,12 +72,12 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   .title {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 22px;
   }
 
   .slogan {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 18px;
     color: #aaa;
   }
@@ -87,13 +91,12 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     margin-top: 5px !important;
     color: red;
     font-size: 14px;
-    /*height: 18px;*/
     line-height: 18px;
+    position: relative;
   }
 
   .realprice {
-    font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .orignal_price {
@@ -101,65 +104,56 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     color: #ccc;
     text-decoration: line-through;
     color: #999;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
   }
 
   .operator {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-top: 8px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 20px;
-  }
-
-  .operator.active {
-    border-color: #866D8D;
-    color: #866D8D;
+    font-size: 14px;
+    text-align: right;
+    padding-left: 5%;
+    position: absolute;
+    right: 2px;
   }
 
   .operator-left {
-    width:25%;
     text-align: center;
-    border-right: 1px solid #ccc;
     text-decoration: none;
-    color: #000;
-    font-weight: bold;
     cursor: pointer;
     display: inline-block;
-  }
-
-  .operator-left.active {
-    border-right: 1px solid #866D8D;
-    color: #866D8D;
+    color: #ccc;
+    font-size: 22px;
+    visibility: hidden
   }
 
   .operator-num {
-    width: 40%;
     text-align: center;
     border: none;
     display: inline-block;
+    font-size: 18px;
+    color: #000;
+    width: 25px;
+    visibility: hidden;
+    height: 20px;
+    vertical-align: top;
+    padding-top: 2px;
   }
 
   .operator-right {
-    width: 25%;
     text-align: center;
-    border-left: 1px solid #ccc;
     text-decoration: none;
-    color: #000;
-    font-weight: bold;
     cursor: pointer;
     display: inline-block;
+    color: #866D8D;
+    font-size: 22px;
   }
 
   .operator-right.active {
-    border-left: 1px solid #866D8D;
     color: #866D8D;
   }
 
   .inventory {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 24px;
     color: #aaa;
   }
@@ -176,44 +170,15 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     bottom: 0px;
     background-color: #fff;
 
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    justify-content: -webkit-flex-end;
-    align-items: -webkit-center;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-
     z-index: 10;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
     border-top: 1px solid #f5f5f5; 
   }
 
   .order-items {
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    flex-wrap: -webkit-wrap;
-    justify-content: -webkit-flex-start;
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-
-  .product-content {
-    display: -webkit-flex;
-    flex-direction: -webkit-row;
-    flex-wrap: -webkit-nowrap;
-    justify-content: -webkit-space-around;
-    align-items: -webkit-center;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
   }
 
   #login {
@@ -225,13 +190,13 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     display: none;
   }
 
-  .btn-success {
-    background-color: #866D8D !important;
-    border-color: #866D8D !important;
-  }
-
   a.text-info {
     font-size: 14px;text-decoration: none;position: absolute;right:15px;
+  }
+
+  .list-group-item {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
   }
 </style>
 
@@ -245,10 +210,10 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 
 <div style="position: fixed;top: 55px;width:100%;">
     <div class="card">
-      <div class="card-header bg-white" style="color: #866D8D;position:relative;border-radius: 0;border-bottom: 2px solid #866D8D;">
+<!--       <div class="card-header bg-white" style="color: #866D8D;position:relative;border-radius: 0;border-bottom: 2px solid #866D8D;">
         预约商品
         <a href="/buy/" class="text-info" style="font-size: 14px;text-decoration: none;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;买现货</a>
-      </div>
+      </div> -->
 
       <div id="items" style="margin-top: 10px;">
         <div style="display: table-cell;width:12%;" id="menu_list">
@@ -262,7 +227,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
         <div style="display: table-cell;width:87%" id="order_scroll_container">
           <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;width:100%;padding-left: 2%;padding-right: 2%;"">
             <?php foreach($products as $key => $item) { ?>
-            <h5 id="list-<?=$key ?>"><?=$categorys[$key] ?></h5>
+            <h6 id="list-<?=$key ?>"><?=$categorys[$key] ?></h6>
             <div class="order-items">
               <?php foreach($item as $product) { ?>
               <div class="order-product" id="pid_<?=$product['id'] ?>" data-id="<?=$product['id'] ?>">
@@ -288,12 +253,21 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
                           <span class="orignal_price">¥ <?=$product['price'] ?></span>
                         </span>
                       <?php } ?>
+
+                      <span class="operator" data-id=<?=$product['id'] ?> data-orignal-price="<?=$product['price'] ?>" data-price=<?=$product['promotion_price'] ?>>
+                          <span class="operator-left operator-btn">
+                            <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                          </span>
+                          <span class="operator-num">0</span>
+                          <span class="operator-right operator-btn" data-limit="<?=$product['num'] ?>" data-buy-limit="<?=$product['buy_limit'] ?>"><i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                          </span>
+                      </span>
                     </p>
-                    <div class="operator" data-id=<?=$product['id'] ?> data-price=<?=$product['promotion_price'] ?>>
+       <!--              <div class="operator" data-id=<?=$product['id'] ?> data-price=<?=$product['promotion_price'] ?>>
                       <div class="operator-left operator-btn">-</div>
                       <span class="operator-num">0</span>
                       <div class="operator-right operator-btn" data-buy-limit="<?=$product['buy_limit'] ?>">+</div>
-                    </div>
+                    </div> -->
                     <div class="inventory">
                       <?php if ($product['buy_limit'] > 0) { ?>
                       <span style="color:red">特价限<?=$product['buy_limit'] ?><?=$product['unit'] ?></span>
@@ -318,14 +292,18 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     </div>
 </div>
 
-<div id="tongji" style="display: table-cell;vertical-align: middle;text-align: right;">
-  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 14px;margin-right: 2px;text-align: center;padding:0px 4px !important;display: inline-block;" id="filter" data-filter=0>显订购</button>
-
-  <div id="tips" style="color:#aaa;margin-left: 1px;margin-right: 1px;font-size: 14px;display: inline-block;">满<?=$buyGod ?>包邮</div>
+<div id="tongji">
+  <div style="display: inline-block;font-size: 25px;position: absolute;left:15px;top:-20px;background-color: #53a93f;width:50px;height: 50px;border-radius: 25px;text-align: center;color:#fff;" id="filter" data-filter=0>
+    <span id="cart_icon"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span>
+    <div id="cart_num" style="position: absolute;z-index:100;right:-5px; top:-5px;color:#fff;font-size: 12px;background-color: red;height:20px;width:20px;text-align: center;border-radius: 10px;line-height: 20px;">
+      0
+    </div>
+  </div>
+  <div id="tips" style="color:#aaa;margin-left: 1px;margin-right: 1px;font-size: 12px;display: inline-block;">满<?=$buyGod ?>包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;display: inline-block;">
     <div style="display: inline-block;color:red;width:76px;text-align: left;">
-      <span class="money" style="font-size: 16px;font-weight: normal;">¥</span>
-      <span class="realprice" style="font-size:22px;font-weight: normal;">0</span>
+      <span class="money" style="font-size: 14px;font-weight: normal;">¥</span>
+      <span class="realprice" style="font-size:18px;font-weight: normal;">0</span>
     </div>
   </div>
   <div class='btn btn-secondary' id='order' style="margin-right: 8px;width:90px;text-align: center;display: inline-block;"><?=$buyLimit ?>元起购</div>
