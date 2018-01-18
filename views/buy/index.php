@@ -24,7 +24,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   #menu_list a {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .list-group-item {
@@ -51,7 +51,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .product-img {
-    width: 41%;
+    width: 35%;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -62,7 +62,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .product-desc {
-    width: 58%;
+    width: 64%;
     display: table-cell;
   }
 
@@ -71,12 +71,12 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .title {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 22px;
   }
 
   .slogan {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 18px;
     color: #aaa;
   }
@@ -91,11 +91,11 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     color: red;
     font-size: 14px;
     line-height: 18px;
+    position: relative;
   }
 
   .realprice {
-    font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .orignal_price {
@@ -103,66 +103,56 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     color: #ccc;
     text-decoration: line-through;
     color: #999;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
   }
 
   .operator {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-top: 8px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 20px;
-
-  }
-
-  .operator.active {
-    border-color: #53a93f;
-    color: #53a93f;
+    font-size: 14px;
+    text-align: right;
+    padding-left: 5%;
+    position: absolute;
+    right: 2px;
   }
 
   .operator-left {
-    width:25%;
     text-align: center;
-    border-right: 1px solid #ccc;
     text-decoration: none;
-    color: #000;
-    font-weight: bold;
     cursor: pointer;
     display: inline-block;
-  }
-
-  .operator-left.active {
-    border-right: 1px solid #53a93f;
-    color: #53a93f;
+    color: #ccc;
+    font-size: 22px;
+    visibility: hidden
   }
 
   .operator-num {
-    width: 40%;
     text-align: center;
     border: none;
     display: inline-block;
+    font-size: 18px;
+    color: #000;
+    width: 25px;
+    visibility: hidden;
+    height: 20px;
+    vertical-align: top;
+    padding-top: 2px;
   }
 
   .operator-right {
-    width: 25%;
     text-align: center;
-    border-left: 1px solid #ccc;
     text-decoration: none;
-    color: #000;
-    font-weight: bold;
     cursor: pointer;
     display: inline-block;
+    color: #53a93f;
+    font-size: 22px;
   }
 
   .operator-right.active {
-    border-left: 1px solid #53a93f;
     color: #53a93f;
   }
 
   .inventory {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 24px;
     color: #aaa;
   }
@@ -197,7 +187,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   a.text-info {
-    font-size: 14px;text-decoration: none;position: absolute;right:15px;
+    font-size: 12px;text-decoration: none;position: absolute;right:15px;
   }
 
 </style>
@@ -230,7 +220,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
         <div style="display: table-cell;width:87%" id="order_scroll_container">
           <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;padding-left: 2%;padding-right: 2%;width: 100%">
             <?php foreach($products as $key => $item) { ?>
-            <h5 id="list-<?=$key ?>"><?=$categorys[$key] ?></h5>
+            <h6 id="list-<?=$key ?>" style="font-size: 14px;font-weight: normal;"><?=$categorys[$key] ?></h6>
             <div class="order-items">
               <?php foreach($item as $product) { ?>
               <div class="order-product" id="pid_<?=$product['id'] ?>" data-id="<?=$product['id'] ?>">
@@ -244,24 +234,29 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
                     <p class="slogan"><?=$product['slogan'] ?></p>
                     <p class="price">
                       <span class="money">¥</span>
+
                       <?php if ($product['price'] == $product['promotion_price']) { ?>
-                        <span class="realprice">
-                          <?=$product['price'] ?>
-                          <span class="money">元/<?=$product['unit'] ?></span>
-                        </span>
+                      <span class="realprice">
+                        <?=$product['price'] ?>
+                        <!-- <span class="money">元/<?=$product['unit'] ?></span> -->
+                      </span>
                       <?php } else { ?>
-                        <span class="realprice">
-                          <?=$product['promotion_price'] ?>
-                          <span class="money">元/<?=$product['unit'] ?></span>
-                          <span class="orignal_price">¥ <?=$product['price'] ?></span>
-                        </span>
+                      <span class="realprice">
+                        <?=$product['promotion_price'] ?>
+                        <!-- <span class="money">元/<?=$product['unit'] ?></span> -->
+                        <span class="orignal_price">¥ <?=$product['price'] ?></span>
+                      </span>
                       <?php } ?>
+
+                      <span class="operator" data-id=<?=$product['id'] ?> data-orignal-price="<?=$product['price'] ?>" data-price=<?=$product['promotion_price'] ?>>
+                          <span class="operator-left operator-btn">
+                            <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                          </span>
+                          <span class="operator-num">0</span>
+                          <span class="operator-right operator-btn" data-limit="<?=$product['num'] ?>" data-buy-limit="<?=$product['buy_limit'] ?>"><i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                          </span>
+                      </span>
                     </p>
-                    <div class="operator" data-id=<?=$product['id'] ?> data-orignal-price="<?=$product['price'] ?>" data-price=<?=$product['promotion_price'] ?>>
-                      <div class="operator-left operator-btn">-</div>
-                      <div class="operator-num">0</div>
-                      <div class="operator-right operator-btn" data-limit="<?=$product['num'] ?>" data-buy-limit="<?=$product['buy_limit'] ?>">+</div>
-                    </div>
                     <div class="inventory">
                       库存<?=$product['num'] ?></span><?=$product['unit'] ?>
                       <?php if ($product['buy_limit'] > 0) { ?>
@@ -289,13 +284,17 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div id="tongji" style="display: table-cell;vertical-align: middle;text-align: right;">
-  <button type="button" class="btn btn-outline-info btn-sm" style="font-size: 14px;margin-right: 2px;text-align: center;padding:0px 4px !important;display: inline-block;" id="filter" data-filter=0>显订购</button>
-
-  <div id="tips" style="color:#aaa;margin-left: 1px;margin-right: 1px;font-size: 14px;display: inline-block;">满<?=$buyGod ?>包邮</div>
+  <div style="display: inline-block;font-size: 25px;position: absolute;left:15px;top:-20px;background-color: #53a93f;width:50px;height: 50px;border-radius: 25px;text-align: center;color:#fff;" id="filter" data-filter=0>
+    <span id="cart_icon"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span>
+    <div id="cart_num" style="position: absolute;z-index:100;right:-5px; top:-5px;color:#fff;font-size: 12px;background-color: red;height:20px;width:20px;text-align: center;border-radius: 10px;line-height: 20px;">
+      0
+    </div>
+  </div>
+  <div id="tips" style="color:#aaa;margin-left: 1px;margin-right: 1px;font-size: 12px;display: inline-block;">满<?=$buyGod ?>包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;display: inline-block;">
     <div style="display: inline-block;color:red;width:76px;text-align: left;">
-      <span class="money" style="font-size: 16px;font-weight: normal;">¥</span>
-      <span class="realprice" style="font-size:22px;font-weight: normal;">0</span>
+      <span class="money" style="font-size: 14px;font-weight: normal;">¥</span>
+      <span class="realprice" style="font-size:18px;font-weight: normal;">0</span>
     </div>
   </div>
   <div class='btn btn-secondary' id='order' style="margin-right: 8px;width:90px;text-align: center;display: inline-block;"><?=$buyLimit ?>元起购</div>
@@ -304,7 +303,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 <div class="card" id="login">
   <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       用户信息
-      <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;font-size: 16px;position: absolute;right:15px;" id="close_login"></i>
+      <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;font-size: 14px;position: absolute;right:15px;" id="close_login"></i>
   </div>
   <div style="width:94%;margin: 10px auto;" id="login_form">
     <div style="margin-bottom: 10px;">

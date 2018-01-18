@@ -54,19 +54,13 @@ $(document).ready(function () {
             buyLimit = 0;
         }
 
-        // if (buyLimit > 0 && buyLimit <= limit) {
-        //     limit = buyLimit;
-        // }
-
         if (num > limit) {
             num = num - 1;
         }
 
         $(this).parent().find('.operator-num').html(num);
-        if (!$(this).parent().hasClass('active')) {
-            $(this).parent().addClass('active');
-            $(this).parent().find('.operator-btn').addClass('active');
-        }
+        $(this).parent().find('.operator-left').css('visibility', 'visible');
+        $(this).parent().find('.operator-num').css('visibility', 'visible');
 
         var id     = $(this).parent().attr('data-id');
         var price  = $(this).parent().attr('data-price');
@@ -74,8 +68,7 @@ $(document).ready(function () {
 
 
         cart[id] = {'num': num, 'price': price, 'oprice': oprice, 'id': id, 'limit': buyLimit};
-
-        console.log(cart);
+        // console.log(cart);
         calculateTotal();
     });
 
@@ -89,11 +82,11 @@ $(document).ready(function () {
             $(this).parent().find('.operator-num').html(num);
             cart[id].num = num;
         } else {
-            $(this).parent().removeClass('active');
-            $(this).parent().find('.operator-btn').removeClass('active');
-            $(this).parent().find('.operator-num').html(0);
+            $(this).parent().find('.operator-left').css('visibility', 'hidden');
+            $(this).parent().find('.operator-num').css('visibility', 'hidden');
+
             if (cart[id]) {
-                cart[id].num = 0;
+                // cart[id].num = 0;
                 delete cart[id];
             }
         }
@@ -124,6 +117,8 @@ $(document).ready(function () {
             $('#order').removeClass('btn-success');
             $('#order').html(limit + '元起购');
         }
+
+        $('#cart_num').html(Object.keys(cart).length);
     }
 
     $('#close_login').click(function() {
@@ -237,10 +232,6 @@ $(document).ready(function () {
     });
 
     $("#filter").click(function(){
-        if ($.isEmptyObject(cart)) {
-            return false;
-        }
-
         var type = parseInt($(this).attr("data-filter"));
         $(".order-product").each(function(){
             if (type == 0) {
@@ -256,13 +247,12 @@ $(document).ready(function () {
         });
 
         if (type == 0) {
+            $(this).find('#cart_icon').html('<i class="fa fa-undo" aria-hidden="true"></i>');
             $(this).attr("data-filter", 1);
-            $(this).html("显全部");
-            $(this).blur();
         } else {
+            $(this).find('#cart_icon').html('<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>');
             $(this).attr("data-filter", 0);
-            $(this).html("显订购");
-            $(this).blur();
+  
         }
     });
 });
