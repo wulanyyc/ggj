@@ -179,9 +179,15 @@ class PriceHelper extends Component {
         $carts = json_decode($data['cart'], true);
 
         $productPrice = 0;
-        foreach($carts as $item) {
-            $pid = $item['id'];
-            $productPrice += $item['num'] * PriceHelper::getProductPrice($pid, $data['order_type']);
+        
+        foreach($carts as $key => $item) {
+            $id = $item['id'];
+            if ($item['limit'] > 0 && $item['num'] > $item['limit']) {
+                $orignalPrice = ProductList::find()->where(['id' => $id])->select('price')->scalar();
+                $productPrice += ($item['num'] - $item['limit']) * $orignalPrice + $item['limit'] * PriceHelper::getProductPrice($id, $data['order_type']);
+            } else {
+                $productPrice += $item['num'] * PriceHelper::getProductPrice($id, $data['order_type']);
+            }
         }
 
         $productPrice = round($productPrice, 2);

@@ -49,9 +49,14 @@ $(document).ready(function () {
 
         var limit = parseInt($(this).attr('data-limit'));
         var buyLimit = parseInt($(this).attr('data-buy-limit'));
-        if (buyLimit > 0 && buyLimit <= limit) {
-            limit = buyLimit;
+
+        if (isNaN(buyLimit)) {
+            buyLimit = 0;
         }
+
+        // if (buyLimit > 0 && buyLimit <= limit) {
+        //     limit = buyLimit;
+        // }
 
         if (num > limit) {
             num = num - 1;
@@ -63,10 +68,14 @@ $(document).ready(function () {
             $(this).parent().find('.operator-btn').addClass('active');
         }
 
-        var id = $(this).parent().attr('data-id');
-        var price = $(this).parent().attr('data-price');
-        cart[id] = {'num': num, 'price': price, 'id': id};
+        var id     = $(this).parent().attr('data-id');
+        var price  = $(this).parent().attr('data-price');
+        var oprice = $(this).parent().attr('data-orignal-price');
 
+
+        cart[id] = {'num': num, 'price': price, 'oprice': oprice, 'id': id, 'limit': buyLimit};
+
+        console.log(cart);
         calculateTotal();
     });
 
@@ -95,7 +104,11 @@ $(document).ready(function () {
     function calculateTotal() {
         var total = 0;
         $.each(cart, function(k, v) {
-            total += v.num * v.price;
+            if (v.limit > 0 && v.num > v.limit) {
+                total += (v.num - v.limit) * v.oprice + v.limit * v.price;
+            } else {
+                total += v.num * v.price;
+            }
         });
 
         total = $.helper.round(total, 1);

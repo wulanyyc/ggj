@@ -126,17 +126,17 @@ class OrderHelper extends Component {
         }
     }
 
-    public static function getOrderDayNum() {
-        $key = date('Ymd', time()) . '_day_num';
-        $exsit = Yii::$app->redis->get($key);
-        if ($exsit > 0) {
-            $num = $exsit + 1;
-            Yii::$app->redis->setex($key, 86400, $num);
-        } else {
-            $num = 1;
-            Yii::$app->redis->setex($key, 86400, $num);
-        }
+    // public static function getOrderDayNum() {
+    //     $key = date('Ymd', time()) . '_day_num';
+    //     $exsit = Yii::$app->redis->get($key);
+    //     if ($exsit > 0) {
+    //         $num = $exsit + 1;
+    //         Yii::$app->redis->setex($key, 86400, $num);
+    //     } else {
+    //         $num = 1;
+    //         Yii::$app->redis->setex($key, 86400, $num);
+    //     }
 
-        return $num;
-    }
+    //     return $num;
+    // }
 }

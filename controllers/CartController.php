@@ -160,9 +160,14 @@ class CartController extends Controller
         $carts = json_decode($params['cart'], true);
 
         $productPrice = 0;
-        foreach($carts as $item) {
+        foreach($carts as $key => $item) {
             $id = $item['id'];
-            $productPrice += $item['num'] * PriceHelper::getProductPrice($id, $params['order_type']);
+            if ($item['limit'] > 0 && $item['num'] > $item['limit']) {
+                $orignalPrice = ProductList::find()->where(['id' => $id])->select('price')->scalar();
+                $productPrice += ($item['num'] - $item['limit']) * $orignalPrice + $item['limit'] * PriceHelper::getProductPrice($id, $params['order_type']);
+            } else {
+                $productPrice += $item['num'] * PriceHelper::getProductPrice($id, $params['order_type']);
+            }
         }
 
         $productPrice = round($productPrice, PriceHelper::$precison);

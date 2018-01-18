@@ -339,14 +339,14 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card">
   <div id="discount" class="card-content">
-<!--     <div style="margin-top:5px;display: table;">
+    <div style="margin-top:5px;display: table;">
       <div class="left-content">
         <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的手机号码" maxlength=11 style="width: 128px;font-size: 14px;height: 40px;display: inline-block;" />
         <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-left:5px;display: inline-block;">优惠码</button>
       </div>
       <div id="ask" class="right-arrow" style="color:red;cursor: pointer;font-size: 13px;width:20%;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
     </div>
-    <hr style="margin-top: 8px;margin-bottom: 8px;"/> -->
+    <hr style="margin-top: 8px;margin-bottom: 8px;"/>
     <div style="margin-bottom:3px;display: table;height: 30px;" id="choose_coupon">
       <p class="label left-content" style="width:72%;">优惠券</p>
       <p style="font-size: 13px;cursor: pointer;width:18%;" class="right-arrow" id="coupon_detail">
@@ -391,14 +391,14 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <br/>
 
 <div id="tongji">
-  <div id="tips" style="color:red;margin-left: 5px;margin-right: 5px;font-size: 14px;display: inline-block;">实付款:</div>
+  <div id="tips" style="color:red;margin-left: 5px;margin-right: 2px;font-size: 14px;display: inline-block;">实付款:</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;display: inline-block;">
-    <div style="display: inline-block;color:red;width:72px;text-align: left;">
+    <div style="display: inline-block;color:red;width:70px;text-align: left;">
       <span class="money" style="font-size: 16px;font-weight: normal;">¥</span>
       <span class="realprice" style="font-size:20px;font-weight: normal;" id="realprice"></span>
     </div>
   </div>
-  <div class='btn btn-outline-info btn-sm' id='edit' style="margin-right: 10px;display: inline-block;">修改商品</div>
+  <div class='btn btn-outline-info btn-sm' id='edit' style="margin-right: 8px;display: inline-block;"><i class="fa fa-cart-plus" aria-hidden="true"></i>&nbsp;购物车</div>
   <div class='btn btn-success' id='order' style="margin-right: 10px;display: inline-block;">去下单</div>
 </div>
 
@@ -408,17 +408,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 10px;" id="close_question"></i>
   </div>
   <div style="padding: 5%;">
-    <p style="">
-      <span style="padding-right: 5px;">1: </span>
-      <span>成都好友的手机号码即为优惠码，随机立减<?=$discount_start ?>%-<?=$discount_end ?>%的订单金额</span>
+    <p style="text-align: center;">
+      <span>好友的手机号码即为优惠码</span>
     </p>
-
-    <p style="margin-top: 5px;">
-      <span style="padding-right: 5px;">2: </span>
-      <span>订单支付成功后为好友充优惠额的50%到其平台账户，赶快来一起享受优惠</span>
-    </p>
-
-    <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
+    <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;position: absolute;bottom: 20px;">关闭</div>
   </div>
 </div>
 

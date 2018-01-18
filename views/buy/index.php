@@ -257,7 +257,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
                         </span>
                       <?php } ?>
                     </p>
-                    <div class="operator" data-id=<?=$product['id'] ?> data-price=<?=$product['promotion_price'] ?>>
+                    <div class="operator" data-id=<?=$product['id'] ?> data-orignal-price="<?=$product['price'] ?>" data-price=<?=$product['promotion_price'] ?>>
                       <div class="operator-left operator-btn">-</div>
                       <div class="operator-num">0</div>
                       <div class="operator-right operator-btn" data-limit="<?=$product['num'] ?>" data-buy-limit="<?=$product['buy_limit'] ?>">+</div>
