@@ -243,8 +243,8 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div class="card">
   <div class="card-content" id="show_address_content">
       <?php if (empty($address)) { ?>
-      <div class="no_address" style="display: table-cell;vertical-align: middle;text-align: center;">
-        <button id="add_address" type="button" class="btn btn-outline-danger" style="width:140px;margin-bottom: 10px;font-size: 16px;margin-top: 10px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+      <div class="no_address" style="text-align: center;height:50px;position: relative;">
+        <button id="add_address" type="button" class="btn btn-outline-danger" style="width:50%;margin-bottom: 10px;font-size: 16px;margin: 10px auto;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
       </div>
 
       <div class="show_address" data-id="" style="display: none;">
