@@ -319,17 +319,17 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
           <p class="label" style="display: inline-block;">配送方式：</p>
             <div style="display: inline-block;margin-right: 5px;" data-id="1" class="express_rule">
               <div class="icon" data-id="1"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
-              <span class="badge badge-success" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">快递</span>
+              <span class="badge badge-success" style="letter-spacing: 1px;font-size: 13px;line-height: 16px;font-weight: normal;margin-top: 8px;">顺丰快递</span>
             </div>
 
             <div style="display: inline-block;" data-id="2" class="express_rule">
               <span class="icon" data-id="2"><i class="fa fa-square-o" aria-hidden="true"></i></span>
-              <span class="badge badge-info" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">自提</span>
+              <span class="badge badge-info" style="letter-spacing: 1px;font-size: 13px;line-height: 16px;font-weight: normal;margin-top: 8px;">自提</span>
             </div>
         </div>
 
         <div id="express_time" class="right-arrow">
-          <span style="font-size: 13px;cursor: pointer;">发货&nbsp;&nbsp;
+          <span style="font-size: 13px;cursor: pointer;">发货
             <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
           </span>
         </div>
