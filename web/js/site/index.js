@@ -32,7 +32,7 @@ $(document).ready(function () {
         location.href = $(this).attr('data-link');
     });
 
-    $('.buy_price').click(function(){
+    $('.buy_price').click(function(e){
         e.preventDefault();
         location.href = $(this).attr('data-link');
     });
