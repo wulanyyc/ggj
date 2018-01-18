@@ -160,6 +160,10 @@ main {
     #product-arrow.right-arrow {
         width: 20% !important;
     }
+
+    .status-item {
+        font-size: 13px !important;
+    }
 }
 
 /* Extra small devices (portrait phones, less than 576px) */

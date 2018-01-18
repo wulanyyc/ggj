@@ -71,7 +71,7 @@ ClipAsset::register($this);
 
   .status-item {
     display: inline-block;
-    font-size: 13px;
+    font-size: 14px;
     height: 45px;
     line-height: 45px;
     padding-bottom: 5px;
