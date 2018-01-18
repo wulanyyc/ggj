@@ -123,14 +123,16 @@ class ExpressHelper extends Component{
      */
     public static function buildForm($code) {
         //OrderCode:需要打印的订单号，和调用快递鸟电子面单的订单号一致，PortName：本地打印机名称，请参考使用手册设置打印机名称。支持多打印机同时打印。
-        $requestData = [
-            [
-                'OrderCode' => $code,
-                'PortName'  => Yii::$app->params['kdn']['print'],
-            ]
-        ];
+        // $requestData = [
+        //     [
+        //         'OrderCode' => $code,
+        //         'PortName'  => Yii::$app->params['kdn']['print'],
+        //     ]
+        // ];
 
-        $requestStr = json_encode($requestData);
+        // $requestStr = json_encode($requestData);
+
+        $requestStr = '[{"OrderCode":"' . $code . '","PortName":"Lenovo M7206W Printer"}]'
 
         $request_data_encode = urlencode($requestStr);
 
