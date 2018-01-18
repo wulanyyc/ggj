@@ -176,7 +176,7 @@ class WechatController extends Controller
                     $cusar->save();
 
 
-                    $up = CustomerWeixin::findOne($$ar->id);
+                    $up = CustomerWeixin::findOne($ar->id);
                     $up->customer_id = $cusar->id;
                     $up->save();
 
