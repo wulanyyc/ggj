@@ -170,7 +170,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     background-color: #fff;
 
     z-index: 10;
-    border-top: 1px solid #f5f5f5; 
+    /*border-top: 1px solid #f5f5f5; */
   }
 
   .order-items {
@@ -187,7 +187,12 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   a.text-info {
-    font-size: 12px;text-decoration: none;position: absolute;right:15px;
+    font-size: 14px;text-decoration: none;position: absolute;right:15px;
+  }
+
+  .list-group-item {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
   }
 
 </style>
@@ -200,14 +205,14 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 <input type="hidden" value='<?=$cid ?>' id="order_id" />
 <input type="hidden" value="<?=$orderType ?>" id="order_type" />
 
-<div style="position: fixed;top: 55px;width:100%;">
+<div style="position: fixed;top: 50px;width:100%;">
     <div class="card">
-      <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+<!--       <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
         现售商品
         <a href="/buy/booking" class="text-info">
           <i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约
         </a>
-      </div>
+      </div> -->
 
       <div id="items" style="margin-top: 10px;">
         <div style="display: table-cell;width:12%;" id="menu_list">
@@ -217,8 +222,8 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
             <?php } ?>
           </div>
         </div>
-        <div style="display: table-cell;width:87%" id="order_scroll_container">
-          <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;padding-left: 2%;padding-right: 2%;width: 100%">
+        <div style="display: table-cell;width:87%;" id="order_scroll_container">
+          <div id="order_scroll" data-spy="scroll" data-target="#menu_list" data-offset="0" class="scrollspy" style="position: relative;overflow-y: scroll;padding-left: 2%;padding-right: 2%;width: 100%;margin-top: -4%;">
             <?php foreach($products as $key => $item) { ?>
             <h6 id="list-<?=$key ?>" style="font-size: 14px;font-weight: normal;"><?=$categorys[$key] ?></h6>
             <div class="order-items">
