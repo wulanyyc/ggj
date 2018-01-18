@@ -244,7 +244,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div class="card-content" id="show_address_content">
       <?php if (empty($address)) { ?>
       <div class="no_address" style="text-align: center;height:50px;position: relative;">
-        <button id="add_address" type="button" class="btn btn-outline-danger" style="width:50%;margin-bottom: 10px;font-size: 16px;margin: 10px auto;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+        <button id="add_address" type="button" class="btn btn-outline-danger" style="width:50%;margin-bottom: 15px;font-size: 16px;margin: 10px auto;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
       </div>
 
       <div class="show_address" data-id="" style="display: none;">
@@ -491,21 +491,21 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     <input type="hidden" name="id" value='' id="edit_address_id" />
     <div class='form-group' style="display: table;width: 100%;margin-bottom: 5px;">
         <label style="width:30%;display: table-cell;">收货人：</label>
-        <input style="width:65%;display: table-cell;" type='text' placeholder='' name='rec_name' class='form-control input-sm' id='rec_name' maxlength=45 value='' />
+        <input style="display: table-cell;" type='text' placeholder='' name='rec_name' class='form-control input-sm' id='rec_name' maxlength=45 value='' />
     </div>
     <div class='form-group' style="display: table;width: 100%;margin-bottom: 5px;">
         <label style="width:30%;display: table-cell;">手机号码：</label>
-        <input style="width:65%;display: table-cell;" type='text' placeholder='' name='rec_phone' class='form-control input-sm' id='phone' size=11 value='' />
+        <input style="display: table-cell;" type='text' placeholder='' name='rec_phone' class='form-control input-sm' id='phone' size=11 value='' />
     </div>
     <div class='form-group' style="display: table;width: 100%;margin-bottom: 5px;">
         <label style="width:30%;display: table-cell;">所在城市：</label>
-        <select class="form-control" style="width:65%;display: table-cell;" name="rec_city" id="rec_city">
+        <select class="form-control" style="display: table-cell;" name="rec_city" id="rec_city">
           <option value="成都市">成都市</option>
         </select>
     </div>
     <div class='form-group' style="display: table;width: 100%;margin-bottom: 5px;">
         <label style="width:30%;display: table-cell;">所在地区：</label>
-        <select class="form-control" style="width:65%;display: table-cell;" name="rec_district" id="rec_district">
+        <select class="form-control" style="display: table-cell;" name="rec_district" id="rec_district">
         <?php foreach($citymap as $item) { ?>
           <option value="<?=$item ?>"><?=$item ?></option>
         <?php } ?>
@@ -513,11 +513,11 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
     <div class='form-group' style="display: table;width: 100%;margin-bottom: 5px;">
         <label style="width:30%;display: table-cell;">详细地址：</label>
-        <textarea class="form-control" style="width:65%;display: table-cell;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
+        <textarea class="form-control" style="display: table-cell;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
     </div>
     <div class='form-group' style='margin-top:5px;padding-bottom:5px;display: table;width: 100%;' id="label_add_group">
         <label style="width:30%;display: table-cell;">标签：</label>
-        <div style="width:68%;display: table-cell;">
+        <div style="display: table-cell;">
           <div class="label_choose active">家</div>
           <div class="label_choose">公司</div>
           <div class="label_choose">学校</div>

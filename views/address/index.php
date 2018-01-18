@@ -187,21 +187,21 @@ MsaView::registerJsFile($this,'/js/address/index.js',
     <input type="hidden" name="id" value='' id="edit_address_id" />
     <div class='form-group' style="display: table;width: 100%;">
         <label style="width:30%; display: table-cell;">收货人：</label>
-        <input class="form-control" style="width:65%;display: table-cell;" type='text' placeholder='' name='rec_name' class='input-sm' id='rec_name' maxlength=45 value='' />
+        <input class="form-control" style="display: table-cell;" type='text' placeholder='' name='rec_name' class='input-sm' id='rec_name' maxlength=45 value='' />
     </div>
     <div class='form-group' style="display: table;width: 100%;">
         <label style="width:30%;display: table-cell;">手机号码：</label>
-        <input class="form-control" style="width:65%;display: table-cell;" type='text' placeholder='' name='rec_phone' class='input-sm' id='phone' value='' />
+        <input class="form-control" style="display: table-cell;" type='text' placeholder='' name='rec_phone' class='input-sm' id='phone' value='' />
     </div>
     <div class='form-group' style="display: table;width: 100%;">
         <label style="width:30%;display: table-cell;">所在城市：</label>
-        <select class="form-control" style="width:65%;" name="rec_city" id="rec_city">
+        <select class="form-control" style="display: table-cell;" name="rec_city" id="rec_city">
           <option value="成都">成都</option>
         </select>
     </div>
     <div class='form-group' style="display: table;width: 100%;">
         <label style="width:30%;display: table-cell;">所在地区：</label>
-        <select class="form-control" style="width:65%;display: table-cell;" name="rec_district" id="rec_district">
+        <select class="form-control" style="display: table-cell;" name="rec_district" id="rec_district">
         <?php foreach($citymap as $item) { ?>
           <option value="<?=$item ?>"><?=$item ?></option>
         <?php } ?>
@@ -209,11 +209,11 @@ MsaView::registerJsFile($this,'/js/address/index.js',
     </div>
     <div class='form-group' style="display: table;width: 100%;">
         <label style="width:30%;display: table-cell;">详细地址：</label>
-        <textarea class="form-control" style="width:65%;display: table-cell;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
+        <textarea class="form-control" style="display: table-cell;" placeholder='街道、楼牌号, 限100字' maxlength=100 name='rec_detail' id='rec_detail' class='input-sm'></textarea>
     </div>
     <div class='form-group' style='display: table;margin-top:10px;padding-bottom:10px;border-bottom: 1px solid #f5f5f5;display: table;width: 100%;' id="label_add_group">
         <label style="width:30%;display: table-cell;">标签：</label>
-        <div style="width:68%;display: table-cell;">
+        <div style="display: table-cell;">
           <div class="label_choose active">家</div>
           <div class="label_choose">公司</div>
           <div class="label_choose">学校</div>
