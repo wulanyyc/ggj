@@ -137,12 +137,16 @@ main {
         height: 120px !important;
     }
 
-    .product-card-img img {
+    .product-card-img img.prodcut_img {
         height: 100px !important;
     }
 
-    .zhang_img {
-        left: 28% !important;
+    .promotion-item-left-content-top {
+        font-size: 18px !important;
+    }
+
+    .promotion-item-left-content-bottom {
+        font-size: 12px !important;
     }
 
     #ask.right-arrow {

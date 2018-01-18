@@ -413,7 +413,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
           <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
             <a class="product-item-content" href="<?=$product['link'] ?>">
               <div class="product-card-img">
-                <img src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                <img src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" class="prodcut_img" />
                 <img src="http://img.guoguojia.vip/img/xiandu.png" class="zhang_img" />
               </div>
 
