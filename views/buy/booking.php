@@ -53,7 +53,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   .order-product.active {
-    background-color: #f8f8f8;
+    background-color: #f5f5f5;
   }
 
   .product-content {
