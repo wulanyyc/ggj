@@ -128,6 +128,10 @@ class WechatController extends Controller
                         }
                         $cusar->save();
 
+                        $up = CustomerWeixin::findOne($ar->id);
+                        $up->customer_id = $cusar->id;
+                        $up->save();
+
                         // TODO 关注公众号，修改优惠id
                         PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
                         // TODO 首单优惠，修改优惠id
@@ -170,6 +174,11 @@ class WechatController extends Controller
                         $cusar->unionid = $userinfo['unionid'];
                     }
                     $cusar->save();
+
+
+                    $up = CustomerWeixin::findOne($$ar->id);
+                    $up->customer_id = $cusar->id;
+                    $up->save();
 
                     // TODO 关注公众号，修改优惠id
                     PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
