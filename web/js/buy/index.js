@@ -179,13 +179,13 @@ $(document).ready(function () {
     }
 
     $('#order').click(function() {
-        var realprice = parseFloat($('.realprice').html());
+        var realprice = parseFloat($('#tongji .realprice').html());
         var limit = parseFloat($('#buyLimit').val());
 
         if (realprice < limit) {
             return ;
         }
-        
+
         if (($.cookie('cid') && $.cookie('secret')) || $.cookie('openid')) {
             order();
         } else {
