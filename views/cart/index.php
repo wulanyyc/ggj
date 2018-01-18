@@ -216,12 +216,16 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   .right-arrow {
-    width: 16%;display: table-cell;vertical-align: middle;
+    width: 18%;
+    display: table-cell;
+    vertical-align: middle;
     text-align: right;
   }
 
   .left-content {
-    display: table-cell;vertical-align: middle;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
   }
 
   .icon {
@@ -294,10 +298,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div class="card">
   <div id="products" class="card-content" style="width: 100%;">
     <div id="product_detail" style="width: 100%;">
-      <div class="left-content" style="position: relative;width:80%;overflow: hidden;height:70px;">
+      <div class="left-content" style="position: relative;overflow: hidden;height:70px;">
         <?php foreach($data['show_product'] as $item) { ?>
-        <div class="product" style="height: 70px;display: table-cell;vertical-align: middle;">
-          <img src="<?=$item['img'] ?>" style="height:100%;padding: 5%;" />
+        <div class="product" style="height:70px;display: table-cell;vertical-align: middle;">
+          <img src="<?=$item['img'] ?>" style="height:80%;padding: 5%;" />
         </div>
         <?php } ?>
       </div>
@@ -310,10 +314,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
 
     <hr style="margin-top:0px;margin-bottom: 3px;" />
-    <div class="item" style="display: table;width: 100%;padding-bottom: 5px;">
-        <div style="display: table-cell;width: 80%;vertical-align: middle;">
+    <div class="item" style="display: table;width: 100%;padding-bottom: 5px;height: 30px;">
+        <div style="display: table-cell;vertical-align: middle;">
           <p class="label" style="display: inline-block;">配送方式：</p>
-            <div style="display: inline-block;" data-id="1" class="express_rule">
+            <div style="display: inline-block;margin-right: 5px;" data-id="1" class="express_rule">
               <div class="icon" data-id="1"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
               <span class="badge badge-success" style="letter-spacing: 1px;font-size: 14px;line-height: 16px;font-weight: normal;margin-top: 8px;">快递</span>
             </div>
@@ -343,7 +347,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <div id="ask" class="right-arrow" style="color:red;cursor: pointer;font-size: 13px;width:20%;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
     </div>
     <hr style="margin-top: 8px;margin-bottom: 8px;"/> -->
-    <div style="margin-bottom:3px;display: table;" id="choose_coupon">
+    <div style="margin-bottom:3px;display: table;height: 30px;" id="choose_coupon">
       <p class="label left-content" style="width:72%;">优惠券</p>
       <p style="font-size: 13px;cursor: pointer;width:18%;" class="right-arrow" id="coupon_detail">
         <?php if ($coupon > 0) { ?>

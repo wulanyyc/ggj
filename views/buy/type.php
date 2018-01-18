@@ -112,7 +112,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
     </div>
 
     <br/>
-    <a class="btn btn-success" href="/buy/booking?id=<?=$id ?>" style="width: 50%;margin-left:25%;margin-top:20px;">去预约</a>
+    <div class="btn btn-success" data-type="2" class="choose_type" data-href="/buy/booking?id=<?=$id ?>" style="width: 50%;margin-left:25%;margin-top:20px;">去预约</div>
     <br/>
-    <a class="btn btn-danger" href="/buy/?id=<?=$id ?>" style="width: 50%;margin-left:25%;margin-top:20px;">买现货</a>
+    <div class="btn btn-danger" data-type="1" class="choose_type" data-href="/buy/?id=<?=$id ?>" style="width: 50%;margin-left:25%;margin-top:20px;">买现货</div>
 </div>
