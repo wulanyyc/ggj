@@ -13,6 +13,7 @@ use app\components\SiteHelper;
 use app\components\PriceHelper;
 use app\components\ExpressHelper;
 use app\models\ProductCart;
+use app\models\Customer;
 
 class OrderController extends AuthController
 {
