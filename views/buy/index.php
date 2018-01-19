@@ -319,7 +319,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
       <span class="realprice" style="font-size:18px;font-weight: normal;">0</span>
     </div>
   </div>
-  <div class='btn btn-secondary' id='order' style="margin-right: 8px;width:90px;text-align: center;display: inline-block;"><?=$buyLimit ?>元起购</div>
+  <div class='btn btn-secondary' id='order' style="margin-right: 8px;width:100px;text-align: center;display: inline-block;"><?=$buyLimit ?>元起购</div>
 </div>
 
 <div class="card" id="login">
