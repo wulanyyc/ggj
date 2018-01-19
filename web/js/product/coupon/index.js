@@ -70,6 +70,7 @@ $(document).ready(function () {
             success: function (data) {
                 $('.name').val(data.name);
                 $('.money').val(data.money);
+                $('.money_limit').val(data.money_limit);
                 $('.day').val(data.day);
                 $('.type').val(data.type);
                 $('.desc').val(data.desc);

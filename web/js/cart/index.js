@@ -13,6 +13,8 @@ $(document).ready(function () {
         }
 
         $("#realprice").html(real_price);
+
+        return real_price;
     }
 
     $('#express_' + $('#history_express_rule').val()).attr('checked', 'checked');
@@ -337,10 +339,12 @@ $(document).ready(function () {
     });
 
     $('#choose_coupon').click(function() {
+        var id = $('#cart_id').val();
         $.ajax({
             url: '/cart/coupon',
             type: 'post',
             dataType: 'json',
+            data: 'cid=' + id,
             success: function (data) {
                 if (data.status == 'fail') {
                     $('#coupon_items').html(data.msg);
@@ -356,6 +360,7 @@ $(document).ready(function () {
                 }
             }
         });
+
         $('#coupon').show();
         $('body').addClass('forbid');
         $('#cover').show();

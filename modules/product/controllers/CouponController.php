@@ -136,7 +136,7 @@ class CouponController extends AuthController
 
         $pl = new Coupon();
         $ret = Coupon::find()
-            ->select('name,money,day,type,desc')
+            ->select('name,money,money_limit,day,type,desc')
             ->where(['id' => $id])
             ->asArray()
             ->one();

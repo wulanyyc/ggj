@@ -51,8 +51,8 @@ class CartController extends Controller
             Yii::$app->end();
         }
 
-        $exsit = ProductCart::find()->where(['id' => $id])->count();
-        if ($exsit == 0) {
+        $exsit = ProductCart::find()->where(['id' => $id])->asArray()->one();
+        if (empty($exsit)) {
             Yii::$app->controller->redirect('/');
             Yii::$app->end();
         }
@@ -80,7 +80,7 @@ class CartController extends Controller
             'data' => $data,
             'address' => $this->getUserAddress($cid),
             'citymap' => Yii::$app->params['citymap']['成都'],
-            'coupon' => count(PriceHelper::getValidCoupon()),
+            'coupon' => count(PriceHelper::getValidCartCoupon($exsit['id'])),
             'discount_start' => Yii::$app->params['discount']['start'],
             'discount_end'   => Yii::$app->params['discount']['end'],
             'buyLimit' => $buyLimit,
@@ -176,35 +176,47 @@ class CartController extends Controller
         if ($productPrice == $params['product_price']) {
             return true;
         } else {
-            // echo $productPrice . '_' . $params['product_price'];exit;
             return false;
         }
     }
 
     public function actionCoupon() {
-        $data = PriceHelper::getValidCoupon();
         $html = '';
+
+        $params = Yii::$app->request->post();
+        $cid = !empty($params['cid']) ? $params['cid'] : 0;
+
+        $data = PriceHelper::getValidCartCoupon($cid);
+        $customerId = SiteHelper::getCustomerId();
+
+        $price = ProductCart::find()->where(['id' => $cid, 'customer_id' => $customerId])->select('product_price')->scalar();
+
+        if (empty($price)) {
+            $price = 0;
+        }
 
         if (empty($data)) {
             SiteHelper::render('fail', '很抱歉，您账户里没有可用的优惠券');
         } else {
             foreach($data as $key => $value) {
                 $info = Coupon::find()->where(['id' => $value['cid']])->asArray()->one();
-                $info['start_date'] = date('Y.m.d', strtotime($info['start_date']));
-                $info['end_date']   = date('Y.m.d', strtotime($info['end_date']));
+
+                $dayDiff = ceil((strtotime($info['end_date']) - time()) / 86400);
 
                 $html .= <<<EOF
-                <div class="coupon_item">
-                    <div class="coupon_item_content">
-                        <img src="/img/icon/coupon.jpeg" class="coupon_item_content_img" />
-                        <div class="coupon_item_label">{$info['name']}</div>
-                        <div class="coupon_item_text">
-                          <div class="coupon_item_money text-danger">{$info['money']}元</div>
-                          <div class="coupon_item_date">{$info['start_date']}～{$info['end_date']}</div>
+                    <div class="coupon_item">
+                        <div class="coupon_item_content">
+                            <img src="/img/icon/coupon.jpeg" class="coupon_item_content_img" />
+                            <div class="coupon_item_label">{$info['name']}</div>
+                            <div class="coupon_item_text">
+                              <div class="coupon_item_money text-danger">{$info['money']}元</div>
+                              <div class="coupon_item_date">剩{$dayDiff}天到期</div>
+                            </div>
+                        </div>
+                        <div class="coupon_check" id="coupon_{$info['id']}" data-id={$info['id']} data-money={$info['money']}>
+                            <i class="fa fa-square-o" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <div class="coupon_check" id="coupon_{$info['id']}" data-id={$info['id']} data-money={$info['money']}><i class="fa fa-square-o" aria-hidden="true"></i></div>
-    </div>
 EOF;
             }
         }

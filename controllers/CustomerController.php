@@ -196,8 +196,10 @@ class CustomerController extends Controller
         } else {
             foreach($data as $key => $value) {
                 $info = Coupon::find()->where(['id' => $value['cid']])->asArray()->one();
-                $info['start_date'] = date('Y.m.d', strtotime($info['start_date']));
-                $info['end_date']   = date('Y.m.d', strtotime($info['end_date']));
+                // $info['start_date'] = date('Y.m.d', strtotime($info['start_date']));
+                // $info['end_date']   = date('Y.m.d', strtotime($info['end_date']));
+
+                $dayDiff = ceil((strtotime($info['end_date']) - time()) / 86400);
 
                 $html .= <<<EOF
                 <a class="coupon_item" href="/">
@@ -206,7 +208,7 @@ class CustomerController extends Controller
                         <div class="coupon_item_label">{$info['name']}</div>
                         <div class="coupon_item_text">
                           <div class="coupon_item_money text-danger">{$info['money']}元</div>
-                          <div class="coupon_item_date">{$info['start_date']}～{$info['end_date']}</div>
+                          <div class="coupon_item_date">剩{$dayDiff}天到期</div>
                         </div>
                     </div>
                 </a>
@@ -221,17 +223,16 @@ EOF;
             $jobHtml = '没有可领取的券';
         } else {
             foreach($jobData as $key => $value) {
-                $value['start_date'] = date('Y.m.d', strtotime($value['start_date']));
-                $value['end_date']   = date('Y.m.d', strtotime($value['end_date']));
+                $dayDiff = ceil((strtotime($value['end_date']) - time()) / 86400);
 
                 $jobHtml .= <<<EOF
-                <div class="coupon_item">
+                <div class="coupon_item" data-type={$value['type']} data-id={$value['id']}>
                     <div class="coupon_item_content">
                         <img src="/img/icon/coupon.jpeg" class="coupon_item_content_img" />
                         <div class="coupon_item_label">{$value['name']}</div>
                         <div class="coupon_item_text">
                           <div class="coupon_item_money text-danger">{$value['money']}元</div>
-                          <div class="coupon_item_date">{$value['start_date']}～{$value['end_date']}</div>
+                          <div class="coupon_item_date">剩{$dayDiff}天到期</div>
                         </div>
                     </div>
                 </div>
@@ -244,6 +245,27 @@ EOF;
             'html' => $html,
             'jobHtml' => $jobHtml,
         ]);
+    }
+
+    public function actionGetcoupon() {
+        $params = Yii::$app->request->post();
+        $couponId = !empty($params['cid']) ? $params['cid'] : 0;
+
+        $customerId = SiteHelper::getCustomerId();
+
+        $exsit = CouponUse::find()->where(['customer_id' => $customerId, 'cid' => $couponId])->count();
+
+        if ($exsit > 0) {
+            SiteHelper::render('fail', '已领过');
+        } else {
+            $id = PriceHelper::createCouponById($couponId, $customerId);
+
+            if ($id > 0) {
+                SiteHelper::render('ok');
+            } else {
+                SiteHelper::render('fail', '领取失败');
+            }
+        }
     }
 
     private function getCommon() {
@@ -270,6 +292,7 @@ EOF;
         $cid = SiteHelper::getCustomerId();
 
         $job = Coupon::find()
+            ->andWhere(['<=', 'type', 3])
             ->andWhere(['<=', 'start_date', $currentDate])
             ->andWhere(['>=', 'end_date', $currentDate])
             ->asArray()->all();

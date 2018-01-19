@@ -162,6 +162,38 @@ class PriceHelper extends Component {
         return $data;
     }
 
+    public static function getValidCartCoupon($id) {
+        $data = self::getValidCoupon();
+        $customerId = SiteHelper::getCustomerId();
+
+        $price = ProductCart::find()->select('product_price')
+            ->where(['id' => $id, 'customer_id' => $customerId])
+            ->scalar();
+
+        foreach($data as $key => $value) {
+            $limit = Coupon::find()->where(['id' => $value['cid']])->select('money_limit')->scalar();
+            if ($limit > 0 && $limit > $price) {
+                unset($data[$key]);
+            }
+        }
+
+        return $data;
+        // $customer_id = SiteHelper::getCustomerId();
+
+        // $currentDate = date('Ymd', time());
+
+        // $data = CouponUse::find()->where(['customer_id' => $customer_id, 'use_status' => 1])->asArray()->all();
+
+        // foreach ($data as $key => $item) {
+        //     $endDate = Coupon::find()->where(['id' => $item['cid']])->select('end_date')->scalar();
+        //     if ($currentDate > $endDate) {
+        //         unset($data[$key]);
+        //     }
+        // }
+
+        // return $data;
+    }
+
     public static function calculateCounponFee($ids) {
         if (empty($ids)) return 0;
 

@@ -3,7 +3,13 @@ use yii\web\View;
 use app\components\MsaView;
 use app\assets\SiteAsset;
 
-SiteAsset::register($this);
+MsaView::registerJsFile($this,'/js/customer/coupon.js', 
+    ['position' => View::POS_END, 
+        'depends' => [
+            'app\assets\SiteAsset',
+        ]
+    ]
+);
 
 $this->title = '优惠券管理';
 ?>
@@ -98,6 +104,7 @@ $this->title = '优惠券管理';
     width: 100%;
     bottom: 5%;
     font-size: 14px;
+    letter-spacing: 1px;
   }
 
 </style>
@@ -115,7 +122,7 @@ $this->title = '优惠券管理';
     <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       活动券
     </div>
-    <div style="padding:2%;">
+    <div style="padding:2%;" id="job_coupon">
       <?=$jobHtml ?>
     </div>
 </div>
