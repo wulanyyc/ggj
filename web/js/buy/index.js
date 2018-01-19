@@ -1,6 +1,6 @@
 $(document).ready(function () {
     cart = {};
-    var back = -1;
+    // var back = -1;
     timeLimit = 120;
     clock = 0;
 
@@ -36,8 +36,9 @@ $(document).ready(function () {
     init();
 
     $('a.list-group-item').click(function(){
-        back -= 1;
-        $.cookie('buy-history-back', back, { path: '/' });
+        // back -= 1;
+        // $.cookie('buy-history-back', back, { path: '/' });
+        
         $(".order-product").show();
         $('.list-group-item').removeClass('active');
         $(this).addClass('active');

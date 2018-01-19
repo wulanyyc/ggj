@@ -1,6 +1,6 @@
 $(document).ready(function () {
     cart = {};
-    var back = -1;
+    // var back = -1;
     timeLimit = 120;
     clock = 0;
 
@@ -47,8 +47,9 @@ $(document).ready(function () {
     });
 
     $('.list-group-item').click(function(){
-        back -= 1;
-        $.cookie('booking-history-back', back, { path: '/' });
+        // back -= 1;
+        // $.cookie('booking-history-back', back, { path: '/' });
+        
         $('.list-group-item').removeClass('active');
         $(this).addClass('active');
 

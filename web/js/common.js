@@ -16,7 +16,7 @@ $(document).ready(function () {
     }
 
     $('#back, #inner_back').click(function(){
-        console.log($('#we_appid').val());
+        // console.log($('#we_appid').val());
         if ($('#we_appid').val() != undefined) {
             var wechat = $('#we_appid').val().length > 0 ? true : false;
 
@@ -27,22 +27,25 @@ $(document).ready(function () {
             }
         }
 
-        if (location.pathname == '/buy/booking') {
-            var back = $.cookie('booking-history-back');
-            if ($.cookie('booking-history-back') < 0) {
-                $.cookie('booking-history-back', '', { expires: -1, path: '/' });
-                window.history.go(back);
-            } else {
-                window.history.back();
-            }
-        } else if (location.pathname == '/buy') {
-            var back = $.cookie('buy-history-back');
-            if ($.cookie('buy-history-back') < 0) {
-                $.cookie('buy-history-back', '', { expires: -1, path: '/'});
-                window.history.go(back);
-            } else {
-                window.history.back();
-            }
+        console.log(location.pathname);
+        if (/\/buy\/booking/.test(location.pathname)) {
+            // var back = $.cookie('booking-history-back');
+            // if ($.cookie('booking-history-back') < 0) {
+            //     $.cookie('booking-history-back', '', { expires: -1, path: '/' });
+            //     window.history.go(back);
+            // } else {
+            //     window.history.back();
+            // }
+            location.href = "/";
+        } else if (/\/buy/.test(location.pathname)) {
+            // var back = $.cookie('buy-history-back');
+            // if ($.cookie('buy-history-back') < 0) {
+            //     $.cookie('buy-history-back', '', { expires: -1, path: '/'});
+            //     window.history.go(back);
+            // } else {
+            //     window.history.back();
+            // }
+            location.href = "/";
         } else if (location.pathname == '/cart'){
             $('#edit').click();
             // window.history.back();
