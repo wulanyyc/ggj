@@ -102,9 +102,10 @@ $(document).ready(function () {
         } else {
             $(this).parent().find('.operator-left').css('visibility', 'hidden');
             $(this).parent().find('.operator-num').css('visibility', 'hidden');
+            $(this).parent().find('.operator-num').html(0);
 
             if (cart[id]) {
-                // cart[id].num = 0;
+                cart[id].num = 0;
                 delete cart[id];
             }
         }

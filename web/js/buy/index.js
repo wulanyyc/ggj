@@ -3,6 +3,8 @@ $(document).ready(function () {
     // var back = -1;
     timeLimit = 120;
     clock = 0;
+    // add_lock = 0;
+    // minus_lock = 0;
 
     function init() {
         $('#order_scroll').css('height', $(window).height() - 126);
@@ -55,7 +57,7 @@ $(document).ready(function () {
 
     $('#order_scroll').scrollspy({ target: '#menu_list' });
 
-    $('.operator-right').click(function(){
+    $('.operator-right').click(function() {
         var num = $(this).parent().find('.operator-num').html();
 
         num = parseInt(num) + 1;
@@ -97,9 +99,10 @@ $(document).ready(function () {
         } else {
             $(this).parent().find('.operator-left').css('visibility', 'hidden');
             $(this).parent().find('.operator-num').css('visibility', 'hidden');
+            $(this).parent().find('.operator-num').html(0);
 
             if (cart[id]) {
-                // cart[id].num = 0;
+                cart[id].num = 0;
                 delete cart[id];
             }
         }
