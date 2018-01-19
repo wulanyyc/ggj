@@ -115,9 +115,13 @@ $(document).ready(function () {
     function calculateTotal() {
         var total = 0;
         $.each(cart, function(k, v) {
-            total += v.num * v.price;
+            if (v.limit > 0 && v.num > v.limit) {
+                total += (v.num - v.limit) * v.oprice + v.limit * v.price;
+            } else {
+                total += v.num * v.price;
+            }
         });
-
+        
         total = $.helper.round(total, 1);
         var limit = parseInt($('#buyLimit').val());
 
