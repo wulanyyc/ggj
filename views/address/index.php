@@ -153,7 +153,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
           <div style="width: 80%;display: table-cell;" class="address-content" data-id="<?=$item['id'] ?>">
             <p style="font-weight: bold;color:#333;">
               <?=$item['rec_name'] ?>
-              <span id="cipher_phone" style="padding-left: 5px;"><?=$item['rec_phone'] ?></span>&nbsp;
+              <span id="rec_phone" style="padding-left: 5px;"><?=$item['rec_phone'] ?></span>&nbsp;
               <span class="border border-success text-success" style="font-size: 14px;padding:0px 10px;"><?=$item['label'] ?></span>
             </p>
             <p style="color:#a3a3a3;font-size: 16px;">
@@ -231,7 +231,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
     </div>
 
     <div style="width: 100%;align-items: center;">
-      <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;">保存</button>
+      <button type="button" class="btn btn-success btn-sm" id="save_address" style="width:150px;margin-left:30px;">保存</button>
       <span id='close_address_bottom' style="padding-left: 15px;font-size: 16px;color:#0C58B0;">关闭</span>
     </div>
   </form>

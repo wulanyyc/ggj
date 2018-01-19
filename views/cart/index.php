@@ -107,7 +107,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   .all_address_item {
-    padding: 2% 3%; border-bottom: 1px solid #eee;height:auto;
+    padding: 2% 3%; 
+    border-bottom: 1px solid #eee;
+    height:auto;
+    display: table;width: 100%;
   }
 
   #address_info, #all_address_info {
@@ -125,10 +128,23 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
   .edit_address_item, .del_address_item {
     text-align: center;
+    width: 10%;display: table-cell;vertical-align: middle;
   }
 
   .hide_address {
     display: none;
+  }
+
+  .address-status {
+    width: 10%;display: table-cell;vertical-align: middle;
+  }
+
+  .address-content {
+    width: 72%;display: table-cell;vertical-align: middle;
+  }
+
+  .address-content-title {
+    font-weight: bold;color:#333;
   }
 
   .address-status.active {
@@ -232,6 +248,17 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     display: inline-block;
     width: 15px;
   }
+
+  #coupon_detail {
+    font-size: 13px;
+    cursor: pointer;
+    width: 28%;
+    position: absolute;
+    right: 0px;
+    text-align: right;
+    top: 0px;
+    /*letter-spacing: 1px;*/
+  }
 </style>
 
 <input type="hidden" name="order_type" id="order_type" value="<?=$data['order_type'] ?>" />
@@ -247,40 +274,52 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div class="card">
   <div class="card-content" id="show_address_content">
       <?php if (empty($address)) { ?>
-      <div class="no_address" style="text-align: center;height:50px;position: relative;">
-        <button id="add_address" type="button" class="btn btn-outline-danger" style="width:50%;margin-bottom: 15px;font-size: 16px;margin: 10px auto;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
+      <div class="no_address" style="text-align: center;height:60px;position: relative;">
+        <button id="add_address" type="button" class="btn btn-outline-danger" style="width:50%;font-size: 16px;margin: 10px auto;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加收货地址</button>
       </div>
 
       <div class="show_address" data-id="" style="display: none;">
         <div class="left-content">
-          <p style="font-weight: bold;color:#333;">
-            <span id="show_rec_name"></span>
-            <span id="show_rec_phone" style="padding-left: 5px;"></span>&nbsp;
-            <span id="show_label" class="border border-success text-success"></span>
-          </p>
-          <p style="color:#a3a3a3;">
+          <div style="display: table-cell;font-size: 30px;width:30px;text-align: center;color:#28a745;vertical-align: middle;">
             <span><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;</span>
-            <span id="show_address"></span>
-          </p>
+          </div>
+
+          <div style="display: table-cell;vertical-align: top;">
+            <div style="font-weight: bold;color:#333;">
+              <span id="show_rec_name"></span>
+              <span id="show_rec_phone" style="padding-left: 5px;"></span>&nbsp;
+              <span id="show_label" class="border border-success text-success"></span>
+            </div>
+            <div style="color:#a3a3a3;font-size: 16px;">
+              <span id="show_address"></span>
+            </div>
+          </div>
         </div>
-        <div class="right-arrow" style="width:3%;">
+
+        <div class="right-arrow" style="width: 5%;">
           <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         </div>
       </div>
       <?php } else { ?>
       <div class="show_address" data-id="<?=$address[0]['id'] ?>">
         <div class="left-content">
-          <p style="font-weight: bold;color:#333;display: inline-block;">
-            <span id="show_rec_name"><?=$address[0]['rec_name'] ?></span>
-            <span id="show_rec_phone" style="padding-left: 5px;"><?=$address[0]['rec_phone'] ?></span>&nbsp;
-            <span id="show_label" class="border border-success text-success"><?=$address[0]['label'] ?></span>
-          </p>
-          <p style="color:#a3a3a3;font-size: 16px;display: inline-block;">
+          <div style="display: table-cell;font-size: 30px;width:30px;text-align: center;color:#28a745;vertical-align: middle;">
             <span><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;</span>
-            <span id="show_address"><?=$address[0]['rec_city'] ?><?=$address[0]['rec_district'] ?><?=$address[0]['rec_detail'] ?></span>
-          </p>
+          </div>
+
+          <div style="display: table-cell;vertical-align: top;">
+            <div style="font-weight: bold;color:#333;">
+              <span id="show_rec_name"><?=$address[0]['rec_name'] ?></span>
+              <span id="show_rec_phone" style="padding-left: 5px;"><?=$address[0]['rec_phone'] ?></span>&nbsp;
+              <span id="show_label" class="border border-success text-success"><?=$address[0]['label'] ?></span>
+            </div>
+            <div style="color:#a3a3a3;font-size: 16px;">
+              <span id="show_address"><?=$address[0]['rec_city'] ?><?=$address[0]['rec_district'] ?><?=$address[0]['rec_detail'] ?></span>
+            </div>
+          </div>
         </div>
-        <div class="right-arrow" style="width:3%;">
+
+        <div class="right-arrow" style="width:5%;">
           <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         </div>
       </div>
@@ -314,21 +353,21 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
 
     <hr style="margin-top:0px;margin-bottom: 3px;" />
-    <div class="item" style="display: table;width: 100%;padding-bottom: 5px;height: 30px;">
-        <div style="display: table-cell;vertical-align: middle;">
-          <p class="label" style="display: inline-block;">配送方式：</p>
-            <div style="display: inline-block;margin-right: 5px;" data-id="1" class="express_rule">
-              <div class="icon" data-id="1"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
-              <span class="badge badge-success" style="letter-spacing: 1px;font-size: 13px;line-height: 16px;font-weight: normal;margin-top: 8px;">顺丰快递</span>
-            </div>
+    <div class="item" style="width: 100%;height: 40px;line-height: 40px;position: relative;">
+        <div style="display: inline-block;width:90%;">
+          <p class="label" style="display: inline-block;">配送：</p>
+          <div style="display: inline-block;margin-right: 5px;" data-id="1" class="express_rule">
+            <div class="icon" data-id="1"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
+            <span class="badge badge-success" style="font-size: 13px;line-height: 16px;font-weight: normal;">顺丰快递</span>
+          </div>
 
-            <div style="display: inline-block;" data-id="2" class="express_rule">
-              <span class="icon" data-id="2"><i class="fa fa-square-o" aria-hidden="true"></i></span>
-              <span class="badge badge-info" style="letter-spacing: 1px;font-size: 13px;line-height: 16px;font-weight: normal;margin-top: 8px;">自提</span>
-            </div>
+          <div style="display: inline-block;" data-id="2" class="express_rule">
+            <span class="icon" data-id="2"><i class="fa fa-square-o" aria-hidden="true"></i></span>
+            <span class="badge badge-info" style="font-size: 13px;line-height: 16px;font-weight: normal;">自提</span>
+          </div>
         </div>
 
-        <div id="express_time" class="right-arrow">
+        <div id="express_time" style="width: 18%;position: absolute;right: 0px;top: 0px;text-align: right;">
           <span style="font-size: 13px;cursor: pointer;">发货
             <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
           </span>
@@ -339,23 +378,23 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card">
   <div id="discount" class="card-content">
-    <div style="margin-top:5px;display: table;">
+<!--     <div style="margin-top:5px;display: table;">
       <div class="left-content">
         <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的手机号码" maxlength=11 style="width: 128px;font-size: 14px;height: 40px;display: inline-block;" />
         <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-left:5px;display: inline-block;">优惠码</button>
       </div>
       <div id="ask" class="right-arrow" style="color:red;cursor: pointer;font-size: 13px;width:20%;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
     </div>
-    <hr style="margin-top: 8px;margin-bottom: 8px;"/>
-    <div style="margin-bottom:3px;display: table;height: 30px;" id="choose_coupon">
-      <p class="label left-content" style="width:72%;">优惠券</p>
-      <p style="font-size: 13px;cursor: pointer;width:18%;" class="right-arrow" id="coupon_detail">
+    <hr style="margin-top: 8px;margin-bottom: 8px;"/> -->
+    <div style="margin-bottom:3px;display: table;height: 40px;position: relative;width: 100%;line-height: 40px;" id="choose_coupon">
+      <div class="label" style="width:68%;display: inline-block;">优惠券</div>
+      <div id="coupon_detail">
         <?php if ($coupon > 0) { ?>
         可用<span class="text-danger" style="font-weight: bold;font-size: 14px;"><?=$coupon ?></span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         <?php } else { ?>
         可用<span class="text-danger">0</span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         <?php } ?>
-      </p>
+      </div>
     </div>
   </div>
 </div>
@@ -416,8 +455,8 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="detail">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: -webkit-center;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-      商品详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_detail"></i>
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+      商品详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_detail"></i>
   </div>
   <div style="margin-top: 10px;font-size: 14px;width:98%;margin:1% auto;height: 72%;overflow-y: scroll;">
     <table class="table table-bordered">
@@ -449,25 +488,27 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
     <div style="height:80%;overflow-y: scroll;" id="all_address_items">
       <?php foreach($address as $item) { ?>
-      <div class="all_address_item" style="display: table;width: 100%;">
-          <div style="width: 10%;display: table-cell;vertical-align: middle;" class="address-status" data-id="<?=$item['id'] ?>"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
-          <div style="width: 72%;display: table-cell;vertical-align: middle;" class="address-content" data-id="<?=$item['id'] ?>">
-            <p style="font-weight: bold;color:#333;">
+      <div class="all_address_item">
+          <div class="address-status" data-id="<?=$item['id'] ?>">
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+          </div>
+          <div class="address-content" data-id="<?=$item['id'] ?>">
+            <p class="address-content-title">
               <?=$item['rec_name'] ?>
               <span id="cipher_phone" style="padding-left: 5px;"><?=$item['rec_phone'] ?></span>&nbsp;
               <span class="border border-success text-success" style="font-size: 14px;padding:0px 10px;"><?=$item['label'] ?></span>
             </p>
-            <p style="color:#a3a3a3;">
+            <p style="color:#a3a3a3;" class="address-content-desc">
               <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
               <span style="font-size: 16px;">&nbsp;<?=$item['rec_city'] ?><?=$item['rec_district'] ?><?=$item['rec_detail'] ?></span>
             </p>
           </div>
 
-          <div data-id="<?=$item['id'] ?>" class="edit_address_item" style="width: 10%;display: table-cell;vertical-align: middle;">
+          <div data-id="<?=$item['id'] ?>" class="edit_address_item">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
           </div>
 
-          <div data-id="<?=$item['id'] ?>" class="del_address_item" style="width: 10%;display: table-cell;vertical-align: middle;">
+          <div data-id="<?=$item['id'] ?>" class="del_address_item">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
           </div>
       </div>
@@ -549,21 +590,21 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 
 <div class="card" id="express_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: -webkit-center;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-      发货时间<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;" id="close_express_info"></i>
+  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+      发货时间<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 15px;" id="close_express_info"></i>
   </div>
   <div style="padding: 5%;">
-    <p style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;">
+    <p>
       <span style="padding-right: 5px;">普通订单: </span>
       <span style="width:72%;">24小时内发货</span>
     </p>
 
-    <p style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
+    <p>
       <span style="padding-right: 5px;">预约订单: </span>
-      <span style="width:72%;">每周<?=Yii::$app->params['bookingSender'] ?>上午发货，取最近的时间发货</span>
+      <span style="width:72%;">每周<?=Yii::$app->params['bookingSender'] ?>上午发货</span>
     </p>
 
-    <p style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;margin-top: 5px;">
+    <p>
       <span style="padding-right: 5px;">特殊要求: </span>
       <span style="width:72%;">请留言或直接联系我们</span>
     </p>

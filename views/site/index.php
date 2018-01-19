@@ -59,10 +59,10 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .promotion-item-left-content-bottom {
-    color:#fff;
-    font-size:14px;
+    color: #fff;
+    font-size: 13px;
     line-height: 26px;
-    padding:3px;
+    padding: 3px;
     text-align: center;
   }
 

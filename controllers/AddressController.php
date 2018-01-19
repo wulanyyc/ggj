@@ -54,25 +54,25 @@ class AddressController extends Controller
         $html = '';
         foreach($address as $item) {
             $html .= <<<EOF
-            <div class="all_address_item">
-              <div style="width: 80%;" class="address-content" data-id="{$item['id']}">
+            <div class="all_address_item" style="display: table;width: 100%;">
+              <div style="width: 80%;display: table-cell;" class="address-content" data-id="{$item['id']}">
                 <p style="font-weight: bold;color:#333;">
                   {$item['rec_name']}
                   <span id="rec_phone" style="padding-left: 5px;">{$item['rec_phone']}</span>
                   &nbsp;
                   <span class="border border-success text-success" style="font-size: 12px;padding:0px 10px;">{$item['label']}</span>
                 </p>
-                <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;">
+                <p style="color:#a3a3a3;font-size:16px;">
                   <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
                   <span>&nbsp;{$item['rec_city']}{$item['rec_district']}{$item['rec_detail']}</span>
                 </p>
               </div>
 
-              <div data-id="{$item['id']}" class="edit_address_item" style="width: 10%">
+              <div data-id="{$item['id']}" class="edit_address_item" style="width: 10%;display: table-cell;vertical-align: middle;">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </div>
 
-              <div data-id="{$item['id']}" class="del_address_item" style="width: 10%">
+              <div data-id="{$item['id']}" class="del_address_item" style="width: 10%;display: table-cell;vertical-align: middle;">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
               </div>
           </div>
@@ -91,25 +91,27 @@ EOF;
         foreach($address as $item) {
             $html .= <<<EOF
             <div class="all_address_item">
-              <div style="width: 10%" class="address-status" data-id="{$item['id']}"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
-              <div style="width: 70%;" class="address-content" data-id="{$item['id']}">
+              <div class="address-status" data-id="{$item['id']}">
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              </div>
+              <div class="address-content" data-id="{$item['id']}">
                 <p style="font-weight: bold;color:#333;">
                   {$item['rec_name']}
                   <span id="rec_phone" style="padding-left: 5px;">{$item['rec_phone']}</span>
                   &nbsp;
                   <span class="border border-success text-success" style="font-size: 12px;padding:0px 10px;">{$item['label']}</span>
                 </p>
-                <p style="color:#a3a3a3;display: flex;flex-direction: row;justify-content: flex-start;">
+                <p style="color:#a3a3a3;" class="address-content-desc">
                   <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
                   <span>&nbsp;{$item['rec_city']}{$item['rec_district']}{$item['rec_detail']}</span>
                 </p>
               </div>
 
-              <div data-id="{$item['id']}" class="edit_address_item" style="width: 10%">
+              <div data-id="{$item['id']}" class="edit_address_item">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </div>
 
-              <div data-id="{$item['id']}" class="del_address_item" style="width: 10%">
+              <div data-id="{$item['id']}" class="del_address_item">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
               </div>
           </div>

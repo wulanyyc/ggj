@@ -149,22 +149,6 @@ main {
         font-size: 12px !important;
     }
 
-    #ask.right-arrow {
-        width: 25% !important;
-    }
-
-    #express_time.right-arrow {
-        width: 20% !important;
-    }
-
-    #coupon_detail.right-arrow {
-        width: 23% !important;
-    }
-
-    #product-arrow.right-arrow {
-        width: 20% !important;
-    }
-
     .status-item {
         font-size: 13px !important;
     }
