@@ -73,13 +73,18 @@ MsaView::registerJsFile($this,'/js/product/coupon/index.js',
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:70px'>类型：</label>
                     <select style='width:250px' value="" name="type" class="type">
-                        <option value=1>限单张</option>
-                        <option value=2>多张可用</option>
+                        <option value=1>系统券</option>
+                        <option value=2>用户券</option>
+                        <option value=3>私有券</option>
                     </select>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:70px'>优惠：</label>
                     <input style='width:250px' type='text' placeholder='' name='money' class='input-sm money'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:70px'>金额限制：</label>
+                    <input style='width:250px' type='text' placeholder='' name='money_limit' class='input-sm money_limit'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:70px'>有效期：</label>
@@ -106,13 +111,18 @@ MsaView::registerJsFile($this,'/js/product/coupon/index.js',
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:70px'>类型：</label>
                     <select style='width:250px' value="" name="type" class="type">
-                        <option value=1>限单张</option>
-                        <option value=2>多张可用</option>
+                        <option value=1>系统券</option>
+                        <option value=2>用户券</option>
+                        <option value=3>私有券</option>
                     </select>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:70px'>优惠：</label>
                     <input style='width:250px' type='text' placeholder='' name='money' class='input-sm money'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:70px'>金额限制：</label>
+                    <input style='width:250px' type='text' placeholder='' name='money_limit' class='input-sm money_limit'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:70px'>有效期：</label>
