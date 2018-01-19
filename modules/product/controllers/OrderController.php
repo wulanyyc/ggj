@@ -68,7 +68,6 @@ class OrderController extends AuthController
 
             $ret[$key]['operation'] = "
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
-            <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-express btn btn-xs btn-purple' href='javascript:void(0);'>获取快递号</a>
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;' class='order-status btn btn-xs btn-info' href='javascript:void(0);'>状态设置</a>";
 
             if ($ret[$key]['status'] == 2 || $ret[$key]['status'] == 3) {
@@ -99,6 +98,8 @@ class OrderController extends AuthController
 
             if ($ret[$key]['status'] == 2) {
                 $ret[$key]['operation'] .= "  <a style='margin-top:5px !important;' class='order-print btn btn-xs btn-secondary' href='/product/order/print?id={$value['id']}'>打印订单</a>";
+
+                 $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-express btn btn-xs btn-purple' href='javascript:void(0);'>获取快递号</a>";
 
                 // $ret[$key]['operation'] .= "  <a style='margin-top:5px !important;' class='order-express-print btn btn-xs btn-primary' href='/product/order/expressprint?id={$value['id']}'>电子面单</a>";
             }
