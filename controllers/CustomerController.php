@@ -189,6 +189,7 @@ class CustomerController extends Controller
 
     public function actionCoupon() {
         $data = PriceHelper::getValidCoupon();
+        // print_r($data);exit;
         $html = '';
 
         if (empty($data)) {
