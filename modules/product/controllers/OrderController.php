@@ -60,6 +60,10 @@ class OrderController extends AuthController
 
         foreach($ret as $key => $value) {
             $ret[$key]['userphone'] = SiteHelper::getCustomerPhone($value['customer_id']);
+            if (empty($ret[$key]['userphone'])) {
+                $ret[$key]['userphone'] = Customer::find()
+                    ->where(['id' => $value['customer_id']])->select('nick')->scalar();
+            }
 
             $ret[$key]['operation'] = "
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>

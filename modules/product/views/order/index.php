@@ -73,7 +73,7 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                     <thead>
                         <tr class='table-title' role='row'>
                             <th>ID</th>
-                            <th>下单号码</th>
+                            <th>下单人</th>
                             <th>收件人</th>
                             <th>收件人号码</th>
                             <th>总价</th>
