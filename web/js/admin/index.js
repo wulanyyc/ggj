@@ -25,7 +25,7 @@ $(document).ready(function () {
                     $(".alert").html(data['msg']);
                     $(".alert").removeClass("hide");
                 } else {
-                    location.href = '/product/admin/index';
+                    location.href = '/product/order/index';
                 }
             }
         });

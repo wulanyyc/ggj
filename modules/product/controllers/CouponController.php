@@ -43,6 +43,11 @@ class CouponController extends AuthController
             <a data-id='{$value['id']}' data-val='{$value['name']}' class='coupon-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' class='coupon-del btn btn-xs btn-danger' href='javascript:void(0);'>删除</a>";
 
+            if ($value['type'] == 3) {
+                $ret[$key]['operation'] .= "
+            <a data-id='{$value['id']}' data-val='{$value['name']}' class='coupon-give btn btn-xs btn-light' href='javascript:void(0);'>赠送</a>";
+            }
+
             switch ($ret[$key]['type']) {
                 case '1':
                     $ret[$key]['type'] = "系统券";
