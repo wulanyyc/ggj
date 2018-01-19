@@ -61,9 +61,11 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
             <label>运输方式：</label><span><?=$info['express_rule'] ?></span>
         </div>
 
+        <?php if (!empty($info['memo'])) { ?>
         <div class="item">
             <label>备注：</label><span><?=$info['memo'] ?></span>
         </div>
+        <?php } ?>
 
         <div class="item">
             <label>商品价格：</label><span><?=$info['product_price'] ?></span>
@@ -92,7 +94,7 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
               <th scope="col">商品</th>
               <th scope="col">描述</th>
               <th scope="col">数量</th>
-              <th scope="col">总价</th>
+              <!-- <th scope="col">总价</th> -->
             </tr>
             </thead>
             <tbody>
@@ -101,7 +103,7 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
                 <td><?=$item['name'] ?></td>
                 <td><?=$item['desc'] ?></td>
                 <td><?=$info['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
-                <td><?=$info['product_cart'][$item['id']]['price'] * $info['product_cart'][$item['id']]['num'] ?>元</td>
+                <!-- <td><?=$info['product_cart'][$item['id']]['price'] * $info['product_cart'][$item['id']]['num'] ?>元</td> -->
               </tr>
             <?php } ?>
             </tbody>
