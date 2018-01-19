@@ -200,13 +200,16 @@ class CustomerController extends Controller
                 $info['end_date']   = date('Y.m.d', strtotime($info['end_date']));
 
                 $html .= <<<EOF
-                <div class="coupon_item">
-        <p class="coupon_item_label">{$info['name']}</p>
-        <div class="coupon_item_text">
-          <p class="coupon_item_money text-danger">{$info['money']}元</p>
-          <p class="coupon_item_date">{$info['start_date']}～{$info['end_date']}有效</p>
-        </div>
-    </div>
+                <a class="coupon_item" href="/">
+                    <div class="coupon_item_content">
+                        <img src="/img/icon/coupon.jpeg" class="coupon_item_content_img" />
+                        <div class="coupon_item_label">{$info['name']}</div>
+                        <div class="coupon_item_text">
+                          <div class="coupon_item_money text-danger">{$info['money']}元</div>
+                          <div class="coupon_item_date">{$info['start_date']}～{$info['end_date']}</div>
+                        </div>
+                    </div>
+                </a>
 EOF;
             }
         }
@@ -215,7 +218,7 @@ EOF;
         $jobHtml = '';
 
         if (empty($jobData)) {
-            $jobHtml = '没有可获取的券';
+            $jobHtml = '没有可领取的券';
         } else {
             foreach($jobData as $key => $value) {
                 $value['start_date'] = date('Y.m.d', strtotime($value['start_date']));
@@ -223,13 +226,15 @@ EOF;
 
                 $jobHtml .= <<<EOF
                 <div class="coupon_item">
-        <p class="coupon_item_label">{$value['name']}</p>
-        <div class="coupon_item_text">
-          <p class="coupon_item_money text-danger">{$value['money']}元</p>
-          <p class="text-info" style="text-align:center;font-size:14px;">{$value['desc']}</p>
-          <p class="coupon_item_date">{$value['start_date']}～{$value['end_date']}有效</p>
-        </div>
-    </div>
+                    <div class="coupon_item_content">
+                        <img src="/img/icon/coupon.jpeg" class="coupon_item_content_img" />
+                        <div class="coupon_item_label">{$info['name']}</div>
+                        <div class="coupon_item_text">
+                          <div class="coupon_item_money text-danger">{$info['money']}元</div>
+                          <div class="coupon_item_date">{$info['start_date']}～{$info['end_date']}</div>
+                        </div>
+                    </div>
+                </div>
 EOF;
             }
         }

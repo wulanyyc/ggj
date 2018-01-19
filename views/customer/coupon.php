@@ -30,36 +30,74 @@ $this->title = '优惠券管理';
     padding: 5px 15px;
   }
 
-  #coupon_items {
-    width: 100%;padding:2%;
-  }
+/*  #coupon_items {
+    width: 100%;
+    padding:2%;
+    height: 80%;
+    overflow-y: scroll;
+  }*/
 
   .coupon_item {
-    border: 1px dashed #ccc;padding: 2%;width:100%;
     margin-bottom: 2%;
     display: table;
+    width: 100%;
+    color: #000;
+  }
+
+  .coupon_item_content {
+    display: table-cell;
+    position: relative;
+    width: 100%;
+    vertical-align: middle;
+  }
+
+  .coupon_item_content_img {
+    width: 100%;
+    z-index: 1;
   }
 
   .coupon_item_label {
-    background-color: #53a93f;border-radius: 5px;font-size: 14px;width:56px;
-    text-align: center;color:white;padding:5px 8px;
-    display: table-cell;
+    font-size: 14px;
+    line-height: 16px;
+    width: 30%;
+    position: absolute;
+    left: 66%;
+    top: 35%;
+    overflow-x: hidden;
+    text-align: left;
   }
 
   .coupon_item_text {
-    padding-left: 2%;
-    display: table-cell;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 2;
+    top: 0;
   }
 
   .coupon_item_money {
-    text-align: center;font-size: 28px;
+    text-align: center;
+    font-size: 39px;
+    position: absolute;
+    top: 18%;
+    left: 40%;
   }
 
   .coupon_check {
-    width: 40px;
+    width: 10%;
     font-size: 22px;
     text-align: center;
     display: table-cell;
+    vertical-align: middle;
+  }
+
+  .coupon_item_date {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 5%;
+    font-size: 14px;
   }
 
 </style>
