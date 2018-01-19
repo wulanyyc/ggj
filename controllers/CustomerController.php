@@ -269,7 +269,7 @@ EOF;
         $currentDate = date('Ymd', time());
         $cid = SiteHelper::getCustomerId();
 
-        $job = Coupon::find()->where(['type' => 1])
+        $job = Coupon::find()
             ->andWhere(['<=', 'start_date', $currentDate])
             ->andWhere(['>=', 'end_date', $currentDate])
             ->asArray()->all();
