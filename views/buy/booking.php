@@ -123,6 +123,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     padding-left: 5%;
     position: absolute;
     right: 2px;
+    top: -5px;
   }
 
   .operator-left {
@@ -131,7 +132,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     cursor: pointer;
     display: inline-block;
     color: #ccc;
-    font-size: 22px;
+    font-size: 24px;
     visibility: hidden
   }
 
@@ -144,6 +145,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     width: 25px;
     visibility: hidden;
     height: 20px;
+    line-height: 20px;
     vertical-align: top;
     padding-top: 2px;
   }
@@ -154,7 +156,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     cursor: pointer;
     display: inline-block;
     color: #866D8D;
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .operator-right.active {

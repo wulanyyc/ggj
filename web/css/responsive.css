@@ -160,6 +160,14 @@ main {
     #tips li {
         line-height: 27px !important;
     }
+
+    .product-content .product-img {
+        width: 30% !important;
+    }
+
+    .product-content .product-desc {
+        width: 69% !important;
+    }
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
