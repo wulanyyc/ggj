@@ -160,20 +160,22 @@ class OrderController extends Controller
         foreach($cart as $item) {
             $pid = $item['id'];
             $tmp = ProductList::find()->select('id,name,unit,price,desc')->where(['id' => $pid])->asArray()->one();
-            if ($orderStatus == 1) {
-                $tmp['price'] = PriceHelper::getProductPrice($pid, $data['order_type']);
-            }
+            // if ($orderStatus == 1) {
+            //     $tmp['price'] = PriceHelper::getProductPrice($pid, $data['order_type']);
+            // }
             $ret[] = $tmp;
         }
 
         $html = '';
         foreach($ret as $item) {
             // 待支付订单获取实时价格
-            if ($orderStatus == 1) {
-                $html .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $item['price'] . "元/" . $item['unit'] . "</td></tr>";
-            } else {
-                $html .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $cart[$item['id']]['price'] . "元/" . $item['unit'] . "</td></tr>";
-            }
+            // if ($orderStatus == 1) {
+            //     $html .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $item['price'] . "元/" . $item['unit'] . "</td></tr>";
+            // } else {
+            //     $html .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $cart[$item['id']]['price'] . "元/" . $item['unit'] . "</td></tr>";
+            // }
+
+            $html .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] .$item['unit'] . "</td></tr>";
         }
         
         SiteHelper::render('ok', $html);
