@@ -189,7 +189,6 @@ class CustomerController extends Controller
 
     public function actionCoupon() {
         $data = PriceHelper::getValidCoupon();
-        // print_r($data);exit;
         $html = '';
 
         if (empty($data)) {
@@ -229,10 +228,10 @@ EOF;
                 <div class="coupon_item">
                     <div class="coupon_item_content">
                         <img src="/img/icon/coupon.jpeg" class="coupon_item_content_img" />
-                        <div class="coupon_item_label">{$info['name']}</div>
+                        <div class="coupon_item_label">{$value['name']}</div>
                         <div class="coupon_item_text">
-                          <div class="coupon_item_money text-danger">{$info['money']}元</div>
-                          <div class="coupon_item_date">{$info['start_date']}～{$info['end_date']}</div>
+                          <div class="coupon_item_money text-danger">{$value['money']}元</div>
+                          <div class="coupon_item_date">{$value['start_date']}～{$value['end_date']}</div>
                         </div>
                     </div>
                 </div>
