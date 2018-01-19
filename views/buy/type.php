@@ -46,7 +46,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
   }
 
   .label {
-    width:100px;
+    width:150px;
   }
 
   .card {
