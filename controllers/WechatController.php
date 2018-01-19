@@ -187,7 +187,7 @@ class WechatController extends Controller
                 }
             }
 
-            return '欢迎关注成都果果佳，1月25号正式营业，新人享5元优惠券，首单后再享5元';
+            return '欢迎关注成都果果佳，新人享5元优惠券，首单后再享5元。查看: [聚优惠][优惠券]';
         }
 
         if ($event == 'unsubscribe') {
