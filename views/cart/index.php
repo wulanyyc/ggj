@@ -609,6 +609,6 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span style="width:72%;">请留言或直接联系我们</span>
     </p>
 
-    <div class='btn btn-success btn-sm' id='close_express_info_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
+    <div class='btn btn-success btn-sm' id='close_express_info_bottom' style="width:40%;margin-left:30%;position: absolute;bottom: 20px;">关闭</div>
   </div>
 </div>
