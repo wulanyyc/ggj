@@ -156,6 +156,7 @@ class CartController extends Controller
     }
 
     private function checkProductPrice($params) {
+        return true;
         // 计算产品价格
         $carts = json_decode($params['cart'], true);
 
