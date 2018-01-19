@@ -35,8 +35,8 @@ class SiteHelper extends Component{
             $ar->save();
             $id = $ar->id;
 
-            // TODO 首单优惠，修改优惠id
-            PriceHelper::createCoupon(Yii::$app->params['coupon']['login']);
+            // TODO 发注册券
+            PriceHelper::createCouponById(Yii::$app->params['coupon']['subscribe'], $id);
         }
 
         return $id;

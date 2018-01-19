@@ -195,12 +195,15 @@ class CartController extends Controller
 
                 $html .= <<<EOF
                 <div class="coupon_item">
-        <p class="coupon_item_label">{$info['name']}</p>
-        <div class="coupon_item_text">
-          <p class="coupon_item_money text-danger">{$info['money']}元</p>
-          <p class="coupon_item_date">{$info['start_date']}～{$info['end_date']}有效</p>
-        </div>
-        <div class="coupon_check" id="coupon_{$info['id']}" data-id={$info['id']} data-money={$info['money']}><i class="fa fa-square-o" aria-hidden="true"></i></div>
+                    <div class="coupon_item_content">
+                        <img src="/img/icon/coupon.jpeg" class="coupon_item_content_img" />
+                        <div class="coupon_item_label">{$info['name']}</div>
+                        <div class="coupon_item_text">
+                          <div class="coupon_item_money text-danger">{$info['money']}元</div>
+                          <div class="coupon_item_date">{$info['start_date']}～{$info['end_date']}</div>
+                        </div>
+                    </div>
+                    <div class="coupon_check" id="coupon_{$info['id']}" data-id={$info['id']} data-money={$info['money']}><i class="fa fa-square-o" aria-hidden="true"></i></div>
     </div>
 EOF;
             }

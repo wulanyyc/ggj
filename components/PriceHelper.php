@@ -112,6 +112,39 @@ class PriceHelper extends Component {
         }
     }
 
+    public static function createCouponById($couponid, $customerId) {
+        $today = date('Ymd', time());
+        $info = Coupon::find()->where(['id' => $couponid])->asArray()->one();
+        if (empty($info)) return 0;
+
+        if ($today > $info['end_date']) {
+            return 0;
+        }
+
+        $type = $info['type'];
+
+        if ($type == 1) {
+            $exsit = CouponUse::find()->where(['cid' => $couponid, 'customer_id' => $customerId])->count();
+            if ($exsit) {
+                return 0;
+            } else {
+                $ar = new CouponUse();
+                $ar->cid = $couponid;
+                $ar->customer_id = $customerId;
+                $ar->save();
+
+                return $ar->id;
+            }
+        } else {
+            $ar = new CouponUse();
+            $ar->cid = $couponid;
+            $ar->customer_id = $customerId;
+            $ar->save();
+
+            return $ar->id;
+        }
+    }
+
     public static function getValidCoupon() {
         $customer_id = SiteHelper::getCustomerId();
 

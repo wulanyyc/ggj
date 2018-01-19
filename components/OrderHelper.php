@@ -109,20 +109,28 @@ class OrderHelper extends Component {
         // 更新支付积分
         self::addCustomerScore(round($data['online_money'] + $data['wallet_money']), $data['customer_id']);
 
-        // 更新折扣
-        $discountData = ProductOrder::find()->where(['id' => $data['order_id']])
-            ->select('discount_fee, discount_phone, customer_id, id')->asArray()->one();
+        // 更新折扣, 此功能暂时屏蔽
+        // $discountData = ProductOrder::find()->where(['id' => $data['order_id']])
+        //     ->select('discount_fee, discount_phone, customer_id, id')->asArray()->one();
 
-        if ($discountData['discount_fee'] > 0) {
-            $money = round($discountData['discount_fee'] * 0.5, 1);
-            PriceHelper::addFriendWallet($money, $discountData['discount_phone'], 'friend_discount');
+        // if ($discountData['discount_fee'] > 0) {
+        //     $money = round($discountData['discount_fee'] * 0.5, 1);
+        //     PriceHelper::addFriendWallet($money, $discountData['discount_phone'], 'friend_discount');
 
-            $userphone = SiteHelper::getCustomerPhone($discountData['customer_id']);
-            SmsHelper::sendDiscount($discountData['discount_phone'], [
-                'code' => substr($userphone, 7),
-                'order' => $discountData['id'],
-                'visit' => $discountData['id'],
-            ]);
+        //     $userphone = SiteHelper::getCustomerPhone($discountData['customer_id']);
+        //     SmsHelper::sendDiscount($discountData['discount_phone'], [
+        //         'code' => substr($userphone, 7),
+        //         'order' => $discountData['id'],
+        //         'visit' => $discountData['id'],
+        //     ]);
+        // }
+
+        // 首单发优惠券
+        $customerId = SiteHelper::getCustomerId();
+        $orderNum = ProductOrder::findBySql('select count(*) as num from product_order where customer_id=' . $customerId . ' and status in (2,3)')->scalar();
+
+        if ($orderNum == 1) {
+            PriceHelper::createCouponById(Yii::$app->params['coupon']['order'], $customerId);
         }
     }
 

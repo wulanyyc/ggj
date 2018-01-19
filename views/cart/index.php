@@ -184,42 +184,72 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   #coupon_items {
-    width: 100%;padding:2%;
+    width: 100%;
+    padding:2%;
+    height: 80%;
+    overflow-y: scroll;
   }
 
   .coupon_item {
-    border: 1px dashed #ccc;
-    padding: 2%;
-    width:100%;
     margin-bottom: 2%;
     display: table;
+    width: 100%;
+  }
+
+  .coupon_item_content {
+    display: table-cell;
+    position: relative;
+    width: 85%;
+    vertical-align: middle;
+  }
+
+  .coupon_item_content_img {
+    width: 100%;
+    z-index: 1;
   }
 
   .coupon_item_label {
-    background-color: #53a93f;
-    border-radius: 5px;
-    font-size: 16px;
-    width: 56px;
-    text-align: center;
-    color: white;
-    padding: 5px;
-    display: table-cell;
+    font-size: 14px;
+    line-height: 16px;
+    width: 30%;
+    position: absolute;
+    left: 66%;
+    top: 35%;
+    overflow-x: hidden;
+    text-align: left;
   }
 
   .coupon_item_text {
-    display: table-cell;
-    padding-left: 2%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 2;
+    top: 0;
   }
 
   .coupon_item_money {
-    text-align: center;font-size: 28px;
+    text-align: center;
+    font-size: 39px;
+    position: absolute;
+    top: 18%;
+    left: 40%;
   }
 
   .coupon_check {
-    width: 40px;
+    width: 10%;
     font-size: 22px;
     text-align: center;
     display: table-cell;
+    vertical-align: middle;
+  }
+
+  .coupon_item_date {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 5%;
+    font-size: 14px;
   }
 
   #address_form .form-group {
@@ -582,7 +612,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       优惠券
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_coupon"></i>
   </div>
-  <div id="coupon_items" data-ids="" style="height: 72%;overflow-y: scroll;">
+  <div id="coupon_items" data-ids="">
   </div>
   <button id="ok_coupon" type="button" class="btn btn-success btn-sm" style="position: absolute;bottom:3%;width:40%;left:30%;">确定并使用</button>
   <span id='close_coupon_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 14px;color:#0C58B0;">关闭</span>

@@ -148,21 +148,24 @@ class CustomerController extends Controller
     public function actionEdit() {
         $params = Yii::$app->request->post();
 
-        $exsit = Customer::find()->where(['phone' => $params['phone']])->count();
+        // $exsit = Customer::find()->where(['phone' => $params['phone']])->count();
 
-        if ($exsit > 0) {
-            SiteHelper::render('fail', '此号码已存在');
+        // if ($exsit > 0) {
+        //     SiteHelper::render('fail', '此号码已存在');
+        // }
+        
+        if (!SiteHelper::checkPhone($params['phone'])) {
+            SiteHelper::render('fail', '此号码格式有问题');
         }
 
         $cid = SiteHelper::getCustomerId();
         $ar  = Customer::findOne($cid);
         $ar->phone = $params['phone'];
-        $ar->save();
 
         if ($ar->save()) {
             $secret = SiteHelper::buildSecret($params['phone']);
 
-            SiteHelper::render('ok', ['secret' => $secret, 'cid' => SiteHelper::getCustomerId()]);
+            SiteHelper::render('ok', ['secret' => $secret, 'cid' => $cid]);
         } else {
             SiteHelper::render('fail', '修改失败');
         }
