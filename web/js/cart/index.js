@@ -396,7 +396,7 @@ $(document).ready(function () {
 
     $('#order').click(function(){
         var address_id = $('.show_address').attr('data-id');
-        console.log(address_id);
+        // console.log(address_id);
 
         if (address_id == undefined || address_id == '') {
             $.helper.alert('请添加收货地址');

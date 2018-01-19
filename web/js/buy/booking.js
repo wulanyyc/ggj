@@ -133,7 +133,12 @@ $(document).ready(function () {
         } else {
             $('#order').addClass('btn-secondary');
             $('#order').removeClass('btn-success');
-            $('#order').html(limit + '元起购');
+            if (total > 0) {
+                var diff = limit - total;
+                $('#order').html('还差¥' + diff);
+            } else {
+                $('#order').html(limit + '元起购');
+            }
         }
 
         $('#cart_num').html(Object.keys(cart).length);
