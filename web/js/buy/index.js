@@ -81,7 +81,7 @@ $(document).ready(function () {
 
 
         cart[id] = {'num': num, 'price': price, 'oprice': oprice, 'id': id, 'limit': buyLimit};
-        // console.log(cart);
+
         calculateTotal();
     });
 
@@ -130,6 +130,7 @@ $(document).ready(function () {
             $('#order').removeClass('btn-success');
             if (total > 0) {
                 var diff = limit - total;
+                diff = $.helper.round(diff, 1);
                 $('#order').html('还差¥' + diff);
             } else {
                 $('#order').html(limit + '元起购');
