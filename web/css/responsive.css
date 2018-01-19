@@ -168,6 +168,14 @@ main {
     .status-item {
         font-size: 13px !important;
     }
+
+    #tips .label {
+        font-size: 18px !important;
+    }
+
+    #tips li {
+        line-height: 27px !important;
+    }
 }
 
 /* Extra small devices (portrait phones, less than 576px) */

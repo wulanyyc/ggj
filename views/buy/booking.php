@@ -212,6 +212,18 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     background-color: #866D8D;
     border-color: #866D8D;
   }
+
+  #tip_alert {
+    position: fixed;top:20%;height: 60%;
+    z-index: 999;margin-left:10%;width:80%;
+    background-color: #fff;border-radius: 5px;
+    text-align: center;
+  }
+
+  #tip_alert li {
+    list-style: none;
+    line-height: 30px;
+  }
 </style>
 
 <input type="hidden" value="<?=$id ?>" id="scroll_id" />
@@ -339,5 +351,40 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     <button type="button" class="btn btn-success" id="next" style="width:50%;margin-left:25%;margin-top:10px;">
       下一步
     </button>
+  </div>
+</div>
+
+<div id="tip_alert" style="display: none;">
+  <div style="display: table;width: 100%">
+    <div style="width: 100%; display: table-row;">
+      <div style="display: table-cell;vertical-align: middle;text-align: center;height:100px;">
+        <img src="http://img.guoguojia.vip/img/booking.png" style="width: 80px;"/>
+      </div>
+    </div>
+    <div style="width: 100%; display: table-row;">
+      <ul style="width: 100%;display: table-cell;vertical-align: middle;">
+        <li>
+          <div class="label" style="color: #866D8D;font-size: 22px;">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
+          </div>
+          <div>
+            国产水果当日采购<br/>进口水果供应商到货即采购<br/>精选佳果，保证新鲜度和质量
+          </div>
+        </li>
+
+        <li>
+          <div class="label" style="color: #866D8D;font-size: 22px;margin-top: 10px;">
+            <i class="fa fa-truck" aria-hidden="true"></i>&nbsp;顺丰发货：
+          </div>
+          <div>
+          限成都，每周<span style="color:red;font-weight: bold;"><?=$bookingSender ?></span>发货
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div style="margin-top:10px;" id="close_tip">
+      <img src="/img/close.png" style="width: 40px;"/>
+    </div>
   </div>
 </div>

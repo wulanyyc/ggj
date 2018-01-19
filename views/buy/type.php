@@ -76,7 +76,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
 
           <li>
             <div class="label" style="color: #866D8D;font-size: 16px;">
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;顺丰发货：
+              <i class="fa fa-truck" aria-hidden="true"></i>&nbsp;顺丰发货：
             </div>
             <div>
             限成都，每周<span style="color:red;font-weight: bold;"><?=$bookingSender ?></span>发货
@@ -101,7 +101,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
 
             <li>
               <div class="label"  style="font-size: 16px;">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;顺丰发货：
+                <i class="fa fa-truck" aria-hidden="true"></i>&nbsp;顺丰发货：
               </div>
               <div>
               限成都，24小时内发货

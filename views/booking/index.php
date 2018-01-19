@@ -96,3 +96,4 @@ SiteAsset::register($this);
 <a class='btn btn-success btn-sm' href='/buy/booking' id='order' style="width:30%;margin-left:35%;margin-bottom: 1%;">立即预约</a>
 
 <br/>
+

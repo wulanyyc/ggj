@@ -117,6 +117,7 @@ class BuyController extends Controller
             'orderType' => $orderType,
             'special' => Yii::$app->params['new_promotion']['id'],
             'today' => Yii::$app->params['day_promotion'][$dayofweek]['id'],
+            'bookingSender' => Yii::$app->params['bookingSender'],
         ]);
     }
 
