@@ -90,7 +90,7 @@ SiteAsset::register($this);
     </div>
 
     <div class="d-inline search-top">
-        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder='只卖新鲜的果果' aria-label="只卖新鲜的果果" style="font-size: 15px;" />
+        <input class="form-control mr-sm-2" type="text" id="search_product" placeholder='只卖新鲜和好吃的' aria-label="只卖新鲜和好吃的" style="font-size: 15px;" />
     </div>
 
     <a class="top-customer" style="text-decoration: none;color: #fff;font-size: 16px;text-align: right;width: 70px;" href="/customer">个人中心</a>
