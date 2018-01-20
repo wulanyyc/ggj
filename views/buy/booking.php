@@ -15,6 +15,10 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 ?>
 
 <style type="text/css">
+  .navbar {
+    background-color: #866D8D !important;
+  }
+
   .card {
     border-radius: 0;
     border: none;
