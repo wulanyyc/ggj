@@ -127,9 +127,9 @@ SiteAsset::register($this);
 </style>
 
 <div class="card">
-    <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+<!--     <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         <span class="first-title">天天特价</span>
-    </div>
+    </div> -->
     <div id="promotion-page">
       <?php foreach($data as $value) { ?>
       <a class="promotion-page-item" href="/buy?id=<?=$value['id'] ?>">
