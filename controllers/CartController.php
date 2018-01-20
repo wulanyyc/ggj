@@ -196,7 +196,7 @@ class CartController extends Controller
         }
 
         if (empty($data)) {
-            SiteHelper::render('fail', '很抱歉，您账户里没有可用的优惠券');
+            SiteHelper::render('fail', '很抱歉，账户里没有可用的券');
         } else {
             foreach($data as $key => $value) {
                 $info = Coupon::find()->where(['id' => $value['cid']])->asArray()->one();
