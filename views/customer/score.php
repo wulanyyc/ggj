@@ -36,44 +36,14 @@ $this->title = '积分商城';
     padding: 5px 15px;
   }
 
-  #score_items {
-    width: 100%;padding:2%;
-  }
-
   .score_item {
-    border: 1px dashed #ccc;padding: 2%;width:100%;
-    margin-bottom: 2%;
+    width:100%;
+    margin-bottom: 5%;
     display: table;
   }
 
-  .score_item_label {
-    background-color: #1ba93b;
-    border-radius: 30px;
-    font-size: 14px;
-    width: 60px;
-    text-align: center;
-    color:white;
-    height: 60px;
-    line-height: 60px;
-    display: table-cell;
-    vertical-align: middle;
-  }
-
-  .score_item_text {
-    margin-left: 1%;
-    display: table-cell;
-    text-align: center;
-  }
-
-  .score_item_money {
-    text-align: center;font-size: 28px;
-  }
-
-  .score_check {
-    width: 40px;
-    font-size: 22px;
-    text-align: center;
-    display: table-cell;
+  .score_item img {
+    width: 100%;
   }
 
   #question {
@@ -96,13 +66,9 @@ $this->title = '积分商城';
     </div>
     <div style="padding:5%;">
       <?php foreach($config as $key => $item) { ?>
-      <div class="score_item">
-        <p class="score_item_label">兑余额</p>
-        <div class="score_item_text">
-          <p class="score_item_money text-danger"><?=$item['score'] ?>积分 = <?=$item['money'] ?>元</p>
-          <button type="button" class="btn btn-danger change btn-sm" data-score=<?=$item['score'] ?> data-id=<?=$key ?> style="width:100px;">去兑换</button>
+        <div class="score_item">
+          <img src="/img/icon/jf_<?=$key ?>.jpeg" data-id=<?=$key ?> class="change" />
         </div>
-      </div>
       <?php } ?>
     </div>
     <br/>
@@ -121,7 +87,7 @@ $this->title = '积分商城';
     </p>
     <p style="">
       <span style="padding-right: 5px;">2: </span>
-      <span>关注官方微信ggj_cd, 参加活动获取积分。</span>
+      <span>参加官方活动获取积分。</span>
     </p>
   </div>
 </div>
