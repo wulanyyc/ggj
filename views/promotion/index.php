@@ -14,11 +14,11 @@ SiteAsset::register($this);
     border: none;
     border-bottom: 1px solid #eee;
     border-top: 1px solid #eee;
-    margin: 5px; 5px;
+    margin: 5px;
   }
 
   #promotion-page {
-    margin-top: 1%;
+    /*margin-top: 1%;*/
   }
 
   a.promotion-page-item {
