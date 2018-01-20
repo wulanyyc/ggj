@@ -16,7 +16,6 @@ $(document).ready(function () {
     }
 
     $('#back, #inner_back').click(function(){
-        // console.log($('#we_appid').val());
         if ($('#we_appid').val() != undefined) {
             var wechat = $('#we_appid').val().length > 0 ? true : false;
 
@@ -25,7 +24,7 @@ $(document).ready(function () {
                     location.href = '/customer/index';
                 }
 
-                if (/\/promotion\/.+/.test(location.pathname)) {
+                if (/\/promotion/.test(location.pathname)) {
                     location.href = '/';
                 }
             }
