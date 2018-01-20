@@ -206,7 +206,7 @@ class CartController extends Controller
                 $html .= <<<EOF
                     <div class="coupon_item">
                         <div class="coupon_item_content">
-                            <img src="/img/icon/coupon_use.jpeg" class="coupon_item_content_img" />
+                            <img src="http://img.guoguojia.vip/img/icon/coupon_use.jpeg" class="coupon_item_content_img" />
                             <div class="coupon_item_label">{$info['name']}</div>
                             <div class="coupon_item_text">
                               <div class="coupon_item_money">{$info['money']}元</div>

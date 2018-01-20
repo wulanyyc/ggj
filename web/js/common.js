@@ -24,6 +24,10 @@ $(document).ready(function () {
                 if (/\/customer\/.+/.test(location.pathname)) {
                     location.href = '/customer/index';
                 }
+
+                if (/\/promotion\/.+/.test(location.pathname)) {
+                    location.href = '/';
+                }
             }
         }
 

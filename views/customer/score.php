@@ -67,7 +67,7 @@ $this->title = '积分商城';
     <div style="padding:5%;">
       <?php foreach($config as $key => $item) { ?>
         <div class="score_item">
-          <img src="/img/icon/jf_<?=$key ?>.jpeg" data-id=<?=$key ?> class="change" />
+          <img src="http://img.guoguojia.vip/img/icon/jf_<?=$key ?>.jpeg" data-id=<?=$key ?> class="change" />
         </div>
       <?php } ?>
     </div>
