@@ -56,6 +56,43 @@ $(document).ready(function () {
         });
     });
 
+    // 赠送
+    $('#list').delegate('.coupon-give', 'click', function () {
+        var id = $(this).attr('data-id');
+        var name = $(this).attr('data-val');
+        bootbox.dialog({
+            message: $('#give_modal').html(),
+            title: '赠送：' + name,
+            className: 'modal-primary',
+            buttons: {
+                success: {
+                    label: '提交',
+                    className: 'btn-success',
+                    callback: function () {
+                        $.ajax({
+                            url: '/product/coupon/give',
+                            type: 'post',
+                            dataType: 'html',
+                            data: $('.bootbox form').serialize(),
+                            success: function (data) {
+                                if (data !== 'suc') {
+                                    bootbox.alert(data);
+                                } else {
+                                    location.reload();
+                                }
+                            }
+                        });
+                        return false;
+                    }
+                }
+            }
+        });
+
+        $('.bootbox select').select2({
+            allowClear: true
+        });
+    });
+
     // 编辑
     $('#list').delegate('.coupon-edit', 'click', function () {
         var id = $(this).attr('data-id');

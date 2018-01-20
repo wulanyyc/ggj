@@ -297,7 +297,7 @@ EOF;
         $cid = SiteHelper::getCustomerId();
 
         $job = Coupon::find()
-            ->andWhere(['<=', 'type', 3])
+            ->andWhere(['!=', 'type', 3])
             ->andWhere(['<=', 'start_date', $currentDate])
             ->andWhere(['>=', 'end_date', $currentDate])
             ->asArray()->all();

@@ -6,10 +6,12 @@ use Yii;
 use app\controllers\AuthController;
 use app\modules\product\models\Coupon;
 use yii\helpers\Html;
+use app\models\Customer;
 
 class CouponController extends AuthController
 {
     public function actionIndex() {
+        // $customerData = 
         return $this->render('index');
     }
 
@@ -160,5 +162,12 @@ class CouponController extends AuthController
             ->one();
 
         echo json_encode($ret);
+    }
+
+    public function actionGive() {
+        $params = Yii::$app->request->get();
+        $id = $params['id'];
+
+        echo $id;
     }
 }
