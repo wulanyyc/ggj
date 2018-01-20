@@ -7,12 +7,29 @@ use app\controllers\AuthController;
 use app\modules\product\models\Coupon;
 use yii\helpers\Html;
 use app\models\Customer;
+use app\components\PriceHelper;
 
 class CouponController extends AuthController
 {
     public function actionIndex() {
-        // $customerData = 
-        return $this->render('index');
+        $customerData = Customer::find()->select('id, nick, phone')->where(['deleteflag' => 0])->asArray()->all();
+
+        $data = [];
+        foreach($customerData as $item) {
+            $tmp = [];
+            if (empty($item['nick'])) {
+                $tmp['name'] = $item['phone'];
+            } else {
+                $tmp['name'] = $item['nick'];
+            }
+
+            $tmp['id'] = $item['id'];
+
+            $data[] = $tmp;
+        }
+        return $this->render('index', [
+            'customers' => $data,
+        ]);
     }
 
     /**
@@ -165,9 +182,19 @@ class CouponController extends AuthController
     }
 
     public function actionGive() {
-        $params = Yii::$app->request->get();
+        $params = Yii::$app->request->post();
+        $ids = $params['cid'];
         $id = $params['id'];
 
-        echo $id;
+        if (empty($ids)) {
+            echo '请选择用户';
+            exit;
+        }
+
+        foreach($ids as $item) {
+            PriceHelper::createCouponById($id, $item);
+        }
+
+        echo 'suc';
     }
 }

@@ -145,6 +145,9 @@ MsaView::registerJsFile($this,'/js/product/coupon/index.js',
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:70px'>用户：</label>
                     <select name='cid[]' multiple='multiple' style='width:450px;margin-right:12px;'>
+                        <?php foreach($customers as $customer) { ?>
+                        <option value=<?=$customer['id'] ?>><?=$customer['name'] ?></option>
+                        <?php } ?>
                     </select>
                 </div>
             </form>

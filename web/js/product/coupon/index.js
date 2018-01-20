@@ -73,7 +73,7 @@ $(document).ready(function () {
                             url: '/product/coupon/give',
                             type: 'post',
                             dataType: 'html',
-                            data: $('.bootbox form').serialize(),
+                            data: $('.bootbox form').serialize() + '&id=' + id,
                             success: function (data) {
                                 if (data !== 'suc') {
                                     bootbox.alert(data);
