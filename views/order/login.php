@@ -21,7 +21,7 @@ MsaView::registerJsFile($this,'/js/order/login.js',
 </style>
 
 <div class="card" id="userinfo">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
       登录
   </div>
   <div style="width:94%;margin: 10px auto;" id="userinfo_form">

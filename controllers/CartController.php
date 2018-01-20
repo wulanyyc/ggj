@@ -206,10 +206,10 @@ class CartController extends Controller
                 $html .= <<<EOF
                     <div class="coupon_item">
                         <div class="coupon_item_content">
-                            <img src="/img/icon/coupon.jpeg" class="coupon_item_content_img" />
+                            <img src="/img/icon/coupon_use.jpeg" class="coupon_item_content_img" />
                             <div class="coupon_item_label">{$info['name']}</div>
                             <div class="coupon_item_text">
-                              <div class="coupon_item_money text-danger">{$info['money']}元</div>
+                              <div class="coupon_item_money">{$info['money']}元</div>
                               <div class="coupon_item_date">剩{$dayDiff}天到期</div>
                             </div>
                         </div>

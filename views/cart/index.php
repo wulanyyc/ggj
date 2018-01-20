@@ -209,14 +209,15 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   .coupon_item_label {
-    font-size: 14px;
-    line-height: 16px;
-    width: 30%;
+    font-size: 24px;
+    line-height: 28px;
+    width: 60%;
     position: absolute;
-    left: 66%;
-    top: 35%;
+    left: 20%;
+    top: 50%;
     overflow-x: hidden;
-    text-align: left;
+    text-align: center;
+    color: #1ba93b;
   }
 
   .coupon_item_text {
@@ -230,11 +231,13 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
   .coupon_item_money {
     text-align: center;
-    font-size: 39px;
+    font-size: 24px;
     position: absolute;
-    top: 18%;
-    left: 40%;
+    top: 20%;
+    left: 44%;
+    color: #1ba93b;
   }
+
 
   .coupon_check {
     width: 10%;
@@ -249,7 +252,9 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     text-align: center;
     width: 100%;
     bottom: 5%;
-    font-size: 14px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #89b0da;
   }
 
   #address_form .form-group {
@@ -472,7 +477,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="question">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       优惠码
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 10px;" id="close_question"></i>
   </div>
@@ -485,7 +490,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="detail">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       商品详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_detail"></i>
   </div>
   <div style="margin-top: 10px;font-size: 14px;width:98%;margin:1% auto;height: 72%;overflow-y: scroll;">
@@ -512,7 +517,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="all_address_info">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+    <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_all_address"></i>
     </div>
 
@@ -550,7 +555,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="address_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 15px;" id="close_address"></i>
   </div>
   <form id="address_form" name='address_form' style='margin:5%;'>
@@ -608,7 +613,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 </div>
 
 <div class="card" id="coupon">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       优惠券
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_coupon"></i>
   </div>
@@ -620,7 +625,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 
 <div class="card" id="express_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       发货时间<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 15px;" id="close_express_info"></i>
   </div>
   <div style="padding: 5%;">

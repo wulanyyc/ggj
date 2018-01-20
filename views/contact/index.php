@@ -30,7 +30,7 @@ SiteAsset::register($this);
 </style>
 
 <div class="card">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
     联系我们
   </div>
 
@@ -53,7 +53,7 @@ SiteAsset::register($this);
 </div>
 
 <div class="card">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
     公司介绍
   </div>
 

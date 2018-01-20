@@ -30,7 +30,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
   .label {
     display: inline-block;
     width: 110px;
-    color: #53a93f;
+    color: #1ba93b;
   }
 
   .item {

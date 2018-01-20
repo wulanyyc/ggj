@@ -143,7 +143,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
 </style>
 
 <div class="card" id="all_address_info" style="width:100%;height:100%;">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+    <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       地址管理
     </div>
 
@@ -180,7 +180,7 @@ MsaView::registerJsFile($this,'/js/address/index.js',
 </div>
 
 <div class="card" id="address_info">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       收货地址<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_address"></i>
   </div>
   <form id="address_form" name='address_form' style='margin:5%;' autocomplete="off">

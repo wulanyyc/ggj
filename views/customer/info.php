@@ -33,7 +33,7 @@ MsaView::registerJsFile($this,'/js/customer/info.js',
 </style>
 
 <div class="card" id="userinfo">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
       个人信息
   </div>
   <div style="width:94%;margin: 10px auto;">
@@ -49,7 +49,7 @@ MsaView::registerJsFile($this,'/js/customer/info.js',
 </div>
 
 <div class="card" id="edit_phone_card">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       修改号码
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 10px;" id="close_phone"></i>
   </div>

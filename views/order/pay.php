@@ -62,7 +62,7 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
 </div>
 
 <div class="card" style="height:90%;">
-  <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+  <div class="card-header bg-white" style="position:relative;color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         支付方式
   </div>
   <?php if ($money >= $data['pay_money']) { ?>

@@ -18,7 +18,7 @@ SiteAsset::register($this);
 
   .label {
     display: inline-block;
-    color: #53a93f;
+    color: #1ba93b;
     /*width:38%;*/
   }
 
@@ -48,7 +48,7 @@ SiteAsset::register($this);
 </style>
 
 <div class="card">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
     无忧套餐
   </div>
 

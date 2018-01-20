@@ -63,14 +63,15 @@ $this->title = '优惠券管理';
   }
 
   .coupon_item_label {
-    font-size: 14px;
-    line-height: 16px;
-    width: 30%;
+    font-size: 24px;
+    line-height: 28px;
+    width: 60%;
     position: absolute;
-    left: 66%;
-    top: 35%;
+    left: 20%;
+    top: 50%;
     overflow-x: hidden;
-    text-align: left;
+    text-align: center;
+    color: #1ba93b;
   }
 
   .coupon_item_text {
@@ -84,10 +85,11 @@ $this->title = '优惠券管理';
 
   .coupon_item_money {
     text-align: center;
-    font-size: 39px;
+    font-size: 24px;
     position: absolute;
-    top: 18%;
-    left: 40%;
+    top: 20%;
+    left: 44%;
+    color: #1ba93b;
   }
 
   .coupon_check {
@@ -103,14 +105,15 @@ $this->title = '优惠券管理';
     text-align: center;
     width: 100%;
     bottom: 5%;
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: 1px;
+    color: #89b0da;
   }
 
 </style>
 
 <div class="card" style="margin-top: 8px;">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+    <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       可用券
     </div>
     <div style="padding:2%;">
@@ -119,7 +122,7 @@ $this->title = '优惠券管理';
 </div>
 
 <div class="card" style="margin-top: 8px;">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+    <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       活动券
     </div>
     <div style="padding:2%;" id="job_coupon">

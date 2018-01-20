@@ -204,10 +204,10 @@ class CustomerController extends Controller
                 $html .= <<<EOF
                 <a class="coupon_item" href="/">
                     <div class="coupon_item_content">
-                        <img src="/img/icon/coupon.jpeg" class="coupon_item_content_img" />
+                        <img src="/img/icon/coupon_use.jpeg" class="coupon_item_content_img" />
                         <div class="coupon_item_label">{$info['name']}</div>
                         <div class="coupon_item_text">
-                          <div class="coupon_item_money text-danger">{$info['money']}元</div>
+                          <div class="coupon_item_money">{$info['money']}元</div>
                           <div class="coupon_item_date">剩{$dayDiff}天到期</div>
                         </div>
                     </div>
@@ -224,14 +224,19 @@ EOF;
         } else {
             foreach($jobData as $key => $value) {
                 $dayDiff = ceil((strtotime($value['end_date']) - time()) / 86400);
+                if ($value['type'] == 1) {
+                    $img = "/img/icon/coupon_sys.jpeg";
+                } else {
+                    $img = "/img/icon/coupon_get.jpeg";
+                }
 
                 $jobHtml .= <<<EOF
                 <div class="coupon_item" data-type={$value['type']} data-id={$value['id']}>
                     <div class="coupon_item_content">
-                        <img src="/img/icon/coupon.jpeg" class="coupon_item_content_img" />
+                        <img src="{$img}" class="coupon_item_content_img" />
                         <div class="coupon_item_label">{$value['name']}</div>
                         <div class="coupon_item_text">
-                          <div class="coupon_item_money text-danger">{$value['money']}元</div>
+                          <div class="coupon_item_money">{$value['money']}元</div>
                           <div class="coupon_item_date">剩{$dayDiff}天到期</div>
                         </div>
                     </div>

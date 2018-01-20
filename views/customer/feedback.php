@@ -32,14 +32,14 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 
 <div style="margin-top: 1%;width:100%;" id="content">
     <div class="card" style="margin: 1%;">
-      <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+      <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         反馈意见
       </div>
       <textarea name="advice" id="advice" style="width:96%;height:200px;margin: 2%; border:1px solid #ddd;" maxlength=200></textarea>
       <button type="button" class="btn btn-danger btn-sm" id="feedback" style="width:50%;margin-left:25%;margin-bottom: 10px;margin-top:5px;">提交意见</button>
     </div>
     <div class="card" style="margin: 1%;">
-      <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+      <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         联系我们
       </div>
 

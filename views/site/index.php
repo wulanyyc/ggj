@@ -86,7 +86,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .label-rec {
-    color: #53a93f;
+    color: #1ba93b;
     border-radius: 0;
     border-bottom: 2px solid #92BC2C;
   }
@@ -96,10 +96,10 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .label-item {
-    border: 1px solid #53a93f;
+    border: 1px solid #1ba93b;
     padding: 3px 4px;
     color: #fff;
-    background-color: #53a93f;
+    background-color: #1ba93b;
     text-align: center;
     font-size: 14px;
     transform: scale(0.9);
@@ -153,7 +153,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-item .tip-content {
-    background-color: #53a93f;
+    background-color: #1ba93b;
     width: 100%;
     padding: 5px;
     text-align: center;
@@ -288,15 +288,15 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .style_1 {
-    border: 1px solid #53a93f;
+    border: 1px solid #1ba93b;
   }
 
   .header_1 {
-    background-color: #53a93f;
+    background-color: #1ba93b;
   }
 
   .border_1 {
-    border-top: 1px solid #53a93f;
+    border-top: 1px solid #1ba93b;
   }
 
   .style_2 {
@@ -353,7 +353,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 <div id="promotion">
   <a class="promotion-item" href="<?=$newPromotion['link'] ?>">
     <div style="display: table;width:100%;">
-      <div class="promotion-item-left" style="background-color: #53a93f;">
+      <div class="promotion-item-left" style="background-color: #1ba93b;">
         <div class="promotion-item-left-content">
           <div class="promotion-item-left-content-top">果果特惠</div>
           <div class="promotion-item-left-content-bottom"><?=$newPromotion['text'] ?></div>
@@ -474,7 +474,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
 <?php if (count($packages) > 0){ ?>
 <div class="card">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+    <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         <span class="label-title">特惠套餐</span>
     </div>
 

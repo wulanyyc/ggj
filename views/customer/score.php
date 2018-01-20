@@ -47,7 +47,7 @@ $this->title = '积分商城';
   }
 
   .score_item_label {
-    background-color: #53a93f;
+    background-color: #1ba93b;
     border-radius: 30px;
     font-size: 14px;
     width: 60px;
@@ -90,7 +90,7 @@ $this->title = '积分商城';
 </style>
 
 <div class="card" id="score">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+    <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       积分商城<span>目前：<span class="text-danger" id="current_score"><?=$data['score'] ?></span>分</span>
       <span style="color:#aaa;" id="ask">如何获取？</span>
     </div>
@@ -110,7 +110,7 @@ $this->title = '积分商城';
 </div>
 
 <div class="card" id="question">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       如何获取积分
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 15px;" id="close_question"></i>
   </div>

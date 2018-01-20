@@ -70,7 +70,7 @@ SiteAsset::register($this);
   }
 
   .day1-left {
-    background-color: #53a93f;
+    background-color: #1ba93b;
   }
 
   .day1-right {
@@ -127,7 +127,7 @@ SiteAsset::register($this);
 </style>
 
 <div class="card">
-    <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 2px solid #92BC2C;">
+    <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
         <span class="first-title">天天特价</span>
     </div>
     <div id="promotion-page">

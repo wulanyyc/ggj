@@ -136,3 +136,12 @@ MsaView::registerJsFile($this,'/js/product/coupon/index.js',
         </div>
     </div>
 </div>
+
+
+<div id='give_modal' style='display:none;min-width:600px'>
+    <div class='row'>
+        <div class='col-md-12'>
+            
+        </div>
+    </div>
+</div>

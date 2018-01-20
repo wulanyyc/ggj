@@ -37,8 +37,8 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .list-group-item.active {
-    background-color: #53a93f;
-    border-color: #53a93f;
+    background-color: #1ba93b;
+    border-color: #1ba93b;
   }
 
   div.list-group-item {
@@ -155,12 +155,12 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     text-decoration: none;
     cursor: pointer;
     display: inline-block;
-    color: #53a93f;
+    color: #1ba93b;
     font-size: 24px;
   }
 
   .operator-right.active {
-    color: #53a93f;
+    color: #1ba93b;
   }
 
   .inventory {
@@ -224,7 +224,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 
 <div style="position: fixed;top: 50px;width:100%;">
     <div class="card">
-<!--       <div class="card-header bg-white" style="position:relative;color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+<!--       <div class="card-header bg-white" style="position:relative;color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
         现售商品
         <a href="/buy/booking" class="text-info">
           <i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp;去预约
@@ -308,7 +308,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div id="tongji">
-  <div style="display: inline-block;font-size: 25px;position: absolute;left:15px;top:-20px;background-color: #53a93f;width:50px;height: 50px;border-radius: 25px;text-align: center;color:#fff;" id="filter" data-filter=0>
+  <div style="display: inline-block;font-size: 25px;position: absolute;left:15px;top:-20px;background-color: #1ba93b;width:50px;height: 50px;border-radius: 25px;text-align: center;color:#fff;" id="filter" data-filter=0>
     <span id="cart_icon"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span>
     <div id="cart_num" style="position: absolute;z-index:100;right:-5px; top:-5px;color:#fff;font-size: 12px;background-color: red;height:20px;width:20px;text-align: center;border-radius: 10px;line-height: 20px;">
       0
@@ -325,7 +325,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div class="card" id="login">
-  <div class="card-header bg-white" style="color: #53a93f;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       用户信息
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;font-size: 14px;position: absolute;right:15px;" id="close_login"></i>
   </div>
