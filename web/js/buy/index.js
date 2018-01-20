@@ -27,9 +27,8 @@ $(document).ready(function () {
 
             for( var i in cartJson) {
                 $("#pid_" + cartJson[i]['id'] + " .operator-num").html(cartJson[i]['num']);
-                $("#pid_" + cartJson[i]['id'] + " .operator").addClass('active');
-                $("#pid_" + cartJson[i]['id'] + " .operator-left").addClass('active');
-                $("#pid_" + cartJson[i]['id'] + " .operator-right").addClass('active');
+                $("#pid_" + cartJson[i]['id'] + " .operator-left").css('visibility', 'visible');
+                $("#pid_" + cartJson[i]['id'] + " .operator-num").css('visibility', 'visible');
             }
             calculateTotal();
         }

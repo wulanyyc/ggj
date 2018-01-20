@@ -17,9 +17,20 @@ $(document).ready(function () {
         return real_price;
     }
 
-    $('#express_' + $('#history_express_rule').val()).attr('checked', 'checked');
-
     calculateRealPrice();
+
+    // function init() {
+    //     var rule = $('#history_express_rule').val();
+    //     console.log(rule);
+
+    //     $('.express_rule').each(function(){
+    //         if ($(this).attr('data-id') == rule) {
+    //             $(this).click();
+    //         }
+    //     });
+    // }
+
+    // init();
 
     $('#express_time').click(function(){
         $('#express_info').show();
