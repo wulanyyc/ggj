@@ -46,18 +46,17 @@ $(document).ready(function () {
             success: function (ret) {
                 $('.carousel').html(ret);
                 $('.carousel').carousel({
-                    interval: false
+                    interval: false,
+                    wrap: false
                 });
 
                 $.helper.touchdirection('carouselIndicators', function(){
                     if (Direction == 'right') {
-                        // $('#carouselIndicators .carousel-control-next-icon').click();
                         $('.carousel').carousel('next');
                     }
 
                     if (Direction == 'left') {
                         $('.carousel').carousel('prev');
-                        // $('#carouselIndicators .carousel-control-prev-icon').click();
                     }
                 });
             }
