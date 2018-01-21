@@ -342,6 +342,14 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     width: 40px;
     height: 40px !important;
   }
+
+  .rec_img {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    width: 60px;
+    /*height: 40px !important;*/
+  }
 </style>
 
 <?php if (strlen($homeTip) > 0) { ?>
@@ -465,8 +473,13 @@ MsaView::registerJsFile($this,'/js/site/index.js',
             </a>
 
             <div class="tip-content">
-                  <?=$product['slogan'] ?>
-              </div>
+                <?=$product['slogan'] ?>
+            </div>
+
+            <?php if ($product['recflag'] == 1) { ?> 
+            <img src="/img/icon/rec.png" class="rec_img" />
+            <?php } ?>
+
           </div>
       <?php } ?>
     </div>

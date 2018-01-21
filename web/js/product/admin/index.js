@@ -78,6 +78,7 @@ $(document).ready(function () {
                 $('.img').val(data.img);
                 $('.fresh_percent').val(data.fresh_percent);
                 $('.seller_id').val(data.seller_id);
+                $('.recflag').val(data.recflag);
             }
         });
 

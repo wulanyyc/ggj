@@ -130,6 +130,13 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <label style='width:80px'>图片地址：</label>
                     <input style='width:250px' type='text' placeholder='' name='img' class='input-sm'></input>
                 </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>推荐：</label>
+                    <select name="recflag" class="recflag">
+                        <option value=0>不推荐</option>
+                        <option value=1>推荐</option>
+                    </select>
+                </div>
             </form>
         </div>
     </div>
@@ -186,6 +193,13 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>图片地址：</label>
                     <input style='width:250px' type='text' placeholder='' name='img' class='input-sm img'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>推荐：</label>
+                    <select name="recflag" class="recflag">
+                        <option value=0>不推荐</option>
+                        <option value=1>推荐</option>
+                    </select>
                 </div>
             </form>
         </div>

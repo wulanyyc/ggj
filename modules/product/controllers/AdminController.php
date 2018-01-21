@@ -106,7 +106,7 @@ class AdminController extends AuthController
         $id = $params['id'];
 
         $ret = ProductList::find()
-            ->select('name,price,unit,num,desc,slogan,category,buy_limit,img,fresh_percent,seller_id')
+            // ->select('name,price,unit,num,desc,slogan,category,buy_limit,img,fresh_percent,seller_id')
             ->where(['id' => $id])
             ->asArray()
             ->one();
