@@ -44,7 +44,7 @@ $(document).ready(function () {
             data: 'pid=' + $(this).attr('data-id'),
             dataType: 'html',
             success: function (ret) {
-                $('.carousel').html(ret);
+                $('#carouselContainer').html(ret);
                 $('.carousel').carousel({
                     interval: false,
                     wrap: false

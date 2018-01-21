@@ -234,6 +234,6 @@ class BuyController extends Controller
   //   <span class="sr-only">Next</span>
   // </a>';
 
-        echo $ctrHtml . $imgHtml;
+        echo '<div id="carouselIndicators" class="carousel slide" data-ride="carousel">' . $ctrHtml . $imgHtml . '</div>';
     }
 }

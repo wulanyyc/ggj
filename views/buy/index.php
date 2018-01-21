@@ -389,8 +389,8 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 <div id="imgs_alert" style="display: none;">
   <div style="display: table;width: 100%;height: 100%;">
     <div style="width: 100%; display: table-row;height: 80%;position: relative;">
-      <div style="display: table-cell;vertical-align: middle;text-align: center;">
-        <div id="carouselIndicators" class="carousel slide" data-ride="carousel" data-slide-to=0>
+      <div style="display: table-cell;vertical-align: middle;text-align: center;" id="carouselContainer">
+        <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
         </div>
       </div>
     </div>
