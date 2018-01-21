@@ -194,4 +194,30 @@ class BuyController extends Controller
 
         return $ret;
     }
+
+    public function actionImgs() {
+        $params = Yii::$app->request->post();
+        $id = $params['pid'];
+
+        $data = ProductList::find()->select('img')->where(['id' => $id])->asArray()->all();
+
+        $ctrHtml = '<ol class="carousel-indicators">';
+        $imgHtml = '<div class="carousel-inner">';
+
+        foreach($data as $key => $item) {
+            if ($key == 0) {
+                $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'" class="active"></li>';
+
+                $imgHtml .= '<div class="carousel-item active"><img src="' .$item['img']. '" style="width:100%;"/></div>';
+            } else {
+                $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'"></li>';
+                $imgHtml .= '<div class="carousel-item"><img src="' .$item['img']. '" style="width:100%;"/></div>';
+            }
+        }
+
+        $ctrHtml .= '</ol>';
+        $imgHtml .= '</div>';
+
+        echo $ctrHtml . $imgHtml;
+    }
 }

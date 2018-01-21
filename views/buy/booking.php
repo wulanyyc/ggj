@@ -69,6 +69,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+    position: relative;
   }
 
   .product-img img {
@@ -220,15 +221,63 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   #tip_alert {
-    position: fixed;top:20%;height: 60%;
-    z-index: 999;margin-left:10%;width:80%;
-    background-color: #fff;border-radius: 5px;
+    position: fixed;
+    top:20%;
+    height: 60%;
+    z-index: 999;
+    margin-left:10%;
+    width:80%;
+    background-color: #fff;
+    border-radius: 5px;
     text-align: center;
   }
 
   #tip_alert li {
     list-style: none;
     line-height: 30px;
+  }
+
+  #close_tip {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  #imgs_alert {
+    position: fixed;
+    top:20%;
+    height: 60%;
+    z-index: 999;
+    margin-left:10%;
+    width:80%;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  #close_imgs {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+  }
+
+  #close_imgs img {
+    width: 25px;
+  }
+
+  .carousel-indicators {
+    bottom: -25px;
+  }
+
+  .carousel-indicators li.active {
+    background-color: green !important;
+  }
+
+
+  .carousel-indicators li {
+    background-color: #ccc !important;
   }
 </style>
 
@@ -268,8 +317,11 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
               <?php foreach($item as $product) { ?>
               <div class="order-product" id="pid_<?=$product['id'] ?>" data-id="<?=$product['id'] ?>">
                 <div class="product-content">
-                  <div class="product-img">
+                  <div class="product-img" data-id="<?=$product['id'] ?>" data-desc="<?=$product['slogan'] ?>">
                     <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
+                    <div style="position: absolute;right: 8px;bottom: 0px;font-size: 14px;color:#ccc;">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
                   </div>
 
                   <div class="product-desc">
@@ -363,7 +415,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 <div id="tip_alert" style="display: none;">
   <div style="display: table;width: 100%">
     <div style="width: 100%; display: table-row;">
-      <div style="display: table-cell;vertical-align: middle;text-align: center;height:100px;">
+      <div class="tip-img" style="display: table-cell;vertical-align: middle;text-align: center;height:120px;">
         <img src="http://img.guoguojia.vip/img/booking.png" style="width: 80px;"/>
       </div>
     </div>
@@ -389,8 +441,26 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
       </ul>
     </div>
 
-    <div style="margin-top:10px;" id="close_tip">
-      <img src="/img/close.png" style="width: 40px;"/>
+    <div id="close_tip">
+      <img src="http://img.guoguojia.vip/img/close.png" style="width: 30px;"/>
+    </div>
+  </div>
+</div>
+
+<div id="imgs_alert" style="display: none;">
+  <div style="display: table;width: 100%;height: 100%;">
+    <div style="width: 100%; display: table-row;height: 80%;position: relative;">
+      <div style="display: table-cell;vertical-align: middle;text-align: center;">
+        <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%; display: table-row;height: 10%;">
+      <div style="display: table-cell;vertical-align: middle;text-align: center;" class="img_slogan">
+      </div>
+    </div>
+    <div id="close_imgs">
+      <img src="http://img.guoguojia.vip/img/close.png"/>
     </div>
   </div>
 </div>

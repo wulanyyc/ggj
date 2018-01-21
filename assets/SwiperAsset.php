@@ -13,18 +13,16 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class WechatAsset extends AssetBundle
+class SwiperAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-
+        '/js/lib/swiper/css/swiper.min.css',
     ];
     public $js = [
-        'http://res.wx.qq.com/open/js/jweixin-1.2.0.js',
-        'js/wechat.js',
+        '/js/lib/swiper/js/swiper.min.js',
     ];
-
     public $depends = [
 
     ];

@@ -65,6 +65,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+    position: relative;
   }
 
   .product-img img {
@@ -210,6 +211,42 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     border-bottom-left-radius: 0 !important;
   }
 
+  #imgs_alert {
+    position: fixed;
+    top:20%;
+    height: 60%;
+    z-index: 999;
+    margin-left:10%;
+    width:80%;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  #close_imgs {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+  }
+
+  #close_imgs img {
+    width: 25px;
+  }
+
+  .carousel-indicators {
+    bottom: -25px;
+  }
+
+  .carousel-indicators li.active {
+    background-color: green !important;
+  }
+
+
+  .carousel-indicators li {
+    background-color: #ccc !important;
+  }
+
 </style>
 
 <input type="hidden" value="<?=$id ?>" id="scroll_id" />
@@ -249,8 +286,11 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
               <?php foreach($item as $product) { ?>
               <div class="order-product" id="pid_<?=$product['id'] ?>" data-id="<?=$product['id'] ?>">
                 <div class="product-content">
-                  <div class="product-img">
+                  <div class="product-img" data-id="<?=$product['id'] ?>" data-desc="<?=$product['slogan'] ?>">
                     <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" style="width: 80%;"/>
+                    <div style="position: absolute;right: 8px;bottom: 0px;font-size: 14px;color:#ccc;">
+                      <i class="fa fa-search-plus" aria-hidden="true"></i>
+                    </div>
                   </div>
 
                   <div class="product-desc">
@@ -262,12 +302,10 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
                       <?php if ($product['price'] == $product['promotion_price']) { ?>
                       <span class="realprice">
                         <?=$product['price'] ?>
-                        <!-- <span class="money">元/<?=$product['unit'] ?></span> -->
                       </span>
                       <?php } else { ?>
                       <span class="realprice">
                         <?=$product['promotion_price'] ?>
-                        <!-- <span class="money">元/<?=$product['unit'] ?></span> -->
                         <span class="orignal_price">¥ <?=$product['price'] ?></span>
                       </span>
                       <?php } ?>
@@ -342,5 +380,24 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     <button type="button" class="btn btn-success" id="next" style="width:50%;margin-left:25%;margin-top:10px;">
       下一步
     </button>
+  </div>
+</div>
+
+<div id="imgs_alert" style="display: none;">
+  <div style="display: table;width: 100%;height: 100%;">
+    <div style="width: 100%; display: table-row;height: 80%;position: relative;">
+      <div style="display: table-cell;vertical-align: middle;text-align: center;">
+        <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%; display: table-row;height: 10%;">
+      <div style="display: table-cell;vertical-align: middle;text-align: center;" class="img_slogan">
+      
+      </div>
+    </div>
+    <div id="close_imgs">
+      <img src="http://img.guoguojia.vip/img/close.png"/>
+    </div>
   </div>
 </div>

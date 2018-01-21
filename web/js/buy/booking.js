@@ -45,6 +45,28 @@ $(document).ready(function () {
         $.cookie('booking_tip', 1, {expires: 3, path: '/'});
     });
 
+    $('.product-img').click(function() {
+        $('#cover').show();
+        $('#imgs_alert').show();
+        $('.img_slogan').html($(this).attr('data-desc'));
+
+        $.ajax({
+            url: '/buy/imgs',
+            type: 'post',
+            data: 'pid=' + $(this).attr('data-id'),
+            dataType: 'html',
+            success: function (ret) {
+                $('.carousel').html(ret);
+            }
+        });
+    });
+
+    $('#close_imgs').click(function(){
+        $('#cover').hide();
+        $('.carousel').html('加载中...');
+        $('#imgs_alert').hide();
+    });
+
     $('.list-group-item').click(function(){
         // back -= 1;
         // $.cookie('booking-history-back', back, { path: '/' });

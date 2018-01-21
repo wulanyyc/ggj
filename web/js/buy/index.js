@@ -1,10 +1,7 @@
 $(document).ready(function () {
     cart = {};
-    // var back = -1;
     timeLimit = 120;
     clock = 0;
-    // add_lock = 0;
-    // minus_lock = 0;
 
     function init() {
         $('#order_scroll').css('height', $(window).height() - 126);
@@ -35,6 +32,28 @@ $(document).ready(function () {
     }
 
     init();
+
+    $('.product-img').click(function() {
+        $('#cover').show();
+        $('#imgs_alert').show();
+        $('.img_slogan').html($(this).attr('data-desc'));
+
+        $.ajax({
+            url: '/buy/imgs',
+            type: 'post',
+            data: 'pid=' + $(this).attr('data-id'),
+            dataType: 'html',
+            success: function (ret) {
+                $('.carousel').html(ret);
+            }
+        });
+    });
+
+    $('#close_imgs').click(function(){
+        $('#cover').hide();
+        $('.carousel').html('加载中...');
+        $('#imgs_alert').hide();
+    });
 
     $('a.list-group-item').click(function(){
         // back -= 1;
