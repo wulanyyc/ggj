@@ -317,7 +317,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
               <?php foreach($item as $product) { ?>
               <div class="order-product" id="pid_<?=$product['id'] ?>" data-id="<?=$product['id'] ?>">
                 <div class="product-content">
-                  <div class="product-img" data-id="<?=$product['id'] ?>" data-desc="<?=$product['slogan'] ?>">
+                  <div class="product-img" data-id="<?=$product['id'] ?>" data-desc='<?=$product['slogan'] ?>'>
                     <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                     <div style="position: absolute;right: 8px;bottom: 0px;font-size: 13px;color:#ccc;">
                       <i class="fa fa-search-plus" aria-hidden="true"></i>
@@ -325,10 +325,10 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
                   </div>
 
                   <div class="product-desc">
-                    <p class="title" data-id="<?=$product['id'] ?>" data-desc="<?=$product['slogan'] ?>">
+                    <p class="title" data-id="<?=$product['id'] ?>" data-desc='<?=$product['slogan'] ?>'>
                       <?=$product['name'] ?> <?=$product['desc'] ?>
                     </p>
-                    <p class="slogan" data-id="<?=$product['id'] ?>" data-desc="<?=$product['slogan'] ?>">
+                    <p class="slogan" data-id="<?=$product['id'] ?>" data-desc='<?=$product['slogan'] ?>'>
                       <?=$product['slogan'] ?>
                     </p>
                     <p class="price">
