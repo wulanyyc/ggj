@@ -213,16 +213,16 @@ class BuyController extends Controller
 
         foreach($data as $key => $item) {
             if ($key == 0) {
-                // $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'" class="active"></li>';
+                $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'" class="active"></li>';
 
                 $imgHtml .= '<div class="carousel-item active"><img src="' .$item['img']. '" style="width:100%;"/></div>';
             } else {
-                // $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'"></li>';
+                $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'"></li>';
                 $imgHtml .= '<div class="carousel-item"><img src="' .$item['img']. '" style="width:100%;"/></div>';
             }
         }
 
-        // $ctrHtml .= '</ol>';
+        $ctrHtml .= '</ol>';
         $imgHtml .= '</div>';
 
         $endHtml = '<a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
@@ -234,6 +234,6 @@ class BuyController extends Controller
     <span class="sr-only">Next</span>
   </a>';
 
-        echo $imgHtml . $endHtml;
+        echo $ctrHtml . $imgHtml . $endHtml;
     }
 }
