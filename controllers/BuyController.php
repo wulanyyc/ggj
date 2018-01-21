@@ -199,25 +199,41 @@ class BuyController extends Controller
         $params = Yii::$app->request->post();
         $id = $params['pid'];
 
-        $data = ProductList::find()->select('img')->where(['id' => $id])->asArray()->all();
+        $imgs = ProductList::find()->select('img,img1,img2,img3')->where(['id' => $id])->asArray()->one();
 
-        $ctrHtml = '<ol class="carousel-indicators">';
+        $data = [];
+        foreach($imgs as $item) {
+            if (!empty($item)) {
+                $data[] = ['img' => $item];
+            }
+        }
+
+        // $ctrHtml = '<ol class="carousel-indicators">';
         $imgHtml = '<div class="carousel-inner">';
 
         foreach($data as $key => $item) {
             if ($key == 0) {
-                $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'" class="active"></li>';
+                // $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'" class="active"></li>';
 
                 $imgHtml .= '<div class="carousel-item active"><img src="' .$item['img']. '" style="width:100%;"/></div>';
             } else {
-                $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'"></li>';
+                // $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'"></li>';
                 $imgHtml .= '<div class="carousel-item"><img src="' .$item['img']. '" style="width:100%;"/></div>';
             }
         }
 
-        $ctrHtml .= '</ol>';
+        // $ctrHtml .= '</ol>';
         $imgHtml .= '</div>';
 
-        echo $ctrHtml . $imgHtml;
+        $endHtml = '<a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>';
+
+        echo $imgHtml . $endHtml;
     }
 }

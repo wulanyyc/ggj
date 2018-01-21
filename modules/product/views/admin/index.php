@@ -127,8 +127,20 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm' maxlength="20"></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>图片地址：</label>
-                    <input style='width:250px' type='text' placeholder='' name='img' class='input-sm'></input>
+                    <label style='width:80px'>主图地址：</label>
+                    <input style='width:250px' type='text' placeholder='' name='img' class='input-sm img'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>副图地址1：</label>
+                    <input style='width:250px' type='text' placeholder='' name='img1' class='input-sm img1'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>副图地址2：</label>
+                    <input style='width:250px' type='text' placeholder='' name='img2' class='input-sm img2'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>副图地址3：</label>
+                    <input style='width:250px' type='text' placeholder='' name='img3' class='input-sm img3'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>推荐：</label>
@@ -191,8 +203,20 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
                     <input style='width:250px' type='text' placeholder='' name='slogan' class='input-sm slogan' maxlength="20"></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
-                    <label style='width:80px'>图片地址：</label>
+                    <label style='width:80px'>主图地址：</label>
                     <input style='width:250px' type='text' placeholder='' name='img' class='input-sm img'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>副图地址1：</label>
+                    <input style='width:250px' type='text' placeholder='' name='img1' class='input-sm img1'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>副图地址2：</label>
+                    <input style='width:250px' type='text' placeholder='' name='img2' class='input-sm img2'></input>
+                </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>副图地址3：</label>
+                    <input style='width:250px' type='text' placeholder='' name='img3' class='input-sm img3'></input>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
                     <label style='width:80px'>推荐：</label>

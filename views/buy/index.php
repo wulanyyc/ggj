@@ -242,7 +242,6 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     background-color: green !important;
   }
 
-
   .carousel-indicators li {
     background-color: #ccc !important;
   }
