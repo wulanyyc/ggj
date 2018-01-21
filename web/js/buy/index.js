@@ -45,6 +45,9 @@ $(document).ready(function () {
             dataType: 'html',
             success: function (ret) {
                 $('.carousel').html(ret);
+                $('.carousel').carousel({
+                    interval: 2000
+                });
                 $.helper.touchdirection('carouselIndicators', function(){
                     if (Direction == 'right') {
                         $('#carouselIndicators .carousel-control-next-icon').click();
