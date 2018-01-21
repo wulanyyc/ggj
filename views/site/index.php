@@ -44,7 +44,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .promotion-item-left-content {
-    width:70%;margin: auto;
+    width:88%;margin: auto;
   }
 
   .promotion-item-left-content-top {
