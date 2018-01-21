@@ -267,4 +267,17 @@ EOF;
     private function getUserAddress($cid) {
         return Address::find()->where(['customer_id' => $cid])->orderBy('id desc')->asArray()->all();
     }
+
+    public function actionGetexpressrule() {
+        $params = Yii::$app->request->post();
+        if (empty($params)){
+            SiteHelper::render('fail', '提交的参数不能为空');
+        }
+
+        $cid = $params['cid'];
+
+        $rule = ProductOrder::find()->where(['cart_id' => $cid])->select('express_rule')->scalar();
+
+        SiteHelper::render('ok', $rule);
+    }
 }

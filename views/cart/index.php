@@ -391,12 +391,12 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     <div class="item" style="width: 100%;height: 40px;line-height: 40px;position: relative;">
         <div style="display: inline-block;width:90%;">
           <p class="label" style="display: inline-block;">配送：</p>
-          <div style="display: inline-block;margin-right: 5px;" data-id="1" class="express_rule">
+          <div style="display: inline-block;margin-right: 5px;" data-id="1" class="express_rule" id="express_rule_1">
             <div class="icon" data-id="1"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
             <span class="badge badge-success" style="font-size: 13px;line-height: 16px;font-weight: normal;">顺丰快递</span>
           </div>
 
-          <div style="display: inline-block;" data-id="2" class="express_rule">
+          <div style="display: inline-block;" data-id="2" class="express_rule" id="express_rule_2">
             <span class="icon" data-id="2"><i class="fa fa-square-o" aria-hidden="true"></i></span>
             <span class="badge badge-info" style="font-size: 13px;line-height: 16px;font-weight: normal;">自提</span>
           </div>

@@ -17,20 +17,7 @@ $(document).ready(function () {
         return real_price;
     }
 
-    calculateRealPrice();
-
-    // function init() {
-    //     var rule = $('#history_express_rule').val();
-    //     console.log(rule);
-
-    //     $('.express_rule').each(function(){
-    //         if ($(this).attr('data-id') == rule) {
-    //             $(this).click();
-    //         }
-    //     });
-    // }
-
-    // init();
+    // calculateRealPrice();
 
     $('#express_time').click(function(){
         $('#express_info').show();
@@ -74,7 +61,7 @@ $(document).ready(function () {
         $(this).find('.icon').html('<i class="fa fa-check-square-o" aria-hidden="true"></i>');
 
         if ($(this).attr('data-id') == 1) {
-            var product_price = parseFloat($('#product_price').val());
+            var product_price = parseFloat($('#history_product_price').val());
             var buy_god = parseFloat($('#buy_god').val());
 
             $('#history_express_rule').val(1);
@@ -447,5 +434,27 @@ $(document).ready(function () {
             }
         });
     });
+
+    function init() {
+        var rule = $('#history_express_rule').val();
+
+        var cart_id = $('#cart_id').val();
+        $.ajax({
+            url: '/cart/getexpressrule',
+            type: 'post',
+            dataType: 'json',
+            data: 'cid=' + cart_id,
+            success: function (data) {
+                if (data.status == 'ok') {
+                    $('#history_express_rule').val(data.data);
+                    $('#express_rule_' + data.data).click();
+                } else {
+                    calculateRealPrice();
+                }
+            }
+        });
+    }
+
+    init();
 
 });
