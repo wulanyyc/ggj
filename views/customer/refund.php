@@ -25,13 +25,13 @@ $this->title = '退款赔偿细则';
 
 <div class="card">
     <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;display: flex;flex-direction: row;justify-content: space-between;">
-      退款赔偿细则
+      退款赔偿细则--以诚为本
     </div>
     <div style="padding:5%;">
       <p class="text-danger" style="font-size: 18px;">商品损坏或质量差：</p>
       <p style="font-size: 16px;">
       快递运输中出现物理损坏，请联系我们协商赔偿。<br/>
-      收货后发现商品质量存在问题，请联系我们协商赔偿<span class="text-info">(水果存在特殊性，赔偿有效期为快递到货后3天内)</span>。
+      收货后发现商品质量存在问题，请联系我们协商赔偿<span class="text-info">(生鲜存在特殊性，赔偿有效期为快递到货后2天内)</span>。
       </p>
       <br/>
 
