@@ -46,15 +46,18 @@ $(document).ready(function () {
             success: function (ret) {
                 $('.carousel').html(ret);
                 $('.carousel').carousel({
-                    interval: 2000
+                    interval: 5000,
+                    wrap: false
                 });
                 $.helper.touchdirection('carouselIndicators', function(){
                     if (Direction == 'right') {
-                        $('#carouselIndicators .carousel-control-next-icon').click();
+                        // $('#carouselIndicators .carousel-control-next-icon').click();
+                        $('.carousel').carousel('next');
                     }
 
                     if (Direction == 'left') {
-                        $('#carouselIndicators .carousel-control-prev-icon').click();
+                        $('.carousel').carousel('pre');
+                        // $('#carouselIndicators .carousel-control-prev-icon').click();
                     }
                 });
             }
