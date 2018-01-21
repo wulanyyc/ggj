@@ -437,7 +437,7 @@ $(document).ready(function () {
         var rule = $('#history_express_rule').val();
         var cart_id = $('#cart_id').val();
 
-        $.cookie('cart_id', 1, {expires: 7, path: '/'});
+        $.cookie('cart_id', cart_id, {expires: 7, path: '/'});
 
         $.ajax({
             url: '/cart/getexpressrule',
