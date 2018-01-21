@@ -46,17 +46,17 @@ $(document).ready(function () {
             success: function (ret) {
                 $('.carousel').html(ret);
                 $('.carousel').carousel({
-                    interval: 5000,
-                    wrap: false
+                    interval: 5000
                 });
+                
                 $.helper.touchdirection('carouselIndicators', function(){
                     if (Direction == 'right') {
                         // $('#carouselIndicators .carousel-control-next-icon').click();
-                        $('.carousel').carousel('next');
+                        $('.carousel').carousel('pre');
                     }
 
                     if (Direction == 'left') {
-                        $('.carousel').carousel('pre');
+                        $('.carousel').carousel('next');
                         // $('#carouselIndicators .carousel-control-prev-icon').click();
                     }
                 });
