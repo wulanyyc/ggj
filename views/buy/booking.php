@@ -320,13 +320,17 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
                   <div class="product-img" data-id="<?=$product['id'] ?>" data-desc="<?=$product['slogan'] ?>">
                     <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" />
                     <div style="position: absolute;right: 8px;bottom: 0px;font-size: 14px;color:#ccc;">
-                      <i class="fa fa-search" aria-hidden="true"></i>
+                      <i class="fa fa-search-plus" aria-hidden="true"></i>
                     </div>
                   </div>
 
                   <div class="product-desc">
-                    <p class="title"><?=$product['name'] ?> <?=$product['desc'] ?></p>
-                    <p class="slogan"><?=$product['slogan'] ?></p>
+                    <p class="title" data-id="<?=$product['id'] ?>" data-desc="<?=$product['slogan'] ?>">
+                      <?=$product['name'] ?> <?=$product['desc'] ?>
+                    </p>
+                    <p class="slogan" data-id="<?=$product['id'] ?>" data-desc="<?=$product['slogan'] ?>">
+                      <?=$product['slogan'] ?>
+                    </p>
                     <p class="price">
                       <span class="money">¥</span>
                       <?php if ($product['price'] == $product['promotion_price']) { ?>

@@ -294,8 +294,12 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
                   </div>
 
                   <div class="product-desc">
-                    <p class="title"><?=$product['name'] ?> <?=$product['desc'] ?></p>
-                    <p class="slogan"><?=$product['slogan'] ?></p>
+                    <p class="title" data-id="<?=$product['id'] ?>" data-desc="<?=$product['slogan'] ?>">
+                      <?=$product['name'] ?> <?=$product['desc'] ?>
+                    </p>
+                    <p class="slogan" data-id="<?=$product['id'] ?>" data-desc="<?=$product['slogan'] ?>">
+                      <?=$product['slogan'] ?>
+                    </p>
                     <p class="price">
                       <span class="money">¥</span>
 

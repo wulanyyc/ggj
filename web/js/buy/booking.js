@@ -45,7 +45,7 @@ $(document).ready(function () {
         $.cookie('booking_tip', 1, {expires: 3, path: '/'});
     });
 
-    $('.product-img').click(function() {
+    $('.product-img, .product-desc .title, .product-desc .slogan').click(function() {
         $('#cover').show();
         $('#imgs_alert').show();
         $('.img_slogan').html($(this).attr('data-desc'));
