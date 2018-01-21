@@ -17,8 +17,6 @@ $(document).ready(function () {
         return real_price;
     }
 
-    // calculateRealPrice();
-
     $('#express_time').click(function(){
         $('#express_info').show();
         $('#cover').show();
@@ -437,8 +435,10 @@ $(document).ready(function () {
 
     function init() {
         var rule = $('#history_express_rule').val();
-
         var cart_id = $('#cart_id').val();
+
+        $.cookie('cart_id', 1, {expires: 7, path: '/'});
+
         $.ajax({
             url: '/cart/getexpressrule',
             type: 'post',

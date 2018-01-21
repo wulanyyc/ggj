@@ -44,6 +44,14 @@ class BuyController extends Controller
         $params = Yii::$app->request->get();
         $id = isset($params['id']) ? $params['id'] : 0;
         $cid = isset($params['cid']) ? $params['cid'] : 0;
+
+        if ($cid == 0 && isset($_COOKIE['cart_id'])) {
+            $orderType = ProductCart::find()->where(['id' => $_COOKIE['cart_id']])->select('order_type')->scalar();
+            if ($orderType == 1) {
+                $cid = $_COOKIE['cart_id'];
+            }
+        }
+
         $orderType = 1;
 
         if ($cid != 0) {
@@ -89,6 +97,14 @@ class BuyController extends Controller
         $params = Yii::$app->request->get();
         $id = isset($params['id']) ? $params['id'] : 0;
         $cid = isset($params['cid']) ? $params['cid'] : 0;
+
+        if ($cid == 0 && isset($_COOKIE['cart_id'])) {
+            $orderType = ProductCart::find()->where(['id' => $_COOKIE['cart_id']])->select('order_type')->scalar();
+            if ($orderType == 2) {
+                $cid = $_COOKIE['cart_id'];
+            }
+        }
+
         $orderType = 2;
 
         if ($cid != 0) {
