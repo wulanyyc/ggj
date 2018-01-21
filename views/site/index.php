@@ -49,7 +49,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   .promotion-item-left-content-top {
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     color:#fff;
     height: 44px;
     line-height: 44px;
