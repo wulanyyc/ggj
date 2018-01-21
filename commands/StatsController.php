@@ -27,7 +27,7 @@ use app\modules\product\models\ProductList;
  */
 class StatsController extends Controller
 {
-    public function actionSale($date = '')
+    public function actionSaleinit()
     {
         if (empty($date)) {
             $data = ProductOrder::findBySql('select cart_id from product_order where status in (2,3)')->asArray()->all();
@@ -42,6 +42,26 @@ class StatsController extends Controller
                         $sale += $item['num'];
                         ProductList::updateAll(['sale_num' => $sale], ['id' => $item['id']]);
                     }
+                }
+            }
+        }
+    }
+
+    public function actionSale()
+    {
+        $date = date('Ymd', time() - 86400);
+
+        $data = ProductOrder::findBySql('select cart_id from product_order where status in (2,3) and `date`=' . $date)->asArray()->all();
+
+        if (!empty($data)) {
+            foreach($data as $key => $value) {
+                $json = ProductCart::find()->select('cart')->where(['id' => $value['cart_id']])->scalar();
+                $jsonData = json_decode($json, true);
+
+                foreach($jsonData as $item) {
+                    $sale = ProductList::find()->select('sale_num')->where(['id' => $item['id']])->scalar();
+                    $sale += $item['num'];
+                    ProductList::updateAll(['sale_num' => $sale], ['id' => $item['id']]);
                 }
             }
         }
