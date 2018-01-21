@@ -194,18 +194,21 @@ $(document).ready(function () {
             //下滑
             else if ( Y > 0) {
                 Direction = 'down';
+                func();
                 // alert(Direction);
             }
 
             //上滑
             else if ( Y < 0 ) {
                 Direction = 'up';
+                func();
                 // alert(Direction);
             }
 
             //单击
             else{
                 Direction = 'click';
+                func();
                 // alert(Direction);
             }
         });

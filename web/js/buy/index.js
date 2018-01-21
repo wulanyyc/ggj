@@ -45,13 +45,13 @@ $(document).ready(function () {
             dataType: 'html',
             success: function (ret) {
                 $('.carousel').html(ret);
-                $.helper.touchdirection('imgs_alert', function(){
+                $.helper.touchdirection('carouselIndicators', function(){
                     if (Direction == 'right') {
-                        $('#imgs_alert .carousel-control-next-icon').click();
+                        $('#carouselIndicators .carousel-control-next-icon').click();
                     }
 
                     if (Direction == 'left') {
-                        $('#imgs_alert .carousel-control-prev-icon').click();
+                        $('#carouselIndicators .carousel-control-prev-icon').click();
                     }
                 });
             }

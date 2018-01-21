@@ -57,6 +57,15 @@ $(document).ready(function () {
             dataType: 'html',
             success: function (ret) {
                 $('.carousel').html(ret);
+                $.helper.touchdirection('carouselIndicators', function(){
+                    if (Direction == 'right') {
+                        $('#carouselIndicators .carousel-control-next-icon').click();
+                    }
+
+                    if (Direction == 'left') {
+                        $('#carouselIndicators .carousel-control-prev-icon').click();
+                    }
+                });
             }
         });
     });
