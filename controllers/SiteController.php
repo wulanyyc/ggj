@@ -57,9 +57,6 @@ class SiteController extends Controller
     private function getDayPromotion() {
         $cn = Yii::$app->params['day_cn'];
         $dayofweek = date('w', time());
-        if ($dayofweek == 0) {
-            $dayofweek = 7;
-        }
 
         $promotions = Yii::$app->params['day_promotion'][$dayofweek];
         $info = ProductList::find()->select('id,name,img')
