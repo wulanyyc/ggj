@@ -448,13 +448,12 @@ $(document).ready(function () {
                 if (data.status == 'ok') {
                     $('#history_express_rule').val(data.data);
                     $('#express_rule_' + data.data).click();
-                } else {
-                    calculateRealPrice();
                 }
             }
         });
     }
 
     init();
+    calculateRealPrice();
 
 });
