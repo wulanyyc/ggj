@@ -45,6 +45,7 @@ $(document).ready(function () {
             dataType: 'html',
             success: function (ret) {
                 $('.carousel').html(ret);
+                $.helper.touchdirection('imgs_alert');
             }
         });
     });

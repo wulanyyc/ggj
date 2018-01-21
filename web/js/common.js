@@ -149,4 +149,63 @@ $(document).ready(function () {
             }
         });
     }
+
+    $.helper.touchdirection = function(id) {
+        $("#" + id).on("touchstart", function(e) {
+            // 判断默认行为是否可以被禁用
+            if (e.cancelable) {
+                // 判断默认行为是否已经被禁用
+                if (!e.defaultPrevented) {
+                    e.preventDefault();
+                }
+            }   
+            startX = e.originalEvent.changedTouches[0].pageX,
+            startY = e.originalEvent.changedTouches[0].pageY;
+        });
+
+        $("#" + id).on("touchend", function(e) {
+            // 判断默认行为是否可以被禁用
+            if (e.cancelable) {
+                // 判断默认行为是否已经被禁用
+                if (!e.defaultPrevented) {
+                    e.preventDefault();
+                }
+            }
+
+            moveEndX = e.originalEvent.changedTouches[0].pageX,
+            moveEndY = e.originalEvent.changedTouches[0].pageY,
+            X = moveEndX - startX,
+            Y = moveEndY - startY;
+
+            //左滑
+            if ( X > 0 ) {
+                Direction = 'left';
+                alert(Direction);
+            }
+
+            //右滑
+            else if ( X < 0 ) {
+                Direction = 'right';
+                alert(Direction);
+            }
+
+            //下滑
+            else if ( Y > 0) {
+                Direction = 'down';
+                alert(Direction);
+            }
+
+            //上滑
+            else if ( Y < 0 ) {
+                Direction = 'up';
+                alert(Direction);
+            }
+
+            //单击
+            else{
+                Direction = 'click';
+                alert(Direction);
+            }
+        });
+    }
 });
