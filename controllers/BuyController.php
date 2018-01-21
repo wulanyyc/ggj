@@ -208,7 +208,7 @@ class BuyController extends Controller
             }
         }
 
-        // $ctrHtml = '<ol class="carousel-indicators">';
+        $ctrHtml = '<ol class="carousel-indicators">';
         $imgHtml = '<div class="carousel-inner">';
 
         foreach($data as $key => $item) {
