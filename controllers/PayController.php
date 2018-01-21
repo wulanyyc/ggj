@@ -380,7 +380,8 @@ class PayController extends Controller
             if($_POST['trade_status'] == 'TRADE_FINISHED' || $_POST['trade_status'] == 'TRADE_SUCCESS') {
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
-                if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
+                // if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
+                if ($total_amount == $checkData['online_money']) {
                     OrderHelper::handlePayOkOrder($checkData['id'], $trade_no);
 
                     echo 'success';
@@ -413,7 +414,8 @@ class PayController extends Controller
             if($_POST['trade_status'] == 'TRADE_FINISHED' || $_POST['trade_status'] == 'TRADE_SUCCESS') {
                 $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
 
-                if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
+                // if ($total_amount == $checkData['online_money'] && $checkData['pay_result'] != 1) {
+                if ($total_amount == $checkData['online_money']) {
                     OrderHelper::handlePayOkOrder($checkData['id'], $trade_no);
 
                     echo 'success';
@@ -447,8 +449,9 @@ class PayController extends Controller
         $pay_money = $data['cash_fee']/100;
         $trade_no  = $data['transaction_id'];
 
-        if ($data['result_code'] == 'SUCCESS' && $pay_money == $checkData['online_money'] 
-            && $checkData['pay_result'] != 1) {
+        // if ($data['result_code'] == 'SUCCESS' && $pay_money == $checkData['online_money'] 
+        //     && $checkData['pay_result'] != 1) {
+        if ($data['result_code'] == 'SUCCESS' && $pay_money == $checkData['online_money']) {
             OrderHelper::handlePayOkOrder($checkData['id'], $trade_no);
 
             echo 'success';
