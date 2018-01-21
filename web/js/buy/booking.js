@@ -57,13 +57,18 @@ $(document).ready(function () {
             dataType: 'html',
             success: function (ret) {
                 $('#carouselContainer').html(ret);
+                $('.carousel').carousel({
+                    interval: false,
+                    wrap: false
+                });
+
                 $.helper.touchdirection('carouselIndicators', function(){
                     if (Direction == 'right') {
-                        $('#carouselIndicators .carousel-control-next-icon').click();
+                        $('.carousel').carousel('next');
                     }
 
                     if (Direction == 'left') {
-                        $('#carouselIndicators .carousel-control-prev-icon').click();
+                        $('.carousel').carousel('prev');
                     }
                 });
             }

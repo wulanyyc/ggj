@@ -455,8 +455,6 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   <div style="display: table;width: 100%;height: 100%;">
     <div style="width: 100%; display: table-row;height: 80%;position: relative;">
       <div style="display: table-cell;vertical-align: middle;text-align: center;" id="carouselContainer">
-<!--         <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-        </div> -->
       </div>
     </div>
     <div style="width: 100%; display: table-row;height: 10%;">
