@@ -45,7 +45,15 @@ $(document).ready(function () {
             dataType: 'html',
             success: function (ret) {
                 $('.carousel').html(ret);
-                $.helper.touchdirection('imgs_alert');
+                $.helper.touchdirection('imgs_alert', function(){
+                    if (Direction == 'right') {
+                        $('#imgs_alert .carousel-control-next-icon').click();
+                    }
+
+                    if (Direction == 'left') {
+                        $('#imgs_alert .carousel-control-prev-icon').click();
+                    }
+                });
             }
         });
     });
