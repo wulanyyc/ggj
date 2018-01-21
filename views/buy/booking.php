@@ -232,9 +232,15 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
     text-align: center;
   }
 
+  #tip_alert .label {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
   #tip_alert li {
     list-style: none;
-    line-height: 30px;
+    font-size: 14px !important;
+    line-height: 28px !important;
   }
 
   #close_tip {
@@ -328,7 +334,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
                     <p class="title" data-id="<?=$product['id'] ?>" data-desc='<?=$product['slogan'] ?>'>
                       <?=$product['name'] ?> <?=$product['desc'] ?>
                     </p>
-                    <p class="slogan" data-id="<?=$product['id'] ?>" data-desc='<?=$product['slogan'] ?>'>
+                    <p class="slogan">
                       <?=$product['slogan'] ?>
                     </p>
                     <p class="price">
