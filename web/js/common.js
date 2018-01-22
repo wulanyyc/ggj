@@ -15,7 +15,7 @@ $(document).ready(function () {
         $.cookie('terminal', 'wap', {path: '/'});
     }
 
-    console.log(location);
+    // console.log(location);
     
     $('#back, #inner_back').click(function(){
         if ($('#we_appid').val() != undefined) {
