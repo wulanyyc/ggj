@@ -111,7 +111,6 @@ class PrizeController extends Controller
             Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * 30, json_encode($prize));
 
             $qrData = WechatHelper::getTempqrcode($prizeCode);
-            // print_r($qrData);exit;
 
             $ticket = $qrData['ticket'];
 
