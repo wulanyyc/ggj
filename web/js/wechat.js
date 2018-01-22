@@ -9,9 +9,10 @@ if (document.getElementById('we_appid')) {
     });
 
     wx.ready(function(){
-        // wx.hideMenuItems({
-        //     menuList: ['onMenuShareQQ', 'onMenuShareQZone']
-        // });
+        wx.hideMenuItems({
+            menuList: ['onMenuShareQQ', 'onMenuShareQZone', 'onMenuShareWeibo']
+        });
+
         // wx.hideAllNonBaseMenuItem();
 
         wx.onMenuShareAppMessage({
