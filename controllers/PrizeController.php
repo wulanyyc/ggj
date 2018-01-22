@@ -44,7 +44,7 @@ class PrizeController extends Controller
     }
 
     public function actionGetrotate() {
-        $limit = 3;
+        $limit = 100;
         $dayLimit = $this->dayLimit;
 
         $uniq = $_COOKIE['puid'];
@@ -111,7 +111,7 @@ class PrizeController extends Controller
             Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * 30, json_encode($prize));
 
             $qrData = WechatHelper::getTempqrcode($prizeCode);
-            print_r($qrData);exit;
+            // print_r($qrData);exit;
 
             $ticket = $qrData['ticket'];
 
