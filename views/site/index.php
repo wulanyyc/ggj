@@ -1,5 +1,4 @@
 <?php
-use Yii;
 use yii\web\View;
 use app\components\MsaView;
 
@@ -368,7 +367,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
         </div>
       </div>
 
-      <div class="promotion-item-right" style="background-color: #D0E3DC;">
+      <div class="promotion-item-right" style="background-color: #D0E3DC;position: relative;">
         <img src="<?=$newPromotion['img'] ?>"></img>
       </div>
     </div>
@@ -383,7 +382,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
         </div>
       </div>
 
-      <div class="promotion-item-right" style="background-color: #F3CFD3;">
+      <div class="promotion-item-right" style="background-color: #F3CFD3;position: relative;">
         <img src="<?=$dayPromotion['img'] ?>"></img>
       </div>
 

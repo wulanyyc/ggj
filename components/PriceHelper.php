@@ -28,7 +28,7 @@ class PriceHelper extends Component {
      * $id 产品id
      * $type 订购类型  1: 普通  2: 预订
      */
-    public static function getProductPrice($id, $type = 2) {
+    public static function getProductPrice($id, $type = 1) {
         $data = ProductList::find()->where(['id' => $id])->select('price, fresh_percent')->asArray()->one();
 
         $price = $data['price'];

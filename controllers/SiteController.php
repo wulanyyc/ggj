@@ -43,12 +43,14 @@ class SiteController extends Controller
     private function getNewPromotion() {
         $promotions = Yii::$app->params['new_promotion'];
 
-        $info = ProductList::find()->select('name,price,unit,img')
+        $info = ProductList::find()->select('name,price,unit,img,price')
             ->where(['id' => $promotions['id']])->asArray()->one();
 
         $text  = $info['name'];
 
         $link = ProductHelper::getProductLink($promotions['id']);
+
+        // $promotionPrice = PriceHelper::getProductPrice($promotions['id']);
 
         // TODO 调整图片
         return ['text' => $text, 'img' => $info['img'], 'link' => $link];
@@ -59,12 +61,14 @@ class SiteController extends Controller
         $dayofweek = date('w', time());
 
         $promotions = Yii::$app->params['day_promotion'][$dayofweek];
-        $info = ProductList::find()->select('id,name,img')
+        $info = ProductList::find()->select('id,name,img,price,unit')
             ->where(['id' => $promotions['id']])->asArray()->one();
 
         $text = '星期' . $cn[$dayofweek] . ' ' . $info['name'];
 
         $link = ProductHelper::getProductLink($promotions['id']);
+
+        // $promotionPrice = PriceHelper::getProductPrice($promotions['id']);
 
         return ['text' => $text, 'img' => $info['img'], 'id' => $info['id'], 'link' => $link];
     }
