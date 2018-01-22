@@ -378,7 +378,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <div class="promotion-item-left" style="background-color: #DD182B;">
         <div class="promotion-item-left-content">
           <div class="promotion-item-left-content-top">今日特价</div>
-          <div class="promotion-item-left-content-bottom"><?=$dayPromotion['text'] ?> ¥<?=$newPromotion['price'] ?></div>
+          <div class="promotion-item-left-content-bottom"><?=$dayPromotion['text'] ?> ¥<?=$dayPromotion['price'] ?></div>
         </div>
       </div>
 
