@@ -72,10 +72,10 @@ $(document).ready(function () {
                                 $('#pointer').css('-moz-transform','rotate(0deg)');
                                 $('#pointer').css('-0-transform','rotate(0deg)');
 
-                                $('#pointer').css('animation', 'rotation 1s linear');
-                                $('#pointer').css('-moz-animation', 'rotation 1s linear');
-                                $('#pointer').css('-webkit-animation', 'rotation 1s linear');
-                                $('#pointer').css('-o-animation', 'rotation 1s linear');
+                                $('#pointer').css('animation', 'rotation 2s linear');
+                                $('#pointer').css('-moz-animation', 'rotation 2s linear');
+                                $('#pointer').css('-webkit-animation', 'rotation 2s linear');
+                                $('#pointer').css('-o-animation', 'rotation 2s linear');
                             }
                         }
                     });
