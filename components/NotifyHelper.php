@@ -14,6 +14,7 @@ use app\models\Customer;
  */
 class NotifyHelper extends Component{
     public static $api = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=';
+    
     public static function newOrder($id) {
         $templateId = 'N671RZlQrYIhcFLGrh8d4NPs--cZFfOZATun9kvpado';
         $url = self::$api . WechatHelper::getAccessToken();

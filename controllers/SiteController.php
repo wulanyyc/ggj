@@ -50,10 +50,10 @@ class SiteController extends Controller
 
         $link = ProductHelper::getProductLink($promotions['id']);
 
-        // $promotionPrice = PriceHelper::getProductPrice($promotions['id']);
+        $promotionPrice = PriceHelper::getProductPrice($promotions['id']);
 
         // TODO 调整图片
-        return ['text' => $text, 'img' => $info['img'], 'link' => $link];
+        return ['text' => $text, 'img' => $info['img'], 'link' => $link, 'price' => $promotionPrice];
     }
 
     private function getDayPromotion() {
@@ -68,9 +68,9 @@ class SiteController extends Controller
 
         $link = ProductHelper::getProductLink($promotions['id']);
 
-        // $promotionPrice = PriceHelper::getProductPrice($promotions['id']);
+        $promotionPrice = PriceHelper::getProductPrice($promotions['id']);
 
-        return ['text' => $text, 'img' => $info['img'], 'id' => $info['id'], 'link' => $link];
+        return ['text' => $text, 'img' => $info['img'], 'id' => $info['id'], 'link' => $link, 'price' => $promotionPrice];
     }
 
     private function getTags() {

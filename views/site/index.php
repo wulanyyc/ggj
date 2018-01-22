@@ -363,7 +363,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <div class="promotion-item-left" style="background-color: #1ba93b;">
         <div class="promotion-item-left-content">
           <div class="promotion-item-left-content-top">果果特惠</div>
-          <div class="promotion-item-left-content-bottom"><?=$newPromotion['text'] ?></div>
+          <div class="promotion-item-left-content-bottom"><?=$newPromotion['text'] ?> ¥<?=$newPromotion['price'] ?></div>
         </div>
       </div>
 
@@ -378,7 +378,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <div class="promotion-item-left" style="background-color: #DD182B;">
         <div class="promotion-item-left-content">
           <div class="promotion-item-left-content-top">今日特价</div>
-          <div class="promotion-item-left-content-bottom"><?=$dayPromotion['text'] ?></div>
+          <div class="promotion-item-left-content-bottom"><?=$dayPromotion['text'] ?> ¥<?=$newPromotion['price'] ?></div>
         </div>
       </div>
 
