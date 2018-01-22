@@ -94,6 +94,7 @@ class WechatController extends Controller
     private function handleEvent($data) {
         $event  = $data['Event'];
         $openid = $data['FromUserName'];
+        $eventKey  = $data['EventKey'];
 
         if ($event == 'subscribe') {
             $userinfo = WechatHelper::getUserInfo($openid);
@@ -187,11 +188,16 @@ class WechatController extends Controller
                 }
             }
 
-            return '欢迎关注成都果果佳，新人享5元优惠券，首单后再享5元。查看菜单: 聚优惠 => 优惠券';
+            return '欢迎关注成都果果佳，新人享5元优惠券，首单后再享5元。查看菜单: 聚优惠 => 优惠券' . $eventKey;
         }
 
         if ($event == 'unsubscribe') {
             CustomerWeixin::updateAll(['is_subscribe' => 0], ['openid' => $openid]);
+        }
+
+        if ($event == 'SCAN') {
+            // CustomerWeixin::updateAll(['is_subscribe' => 0], ['openid' => $openid]);
+            return $eventKey;
         }
 
         if ($event == 'CLICK') {
