@@ -43,7 +43,7 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
 </div>
 <?php } else { ?>
 <div class="card" id="fail">
-  <div style="padding: 10px;margin:10px;display: table-cell;text-align: center;vertical-align: middle;">
+  <div style="padding: 10px;margin:10px;display: table-cell;text-align: center;vertical-align: middle;width: 100%;">
     <img src="/img/cry.png" />
     <div style="padding-left:10px;width:70%">您的订单号：<?=$data['id'] ?><br/>请确认钱包余额后，<a href="/contact">联系客服</a></div>
   </div>
