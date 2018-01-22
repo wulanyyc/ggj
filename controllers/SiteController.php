@@ -47,7 +47,7 @@ class SiteController extends Controller
 
         $link = ProductHelper::getProductLink($promotions['id']);
 
-        $promotionPrice = PriceHelper::getProductPrice($promotions['id']);
+        $promotionPrice = PriceHelper::getProductPrice($promotions['id'], 1);
 
         // TODO 调整图片
         return ['text' => $text, 'img' => $info['img'], 'link' => $link, 'price' => $promotionPrice];
@@ -65,7 +65,7 @@ class SiteController extends Controller
 
         $link = ProductHelper::getProductLink($promotions['id']);
 
-        $promotionPrice = PriceHelper::getProductPrice($promotions['id']);
+        $promotionPrice = PriceHelper::getProductPrice($promotions['id'], 1);
 
         return ['text' => $text, 'img' => $info['img'], 'id' => $info['id'], 'link' => $link, 'price' => $promotionPrice];
     }
