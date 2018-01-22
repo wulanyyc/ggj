@@ -38,15 +38,15 @@ $(document).ready(function () {
                             if (result) {
                                 location.href = "/prize/suc";
                             } else {
-                                $('#pointer').css('transform','rotate(-' + rotate + 'deg)');
-                                $('#pointer').css('-webkit-transform','rotate(-' + rotate + 'deg)');
-                                $('#pointer').css('-moz-transform','rotate(-' + rotate + 'deg)');
-                                $('#pointer').css('-0-transform','rotate(-' + rotate + 'deg)');
+                                // $('#pointer').css('transform','rotate(-' + rotate + 'deg)');
+                                // $('#pointer').css('-webkit-transform','rotate(-' + rotate + 'deg)');
+                                // $('#pointer').css('-moz-transform','rotate(-' + rotate + 'deg)');
+                                // $('#pointer').css('-0-transform','rotate(-' + rotate + 'deg)');
 
-                                $('#pointer').css('animation', 'rotation 1s linear');
-                                $('#pointer').css('-moz-animation', 'rotation 1s linear');
-                                $('#pointer').css('-webkit-animation', 'rotation 1s linear');
-                                $('#pointer').css('-o-animation', 'rotation 1s linear');
+                                // $('#pointer').css('animation', 'rotation 1s linear');
+                                // $('#pointer').css('-moz-animation', 'rotation 1s linear');
+                                // $('#pointer').css('-webkit-animation', 'rotation 1s linear');
+                                // $('#pointer').css('-o-animation', 'rotation 1s linear');
 
                                 location.href = "/prize/fail";
                             }
@@ -67,15 +67,16 @@ $(document).ready(function () {
                             if (result) {
                                 location.href = "/prize/suc";
                             } else {
-                                $('#pointer').css('transform','rotate(-' + rotate + 'deg)');
-                                $('#pointer').css('-webkit-transform','rotate(-' + rotate + 'deg)');
-                                $('#pointer').css('-moz-transform','rotate(-' + rotate + 'deg)');
-                                $('#pointer').css('-0-transform','rotate(-' + rotate + 'deg)');
+                                location.reload();
+                                // $('#pointer').css('transform','rotate(-' + rotate + 'deg)');
+                                // $('#pointer').css('-webkit-transform','rotate(-' + rotate + 'deg)');
+                                // $('#pointer').css('-moz-transform','rotate(-' + rotate + 'deg)');
+                                // $('#pointer').css('-0-transform','rotate(-' + rotate + 'deg)');
 
-                                $('#pointer').css('animation', 'rotation 2s linear');
-                                $('#pointer').css('-moz-animation', 'rotation 2s linear');
-                                $('#pointer').css('-webkit-animation', 'rotation 2s linear');
-                                $('#pointer').css('-o-animation', 'rotation 2s linear');
+                                // $('#pointer').css('animation', 'rotation 2s linear');
+                                // $('#pointer').css('-moz-animation', 'rotation 2s linear');
+                                // $('#pointer').css('-webkit-animation', 'rotation 2s linear');
+                                // $('#pointer').css('-o-animation', 'rotation 2s linear');
                             }
                         }
                     });
