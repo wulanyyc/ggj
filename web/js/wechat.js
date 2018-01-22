@@ -10,7 +10,7 @@ if (document.getElementById('we_appid')) {
 
     wx.ready(function(){
         wx.hideMenuItems({
-            menuList: ['onMenuShareQQ', 'onMenuShareQZone', 'onMenuShareWeibo']
+            menuList: ['menuItem:share:qq', 'menuItem:share:weiboApp', 'menuItem:share:QZone']
         });
 
         // wx.hideAllNonBaseMenuItem();
