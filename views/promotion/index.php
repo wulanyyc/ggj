@@ -117,11 +117,11 @@ SiteAsset::register($this);
     background-color: #E8D2BD;
   }
 
-  .day7-left {
+  .day0-left {
     background-color: #866352;
   }
 
-  .day7-right {
+  .day0-right {
     background-color: #D3C0BA;
   }
 </style>
