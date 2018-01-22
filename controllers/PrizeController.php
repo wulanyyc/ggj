@@ -21,24 +21,24 @@ class PrizeController extends Controller
         $sid = isset($params['share_id']) ? $params['share_id'] : '';
         $from = isset($params['from']) ? $params['from'] : 0;
 
-        if (($from != 'timeline' && $from != 'singlemessage') || empty($_COOKIE['openid'])) {
-            return $this->render('error', [
+        if ($from == 'timeline' || $from == 'singlemessage' || !empty($_COOKIE['openid'])) {
+            if (empty($_COOKIE['puid'])) {
+                $uniq = uniqid();
+                setcookie('puid', $uniq, time() + 86400 * $this->dayLimit, '/');
+            } else {
+                $uniq = $_COOKIE['puid'];
+            }
+
+            if (!empty($sid)) {
+                Yii::$app->redis->setex($uniq . '_from', 86400 * $this->dayLimit, $sid);
+            }
+            
+            return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
             ]);
         }
 
-        if (empty($_COOKIE['puid'])) {
-            $uniq = uniqid();
-            setcookie('puid', $uniq, time() + 86400 * $this->dayLimit, '/');
-        } else {
-            $uniq = $_COOKIE['puid'];
-        }
-
-        if (!empty($sid)) {
-            Yii::$app->redis->setex($uniq . '_from', 86400 * $this->dayLimit, $sid);
-        }
-        
-        return $this->render('index', [
+        return $this->render('error', [
             'controller' => Yii::$app->controller->id,
         ]);
     }
