@@ -25,8 +25,6 @@ class SiteController extends Controller
      * @return
      */
     public function actionIndex() {
-        // TODO price redis 优化
-        $orderType = isset($_COOKIE['order_type']) ? $_COOKIE['order_type'] : 0;
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'dayPromotion' => $this->getDayPromotion(),
@@ -34,7 +32,6 @@ class SiteController extends Controller
             'fruits' => $this->getFruits(),
             'packages' => $this->getPackages(),
             'newPromotion' => $this->getNewPromotion(),
-            'orderType' => $orderType,
             'homeTip' => Yii::$app->params['hometip'],
             'bookingDiscount' => Yii::$app->params['bookingDiscount'] * 10,
         ]);
