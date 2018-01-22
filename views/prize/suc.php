@@ -23,7 +23,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     <div style="display: table-row;vertical-align: middle;text-align: center;">
         <img src="/img/ggj.jpg" style="width: 30%;"/>
     </div>
-    <div style="display: table-row;text-align: center;vertical-align: middle;">
+    <div style="display: table-row;text-align: center;vertical-align: middle;margin-top:10px;">
         <div>恭喜您获得</div>
         <div style="color:red;"><?=$text ?>, <?=$day ?>天后可继续抽奖</div>
     </div>

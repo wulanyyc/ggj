@@ -119,6 +119,8 @@ class PrizeController extends Controller
             $data = json_decode($data, true);
             $ticket = $data['ticket'];
             $prizeCode = $data['code'];
+
+            Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * 30, json_encode($prize));
         }
 
         return $this->render('suc', [
