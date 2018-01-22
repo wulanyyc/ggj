@@ -15,6 +15,8 @@ $(document).ready(function () {
         $.cookie('terminal', 'wap', {path: '/'});
     }
 
+    console.log(location);
+    
     $('#back, #inner_back').click(function(){
         if ($('#we_appid').val() != undefined) {
             var wechat = $('#we_appid').val().length > 0 ? true : false;
@@ -30,6 +32,7 @@ $(document).ready(function () {
             }
         }
 
+        // console.log(location);
         console.log(location.pathname);
         if (/\/buy\/booking/.test(location.pathname)) {
             // var back = $.cookie('booking-history-back');
