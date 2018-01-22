@@ -5,20 +5,27 @@ $(document).ready(function () {
             return ;
         } else {
             $(this).attr('data-valid', 1);
-            // $('#pointer').css('transform','rotate(0deg)');
-            // $('#pointer').css('-webkit-transform','rotate(0deg)');
-            // $('#pointer').css('-moz-transform','rotate(0deg)');
-            // $('#pointer').css('-0-transform','rotate(0deg)');
         }
 
         $.ajax({
             url: '/prize/getrotate',
             type: 'post',
-            dataType: 'html',
+            dataType: 'json',
             success: function (data) {
-                if (data == 0) {
+                var rotate = data.rotate;
+                $('#pointer').css('transform','rotate(' + rotate + 'deg)');
+                $('#pointer').css('-webkit-transform','rotate(' + rotate + 'deg)');
+                $('#pointer').css('-moz-transform','rotate(' + rotate + 'deg)');
+                $('#pointer').css('-0-transform','rotate(' + rotate + 'deg)');
+
+                $('#pointer').css('animation', 'rotation 1s linear');
+                $('#pointer').css('-moz-animation', 'rotation 1s linear');
+                $('#pointer').css('-webkit-animation', 'rotation 1s linear');
+                $('#pointer').css('-o-animation', 'rotation 1s linear');
+
+                if (data.status == 'fail') {
                     bootbox.confirm({
-                        message: '3次机会已用完，本次奖品是...?',
+                        message: data.msg,
                         buttons: {
                             cancel: {
                                 label: '放弃领奖'
@@ -31,7 +38,6 @@ $(document).ready(function () {
                             if (result) {
                                 location.href = "/prize/suc";
                             } else {
-                                // location.href = "/prize/fail";
                                 $('#pointer').css('transform','rotate(0deg)');
                                 $('#pointer').css('-webkit-transform','rotate(0deg)');
                                 $('#pointer').css('-moz-transform','rotate(0deg)');
@@ -42,27 +48,16 @@ $(document).ready(function () {
                                 $('#pointer').css('-webkit-animation', 'rotation 1s linear');
                                 $('#pointer').css('-o-animation', 'rotation 1s linear');
 
-                                alert('fail');
+                                location.href = "/prize/fail";
                             }
                         }
                     });
                 } else {
-                    var rotato = data;
-                    $('#pointer').css('transform','rotate(' + rotato + 'deg)');
-                    $('#pointer').css('-webkit-transform','rotate(' + rotato + 'deg)');
-                    $('#pointer').css('-moz-transform','rotate(' + rotato + 'deg)');
-                    $('#pointer').css('-0-transform','rotate(' + rotato + 'deg)');
-
-                    $('#pointer').css('animation', 'rotation 1s linear');
-                    $('#pointer').css('-moz-animation', 'rotation 1s linear');
-                    $('#pointer').css('-webkit-animation', 'rotation 1s linear');
-                    $('#pointer').css('-o-animation', 'rotation 1s linear');
-
                     bootbox.confirm({
-                        message: '还剩1次机会，本次奖品是...?',
+                        message: data.msg,
                         buttons: {
                             cancel: {
-                                label: '再来一次'
+                                label: '放弃重抽'
                             },
                             confirm: {
                                 label: '去领奖'
@@ -81,9 +76,6 @@ $(document).ready(function () {
                                 $('#pointer').css('-moz-animation', 'rotation 1s linear');
                                 $('#pointer').css('-webkit-animation', 'rotation 1s linear');
                                 $('#pointer').css('-o-animation', 'rotation 1s linear');
-                                // location.href = "/prize/fail";
-
-                                alert('fail');
                             }
                         }
                     });

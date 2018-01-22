@@ -275,4 +275,23 @@ class WechatHelper extends Component{
             return false;
         }
     }
+
+    public static function getTempqrcode($scene) {
+        $token = self::getAccessToken();
+        $url = self::$api . '/cgi-bin/qrcode/create?access_token' . $token;
+
+        $data = [
+            'expire_seconds' => 2592000,
+            'action_name' => 'QR_STR_SCENE',
+            'action_info' => [
+                'scene' => [
+                    'scene_str' => $scene
+                ]
+            ]
+        ];
+
+        $ret = self::curlRequest($url, json_encode($data));
+
+        return json_decode($ret, true);
+    }
 }

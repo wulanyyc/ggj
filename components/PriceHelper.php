@@ -433,4 +433,53 @@ class PriceHelper extends Component {
 
         return 'ok';
     }
+
+    public static function getPrize($rotate) {
+        $prizeNum = floor(($rotate - 360) / 45);
+
+        $prize = [
+            0 => [
+                'type' => 'gift',
+                'id'   => 1,
+                'text' => '半斤单J智利进口车厘子',
+            ],
+            1 => [
+                'type' => 'coupon',
+                'id'   => 16,
+                'text' => '10元优惠券',
+            ],
+            2 => [
+                'type' => 'gift',
+                'id'   => 2,
+                'text' => '1斤香梨',
+            ],
+            3 => [
+                'type' => 'coupon',
+                'id'   => 17,
+                'text' => '20元优惠券',
+            ],
+            4 => [
+                'type' => 'gift',
+                'id'   => 3,
+                'text' => '1斤沙糖桔',
+            ],
+            5 => [
+                'type' => 'gift',
+                'id'   => 4,
+                'text' => '1斤皇帝柑',
+            ],
+            6 => [
+                'type' => 'gift',
+                'id'   => 5,
+                'text' => '1个苹果',
+            ],
+            7 => [
+                'type' => 'coupon',
+                'id'   => 15,
+                'text' => '5元优惠券',
+            ]
+        ];
+
+        return $prize[$prizeNum];
+    }
 }

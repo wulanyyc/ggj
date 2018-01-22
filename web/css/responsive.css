@@ -338,8 +338,13 @@ main {
     }
 
     #type_content {
-        width: 30%;
+        width: 30% !important;
         margin: 0 auto;
+    }
+
+    #background {
+        width: 40% !important;
+        left: 30%;
     }
 
     a.promotion-page-item {

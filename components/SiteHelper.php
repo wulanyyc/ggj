@@ -213,14 +213,14 @@ class SiteHelper extends Component{
     }
 
     /**
-     * 随机生成16位字符串
+     * 随机生成字符串
      * @return string 生成的字符串
      */
-    public static function getNoncestr() {
+    public static function getRandomStr($num) {
         $str = "";
         $str_pol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
         $max = strlen($str_pol) - 1;
-        for ($i = 0; $i < 16; $i++) {
+        for ($i = 0; $i < $num; $i++) {
             $str .= $str_pol[mt_rand(0, $max)];
         }
         return $str;

@@ -79,6 +79,10 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         /*-webkit-animation: rotation 2s linear;*/
         /*-o-animation: rotation 2s linear;*/
     }
+
+    .modal {
+        top: 22% !important;
+    }
 </style>
 
 
