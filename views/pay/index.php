@@ -43,12 +43,12 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
 </div>
 <?php } else { ?>
 <div class="card" id="fail">
-  <div style="width:300px;margin-top:50px;margin-bottom: 30px;text-align: center;">
+  <div style="width:300px;margin-top:50px;margin-bottom: 30px;text-align: center;display: table-cell;vertical-align: middle;">
     <img src="/img/cry.png" />
     <div style="padding-left:10px;width:70%">您的订单号：<?=$data['id'] ?><br/>请确认支付后，刷新订单或<a href="/contact">联系客服</a></div>
   </div>
-  <button type="button" class="btn btn-danger btn-sm" id="refresh" data-id="<?=$data['id'] ?>" style="width:66%;">刷新订单</button>
-  <a href="/order?type=1" class="btn btn-outline-success btn-sm" style="width:66%;margin-top:10px;">查看订单</a>
+  <button type="button" class="btn btn-danger btn-sm" id="refresh" data-id="<?=$data['id'] ?>" style="width:66%;margin-left:17%;">刷新订单</button>
+  <a href="/order?type=1" class="btn btn-outline-success btn-sm" style="width:66%;margin-top:10px;margin-left:17%;">查看订单</a>
 </div>
 <?php } ?>
 

@@ -11,17 +11,17 @@ if (document.getElementById('we_appid')) {
     wx.ready(function(){
         // wx.hideAllNonBaseMenuItem();
         // alert('ok');
-        setCookie('wechat', 1, 1);
+        // setCookie('wechat', 1, 1);
     });
 
     wx.error(function(res){
         console.log(res);
     });
 
-    function setCookie(cname, cvalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime()+(exdays*24*60*60*1000));
-        var expires = "expires="+d.toGMTString();
-        document.cookie = cname + "=" + cvalue + "; " + expires;
-    }
+    // function setCookie(cname, cvalue, exdays) {
+    //     var d = new Date();
+    //     d.setTime(d.getTime()+(exdays*24*60*60*1000));
+    //     var expires = "expires="+d.toGMTString();
+    //     document.cookie = cname + "=" + cvalue + "; " + expires;
+    // }
 }
