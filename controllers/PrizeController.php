@@ -27,15 +27,15 @@ class PrizeController extends Controller
             ]);
         }
 
-        if (!empty($sid)) {
-            Yii::$app->redis->setex($uniq . '_from', 86400 * $this->dayLimit, $sid);
-        }
-
         if (empty($_COOKIE['puid'])) {
             $uniq = uniqid();
             setcookie('puid', $uniq, time() + 86400 * $this->dayLimit, '/');
         } else {
             $uniq = $_COOKIE['puid'];
+        }
+
+        if (!empty($sid)) {
+            Yii::$app->redis->setex($uniq . '_from', 86400 * $this->dayLimit, $sid);
         }
         
         return $this->render('index', [
@@ -97,7 +97,7 @@ class PrizeController extends Controller
         $rotate = Yii::$app->redis->get($uniq);
         $prize = PriceHelper::getPrize($rotate);
 
-        $prizeInfo = $prize['type'] . '_' . $prize['id'];
+        $prize['uniq'] = $uniq;
 
         $data = Yii::$app->redis->get($uniq . "_code");
 
@@ -108,13 +108,13 @@ class PrizeController extends Controller
                 $prizeCode = SiteHelper::getRandomStr(6);
             }
 
-            Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * 30, $prizeInfo);
+            Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * 30, json_encode($prize));
 
             $qrData = WechatHelper::getTempqrcode($prizeCode);
 
             $ticket = $qrData['ticket'];
 
-            Yii::$app->redis->setex($uniq . "_code", 86400 * 30, json_encode(['ticket' => $ticket, 'code' => $prizeCode]));
+            Yii::$app->redis->setex($uniq . "_code", 86400 * $this->dayLimit, json_encode(['ticket' => $ticket, 'code' => $prizeCode]));
         } else {
             $data = json_decode($data, true);
             $ticket = $data['ticket'];
