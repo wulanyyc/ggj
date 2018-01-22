@@ -30,7 +30,7 @@ class NotifyHelper extends Component{
             'template_id' => $templateId,
             'data' => [
                 'first' => [
-                    'value' => '有新订单啦！',
+                    'value' => '大吉大利，有新订单啦！',
                     'color' => '#e83030',
                 ],
                 'keyword1' => [
@@ -45,12 +45,12 @@ class NotifyHelper extends Component{
                     'value' => $info['pay_money'],
                     'color' => '#e83030',
                 ],
-                'keyword3' => [
+                'keyword4' => [
                     'value' => $info['source'],
                     'color' => '#173177',
                 ],
                 'remark' => [
-                    'value' => $info['memo'],
+                    'value' => '备注：' . $info['memo'],
                     'color' => '#173177',
                 ]
             ]
