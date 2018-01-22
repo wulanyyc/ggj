@@ -12,7 +12,17 @@ class PrizeController extends Controller
     public function actionIndex() {
         $params = Yii::$app->request->get();
 
-        print_r($params);exit;
+        $sid  = 0;
+        $from = 0;
+
+        if (!empty($params)) {
+            $sid = isset($params['share_id']) ? $params['share_id'] : 0;
+            $from = isset($params['from']) ? $params['from'] : 0;
+        }
+        
+        return $this->render('index', [
+            'controller' => Yii::$app->controller->id,
+        ]);
     }
     
 }
