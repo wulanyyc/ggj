@@ -54,9 +54,9 @@ class PriceHelper extends Component {
     }
 
     public static function getNewPromotion($id, $price) {
-        $promotions = Yii::$app->params['new_promotion'];
-        if ($id == $promotions['id']) {
-            return $promotions['price'];
+        $promotion = Yii::$app->params['new_promotion'];
+        if ($id == $promotion['id']) {
+            $price = round($price * $promotion['discount'], 2);
         }
 
         return $price;
@@ -66,9 +66,6 @@ class PriceHelper extends Component {
         $promotions = Yii::$app->params['day_promotion'];
 
         $dayofweek = date('w', time());
-        // if ($dayofweek == 0) {
-        //     $dayofweek = 7;
-        // }
 
         if ($promotions[$dayofweek]['id'] == $id) {
             $price = round($price * $promotions[$dayofweek]['discount'], 2);
