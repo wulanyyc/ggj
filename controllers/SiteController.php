@@ -64,7 +64,7 @@ class SiteController extends Controller
         $info = ProductList::find()->select('id,name,img,price,unit')
             ->where(['id' => $promotions['id']])->asArray()->one();
 
-        $text = '星期' . $cn[$dayofweek] . ' ' . $info['name'];
+        $text = $info['name'];
 
         $link = ProductHelper::getProductLink($promotions['id']);
 
