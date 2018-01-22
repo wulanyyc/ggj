@@ -12,7 +12,7 @@ class PrizeController extends Controller
 {
     public $layout = 'blank';
     public $shareId = '';
-    public $dayLimit = 3;
+    public $dayLimit = 5;
     public $prefix = "prize_";
     
     public function actionIndex() {
@@ -126,6 +126,7 @@ class PrizeController extends Controller
             'ticket' => urlencode($ticket),
             'text' => $prize['text'],
             'code' => $prizeCode,
+            'day' => $this->dayLimit,
         ]);
     }
 }
