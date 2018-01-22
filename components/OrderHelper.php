@@ -13,6 +13,7 @@ use app\components\PriceHelper;
 use app\components\SmsHelper;
 use app\components\SiteHelper;
 use app\modules\product\models\ProductList;
+use app\components\NotifyHelper;
 
 /**
  * 基础帮助类
@@ -132,19 +133,8 @@ class OrderHelper extends Component {
         if ($orderNum == 1) {
             PriceHelper::createCouponById(Yii::$app->params['coupon']['order'], $customerId);
         }
+
+        // 微信通知老板
+        NotifyHelper::newOrder($data['order_id']);
     }
-
-    // public static function getOrderDayNum() {
-    //     $key = date('Ymd', time()) . '_day_num';
-    //     $exsit = Yii::$app->redis->get($key);
-    //     if ($exsit > 0) {
-    //         $num = $exsit + 1;
-    //         Yii::$app->redis->setex($key, 86400, $num);
-    //     } else {
-    //         $num = 1;
-    //         Yii::$app->redis->setex($key, 86400, $num);
-    //     }
-
-    //     return $num;
-    // }
 }
