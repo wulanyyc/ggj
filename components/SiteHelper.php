@@ -203,4 +203,12 @@ class SiteHelper extends Component{
     public static function getCustomerPhone($cid) {
         return Customer::find()->where(['id' => $cid])->select('phone')->scalar();
     }
+
+    public static function isWechatBrowser() {
+        if (!empty($_COOKIE['wechat'])) {
+            return true;
+        }
+
+        return false;
+    }
 }

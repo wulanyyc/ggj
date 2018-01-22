@@ -8,12 +8,20 @@ if (document.getElementById('we_appid')) {
         jsApiList: ['closeWindow', 'chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
 
-    // wx.ready(function(){
-    //     // wx.hideAllNonBaseMenuItem();
-    //     // alert('ok');
-    // });
+    wx.ready(function(){
+        // wx.hideAllNonBaseMenuItem();
+        // alert('ok');
+        setCookie('wechat', 1, 1);
+    });
 
     wx.error(function(res){
         console.log(res);
     });
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
+        var expires = "expires="+d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
 }
