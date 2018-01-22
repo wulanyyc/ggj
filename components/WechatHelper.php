@@ -278,7 +278,7 @@ class WechatHelper extends Component{
 
     public static function getTempqrcode($scene) {
         $token = self::getAccessToken();
-        $url = self::$api . '/cgi-bin/qrcode/create?access_token' . $token;
+        $url = self::$api . '/cgi-bin/qrcode/create?access_token=' . $token;
 
         $data = [
             'expire_seconds' => 2592000,
