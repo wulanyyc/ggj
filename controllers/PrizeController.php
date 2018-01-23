@@ -92,7 +92,13 @@ class PrizeController extends Controller
     }
 
     public function actionSuc() {
-        $uniq = $_COOKIE['puid'];
+        $uniq = isset($_COOKIE['puid']) ? $_COOKIE['puid'] : '';
+
+        if (empty($uniq)) {
+            return $this->render('error', [
+                'controller' => Yii::$app->controller->id,
+            ]);
+        }
 
         $rotate = Yii::$app->redis->get($uniq);
         $prize = PriceHelper::getPrize($rotate);
