@@ -75,7 +75,7 @@ class NotifyHelper extends Component{
             $url = self::$api . WechatHelper::getAccessToken();
 
             $data = [
-                'touser' => $openid,
+                'touser' => $fromOpenid,
                 'template_id' => $templateId,
                 'data' => [
                     'first' => [
