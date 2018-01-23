@@ -78,7 +78,8 @@ class PrizeController extends Controller
         $prize = PriceHelper::getPrize($rotate);
 
         if ($cnt > $limit) {
-            echo json_encode(['status' => 'fail', 'rotate' => $rotate, 'msg' => '您已达到' . $limit . '次抽奖限制, 请' . $dayLimit . '天后再抽');
+            echo json_encode(['status' => 'fail', 'rotate' => $rotate, 
+                'msg' => '您已达到' . $limit . '次抽奖限制, 请' . $dayLimit . '天后再抽']);
             Yii::$app->end();
         }
 
