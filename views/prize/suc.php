@@ -16,10 +16,11 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
 
 <style type="text/css">
     body {
-        background-color: #fff;
+        /*background-color: #fff;*/
+        background-image: url('/img/prize/suc.jpeg');
+        background-size: 100% 100%;
     }
 </style>
-
 
 <div style="display: table;width: 100%;height: 100%;">
     <div style="display: table-row;vertical-align: middle;text-align: center;">

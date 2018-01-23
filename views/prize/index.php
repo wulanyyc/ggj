@@ -35,8 +35,6 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         display: table;
         width: 100%;
         height: 42%;
-        /*background-image: url('/img/prize/test_pan.jpeg');*/
-        /*background-size: 100% 100%;*/
     }
 
     #rotate {
@@ -50,10 +48,26 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         width: 100%;
         height: 100%;
         text-align: center;
+        position: absolute;
+        z-index: 8;
+        left: 0;
+        top: 42%;
+    }
+
+    #pan_container {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        position: absolute;
+        z-index: 5;
+        left: 0;
+        right: 0;
     }
 
     #pointer {
-        width: 20%;
+        width: 10%;
         margin: 0 auto;
         text-align: center;
     }
@@ -69,11 +83,11 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     }
 
     .Rotation{
-        transform:rotate(360deg);
-        -ms-transform:rotate(360deg);   /* IE 9 */
-        -moz-transform:rotate(360deg);  /* Firefox */
-        -webkit-transform:rotate(360deg); /* Safari 和 Chrome */
-        -o-transform:rotate(360deg);  /* Opera */
+        transform:rotate(22.5deg);
+        -ms-transform:rotate(22.5deg);   /* IE 9 */
+        -moz-transform:rotate(22.5deg);  /* Firefox */
+        -webkit-transform:rotate(22.5deg); /* Safari 和 Chrome */
+        -o-transform:rotate(22.5deg);  /* Opera */
         /*animation: rotation 2s linear;*/
         /*-moz-animation: rotation 2s linear;*/
         /*-webkit-animation: rotation 2s linear;*/
@@ -88,8 +102,11 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
 
 <div id="background">
   <div id="zhuanpan">
+    <div id="pan_container">
+        <img src="/img/prize/pan.png" id="pan" style="height: 100%;width:auto;"/>
+    </div>
     <div id="pointer_container">
-        <img id="pointer" class="Rotation" src="/img/prize/test_click.jpg" data-valid="0" />
+        <img id="pointer" src="/img/prize/arrow.png" data-valid="0" />
     </div>
   </div>
 </div>

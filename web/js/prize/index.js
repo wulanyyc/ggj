@@ -7,6 +7,8 @@ $(document).ready(function () {
             $(this).attr('data-valid', 1);
         }
 
+        $('#pan').addClass('Rotation');
+
         $.ajax({
             url: '/prize/getrotate',
             type: 'post',
@@ -18,10 +20,10 @@ $(document).ready(function () {
                 $('#pointer').css('-moz-transform','rotate(' + rotate + 'deg)');
                 $('#pointer').css('-0-transform','rotate(' + rotate + 'deg)');
 
-                $('#pointer').css('animation', 'rotation 1s linear');
-                $('#pointer').css('-moz-animation', 'rotation 1s linear');
-                $('#pointer').css('-webkit-animation', 'rotation 1s linear');
-                $('#pointer').css('-o-animation', 'rotation 1s linear');
+                $('#pointer').css('animation', 'rotation 0.5s linear');
+                $('#pointer').css('-moz-animation', 'rotation 0.5s linear');
+                $('#pointer').css('-webkit-animation', 'rotation 0.5s linear');
+                $('#pointer').css('-o-animation', 'rotation 0.5s linear');
 
                 if (data.status == 'fail') {
                     bootbox.confirm({
@@ -38,16 +40,6 @@ $(document).ready(function () {
                             if (result) {
                                 location.href = "/prize/suc";
                             } else {
-                                // $('#pointer').css('transform','rotate(-' + rotate + 'deg)');
-                                // $('#pointer').css('-webkit-transform','rotate(-' + rotate + 'deg)');
-                                // $('#pointer').css('-moz-transform','rotate(-' + rotate + 'deg)');
-                                // $('#pointer').css('-0-transform','rotate(-' + rotate + 'deg)');
-
-                                // $('#pointer').css('animation', 'rotation 1s linear');
-                                // $('#pointer').css('-moz-animation', 'rotation 1s linear');
-                                // $('#pointer').css('-webkit-animation', 'rotation 1s linear');
-                                // $('#pointer').css('-o-animation', 'rotation 1s linear');
-
                                 location.href = "/prize/fail";
                             }
                         }

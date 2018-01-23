@@ -2,7 +2,7 @@
 use yii\web\View;
 use app\components\MsaView;
 
-$this->title = '抽奖错误';
+$this->title = '抽奖提示';
 
 ?>
 
