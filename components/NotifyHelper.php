@@ -63,7 +63,7 @@ class NotifyHelper extends Component{
     }
 
     public static function sendFanli($openid, $fromOpenid, $money) {
-        $createTime = Customer::find()->select('create_time')->where(['openid' => $newUserInfo])->scalar();
+        $createTime = Customer::find()->select('create_time')->where(['openid' => $openid])->scalar();
         $date = date('Ymd', strtotime($createTime));
         $currentDate = date('Ymd', time());
 
