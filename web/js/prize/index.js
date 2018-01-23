@@ -26,24 +26,7 @@ $(document).ready(function () {
                 $('#pointer').css('-o-animation', 'rotation 0.5s linear');
 
                 if (data.status == 'fail') {
-                    bootbox.confirm({
-                        message: data.msg,
-                        buttons: {
-                            cancel: {
-                                label: '放弃领奖'
-                            },
-                            confirm: {
-                                label: '去领奖'
-                            }
-                        },
-                        callback: function(result){
-                            if (result) {
-                                location.href = "/prize/suc";
-                            } else {
-                                location.href = "/prize/fail";
-                            }
-                        }
-                    });
+                    $.helper.alert(data.msg);
                 } else {
                     bootbox.confirm({
                         message: data.msg,

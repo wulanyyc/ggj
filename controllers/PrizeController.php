@@ -77,8 +77,8 @@ class PrizeController extends Controller
         Yii::$app->redis->setex($uniq, 86400 * $dayLimit, $rotate);
         $prize = PriceHelper::getPrize($rotate);
 
-        if ($cnt == $limit) {
-            echo json_encode(['status' => 'fail', 'rotate' => $rotate, 'msg' => '您已达到' . $limit . '次抽奖限制，奖品:' . $prize['text']]);
+        if ($cnt > $limit) {
+            echo json_encode(['status' => 'fail', 'rotate' => $rotate, 'msg' => '您已达到' . $limit . '次抽奖限制, 请' . $dayLimit . '天后再抽');
             Yii::$app->end();
         }
 
