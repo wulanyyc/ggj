@@ -446,7 +446,7 @@ class PayController extends Controller
         $data = WechatHelper::xmlToArray($rawData);
         $out_trade_no = $data['out_trade_no'];
         $checkData = Pay::find()->where(['out_trade_no' => $out_trade_no])->asArray()->one();
-        $pay_money = $data['cash_fee']/100;
+        $pay_money = $data['total_fee']/100;
         $trade_no  = $data['transaction_id'];
 
         // if ($data['result_code'] == 'SUCCESS' && $pay_money == $checkData['online_money'] 
