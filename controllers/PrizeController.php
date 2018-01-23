@@ -21,7 +21,7 @@ class PrizeController extends Controller
         $sid = isset($params['share_id']) ? $params['share_id'] : '';
         $from = isset($params['from']) ? $params['from'] : 0;
 
-        // if ($from === 'timeline' || $from === 'singlemessage' || !empty($_COOKIE['openid'])) {
+        if ($from === 'timeline' || $from === 'singlemessage' || !empty($_COOKIE['openid'])) {
             if (empty($_COOKIE['puid'])) {
                 $uniq = uniqid();
                 setcookie('puid', $uniq, time() + 86400 * $this->dayLimit, '/');
@@ -36,15 +36,15 @@ class PrizeController extends Controller
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
             ]);
-        // }
+        }
 
-        // return $this->render('error', [
-        //     'controller' => Yii::$app->controller->id,
-        // ]);
+        return $this->render('error', [
+            'controller' => Yii::$app->controller->id,
+        ]);
     }
 
     public function actionGetrotate() {
-        $limit = 100;
+        $limit = 3;
         $dayLimit = $this->dayLimit;
 
         $uniq = $_COOKIE['puid'];
