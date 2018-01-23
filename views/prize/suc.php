@@ -15,14 +15,27 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
 ?>
 
 <style type="text/css">
-    body {
+/*    body {
         background-image: url('/img/prize/suc4.jpeg');
         background-size: 100% 100%;
         background-repeat: no-repeat;
+    }*/
+
+    body {
+        padding-top: 0 !important;
+    }
+
+    #background {
+        width:100%;
+        height: 100%;
+        background-image: url('/img/prize/prize.jpeg');
+        background-size: 100% 100%;
+        position: fixed;
+        z-index: 1;
     }
 </style>
 
-<div style="display: table;width: 100%;height: 100%;">
+<div style="display: table;width: 100%;height: 100%;" id="background">
     <div style="display: table-row;vertical-align: middle;text-align: center;">
         <img src="/img/ggj.jpg" style="width: 20%;"/>
     </div>
