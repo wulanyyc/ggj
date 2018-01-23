@@ -514,7 +514,7 @@ class PriceHelper extends Component {
             }
 
             if ($ret > 0) {
-                return '您的抽奖礼品：' . $info['text'] . ', 已获取成功。优惠券可直接使用，水果礼品在订单流程中选择和订单一起发货';
+                return '您的抽奖礼品：' . $info['text'] . ', 已获取成功。优惠券可直接使用，水果礼品需在订单流程中选择与订单一起发货';
             } else {
                 return '您的抽奖礼品：' . $info['text'] . ', 获取失败，请联系客服';
             }
