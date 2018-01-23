@@ -40,7 +40,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     </div>
 
     <div style="display: table-row;text-align: center;vertical-align: middle;font-size: 16px;line-height: 24px;">
-        <div style="width: 70%;margin-left: 10%;margin-top: 10px;">优惠券：购物中可直接减免金额</div>
+        <!-- <div style="width: 70%;margin-left: 10%;margin-top: 10px;">优惠券：购物中可直接减免金额</div> -->
         <div style="width: 70%;margin-left: 10%;margin-top: 5px;">水果礼品：
             <span style="color:red;">需在已支付成功的订单中领取，随订单一起发货</span>
         </div>
