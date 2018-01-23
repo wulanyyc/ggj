@@ -12,8 +12,9 @@ class PrizeController extends Controller
 {
     public $layout = 'blank';
     public $shareId = '';
-    public $dayLimit = 5;
+    public $dayLimit = 5; // 抽奖天数限制
     public $prefix = "prize_";
+    public $limit = 3; // 抽奖次数限制
     
     public function actionIndex() {
         $params = Yii::$app->request->get();
@@ -44,7 +45,7 @@ class PrizeController extends Controller
     }
 
     public function actionGetrotate() {
-        $limit = 3;
+        $limit    = $this->limit;
         $dayLimit = $this->dayLimit;
 
         $uniq = $_COOKIE['puid'];
@@ -64,10 +65,13 @@ class PrizeController extends Controller
             $rotate = Yii::$app->redis->get($uniq);
             $prize = PriceHelper::getPrize($rotate);
 
+            $remainTime = Yii::$app->redis->ttl($cntKey);
+            $remainDay = round($remainTime / 86400);
+
             echo json_encode([
                 'status' => 'fail', 
                 'rotate' => $rotate, 
-                'msg' => '您本周已达到' . $limit . '次抽奖限制, 请'. $dayLimit . '天后再抽'
+                'msg'    => '您本周已达到' . $limit . '次抽奖限制, 请' . $remainDay . '天后再抽'
             ]);
 
             Yii::$app->end();
@@ -113,6 +117,20 @@ class PrizeController extends Controller
         $prize = PriceHelper::getPrize($rotate);
 
         $prize['uniq'] = $uniq;
+
+        $cntKey = $uniq . '_cnt';
+
+        $cnt = Yii::$app->redis->get($cntKey);
+
+        if ($cnt > $this->limit) {
+            $remainTime = Yii::$app->redis->ttl($cntKey);
+            $remainDay = round($remainTime / 86400);
+
+            return $this->render('limit', [
+                'controller' => Yii::$app->controller->id,
+                'day' => $remainDay,
+            ]);
+        }
 
         $data = Yii::$app->redis->get($uniq . "_code");
 
