@@ -26,7 +26,7 @@ class WechatController extends Controller
 
         if ($method == 'GET') {
             $params = Yii::$app->request->get();
-            $echostr = $params['echostr'];
+            $echostr = isset($params['echostr']) ? $params['echostr'] : '';
 
             if (WechatHelper::checkSignature()) {
                 echo $echostr;
@@ -94,7 +94,7 @@ class WechatController extends Controller
     private function handleEvent($data) {
         $event  = $data['Event'];
         $openid = $data['FromUserName'];
-        $eventKey  = $data['EventKey'];
+        $eventKey = isset($data['EventKey']) ? $data['EventKey'] : '';
 
         if ($event == 'subscribe') {
             $userinfo = WechatHelper::getUserInfo($openid);
