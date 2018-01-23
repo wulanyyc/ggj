@@ -42,7 +42,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
 
     <div style="text-align: center;font-size: 16px;line-height: 24px;">
         <div style="margin-top: 15px;">长按下图中二维码，识别领取</div>
-        <img src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=<?=$ticket ?>" style="width:50%;" />
+        <img src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=<?=$ticket ?>" style="width:45%;" />
         <div>请在30天内领取，过期作废</div>
     </div>
 
