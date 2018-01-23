@@ -73,7 +73,7 @@ class PrizeController extends Controller
             echo json_encode([
                 'status' => 'fail', 
                 'rotate' => $rotate, 
-                'msg'    => '您本周已达到' . $limit . '次抽奖限制, 请' . $remainDay . '天后再抽'
+                'msg'    => '您本周已达到' . $limit . '次抽奖限制, 请' . $remainDay . '天后再抽',
             ]);
 
             Yii::$app->end();
