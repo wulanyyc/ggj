@@ -7,13 +7,13 @@ $(document).ready(function () {
             $(this).attr('data-valid', 1);
         }
 
-        $('#pan').addClass('Rotation');
-
         $.ajax({
             url: '/prize/getrotate',
             type: 'post',
             dataType: 'json',
             success: function (data) {
+                $('#pan').addClass('Rotation');
+                
                 var rotate = data.rotate;
                 $('#pointer').css('transform','rotate(' + rotate + 'deg)');
                 $('#pointer').css('-webkit-transform','rotate(' + rotate + 'deg)');
