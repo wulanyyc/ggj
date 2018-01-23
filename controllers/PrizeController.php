@@ -66,6 +66,8 @@ class PrizeController extends Controller
             $prize = PriceHelper::getPrize($rotate);
 
             $remainTime = Yii::$app->redis->ttl($cntKey);
+
+            Yii::error("test:" . $remainTime);
             $remainDay = round($remainTime / 86400, 1);
 
             echo json_encode([
