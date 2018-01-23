@@ -51,7 +51,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         position: absolute;
         z-index: 8;
         left: 0;
-        top: 42%;
+        top: 41%;
     }
 
     #pan_container {
@@ -107,6 +107,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     </div>
     <div id="pointer_container">
         <img id="pointer" src="/img/prize/arrow.png" data-valid="0" />
+        <div style="position: absolute;text-align: center;">抽奖</div>
     </div>
   </div>
 </div>
