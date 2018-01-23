@@ -30,7 +30,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
 </style>
 
 <div id="background">
-    <div style="text-align: center;margin-top: 10%;">
+    <div style="text-align: center;margin-top: 20%;">
         <img src="/img/ggj.jpg" style="width: 20%;"/>
     </div>
 
@@ -41,14 +41,14 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     </div>
 
     <div style="text-align: center;font-size: 16px;line-height: 24px;">
-        <div style="margin-top: 5px;">长按下图中二维码，识别领取</div>
+        <div style="margin-top: 10px;">长按下图中二维码，识别领取</div>
         <img src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=<?=$ticket ?>" style="width:40%;" />
         <div>请在30天内领取，过期作废</div>
     </div>
 
     <div style="text-align: center;font-size: 14px;line-height: 20px;">
         <!-- <div style="width: 70%;margin-left: 10%;margin-top: 10px;">优惠券：购物中可直接减免金额</div> -->
-        <div style="width: 70%;margin-left: 10%;margin-top: 5px;">备注：
+        <div style="margin-top: 10px;">备注：
             <span style="color:red;">水果礼品需在已支付订单中领取，随订单一起发货</span>
         </div>
     </div>
