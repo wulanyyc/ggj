@@ -57,7 +57,7 @@ $(document).ready(function () {
                     });
                 }
 
-                $('#pointer').attr('data-valid', 0);
+                $('#zhuanpan').attr('data-valid', 0);
             }
         });
 
