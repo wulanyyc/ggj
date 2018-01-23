@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#pointer').click(function() {
+    $('#zhuanpan').click(function() {
         var valid = $(this).attr('data-valid');
         if (valid > 0) {
             return ;
@@ -49,7 +49,7 @@ $(document).ready(function () {
                         message: data.msg,
                         buttons: {
                             cancel: {
-                                label: '放弃重抽'
+                                label: '重抽'
                             },
                             confirm: {
                                 label: '去领奖'

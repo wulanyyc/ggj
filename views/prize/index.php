@@ -95,19 +95,18 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     }
 
     .modal {
-        top: 22% !important;
+        top: 20% !important;
     }
 </style>
 
 
 <div id="background">
-  <div id="zhuanpan">
+  <div id="zhuanpan" data-valid="0">
     <div id="pan_container">
         <img src="/img/prize/pan.png" id="pan" style="height: 100%;width:auto;"/>
     </div>
     <div id="pointer_container">
-        <img id="pointer" src="/img/prize/arrow.png" data-valid="0" />
-        <div style="position: absolute;text-align: center;">抽奖</div>
+        <img id="pointer" src="/img/prize/arrow.png"/>
     </div>
   </div>
 </div>
