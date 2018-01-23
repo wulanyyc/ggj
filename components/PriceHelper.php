@@ -500,6 +500,8 @@ class PriceHelper extends Component {
     public static function handlePrize($key, $openid) {
         $data = Yii::$app->redis->get('prize_' . $key);
 
+        Yii::error('test:' . $data);
+
         if (empty($data)) {
             return '礼品码已领取或过期，有疑问请联系客服';
         } else {
