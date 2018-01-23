@@ -516,7 +516,7 @@ class PriceHelper extends Component {
             }
 
             if ($ret > 0) {
-                Yii::$app->redis->del('prize_' . $key);
+                Yii::$app->redis->expire('prize_' . $key, 0);
 
                 $fromOpenid = Yii::$app->redis->get($info['uniq']. '_from');
                 if (!empty($fromOpenid)) {
