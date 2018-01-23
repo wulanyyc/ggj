@@ -62,17 +62,12 @@ class PrizeController extends Controller
         }
 
         if ($cnt > $limit) {
-            $rotate = Yii::$app->redis->get($uniq);
-            $prize = PriceHelper::getPrize($rotate);
-
-            $remainTime = Yii::$app->redis->ttl($cntKey);
-
-            Yii::error($cntKey . ":" . $remainTime);
+            $remainTime = Yii::$app->redis->ttl($uniq . "_from");
             $remainDay = round($remainTime / 86400, 1);
 
             echo json_encode([
-                'status' => 'fail', 
-                'rotate' => $rotate, 
+                'status' => 'fail',
+                'rotate' => $rotate,
                 'msg'    => '您本周已达到' . $limit . '次抽奖限制, 请' . $remainDay . '天后再抽',
             ]);
 
@@ -125,12 +120,12 @@ class PrizeController extends Controller
         $cnt = Yii::$app->redis->get($cntKey);
 
         if ($cnt > $this->limit) {
-            // $remainTime = Yii::$app->redis->ttl($cntKey);
-            // $remainDay = round($remainTime / 86400, 1);
+            $remainTime = Yii::$app->redis->ttl($cntKey);
+            $remainDay = round($remainTime / 86400, 1);
 
             return $this->render('limit', [
                 'controller' => Yii::$app->controller->id,
-                'day' => $this->dayLimit,
+                'day' => $remainDay,
             ]);
         }
 
