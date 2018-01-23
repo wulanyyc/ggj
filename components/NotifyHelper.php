@@ -67,9 +67,9 @@ class NotifyHelper extends Component{
         $date = date('Ymd', strtotime($userinfo['create_time']));
         $currentDate = date('Ymd', time());
 
-        // if ($date == $currentDate) {
+        if ($date == $currentDate) {
             $cid = SiteHelper::getCustomerId($fromOpenid);
-            PriceHelper::adjustWallet($cid, 1, 'plus', '返利');
+            PriceHelper::adjustWallet($cid, $money, 'plus', '返利');
 
             $templateId = 'd5z8VYqpnsWGQn0I-dq6loegLp2u2QXtrLtyibcOUOE';
             $url = self::$api . WechatHelper::getAccessToken();
@@ -79,7 +79,7 @@ class NotifyHelper extends Component{
                 'template_id' => $templateId,
                 'data' => [
                     'first' => [
-                        'value' => '好友' . $userinfo['nick'] . '通过你关注了我们, 特此奖励',
+                        'value' => '好友"' . $userinfo['nick'] . '"通过你关注了我们, 特此奖励',
                         'color' => '#e83030',
                     ],
                     'keyword1' => [
@@ -98,6 +98,6 @@ class NotifyHelper extends Component{
             ];
 
             WechatHelper::curlRequest($url, json_encode($data));
-        // }
+        }
     }
 }
