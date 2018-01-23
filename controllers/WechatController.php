@@ -188,7 +188,20 @@ class WechatController extends Controller
                 }
             }
 
-            return '欢迎关注成都果果佳，新人享5元优惠券，首单后再享5元。查看菜单: 聚优惠 => 优惠券' . $eventKey;
+            $str = '';
+            if (!empty($eventKey)) {
+                $keyArr = explode('_', $eventKey);
+                $key = $keyArr[1];
+
+                $str = PriceHelper::handlePrize($key, $openid);
+            }
+
+            if (empty($str)) {
+                return '欢迎关注成都果果佳，新人享5元优惠券，首单后再享5元，菜单: 聚优惠 => 优惠券';
+            } else {
+                return '欢迎关注成都果果佳，新人享5元优惠券，首单后再享5元，菜单: 聚优惠 => 优惠券。' . $str;
+            }
+            
         }
 
         if ($event == 'unsubscribe') {
@@ -196,8 +209,11 @@ class WechatController extends Controller
         }
 
         if ($event == 'SCAN') {
-            // CustomerWeixin::updateAll(['is_subscribe' => 0], ['openid' => $openid]);
-            return $eventKey;
+            if (!empty($eventKey)) {
+                echo PriceHelper::handlePrize($eventKey, $openid);
+            } else {
+                return "欢迎来到果果佳，新鲜佳果，保质保量";
+            }
         }
 
         if ($event == 'CLICK') {

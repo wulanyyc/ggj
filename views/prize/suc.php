@@ -16,7 +16,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
 
 <style type="text/css">
     body {
-        background-image: url('/img/prize/suc2.jpeg');
+        background-image: url('/img/prize/suc3.jpeg');
         background-size: 100% 100%;
         background-repeat: no-repeat;
     }

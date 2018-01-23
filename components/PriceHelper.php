@@ -15,6 +15,7 @@ use app\models\Pay;
 use app\components\AlipayHelper;
 use app\components\WxpayHelper;
 use app\components\SiteHelper;
+use app\models\GiftUse;
 
 /**
  * 基础帮助类
@@ -141,6 +142,18 @@ class PriceHelper extends Component {
             return $ar->id;
         }
     }
+
+    public static function createGift($gid, $openid) {
+        $customerId = SiteHelper::getCustomerId($openid);
+
+        $ar = new GiftUse();
+        $ar->gid = $gid;
+        $ar->customer_id = $customerId;
+        $ar->save();
+
+        return $ar->id;
+    }
+
 
     public static function getValidCoupon() {
         $customer_id = SiteHelper::getCustomerId();
@@ -481,5 +494,30 @@ class PriceHelper extends Component {
         ];
 
         return $prize[$prizeNum];
+    }
+
+    public static function handlePrize($key, $openid) {
+        $data = Yii::$app->redis->get('prize_' . $key);
+
+        if (empty($data)) {
+            return '未找到您的礼品码，请确认是否已超过30天未领取或联系客服';
+        } else {
+            $ret  = 0;
+            $info = json_decode($data, true);
+
+            if ($info['type'] == 'gift') {
+                $ret = self::createGift($info['id'], $openid);
+            }
+
+            if ($info['type'] == 'coupon') {
+                $ret = self::createCoupon($info['id'], $openid);
+            }
+
+            if ($ret > 0) {
+                return '您的抽奖礼品：' . $info['text'] . ', 已获取成功';
+            } else {
+                return '您的抽奖礼品：' . $info['text'] . ', 获取失败，请联系客服';
+            }
+        }
     }
 }
