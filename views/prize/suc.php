@@ -30,23 +30,23 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
 </style>
 
 <div id="background">
-    <div style="display: table-cell;vertical-align: middle;text-align: center;margin-top: 10%;">
+    <div style="text-align: center;margin-top: 10%;">
         <img src="/img/ggj.jpg" style="width: 20%;"/>
     </div>
 
-    <div style="display: table-cell;text-align: center;vertical-align: middle;font-size: 18px;line-height: 28px;">
+    <div style="text-align:center; font-size: 18px;line-height: 28px;">
         <div>恭喜您获得</div>
         <div style="color:red;font-size: 16px;"><?=$text ?>, 需领取到账户</div>
         <div style="font-size: 16px;"><?=$day ?>天后可继续抽奖</span></div>
     </div>
 
-    <div style="display: table-cell;text-align: center;vertical-align: middle;font-size: 16px;line-height: 24px;">
+    <div style="text-align: center;font-size: 16px;line-height: 24px;">
         <div style="margin-top: 5px;">长按下图中二维码，识别领取</div>
         <img src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=<?=$ticket ?>" style="width:40%;" />
         <div>请在30天内领取，过期作废</div>
     </div>
 
-    <div style="display: table-cell;text-align: center;vertical-align: middle;font-size: 16px;line-height: 24px;">
+    <div style="text-align: center;font-size: 14px;line-height: 20px;">
         <!-- <div style="width: 70%;margin-left: 10%;margin-top: 10px;">优惠券：购物中可直接减免金额</div> -->
         <div style="width: 70%;margin-left: 10%;margin-top: 5px;">备注：
             <span style="color:red;">水果礼品需在已支付订单中领取，随订单一起发货</span>
