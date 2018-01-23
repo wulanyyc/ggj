@@ -210,7 +210,7 @@ class WechatController extends Controller
 
         if ($event == 'SCAN') {
             if (!empty($eventKey)) {
-                echo PriceHelper::handlePrize($eventKey, $openid);
+                return PriceHelper::handlePrize($eventKey, $openid);
             } else {
                 return "欢迎来到果果佳，新鲜佳果，保质保量";
             }
