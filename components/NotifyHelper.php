@@ -63,8 +63,8 @@ class NotifyHelper extends Component{
     }
 
     public static function sendFanli($openid, $fromOpenid, $money) {
-        $createTime = Customer::find()->select('create_time')->where(['openid' => $openid])->scalar();
-        $date = date('Ymd', strtotime($createTime));
+        $userinfo = Customer::find()->where(['openid' => $openid])->asArray()->one();
+        $date = date('Ymd', strtotime($userinfo['createTime']));
         $currentDate = date('Ymd', time());
 
         // if ($date == $currentDate) {
@@ -79,7 +79,7 @@ class NotifyHelper extends Component{
                 'template_id' => $templateId,
                 'data' => [
                     'first' => [
-                        'value' => '好友通过你关注了我们, 特此奖励',
+                        'value' => '好友' . $userinfo['nick'] . '通过你关注了我们, 特此奖励',
                         'color' => '#e83030',
                     ],
                     'keyword1' => [
