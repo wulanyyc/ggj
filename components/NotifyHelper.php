@@ -4,6 +4,8 @@ namespace app\components;
 use Yii;
 use yii\base\Component;
 use app\components\WechatHelper;
+use app\components\PriceHelper;
+use app\components\SiteHelper;
 use app\models\ProductOrder;
 use app\models\Customer;
 
@@ -60,7 +62,42 @@ class NotifyHelper extends Component{
         WechatHelper::curlRequest($url, json_encode($data));
     }
 
-    public static function sendExpress() {
-        
+    public static function sendFanli($openid, $fromOpenid, $money) {
+        $createTime = Customer::find()->select('create_time')->where(['openid' => $newUserInfo])->scalar();
+        $date = date('Ymd', strtotime($createTime));
+        $currentDate = date('Ymd', time());
+
+        // if ($date == $currentDate) {
+            $cid = SiteHelper::getCustomerId($fromOpenid);
+            PriceHelper::adjustWallet($cid, 1, 'plus', '返利');
+
+            $templateId = 'd5z8VYqpnsWGQn0I-dq6loegLp2u2QXtrLtyibcOUOE';
+            $url = self::$api . WechatHelper::getAccessToken();
+
+            $data = [
+                'touser' => $openid,
+                'template_id' => $templateId,
+                'data' => [
+                    'first' => [
+                        'value' => '好友通过你关注了我们, 特此奖励',
+                        'color' => '#e83030',
+                    ],
+                    'keyword1' => [
+                        'value' => $money,
+                        'color' => '#173177',
+                    ],
+                    'keyword2' => [
+                        'value' => date('Y-m-d H:i:s', time()),
+                        'color' => '#173177',
+                    ],
+                    'remark' => [
+                        'value' => '感谢您对果果佳的支持',
+                        'color' => '#173177',
+                    ]
+                ]
+            ];
+
+            WechatHelper::curlRequest($url, json_encode($data));
+        // }
     }
 }

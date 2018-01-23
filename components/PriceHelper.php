@@ -15,6 +15,7 @@ use app\models\Pay;
 use app\components\AlipayHelper;
 use app\components\WxpayHelper;
 use app\components\SiteHelper;
+use app\components\NotifyHelper;
 use app\models\GiftUse;
 
 /**
@@ -500,7 +501,7 @@ class PriceHelper extends Component {
         $data = Yii::$app->redis->get('prize_' . $key);
 
         if (empty($data)) {
-            return '未找到您的礼品码，请确认是否已超过30天未领取或联系客服';
+            return '礼品码已领取或过期，有疑问请联系客服';
         } else {
             $ret  = 0;
             $info = json_decode($data, true);
@@ -514,6 +515,13 @@ class PriceHelper extends Component {
             }
 
             if ($ret > 0) {
+                // Yii::$app->redis->del('prize_' . $key);
+
+                $fromOpenid = Yii::$app->redis->get($info['uniq']. '_from');
+                if (!empty($fromOpenid)) {
+                    NotifyHelper::sendFanli($openid, $fromOpenid, 1);
+                }
+
                 return '您的抽奖礼品：' . $info['text'] . ', 已获取成功。优惠券可直接使用，水果礼品需在订单流程中选择与订单一起发货';
             } else {
                 return '您的抽奖礼品：' . $info['text'] . ', 获取失败，请联系客服';
