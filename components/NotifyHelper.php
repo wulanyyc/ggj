@@ -64,7 +64,7 @@ class NotifyHelper extends Component{
 
     public static function sendFanli($openid, $fromOpenid, $money) {
         $userinfo = Customer::find()->where(['openid' => $openid])->asArray()->one();
-        $date = date('Ymd', strtotime($userinfo['createTime']));
+        $date = date('Ymd', strtotime($userinfo['create_time']));
         $currentDate = date('Ymd', time());
 
         // if ($date == $currentDate) {
