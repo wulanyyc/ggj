@@ -7,7 +7,9 @@ $this->title = '抽奖错误';
 ?>
 
 <style type="text/css">
-
+    body {
+        background-color: #fff;
+    }
 </style>
 
 

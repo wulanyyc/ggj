@@ -30,7 +30,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         <br/>
         <div>很遗憾</div>
 
-        <div style="color:red;">未抽到你想要的奖品, <?=$day ?>天后可继续抽奖</div>
+        <div style="color:red;">未抽到你想要的奖品, <span style="color:#000;"><?=$day ?>天后可继续抽奖</span></div>
     </div>
 
     <div style="display: table-row;text-align: center;vertical-align: middle;">
