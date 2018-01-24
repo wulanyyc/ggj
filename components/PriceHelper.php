@@ -491,38 +491,44 @@ class PriceHelper extends Component {
     }
 
     public static function handlePrize($key, $openid) {
+        $prizeLimit = 10;
+
+        $get = Yii::$app->redis->get('prize_' . $key . '_get');
+        if ($get > 0) {
+            return '礼品码已领取，请5天后再抽奖，有疑问请联系客服';
+        }
+
         $data = Yii::$app->redis->get('prize_' . $key);
 
         if (empty($data)) {
-            return '礼品码已领取或过期，有疑问请联系客服';
-        } else {
-            $ret  = 0;
-            $info = json_decode($data, true);
+            return '礼品码已过期，请再抽奖，有疑问请联系客服';
+        }
 
-            if ($info['type'] == 'gift') {
-                $ret = self::createGift($info['id'], $openid);
-            }
+        $ret  = 0;
+        $info = json_decode($data, true);
 
-            if ($info['type'] == 'coupon') {
-                $ret = self::createCoupon($info['id'], $openid);
-            }
+        if ($info['type'] == 'gift') {
+            $ret = self::createGift($info['id'], $openid);
+        }
 
-            if ($ret > 0) {
-                // Yii::$app->redis->expire('prize_' . $key, 0);
+        if ($info['type'] == 'coupon') {
+            $ret = self::createCoupon($info['id'], $openid);
+        }
 
-                $fromOpenid = Yii::$app->redis->get($info['uniq']. '_from');
-                if (!empty($fromOpenid)) {
-                    $fopenid = Customer::find()->select('from_openid')->where(['openid' => $openid])->scalar();
-                    if (empty($fopenid)) {
-                        Customer::updateAll(['from_openid' => $fromOpenid], ['openid' => $openid]);
-                        NotifyHelper::sendFanli($openid, $fromOpenid, 2);
-                    }
+        if ($ret > 0) {
+            Yii::$app->redis->setex('prize_' . $key . '_get', 86400 * $prizeLimit, 1);
+            $fromOpenid = Yii::$app->redis->get($info['uniq']. '_from');
+            if (!empty($fromOpenid)) {
+                $fopenid = Customer::find()->select('from_openid')->where(['openid' => $openid])->scalar();
+                if (empty($fopenid)) {
+                    Customer::updateAll(['from_openid' => $fromOpenid], ['openid' => $openid]);
+                    NotifyHelper::sendFanli($openid, $fromOpenid, 2);
                 }
-
-                return '您的抽奖礼品：' . $info['text'] . ', 已获取成功。优惠券可直接使用，水果礼品需在订单流程中选择与订单一起发货';
-            } else {
-                return '您的抽奖礼品：' . $info['text'] . ', 获取失败，请联系客服';
             }
+
+            return '您的抽奖礼品：' . $info['text'] . ', 已领取成功。水果礼品需和订单一起发货';
+        } else {
+            return '您的抽奖礼品：' . $info['text'] . ', 获取失败，请联系客服';
         }
     }
 }

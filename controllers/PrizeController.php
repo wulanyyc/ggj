@@ -15,6 +15,7 @@ class PrizeController extends Controller
     public $dayLimit = 5; // 抽奖天数限制
     public $prefix = "prize_";
     public $limit = 290; // 抽奖次数限制
+    public $prizeLimit = 10; // 领奖期限
     
     public function actionIndex() {
         $params = Yii::$app->request->get();
@@ -152,7 +153,7 @@ class PrizeController extends Controller
                 ]);
             }
 
-            Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * 30, json_encode($prize));
+            Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * $this->prizeLimit, json_encode($prize));
 
             $qrData = WechatHelper::getTempqrcode($prizeCode);
 
@@ -169,7 +170,7 @@ class PrizeController extends Controller
             $ticket = $data['ticket'];
             $prizeCode = $data['code'];
 
-            Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * 30, json_encode($prize));
+            Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * $this->prizeLimit, json_encode($prize));
         }
 
         return $this->render('suc', [
@@ -177,7 +178,8 @@ class PrizeController extends Controller
             'ticket' => urlencode($ticket),
             'text' => $prize['text'],
             'code' => $prizeCode,
-            'day' => $this->dayLimit,
+            'day'  => $this->dayLimit,
+            'prizeLimit' => $this->prizeLimit,
         ]);
     }
 
