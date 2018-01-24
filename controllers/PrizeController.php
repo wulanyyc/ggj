@@ -94,6 +94,10 @@ class PrizeController extends Controller
 
         $remain = $limit - $cnt;
 
+        if ($remain < 0) {
+            $remain = 0;
+        }
+
         echo json_encode([
             'status' => 'ok',
             'rotate' => $rotate, 
