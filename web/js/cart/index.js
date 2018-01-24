@@ -20,25 +20,25 @@ $(document).ready(function () {
     $('#express_time').click(function(){
         $('#express_info').show();
         $('#cover').show();
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
     });
 
     $('#close_express_info, #close_express_info_bottom').click(function(){
         $('#express_info').hide();
         $('#cover').hide();
-        $('body').removeClass('forbid');
+        $('html,body').removeClass('forbid');
     });
 
     $('#ask').click(function(){
         $('#question').show();
         $('#cover').show();
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
     });
 
     $('#close_question, #close_question_bottom').click(function(){
         $('#question').hide();
         $('#cover').hide();
-        $('body').removeClass('forbid');
+        $('html,body').removeClass('forbid');
     });
 
     $('#edit').click(function(){
@@ -80,25 +80,25 @@ $(document).ready(function () {
     $('#product_detail').click(function() {
         $('#detail').show();
         $('#cover').show();
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
     });
 
     $('#close_detail, #close_detail_bottom').click(function(){
         $('#detail').hide();
         $('#cover').hide();
-        $('body').removeClass('forbid');
+        $('html,body').removeClass('forbid');
     });
 
     $('#add_address').click(function(){
         $('#address_info').show();
         $('#cover').show();
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
     });
 
     $('#close_address, #close_address_bottom').click(function(){
         $('#address_info').hide();
         $('#cover').hide();
-        $('body').removeClass('forbid');
+        $('html,body').removeClass('forbid');
     });
 
     $('#label_add').click(function(){
@@ -242,13 +242,13 @@ $(document).ready(function () {
         });
         $('#all_address_info').show();
         $('#cover').show();
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
     });
 
     $('#close_all_address, #close_all_address_bottom').click(function(){
         $('#all_address_info').hide();
         $('#cover').hide();
-        $('body').removeClass('forbid');
+        $('html,body').removeClass('forbid');
     });
 
     $('#inner_add_address').click(function(){
@@ -256,7 +256,7 @@ $(document).ready(function () {
         $('#all_address_info').hide();
         $('#address_info').show();
         $('#cover').show();
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
     });
 
 
@@ -277,7 +277,7 @@ $(document).ready(function () {
 
         $('#all_address_info').hide();
         $('#address_info').show();
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
         $('#cover').show();
     });
 
@@ -358,13 +358,13 @@ $(document).ready(function () {
         });
 
         $('#coupon').show();
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
         $('#cover').show();
     });
 
     $('#close_coupon, #close_coupon_bottom').click(function(){
         $('#coupon').hide();
-        $('body').removeClass('forbid');
+        $('html,body').removeClass('forbid');
         $('#cover').hide();
     });
 
@@ -427,15 +427,13 @@ $(document).ready(function () {
         });
 
         $('#gift_container').show();
-        $('html').addClass('forbid');
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
         $('#cover').show();
-        // $('#gift_items').css();
     });
 
     $('#close_gift, #close_gift_bottom').click(function(){
         $('#gift_container').hide();
-        $('body').removeClass('forbid');
+        $('html,body').removeClass('forbid');
         $('#cover').hide();
     });
 

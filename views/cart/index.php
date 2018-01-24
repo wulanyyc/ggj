@@ -303,7 +303,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   #gift_items {
     width: 100%;
     padding:2%;
-    height: 70%;
+    height: 80%;
     overflow-y: scroll;
     /*-webkit-overflow-scrolling: touch;*/
   }
