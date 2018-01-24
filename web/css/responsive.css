@@ -96,10 +96,6 @@ main {
         padding-top: none !important;
     }
 
-    #carouselIndicators, #carouselIndicators img {
-        /*height: 150px !important;*/
-    }
-
     .package-content {
         display: table !important;
         width: 100% !important;
@@ -226,10 +222,6 @@ main {
         padding-top: 0 !important;
     }
 
-    #carouselIndicators, #carouselIndicators img {
-        /*height: 150px !important;*/
-    }
-
     .package-content {
         display: table !important;
         width: 100% !important;
@@ -296,10 +288,6 @@ main {
 
     .promotion-item-down {
         padding-top: 0 !important;
-    }
-
-    #carouselIndicators, #carouselIndicators img {
-        /*height: 150px !important;*/
     }
 
     .package-content {
