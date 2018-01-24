@@ -429,6 +429,12 @@ $(document).ready(function () {
         $('#gift_container').show();
         $('body').addClass('forbid');
         $('#cover').show();
+
+        $(body).on('touchmove', function(e) {
+            if (!$(this).hasClass('top-layer')) {
+                e.preventDefault();
+            }
+        });
     });
 
     $('#close_gift, #close_gift_bottom').click(function(){

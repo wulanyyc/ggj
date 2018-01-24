@@ -16,11 +16,11 @@ $(document).ready(function () {
     }
 
 
-    $(window).on('touchmove', function(e) {
-        if (!$(this).hasClass('top-layer')) {
-            e.preventDefault();
-        }
-    })
+    // $(window).on('touchmove', function(e) {
+    //     if (!$(this).hasClass('top-layer')) {
+    //         e.preventDefault();
+    //     }
+    // });
 
     // console.log(location);
     
