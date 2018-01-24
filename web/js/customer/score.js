@@ -31,4 +31,16 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#ask').click(function(){
+        $('#question').show();
+        $('#cover').show();
+        $('body').addClass('forbid');
+    });
+
+    $('#close_question').click(function(){
+        $('#question').hide();
+        $('#cover').hide();
+        $('body').removeClass('forbid');
+    });
 });
