@@ -14,6 +14,8 @@ use app\components\SmsHelper;
 use app\components\SiteHelper;
 use app\modules\product\models\ProductList;
 use app\components\NotifyHelper;
+use app\models\GiftUse;
+use app\models\Gift;
 
 /**
  * 基础帮助类
