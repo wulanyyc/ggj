@@ -305,7 +305,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     padding:2%;
     height: 70%;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    /*-webkit-overflow-scrolling: touch;*/
   }
 
 

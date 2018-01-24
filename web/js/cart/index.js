@@ -427,6 +427,7 @@ $(document).ready(function () {
         });
 
         $('#gift_container').show();
+        $('html').addClass('forbid');
         $('body').addClass('forbid');
         $('#cover').show();
         // $('#gift_items').css();
