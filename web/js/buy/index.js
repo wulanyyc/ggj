@@ -63,7 +63,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#close_imgs').click(function(){
+    $('#close_imgs, #cover').click(function(){
         $('#cover').hide();
         $('.carousel').html('加载中...');
         $('#imgs_alert').hide();

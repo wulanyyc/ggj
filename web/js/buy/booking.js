@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     init();
 
-    $('#close_tip').click(function(){
+    $('#close_tip, #cover').click(function(){
         $('.cover').hide();
         $('#tip_alert').hide();
         $.cookie('booking_tip', 1, {expires: 3, path: '/'});

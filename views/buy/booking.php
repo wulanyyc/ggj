@@ -264,13 +264,13 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 
   #close_imgs {
     position: absolute;
-    bottom: 5px;
+    bottom: 2px;
     width: 100%;
     text-align: center;
   }
 
   #close_imgs img {
-    width: 25px;
+    width: 30px;
   }
 
   .carousel-indicators {
