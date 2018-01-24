@@ -123,7 +123,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     text-align: right;
     padding-left: 5%;
     position: absolute;
-    right: 2px;
+    right: 3px;
     top: 3px;
   }
 
@@ -296,7 +296,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
                     <p class="title" data-id="<?=$product['id'] ?>" data-desc='<?=$product['slogan'] ?>'>
                       <?=$product['name'] ?> <?=$product['desc'] ?>
                     </p>
-                    <p class="slogan">
+                    <p class="slogan" data-id="<?=$product['id'] ?>" data-desc='<?=$product['slogan'] ?>'>
                       <?=$product['slogan'] ?>
                     </p>
                     <p class="price">
