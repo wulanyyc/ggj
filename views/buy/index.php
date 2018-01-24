@@ -119,7 +119,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .operator {
-    font-size: 30px;
+    /*font-size: 30px;*/
     text-align: right;
     padding-left: 5%;
     position: absolute;
@@ -133,7 +133,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     cursor: pointer;
     display: inline-block;
     color: #ccc;
-    font-size: 24px;
+    font-size: 28px;
     visibility: hidden
   }
 
@@ -145,10 +145,10 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     color: #000;
     width: 25px;
     visibility: hidden;
-    height: 20px;
-    line-height: 20px;
+    height: 28px;
+    line-height: 28px;
     vertical-align: top;
-    padding-top: 2px;
+    /*padding-top: 2px;*/
   }
 
   .operator-right {
@@ -157,7 +157,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     cursor: pointer;
     display: inline-block;
     color: #1ba93b;
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .operator-right.active {
