@@ -524,7 +524,7 @@ class PriceHelper extends Component {
             $fromOpenid = Yii::$app->redis->get($info['uniq']. '_from');
             if (!empty($fromOpenid)) {
                 $fopenid = Customer::find()->select('from_openid')->where(['openid' => $openid])->scalar();
-                if (empty($fopenid)) {
+                if (empty($fopenid) && $fromOpenid != $openid) {
                     Customer::updateAll(['from_openid' => $fromOpenid], ['openid' => $openid]);
                     NotifyHelper::sendFanli($openid, $fromOpenid, 2);
                 }
