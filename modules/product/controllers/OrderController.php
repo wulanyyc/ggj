@@ -14,6 +14,8 @@ use app\components\PriceHelper;
 use app\components\ExpressHelper;
 use app\models\ProductCart;
 use app\models\Customer;
+use app\models\Gift;
+use app\models\GiftUse;
 
 class OrderController extends AuthController
 {
@@ -135,6 +137,24 @@ class OrderController extends AuthController
 
         $info['product_cart'] = $product;
         $info['express_rule'] = ($info['express_rule'] == 1) ? '快递' : '自提';
+        $info['gifts'] = [];
+
+        $gifts = $info['gift_ids'];
+        if (!empty($gifts)) {
+            $giftIds = explode(',', $gifts);
+            foreach($giftIds as $item) {
+                $tmpStatus = GiftUse::find()->where(['gid' => $item, 'customer_id' => $info['customer_id']])->asArray()->one();
+
+                $tmpInfo = Gift::find()->where(['id' => $item])->asArray()->one();
+
+                $tmp = [
+                    'name' => $tmpInfo['name'],
+                    'useflag' => ($tmpStatus['use_status'] == 1) ? '本次配送' : '已领取',
+                ];
+
+                $info['gifts'][] = $tmp;
+            }
+        } 
 
         // TODO 私人定制订单处理
         // TODO 发票
