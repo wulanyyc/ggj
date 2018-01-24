@@ -478,7 +478,7 @@ class PriceHelper extends Component {
             ],
             6 => [
                 'type' => 'coupon',
-                'id'   => 5,
+                'id'   => 18,
                 'text' => '2元优惠券',
             ],
             7 => [

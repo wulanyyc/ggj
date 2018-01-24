@@ -199,7 +199,8 @@ class WechatController extends Controller
             if (empty($str)) {
                 return '欢迎关注成都果果佳，新人享5元优惠券，首单后再享5元。更多优惠请查看菜单: 聚优惠。';
             } else {
-                return '欢迎关注成都果果佳，新人享5元优惠券，首单后再享5元。更多优惠请查看菜单: 聚优惠。' . $str;
+                return '欢迎关注成都果果佳，新人享5元优惠券，首单后再享5元。更多优惠请查看菜单: 聚优惠。
+                ' . $str;
             }
             
         }
