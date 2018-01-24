@@ -91,7 +91,7 @@ class NotifyHelper extends Component{
                         'color' => '#173177',
                     ],
                     'remark' => [
-                        'value' => '感谢您对果果佳的支持',
+                        'value' => '感谢您对果果佳的支持, 奖励请在钱包中查看',
                         'color' => '#173177',
                     ]
                 ]

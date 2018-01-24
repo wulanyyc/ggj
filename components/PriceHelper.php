@@ -514,7 +514,11 @@ class PriceHelper extends Component {
 
                 $fromOpenid = Yii::$app->redis->get($info['uniq']. '_from');
                 if (!empty($fromOpenid)) {
-                    NotifyHelper::sendFanli($openid, $fromOpenid, 1);
+                    $fopenid = Customer::find()->select('from_openid')->where(['openid' => $openid])->scalar();
+                    if (empty($fopenid)) {
+                        Customer::updateAll(['from_openid' => $fromOpenid], ['openid' => $openid]);
+                        NotifyHelper::sendFanli($openid, $fromOpenid, 2);
+                    }
                 }
 
                 return '您的抽奖礼品：' . $info['text'] . ', 已获取成功。优惠券可直接使用，水果礼品需在订单流程中选择与订单一起发货';
