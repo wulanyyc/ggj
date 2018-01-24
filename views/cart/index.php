@@ -43,7 +43,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     margin: 0;
   }
 
-  #question, #detail, #address_info, #all_address_info, #coupon, #express_info {
+  #question, #detail, #address_info, #all_address_info, #coupon, #express_info, #gift_container {
     position: fixed;
     z-index: 100;
     bottom: 0;
@@ -67,6 +67,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
   #express_info {
     height: 72%;
+  }
+
+  #gift_container {
+    height: 60%;
   }
 
   footer {
@@ -284,7 +288,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     width: 15px;
   }
 
-  #coupon_detail {
+  #coupon_detail, #gift_detail {
     font-size: 13px;
     cursor: pointer;
     width: 28%;
@@ -293,6 +297,23 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     text-align: right;
     top: 0px;
     /*letter-spacing: 1px;*/
+  }
+
+  .gift_item {
+    padding: 2% 5%;
+    font-size: 18px;
+  }
+
+  .gift_item_content {
+    display: inline-block;
+    text-align: left;
+    width: 80%;
+  }
+
+  .gift_check {
+    width: 15%;
+    text-align: center;
+    display: inline-block;
   }
 </style>
 
@@ -393,13 +414,13 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
           <p class="label" style="display: inline-block;">配送：</p>
           <div style="display: inline-block;margin-right: 5px;" data-id="1" class="express_rule" id="express_rule_1">
             <div class="icon" data-id="1"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
-            <span class="badge badge-success" style="font-size: 13px;line-height: 16px;font-weight: normal;">顺丰快递</span>
+            <span class="badge badge-success" style="font-size: 14px;line-height: 18px;font-weight: normal;">顺丰快递</span>
           </div>
 
-          <div style="display: inline-block;" data-id="2" class="express_rule" id="express_rule_2">
+<!--           <div style="display: inline-block;" data-id="2" class="express_rule" id="express_rule_2">
             <span class="icon" data-id="2"><i class="fa fa-square-o" aria-hidden="true"></i></span>
             <span class="badge badge-info" style="font-size: 13px;line-height: 16px;font-weight: normal;">自提</span>
-          </div>
+          </div> -->
         </div>
 
         <div id="express_time" style="width: 18%;position: absolute;right: 0px;top: 0px;text-align: right;">
@@ -421,11 +442,11 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <div id="ask" class="right-arrow" style="color:red;cursor: pointer;font-size: 13px;width:20%;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
     </div>
     <hr style="margin-top: 8px;margin-bottom: 8px;"/> -->
-    <div style="margin-bottom:3px;display: table;height: 40px;position: relative;width: 100%;line-height: 40px;" id="choose_coupon">
+    <div style="margin-bottom:3px;display: table;height: 36px;position: relative;width: 100%;line-height: 36px;" id="choose_coupon">
       <div class="label" style="width:68%;display: inline-block;">优惠券</div>
       <div id="coupon_detail">
         <?php if ($coupon > 0) { ?>
-        可用<span class="text-danger" style="font-weight: bold;font-size: 14px;"><?=$coupon ?></span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+        可用<span class="text-danger" style="font-weight: bold;font-size: 14px;">&nbsp;<?=$coupon ?>&nbsp;</span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         <?php } else { ?>
         可用<span class="text-danger">0</span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
         <?php } ?>
@@ -433,6 +454,22 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     </div>
   </div>
 </div>
+
+<div class="card">
+  <div id="gift_show" class="card-content">
+    <div style="margin-bottom:3px;display: table;height: 36px;position: relative;width: 100%;line-height: 36px;" id="choose_gift">
+      <div class="label" style="width:68%;display: inline-block;">礼品</div>
+      <div id="gift_detail">
+        <?php if ($gift > 0) { ?>
+        可领<span class="text-danger" style="font-weight: bold;font-size: 14px;">&nbsp;<?=$gift ?>&nbsp;</span>份&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+        <?php } else { ?>
+        可领<span class="text-danger">0</span>份&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+        <?php } ?>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="card">
   <div id="fee" class="card-content">
@@ -614,13 +651,24 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card" id="coupon">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
-      优惠券
+      我的优惠券
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_coupon"></i>
   </div>
   <div id="coupon_items" data-ids="">
   </div>
   <button id="ok_coupon" type="button" class="btn btn-success btn-sm" style="position: absolute;bottom:3%;width:40%;left:30%;">选中并使用</button>
   <span id='close_coupon_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 14px;color:#0C58B0;">关闭</span>
+</div>
+
+<div class="card" id="gift_container">
+  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+      我的礼品
+      <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_gift"></i>
+  </div>
+  <div id="gift_items" data-ids="">
+  </div>
+  <button id="ok_gift" type="button" class="btn btn-success btn-sm" style="position: absolute;bottom:3%;width:40%;left:30%;">选中并领取</button>
+  <span id='close_gift_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 14px;color:#0C58B0;">关闭</span>
 </div>
 
 

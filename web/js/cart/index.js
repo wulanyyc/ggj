@@ -395,6 +395,60 @@ $(document).ready(function () {
         $('#coupon_items').attr('data-ids', coupons.toString());
     });
 
+    $('#gift_items').delegate('.gift_item', 'click', function(){
+        if ($(this).find('.fa-square-o').length > 0) {
+            $(this).find('.gift_check').html('<i class="fa fa-check-square-o" aria-hidden="true"></i>');
+            $(this).find('.gift_check').addClass('text-danger');
+        } else {
+            $(this).find('.gift_check').html('<i class="fa fa-square-o" aria-hidden="true"></i>');
+            $(this).find('.gift_check').removeClass('text-danger');
+        }
+    });
+
+    $('#choose_gift').click(function() {
+        $.ajax({
+            url: '/cart/gift',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == 'fail') {
+                    $('#gift_items').html(data.msg);
+                    return ;
+                }
+                $('#gift_items').html(data.data);
+                var choosed = $('#gift_items').attr('data-ids');
+                if (choosed.length > 0) {
+                    var arr = choosed.split(',');
+                    for(var i = 0; i < arr.length; i++) {
+                        $('#gift_' + arr[i]).click();
+                    }
+                }
+            }
+        });
+
+        $('#gift_container').show();
+        $('body').addClass('forbid');
+        $('#cover').show();
+    });
+
+    $('#close_gift, #close_gift_bottom').click(function(){
+        $('#gift_container').hide();
+        $('body').removeClass('forbid');
+        $('#cover').hide();
+    });
+
+    $('#ok_gift').click(function(){
+        $('#close_gift').click();
+        var gifts = [];
+        $('.gift_check').each(function(){
+            if ($(this).find('.fa-check-square-o').length > 0) {
+                gifts.push($(this).attr('data-id'));
+            }
+        });
+
+        $('#gift_items').attr('data-ids', gifts.toString());
+    });
+
     $('#order').click(function(){
         var address_id = $('.show_address').attr('data-id');
         // console.log(address_id);
@@ -421,7 +475,8 @@ $(document).ready(function () {
                 discount_phone: $('#code').val(),
                 discount_fee: $('#discount_fee').html(),
                 coupon_ids: $('#coupon_items').attr('data-ids'),
-                coupon_fee: $('#coupon_fee').html()
+                coupon_fee: $('#coupon_fee').html(),
+                gift_ids: $('#gift_items').attr('data-ids')
             },
             success: function (data) {
                 if (data.status == 'ok') {

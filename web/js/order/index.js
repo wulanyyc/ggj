@@ -85,10 +85,14 @@ $(document).ready(function () {
 
         $(this).addClass('active');
         var status = $(this).attr('data-type');
-        // console.log(status);
+
         $(".order-item").each(function(){
             if (status == "") {
-                $(this).show();
+                if ($(this).attr('data-type') != 5) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
             } else {
                 if ($(this).attr('data-type') == status) {
                     $(this).show();

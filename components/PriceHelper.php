@@ -155,6 +155,12 @@ class PriceHelper extends Component {
         return $ar->id;
     }
 
+    public static function getValidGift() {
+        $customer_id = SiteHelper::getCustomerId();
+
+        return GiftUse::find()->where(['customer_id' => $customer_id, 'use_status' => 1])->asArray()->all();
+    }
+
 
     public static function getValidCoupon() {
         $customer_id = SiteHelper::getCustomerId();

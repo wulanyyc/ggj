@@ -15,6 +15,7 @@ use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
 use app\models\Customer;
 use app\filters\CustomerFilter;
+use app\models\Gift;
 
 
 class OrderController extends Controller
@@ -56,13 +57,20 @@ class OrderController extends Controller
             if ($item['status'] == 1) {
                 $data[$key]['product_price'] = PriceHelper::calculateProductPrice($item['cart_id']);
             }
+
+            if (!empty($item['gift_ids'])) {
+                $gids = explode(',', $item['gift_ids']);
+
+                $data[$key]['gifts'] = Gift::findBySql("select * from gift where id in (" . $item['gift_ids'] . ")")->asArray()->all();
+
+            }
         }
 
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
-            'data' => $data,
+            'data'   => $data,
             'status' => Yii::$app->params['order_status'],
-            'type' => Yii::$app->params['order_type'],
+            'type'   => Yii::$app->params['order_type'],
             'orderType' => $orderType,
         ]);
     }

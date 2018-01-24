@@ -75,10 +75,10 @@ ClipAsset::register($this);
     height: 45px;
     line-height: 45px;
     padding-bottom: 5px;
-    padding-left: 3px;
-    padding-right: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
     margin-left: 2px;
-    margin-right: 3px;
+    margin-right: 4px;
     cursor: pointer;
   }
 
@@ -143,7 +143,7 @@ ClipAsset::register($this);
   <div class="status-item" data-type="1" <?php if ($orderType == 1) { echo "id='first'";} ?>>待付款</div>
   <div class="status-item" data-type="2" <?php if ($orderType == 2) { echo "id='first'";} ?>>待收货</div>
   <div class="status-item" data-type="3" <?php if ($orderType == 3) { echo "id='first'";} ?>>已完成</div>
-  <div class="status-item" data-type="3" <?php if ($orderType == 4) { echo "id='first'";} ?>>已退款</div>
+  <!-- <div class="status-item" data-type="4" <?php if ($orderType == 4) { echo "id='first'";} ?>>已退款</div> -->
   <div class="status-item" data-type="5" <?php if ($orderType == 5) { echo "id='first'";} ?>>已删除</div>
 </div>
 
@@ -153,10 +153,10 @@ ClipAsset::register($this);
     <div class="card-header bg-white" style="border-bottom: 1px solid #ced4da;position: relative;">
       <div style="display: inline-block;width:20%;">果果佳</div>
       <div style="font-size: 14px;color:#aaa;line-height: 20px;display: inline-block;position: absolute;right: 10px;">
-<!--         <span style="font-size: 12px;margin-right: 6px;padding:6px;">
+        <span style="font-size: 12px;margin-right: 6px;padding:6px;color:red;">
           <?=$status[$item['status']] ?>
-        </span> -->
-        <span style="font-size: 12px;margin-right: 6px;padding:6px;">
+        </span>
+        <span style="font-size: 14px;margin-right: 6px;padding:6px;color:green;">
           <?=$type[$item['order_type']] ?>单
         </span>
         <?php if ($item['status'] == 5) { ?>
@@ -182,6 +182,15 @@ ClipAsset::register($this);
           <p class="label">备注：</p>
           <p><?=$item['memo'] ?></p>
         </div>
+        <?php } ?> 
+
+        <?php if (!empty($item['gifts'])) { ?>
+        <?php foreach($item['gifts'] as $v) { ?>
+        <div class="item" style="display: table;">
+          <p class="label" style="display: table-cell;">礼品：</p>
+          <p style="display: table-cell;"><?=$v['name'] ?></p>
+        </div>
+        <?php } ?> 
         <?php } ?> 
 
         <div style="font-size:14px;margin-top:12px;display: table;text-align: right;width: 100%">

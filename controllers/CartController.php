@@ -14,6 +14,8 @@ use app\modules\product\models\Coupon;
 use app\modules\product\models\CouponUse;
 use app\models\Customer;
 use app\filters\CustomerFilter;
+use app\models\GiftUse;
+use app\models\Gift;
 
 class CartController extends Controller
 {
@@ -81,6 +83,7 @@ class CartController extends Controller
             'address' => $this->getUserAddress($cid),
             'citymap' => Yii::$app->params['citymap']['成都'],
             'coupon' => count(PriceHelper::getValidCartCoupon($exsit['id'])),
+            'gift' => count(PriceHelper::getValidGift()),
             'discount_start' => Yii::$app->params['discount']['start'],
             'discount_end'   => Yii::$app->params['discount']['end'],
             'buyLimit' => $buyLimit,
@@ -214,6 +217,31 @@ class CartController extends Controller
                             </div>
                         </div>
                         <div class="coupon_check" id="coupon_{$info['id']}" data-id={$info['id']} data-money={$info['money']}>
+                            <i class="fa fa-square-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+EOF;
+            }
+        }
+
+        SiteHelper::render('ok', $html);
+    }
+
+    public function actionGift() {
+        $html = '';
+        $data = PriceHelper::getValidGift();
+
+        if (empty($data)) {
+            SiteHelper::render('fail', '很抱歉，账户里没有可用的礼品，请去抽奖领取');
+        } else {
+            foreach($data as $key => $value) {
+                $info = Gift::find()->where(['id' => $value['gid']])->asArray()->one();
+                $html .= <<<EOF
+                    <div class="gift_item">
+                        <div class="gift_item_content">
+                            <div class="gift_item_label">{$info['name']}</div>
+                        </div>
+                        <div class="gift_check" id="gift_{$info['id']}" data-id={$info['id']}>
                             <i class="fa fa-square-o" aria-hidden="true"></i>
                         </div>
                     </div>
