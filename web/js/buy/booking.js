@@ -107,9 +107,9 @@ $(document).ready(function () {
             buyLimit = 0;
         }
 
-        if (buyLimit > 0 && num > buyLimit) {
-            num = num - 1;
-        }
+        // if (buyLimit > 0 && num > buyLimit) {
+        //     num = num - 1;
+        // }
 
         $(this).parent().find('.operator-num').html(num);
         $(this).parent().find('.operator-left').css('visibility', 'visible');
