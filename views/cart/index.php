@@ -70,7 +70,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   #gift_container {
-    height: 80%;
+    height: 60%;
   }
 
   footer {
