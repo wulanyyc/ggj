@@ -207,7 +207,7 @@ class PriceHelper extends Component {
         $fee = 0;
         foreach($data as $item) {
             foreach($coupons as $id) {
-                if ($item['cid'] == $id) {
+                if ($item['id'] == $id) {
                     $money = Coupon::find()->select('money')->where(['id' => $id])->scalar();
                     $fee += $money;
                 }
