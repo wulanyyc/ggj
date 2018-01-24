@@ -119,12 +119,12 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
   }
 
   .operator {
-    font-size: 14px;
+    font-size: 20px;
     text-align: right;
     padding-left: 5%;
     position: absolute;
     right: 2px;
-    top: -5px;
+    top: 3px;
   }
 
   .operator-left {

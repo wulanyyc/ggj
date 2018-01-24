@@ -468,8 +468,8 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <div id="tips" style="color:red;margin-left: 5px;margin-right: 2px;font-size: 14px;display: inline-block;">实付款:</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;display: inline-block;">
     <div style="display: inline-block;color:red;width:70px;text-align: left;">
-      <span class="money" style="font-size: 16px;font-weight: normal;">¥</span>
-      <span class="realprice" style="font-size:20px;font-weight: normal;" id="realprice"></span>
+      <span class="money" style="font-size: 14px;font-weight: normal;">¥</span>
+      <span class="realprice" style="font-size:16px;font-weight: normal;" id="realprice"></span>
     </div>
   </div>
   <div class='btn btn-outline-secondary btn-sm' id='edit' style="margin-right: 8px;display: inline-block;">修改商品</div>
