@@ -29,6 +29,10 @@ $(document).ready(function () {
                 if (/promotion/.test(location.pathname)) {
                     location.href = '/';
                 }
+
+                if (/cart/.test(location.pathname)) {
+                    location.href = '/';
+                }
             }
         }
 
