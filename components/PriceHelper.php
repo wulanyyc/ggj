@@ -441,7 +441,7 @@ class PriceHelper extends Component {
     }
 
     public static function getPrize($rotate) {
-        $prizeNum = floor($rotate / 45);
+        $prizeNum = floor(($rotate - 1080)/ 45);
         if ($prizeNum == 8) $prizeNum = 7;
 
         $prize = [

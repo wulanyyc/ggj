@@ -12,49 +12,70 @@ $(document).ready(function () {
             type: 'post',
             dataType: 'json',
             success: function (data) {
-                // $('#pan').addClass('Rotation');
-                
                 var rotate = data.rotate;
-                console.log(rotate);
-                $('#pointer').css('transform','rotate(' + rotate + 'deg)');
-                $('#pointer').css('-webkit-transform','rotate(' + rotate + 'deg)');
-                $('#pointer').css('-moz-transform','rotate(' + rotate + 'deg)');
-                $('#pointer').css('-0-transform','rotate(' + rotate + 'deg)');
-
-                $('#pointer').css('animation', 'rotation 1s linear');
-                $('#pointer').css('-moz-animation', 'rotation 1s linear');
-                $('#pointer').css('-webkit-animation', 'rotation 1s linear');
-                $('#pointer').css('-o-animation', 'rotation 1s linear');
+                // console.log(rotate);
 
                 if (data.status == 'fail') {
                     $.helper.alert(data.msg);
                 } else {
-                    bootbox.confirm({
-                        message: data.msg,
-                        buttons: {
-                            cancel: {
-                                label: '重抽'
-                            },
-                            confirm: {
-                                label: '去领奖'
-                            }
+                    var style = document.createElement('style');
+
+                    style.type = 'text/css';
+                    var keyFrames = '\
+                        @keyframes rotation{\
+                        from {\
+                            transform: rotate(0deg);\
+                        }\
+                        to {\
+                            transform: rotate(' + rotate +'deg)\
+                        }\
+                        @-webkit-keyframes rotation{\
+                        from {\
+                            -webkit-transform: rotate(0deg);\
+                        }\
+                        to {\
+                            -webkit-transform: rotate(' + rotate +'deg)\
+                        }\
+                    }';
+
+                    style.innerHTML = keyFrames;
+                    document.getElementsByTagName('head')[0].appendChild(style);
+
+                    $('#pointer').css('animation', 'rotation 2s ease 0s 1 alternate forwards');
+                    $('#pointer').css('-moz-animation', 'rotation 2s ease 0s 1 alternate forwards');
+                    $('#pointer').css('-webkit-animation', 'rotation 2s ease 0s 1 alternate forwards');
+                    $('#pointer').css('-o-animation', 'rotation 2s ease 0s 1 alternate forwards');
+
+                    setTimeout(function(){
+                            bootbox.confirm({
+                                message: data.msg,
+                                buttons: {
+                                    cancel: {
+                                        label: '重抽'
+                                    },
+                                    confirm: {
+                                        label: '去领奖'
+                                    }
+                                },
+                                callback: function(result){
+                                    if (result) {
+                                        location.href = "/prize/suc";
+                                    } else {
+                                        // $('#pointer').css('transform','none');
+                                        // $('#pointer').css('-webkit-transform','none');
+                                        // $('#pointer').css('-moz-transform','none');
+                                        // $('#pointer').css('-0-transform','none');
+                                        location.reload();
+                                    }
+                                }
+                            });
                         },
-                        callback: function(result){
-                            if (result) {
-                                location.href = "/prize/suc";
-                            } else {
-                                $('#pointer').css('transform','none');
-                                $('#pointer').css('-webkit-transform','none');
-                                $('#pointer').css('-moz-transform','none');
-                                $('#pointer').css('-0-transform','none');
-                            }
-                        }
-                    });
+                        2600
+                    );
                 }
 
                 $('#zhuanpan').attr('data-valid', 0);
             }
         });
-
     });
 });

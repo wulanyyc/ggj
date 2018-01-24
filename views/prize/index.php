@@ -50,8 +50,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         text-align: center;
         position: absolute;
         z-index: 8;
-        left: 0;
-        top: 36%;
+        top: 35%;
     }
 
     #pointer {
@@ -72,6 +71,16 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         right: 0;
     }
 
+/*    @keyframes rotation{
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     @-webkit-keyframes rotation{
       from {
         -webkit-transform: rotate(0deg);
@@ -80,19 +89,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
       to {
         -webkit-transform: rotate(360deg);
       }
-    }
-
-    .Rotation{
-        transform:rotate(-22.5deg);
-        -ms-transform:rotate(-22.5deg);   /* IE 9 */
-        -moz-transform:rotate(-22.5deg);  /* Firefox */
-        -webkit-transform:rotate(-22.5deg); /* Safari 和 Chrome */
-        -o-transform:rotate(-22.5deg);  /* Opera */
-        /*animation: rotation 2s linear;*/
-        /*-moz-animation: rotation 2s linear;*/
-        /*-webkit-animation: rotation 2s linear;*/
-        /*-o-animation: rotation 2s linear;*/
-    }
+    }*/
 
     .modal {
         top: 18% !important;
