@@ -15,13 +15,6 @@ $(document).ready(function () {
         $.cookie('terminal', 'wap', {path: '/'});
     }
 
-
-    // $(window).on('touchmove', function(e) {
-    //     if (!$(this).hasClass('top-layer')) {
-    //         e.preventDefault();
-    //     }
-    // });
-
     // console.log(location);
     
     $('#back, #inner_back').click(function(){

@@ -429,12 +429,7 @@ $(document).ready(function () {
         $('#gift_container').show();
         $('body').addClass('forbid');
         $('#cover').show();
-
-        $(window).on('touchmove', function(e) {
-            if (!$(this).hasClass('top-layer')) {
-                e.preventDefault();
-            }
-        });
+        // $('#gift_items').css();
     });
 
     $('#close_gift, #close_gift_bottom').click(function(){
