@@ -71,7 +71,7 @@ $(document).ready(function () {
                                 }
                             });
                         },
-                        2600
+                        2500
                     );
                 }
 
