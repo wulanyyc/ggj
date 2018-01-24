@@ -123,7 +123,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   }
 
   .operator {
-    font-size: 20px;
+    font-size: 30px;
     text-align: right;
     padding-left: 5%;
     position: absolute;
