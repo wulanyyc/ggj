@@ -205,7 +205,7 @@ class CustomerController extends Controller
                 $html .= <<<EOF
                 <a class="coupon_item" href="/">
                     <div class="coupon_item_content">
-                        <img src="http://img.guoguojia.vip/img/icon/coupon_use.jpeg?v=1" class="coupon_item_content_img" />
+                        <img src="http://img.guoguojia.vip/img/icon/coupon_use_red.jpeg?v=1" class="coupon_item_content_img" />
                         <div class="coupon_item_label">{$info['name']}</div>
                         <div class="coupon_item_text">
                           <div class="coupon_item_money">{$info['money']}元</div>
@@ -226,9 +226,9 @@ EOF;
             foreach($jobData as $key => $value) {
                 $dayDiff = ceil((strtotime($value['end_date']) - time()) / 86400);
                 if ($value['type'] == 1) {
-                    $img = "http://img.guoguojia.vip/img/icon/coupon_sys.jpeg?v=1";
+                    $img = "http://img.guoguojia.vip/img/icon/coupon_sys_red.jpeg?v=1";
                 } else {
-                    $img = "http://img.guoguojia.vip/img/icon/coupon_get.jpeg?v=1";
+                    $img = "http://img.guoguojia.vip/img/icon/coupon_get_red.jpeg?v=1";
                 }
 
                 $jobHtml .= <<<EOF
