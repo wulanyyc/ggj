@@ -30,7 +30,7 @@ $(document).ready(function () {
                     location.href = '/';
                 }
 
-                if (/cart/.test(location.pathname)) {
+                if (/order/.test(location.pathname)) {
                     location.href = '/';
                 }
             }
