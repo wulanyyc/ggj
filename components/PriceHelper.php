@@ -530,7 +530,7 @@ class PriceHelper extends Component {
                 }
             }
 
-            return $str
+            return $str;
         } else {
             return '您的抽奖礼品：' . $info['text'] . ', 获取失败，请联系客服';
         }
