@@ -425,7 +425,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 <div id="tip_alert" style="display: none;">
   <div style="display: table;width: 100%">
     <div style="width: 100%; display: table-row;">
-      <div class="tip-img" style="display: table-cell;vertical-align: middle;text-align: center;height:120px;">
+      <div class="tip-img" style="display: table-cell;vertical-align: middle;text-align: center;height:80px;">
         <img src="http://img.guoguojia.vip/img/booking.png" style="width: 60px;"/>
       </div>
     </div>
