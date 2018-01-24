@@ -124,7 +124,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
     padding-left: 5%;
     position: absolute;
     right: 3px;
-    top: 3px;
+    top: 1px;
   }
 
   .operator-left {
