@@ -299,6 +299,14 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     /*letter-spacing: 1px;*/
   }
 
+  #gift_items {
+    width: 100%;
+    padding:2%;
+    height: 80%;
+    overflow-y: scroll;
+  }
+
+
   .gift_item {
     padding: 2% 5%;
     font-size: 18px;
