@@ -472,7 +472,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
       <span class="realprice" style="font-size:20px;font-weight: normal;" id="realprice"></span>
     </div>
   </div>
-  <div class='btn btn-outline-secondary btn-sm' id='edit' style="margin-right: 8px;display: inline-block;"><i class="fa fa-cart-plus" aria-hidden="true"></i>&nbsp;购物车</div>
+  <div class='btn btn-outline-secondary btn-sm' id='edit' style="margin-right: 8px;display: inline-block;"><i class="fa fa-cart-plus" aria-hidden="true"></i>&nbsp;修改商品</div>
   <div class='btn btn-success' id='order' style="margin-right: 10px;display: inline-block;">去下单</div>
 </div>
 
