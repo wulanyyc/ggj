@@ -14,7 +14,7 @@ class PrizeController extends Controller
     public $shareId = '';
     public $dayLimit = 5; // 抽奖天数限制
     public $prefix = "prize_";
-    public $limit = 3; // 抽奖次数限制
+    public $limit = 30; // 抽奖次数限制
     
     public function actionIndex() {
         $params = Yii::$app->request->get();
@@ -53,14 +53,6 @@ class PrizeController extends Controller
         $cntKey = $uniq . '_cnt';
         $cnt = Yii::$app->redis->get($cntKey);
 
-        if ($cnt > 0) {
-            $cnt += 1;
-            Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
-        } else {
-            $cnt = 1;
-            Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
-        }
-
         if ($cnt > $limit) {
             $remainTime = Yii::$app->redis->ttl($uniq . "_from");
             if ($remainTime > 0) {
@@ -68,7 +60,6 @@ class PrizeController extends Controller
             } else {
                 $remainDay = $dayLimit;
             }
-            
 
             echo json_encode([
                 'status' => 'fail',
@@ -78,6 +69,13 @@ class PrizeController extends Controller
             Yii::$app->end();
         }
 
+        if ($cnt > 0) {
+            $cnt += 1;
+            Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
+        } else {
+            $cnt = 1;
+            Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
+        }
 
         $rotate = rand(1, 8) * 45;
         $rotate -= 40;
