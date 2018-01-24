@@ -51,7 +51,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         position: absolute;
         z-index: 8;
         left: 0;
-        top: 38%;
+        top: 36%;
     }
 
     #pointer {
@@ -95,7 +95,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     }
 
     .modal {
-        top: 20% !important;
+        top: 18% !important;
     }
 </style>
 

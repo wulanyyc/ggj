@@ -14,7 +14,7 @@ class PrizeController extends Controller
     public $shareId = '';
     public $dayLimit = 5; // 抽奖天数限制
     public $prefix = "prize_";
-    public $limit = 3; // 抽奖次数限制
+    public $limit = 300; // 抽奖次数限制
     
     public function actionIndex() {
         $params = Yii::$app->request->get();
@@ -22,7 +22,7 @@ class PrizeController extends Controller
         $sid = isset($params['share_id']) ? $params['share_id'] : '';
         $from = isset($params['from']) ? $params['from'] : 0;
 
-        // if ($from === 'timeline' || $from === 'singlemessage' || !empty($_COOKIE['openid'])) {
+        if ($from === 'timeline' || $from === 'singlemessage' || !empty($_COOKIE['openid'])) {
             if (empty($_COOKIE['puid'])) {
                 $uniq = uniqid();
                 setcookie('puid', $uniq, time() + 86400 * $this->dayLimit, '/');
@@ -37,11 +37,11 @@ class PrizeController extends Controller
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
             ]);
-        // }
+        }
 
-        // return $this->render('error', [
-        //     'controller' => Yii::$app->controller->id,
-        // ]);
+        return $this->render('error', [
+            'controller' => Yii::$app->controller->id,
+        ]);
     }
 
     public function actionGetrotate() {
