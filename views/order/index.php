@@ -187,8 +187,10 @@ ClipAsset::register($this);
         <?php if (!empty($item['gifts'])) { ?>
         <?php foreach($item['gifts'] as $v) { ?>
         <div class="item" style="display: table;">
-          <p class="label" style="display: table-cell;">礼品：</p>
-          <p style="display: table-cell;"><?=$v['name'] ?></p>
+          <p style="display: table-cell;font-size: 16px;">
+            <i class="fa fa-gift" aria-hidden="true" style="color:red;font-size: 20px;"></i>
+            <?=$v['name'] ?>
+          </p>
         </div>
         <?php } ?> 
         <?php } ?> 

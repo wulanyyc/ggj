@@ -239,9 +239,12 @@ EOF;
                 $html .= <<<EOF
                     <div class="gift_item">
                         <div class="gift_item_content">
-                            <div class="gift_item_label">{$info['name']}</div>
+                            <div class="gift_item_label">
+                                <i class="fa fa-gift" aria-hidden="true" style="color:red;font-size:20px;"></i>
+                                {$info['name']}
+                            </div>
                         </div>
-                        <div class="gift_check" id="gift_{$info['id']}" data-id={$info['id']}>
+                        <div class="gift_check" style="font-size:20px;" id="gift_{$info['id']}" data-id={$info['id']}>
                             <i class="fa fa-square-o" aria-hidden="true"></i>
                         </div>
                     </div>
