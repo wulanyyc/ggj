@@ -65,7 +65,8 @@ $(document).ready(function () {
                                         // $('#pointer').css('-webkit-transform','none');
                                         // $('#pointer').css('-moz-transform','none');
                                         // $('#pointer').css('-0-transform','none');
-                                        location.reload();
+                                        // location.reload();
+                                        location.href = "/prize?v=" + Math.random();
                                     }
                                 }
                             });
