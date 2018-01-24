@@ -222,7 +222,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     top: 50%;
     overflow-x: hidden;
     text-align: center;
-    color: #1ba93b;
+    color: #28a745;
   }
 
   .coupon_item_text {
@@ -240,7 +240,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     position: absolute;
     top: 20%;
     left: 44%;
-    color: #1ba93b;
+    color: #28a745;
   }
 
   .coupon_check {
@@ -258,7 +258,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     bottom: 5%;
     font-size: 12px;
     letter-spacing: 1px;
-    color: #89b0da;
+    color: #866D8D;
   }
 
   #address_form .form-group {

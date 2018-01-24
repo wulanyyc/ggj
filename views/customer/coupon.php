@@ -71,8 +71,8 @@ $this->title = '优惠券管理';
     top: 50%;
     overflow-x: hidden;
     text-align: center;
-    color: #1ba93b;
-    /*color: red;*/
+    /*color: #1ba93b;*/
+    color: #28a745;
   }
 
   .coupon_item_text {
@@ -90,8 +90,8 @@ $this->title = '优惠券管理';
     position: absolute;
     top: 20%;
     left: 43%;
-    color: #1ba93b;
-    /*color: red;*/
+    /*color: #1ba93b;*/
+    color: #28a745;
   }
 
   .coupon_check {
@@ -109,7 +109,7 @@ $this->title = '优惠券管理';
     bottom: 5%;
     font-size: 12px;
     letter-spacing: 1px;
-    color: #89b0da;
+    color: #866D8D;
     /*color: #1ba93b;*/
   }
 
