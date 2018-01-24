@@ -101,9 +101,20 @@ class OrderHelper extends Component {
             ->select('coupon_fee, coupon_ids')->asArray()->one();
 
         if ($coupons['coupon_fee'] > 0) {
-            $couponIds = explode(',', $coupons['coupon_ids']);
-            foreach($couponIds as $item) {
-                CouponUse::updateAll(['use_status' => 2], ['cid' => $item]);
+            $couponUseIds = explode(',', $coupons['coupon_ids']);
+            foreach($couponUseIds as $item) {
+                CouponUse::updateAll(['use_status' => 2], ['id' => $item]);
+            }
+        }
+
+        // 更新礼品
+        $gifts = ProductOrder::find()->where(['id' => $data['order_id']])
+            ->select('gift_ids')->asArray()->one();
+
+        if (!empty($gifts)) {
+            $giftUseIds = explode(',', $gifts);
+            foreach($giftUseIds as $item) {
+                GiftUse::updateAll(['use_status' => 2], ['id' => $item]);
             }
         }
 

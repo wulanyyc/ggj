@@ -216,7 +216,7 @@ class CartController extends Controller
                               <div class="coupon_item_date">剩{$dayDiff}天到期</div>
                             </div>
                         </div>
-                        <div class="coupon_check" id="coupon_{$info['id']}" data-id={$info['id']} data-money={$info['money']}>
+                        <div class="coupon_check" id="coupon_{$value['id']}" data-id={$value['id']} data-money={$info['money']}>
                             <i class="fa fa-square-o" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -244,7 +244,7 @@ EOF;
                                 {$info['name']}
                             </div>
                         </div>
-                        <div class="gift_check" style="font-size:20px;" id="gift_{$info['id']}" data-id={$info['id']}>
+                        <div class="gift_check" style="font-size:20px;" id="gift_{$value['id']}" data-id={$value['id']}>
                             <i class="fa fa-square-o" aria-hidden="true"></i>
                         </div>
                     </div>
