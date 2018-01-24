@@ -70,7 +70,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   #gift_container {
-    height: 60%;
+    height: 80%;
   }
 
   footer {
@@ -302,7 +302,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   #gift_items {
     width: 100%;
     padding:2%;
-    height: 60%;
+    height: 70%;
     overflow-y: scroll;
   }
 
