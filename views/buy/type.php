@@ -62,7 +62,7 @@ MsaView::registerJsFile($this,'/js/buy/type.js',
     <div style="display: table;width: 100%;margin-top: 15%">
       <div style="display: table-row;width: 100%">
         <div style="width: 35%;display: table-cell;vertical-align: middle;text-align: right;padding-right: 10px;">
-          <img src="http://img.guoguojia.vip/img/booking.png" style="width: 90px;"/>
+          <img src="http://img.guoguojia.vip/img/booking.png" style="width: 80px;"/>
         </div>
         <ul style="width: 65%;display: table-cell;vertical-align: middle;">
           <li>
