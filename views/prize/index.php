@@ -96,6 +96,24 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
 
     .modal {
         top: 18% !important;
+        opacity: 0.9 !important;
+    }
+
+    .modal-body {
+        padding: 10px !important;
+    }
+
+    .modal-footer {
+        padding: 5px !important;
+    }
+
+    .btn-primary {
+        background-color: #1ba93b !important;
+        border-color: #1ba93b !important;
+    }
+
+    .bootbox-body {
+        font-size: 14px !important;
     }
 </style>
 
