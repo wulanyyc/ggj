@@ -30,6 +30,10 @@ $(document).ready(function () {
                     location.href = '/';
                 }
 
+                if (/\/order\/pay/.test(location.pathname)) {
+                    window.history.back();
+                }
+
                 if (/\/order/.test(location.pathname)) {
                     location.href = '/';
                 }
