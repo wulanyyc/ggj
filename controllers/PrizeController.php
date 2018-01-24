@@ -79,14 +79,8 @@ class PrizeController extends Controller
         }
 
 
-        $rotate = 360 + rand(0, 360);
-        if ($rotate / 45 == 0) {
-            $rotate += 10;
-        }
-
-        if ($rotate >=720) {
-            $rotate = 700;
-        }
+        $rotate = rand(1, 8) * 45;
+        $rotate -= 40;
 
         Yii::$app->redis->setex($uniq, 86400 * $dayLimit, $rotate);
         $prize = PriceHelper::getPrize($rotate);

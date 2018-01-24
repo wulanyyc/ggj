@@ -83,11 +83,11 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     }
 
     .Rotation{
-        transform:rotate(22.5deg);
-        -ms-transform:rotate(22.5deg);   /* IE 9 */
-        -moz-transform:rotate(22.5deg);  /* Firefox */
-        -webkit-transform:rotate(22.5deg); /* Safari 和 Chrome */
-        -o-transform:rotate(22.5deg);  /* Opera */
+        transform:rotate(-22.5deg);
+        -ms-transform:rotate(-22.5deg);   /* IE 9 */
+        -moz-transform:rotate(-22.5deg);  /* Firefox */
+        -webkit-transform:rotate(-22.5deg); /* Safari 和 Chrome */
+        -o-transform:rotate(-22.5deg);  /* Opera */
         /*animation: rotation 2s linear;*/
         /*-moz-animation: rotation 2s linear;*/
         /*-webkit-animation: rotation 2s linear;*/
