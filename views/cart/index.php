@@ -669,7 +669,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   <span id='close_coupon_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 14px;color:#0C58B0;">关闭</span>
 </div>
 
-<div class="card" id="gift_container">
+<div class="card" id="gift_container" class="top-layer">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       我的礼品
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_gift"></i>
