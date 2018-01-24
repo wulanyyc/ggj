@@ -22,6 +22,7 @@ use app\modules\product\models\ProductList;
  */
 class SiteHelper extends Component{
     public static function addCustomer($phone) {
+        // TODO combine zhanghao
         $id = Customer::find()->where(['phone' => $phone])->select('id')->scalar();
 
         if ($id > 0) {
