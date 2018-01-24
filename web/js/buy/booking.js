@@ -103,11 +103,11 @@ $(document).ready(function () {
         // var limit = parseInt($(this).attr('data-limit'));
         var buyLimit = parseInt($(this).attr('data-buy-limit'));
 
-        // if (isNaN(buyLimit)) {
-        //     buyLimit = 0;
-        // }
+        if (isNaN(buyLimit)) {
+            buyLimit = 0;
+        }
 
-        if (buyLimit > 0 && num > limit) {
+        if (buyLimit > 0 && num > buyLimit) {
             num = num - 1;
         }
 
