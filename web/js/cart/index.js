@@ -428,7 +428,6 @@ $(document).ready(function () {
 
         $('#gift_container').show();
         $('body').addClass('forbid');
-        $(window).unbind('scroll');
         $('#cover').show();
     });
 
