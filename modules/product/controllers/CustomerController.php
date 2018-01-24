@@ -119,7 +119,7 @@ class CustomerController extends AuthController
             exit;
         }
 
-        if (!SiteHelper::checkPhone($params['hone'])) {
+        if (!SiteHelper::checkPhone($params['phone'])) {
             echo '手机格式不正确';
             exit;
         }
