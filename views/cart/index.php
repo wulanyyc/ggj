@@ -70,7 +70,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
   }
 
   #gift_container {
-    height: 60%;
+    height: 80%;
   }
 
   footer {
@@ -242,7 +242,6 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
     left: 44%;
     color: #1ba93b;
   }
-
 
   .coupon_check {
     width: 10%;
