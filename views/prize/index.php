@@ -51,7 +51,13 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         position: absolute;
         z-index: 8;
         left: 0;
-        top: 41%;
+        top: 38%;
+    }
+
+    #pointer {
+        width: 15%;
+        margin: 0 auto;
+        text-align: center;
     }
 
     #pan_container {
@@ -64,12 +70,6 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         z-index: 5;
         left: 0;
         right: 0;
-    }
-
-    #pointer {
-        width: 10%;
-        margin: 0 auto;
-        text-align: center;
     }
 
     @-webkit-keyframes rotation{

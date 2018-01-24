@@ -20,10 +20,10 @@ $(document).ready(function () {
                 $('#pointer').css('-moz-transform','rotate(' + rotate + 'deg)');
                 $('#pointer').css('-0-transform','rotate(' + rotate + 'deg)');
 
-                $('#pointer').css('animation', 'rotation 0.5s linear');
-                $('#pointer').css('-moz-animation', 'rotation 0.5s linear');
-                $('#pointer').css('-webkit-animation', 'rotation 0.5s linear');
-                $('#pointer').css('-o-animation', 'rotation 0.5s linear');
+                $('#pointer').css('animation', 'rotation 0.8s linear');
+                $('#pointer').css('-moz-animation', 'rotation 0.8s linear');
+                $('#pointer').css('-webkit-animation', 'rotation 0.8s linear');
+                $('#pointer').css('-o-animation', 'rotation 0.8s linear');
 
                 if (data.status == 'fail') {
                     $.helper.alert(data.msg);
@@ -42,16 +42,10 @@ $(document).ready(function () {
                             if (result) {
                                 location.href = "/prize/suc";
                             } else {
-                                location.reload();
-                                // $('#pointer').css('transform','rotate(-' + rotate + 'deg)');
-                                // $('#pointer').css('-webkit-transform','rotate(-' + rotate + 'deg)');
-                                // $('#pointer').css('-moz-transform','rotate(-' + rotate + 'deg)');
-                                // $('#pointer').css('-0-transform','rotate(-' + rotate + 'deg)');
-
-                                // $('#pointer').css('animation', 'rotation 2s linear');
-                                // $('#pointer').css('-moz-animation', 'rotation 2s linear');
-                                // $('#pointer').css('-webkit-animation', 'rotation 2s linear');
-                                // $('#pointer').css('-o-animation', 'rotation 2s linear');
+                                $('#pointer,#pan').css('transform','none');
+                                $('#pointer,#pan').css('-webkit-transform','none');
+                                $('#pointer,#pan').css('-moz-transform','none');
+                                $('#pointer,#pan').css('-0-transform','none');
                             }
                         }
                     });
