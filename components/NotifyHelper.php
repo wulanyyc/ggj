@@ -8,6 +8,7 @@ use app\components\PriceHelper;
 use app\components\SiteHelper;
 use app\models\ProductOrder;
 use app\models\Customer;
+use app\models\Pay;
 
 /**
  * 基础帮助类
@@ -27,6 +28,8 @@ class NotifyHelper extends Component{
             ->where(['id' => $info['customer_id']])->asArray()->one();
 
         $customer = !empty($customerInfo['nick']) ? $customerInfo['nick'] : $customerInfo['phone'];
+        $onlineMoney = Pay::find()->where(['order_id' => $id])->select('online_money')->scalar();
+
 
         $data = [
             'touser' => $myId,
@@ -45,7 +48,7 @@ class NotifyHelper extends Component{
                     'color' => '#173177',
                 ],
                 'keyword3' => [
-                    'value' => $info['pay_money'],
+                    'value' => $info['pay_money'] . '_' . $onlineMoney,
                     'color' => '#e83030',
                 ],
                 'keyword4' => [
