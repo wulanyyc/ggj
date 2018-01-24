@@ -109,7 +109,7 @@ class OrderHelper extends Component {
 
         // 更新礼品
         $gifts = ProductOrder::find()->where(['id' => $data['order_id']])
-            ->select('gift_ids')->asArray()->one();
+            ->select('gift_ids')->asArray()->scalar();
 
         if (!empty($gifts)) {
             $giftUseIds = explode(',', $gifts);
