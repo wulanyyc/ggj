@@ -430,7 +430,7 @@ $(document).ready(function () {
         $('body').addClass('forbid');
         $('#cover').show();
 
-        $(body).on('touchmove', function(e) {
+        $(window).on('touchmove', function(e) {
             if (!$(this).hasClass('top-layer')) {
                 e.preventDefault();
             }
