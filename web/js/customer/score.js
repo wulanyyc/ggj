@@ -18,7 +18,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status == 'ok') {
-                    $.helper.confirm('兑换成功，继续兑换？', function(result){
+                    $.helper.confirm('已兑换成功，继续兑换？', function(result){
                         if (!result) {
                             location.href="/customer";
                         } else {
@@ -30,17 +30,5 @@ $(document).ready(function () {
                 }
             }
         });
-    });
-
-    $('#ask').click(function(){
-        $('#question').show();
-        $('#cover').show();
-        $('body').addClass('forbid');
-    });
-
-    $('#close_question').click(function(){
-        $('#question').hide();
-        $('#cover').hide();
-        $('body').removeClass('forbid');
     });
 });
