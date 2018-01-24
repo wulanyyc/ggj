@@ -26,11 +26,11 @@ $(document).ready(function () {
                     location.href = '/customer/index';
                 }
 
-                if (/promotion/.test(location.pathname)) {
+                if (/\/promotion/.test(location.pathname)) {
                     location.href = '/';
                 }
 
-                if (/order/.test(location.pathname)) {
+                if (/\/order/.test(location.pathname)) {
                     location.href = '/';
                 }
             }
