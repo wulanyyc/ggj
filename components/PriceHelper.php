@@ -507,13 +507,16 @@ class PriceHelper extends Component {
 
         $ret  = 0;
         $info = json_decode($data, true);
+        $str = '';
 
         if ($info['type'] == 'gift') {
             $ret = self::createGift($info['id'], $openid);
+            $str = '您的抽奖礼品：' . $info['text'] . ', 已领取成功。礼品需和订单一起发货';
         }
 
         if ($info['type'] == 'coupon') {
             $ret = self::createCoupon($info['id'], $openid);
+            $str = '您的抽奖礼品：' . $info['text'] . ', 已领取成功。消费券可抵扣订单金额';
         }
 
         if ($ret > 0) {
@@ -527,7 +530,7 @@ class PriceHelper extends Component {
                 }
             }
 
-            return '您的抽奖礼品：' . $info['text'] . ', 已领取成功。水果礼品需和订单一起发货';
+            return $str
         } else {
             return '您的抽奖礼品：' . $info['text'] . ', 获取失败，请联系客服';
         }
