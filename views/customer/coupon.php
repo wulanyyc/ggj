@@ -113,8 +113,8 @@ $this->title = '优惠券管理';
 </style>
 
 <div class="card" style="margin-top: 8px;">
-    <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
-      可用券
+    <div class="card-header bg-white" style="color: red;border-radius: 0;border-bottom: 1px solid #92BC2C;">
+      可用券&nbsp;<span style="font-size: 14px;">(购物中可直接使用)</span>
     </div>
     <div style="padding:2%;">
       <?=$html ?>
