@@ -346,6 +346,7 @@ $(document).ready(function () {
                     $('#coupon_items').html(data.msg);
                     return ;
                 }
+
                 $('#coupon_items').html(data.data);
                 var choosed = $('#coupon_items').attr('data-ids');
                 if (choosed.length > 0) {
@@ -415,8 +416,10 @@ $(document).ready(function () {
                     $('#gift_items').html(data.msg);
                     return ;
                 }
+
                 $('#gift_items').html(data.data);
                 var choosed = $('#gift_items').attr('data-ids');
+                // console.log(choosed);
                 if (choosed.length > 0) {
                     var arr = choosed.split(',');
                     for(var i = 0; i < arr.length; i++) {
