@@ -291,7 +291,7 @@ class OrderController extends AuthController
     }
 
     private function getExpressnum($id) {
-        $info   = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+        $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();
 
         $data = [];
         $data['id'] = date('Ymd', time()) . '_' . $info['id'];

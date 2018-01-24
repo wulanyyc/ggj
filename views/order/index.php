@@ -153,10 +153,10 @@ ClipAsset::register($this);
     <div class="card-header bg-white" style="border-bottom: 1px solid #ced4da;position: relative;">
       <div style="display: inline-block;width:20%;">果果佳</div>
       <div style="font-size: 14px;color:#aaa;line-height: 20px;display: inline-block;position: absolute;right: 10px;">
-        <span class="badge badge-danger" style="font-size: 12px;margin-right: 6px;padding:6px;">
+<!--         <span style="font-size: 12px;margin-right: 6px;padding:6px;">
           <?=$status[$item['status']] ?>
-        </span>
-        <span class="badge badge-success" style="font-size: 12px;margin-right: 6px;padding:6px;">
+        </span> -->
+        <span style="font-size: 12px;margin-right: 6px;padding:6px;">
           <?=$type[$item['order_type']] ?>单
         </span>
         <?php if ($item['status'] == 5) { ?>

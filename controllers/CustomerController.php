@@ -73,11 +73,14 @@ class CustomerController extends Controller
             $isWechat = true;
         }
 
+        $couponNum = count(PriceHelper::getValidCoupon());
+
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'info' => $info,
             'cartid' => $cartid,
             'isWechat' => $isWechat,
+            'couponNum' => $couponNum,
         ]);
     }
 
@@ -196,8 +199,6 @@ class CustomerController extends Controller
         } else {
             foreach($data as $key => $value) {
                 $info = Coupon::find()->where(['id' => $value['cid']])->asArray()->one();
-                // $info['start_date'] = date('Y.m.d', strtotime($info['start_date']));
-                // $info['end_date']   = date('Y.m.d', strtotime($info['end_date']));
 
                 $dayDiff = ceil((strtotime($info['end_date']) - time()) / 86400);
 
@@ -297,7 +298,7 @@ EOF;
         $cid = SiteHelper::getCustomerId();
 
         $job = Coupon::find()
-            ->andWhere(['!=', 'type', 3])
+            ->andWhere(['=', 'type', 2])
             ->andWhere(['<=', 'start_date', $currentDate])
             ->andWhere(['>=', 'end_date', $currentDate])
             ->asArray()->all();

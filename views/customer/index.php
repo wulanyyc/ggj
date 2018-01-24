@@ -29,8 +29,23 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 
     a.show-item {
       padding: 10px 15px;
-      display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: -webkit-center;
-      display: flex;flex-direction: row;justify-content: space-between;align-items: center;text-decoration: none;color: black;
+      display: table;
+      width: 100%;
+/*      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;*/
+      text-decoration: none;
+      color: black;
+    }
+
+    .show-item-arrow {
+      float: right;
+    }
+
+    .show-item-text {
+      width: 80%;
+      display: inline-block;
     }
 
     footer {
@@ -38,7 +53,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
     }
 </style>
 
-<div class="card" id="userinfo" style="padding: 5px 15px;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-between;align-items: -webkit-center;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+<div class="card" id="userinfo" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
   <?php if (empty($info['headimgurl'])) { ?>
   <div style="font-size: 50px;">
     <a href="/customer/info" style="color: black;"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
@@ -60,7 +75,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <!-- <div><button type="button" class="btn btn-outline-info btn-sm" id="charge">充值享优惠</button></div> -->
 </div>
 
-<div class="card" id="order" style="padding: 5px 15px;display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-space-around;align-items: -webkit-center;display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
+<div class="card" id="order" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
   <?php if ($cartid > 0) { ?>
   <a href="/cart?id=<?=$cartid ?>" style="color:black;text-decoration: none;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
@@ -87,31 +102,36 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 </div>
 
 <a href="/customer/feedback" class="card show-item" id="feedback">
-  <div style="width:90%;">售后建议</div>
-  <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
+  <div class="show-item-text">售后建议</div>
+  <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 <a href="/customer/coupon" class="card show-item" id="coupon">
-  <div style="width:90%;">优惠券</div>
-  <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
+  <div class="show-item-text">优惠券</div>
+  <div class="show-item-arrow">
+    <?php if ($couponNum > 0) { ?>
+    <span class="badge badge-danger"><?=$couponNum ?></span>
+    <?php } ?>
+    <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+  </div>
 </a>
 <a href="/customer/score" class="card show-item" id="score">
-  <div style="width:90%;">积分商场</div>
-  <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
+  <div class="show-item-text">积分商场</div>
+  <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 <a href="/buy/type" class="card show-item" id="score">
-  <div style="width:90%;">购买须知</div>
-  <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
+  <div class="show-item-text">购买须知</div>
+  <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
 
 <a href="/customer/info" class="card show-item" id="info">
-  <div style="width:90%;">个人信息</div>
-  <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
+  <div class="show-item-text">个人信息</div>
+  <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
 <a href="/address" class="card show-item" id="address">
-  <div style="width:90%;">地址管理</div>
-  <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
+  <div class="show-item-text">地址管理</div>
+  <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
 <!-- <a href="/customer/refund" class="card show-item" id="address">
@@ -120,8 +140,8 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 </a> -->
 
 <a href="/contact" class="card show-item" id="contactus">
-  <div style="width:90%;">联系我们</div>
-  <div><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
+  <div class="show-item-text">联系我们</div>
+  <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
 
 <?php if (!$isWechat) { ?>

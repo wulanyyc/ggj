@@ -67,7 +67,6 @@ class PrizeController extends Controller
 
             echo json_encode([
                 'status' => 'fail',
-                'rotate' => $rotate,
                 'msg'    => '您本周已达到' . $limit . '次抽奖限制, 请' . $remainDay . '天后再抽',
             ]);
 
@@ -136,6 +135,16 @@ class PrizeController extends Controller
 
             if (Yii::$app->redis->get($this->prefix . $prizeCode)) {
                 $prizeCode = SiteHelper::getRandomStr(6);
+            }
+
+            if ($cnt > 1 && empty(Yii::$app->redis->get($this->prefix . $prizeCode))) {
+                $remainTime = Yii::$app->redis->ttl($cntKey);
+                $remainDay = round($remainTime / 86400, 1);
+
+                return $this->render('limit', [
+                    'controller' => Yii::$app->controller->id,
+                    'day' => $remainDay,
+                ]);
             }
 
             Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * 30, json_encode($prize));

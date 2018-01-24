@@ -189,20 +189,6 @@ class PriceHelper extends Component {
         }
 
         return $data;
-        // $customer_id = SiteHelper::getCustomerId();
-
-        // $currentDate = date('Ymd', time());
-
-        // $data = CouponUse::find()->where(['customer_id' => $customer_id, 'use_status' => 1])->asArray()->all();
-
-        // foreach ($data as $key => $item) {
-        //     $endDate = Coupon::find()->where(['id' => $item['cid']])->select('end_date')->scalar();
-        //     if ($currentDate > $endDate) {
-        //         unset($data[$key]);
-        //     }
-        // }
-
-        // return $data;
     }
 
     public static function calculateCounponFee($ids) {
