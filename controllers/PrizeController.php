@@ -54,6 +54,14 @@ class PrizeController extends Controller
         $cntKey = $uniq . '_cnt';
         $cnt = Yii::$app->redis->get($cntKey);
 
+        if ($cnt > 0) {
+            $cnt += 1;
+            Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
+        } else {
+            $cnt = 1;
+            Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
+        }
+
         if ($cnt > $limit) {
             $remainTime = Yii::$app->redis->ttl($uniq . "_from");
             if ($remainTime > 0) {
@@ -70,14 +78,6 @@ class PrizeController extends Controller
             Yii::$app->end();
         }
 
-        if ($cnt > 0) {
-            $cnt += 1;
-            Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
-        } else {
-            $cnt = 1;
-            Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
-        }
-
         $rotate = rand(1, 8) * 45;
         $rotate -= 40;
 
@@ -88,7 +88,7 @@ class PrizeController extends Controller
 
         if ($cnt == $limit) {
             echo json_encode([
-                'status' => 'fail', 
+                'status' => 'ok', 
                 'rotate' => $rotate, 
                 'msg' => '您本周已没有抽奖机会了, 本次奖品:' . $prize['text'],
             ]);
