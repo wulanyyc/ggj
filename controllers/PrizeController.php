@@ -186,9 +186,9 @@ class PrizeController extends Controller
         if ($remainTime > 0) {
             $remainDay = round($remainTime / 86400, 1);
         } else {
-            $remainDay = $dayLimit;
+            $remainDay = $this->dayLimit;
         }
-            
+
         return $this->render('suc', [
             'controller' => Yii::$app->controller->id,
             'ticket' => urlencode($ticket),
