@@ -520,12 +520,12 @@ class PriceHelper extends Component {
 
         if ($info['type'] == 'gift') {
             $ret = self::createGift($info['id'], $openid);
-            $str = '您的抽奖礼品：' . $info['text'] . ', 已领取成功。抽奖礼品需在菜单[果果商城->商城]上下单填写地址后，顺丰发货';
+            $str = '您的抽奖礼品：' . $info['text'] . ', 已领取成功。抽奖礼品需在下方菜单[果果商城->逛商城]中下单填写地址后，顺丰发货';
         }
 
         if ($info['type'] == 'coupon') {
             $ret = self::createCoupon($info['id'], $openid);
-            $str = '您的抽奖礼品：' . $info['text'] . ', 已领取成功。消费券可抵扣订单金额';
+            $str = '您的抽奖礼品：' . $info['text'] . ', 已领取成功。消费券可抵扣订单金额, 使用请查看菜单[果果商城->逛商城]';
         }
 
         if ($ret > 0) {
