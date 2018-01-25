@@ -520,7 +520,7 @@ class PriceHelper extends Component {
 
         if ($info['type'] == 'gift') {
             $ret = self::createGift($info['id'], $openid);
-            $str = '您的抽奖礼品：' . $info['text'] . ', 已领取成功。礼品需下单后一起发货';
+            $str = '您的抽奖礼品：' . $info['text'] . ', 已领取成功。抽奖礼品需在商城上下单后，一起发货';
         }
 
         if ($info['type'] == 'coupon') {
