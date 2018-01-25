@@ -23,12 +23,12 @@ class PrizeController extends Controller
         $from = isset($params['from']) ? $params['from'] : '';
 
         if ($from == 'timeline' || $from == 'singlemessage'
-         || $from == 'groupmessage' || !empty($_COOKIE['openid']) || !empty($_COOKIE['guid'])) {
-            if (empty($_COOKIE['guid'])) {
+         || $from == 'groupmessage' || !empty($_COOKIE['openid']) || !empty($_COOKIE['gguid'])) {
+            if (empty($_COOKIE['gguid'])) {
                 $uniq = uniqid();
-                setcookie('guid', $uniq, time() + 86400 * $this->dayLimit, '/');
+                setcookie('gguid', $uniq, time() + 86400 * $this->dayLimit, '/');
             } else {
-                $uniq = $_COOKIE['guid'];
+                $uniq = $_COOKIE['gguid'];
             }
 
             if (!empty($sid)) {
@@ -49,7 +49,7 @@ class PrizeController extends Controller
         $limit    = $this->limit;
         $dayLimit = $this->dayLimit;
 
-        $uniq = $_COOKIE['guid'];
+        $uniq = $_COOKIE['gguid'];
 
         $cntKey = $uniq . '_cnt';
         $cnt = Yii::$app->redis->get($cntKey);
@@ -109,7 +109,7 @@ class PrizeController extends Controller
     }
 
     public function actionSuc() {
-        $uniq = isset($_COOKIE['guid']) ? $_COOKIE['guid'] : '';
+        $uniq = isset($_COOKIE['gguid']) ? $_COOKIE['gguid'] : '';
 
         if (empty($uniq)) {
             return $this->render('error', [
