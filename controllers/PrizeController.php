@@ -14,7 +14,7 @@ class PrizeController extends Controller
     public $prefix = "prize_";
     public $dayLimit = 5; // 抽奖天数限制
     public $prizeLimit = 5; // 领奖期限
-    public $limit = 3; // 抽奖次数限制
+    public $limit = 10; // 抽奖次数限制
     
     public function actionIndex() {
         $params = Yii::$app->request->get();
