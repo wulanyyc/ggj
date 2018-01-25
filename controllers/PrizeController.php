@@ -126,34 +126,33 @@ class PrizeController extends Controller
 
         $cnt = Yii::$app->redis->get($cntKey);
 
-        $data = Yii::$app->redis->get($uniq . "_code");
-
-        if ($cnt > $this->limit) {
-            if (!empty($data)) {
-                $data = json_decode($data, true);
-                $ticket = $data['ticket'];
-                $prizeCode = $data['code'];
-                
-                return $this->render('suc', [
-                    'controller' => Yii::$app->controller->id,
-                    'ticket' => urlencode($ticket),
-                    'text' => $prize['text'],
-                    'code' => $prizeCode,
-                    'day'  => $this->dayLimit,
-                    'prizeLimit' => $this->prizeLimit,
-                ]);
-            } else {
-                $remainTime = Yii::$app->redis->ttl($cntKey);
-                $remainDay = round($remainTime / 86400, 1);
-
-                return $this->render('limit', [
-                    'controller' => Yii::$app->controller->id,
-                    'day' => $remainDay,
-                ]);
-            }
-        }
-
         // $data = Yii::$app->redis->get($uniq . "_code");
+        // if ($cnt > $this->limit) {
+        //     if (!empty($data)) {
+        //         $data = json_decode($data, true);
+        //         $ticket = $data['ticket'];
+        //         $prizeCode = $data['code'];
+
+        //         return $this->render('suc', [
+        //             'controller' => Yii::$app->controller->id,
+        //             'ticket' => urlencode($ticket),
+        //             'text' => $prize['text'],
+        //             'code' => $prizeCode,
+        //             'day'  => $this->dayLimit,
+        //             'prizeLimit' => $this->prizeLimit,
+        //         ]);
+        //     } else {
+        //         $remainTime = Yii::$app->redis->ttl($cntKey);
+        //         $remainDay = round($remainTime / 86400, 1);
+
+        //         return $this->render('limit', [
+        //             'controller' => Yii::$app->controller->id,
+        //             'day' => $remainDay,
+        //         ]);
+        //     }
+        // }
+
+        $data = Yii::$app->redis->get($uniq . "_code");
 
         if (empty($data)) {
             $prizeCode = SiteHelper::getRandomStr(6);
