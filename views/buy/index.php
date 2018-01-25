@@ -377,7 +377,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 
     <div style="margin-bottom: 10px;display: table-row;">
       <input type="text" class="form-control" name="code" id="code" placeholder="4位验证码" style="width:50%;display: table-cell;" />
-      <button type="button" class="btn btn-outline-danger" style="margin-left:5px;width:100px;display: table-cell;" id="getcode">短信验证码</button>
+      <button type="button" class="btn btn-outline-danger" style="margin-left:5px;width:100px;display: table-cell;" id="getcode">获取验证码</button>
     </div>
 
     <button type="button" class="btn btn-success" id="next" style="width:50%;margin-left:25%;margin-top:10px;">

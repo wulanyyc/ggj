@@ -32,7 +32,7 @@ MsaView::registerJsFile($this,'/js/customer/login.js',
 
     <div style="display: -webkit-flex;flex-direction: -webkit-row;justify-content: -webkit-flex-start;display: flex;flex-direction: row;justify-content: flex-start;margin-bottom: 10px;">
       <input type="text" class="form-control" name="code" id="code" placeholder="4位验证码" style="width:50%;">
-      <button type="button" class="btn btn-outline-danger" style="margin-left:5px;width:100px;" id="getcode">手机验证码</button>
+      <button type="button" class="btn btn-outline-danger" style="margin-left:5px;width:100px;" id="getcode">获取验证码</button>
     </div>
 
     <button type="button" class="btn btn-success" id="submit" style="width:50%;margin-left:25%;margin-top:10px;">
