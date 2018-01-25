@@ -143,9 +143,9 @@ class OrderController extends AuthController
         if (!empty($gifts)) {
             $giftIds = explode(',', $gifts);
             foreach($giftIds as $item) {
-                $tmpStatus = GiftUse::find()->where(['gid' => $item, 'customer_id' => $info['customer_id']])->asArray()->one();
+                $tmpStatus = GiftUse::find()->where(['id' => $item, 'customer_id' => $info['customer_id']])->asArray()->one();
 
-                $tmpInfo = Gift::find()->where(['id' => $item])->asArray()->one();
+                $tmpInfo = Gift::find()->where(['id' => $tmpStatus['gid']])->asArray()->one();
 
                 $tmp = [
                     'name' => $tmpInfo['name'],
