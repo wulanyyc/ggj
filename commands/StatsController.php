@@ -11,6 +11,7 @@ use Yii;
 use yii\console\Controller;
 use app\components\WechatHelper;
 use app\components\PriceHelper;
+use app\components\SiteHelper;
 use app\models\CustomerWeixin;
 use app\models\Customer;
 use app\models\ProductOrder;
@@ -65,5 +66,9 @@ class StatsController extends Controller
                 }
             }
         }
+    }
+
+    public function actionTest() {
+        echo SiteHelper::handleNick(' ..*中国..*');
     }
 }

@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\components\WechatHelper;
+use app\components\SiteHelper;
 use app\models\CustomerWeixin;
 use app\models\Customer;
 use app\components\PriceHelper;
@@ -108,7 +109,7 @@ class WechatController extends Controller
                     $ar->is_subscribe = $userinfo['subscribe'];
                     $ar->headimgurl = $userinfo['headimgurl'];
                     $ar->city = $userinfo['city'];
-                    $ar->nickname = $userinfo['nickname'];
+                    $ar->nickname = SiteHelper::handleNick($userinfo['nickname']);
                     $ar->subscribe_time = $userinfo['subscribe_time'];
                     if (isset($userinfo['unionid'])) {
                         $ar->unionid = $userinfo['unionid'];
@@ -122,7 +123,7 @@ class WechatController extends Controller
                         $cusar->sex = $userinfo['sex'];
                         $cusar->headimgurl = $userinfo['headimgurl'];
                         $cusar->city = $userinfo['city'];
-                        $cusar->nick = $userinfo['nickname'];
+                        $cusar->nick = SiteHelper::handleNick($userinfo['nickname']);
                         $cusar->status = 2;
                         if (isset($userinfo['unionid'])) {
                             $cusar->unionid = $userinfo['unionid'];
@@ -143,7 +144,7 @@ class WechatController extends Controller
                         $cusar->sex = $userinfo['sex'];
                         $cusar->headimgurl = $userinfo['headimgurl'];
                         $cusar->city = $userinfo['city'];
-                        $cusar->nick = $userinfo['nickname'];
+                        $cusar->nick = SiteHelper::handleNick($userinfo['nickname']);
                         if (isset($userinfo['unionid'])) {
                             $cusar->unionid = $userinfo['unionid'];
                         }
@@ -157,7 +158,7 @@ class WechatController extends Controller
                     $ar->is_subscribe = $userinfo['subscribe'];
                     $ar->headimgurl = $userinfo['headimgurl'];
                     $ar->city = $userinfo['city'];
-                    $ar->nickname = $userinfo['nickname'];
+                    $ar->nickname = SiteHelper::handleNick($userinfo['nickname']);
                     $ar->subscribe_time = $userinfo['subscribe_time'];
                     if (isset($userinfo['unionid'])) {
                         $ar->unionid = $userinfo['unionid'];
@@ -169,7 +170,7 @@ class WechatController extends Controller
                     $cusar->sex = $userinfo['sex'];
                     $cusar->headimgurl = $userinfo['headimgurl'];
                     $cusar->city = $userinfo['city'];
-                    $cusar->nick = $userinfo['nickname'];
+                    $cusar->nick = SiteHelper::handleNick($userinfo['nickname']);
                     $cusar->status = 2;
                     if (isset($userinfo['unionid'])) {
                         $cusar->unionid = $userinfo['unionid'];

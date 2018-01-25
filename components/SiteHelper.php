@@ -226,4 +226,11 @@ class SiteHelper extends Component{
         }
         return $str;
     }
+
+    public static function handleNick($nick) {
+        $nick = trim($nick);
+        $nick = preg_replace('/\*|\./', '', $nick);
+
+        return $nick;
+    }
 }
