@@ -90,7 +90,7 @@ class PrizeController extends Controller
             echo json_encode([
                 'status' => 'ok', 
                 'rotate' => $rotate, 
-                'msg' => '您本周已没有抽奖机会了, 本次奖品:' . $prize['text'],
+                'msg' => '您本周已没有抽奖机会了, 建议领取本次奖品:' . $prize['text'],
             ]);
             Yii::$app->end();
         }
