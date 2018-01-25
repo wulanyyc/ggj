@@ -86,7 +86,7 @@ class NotifyHelper extends Component{
                         'color' => '#e83030',
                     ],
                     'keyword1' => [
-                        'value' => $money,
+                        'value' => $money . '元',
                         'color' => '#173177',
                     ],
                     'keyword2' => [

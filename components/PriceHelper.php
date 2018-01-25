@@ -526,7 +526,7 @@ class PriceHelper extends Component {
                 $fopenid = Customer::find()->select('from_openid')->where(['openid' => $openid])->scalar();
                 if (empty($fopenid) && $fromOpenid != $openid) {
                     Customer::updateAll(['from_openid' => $fromOpenid], ['openid' => $openid]);
-                    NotifyHelper::sendFanli($openid, $fromOpenid, 2);
+                    NotifyHelper::sendFanli($openid, $fromOpenid, 5);
                 }
             }
 
