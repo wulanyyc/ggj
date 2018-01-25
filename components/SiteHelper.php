@@ -228,8 +228,8 @@ class SiteHelper extends Component{
     }
 
     public static function handleNick($nick) {
-        $nick = trim($nick);
         $nick = preg_replace('/\*|\./', '', $nick);
+        $nick = trim($nick);
 
         return $nick;
     }
