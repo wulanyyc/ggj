@@ -13,6 +13,7 @@ use app\models\ProductCart;
 use app\models\Pay;
 use app\components\PriceHelper;
 use app\components\SmsHelper;
+use app\components\WechatHelper;
 use app\modules\product\models\ProductList;
 
 /**
@@ -168,12 +169,18 @@ class SiteHelper extends Component{
             $cid = Customer::find()->select('id')->where(['openid' => $openid])->scalar();
             if ($cid > 0) {
                 return $cid;
+            } else {
+                return WechatHelper::addWxCustomer($openid);
             }
         }
 
         if (!empty($_COOKIE['openid'])) {
             $cid = Customer::find()->select('id')->where(['openid' => $_COOKIE['openid']])->scalar();
             if ($cid > 0) {
+                setcookie('cid', $cid, time() + 86400 * 30, '/');
+                return $cid;
+            } else {
+                $cid = WechatHelper::addWxCustomer($openid);
                 setcookie('cid', $cid, time() + 86400 * 30, '/');
                 return $cid;
             }

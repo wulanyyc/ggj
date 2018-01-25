@@ -85,6 +85,8 @@ class WechatHelper extends Component{
         }
 
         $ar->save();
+
+        return $ar->id;
     }
 
     public static function getPageAccessToken() {
