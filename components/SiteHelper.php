@@ -231,6 +231,10 @@ class SiteHelper extends Component{
         $nick = preg_replace('/\*|\./', '', $nick);
         $nick = trim($nick);
 
+        $nick = json_encode($nick);
+        $nick = preg_replace("/\\\u[ed][0-9a-f]{3}\\\u[ed][0-9a-f]{3}/", "", $nick);
+        $nick = json_decode($nick);
+
         return $nick;
     }
 }
