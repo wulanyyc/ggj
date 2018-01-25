@@ -15,6 +15,7 @@ use app\models\Pay;
 use app\components\AlipayHelper;
 use app\components\WxpayHelper;
 use app\components\SiteHelper;
+use app\components\WechatHelper;
 use app\components\NotifyHelper;
 use app\models\GiftUse;
 
@@ -283,24 +284,26 @@ class PriceHelper extends Component {
     public static function adjustWallet($cid, $money, $type = 'minus', $reason = '') {
         $wallet  = Customer::find()->where(['id' => $cid])->select('money')->scalar();
 
-        if ($type == 'minus') {
-            $newmoney = $wallet - $money;
+        if (!empty($wallet)) {
+            if ($type == 'minus') {
+                $newmoney = $wallet - $money;
+            }
+
+            if ($type == 'plus') {
+                $newmoney = $wallet + $money;
+            }
+
+            $cmlar = new CustomerMoneyList();
+            $cmlar->money = $money;
+            $cmlar->operator = $type;
+            $cmlar->reason = $reason;
+            $cmlar->cid = $cid;
+            $cmlar->save();
+
+            $up = Customer::findOne($cid);
+            $up->money = $newmoney;
+            $up->save();
         }
-
-        if ($type == 'plus') {
-            $newmoney = $wallet + $money;
-        }
-
-        $cmlar = new CustomerMoneyList();
-        $cmlar->money = $money;
-        $cmlar->operator = $type;
-        $cmlar->reason = $reason;
-        $cmlar->cid = $cid;
-        $cmlar->save();
-
-        $up = Customer::findOne($cid);
-        $up->money = $newmoney;
-        $up->save();
     }
 
     /**
@@ -492,6 +495,11 @@ class PriceHelper extends Component {
     }
 
     public static function handlePrize($key, $openid) {
+        $exsit = Customer::find()->where(['openid' => $openid])->count();
+        if ($exsit == 0) {
+            WechatHelper::addWxCustomer($openid);
+        }
+
         $prizeLimit = 5;
 
         $get = Yii::$app->redis->get('prize_' . $key . '_get');

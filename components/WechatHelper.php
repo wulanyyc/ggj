@@ -4,6 +4,7 @@ namespace app\components;
 use Yii;
 use yii\base\Component;
 use app\models\Customer;
+use app\models\CustomerWeixin;
 use app\components\SiteHelper;
 
 /**
@@ -60,6 +61,30 @@ class WechatHelper extends Component{
         } else {
             return $cache;
         }
+    }
+
+    public static function addWxCustomer($openid) {
+        $userinfo = self::getUserInfo($openid);
+        $exsit    = Customer::find()->where(['openid' => $openid])->asArray()->one();
+
+        if (!empty($exsit)) {
+            $ar = Customer::findOne($exsit['id']);
+        } else {
+            $ar = new Customer();
+        }
+
+        $ar->openid = $userinfo['openid'];
+        $ar->sex = $userinfo['sex'];
+        $ar->headimgurl = $userinfo['headimgurl'];
+        $ar->city = $userinfo['city'];
+        $ar->nick = SiteHelper::handleNick($userinfo['nickname']);
+        $ar->is_subscribe = $userinfo['subscribe'];
+
+        if (isset($userinfo['unionid'])) {
+            $ar->unionid = $userinfo['unionid'];
+        }
+
+        $ar->save();
     }
 
     public static function getPageAccessToken() {

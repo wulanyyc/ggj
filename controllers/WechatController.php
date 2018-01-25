@@ -100,92 +100,15 @@ class WechatController extends Controller
         if ($event == 'subscribe') {
             $userinfo = WechatHelper::getUserInfo($openid);
             if (!isset($userinfo['errcode'])) {
-                $exsit = CustomerWeixin::find()->where(['openid' => $openid])->asArray()->one();
+                $exsit = Customer::find()->where(['openid' => $openid])->asArray()->one();
 
-                if (count($exsit) > 0) {
-                    $ar = CustomerWeixin::findOne($exsit['id']);
-                    $ar->openid = $userinfo['openid'];
-                    $ar->sex = $userinfo['sex'];
-                    $ar->is_subscribe = $userinfo['subscribe'];
-                    $ar->headimgurl = $userinfo['headimgurl'];
-                    $ar->city = $userinfo['city'];
-                    $ar->nickname = SiteHelper::handleNick($userinfo['nickname']);
-                    $ar->subscribe_time = $userinfo['subscribe_time'];
-                    if (isset($userinfo['unionid'])) {
-                        $ar->unionid = $userinfo['unionid'];
-                    }
-                    $ar->save();
-
-                    $exsitCus = Customer::find()->where(['openid' => $openid])->asArray()->one();
-                    if (empty($exsitCus)) {
-                        $cusar = new Customer();
-                        $cusar->openid = $userinfo['openid'];
-                        $cusar->sex = $userinfo['sex'];
-                        $cusar->headimgurl = $userinfo['headimgurl'];
-                        $cusar->city = $userinfo['city'];
-                        $cusar->nick = SiteHelper::handleNick($userinfo['nickname']);
-                        $cusar->status = 2;
-                        if (isset($userinfo['unionid'])) {
-                            $cusar->unionid = $userinfo['unionid'];
-                        }
-                        $cusar->save();
-
-                        $up = CustomerWeixin::findOne($ar->id);
-                        $up->customer_id = $cusar->id;
-                        $up->save();
-
-                        // TODO 关注公众号，修改优惠id
-                        PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
-                        // TODO 首单优惠，修改优惠id
-                        PriceHelper::createCoupon(Yii::$app->params['coupon']['login'], $openid);
-                    } else {
-                        $cusar = Customer::findOne($exsitCus['id']);
-                        $cusar->openid = $userinfo['openid'];
-                        $cusar->sex = $userinfo['sex'];
-                        $cusar->headimgurl = $userinfo['headimgurl'];
-                        $cusar->city = $userinfo['city'];
-                        $cusar->nick = SiteHelper::handleNick($userinfo['nickname']);
-                        if (isset($userinfo['unionid'])) {
-                            $cusar->unionid = $userinfo['unionid'];
-                        }
-                        $cusar->save();
-                    }
-
+                if (!empty($exsit)) {
+                    WechatHelper::addWxCustomer($openid);
                 } else {
-                    $ar = new CustomerWeixin();
-                    $ar->openid = $userinfo['openid'];
-                    $ar->sex = $userinfo['sex'];
-                    $ar->is_subscribe = $userinfo['subscribe'];
-                    $ar->headimgurl = $userinfo['headimgurl'];
-                    $ar->city = $userinfo['city'];
-                    $ar->nickname = SiteHelper::handleNick($userinfo['nickname']);
-                    $ar->subscribe_time = $userinfo['subscribe_time'];
-                    if (isset($userinfo['unionid'])) {
-                        $ar->unionid = $userinfo['unionid'];
-                    }
-                    $ar->save();
-
-                    $cusar = new Customer();
-                    $cusar->openid = $userinfo['openid'];
-                    $cusar->sex = $userinfo['sex'];
-                    $cusar->headimgurl = $userinfo['headimgurl'];
-                    $cusar->city = $userinfo['city'];
-                    $cusar->nick = SiteHelper::handleNick($userinfo['nickname']);
-                    $cusar->status = 2;
-                    if (isset($userinfo['unionid'])) {
-                        $cusar->unionid = $userinfo['unionid'];
-                    }
-                    $cusar->save();
-
-
-                    $up = CustomerWeixin::findOne($ar->id);
-                    $up->customer_id = $cusar->id;
-                    $up->save();
+                    WechatHelper::addWxCustomer($openid);
 
                     // TODO 关注公众号，修改优惠id
                     PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $openid);
-                    // TODO 首单优惠，修改优惠id
-                    // PriceHelper::createCoupon(Yii::$app->params['coupon']['login'], $openid);
                 }
             }
 
@@ -219,7 +142,7 @@ class WechatController extends Controller
             if (!empty($eventKey)) {
                 return PriceHelper::handlePrize($eventKey, $openid);
             } else {
-                return "欢迎来到果果佳，新鲜佳果，保质保量";
+                return "欢迎关注成都果果佳，新鲜佳果，保质保量";
             }
         }
 
