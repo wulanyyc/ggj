@@ -149,7 +149,7 @@ class OrderController extends AuthController
 
                 $tmp = [
                     'name' => $tmpInfo['name'],
-                    'useflag' => ($tmpStatus['use_status'] == 1) ? '本次配送' : '已领取',
+                    'useflag' => '本次配送',
                 ];
 
                 $info['gifts'][] = $tmp;

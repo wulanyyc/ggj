@@ -114,6 +114,7 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
         </table>
     </div>
     <br/>
+    <?php if (!empty($info['gifts'])) { ?>
     <div id="gift">
         <table class="table table-bordered">
             <thead>
@@ -132,6 +133,7 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
             </tbody>
         </table>
     </div>
+    <?php } ?>
     <br/>
     <div id="contact" style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
         <img src="/img/company.jpg" style="width: 180px;"></img>
