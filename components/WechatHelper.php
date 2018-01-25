@@ -67,7 +67,7 @@ class WechatHelper extends Component{
         $userinfo = self::getUserInfo($openid);
         $exsit    = Customer::find()->where(['openid' => $openid])->asArray()->one();
 
-        if (!empty($exsit)) {
+        if (count($exsit) > 0) {
             $ar = Customer::findOne($exsit['id']);
         } else {
             $ar = new Customer();

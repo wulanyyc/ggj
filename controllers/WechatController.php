@@ -102,7 +102,7 @@ class WechatController extends Controller
             if (!isset($userinfo['errcode'])) {
                 $exsit = Customer::find()->where(['openid' => $openid])->asArray()->one();
 
-                if (!empty($exsit)) {
+                if (count($exsit) > 0) {
                     WechatHelper::addWxCustomer($openid);
                 } else {
                     WechatHelper::addWxCustomer($openid);
