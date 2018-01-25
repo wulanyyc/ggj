@@ -13,8 +13,8 @@ class PrizeController extends Controller
     public $layout = 'blank';
     public $prefix = "prize_";
     public $dayLimit = 5; // 抽奖天数限制
-    public $prizeLimit = 10; // 领奖期限
-    public $limit = 3000; // 抽奖次数限制
+    public $prizeLimit = 5; // 领奖期限
+    public $limit = 3; // 抽奖次数限制
     
     public function actionIndex() {
         $params = Yii::$app->request->get();
@@ -23,12 +23,12 @@ class PrizeController extends Controller
         $from = isset($params['from']) ? $params['from'] : '';
 
         if ($from == 'timeline' || $from == 'singlemessage'
-         || $from == 'groupmessage' || !empty($_COOKIE['openid']) || !empty($_COOKIE['puid'])) {
-            if (empty($_COOKIE['puid'])) {
+         || $from == 'groupmessage' || !empty($_COOKIE['openid']) || !empty($_COOKIE['guid'])) {
+            if (empty($_COOKIE['guid'])) {
                 $uniq = uniqid();
-                setcookie('puid', $uniq, time() + 86400 * $this->dayLimit, '/');
+                setcookie('guid', $uniq, time() + 86400 * $this->dayLimit, '/');
             } else {
-                $uniq = $_COOKIE['puid'];
+                $uniq = $_COOKIE['guid'];
             }
 
             if (!empty($sid)) {
@@ -49,7 +49,7 @@ class PrizeController extends Controller
         $limit    = $this->limit;
         $dayLimit = $this->dayLimit;
 
-        $uniq = $_COOKIE['puid'];
+        $uniq = $_COOKIE['guid'];
 
         $cntKey = $uniq . '_cnt';
         $cnt = Yii::$app->redis->get($cntKey);
@@ -109,7 +109,7 @@ class PrizeController extends Controller
     }
 
     public function actionSuc() {
-        $uniq = isset($_COOKIE['puid']) ? $_COOKIE['puid'] : '';
+        $uniq = isset($_COOKIE['guid']) ? $_COOKIE['guid'] : '';
 
         if (empty($uniq)) {
             return $this->render('error', [

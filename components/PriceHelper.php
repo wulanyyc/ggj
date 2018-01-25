@@ -492,7 +492,7 @@ class PriceHelper extends Component {
     }
 
     public static function handlePrize($key, $openid) {
-        $prizeLimit = 10;
+        $prizeLimit = 5;
 
         $get = Yii::$app->redis->get('prize_' . $key . '_get');
         if ($get > 0) {
