@@ -141,18 +141,9 @@ class PrizeController extends Controller
         if (empty($data)) {
             $prizeCode = SiteHelper::getRandomStr(6);
 
+            // 存在的话，重新生成一个
             if (Yii::$app->redis->get($this->prefix . $prizeCode)) {
                 $prizeCode = SiteHelper::getRandomStr(6);
-            }
-
-            if ($cnt > 1 && empty(Yii::$app->redis->get($this->prefix . $prizeCode))) {
-                $remainTime = Yii::$app->redis->ttl($cntKey);
-                $remainDay = round($remainTime / 86400, 1);
-
-                return $this->render('limit', [
-                    'controller' => Yii::$app->controller->id,
-                    'day' => $remainDay,
-                ]);
             }
 
             Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * $this->prizeLimit, json_encode($prize));
