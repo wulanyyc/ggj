@@ -41,10 +41,10 @@ $(document).ready(function () {
                     style.innerHTML = keyFrames;
                     document.getElementsByTagName('head')[0].appendChild(style);
 
-                    $('#pointer').css('animation', 'rotation 2s ease 0s 1 alternate forwards');
-                    $('#pointer').css('-moz-animation', 'rotation 2s ease 0s 1 alternate forwards');
-                    $('#pointer').css('-webkit-animation', 'rotation 2s ease 0s 1 alternate forwards');
-                    $('#pointer').css('-o-animation', 'rotation 2s ease 0s 1 alternate forwards');
+                    $('#pan').css('animation', 'rotation 4s ease 0s 1 alternate forwards');
+                    $('#pan').css('-moz-animation', 'rotation 4s ease 0s 1 alternate forwards');
+                    $('#pan').css('-webkit-animation', 'rotation 4s ease 0s 1 alternate forwards');
+                    $('#pan').css('-o-animation', 'rotation 4s ease 0s 1 alternate forwards');
 
                     setTimeout(function(){
                             bootbox.confirm({
@@ -71,7 +71,7 @@ $(document).ready(function () {
                                 }
                             });
                         },
-                        2500
+                        4500
                     );
                 }
 
