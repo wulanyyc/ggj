@@ -182,12 +182,19 @@ class PrizeController extends Controller
             Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * $this->prizeLimit, json_encode($prize));
         }
 
+        $remainTime = Yii::$app->redis->ttl($uniq . "_from");
+        if ($remainTime > 0) {
+            $remainDay = round($remainTime / 86400, 1);
+        } else {
+            $remainDay = $dayLimit;
+        }
+            
         return $this->render('suc', [
             'controller' => Yii::$app->controller->id,
             'ticket' => urlencode($ticket),
             'text' => $prize['text'],
             'code' => $prizeCode,
-            'day'  => $this->dayLimit,
+            'day'  => $remainDay,
             'prizeLimit' => $this->prizeLimit,
         ]);
     }
