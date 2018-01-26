@@ -282,7 +282,7 @@ class PriceHelper extends Component {
      * type: plus, minus
      */
     public static function adjustWallet($cid, $money, $type = 'minus', $reason = '') {
-        $wallet  = Customer::find()->where(['id' => $cid])->select('money')->scalar();
+        $wallet = Customer::find()->where(['id' => $cid])->select('money')->scalar();
 
         if (!empty($wallet)) {
             if ($type == 'minus') {

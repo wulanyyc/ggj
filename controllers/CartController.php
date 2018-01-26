@@ -309,6 +309,7 @@ EOF;
 
         $rule = ProductOrder::find()->where(['cart_id' => $cid])->select('express_rule')->scalar();
 
+        if (empty($rule)) $rule = 1;
         SiteHelper::render('ok', $rule);
     }
 }
