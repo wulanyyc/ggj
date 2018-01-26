@@ -23,7 +23,7 @@ $(document).ready(function () {
                             }
                         }, 1000);
 
-                        $('#getcode').attr('disabled', 'disabled');
+                        // $('#getcode').attr('disabled', 'disabled');
                     } else {
                         bootbox.alert(data);
                     }
@@ -50,7 +50,7 @@ $(document).ready(function () {
                     $('#login').hide();
                     $('#getcode').val('');
                     $('#getcode').html('发送验证码');
-                    $('#getcode').removeAttr('disabled');
+                    // $('#getcode').removeAttr('disabled');
 
                     location.href="/customer"
                 } else {

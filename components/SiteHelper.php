@@ -23,6 +23,16 @@ use app\modules\product\models\ProductList;
  */
 class SiteHelper extends Component{
     public static function addCustomer($phone) {
+        if (!empty($_COOKIE['openid'])) {
+            $id = WechatHelper::addWxCustomer($_COOKIE['openid']);
+
+            $up = Customer::findOne($id);
+            $up->phone = $phone;
+            $up->save();
+
+            return $id;
+        }
+
         // TODO combine zhanghao
         $id = Customer::find()->where(['phone' => $phone])->select('id')->scalar();
 
