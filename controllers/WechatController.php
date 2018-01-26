@@ -90,6 +90,11 @@ class WechatController extends Controller
 
     // TODO
     private function handleText($content) {
+        if (preg_match('/车厘子/', $content)) {
+            return '车厘子礼品券需下单后填写地址，顺丰配送。
+果果佳提供智利进口单J、双J车厘子现货销售，3J车厘子需预订，价格优惠，保质保量';
+        }
+
         if (preg_match('/礼品/', $content)) {
             return '礼品券需下单后填写地址，顺丰配送';
         }
