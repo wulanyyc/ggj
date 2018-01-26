@@ -75,9 +75,17 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
             <label>下单ID：</label><span><?=$info['id'] ?></span>
         </div>
 
-<!--         <div class="item">
+        <div class="item">
             <label>商品价格：</label><span><?=$info['product_price'] ?></span>
-        </div> -->
+        </div>
+
+        <div class="item">
+            <label>快递费：</label><span><?=$info['express_fee'] ?></span>
+        </div>
+
+        <div class="item">
+            <label>优惠券：</label><span><?=$info['coupon_fee'] ?></span>
+        </div>
 
         <div class="item">
             <label>支付金额：</label><span><?=$info['pay_money'] ?></span>
