@@ -284,26 +284,24 @@ class PriceHelper extends Component {
     public static function adjustWallet($cid, $money, $type = 'minus', $reason = '') {
         $wallet = Customer::find()->where(['id' => $cid])->select('money')->scalar();
 
-        if (!empty($wallet)) {
-            if ($type == 'minus') {
-                $newmoney = $wallet - $money;
-            }
-
-            if ($type == 'plus') {
-                $newmoney = $wallet + $money;
-            }
-
-            $cmlar = new CustomerMoneyList();
-            $cmlar->money = $money;
-            $cmlar->operator = $type;
-            $cmlar->reason = $reason;
-            $cmlar->cid = $cid;
-            $cmlar->save();
-
-            $up = Customer::findOne($cid);
-            $up->money = $newmoney;
-            $up->save();
+        if ($type == 'minus') {
+            $newmoney = $wallet - $money;
         }
+
+        if ($type == 'plus') {
+            $newmoney = $wallet + $money;
+        }
+
+        $cmlar = new CustomerMoneyList();
+        $cmlar->money = $money;
+        $cmlar->operator = $type;
+        $cmlar->reason = $reason;
+        $cmlar->cid = $cid;
+        $cmlar->save();
+
+        $up = Customer::findOne($cid);
+        $up->money = $newmoney;
+        $up->save();
     }
 
     /**
@@ -530,7 +528,9 @@ class PriceHelper extends Component {
 
         if ($ret > 0) {
             Yii::$app->redis->setex('prize_' . $key . '_get', 86400 * $prizeLimit, 1);
+            // 来源openid
             $fromOpenid = Yii::$app->redis->get($info['uniq']. '_from');
+
             if (!empty($fromOpenid)) {
                 $fopenid = Customer::find()->select('from_openid')->where(['openid' => $openid])->scalar();
                 if (empty($fopenid) && $fromOpenid != $openid) {
