@@ -467,7 +467,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 <div class="card">
   <div id="gift_show" class="card-content">
     <div style="margin-bottom:3px;display: table;height: 36px;position: relative;width: 100%;line-height: 36px;" id="choose_gift">
-      <div class="label" style="width:68%;display: inline-block;">礼品</div>
+      <div class="label" style="width:68%;display: inline-block;">礼品券</div>
       <div id="gift_detail">
         <?php if ($gift > 0) { ?>
         可领<span class="text-danger" style="font-weight: bold;font-size: 14px;">&nbsp;<?=$gift ?>&nbsp;</span>份&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
