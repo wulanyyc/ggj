@@ -458,7 +458,7 @@ class PriceHelper extends Component {
             1 => [
                 'type' => 'gift',
                 'id'   => 1,
-                'text' => '半斤单J智利进口车厘子',
+                'text' => '进口单J车厘子半斤礼品券',
             ],
             2 => [
                 'type' => 'coupon',
@@ -468,7 +468,7 @@ class PriceHelper extends Component {
             3 => [
                 'type' => 'gift',
                 'id'   => 2,
-                'text' => '1斤香梨',
+                'text' => '香梨1斤礼品券',
             ],
             4 => [
                 'type' => 'coupon',
@@ -478,7 +478,7 @@ class PriceHelper extends Component {
             5 => [
                 'type' => 'gift',
                 'id'   => 3,
-                'text' => '1斤沙糖桔',
+                'text' => '沙糖桔1斤礼品券',
             ],
             6 => [
                 'type' => 'coupon',
@@ -488,7 +488,7 @@ class PriceHelper extends Component {
             7 => [
                 'type' => 'gift',
                 'id'   => 4,
-                'text' => '1斤皇帝柑',
+                'text' => '皇帝柑1斤礼品券',
             ]
         ];
 
@@ -520,12 +520,12 @@ class PriceHelper extends Component {
 
         if ($info['type'] == 'gift') {
             $ret = self::createGift($info['id'], $openid);
-            $str = '您的抽奖礼品：' . $info['text'] . ', 已领取成功。抽奖礼品需在下方菜单[果果商城->逛商城]中下单填写地址后，顺丰发货';
+            $str = '您的抽奖：' . $info['text'] . ', 已成功领取。礼品券需下单填写地址后配送，使用请查看菜单[果果商城->逛商城]';
         }
 
         if ($info['type'] == 'coupon') {
             $ret = self::createCoupon($info['id'], $openid);
-            $str = '您的抽奖礼品：' . $info['text'] . ', 已领取成功。消费券可抵扣订单金额, 使用请查看菜单[果果商城->逛商城]';
+            $str = '您的抽奖：' . $info['text'] . ', 已成功领取。消费券可抵扣订单金额, 使用请查看菜单[果果商城->逛商城]';
         }
 
         if ($ret > 0) {

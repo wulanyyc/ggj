@@ -671,7 +671,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js',
 
 <div class="card" id="gift_container" class="top-layer">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
-      我的礼品
+      我的礼品券
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_gift"></i>
   </div>
   <div id="gift_items" data-ids="">
