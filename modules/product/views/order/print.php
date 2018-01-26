@@ -25,7 +25,7 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
     }
 
     label {
-        width: 70px;
+        width: 80px;
     }
 
     .item.address {
