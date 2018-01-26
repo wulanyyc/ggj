@@ -95,6 +95,10 @@ class WechatController extends Controller
 果果佳提供智利进口单J、双J车厘子现货销售，3J车厘子需预订，价格优惠，保质保量';
         }
 
+        if (preg_match('/买水果|买干果|开心果|皇帝柑|蓝莓|牛油果/', $content)) {
+            return '买果果，请到下方菜单：果果商城->逛商城';
+        }
+
         if (preg_match('/礼品/', $content)) {
             return '礼品券需下单后填写地址，顺丰配送';
         }
