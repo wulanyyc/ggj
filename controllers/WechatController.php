@@ -100,7 +100,7 @@ class WechatController extends Controller
 
         if (preg_match('/优惠/', $content)) {
             return '果果佳有各种优惠：
-每周一次抽奖机会（分享抽奖，朋友成功关注公众号，享返利）。
+每周一次抽奖机会（分享抽奖，朋友成功关注公众号后享返利）。
 还有各种活动优惠券、满减优惠券等
 消费积累的积分还可以兑换余额';
         }
