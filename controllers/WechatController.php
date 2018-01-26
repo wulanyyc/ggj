@@ -96,7 +96,7 @@ class WechatController extends Controller
         }
 
         if (preg_match('/买水果|买干果|开心果|皇帝柑|蓝莓|牛油果/', $content)) {
-            return '买果果，请到下方菜单：果果商城->逛商城';
+            return '买果果，请到菜单：果果商城->逛商城';
         }
 
         if (preg_match('/礼品/', $content)) {
