@@ -184,7 +184,7 @@ $(document).ready(function () {
     $('#close_login').click(function() {
         $('#getcode').val('');
         $('#getcode').html('发送验证码');
-        $('#getcode').removeAttr('disabled');
+        // $('#getcode').removeAttr('disabled');
         $('#login').hide();
         $('#cover').hide();
     });
@@ -206,11 +206,11 @@ $(document).ready(function () {
                                 clearInterval(clock);
                                 $('#getcode').val('');
                                 $('#getcode').html('发送验证码');
-                                $('#getcode').removeAttr('disabled');
+                                // $('#getcode').removeAttr('disabled');
                             }
                         }, 1000);
 
-                        $('#getcode').attr('disabled', 'disabled');
+                        // $('#getcode').attr('disabled', 'disabled');
                     } else {
                         bootbox.alert(data);
                     }
@@ -256,7 +256,7 @@ $(document).ready(function () {
             return ;
         }
 
-        if (($.cookie('cid') && $.cookie('secret')) || $.cookie('openid')) {
+        if ($.cookie('cid') || $.cookie('openid')) {
             order();
         } else {
             $('#login').show();
@@ -280,7 +280,7 @@ $(document).ready(function () {
                     $('#login').hide();
                     $('#getcode').val('');
                     $('#getcode').html('发送验证码');
-                    $('#getcode').removeAttr('disabled');
+                    // $('#getcode').removeAttr('disabled');
 
                     order();
                 } else {
