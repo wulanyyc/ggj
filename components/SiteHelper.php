@@ -113,7 +113,7 @@ class SiteHelper extends Component{
                 return true;
             }
         } else {
-            $cid = Customer::find()->select('customer_id')->where(['openid' => $openid])->scalar();
+            $cid = Customer::find()->select('id')->where(['openid' => $openid])->scalar();
             if ($cid > 0) {
                 return true;
             } else {
