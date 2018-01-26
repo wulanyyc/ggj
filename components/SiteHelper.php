@@ -103,9 +103,14 @@ class SiteHelper extends Component{
                 return true;
             }
         } else {
-            $cid = CustomerWeixin::find()->select('customer_id')->where(['openid' => $openid])->scalar();
+            $cid = Customer::find()->select('customer_id')->where(['openid' => $openid])->scalar();
             if ($cid > 0) {
                 return true;
+            } else {
+                $cid = WechatHelper::addWxCustomer($openid);
+                if ($cid > 0) {
+                    return true;
+                }
             }
         }
 

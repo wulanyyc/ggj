@@ -55,6 +55,8 @@ class WechatController extends Controller
                     $data = WechatHelper::xmlToArray($receiveMsg);
                     $msgType = $data['MsgType'];
 
+                    $content = '';
+                    
                     // 文本类型
                     if ($msgType == 'text') {
                         $content = $this->handleText($data['Content']);
@@ -135,7 +137,7 @@ class WechatController extends Controller
         }
 
         if ($event == 'unsubscribe') {
-            CustomerWeixin::updateAll(['is_subscribe' => 0], ['openid' => $openid]);
+            Customer::updateAll(['is_subscribe' => 0], ['openid' => $openid]);
         }
 
         if ($event == 'SCAN') {

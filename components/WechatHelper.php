@@ -18,9 +18,9 @@ class WechatHelper extends Component{
     public static function checkSignature() {
         $params = Yii::$app->request->get();
 
-        $signature = $params['signature'];
-        $timestamp = $params['timestamp'];
-        $nonce = $params['nonce'];
+        $signature = isset($params['signature']) ? $params['signature'] : '';
+        $timestamp = isset($params['timestamp']) ? $params['timestamp'] : '';
+        $nonce = isset($params['nonce']) ? $params['nonce'] : '';
 
         $config = self::getConfig();
         $tmp = [$config['token'], $timestamp, $nonce];
