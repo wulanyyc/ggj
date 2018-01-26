@@ -90,7 +90,22 @@ class WechatController extends Controller
 
     // TODO
     private function handleText($content) {
-        return $content;
+        if (preg_match('/礼品/', $content)) {
+            return '礼品券需下单后填写地址，顺丰配送';
+        }
+
+        if (preg_match('/消费券/', $content)) {
+            return '消费券在付款的时候，可直接抵扣订单金额';
+        }
+
+        if (preg_match('/优惠/', $content)) {
+            return '果果佳有各种优惠：
+每周一次抽奖机会（分享抽奖，朋友成功关注公众号，享返利）。
+还有各种活动优惠券、满减优惠券等
+消费积累的积分还可以兑换余额';
+        }
+
+        return '果果佳客服时间早8点～晚8点，欢迎惠顾。如果有急事请联系13880494109（同微信号）'
     }
 
     // TODO
