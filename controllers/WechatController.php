@@ -94,7 +94,7 @@ class WechatController extends Controller
             return '礼品券需下单后填写地址，顺丰配送';
         }
 
-        if (preg_match('/消费券/', $content)) {
+        if (preg_match('/消费/', $content)) {
             return '消费券在付款的时候，可直接抵扣订单金额';
         }
 
