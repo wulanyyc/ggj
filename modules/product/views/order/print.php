@@ -112,7 +112,7 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
             <?php foreach($info['product'] as $item) { ?>
               <tr>
                 <td><?=$item['name'] ?></td>
-                <td style="font-size: 20px;"><?=$info['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
+                <td style="font-size: 28px;"><?=$info['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
                 <td><?=$item['desc'] ?></td>
               </tr>
             <?php } ?>
