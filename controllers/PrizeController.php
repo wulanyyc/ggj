@@ -23,7 +23,7 @@ class PrizeController extends Controller
         $from = isset($params['from']) ? $params['from'] : '';
 
         if ($from == 'timeline' || $from == 'singlemessage'
-         || $from == 'groupmessage' || !empty($_COOKIE['openid']) || !empty($_COOKIE['aaguid'])) {
+            || $from == 'groupmessage' || !empty($_COOKIE['openid']) || !empty($_COOKIE['aaguid'])) {
             if (empty($_COOKIE['aaguid'])) {
                 $uniq = uniqid();
                 setcookie('aaguid', $uniq, time() + 86400 * $this->dayLimit, '/');

@@ -475,8 +475,8 @@ class PriceHelper extends Component {
             ],
             5 => [
                 'type' => 'gift',
-                'id'   => 3,
-                'text' => '沙糖桔1斤礼品券',
+                'id'   => 6,
+                'text' => '开心果125g礼品券',
             ],
             6 => [
                 'type' => 'coupon',
@@ -535,7 +535,7 @@ class PriceHelper extends Component {
                 $fopenid = Customer::find()->select('from_openid')->where(['openid' => $openid])->scalar();
                 if (empty($fopenid) && $fromOpenid != $openid) {
                     Customer::updateAll(['from_openid' => $fromOpenid], ['openid' => $openid]);
-                    NotifyHelper::sendFanli($openid, $fromOpenid, 5);
+                    NotifyHelper::sendFanli($openid, $fromOpenid, 3);
                 }
             }
 
