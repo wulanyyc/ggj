@@ -172,7 +172,10 @@ $(document).ready(function () {
                 $('#rec_name').val(data.rec_name);
                 $('#phone').val(data.rec_phone);
                 $('#rec_city').val(data.rec_city);
-                $('#rec_district').val(data.rec_district);
+
+                initAddressDistrict(data.rec_city, data.rec_district);
+
+                // $('#rec_district').val(data.rec_district);
                 $('#rec_detail').val(data.rec_detail);
                 if (data.label.length > 0) {
                     $('.label_choose').removeClass('active');
@@ -257,6 +260,7 @@ $(document).ready(function () {
         $('#address_info').show();
         $('#cover').show();
         $('html,body').addClass('forbid');
+        $('#rec_city').change();
     });
 
 
@@ -489,6 +493,36 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#rec_city').change(function() {
+        var city = $(this).val();
+        $.ajax({
+            url: '/cart/getcitymap',
+            type: 'post',
+            dataType: 'html',
+            data: {
+                city: city,
+            },
+            success: function (html) {
+                $('#rec_district').html(html);
+            }
+        });
+    });
+
+    function initAddressDistrict(city, district) {
+        $.ajax({
+            url: '/cart/getcitymap',
+            type: 'post',
+            dataType: 'html',
+            data: {
+                city: city,
+            },
+            success: function (html) {
+                $('#rec_district').html(html);
+                $('#rec_district').val(district);
+            }
+        });
+    }
 
     function init() {
         var rule = $('#history_express_rule').val();

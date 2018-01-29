@@ -196,7 +196,10 @@ MsaView::registerJsFile($this,'/js/address/index.js',
     <div class='form-group' style="display: table;width: 100%;">
         <label style="width:30%;display: table-cell;">所在城市：</label>
         <select class="form-control" style="display: table-cell;" name="rec_city" id="rec_city">
-          <option value="成都">成都</option>
+          <!-- <option value="成都">成都</option> -->
+          <?php foreach($city as $item) { ?>
+          <option value="<?=$item ?>"><?=$item ?></option>
+          <?php } ?>
         </select>
     </div>
     <div class='form-group' style="display: table;width: 100%;">

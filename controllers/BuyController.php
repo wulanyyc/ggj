@@ -215,10 +215,10 @@ class BuyController extends Controller
             if ($key == 0) {
                 $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'" class="active"></li>';
 
-                $imgHtml .= '<div class="carousel-item active"><img src="' .$item['img']. '" style="height:80%;width:auto;"/></div>';
+                $imgHtml .= '<div class="carousel-item active"><img src="' .$item['img']. '" style="height:80%;width:90%;"/></div>';
             } else {
                 $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'"></li>';
-                $imgHtml .= '<div class="carousel-item"><img src="' .$item['img']. '" style="height:80%;width:auto;"/></div>';
+                $imgHtml .= '<div class="carousel-item"><img src="' .$item['img']. '" style="height:80%;width:90%;"/></div>';
             }
         }
 
