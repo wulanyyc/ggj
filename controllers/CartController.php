@@ -82,7 +82,7 @@ class CartController extends Controller
             'data' => $data,
             'address' => $this->getUserAddress($cid),
             'city' => array_keys(Yii::$app->params['citymap']),
-            'citymap' => Yii::$app->params['citymap']['成都'],
+            'citymap' => Yii::$app->params['citymap']['成都市'],
             'coupon' => count(PriceHelper::getValidCartCoupon($exsit['id'])),
             'gift' => count(PriceHelper::getValidGift()),
             'discount_start' => Yii::$app->params['discount']['start'],
