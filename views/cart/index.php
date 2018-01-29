@@ -428,7 +428,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
 
           <div style="display: inline-block;" data-id="2" class="express_rule" id="express_rule_2">
             <span class="icon" data-id="2"><i class="fa fa-square-o" aria-hidden="true"></i></span>
-            <span class="badge badge-info" style="font-size: 13px;line-height: 16px;font-weight: normal;">自提</span>
+            <span class="badge badge-info" style="font-size: 13px;line-height: 16px;font-weight: normal;">朋友自提</span>
           </div>
         </div>
 
