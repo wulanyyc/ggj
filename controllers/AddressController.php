@@ -177,4 +177,25 @@ EOF;
             SiteHelper::render('fail', '删除失败');
         }
     }
+
+    public function actionGetcitymap() {
+        $params = Yii::$app->request->post();
+        $city = isset($params['city']) ? $params['city'] : '';
+
+        if (empty($city)) {
+            echo '';
+            Yii::$app->end();
+        } else {
+            $districts = Yii::$app->params['citymap'][$city];
+            if (empty($districts)) {
+                echo '';
+            } else {
+                $html = '';
+                foreach($districts as $item) {
+                    $html .= '<option value="' . $item .'">' . $item . '</option>';
+                }
+                echo $html;
+            }
+        }
+    }
 }

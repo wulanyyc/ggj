@@ -497,7 +497,7 @@ $(document).ready(function () {
     $('#rec_city').change(function() {
         var city = $(this).val();
         $.ajax({
-            url: '/cart/getcitymap',
+            url: '/address/getcitymap',
             type: 'post',
             dataType: 'html',
             data: {
@@ -511,7 +511,7 @@ $(document).ready(function () {
 
     function initAddressDistrict(city, district) {
         $.ajax({
-            url: '/cart/getcitymap',
+            url: '/address/getcitymap',
             type: 'post',
             dataType: 'html',
             data: {
