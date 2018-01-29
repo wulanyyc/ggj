@@ -4,7 +4,7 @@ use app\components\MsaView;
 
 $this->title = '地址管理';
 
-MsaView::registerJsFile($this,'/js/address/index.js', 
+MsaView::registerJsFile($this,'/js/address/index.js?v=1', 
     ['position' => View::POS_END, 
         'depends' => [
             'app\assets\SiteAsset',

@@ -4,7 +4,7 @@ use app\components\MsaView;
 
 $this->title = '购物车';
 
-MsaView::registerJsFile($this,'/js/cart/index.js', 
+MsaView::registerJsFile($this,'/js/cart/index.js?v=1', 
     ['position' => View::POS_END, 
         'depends' => [
             'app\assets\SiteAsset',
