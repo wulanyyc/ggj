@@ -115,7 +115,7 @@ class WechatController extends Controller
         }
 
         if (preg_match('/人呢|客服|在/', $content)) {
-            return '客服时间早8点～晚8点，欢迎惠顾。公众号客服稍慢，请稍等几分钟。如果有急事请联系13880494109（同微信号）';
+            return '周一～周六客服时间早8点～晚8点，欢迎惠顾。公众号客服稍慢，请稍等几分钟。如果有急事请联系13880494109（同微信号）';
         }
 
         return '';
@@ -151,13 +151,13 @@ class WechatController extends Controller
             }
 
             if (empty($str)) {
-                return '欢迎关注成都果果佳，新鲜佳果，保质保量。
+                return '欢迎关注成都果果佳，新鲜佳果，保质保量，单果坏1赔3。
 
-关注享5元优惠券，首单后再享5元。更多优惠请查看菜单: 聚优惠。';
+关注享5元优惠券，首单后再享5元。更多优惠请查看菜单 => 聚优惠。';
             } else {
                 return '欢迎关注成都果果佳，新鲜佳果，保质保量。
 
-关注享5元优惠券，首单后再享5元。更多优惠请查看菜单: 聚优惠。
+关注享5元优惠券，首单后再享5元。更多优惠请查看菜单 => 聚优惠。
 
 ' . $str;
             }
@@ -172,7 +172,7 @@ class WechatController extends Controller
             if (!empty($eventKey)) {
                 return PriceHelper::handlePrize($eventKey, $openid);
             } else {
-                return "欢迎关注成都果果佳，新鲜佳果，保质保量";
+                return "欢迎关注成都果果佳，新鲜佳果，保质保量，单果坏1赔3";
             }
         }
 
@@ -181,14 +181,13 @@ class WechatController extends Controller
             if ($key == 'company') {
                 return '成都果果佳科技有限公司成立于2017年底，致力于为广大客户提供优质且价格合理的商品。
 
-目前主营水果、干果等相关商品，采用预约制、零售的方式服务于广大客户。
+目前主营精品水果、干果等相关商品，采用零售、预约的方式服务于广大客户。
 
 以诚为本，全心全意为大家服务';
             }
 
             if ($key == 'service') {
-                return '客服：18980457783 (同微信号)
-公司：13880494109 (同微信号)';
+                return '客服：13880494109 (同微信号)';
             }
         }
 

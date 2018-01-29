@@ -42,7 +42,7 @@ $(document).ready(function () {
     $('#close_tip, #cover').click(function(){
         $('.cover').hide();
         $('#tip_alert').hide();
-        $.cookie('booking_tip', 1, {expires: 2, path: '/'});
+        $.cookie('booking_tip', 1, {expires: 1, path: '/'});
     });
 
     $('.product-img, .product-desc .title, .product-desc .slogan').click(function() {

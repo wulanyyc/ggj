@@ -407,13 +407,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 <div class="card">
     <div class="card-header bg-white label-rec">
         <span class="label-title">天天鲜果</span>
-        <div style="float: right;">新鲜的才好吃</div>
-<!--         <div class="label-items">
-            <a href="#" class="label-item label-active" data-tag="all">全部</a>
-            <?php foreach($tags as $tag) { ?>
-              <a href="#" class="label-item" data-tag="<?=$tag['en_name'] ?>"><?=$tag['name'] ?></a>
-            <?php } ?>
-        </div> -->
+        <div style="float: right;">新鲜佳果，坏1赔3</div>
     </div>
 
     <div class="product-items">
