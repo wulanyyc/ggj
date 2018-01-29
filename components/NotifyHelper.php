@@ -48,7 +48,7 @@ class NotifyHelper extends Component{
                     'color' => '#173177',
                 ],
                 'keyword3' => [
-                    'value' => $info['pay_money'] . '_' . $onlineMoney,
+                    'value' => $info['product_price'] . '_' . $info['express_fee'] . '_' . $info['coupon_fee'] . '_' . $onlineMoney,
                     'color' => '#e83030',
                 ],
                 'keyword4' => [
