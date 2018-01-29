@@ -44,7 +44,7 @@ class AddressController extends Controller
             'controller' => Yii::$app->controller->id,
             'address' => $address,
             'city' => array_keys(Yii::$app->params['citymap']),
-            'citymap' => Yii::$app->params['citymap']['成都'],
+            'citymap' => Yii::$app->params['citymap']['成都市'],
         ]);
     }
 
