@@ -35,7 +35,8 @@ class OrderController extends Controller
             'customer' => [
                 'class' => CustomerFilter::className(),
                 'actions' => [
-                   'login'
+                   'login',
+                   'handle',
                 ]
             ]
         ];
@@ -315,5 +316,29 @@ class OrderController extends Controller
         $html .= "</div>";
 
         return $html;
+    }
+
+    public function actionHandle() {
+        $params = Yii::$app->request->get();
+        $id  = isset($params['id']) ? $params['id'] : '';
+        $uid = isset($params['uid']) ? $params['uid'] : '';
+        $token = isset($params['token']) ? $params['token'] : '';
+
+        $checkToken = md5($id . Yii::$app->params['token']);
+
+        if ($token == $checkToken) {
+            $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+            return $this->render('handle', [
+                'controller' => Yii::$app->controller->id,
+                'id' => $id,
+                'uid' => $uid,
+                'info' => $info,
+            ]);
+        } else {
+            return $this->render('error', [
+                'controller' => Yii::$app->controller->id,
+                'tip' => '验证失败',
+            ]);
+        }
     }
 }

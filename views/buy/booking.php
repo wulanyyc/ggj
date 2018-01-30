@@ -445,7 +445,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
             <i class="fa fa-truck" aria-hidden="true"></i>&nbsp;顺丰发货：
           </div>
           <div>
-          限成都，每周<span style="color:red;font-weight: bold;"><?=$bookingSender ?></span>发货
+          每周<span style="color:red;font-weight: bold;"><?=$bookingSender ?></span>发货
           </div>
         </li>
       </ul>

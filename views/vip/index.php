@@ -95,7 +95,7 @@ SiteAsset::register($this);
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;快递：
         </div>
         <div style="width:65%;">
-        限成都地区，每周发1次货，下单后客服跟进具体的发货日期
+        每周发1次货，下单后客服跟进具体的发货日期
         </div>
       </li>
     </ul>
