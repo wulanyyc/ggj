@@ -14,8 +14,9 @@ $this->title = '备货';
     .item {
         display: block;
         width: 100%;
-        font-size: 20px;
+        font-size: 16px;
         line-height: 24px;
+        text-align: left;
     }
 
     label {
@@ -39,9 +40,9 @@ $this->title = '备货';
 <div class="card" id="detail">
   <div style="width:94%;margin: 10px auto;text-align: center;">
     <?php if ($info['order_type'] == 1) { ?>
-    <h1>现售订单</h1>
+    <h3>现售订单</h3>
     <?php } else { ?>
-    <h1>预约订单</h1>
+    <h3>预约订单</h3>
     <?php } ?>
     <div id="info">
         <div class="item">
