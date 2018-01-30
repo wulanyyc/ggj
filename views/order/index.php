@@ -184,16 +184,18 @@ ClipAsset::register($this);
         </div>
         <?php } ?> 
 
-        <?php if (!empty($item['gifts'])) { ?>
-        <?php foreach($item['gifts'] as $v) { ?>
-        <div class="item" style="display: table;">
-          <p style="display: table-cell;font-size: 16px;">
-            <i class="fa fa-gift" aria-hidden="true" style="color:red;font-size: 20px;"></i>
-            <?=$v['name'] ?>
-          </p>
+        <div class="show_gifts">
+          <?php if (!empty($item['gifts'])) { ?>
+            <?php foreach($item['gifts'] as $v) { ?>
+            <div class="item" style="display: table;">
+              <p style="display: table-cell;font-size: 16px;">
+                <i class="fa fa-gift" aria-hidden="true" style="color:red;font-size: 20px;"></i>
+                <?=$v['name'] ?>
+              </p>
+            </div>
+            <?php } ?> 
+          <?php } ?>
         </div>
-        <?php } ?> 
-        <?php } ?> 
 
         <div style="font-size:14px;margin-top:12px;display: table;text-align: right;width: 100%">
           <p style="display: table-cell;text-align: left;">
@@ -246,7 +248,7 @@ ClipAsset::register($this);
 
 <div class="card" id="detail">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
-      订单详情
+      商品详情
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_detail"></i>
   </div>
   <table class="table table-bordered" style="width: 98%;margin: 1% auto;font-size: 14px;">
@@ -255,13 +257,14 @@ ClipAsset::register($this);
         <th scope="col">商品</th>
         <th scope="col">描述</th>
         <th scope="col">数量</th>
-        <!-- <th scope="col">单价</th> -->
       </tr>
     </thead>
     <tbody id="table-content">
 
     </tbody>
   </table>
+
+  <div id="inner-gifts"></div>
 </div>
 
 

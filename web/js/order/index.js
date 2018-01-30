@@ -7,11 +7,13 @@ $(document).ready(function () {
     $('.show_detail').click(function() {
         $('#detail').show();
         $('#cover').show();
-
         $('body').addClass('forbid');
 
         var cid = $(this).attr('data-cid');
         var id = $(this).attr('data-id');
+
+        var giftHtml = $(this).parent().parent().find('.show_gifts').html();
+        $('#inner-gifts').html(giftHtml);
 
         $.ajax({
             url: '/order/product',

@@ -255,6 +255,7 @@ class OrderController extends Controller
             'controller' => Yii::$app->controller->id,
             'data' => $data,
             'money' => $money,
+            // ''
             'isWechat' => $isWechat,
         ]);
     }

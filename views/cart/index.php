@@ -416,27 +416,20 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
         </span>
       </div>
     </div>
+  </div>
+</div>
 
-    <hr style="margin-top:0px;margin-bottom: 3px;" />
-    <div class="item" style="width: 100%;height: 40px;line-height: 40px;position: relative;">
-        <div style="display: inline-block;width:90%;">
-          <p class="label" style="display: inline-block;">配送：</p>
-          <div style="display: inline-block;margin-right: 5px;" data-id="1" class="express_rule" id="express_rule_1">
-            <div class="icon" data-id="1"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
-            <span class="badge badge-success" style="font-size: 14px;line-height: 18px;font-weight: normal;">顺丰快递</span>
-          </div>
-
-          <div style="display: inline-block;" data-id="2" class="express_rule" id="express_rule_2">
-            <span class="icon" data-id="2"><i class="fa fa-square-o" aria-hidden="true"></i></span>
-            <span class="badge badge-info" style="font-size: 13px;line-height: 16px;font-weight: normal;">朋友自提</span>
-          </div>
-        </div>
-
-        <div id="express_time" style="width: 18%;position: absolute;right: 0px;top: 0px;text-align: right;">
-          <span style="font-size: 13px;cursor: pointer;">发货
-            <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
-          </span>
-        </div>
+<div class="card">
+  <div id="gift_show" class="card-content">
+    <div style="margin-bottom:3px;display: table;height: 36px;position: relative;width: 100%;line-height: 36px;" id="choose_gift">
+      <div class="label" style="width:68%;display: inline-block;">抽奖礼品券</div>
+      <div id="gift_detail">
+        <?php if ($gift > 0) { ?>
+        可领<span class="text-danger" style="font-weight: bold;font-size: 14px;">&nbsp;<?=$gift ?>&nbsp;</span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+        <?php } else { ?>
+        可领<span class="text-danger">0</span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+        <?php } ?>
+      </div>
     </div>
   </div>
 </div>
@@ -465,20 +458,29 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
 </div>
 
 <div class="card">
-  <div id="gift_show" class="card-content">
-    <div style="margin-bottom:3px;display: table;height: 36px;position: relative;width: 100%;line-height: 36px;" id="choose_gift">
-      <div class="label" style="width:68%;display: inline-block;">礼品券</div>
-      <div id="gift_detail">
-        <?php if ($gift > 0) { ?>
-        可领<span class="text-danger" style="font-weight: bold;font-size: 14px;">&nbsp;<?=$gift ?>&nbsp;</span>份&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
-        <?php } else { ?>
-        可领<span class="text-danger">0</span>份&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
-        <?php } ?>
+  <div class="card-content" style="width: 100%;">
+    <div class="item" style="width: 100%;height: 40px;line-height: 40px;position: relative;">
+      <div style="display: inline-block;width:90%;">
+        <p class="label" style="display: inline-block;">配送：</p>
+        <div style="display: inline-block;margin-right: 5px;" data-id="1" class="express_rule" id="express_rule_1">
+          <div class="icon" data-id="1"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
+          <span class="badge badge-success" style="font-size: 14px;line-height: 18px;font-weight: normal;">顺丰快递</span>
+        </div>
+
+        <div style="display: inline-block;" data-id="2" class="express_rule" id="express_rule_2">
+          <span class="icon" data-id="2"><i class="fa fa-square-o" aria-hidden="true"></i></span>
+          <span class="badge badge-info" style="font-size: 13px;line-height: 16px;font-weight: normal;">朋友自提</span>
+        </div>
+      </div>
+
+      <div id="express_time" style="width: 18%;position: absolute;right: 0px;top: 0px;text-align: right;">
+        <span style="font-size: 13px;cursor: pointer;">发货
+          <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+        </span>
       </div>
     </div>
   </div>
 </div>
-
 
 <div class="card">
   <div id="fee" class="card-content">
@@ -490,13 +492,17 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
         <p class="label">运费：</p>
         <p class="price">+ ¥<span id="express_fee_show"><?=$data['express_fee'] ?></span></p>
     </div>
-    <div class="item">
+    <div class="item" style="display: none;">
         <p class="label">优惠码：</p>
         <p class="price">- ¥<span id="discount_fee">0</span></p>
     </div>
     <div class="item">
         <p class="label">优惠券：</p>
         <p class="price">- ¥<span id="coupon_fee">0</span></p>
+    </div>
+    <div class="item">
+        <p class="label">礼品券：</p>
+        <p class="price" style="width:70%;text-align: right;height:24px;line-height: 24px;overflow-x: hidden;text-overflow: ellipsis;" id="selected_gifts">尚未领取</p>
     </div>
   </div>
 </div>
@@ -689,13 +695,13 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
   </div>
   <div style="padding: 5%;">
     <p>
-      <span style="padding-right: 5px;">普通订单: </span>
-      <span style="width:72%;">24小时内发货</span>
+      <span style="padding-right: 5px;">预约订单: </span>
+      <span style="width:72%;">每周<?=Yii::$app->params['bookingSender'] ?>上午发货</span>
     </p>
 
     <p>
-      <span style="padding-right: 5px;">预约订单: </span>
-      <span style="width:72%;">每周<?=Yii::$app->params['bookingSender'] ?>上午发货</span>
+      <span style="padding-right: 5px;">普通订单: </span>
+      <span style="width:72%;">24小时内发货</span>
     </p>
 
     <p>

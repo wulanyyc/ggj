@@ -447,13 +447,21 @@ $(document).ready(function () {
     $('#ok_gift').click(function(){
         $('#close_gift').click();
         var gifts = [];
+        var giftNames = [];
         $('.gift_check').each(function(){
             if ($(this).find('.fa-check-square-o').length > 0) {
                 gifts.push($(this).attr('data-id'));
+                giftNames.push($(this).attr('data-name'));
             }
         });
 
         $('#gift_items').attr('data-ids', gifts.toString());
+
+        var nameStr = giftNames.join(';');
+        if (nameStr.length > 15) {
+            nameStr = nameStr.substring(0, 15) + '...';
+        }
+        $('#selected_gifts').html(nameStr);
     });
 
     $('#order').click(function(){
@@ -546,5 +554,4 @@ $(document).ready(function () {
 
     init();
     calculateRealPrice();
-
 });

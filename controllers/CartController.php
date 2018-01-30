@@ -245,7 +245,7 @@ EOF;
                                 {$info['name']}
                             </div>
                         </div>
-                        <div class="gift_check" style="font-size:20px;" id="gift_{$value['id']}" data-id={$value['id']}>
+                        <div class="gift_check" style="font-size:20px;" id="gift_{$value['id']}" data-id={$value['id']} data-name={$info['name']}>
                             <i class="fa fa-square-o" aria-hidden="true"></i>
                         </div>
                     </div>

@@ -54,10 +54,23 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
 
 <div class="card" style="height:90%;">
   <div class="item" style="text-align: right;">
-    <span class="label" style="line-height: 26px;">订单金额：</span><span class="text-danger" id="order_money"><?=$data['pay_money'] ?></span>元
+    <span class="label" style="line-height: 26px;">商品：</span><span class="text-danger" id="order_money"><?=$data['product_price'] ?></span>元
   </div>
+
   <div class="item" style="text-align: right;">
-    <span class="label" style="line-height: 26px;">钱包：</span><span class="text-danger" id="wallet"><?=$money ?></span>元
+    <span class="label" style="line-height: 26px;">优惠券：</span><span class="text-danger" id="order_money"> - <?=$data['coupon_fee'] ?></span>元
+  </div>
+
+  <div class="item" style="text-align: right;">
+    <span class="label" style="line-height: 26px;">快递费：</span><span class="text-danger" id="order_money"> + <?=$data['express_fee'] ?></span>元
+  </div>
+
+  <div class="item" style="text-align: right;">
+    <span class="label" style="line-height: 26px;">需支付：</span><span class="text-danger" id="order_money"><?=$data['pay_money'] ?></span>元
+  </div>
+
+  <div class="item" style="text-align: right;">
+    <span class="label" style="line-height: 26px;">钱包余额：</span><span class="text-danger" id="wallet"><?=$money ?></span>元
   </div>
 </div>
 
