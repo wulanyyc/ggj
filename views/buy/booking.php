@@ -245,7 +245,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 
   #close_tip {
     position: absolute;
-    bottom: 10px;
+    bottom: 5px;
     width: 100%;
     text-align: center;
   }
@@ -253,7 +253,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
   #imgs_alert {
     position: fixed;
     top:20%;
-    height: 60%;
+    height: 70%;
     z-index: 999;
     margin-left:10%;
     width:80%;
@@ -425,18 +425,17 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
 <div id="tip_alert" style="display: none;">
   <div style="display: table;width: 100%">
     <div style="width: 100%; display: table-row;">
-      <div class="tip-img" style="display: table-cell;vertical-align: middle;text-align: center;height:80px;">
-        <img src="http://img.guoguojia.vip/img/booking.png" style="width: 60px;"/>
+      <div class="tip-img" style="display: table-cell;vertical-align: middle;text-align: center;height:85px;">
+        <img src="http://img.guoguojia.vip/img/booking.png" style="width: 70px;"/>
       </div>
     </div>
     <div style="width: 100%; display: table-row;">
       <ul style="width: 100%;display: table-cell;vertical-align: middle;">
         <li>
           <div class="label" style="color: #866D8D;font-size: 22px;">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;吃最新鲜的水果：
           </div>
           <div>
-            建议采用预约模式，吃到最新鲜的水果<br/>
             国产水果当日采购<br/>
             进口水果供应商到货即采购<br/>
           </div>
@@ -447,7 +446,9 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
             <i class="fa fa-truck" aria-hidden="true"></i>&nbsp;顺丰发货：
           </div>
           <div>
-          每周<span style="color:red;font-weight: bold;"><?=$bookingSender ?></span>上午发货<br/>根据订单时间顺延至下个发货周期，发货后隔日达或当日达
+          每周<span style="color:red;font-weight: bold;"><?=$bookingSender ?></span>上午发货
+          <br/>按订单时间顺延发货日期
+          <br/>发货后隔日达或当日达
           </div>
         </li>
       </ul>
