@@ -54,15 +54,15 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
 
 <div class="card" style="height:90%;">
   <div class="item" style="text-align: right;">
-    <span class="label" style="line-height: 26px;">商品：</span><span class="text-danger" id="order_money"><?=$data['product_price'] ?></span>元
+    <span class="label" style="line-height: 26px;">商品：</span><span class="text-danger" id="product_money"><?=$data['product_price'] ?></span>元
   </div>
 
   <div class="item" style="text-align: right;">
-    <span class="label" style="line-height: 26px;">优惠券：</span><span class="text-danger" id="order_money"> - <?=$data['coupon_fee'] ?></span>元
+    <span class="label" style="line-height: 26px;">优惠券：</span><span class="text-danger" id="coupon_money"> - <?=$data['coupon_fee'] ?></span>元
   </div>
 
   <div class="item" style="text-align: right;">
-    <span class="label" style="line-height: 26px;">快递费：</span><span class="text-danger" id="order_money"> + <?=$data['express_fee'] ?></span>元
+    <span class="label" style="line-height: 26px;">快递费：</span><span class="text-danger" id="express_money"> + <?=$data['express_fee'] ?></span>元
   </div>
 
   <div class="item" style="text-align: right;">
