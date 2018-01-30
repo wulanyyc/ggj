@@ -66,7 +66,7 @@ MsaView::registerJsFile($this,'/js/order/pay.js',
   </div>
 
   <div class="item" style="text-align: right;">
-    <span class="label" style="line-height: 26px;">需支付：</span><span class="text-danger" id="order_money"><?=$data['pay_money'] ?></span>元
+    <span class="label" style="line-height: 26px;">订单金额：</span><span class="text-danger" id="order_money"><?=$data['pay_money'] ?></span>元
   </div>
 
   <div class="item" style="text-align: right;">
