@@ -325,7 +325,7 @@ class OrderController extends Controller
         $uid = isset($params['uid']) ? $params['uid'] : '';
         $token = isset($params['token']) ? $params['token'] : '';
 
-        $checkToken = md5($id . Yii::$app->params['token']);
+        $checkToken = md5($id . Yii::$app->params['salt']);
 
         if ($token == $checkToken) {
             $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();

@@ -36,7 +36,7 @@ SiteAsset::register($this);
 
   <div class="item" style="margin-top: 1%;">
       <div class="label-text">客服电话：</div>
-      <div>18980457783 (同微信号)</div>
+      <div>13880494109 (同微信号)</div>
   </div>
 
   <div class="item">

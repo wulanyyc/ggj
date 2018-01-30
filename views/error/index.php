@@ -62,7 +62,7 @@ body:before {
                 echo $exception->getMessage();
             ?></p>
             <?php } ?>
-            <p>&nbsp;若有疑问，请联系&nbsp;<a href="mailto:yyc@yunlaba.com">yyc@yunlaba.com</a> 谢谢！</p>
+            <p>&nbsp;若有疑问，请联系13880494109(同微信号) 谢谢！</p>
         </p>
     </div>
 </div>
