@@ -36,7 +36,7 @@ $this->title = '备货';
         font-size: 16px;
     }
 
-    .footer {
+    footer {
         display: none;
     }
 </style>
@@ -141,4 +141,7 @@ $this->title = '备货';
     </div>
     <?php } ?>
   </div>
+
+  <button type="button" class="btn btn-primary" id="prepare">备货通知</button>
+  <button type="button" class="btn btn-danger" id="express">发货通知</button>
 </div>
