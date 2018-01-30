@@ -329,6 +329,36 @@ class OrderController extends Controller
 
         if ($token == $checkToken) {
             $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+            $cart = ProductCart::find()->where(['id' => $info['cart_id']])->asArray()->one();
+
+            $product = json_decode($cart['cart'], true);
+
+            foreach($product as $key => $value) {
+                $tmpProduct = ProductList::find()->where(['id' => $value['id']])->asArray()->one();
+                $info['product'][] = $tmpProduct;
+            }
+
+            $info['product_cart'] = $product;
+            $info['express_rule'] = ($info['express_rule'] == 1) ? '快递' : '自提';
+            $info['gifts'] = [];
+
+            $gifts = $info['gift_ids'];
+            if (!empty($gifts)) {
+                $giftIds = explode(',', $gifts);
+                foreach($giftIds as $item) {
+                    $tmpStatus = GiftUse::find()->where(['id' => $item, 'customer_id' => $info['customer_id']])->asArray()->one();
+
+                    $tmpInfo = Gift::find()->where(['id' => $tmpStatus['gid']])->asArray()->one();
+
+                    $tmp = [
+                        'name' => $tmpInfo['name'],
+                        'useflag' => '本次配送',
+                    ];
+
+                    $info['gifts'][] = $tmp;
+                }
+            }
+
             return $this->render('handle', [
                 'controller' => Yii::$app->controller->id,
                 'id' => $id,
