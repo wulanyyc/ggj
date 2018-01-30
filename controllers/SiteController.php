@@ -34,6 +34,7 @@ class SiteController extends Controller
             'newPromotion' => $this->getNewPromotion(),
             'homeTip' => Yii::$app->params['hometip'],
             'bookingDiscount' => Yii::$app->params['bookingDiscount'] * 10,
+            'bookingSender' => Yii::$app->params['bookingSender'],
         ]);
     }
 

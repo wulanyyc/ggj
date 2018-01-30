@@ -436,7 +436,9 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;新鲜优质：
           </div>
           <div>
-            国产水果当日采购<br/>进口水果供应商到货即采购<br/>精选佳果，保证新鲜度和质量
+            建议广大客户采用预约模式，吃到最新鲜的水果<br/>
+            国产水果当日采购<br/>
+            进口水果供应商到货即采购<br/>
           </div>
         </li>
 
@@ -445,7 +447,7 @@ MsaView::registerJsFile($this,'/js/buy/booking.js',
             <i class="fa fa-truck" aria-hidden="true"></i>&nbsp;顺丰发货：
           </div>
           <div>
-          每周<span style="color:red;font-weight: bold;"><?=$bookingSender ?></span>发货
+          每周<span style="color:red;font-weight: bold;"><?=$bookingSender ?></span>上午发货, 根据订单时间顺延至下个发货周期，发货后隔日达或当日达
           </div>
         </li>
       </ul>
