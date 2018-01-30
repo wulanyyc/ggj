@@ -213,7 +213,7 @@ ClipAsset::register($this);
     <div class="item" style="border-top: 1px solid #ced4da;display: table-cell;text-align: right;">
         <?php if ($item['status'] == 1) { ?>
         <button type="button" class="btn btn-outline-warning btn-sm del" data-id="<?=$item['id'] ?>">删除</button>
-        <button type="button" class="btn btn-outline-info btn-sm edit" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">修改商品</button>
+        <button type="button" class="btn btn-outline-info btn-sm edit" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">修改订单</button>
         <button type="button" class="btn btn-outline-primary btn-sm show_detail" data-id="<?=$item['id'] ?>" data-cid="<?=$item['cart_id'] ?>">商品详情</button>
         <button type="button" class="btn btn-outline-danger btn-sm pay" data-type="<?=$item['order_type'] ?>" data-cid="<?=$item['cart_id'] ?>">去支付</button>
         <?php } ?>
