@@ -46,9 +46,12 @@ class PrizeController extends Controller
     }
 
     public function actionGetrotate() {
-        $limit    = $this->limit;
+        $limit = $this->limit;
 
-        // if ()
+        if (SiteHelper::getCustomerId() == 27) {
+            $limit = 300;
+        }
+
         $dayLimit = $this->dayLimit;
 
         $uniq = $_COOKIE['aaguid'];
