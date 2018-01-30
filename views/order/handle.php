@@ -12,8 +12,8 @@ $this->title = '备货';
     }
 
     .item {
-        display: inline-block;
-        width: 40%;
+        display: block;
+        width: 100%;
         font-size: 20px;
         line-height: 24px;
     }
@@ -39,9 +39,9 @@ $this->title = '备货';
 <div class="card" id="detail">
   <div style="width:94%;margin: 10px auto;text-align: center;">
     <?php if ($info['order_type'] == 1) { ?>
-    <h1>果果佳商城现售订单</h1>
+    <h1>现售订单</h1>
     <?php } else { ?>
-    <h1>果果佳商城预约订单</h1>
+    <h1>预约订单</h1>
     <?php } ?>
     <div id="info">
         <div class="item">
@@ -107,7 +107,7 @@ $this->title = '备货';
             <?php foreach($info['product'] as $item) { ?>
               <tr>
                 <td><?=$item['name'] ?></td>
-                <td style="font-size: 28px;"><?=$info['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
+                <td><?=$info['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
                 <td><?=$item['desc'] ?></td>
               </tr>
             <?php } ?>
