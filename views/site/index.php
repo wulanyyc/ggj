@@ -393,7 +393,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     <div style="display: table;width:100%;">
       <div class="promotion-item-left" style="background-color: #866D8D;">
         <div class="promotion-item-left-content">
-          <div class="promotion-item-left-content-top">预约</div>
+          <div class="promotion-item-left-content-top">预约新鲜佳果</div>
           <div class="promotion-item-left-content-bottom">每周<?=$bookingSender ?>发顺丰</div>
         </div>
       </div>
@@ -425,7 +425,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
                 <?php if (isset($product['booking_price'])) { ?>
                 <div class="price booking_price" data-link="/buy/booking?id=<?=$product['id'] ?>">
-                  <div class="sale-badge" style="border:1px solid #866D8D;color:#866D8D;">预约</div>
+                  <div class="sale-badge" style="border:1px solid #866D8D;color:#866D8D;">预约新鲜</div>
                   <div style="display: inline-block;">
                     <span class="money" style="color:#866D8D;">¥</span>
                     <span class="realprice" style="color:#866D8D;">
