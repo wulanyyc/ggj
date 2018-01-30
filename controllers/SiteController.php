@@ -105,21 +105,21 @@ class SiteController extends Controller
             }
             $info[$key]['tag'] = implode(' ', $tagArr);
 
-            if ($value['booking_status'] == 1 && $value['num'] > 0) {
+            // if ($value['booking_status'] == 1 && $value['num'] > 0) {
+            //     $info[$key]['buy_price'] = PriceHelper::getProductPrice($value['id'], 1);
+            // } else if ($value['booking_status'] == 3 && $value['num'] > 0) {
+            //     $info[$key]['buy_price'] = PriceHelper::getProductPrice($value['id'], 1);
+            // } else {
+            //     $info[$key]['booking_price'] = PriceHelper::getProductPrice($value['id'], 2);
+            // }
+
+            if ($value['booking_status'] != 2 && $value['num'] > 0) {
                 $info[$key]['buy_price'] = PriceHelper::getProductPrice($value['id'], 1);
-            } else if ($value['booking_status'] == 3 && $value['num'] > 0) {
-                $info[$key]['buy_price'] = PriceHelper::getProductPrice($value['id'], 1);
-            } else {
-                $info[$key]['booking_price'] = PriceHelper::getProductPrice($value['id'], 2);
             }
 
-            // if ($value['booking_status'] != 2 && $value['num'] > 0) {
-            //     $info[$key]['buy_price'] = PriceHelper::getProductPrice($value['id'], 1);
-            // }
-
-            // if ($value['booking_status'] != 3) {
-            //     $info[$key]['booking_price'] = PriceHelper::getProductPrice($value['id']);
-            // }
+            if ($value['booking_status'] != 3) {
+                $info[$key]['booking_price'] = PriceHelper::getProductPrice($value['id']);
+            }
 
             $info[$key]['link'] = ProductHelper::getProductLink($value['id']);
         }
