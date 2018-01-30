@@ -19,17 +19,20 @@ class NotifyHelper extends Component{
     public static $api = 'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=';
     
     public static function newOrder($id) {
+        $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+        $customerInfo = Customer::find()->select('nick,phone,openid')
+            ->where(['id' => $info['customer_id']])->asArray()->one();
+
+        if (empty($customerInfo['openid'])) {
+            return '';
+        }
+
         $templateId = 'N671RZlQrYIhcFLGrh8d4NPs--cZFfOZATun9kvpado';
         $url = self::$api . WechatHelper::getAccessToken();
         $myId = 'ogtchwuVyQbfINjjodQf9Ty8d0Is';
 
-        $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();
-        $customerInfo = Customer::find()->select('nick,phone')
-            ->where(['id' => $info['customer_id']])->asArray()->one();
-
         $customer = !empty($customerInfo['nick']) ? $customerInfo['nick'] : $customerInfo['phone'];
         $onlineMoney = Pay::find()->where(['order_id' => $id])->select('online_money')->scalar();
-
 
         $data = [
             'touser' => $myId,

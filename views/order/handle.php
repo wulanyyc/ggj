@@ -35,6 +35,10 @@ $this->title = '备货';
     #product {
         font-size: 16px;
     }
+
+    .footer {
+        display: none;
+    }
 </style>
 
 <div class="card" id="detail">
