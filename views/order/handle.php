@@ -14,6 +14,6 @@ $this->title = '备货';
 
 <div class="card" id="userinfo">
   <div style="width:94%;margin: 10px auto;text-align: center;">
-    
+    1111
   </div>
 </div>

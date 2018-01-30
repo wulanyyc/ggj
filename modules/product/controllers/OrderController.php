@@ -183,7 +183,6 @@ class OrderController extends AuthController
 
         $pl = new ProductOrder();
         $ret = ProductOrder::find()
-            ->select('rec_name,rec_address,rec_phone')
             ->where(['id' => $id])
             ->asArray()
             ->one();

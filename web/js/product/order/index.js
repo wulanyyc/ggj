@@ -82,6 +82,7 @@ $(document).ready(function () {
                 $('.rec_name').val(data.rec_name);
                 $('.rec_phone').val(data.rec_phone);
                 $('.rec_address').val(data.rec_address);
+                $('.express_num').val(data.express_num);
             }
         });
 

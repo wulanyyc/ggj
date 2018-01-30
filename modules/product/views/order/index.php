@@ -131,6 +131,10 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                     <label style='width:80px'>地址：</label>
                     <textarea style='width:250px' name='rec_address' class='input-sm rec_address'></textarea>
                 </div>
+                <div class='form-group' style='margin-top:10px'>
+                    <label style='width:80px'>快递单号：</label>
+                    <textarea style='width:250px' name='express_num' class='input-sm express_num'></textarea>
+                </div>
             </form>
         </div>
     </div>
