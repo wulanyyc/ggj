@@ -60,7 +60,7 @@ class NotifyHelper extends Component{
                     'color' => '#173177',
                 ]
             ],
-            'url' => 'http://guoguojia.vip/order/handle?id=' . $info['id'] . '&uid=' + $myId + '&token=' . md5($info['id'] . Yii::$app->params['salt']),
+            'url' => 'guoguojia.vip/order/handle?id=' . $info['id'] . '&uid=' + $myId + '&token=' . md5($info['id'] . Yii::$app->params['salt']),
         ];
 
         WechatHelper::curlRequest($url, json_encode($data));
