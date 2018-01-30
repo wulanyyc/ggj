@@ -142,6 +142,6 @@ $this->title = '备货';
     <?php } ?>
   </div>
 
-  <button type="button" class="btn btn-primary" id="prepare">备货通知</button>
-  <button type="button" class="btn btn-danger" id="express">发货通知</button>
+  <button type="button" class="btn btn-primary" id="prepare" style="width: 80%;margin-left: 10%;margin-bottom: 1%;">备货通知</button>
+  <button type="button" class="btn btn-danger" id="express" style="width: 80%;margin-left: 10%;margin-bottom: 1%;">发货通知</button>
 </div>
