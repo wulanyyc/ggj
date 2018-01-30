@@ -47,6 +47,8 @@ class PrizeController extends Controller
 
     public function actionGetrotate() {
         $limit    = $this->limit;
+
+        // if ()
         $dayLimit = $this->dayLimit;
 
         $uniq = $_COOKIE['aaguid'];
