@@ -48,6 +48,7 @@ $(document).ready(function () {
 
                     setTimeout(function(){
                             bootbox.confirm({
+                                title: '提示',
                                 message: data.msg,
                                 buttons: {
                                     cancel: {
