@@ -88,7 +88,8 @@ class PrizeController extends Controller
 
         $data = Yii::$app->redis->get($uniq . "_code");
         if (!empty($data)) {
-            $prizeCode = $data['code'];
+            $info = json_decode($data, true);
+            $prizeCode = $info['code'];
             $get = Yii::$app->redis->get('prize_' . $prizeCode . '_get');
             if ($get > 0) {
                 $rotate = Yii::$app->redis->get($uniq);
