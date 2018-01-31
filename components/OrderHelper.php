@@ -140,12 +140,12 @@ class OrderHelper extends Component {
         // }
 
         // 首单发优惠券
-        $customerId = SiteHelper::getCustomerId();
-        $orderNum = ProductOrder::findBySql('select count(*) as num from product_order where customer_id=' . $customerId . ' and status in (2,3)')->scalar();
+        // $customerId = SiteHelper::getCustomerId();
+        // $orderNum = ProductOrder::findBySql('select count(*) as num from product_order where customer_id=' . $customerId . ' and status in (2,3)')->scalar();
 
-        if ($orderNum == 1) {
-            PriceHelper::createCouponById(Yii::$app->params['coupon']['order'], $customerId);
-        }
+        // if ($orderNum == 1) {
+        //     PriceHelper::createCouponById(Yii::$app->params['coupon']['order'], $customerId);
+        // }
 
         // 微信通知老板
         NotifyHelper::newOrder($data['order_id']);
