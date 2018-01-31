@@ -49,7 +49,7 @@ class PrizeController extends Controller
         $limit = $this->limit;
 
         if (SiteHelper::getCustomerId() == 27) {
-            $limit = 300;
+            $limit = 3;
         }
 
         $dayLimit = $this->dayLimit;
@@ -79,8 +79,8 @@ class PrizeController extends Controller
             $prize = PriceHelper::getPrize($rotate);
             echo json_encode([
                 'status' => 'ok',
-                'rotate' => $rotate, 
-                'msg'    => '您本周已达到' . $limit . '次抽奖限制, 请领取奖品"' . $prize['text'] . '"后，' . $remainDay . '天后再抽',
+                'rotate' => 0, 
+                'msg'    => '请领取奖品"' . $prize['text'] . '"，' . $remainDay . '天后再抽',
             ]);
 
             Yii::$app->end();
