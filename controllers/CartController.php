@@ -233,7 +233,7 @@ EOF;
         $data = PriceHelper::getValidGift();
 
         if (empty($data)) {
-            SiteHelper::render('fail', '很抱歉，账户里没有可用的礼品，请去抽奖领取');
+            SiteHelper::render('fail', '很抱歉，账户里没有可用的礼品券，抽奖请到公众号（成都果果佳）菜单：聚优惠->抽奖');
         } else {
             foreach($data as $key => $value) {
                 $info = Gift::find()->where(['id' => $value['gid']])->asArray()->one();
