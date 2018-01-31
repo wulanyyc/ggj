@@ -527,6 +527,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <?php } ?>
     </div>
 </div>
+<?php } ?>
 
 <a style="font-size: 20px;position: fixed;right:0px;top:50%;background-color: #866D8D;width:40px;height: 40px;border-radius: 20px;text-align: center;color:#fff;line-height: 40px;" href="<?=$cartLink ?>">
     <span id="cart_icon"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span>
@@ -534,4 +535,3 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <?=$cartNum ?>
     </div>
 </a>
-<?php } ?>
