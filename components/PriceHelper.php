@@ -517,13 +517,13 @@ class PriceHelper extends Component {
 
         $get = Yii::$app->redis->get('prize_' . $key . '_get');
         if ($get > 0) {
-            return '奖品已领取，请5天后继续，有疑问请联系客服';
+            return '奖品已领取，请5天后再抽奖，有疑问请联系客服';
         }
 
         $data = Yii::$app->redis->get('prize_' . $key);
 
         if (empty($data)) {
-            return '奖品已过期，请再抽奖，有疑问请联系客服';
+            return '奖品已过期，请5天后再抽奖，有疑问请联系客服';
         }
 
         $ret  = 0;
