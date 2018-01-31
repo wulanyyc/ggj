@@ -91,7 +91,7 @@ class SiteController extends Controller
     }
 
     private function getFruits() {
-        $info = ProductList::find()->where(['category' => 'fruit', 'status' => 1, 'deleteflag' =>  0])->orderBy('sale_num desc')->asArray()->all();
+        $info = ProductList::find()->where(['category' => ['fruit', 'nut'], 'status' => 1, 'deleteflag' =>  0])->orderBy('sale_num desc')->asArray()->all();
  
         foreach($info as $key => $value) {
             $tagArr = [];
