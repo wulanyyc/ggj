@@ -49,7 +49,7 @@ class PrizeController extends Controller
         $limit = $this->limit;
 
         if (SiteHelper::getCustomerId() == 27) {
-            $limit = 3;
+            $limit = 300;
         }
 
         $dayLimit = $this->dayLimit;
