@@ -104,7 +104,7 @@ class PrizeController extends Controller
                 echo json_encode([
                     'status' => 'ok',
                     'rotate' => $rotate,
-                    'msg'    => '您已领取奖品，请' . $remainDay . '天后继续',
+                    'msg'    => '您' . $dayLimit . '天内已领取过奖品，请' . $remainDay . '天后继续',
                 ]);
 
                 Yii::$app->end();
