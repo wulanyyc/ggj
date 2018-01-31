@@ -16,6 +16,7 @@ use app\modules\product\models\CouponUse;
 use app\models\Customer;
 use app\filters\CustomerFilter;
 use app\models\Gift;
+use app\models\GiftUse;
 use app\components\NotifyHelper;
 
 
