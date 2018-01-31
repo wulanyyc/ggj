@@ -524,7 +524,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
       <span class="realprice" style="font-size:16px;font-weight: normal;" id="realprice"></span>
     </div>
   </div>
-  <div class='btn btn-outline-secondary btn-sm' id='edit' style="margin-right: 8px;display: inline-block;">修改商品</div>
+  <div class='btn btn-outline-danger btn-sm' id='edit' style="margin-right: 8px;display: inline-block;">修改商品</div>
   <div class='btn btn-success' id='order' style="margin-right: 10px;display: inline-block;">去下单</div>
 </div>
 
