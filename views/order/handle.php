@@ -150,5 +150,5 @@ MsaView::registerJsFile($this,'/js/order/handle.js',
     <?php } ?>
   </div>
 
-  <button type="button" class="btn btn-success" id="prepare" data-id="<?=$id ?>" data-token="<?=$token ?>" style="width: 80%;margin-left: 10%;margin-bottom: 5%;">备货通知</button>
+  <button type="button" class="btn btn-success" id="prepare" data-id="<?=$id ?>" data-token="<?=$token ?>" style="width: 80%;margin-left: 10%;margin-bottom: 5%;">发送备货通知</button>
 </div>
