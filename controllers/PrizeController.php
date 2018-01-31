@@ -79,8 +79,8 @@ class PrizeController extends Controller
             $prize = PriceHelper::getPrize($rotate);
             echo json_encode([
                 'status' => 'ok',
-                'rotate' => $rotate, 
-                'msg'    => '您的抽奖次数已用尽，请领取奖品"' . $prize['text'] . '"，' . $remainDay . '天后继续',
+                'rotate' => $rotate,
+                'msg'    => '您的抽奖次数已用尽，请' . $remainDay . '天后继续',
             ]);
 
             Yii::$app->end();
@@ -94,8 +94,8 @@ class PrizeController extends Controller
         if ($cnt == $limit) {
             echo json_encode([
                 'status' => 'ok', 
-                'rotate' => $rotate, 
-                'msg' => '您的抽奖次数已用尽，请领取奖品:' . $prize['text'] . '，' . $remainDay . '天后继续',
+                'rotate' => $rotate,
+                'msg' => '您的抽奖次数已用尽，请领取最终奖品:' . $prize['text'] . '，' . $remainDay . '天后继续',
             ]);
             Yii::$app->end();
         }
@@ -108,7 +108,7 @@ class PrizeController extends Controller
 
         echo json_encode([
             'status' => 'ok',
-            'rotate' => $rotate, 
+            'rotate' => $rotate,
             'msg' => '您还有'. $remain .'次抽奖机会，本次奖品:' . $prize['text'],
         ]);
     }

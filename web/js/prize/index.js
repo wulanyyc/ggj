@@ -52,7 +52,7 @@ $(document).ready(function () {
                                 message: data.msg,
                                 buttons: {
                                     cancel: {
-                                        label: '朕要重抽'
+                                        label: '朕要放弃重抽'
                                     },
                                     confirm: {
                                         label: '去领奖'

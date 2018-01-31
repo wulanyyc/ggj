@@ -2,7 +2,7 @@
 use yii\web\View;
 use app\assets\SiteAsset;
 
-$this->title = '无忧套餐-私人订制';
+$this->title = 'VIP套餐';
 
 SiteAsset::register($this);
 ?>
@@ -49,7 +49,7 @@ SiteAsset::register($this);
 
 <div class="card">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-    无忧套餐
+    VIP套餐
   </div>
 
   <div id="rule" style="margin-top: 1%;">
