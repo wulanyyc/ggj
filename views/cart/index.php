@@ -565,6 +565,9 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
       </tbody>
     </table>
   </div>
+
+  <div class='btn btn-danger btn-sm' id='inner_edit_product' style="width:40%;margin-left:30%;margin-top: 3%;">修改商品</div>
+
   <div class='btn btn-success btn-sm' id='close_detail_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
 </div>
 

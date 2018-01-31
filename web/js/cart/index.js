@@ -41,7 +41,7 @@ $(document).ready(function () {
         $('html,body').removeClass('forbid');
     });
 
-    $('#edit').click(function(){
+    $('#edit, #inner_edit_product').click(function(){
         var type = $('#order_type').val();
         var cid = $('#cart_id').val();
         if (type == 1) {
