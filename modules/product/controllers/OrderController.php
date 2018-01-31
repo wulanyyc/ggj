@@ -72,24 +72,24 @@ class OrderController extends AuthController
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
             <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;' class='order-status btn btn-xs btn-info' href='javascript:void(0);'>状态设置</a>";
 
-            if ($ret[$key]['status'] == 2 || $ret[$key]['status'] == 3) {
-                $orderId = $value['id'];
-                $payData = Pay::find()->where(['order_id' => $orderId])->asArray()->one();
+            // if ($ret[$key]['status'] == 2 || $ret[$key]['status'] == 3) {
+            //     $orderId = $value['id'];
+            //     $payData = Pay::find()->where(['order_id' => $orderId])->asArray()->one();
 
-                if ($payData['pay_type'] == 0) {
-                    $text = "余额退款";
-                }
+            //     if ($payData['pay_type'] == 0) {
+            //         $text = "余额退款";
+            //     }
 
-                if ($payData['pay_type']  == 1) {
-                    $text = "支付宝退款";
-                }
+            //     if ($payData['pay_type']  == 1) {
+            //         $text = "支付宝退款";
+            //     }
 
-                if ($payData['pay_type']  == 2) {
-                    $text = "微信退款";
-                }
+            //     if ($payData['pay_type']  == 2) {
+            //         $text = "微信退款";
+            //     }
 
-                $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-val='{$value['pay_money']}' data-online='{$payData['online_money']}' data-wallet='{$payData['wallet_money']}' style='margin-top:5px !important;'  class='order-refund btn btn-xs btn-danger' href='javascript:void(0);'>{$text}</a>";
-            }
+            //     $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-val='{$value['pay_money']}' data-online='{$payData['online_money']}' data-wallet='{$payData['wallet_money']}' style='margin-top:5px !important;'  class='order-refund btn btn-xs btn-danger' href='javascript:void(0);'>{$text}</a>";
+            // }
 
             if ($ret[$key]['status'] == 1) {
                 $payData = Pay::find()->where(['order_id' => $value['id'], 'pay_result' => 0])->asArray()->one();
