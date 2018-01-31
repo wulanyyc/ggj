@@ -12,6 +12,7 @@ use app\modules\product\models\Tags;
 use app\components\PriceHelper;
 use app\components\ProductHelper;
 use app\models\ProductCart;
+use app\models\ProductOrder;
 
 class SiteController extends Controller
 {
@@ -32,12 +33,15 @@ class SiteController extends Controller
         $cartLink = '/buy';
 
         if ($cid > 0) {
-            $cartInfo = ProductCart::find()->select('order_type,cart')->where(['id' => $cid])->asArray()->one();
-            $cartNum = count(json_decode($cartInfo['cart'], true));
-            if ($cartInfo['order_type'] == 1) {
-                $cartLink = '/buy?cid=' . $cid;
-            } else {
-                $cartLink = '/buy/booking?cid=' . $cid;
+            $status = ProductOrder::find()->where(['cart_id' => $cid])->select('status')->scalar();
+            if ($status <= 1) {
+                $cartInfo = ProductCart::find()->select('order_type,cart')->where(['id' => $cid])->asArray()->one();
+                $cartNum = count(json_decode($cartInfo['cart'], true));
+                if ($cartInfo['order_type'] == 1) {
+                    $cartLink = '/buy?cid=' . $cid;
+                } else {
+                    $cartLink = '/buy/booking?cid=' . $cid;
+                }
             }
         }
 
