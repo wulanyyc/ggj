@@ -32,7 +32,7 @@ class NotifyHelper extends Component{
         $myId = 'ogtchwuVyQbfINjjodQf9Ty8d0Is';
 
         $customer = !empty($customerInfo['nick']) ? $customerInfo['nick'] : $customerInfo['phone'];
-        $onlineMoney = Pay::find()->where(['order_id' => $id])->select('online_money')->scalar();
+        $payMoney = Pay::find()->where(['order_id' => $id])->select('online_money, wallet_money')->asArray()->one();
 
         $data = [
             'touser' => $myId,
@@ -51,7 +51,7 @@ class NotifyHelper extends Component{
                     'color' => '#173177',
                 ],
                 'keyword3' => [
-                    'value' => $info['product_price'] . '_' . $info['express_fee'] . '_' . $info['coupon_fee'] . '_' . $onlineMoney,
+                    'value' => $info['product_price'] . '_' . $info['express_fee'] . '_' . $info['coupon_fee'] . '_' . $payMoney['wallet_money'] . '_' . $payMoney['online_money'],
                     'color' => '#e83030',
                 ],
                 'keyword4' => [
