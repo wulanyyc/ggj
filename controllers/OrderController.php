@@ -62,9 +62,15 @@ class OrderController extends Controller
             }
 
             if (!empty($item['gift_ids'])) {
-                // $gids = explode(',', $item['gift_ids']);
+                $gids = explode(',', $item['gift_ids']);
+                $gidInfos = GiftUse::find()->select('gid')->where(['id' => $gids])->asArray()->all();
 
-                $data[$key]['gifts'] = Gift::findBySql("select * from gift where id in (" . $item['gift_ids'] . ")")->asArray()->all();
+                $giftIds = [];
+                foreach($gidInfos as $item) {
+                    $giftIds[] = $item['gid'];
+                }
+
+                $data[$key]['gifts'] = Gift::findBySql("select * from gift where id in (" . implode(',', $giftIds) . ")")->asArray()->all();
             }
         }
 
