@@ -29,7 +29,7 @@ class CustomerController extends AuthController
         }
 
         if (!empty($params['query'])) {
-            $sqlCondition[] = " (`nick` like '%" . $params['query'] . "%' or phone like '%" . $params['query'] . "%')";
+            $sqlCondition[] = " (`nick` like '%" . $params['query'] . "%' or id like '%" . $params['query'] . "%')";
         }
 
         if (!empty($sqlCondition)) {
