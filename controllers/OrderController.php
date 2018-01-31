@@ -62,10 +62,9 @@ class OrderController extends Controller
             }
 
             if (!empty($item['gift_ids'])) {
-                $gids = explode(',', $item['gift_ids']);
+                // $gids = explode(',', $item['gift_ids']);
 
                 $data[$key]['gifts'] = Gift::findBySql("select * from gift where id in (" . $item['gift_ids'] . ")")->asArray()->all();
-
             }
         }
 
