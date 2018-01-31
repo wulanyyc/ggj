@@ -87,14 +87,17 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
     <div style="font-size: 13px;text-align: center;">购物车</div>
   </a>
   <?php } ?>
+
   <a href="/order?type=1" style="color:black;text-decoration: none;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-credit-card" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">待付款</div>
   </a>
+
   <a href="/order?type=2" style="color:black;text-decoration: none;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-truck" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">待收货</div>
   </a>
+
   <a href="/order" style="color:black;text-decoration: none;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">我的订单</div>
@@ -105,6 +108,7 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <div class="show-item-text">售后建议</div>
   <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
+
 <a href="/customer/coupon" class="card show-item" id="coupon">
   <div class="show-item-text">优惠券</div>
   <div class="show-item-arrow">
@@ -114,10 +118,22 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
     <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
   </div>
 </a>
+
+<a href="/customer/gift" class="card show-item" id="coupon">
+  <div class="show-item-text">礼品券</div>
+  <div class="show-item-arrow">
+    <?php if ($couponNum > 0) { ?>
+    <span class="badge badge-danger"><?=$couponNum ?></span>
+    <?php } ?>
+    <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
+  </div>
+</a>
+
 <a href="/customer/score" class="card show-item" id="score">
   <div class="show-item-text">积分商场</div>
   <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
+
 <a href="/buy/type" class="card show-item" id="score">
   <div class="show-item-text">购买须知</div>
   <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>

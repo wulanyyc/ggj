@@ -25,10 +25,10 @@ SiteAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?= WechatWidget::widget() ?>
 
 <main>
     <?= $content ?>
-    <?= WechatWidget::widget() ?>
 </main>
 
 

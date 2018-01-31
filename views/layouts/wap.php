@@ -27,6 +27,8 @@ SiteAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?= WechatWidget::widget() ?>
+
 <nav class="navbar navbar-expand-md fixed-top navbar-dark" style="background-color: #1ba93b;">
     <div id="back" style="color:white;cursor: pointer;display: inline;"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
     <a class="navbar-brand" href="/" style="color:white;text-align: center;width: 60%;padding-left: 15%">果果佳</a>
@@ -35,7 +37,6 @@ SiteAsset::register($this);
 
 <main>
     <?= $content ?>
-    <?= WechatWidget::widget() ?>
 </main>
 
 <footer>

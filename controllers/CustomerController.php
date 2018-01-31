@@ -13,6 +13,7 @@ use app\models\FeedBack;
 use app\models\ProductOrder;
 use app\models\ProductCart;
 use app\filters\CustomerFilter;
+use app\models\Gift;
 
 class CustomerController extends Controller
 {
@@ -311,5 +312,34 @@ EOF;
         }
 
         return $job;
+    }
+
+    public function actionGift() {
+        $data = PriceHelper::getValidGift();
+        $html = '';
+
+        if (empty($data)) {
+            $html = '没有可用的券';
+        } else {
+            foreach($data as $key => $value) {
+                $info = Gift::find()->where(['id' => $value['gid']])->asArray()->one();
+
+                $html .= <<<EOF
+                <div class="gift_item">
+                    <div class="gift_item_content">
+                        <div class="gift_item_label">
+                            <i class="fa fa-gift" aria-hidden="true" style="color:red;font-size:20px;"></i>
+                            {$info['name']}
+                        </div>
+                    </div>
+                </div>
+EOF;
+            }
+        }
+
+        return $this->render('gift', [
+            'controller' => Yii::$app->controller->id,
+            'html' => $html,
+        ]);
     }
 }

@@ -11,7 +11,7 @@ MsaView::registerJsFile($this,'/js/customer/coupon.js',
     ]
 );
 
-$this->title = '优惠券管理';
+$this->title = '优惠券';
 ?>
 
 <style type="text/css">
