@@ -457,7 +457,6 @@ class PriceHelper extends Component {
     }
 
     public static function getPrize($rotate) {
-        // $prizeNum = floor(($rotate - 4 * (360 + 45))/ 45);
         $prizeNum = (5 * 360 - $rotate) / 45;
         if ($prizeNum == 8) $prizeNum = 7;
 
@@ -515,29 +514,28 @@ class PriceHelper extends Component {
 
         $prizeLimit = 5;
 
-        $get = Yii::$app->redis->get('prize_' . $key . '_get');
-        if ($get > 0) {
-            return '奖品已领取，请5天后再抽奖，有疑问请联系客服';
-        }
-
         $data = Yii::$app->redis->get('prize_' . $key);
-
-        if (empty($data)) {
-            return '奖品已过期，请5天后再抽奖，有疑问请联系客服';
-        }
-
         $ret  = 0;
         $info = json_decode($data, true);
         $str = '';
 
+        $get = Yii::$app->redis->get('prize_' . $key . '_get');
+        if ($get > 0) {
+            return '您本次的抽奖：' . $info['text'] . ', 5天内已领取过。请间隔5天再抽奖，有疑问请联系客服';
+        }
+
+        if (empty($data)) {
+            return '奖品已过期，请再次抽奖[聚优惠->抽奖]，有疑问请联系客服';
+        }
+
         if ($info['type'] == 'gift') {
             $ret = self::createGift($info['id'], $openid);
-            $str = '您的抽奖：' . $info['text'] . ', 已成功领取。礼品券需下单填写地址后配送，使用请查看菜单[果果商城->逛商城]';
+            $str = '您的抽奖：' . $info['text'] . ', 已成功领取。菜单查看[聚优惠->礼品券], 使用[果果商城->逛商城]';
         }
 
         if ($info['type'] == 'coupon') {
             $ret = self::createCoupon($info['id'], $openid);
-            $str = '您的抽奖：' . $info['text'] . ', 已成功领取。消费券可抵扣订单金额, 使用请查看菜单[果果商城->逛商城]';
+            $str = '您的抽奖：' . $info['text'] . ', 已成功领取。菜单查看[聚优惠->优惠券], 使用[果果商城->逛商城]';
         }
 
         if ($ret > 0) {
