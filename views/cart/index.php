@@ -545,7 +545,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       商品详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_detail"></i>
   </div>
-  <div style="margin-top: 10px;font-size: 14px;width:98%;margin:1% auto;height: 72%;overflow-y: scroll;">
+  <div style="margin-top: 10px;font-size: 14px;width:98%;margin:1% auto;height: 68%;overflow-y: scroll;">
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -566,9 +566,9 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
     </table>
   </div>
 
-  <div class='btn btn-danger btn-sm' id='inner_edit_product' style="width:40%;margin-left:30%;margin-top: 3%;">修改商品</div>
+  <div class='btn btn-danger btn-sm' id='inner_edit_product' style="width:40%;margin-left:30%;margin-top: 1%;">修改商品</div>
 
-  <div class='btn btn-success btn-sm' id='close_detail_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
+  <div class='btn btn-success btn-sm' id='close_detail_bottom' style="width:40%;margin-left:30%;margin-top: 2%;">关闭</div>
 </div>
 
 <div class="card" id="all_address_info">
