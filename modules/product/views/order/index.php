@@ -85,7 +85,7 @@ MsaView::registerJsFile($this,'/js/product/order/index.js',
                             <th>操作</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="font-size: 14px;">
                     </tbody>
                 </table>
             </div>
