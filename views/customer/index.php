@@ -122,8 +122,8 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 <a href="/customer/gift" class="card show-item" id="coupon">
   <div class="show-item-text">礼品券</div>
   <div class="show-item-arrow">
-    <?php if ($couponNum > 0) { ?>
-    <span class="badge badge-danger"><?=$couponNum ?></span>
+    <?php if ($giftNum > 0) { ?>
+    <span class="badge badge-danger"><?=$giftNum ?></span>
     <?php } ?>
     <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
   </div>

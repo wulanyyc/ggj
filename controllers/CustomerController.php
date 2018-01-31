@@ -75,6 +75,7 @@ class CustomerController extends Controller
         }
 
         $couponNum = count(PriceHelper::getValidCoupon());
+        $giftNum = count(PriceHelper::getValidGift());
 
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
@@ -82,6 +83,7 @@ class CustomerController extends Controller
             'cartid' => $cartid,
             'isWechat' => $isWechat,
             'couponNum' => $couponNum,
+            'giftNum' => $giftNum,
         ]);
     }
 
@@ -319,7 +321,7 @@ EOF;
         $html = '';
 
         if (empty($data)) {
-            $html = '没有可用的券';
+            $html = '没有可用的券, 请到公众号中抽奖';
         } else {
             foreach($data as $key => $value) {
                 $info = Gift::find()->where(['id' => $value['gid']])->asArray()->one();
