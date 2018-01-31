@@ -107,4 +107,51 @@ class NotifyHelper extends Component{
             WechatHelper::curlRequest($url, json_encode($data));
         }
     }
+
+    public static function prepare($id) {
+        $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+        $customerInfo = Customer::find()->select('nick,phone,openid')
+            ->where(['id' => $info['customer_id']])->asArray()->one();
+
+        if (empty($customerInfo['openid'])) {
+            return '';
+        }
+
+        $templateId = '_GfNXF7BF1Lpf_CJkdbZA1D8ZXSiHUPMq591AijeNJQ';
+        $url = self::$api . WechatHelper::getAccessToken();
+        $myId = $customerInfo['openid'];
+
+        $data = [
+            'touser' => $myId,
+            'template_id' => $templateId,
+            'data' => [
+                'first' => [
+                    'value' => '感谢您的购买，新鲜佳果积极备货中',
+                    'color' => '#e83030',
+                ],
+                'keyword1' => [
+                    'value' => '水果和干果',
+                    'color' => '#173177',
+                ],
+                'keyword2' => [
+                    'value' => date('Ymd', time()) . $id,
+                    'color' => '#173177',
+                ],
+                'keyword3' => [
+                    'value' => '果果佳',
+                    'color' => '#173177',
+                ],
+                'keyword4' => [
+                    'value' => date('Y-m-d H:i:s', time()),
+                    'color' => '#173177',
+                ],
+                'remark' => [
+                    'value' => '参加公众号抽奖活动（菜单：聚优惠->抽奖），获取更多优惠。分享抽奖活动享更多惊喜',
+                    'color' => '#173177',
+                ]
+            ],
+        ];
+
+        WechatHelper::curlRequest($url, json_encode($data));
+    }
 }

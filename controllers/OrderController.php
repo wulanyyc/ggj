@@ -16,6 +16,7 @@ use app\modules\product\models\CouponUse;
 use app\models\Customer;
 use app\filters\CustomerFilter;
 use app\models\Gift;
+use app\components\NotifyHelper;
 
 
 class OrderController extends Controller
@@ -364,12 +365,27 @@ class OrderController extends Controller
                 'id' => $id,
                 'uid' => $uid,
                 'info' => $info,
+                'token' => $token,
             ]);
         } else {
             return $this->render('error', [
                 'controller' => Yii::$app->controller->id,
                 'tip' => '验证失败',
             ]);
+        }
+    }
+
+    public function actionPrepare() {
+        $params = Yii::$app->request->post();
+        $id  = isset($params['id']) ? $params['id'] : '';
+        $token = isset($params['token']) ? $params['token'] : '';
+
+        $checkToken = md5($id . Yii::$app->params['salt']);
+
+        if ($token == $checkToken) {
+            NotifyHelper::prepare($id);
+        } else {
+            SiteHelper::render('fail', '验证失败');
         }
     }
 }

@@ -4,6 +4,14 @@ use app\components\MsaView;
 
 $this->title = '备货';
 
+MsaView::registerJsFile($this,'/js/order/handle.js', 
+    ['position' => View::POS_END, 
+        'depends' => [
+            'app\assets\SiteAsset',
+        ]
+    ]
+);
+
 ?>
 
 <style type="text/css">
@@ -142,6 +150,5 @@ $this->title = '备货';
     <?php } ?>
   </div>
 
-  <button type="button" class="btn btn-success" id="prepare" style="width: 80%;margin-left: 10%;margin-bottom: 5%;">备货通知</button>
-  <button type="button" class="btn btn-danger" id="express" style="width: 80%;margin-left: 10%;margin-bottom: 3%;">发货通知</button>
+  <button type="button" class="btn btn-success" id="prepare" data-id="<?=$id ?>" data-token="<?=$token ?>" style="width: 80%;margin-left: 10%;margin-bottom: 5%;">备货通知</button>
 </div>
