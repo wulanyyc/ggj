@@ -11,6 +11,7 @@ use app\models\ProductPackage;
 use app\modules\product\models\Tags;
 use app\components\PriceHelper;
 use app\components\ProductHelper;
+use app\models\ProductCart;
 
 class SiteController extends Controller
 {
@@ -25,6 +26,21 @@ class SiteController extends Controller
      * @return
      */
     public function actionIndex() {
+        $cid = isset($_COOKIE['cart_id']) ? $_COOKIE['cart_id'] : 0;
+
+        $cartNum = 0;
+        $cartLink = '/buy';
+
+        if ($cid > 0) {
+            $cartInfo = ProductCart::find()->select('order_type,cart')->where(['id' => $cid])->asArray()->one();
+            $cartNum = count(json_decode($cartInfo['cart'], true));
+            if ($cartInfo['order_type'] == 1) {
+                $cartLink = '/buy?cid=' . $cid;
+            } else {
+                $cartLink = '/buy/booking?cid=' . $cid;
+            }
+        }
+
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'dayPromotion' => $this->getDayPromotion(),
@@ -35,6 +51,8 @@ class SiteController extends Controller
             'homeTip' => Yii::$app->params['hometip'],
             'bookingDiscount' => Yii::$app->params['bookingDiscount'] * 10,
             'bookingSender' => Yii::$app->params['bookingSender'],
+            'cartNum' => $cartNum,
+            'cartLink' => $cartLink,
         ]);
     }
 
