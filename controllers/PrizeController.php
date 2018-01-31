@@ -80,7 +80,7 @@ class PrizeController extends Controller
             echo json_encode([
                 'status' => 'ok',
                 'rotate' => $rotate, 
-                'msg'    => '请领取最后一次奖品"' . $prize['text'] . '"，' . $remainDay . '天后再抽',
+                'msg'    => '您的抽奖次数已用尽，领取奖品"' . $prize['text'] . '"，' . $remainDay . '天后继续',
             ]);
 
             Yii::$app->end();
@@ -95,7 +95,7 @@ class PrizeController extends Controller
             echo json_encode([
                 'status' => 'ok', 
                 'rotate' => $rotate, 
-                'msg' => '您本周已没有抽奖机会了, 建议领取本次奖品:' . $prize['text'],
+                'msg' => '您的抽奖次数已用尽，领取奖品:' . $prize['text'] . '，' . $remainDay . '天后继续',
             ]);
             Yii::$app->end();
         }
