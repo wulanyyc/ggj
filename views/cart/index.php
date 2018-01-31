@@ -422,7 +422,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
 <div class="card">
   <div id="gift_show" class="card-content">
     <div style="margin-bottom:3px;display: table;height: 36px;position: relative;width: 100%;line-height: 36px;" id="choose_gift">
-      <div class="label" style="width:68%;display: inline-block;">抽奖礼品券</div>
+      <div class="label" style="width:68%;display: inline-block;color:red;">礼品券</div>
       <div id="gift_detail">
         <?php if ($gift > 0) { ?>
         可领<span class="text-danger" style="font-weight: bold;font-size: 14px;">&nbsp;<?=$gift ?>&nbsp;</span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
@@ -445,7 +445,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
     </div>
     <hr style="margin-top: 8px;margin-bottom: 8px;"/> -->
     <div style="margin-bottom:3px;display: table;height: 36px;position: relative;width: 100%;line-height: 36px;" id="choose_coupon">
-      <div class="label" style="width:68%;display: inline-block;">优惠券</div>
+      <div class="label" style="width:68%;display: inline-block;color:red;">优惠券</div>
       <div id="coupon_detail">
         <?php if ($coupon > 0) { ?>
         可用<span class="text-danger" style="font-weight: bold;font-size: 14px;">&nbsp;<?=$coupon ?>&nbsp;</span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
