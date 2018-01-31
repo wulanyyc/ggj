@@ -111,7 +111,7 @@ class PriceHelper extends Component {
             if ($type == 3) {
                 $openid = Customer::find()->select('openid')->where(['id' => $customerId])->scalar();
                 if (!empty($openid)) {
-                    NotifyHelper::sendFanli($openid, $info['money'], '感谢您一直对果果佳的支持', '优惠券请在菜单【聚优惠】中查看');
+                    NotifyHelper::sendFriend($openid, $info['money'], '感谢您一直对果果佳的支持', '优惠券请在菜单【聚优惠】中查看');
                 }
             }
 
@@ -151,7 +151,7 @@ class PriceHelper extends Component {
             if ($type == 3) {
                 $openid = Customer::find()->select('openid')->where(['id' => $customerId])->scalar();
                 if (!empty($openid)) {
-                    NotifyHelper::sendFanli($openid, $info['money'], '感谢您一直对果果佳的支持', '优惠券请在菜单【聚优惠】中查看');
+                    NotifyHelper::sendFriend($openid, $info['money'], '感谢您一直对果果佳的支持', '优惠券请在菜单【聚优惠】中查看');
                 }
             }
 
