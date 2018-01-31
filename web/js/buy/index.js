@@ -1,6 +1,6 @@
 $(document).ready(function () {
     cart = {};
-    timeLimit = 120;
+    timeLimit = 60;
     clock = 0;
 
     function init() {

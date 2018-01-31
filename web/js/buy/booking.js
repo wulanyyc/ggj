@@ -1,7 +1,7 @@
 $(document).ready(function () {
     cart = {};
     // var back = -1;
-    timeLimit = 120;
+    timeLimit = 60;
     clock = 0;
 
     function init() {

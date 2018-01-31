@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    timeLimit = 120;
+    timeLimit = 60;
     clock = 0;
 
     $('#getcode').click(function() {

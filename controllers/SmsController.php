@@ -37,7 +37,7 @@ class SmsController extends Controller
 
         if (SiteHelper::checkPhone($phone)) {
             $code = rand(1000, 9999);
-            Yii::$app->redis->setex($phone . "_code", 120, $code);
+            Yii::$app->redis->setex($phone . "_code", 60, $code);
 
             SmsHelper::sendVcode($phone, ['code' => $code]);
 
