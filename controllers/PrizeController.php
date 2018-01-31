@@ -86,6 +86,22 @@ class PrizeController extends Controller
             Yii::$app->end();
         }
 
+        $data = Yii::$app->redis->get($uniq . "_code");
+        if (!empty($data)) {
+            $prizeCode = $data['code'];
+            $get = Yii::$app->redis->get('prize_' . $prizeCode . '_get');
+            if ($get > 0) {
+                $rotate = Yii::$app->redis->get($uniq);
+                echo json_encode([
+                    'status' => 'ok',
+                    'rotate' => $rotate,
+                    'msg'    => '您已领取奖品，请' . $remainDay . '天后继续',
+                ]);
+
+                Yii::$app->end();
+            }
+        }
+
         $rotate = 5 * 360 - $this->getRand() * 45;
 
         Yii::$app->redis->setex($uniq, 86400 * $dayLimit, $rotate);
