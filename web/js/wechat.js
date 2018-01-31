@@ -17,7 +17,7 @@ if (document.getElementById('we_appid')) {
 
         wx.onMenuShareAppMessage({
             title: '成都果果佳->开业钜惠, 好礼100%',
-            desc: '新鲜佳果，全网低价，保质保量。顺丰配送，当日或隔日达', // 分享描述
+            desc: '新鲜佳果，保质保量，坏一赔三。顺丰配送，当日或隔日达', // 分享描述
             link: 'http://guoguojia.vip/prize/?share_id=' + $.cookie('openid'), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: 'http://img.guoguojia.vip/img/ggj.jpg', // 分享图标
             type: 'link', // 分享类型,music、video或link，不填默认为link
