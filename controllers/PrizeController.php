@@ -79,8 +79,8 @@ class PrizeController extends Controller
             $prize = PriceHelper::getPrize($rotate);
             echo json_encode([
                 'status' => 'ok',
-                'rotate' => 0, 
-                'msg'    => '请领取奖品"' . $prize['text'] . '"，' . $remainDay . '天后再抽',
+                'rotate' => $rotate, 
+                'msg'    => '请领取最后一次奖品"' . $prize['text'] . '"，' . $remainDay . '天后再抽',
             ]);
 
             Yii::$app->end();
