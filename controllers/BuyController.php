@@ -9,6 +9,7 @@ use app\modules\product\models\ProductList;
 use app\components\PriceHelper;
 use app\models\ProductCart;
 use app\widgets\CategoryWidget;
+use app\models\ProductOrder;
 
 class BuyController extends Controller
 {
@@ -45,12 +46,15 @@ class BuyController extends Controller
         $id = isset($params['id']) ? $params['id'] : 0;
         $cid = isset($params['cid']) ? $params['cid'] : 0;
 
-        // if ($cid == 0 && !empty($_COOKIE['cart_id'])) {
-        //     $orderType = ProductCart::find()->where(['id' => $_COOKIE['cart_id']])->select('order_type')->scalar();
-        //     if ($orderType == 1) {
-        //         $cid = $_COOKIE['cart_id'];
-        //     }
-        // }
+        if ($cid == 0 && !empty($_COOKIE['cart_id'])) {
+            $orderType = ProductCart::find()->where(['id' => $_COOKIE['cart_id']])->select('order_type')->scalar();
+            if ($orderType == 1) {
+                $status = ProductOrder::find()->where(['cart_id' => $_COOKIE['cart_id']])->select('status')->scalar();
+                if ($status <= 1) {
+                    $cid = $_COOKIE['cart_id'];
+                }
+            }
+        }
 
         $orderType = 1;
 
@@ -98,12 +102,15 @@ class BuyController extends Controller
         $id = isset($params['id']) ? $params['id'] : 0;
         $cid = isset($params['cid']) ? $params['cid'] : 0;
 
-        // if ($cid == 0 && isset($_COOKIE['cart_id'])) {
-        //     $orderType = ProductCart::find()->where(['id' => $_COOKIE['cart_id']])->select('order_type')->scalar();
-        //     if ($orderType == 2) {
-        //         $cid = $_COOKIE['cart_id'];
-        //     }
-        // }
+        if ($cid == 0 && isset($_COOKIE['cart_id'])) {
+            $orderType = ProductCart::find()->where(['id' => $_COOKIE['cart_id']])->select('order_type')->scalar();
+            if ($orderType == 2) {
+                $status = ProductOrder::find()->where(['cart_id' => $_COOKIE['cart_id']])->select('status')->scalar();
+                if ($status <= 1) {
+                    $cid = $_COOKIE['cart_id'];
+                }
+            }
+        }
 
         $orderType = 2;
 

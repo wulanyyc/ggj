@@ -569,10 +569,15 @@ $(document).ready(function () {
     }
 
     function init() {
-        var rule = $('#history_express_rule').val();
-        var cart_id = $('#cart_id').val();
+        var rule      = $('#history_express_rule').val();
+        var cart_id   = $('#cart_id').val();
+        // var orderType = parseInt($('#order_type').val());
 
+        // if (orderType == 1) {
         $.cookie('cart_id', cart_id, {expires: 7, path: '/'});
+        // } else {
+        //     $.cookie('booking_cart_id', cart_id, {expires: 7, path: '/'});
+        // }
 
         $.ajax({
             url: '/cart/getexpressrule',
