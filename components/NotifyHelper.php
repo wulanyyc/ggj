@@ -69,6 +69,36 @@ class NotifyHelper extends Component{
         WechatHelper::curlRequest($url, json_encode($data));
     }
 
+    public static function sendFriend($openid, $money, $text, $memo) {
+        $templateId = 'd5z8VYqpnsWGQn0I-dq6loegLp2u2QXtrLtyibcOUOE';
+        $url = self::$api . WechatHelper::getAccessToken();
+
+        $data = [
+            'touser' => $openid,
+            'template_id' => $templateId,
+            'data' => [
+                'first' => [
+                    'value' => $text,
+                    'color' => '#e83030',
+                ],
+                'keyword1' => [
+                    'value' => $money . '元',
+                    'color' => '#173177',
+                ],
+                'keyword2' => [
+                    'value' => date('Y-m-d H:i:s', time()),
+                    'color' => '#173177',
+                ],
+                'remark' => [
+                    'value' => $memo,
+                    'color' => '#173177',
+                ]
+            ]
+        ];
+
+        WechatHelper::curlRequest($url, json_encode($data));
+    }
+
     public static function sendFanli($openid, $fromOpenid, $money) {
         $userinfo = Customer::find()->where(['openid' => $openid])->asArray()->one();
         $date = date('Ymd', strtotime($userinfo['create_time']));
