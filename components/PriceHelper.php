@@ -521,7 +521,7 @@ class PriceHelper extends Component {
 
         $get = Yii::$app->redis->get('prize_' . $key . '_get');
         if ($get > 0) {
-            return '您本次的抽奖：' . $info['text'] . ', 5天内已领取过。请间隔5天再抽奖，有疑问请联系客服';
+            return '您的抽奖：' . $info['text'] . ', 5天内已领取过。请间隔5天再抽奖，有疑问请联系客服';
         }
 
         if (empty($data)) {
