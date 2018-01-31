@@ -384,6 +384,7 @@ class OrderController extends Controller
 
         if ($token == $checkToken) {
             NotifyHelper::prepare($id);
+            SiteHelper::render('ok');
         } else {
             SiteHelper::render('fail', '验证失败');
         }

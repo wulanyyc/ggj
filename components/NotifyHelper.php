@@ -121,6 +121,8 @@ class NotifyHelper extends Component{
         $url = self::$api . WechatHelper::getAccessToken();
         $myId = $customerInfo['openid'];
 
+        $text = $info['order_type'] == 1 ? '现售单' : '预约单';
+
         $data = [
             'touser' => $myId,
             'template_id' => $templateId,
@@ -130,7 +132,7 @@ class NotifyHelper extends Component{
                     'color' => '#e83030',
                 ],
                 'keyword1' => [
-                    'value' => '水果和干果',
+                    'value' => $text,
                     'color' => '#173177',
                 ],
                 'keyword2' => [
@@ -146,7 +148,7 @@ class NotifyHelper extends Component{
                     'color' => '#173177',
                 ],
                 'remark' => [
-                    'value' => '参加公众号抽奖活动（菜单：聚优惠->抽奖），获取更多优惠。分享抽奖活动享更多惊喜',
+                    'value' => '参加公众号抽奖活动，获取更多优惠。分享抽奖活动享更多惊喜（菜单：聚优惠->抽奖）',
                     'color' => '#173177',
                 ]
             ],
