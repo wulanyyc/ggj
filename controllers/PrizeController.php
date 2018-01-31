@@ -93,6 +93,14 @@ class PrizeController extends Controller
             $get = Yii::$app->redis->get('prize_' . $prizeCode . '_get');
             if ($get > 0) {
                 $rotate = Yii::$app->redis->get($uniq);
+
+                $remainTime = Yii::$app->redis->ttl($uniq . "_from");
+                if ($remainTime > 0) {
+                    $remainDay = round($remainTime / 86400, 1);
+                } else {
+                    $remainDay = $dayLimit;
+                }
+
                 echo json_encode([
                     'status' => 'ok',
                     'rotate' => $rotate,
