@@ -43,13 +43,12 @@ $(document).ready(function () {
                     document.getElementsByTagName('head')[0].appendChild(style);
 
                     $('#pan').css('animation', 'rotation 4s ease 0s 1 alternate forwards');
-                    $('#pan').css('-moz-animation', 'rotation 4s ease 0s 1 alternate forwards');
+                    // $('#pan').css('-moz-animation', 'rotation 4s ease 0s 1 alternate forwards');
                     $('#pan').css('-webkit-animation', 'rotation 4s ease 0s 1 alternate forwards');
-                    $('#pan').css('-o-animation', 'rotation 4s ease 0s 1 alternate forwards');
+                    // $('#pan').css('-o-animation', 'rotation 4s ease 0s 1 alternate forwards');
 
                     setTimeout(function(){
                             bootbox.confirm({
-                                // title: '提示',
                                 message: data.msg,
                                 buttons: {
                                     cancel: {
