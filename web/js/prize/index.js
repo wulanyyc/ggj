@@ -22,14 +22,15 @@ $(document).ready(function () {
 
                     style.type = 'text/css';
                     var keyFrames = '\
-                        @keyframes rotation{\
+                    @keyframes rotation{\
                         from {\
                             transform: rotate(0deg);\
                         }\
                         to {\
                             transform: rotate(' + rotate +'deg)\
                         }\
-                        @-webkit-keyframes rotation{\
+                    }\
+                    @-webkit-keyframes rotation{\
                         from {\
                             -webkit-transform: rotate(0deg);\
                         }\
