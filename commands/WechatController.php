@@ -88,7 +88,7 @@ class WechatController extends Controller
                 // TODO 关注公众号，修改优惠id
                 PriceHelper::createCoupon(Yii::$app->params['coupon']['subscribe'], $value['openid']);
                 // TODO 首单优惠，修改优惠id
-                PriceHelper::createCoupon(Yii::$app->params['coupon']['login'], $value['openid']);
+                // PriceHelper::createCoupon(Yii::$app->params['coupon']['login'], $value['openid']);
             }
         }
     }

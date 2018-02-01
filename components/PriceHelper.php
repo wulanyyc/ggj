@@ -108,13 +108,6 @@ class PriceHelper extends Component {
             $ar->customer_id = $customerId;
             $ar->save();
 
-            if ($type == 3) {
-                $openid = Customer::find()->select('openid')->where(['id' => $customerId])->scalar();
-                if (!empty($openid) && $couponid > 18) {
-                    NotifyHelper::sendFriend($openid, $info['money'], '感谢您一直对果果佳的支持，特赠送您一张优惠券', '优惠券请在菜单【聚优惠】中查看');
-                }
-            }
-
             return $ar->id;
         }
     }
