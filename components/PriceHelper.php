@@ -513,8 +513,9 @@ class PriceHelper extends Component {
         $str = '';
 
         $get = Yii::$app->redis->get('prize_' . $key . '_get');
-        if ($get > 0) {
-            return '您的抽奖：' . $info['text'] . ', 5天内已领取过。请间隔5天再抽奖，有疑问请联系客服';
+        $userGet = Yii::$app->redis->get('prize_' . $openid . '_get');
+        if ($get > 0 || $userGet > 0) {
+            return '您5天内已领取过奖品。请间隔5天再抽奖，有疑问请联系客服';
         }
 
         if (empty($data)) {
@@ -532,7 +533,9 @@ class PriceHelper extends Component {
         }
 
         if ($ret > 0) {
+            Yii::$app->redis->setex('prize_' . $openid . '_get', 86400 * $prizeLimit, 1);
             Yii::$app->redis->setex('prize_' . $key . '_get', 86400 * $prizeLimit, 1);
+
             // 来源openid
             $fromOpenid = Yii::$app->redis->get($info['uniq']. '_from');
 
