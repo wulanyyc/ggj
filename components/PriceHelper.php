@@ -461,8 +461,8 @@ class PriceHelper extends Component {
             ],
             1 => [
                 'type' => 'gift',
-                'id'   => 1,
-                'text' => '进口单J车厘子半斤礼品券',
+                'id'   => 7,
+                'text' => '进口单J车厘子100g礼品券',
             ],
             2 => [
                 'type' => 'coupon',
