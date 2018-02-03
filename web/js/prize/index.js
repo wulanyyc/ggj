@@ -19,7 +19,6 @@ $(document).ready(function () {
                     $.helper.alert(data.msg);
                 } else {
                     var style = document.createElement('style');
-
                     style.type = 'text/css';
                     var keyFrames = '\
                     @keyframes rotation{\
@@ -43,11 +42,11 @@ $(document).ready(function () {
                     document.getElementsByTagName('head')[0].appendChild(style);
 
                     $('#pan').css('animation', 'rotation 4s ease 0s 1 alternate forwards');
-                    // $('#pan').css('-moz-animation', 'rotation 4s ease 0s 1 alternate forwards');
                     $('#pan').css('-webkit-animation', 'rotation 4s ease 0s 1 alternate forwards');
+                    // $('#pan').css('-moz-animation', 'rotation 4s ease 0s 1 alternate forwards');
                     // $('#pan').css('-o-animation', 'rotation 4s ease 0s 1 alternate forwards');
 
-                    setTimeout(function(){
+                    // setTimeout(function(){
                             bootbox.confirm({
                                 message: data.msg,
                                 buttons: {
@@ -62,18 +61,13 @@ $(document).ready(function () {
                                     if (result) {
                                         location.href = "/prize/suc";
                                     } else {
-                                        // $('#pointer').css('transform','none');
-                                        // $('#pointer').css('-webkit-transform','none');
-                                        // $('#pointer').css('-moz-transform','none');
-                                        // $('#pointer').css('-0-transform','none');
-                                        // location.reload();
                                         location.href = "/prize?v=" + Math.random();
                                     }
                                 }
                             });
-                        },
-                        4500
-                    );
+                        // },
+                        // 4200
+                    // );
                 }
 
                 $('#zhuanpan').attr('data-valid', 0);
