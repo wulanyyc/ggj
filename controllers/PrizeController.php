@@ -117,6 +117,13 @@ class PrizeController extends Controller
         $prize = PriceHelper::getPrize($rotate);
 
         if ($cnt == $limit) {
+            $remainTime = Yii::$app->redis->ttl($uniq . "_from");
+            if ($remainTime > 0) {
+                $remainDay = round($remainTime / 86400, 1);
+            } else {
+                $remainDay = $dayLimit;
+            }
+
             echo json_encode([
                 'status' => 'ok', 
                 'rotate' => $rotate,
