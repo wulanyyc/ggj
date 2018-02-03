@@ -46,7 +46,7 @@ $(document).ready(function () {
                     // $('#pan').css('-moz-animation', 'rotation 4s ease 0s 1 alternate forwards');
                     // $('#pan').css('-o-animation', 'rotation 4s ease 0s 1 alternate forwards');
 
-                    // setTimeout(function(){
+                    setTimeout(function(){
                             bootbox.confirm({
                                 message: data.msg,
                                 buttons: {
@@ -65,9 +65,9 @@ $(document).ready(function () {
                                     }
                                 }
                             });
-                        // },
-                        // 4200
-                    // );
+                        },
+                        4200
+                    );
                 }
 
                 $('#zhuanpan').attr('data-valid', 0);
