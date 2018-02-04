@@ -22,8 +22,7 @@ class PrizeController extends Controller
         $sid = isset($params['share_id']) ? $params['share_id'] : '';
         $from = isset($params['from']) ? $params['from'] : '';
 
-        if ($from == 'timeline' || $from == 'singlemessage'
-            || $from == 'groupmessage' || !empty($_COOKIE['openid']) || !empty($_COOKIE['aaguid'])) {
+        if ($from == 'timeline' || $from == 'singlemessage' || $from == 'groupmessage' || !empty($_COOKIE['openid'])) {
             if (empty($_COOKIE['aaguid'])) {
                 $uniq = uniqid();
                 setcookie('aaguid', $uniq, time() + 86400 * $this->dayLimit, '/');
@@ -31,9 +30,11 @@ class PrizeController extends Controller
                 $uniq = $_COOKIE['aaguid'];
             }
 
-            if (!empty($sid)) {
+            if (!empty($sid) && empty(Yii::$app->redis->get($uniq . '_from'))) {
                 Yii::$app->redis->setex($uniq . '_from', 86400 * $this->dayLimit, $sid);
             }
+
+            Yii::$app->redis->setex($uniq . '_exsit', 86400 * $this->dayLimit, $sid);
             
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
@@ -47,18 +48,24 @@ class PrizeController extends Controller
 
     public function actionGetrotate() {
         $limit = $this->limit;
+        $dayLimit = $this->dayLimit;
+        $uniq = $_COOKIE['aaguid'];
+
+        // 判断参数
+        if (empty($uniq)) {
+            return $this->render('error', [
+                'controller' => Yii::$app->controller->id,
+            ]);
+        }
 
         if (SiteHelper::getCustomerId() == 27) {
             $limit = 300;
         }
 
-        $dayLimit = $this->dayLimit;
-
-        $uniq = $_COOKIE['aaguid'];
-
         $cntKey = $uniq . '_cnt';
         $cnt = Yii::$app->redis->get($cntKey);
 
+        // 设置抽奖次数
         if ($cnt > 0) {
             $cnt += 1;
             Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
@@ -67,16 +74,11 @@ class PrizeController extends Controller
             Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
         }
 
+        // 抽奖控制
         if ($cnt > $limit) {
-            $remainTime = Yii::$app->redis->ttl($uniq . "_from");
-            if ($remainTime > 0) {
-                $remainDay = round($remainTime / 86400, 1);
-            } else {
-                $remainDay = $dayLimit;
-            }
-
+            $remainDay = $this->getRemainDay($uniq);
             $rotate = Yii::$app->redis->get($uniq);
-            $prize = PriceHelper::getPrize($rotate);
+
             echo json_encode([
                 'status' => 'ok',
                 'rotate' => $rotate,
@@ -86,20 +88,30 @@ class PrizeController extends Controller
             Yii::$app->end();
         }
 
+        // 抽奖控制
+        if ($cnt == $limit) {
+            $remainDay = $this->getRemainDay($uniq);
+            $rotate = Yii::$app->redis->get($uniq);
+            $prize = PriceHelper::getPrize($rotate);
+
+            echo json_encode([
+                'status' => 'ok', 
+                'rotate' => $rotate,
+                'msg' => '您的抽奖次数已用尽，请领取最终奖品:' . $prize['text'] . '，' . $remainDay . '天后继续',
+            ]);
+            Yii::$app->end();
+        }
+
+        // 判断是否已领奖
         $data = Yii::$app->redis->get($uniq . "_code");
         if (!empty($data)) {
             $info = json_decode($data, true);
             $prizeCode = $info['code'];
+
             $get = Yii::$app->redis->get('prize_' . $prizeCode . '_get');
             if ($get > 0) {
                 $rotate = Yii::$app->redis->get($uniq);
-
-                $remainTime = Yii::$app->redis->ttl($uniq . "_from");
-                if ($remainTime > 0) {
-                    $remainDay = round($remainTime / 86400, 1);
-                } else {
-                    $remainDay = $dayLimit;
-                }
+                $remainDay = $this->getRemainDay($uniq);
 
                 echo json_encode([
                     'status' => 'ok',
@@ -111,26 +123,12 @@ class PrizeController extends Controller
             }
         }
 
+        // 正常抽奖
         $rotate = 5 * 360 - $this->getRand() * 45;
-
-        Yii::$app->redis->setex($uniq, 86400 * $dayLimit, $rotate);
         $prize = PriceHelper::getPrize($rotate);
 
-        if ($cnt == $limit) {
-            $remainTime = Yii::$app->redis->ttl($uniq . "_from");
-            if ($remainTime > 0) {
-                $remainDay = round($remainTime / 86400, 1);
-            } else {
-                $remainDay = $dayLimit;
-            }
-
-            echo json_encode([
-                'status' => 'ok', 
-                'rotate' => $rotate,
-                'msg' => '您的抽奖次数已用尽，请领取最终奖品:' . $prize['text'] . '，' . $remainDay . '天后继续',
-            ]);
-            Yii::$app->end();
-        }
+        // 记录旋转值
+        Yii::$app->redis->setex($uniq, 86400 * $dayLimit, $rotate);
 
         $remain = $limit - $cnt;
 
@@ -143,6 +141,17 @@ class PrizeController extends Controller
             'rotate' => $rotate,
             'msg' => '您还有'. $remain .'次抽奖机会，本次奖品:' . $prize['text'],
         ]);
+    }
+
+    private function getRemainDay($uniq) {
+        $remainTime = Yii::$app->redis->ttl($uniq . "_exsit");
+        if ($remainTime > 0) {
+            $remainDay = round($remainTime / 86400, 1);
+        } else {
+            $remainDay = $this->dayLimit;
+        }
+
+        return $remainDay;
     }
 
     public function actionSuc() {
@@ -247,37 +256,37 @@ class PrizeController extends Controller
         $rand = rand(1, 100);
 
         // 5元优惠券
-        if ($rand >= 1 && $rand < 25) {
+        if ($rand >= 1 && $rand < 20) {
             return 0;
         }
 
         // 半斤车厘子
-        if ($rand >= 25 && $rand < 35) {
+        if ($rand >= 20 && $rand < 25) {
             return 1;
         }
 
         // 10元优惠券
-        if ($rand >= 35 && $rand < 50) {
+        if ($rand >= 25 && $rand < 35) {
             return 2;
         }
 
         // 1斤香梨
-        if ($rand >= 50 && $rand < 60) {
+        if ($rand >= 35 && $rand < 55) {
             return 3;
         }
 
         // 20元优惠券
-        if ($rand >= 60 && $rand < 65) {
+        if ($rand >= 55 && $rand < 60) {
             return 4;
         }
 
         // 125g开心果
-        if ($rand >= 65 && $rand < 85) {
+        if ($rand >= 60 && $rand < 80) {
             return 5;
         }
 
         // 2元优惠券
-        if ($rand >= 85 && $rand < 90) {
+        if ($rand >= 80 && $rand < 90) {
             return 6;
         }
 
