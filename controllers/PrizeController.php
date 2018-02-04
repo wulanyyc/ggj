@@ -77,11 +77,11 @@ class PrizeController extends Controller
         // 抽奖控制
         if ($cnt > $limit) {
             $remainDay = $this->getRemainDay($uniq);
-            $rotate = Yii::$app->redis->get($uniq);
+            // $rotate = Yii::$app->redis->get($uniq);
 
             echo json_encode([
                 'status' => 'ok',
-                'rotate' => $rotate,
+                'rotate' => 0,
                 'msg'    => '您的抽奖次数已用尽，请' . $remainDay . '天后继续',
             ]);
 
@@ -91,12 +91,12 @@ class PrizeController extends Controller
         // 抽奖控制
         if ($cnt == $limit) {
             $remainDay = $this->getRemainDay($uniq);
-            $rotate = Yii::$app->redis->get($uniq);
+            // $rotate = Yii::$app->redis->get($uniq);
             $prize = PriceHelper::getPrize($rotate);
 
             echo json_encode([
                 'status' => 'ok', 
-                'rotate' => $rotate,
+                'rotate' => 0,
                 'msg' => '您的抽奖次数已用尽，请领取最终奖品:' . $prize['text'] . '，' . $remainDay . '天后继续',
             ]);
             Yii::$app->end();
@@ -110,12 +110,12 @@ class PrizeController extends Controller
 
             $get = Yii::$app->redis->get('prize_' . $prizeCode . '_get');
             if ($get > 0) {
-                $rotate = Yii::$app->redis->get($uniq);
+                // $rotate = Yii::$app->redis->get($uniq);
                 $remainDay = $this->getRemainDay($uniq);
 
                 echo json_encode([
                     'status' => 'ok',
-                    'rotate' => $rotate,
+                    'rotate' => 0,
                     'msg'    => '您' . $dayLimit . '天内已领取过奖品，请' . $remainDay . '天后继续',
                 ]);
 

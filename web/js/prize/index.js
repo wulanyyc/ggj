@@ -18,6 +18,29 @@ $(document).ready(function () {
                 if (data.status == 'fail') {
                     $.helper.alert(data.msg);
                 } else {
+                    if (rotate == 0) {
+                        $('#zhuanpan').attr('data-valid', 0);
+                        bootbox.confirm({
+                            message: data.msg,
+                            buttons: {
+                                cancel: {
+                                    label: '朕要放弃重抽'
+                                },
+                                confirm: {
+                                    label: '去领奖'
+                                }
+                            },
+                            callback: function(result){
+                                if (result) {
+                                    location.href = "/prize/suc";
+                                } else {
+                                    location.href = "/prize?v=" + Math.random();
+                                }
+                            }
+                        });
+                        return ;
+                    }
+
                     var style = document.createElement('style');
                     style.type = 'text/css';
                     var keyFrames = '\
