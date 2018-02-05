@@ -34,7 +34,9 @@ class PrizeController extends Controller
                 Yii::$app->redis->setex($uniq . '_from', 86400 * $this->dayLimit, $sid);
             }
 
-            Yii::$app->redis->setex($uniq . '_exsit', 86400 * $this->dayLimit, $sid);
+            if (empty(Yii::$app->redis->get($uniq . '_exsit'))) {
+                Yii::$app->redis->setex($uniq . '_exsit', 86400 * $this->dayLimit, $sid);
+            }
             
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
