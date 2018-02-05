@@ -53,15 +53,15 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
     }
 </style>
 
-<div class="card" id="userinfo" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+<div class="card" id="userinfo" style="padding: 5px 15px;display: table;width: 100%;">
   <?php if (empty($info['headimgurl'])) { ?>
-  <div style="font-size: 50px;">
+  <div style="font-size: 50px;display: table-cell;vertical-align: middle;">
     <a href="/customer/info" style="color: black;"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
   </div>
   <?php } else { ?>
-  <a href="/customer/info"><img src=<?=$info['headimgurl'] ?> style="height:60px;border-radius: 5px;"/></a>
+  <a href="/customer/info"><img src=<?=$info['headimgurl'] ?> style="height:60px;border-radius: 5px;display: table-cell;vertical-align: middle;"/></a>
   <?php } ?>
-  <div style="width:80%;">
+  <div style="width:80%;display: table-cell;vertical-align: middle;">
     <?php if (!empty($info['nick'])) { ?>
     <div><?=$info['nick'] ?></div>
     <?php } else { ?>
@@ -75,30 +75,30 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <!-- <div><button type="button" class="btn btn-outline-info btn-sm" id="charge">充值享优惠</button></div> -->
 </div>
 
-<div class="card" id="order" style="padding: 5px 15px;display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
+<div class="card" id="order" style="padding: 5px 15px;display: table;width: 100%;">
   <?php if ($cartid > 0) { ?>
-  <a href="/cart?id=<?=$cartid ?>" style="color:black;text-decoration: none;">
+  <a href="/cart?id=<?=$cartid ?>" style="color:black;text-decoration: none;display: table-cell;;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">购物车</div>
   </a>
   <?php } else { ?>
-  <a href="/buy" style="color:black;text-decoration: none;">
+  <a href="/buy" style="color:black;text-decoration: none;display: table-cell;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">购物车</div>
   </a>
   <?php } ?>
 
-  <a href="/order?type=1" style="color:black;text-decoration: none;">
+  <a href="/order?type=1" style="color:black;text-decoration: none;display: table-cell;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-credit-card" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">待付款</div>
   </a>
 
-  <a href="/order?type=2" style="color:black;text-decoration: none;">
+  <a href="/order?type=2" style="color:black;text-decoration: none;display: table-cell;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-truck" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">待收货</div>
   </a>
 
-  <a href="/order" style="color:black;text-decoration: none;">
+  <a href="/order" style="color:black;text-decoration: none;display: table-cell;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">我的订单</div>
   </a>
