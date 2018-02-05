@@ -50,6 +50,7 @@ class PrizeController extends Controller
         $limit = $this->limit;
         $dayLimit = $this->dayLimit;
         $uniq = $_COOKIE['aaguid'];
+        $customerId = SiteHelper::getCustomerId();
 
         // 判断参数
         if (empty($uniq)) {
@@ -58,7 +59,7 @@ class PrizeController extends Controller
             ]);
         }
 
-        if (SiteHelper::getCustomerId() == 27) {
+        if ($customerId == 27) {
             $limit = 300;
         }
 
@@ -104,7 +105,7 @@ class PrizeController extends Controller
 
         // 判断是否已领奖
         $data = Yii::$app->redis->get($uniq . "_code");
-        if (!empty($data)) {
+        if (!empty($data) && $customerId != 27) {
             $info = json_decode($data, true);
             $prizeCode = $info['code'];
 
