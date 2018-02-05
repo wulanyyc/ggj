@@ -546,7 +546,7 @@ class PriceHelper extends Component {
                     Customer::updateAll(['from_openid' => $fromOpenid], ['openid' => $openid]);
 
                     // 分享好友享返利
-                    NotifyHelper::sendFanli($openid, $fromOpenid, 3);
+                    NotifyHelper::sendFanli($openid, $fromOpenid, 2);
                 }
             }
 
