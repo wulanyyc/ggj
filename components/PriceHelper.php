@@ -566,4 +566,26 @@ class PriceHelper extends Component {
 
         return $remainDay;
     }
+
+    public static function handleShare($key, $openid) {
+        $exsit = Customer::find()->where(['openid' => $openid])->count();
+        if ($exsit == 0) {
+            WechatHelper::addWxCustomer($openid);
+        }
+
+        $keyArr = explode('_', $eventKey);
+        $cid = $keyArr[1];
+
+        $fromOpenid = Customer::find()->select('openid')->where(['id' => $cid])->scalar();
+
+        $currentParent = Customer::find()->select('from_openid')->where(['openid' => $openid])->scalar();
+        if (empty($currentParent) && $fromOpenid != $openid) {
+            Customer::updateAll(['from_openid' => $fromOpenid], ['openid' => $openid]);
+
+            // 分享好友享返利
+            NotifyHelper::sendFanli($openid, $fromOpenid, 2);
+        }
+
+        return '';
+    }
 }

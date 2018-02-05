@@ -143,11 +143,17 @@ class WechatController extends Controller
             }
 
             $str = '';
-            if (!empty($eventKey)) {
-                $keyArr = explode('_', $eventKey);
-                $key = $keyArr[1];
 
-                $str = PriceHelper::handlePrize($key, $openid);
+            if (!empty($eventKey)) {
+
+                if (preg_match('/uid_/', $eventKey)) {
+                    return PriceHelper::handleShare($eventKey, $openid);
+                } else {
+                    $keyArr = explode('_', $eventKey);
+                    $key = $keyArr[1];
+
+                    $str = PriceHelper::handlePrize($key, $openid);
+                }
             }
 
             if (empty($str)) {
@@ -170,6 +176,10 @@ class WechatController extends Controller
 
         if ($event == 'SCAN') {
             if (!empty($eventKey)) {
+                if (preg_match('/uid_/', $eventKey)) {
+                    return PriceHelper::handleShare($eventKey, $openid);
+                }
+
                 return PriceHelper::handlePrize($eventKey, $openid);
             } else {
                 return "欢迎关注成都果果佳，新鲜佳果，保质保量，单果坏1赔3";
