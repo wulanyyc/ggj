@@ -556,7 +556,7 @@ class PriceHelper extends Component {
         }
     }
 
-    private static function getPrizeRemainDay($uniq) {
+    public static function getPrizeRemainDay($uniq) {
         $remainTime = Yii::$app->redis->ttl($uniq . "_exsit");
         if ($remainTime > 0) {
             $remainDay = round($remainTime / 86400, 1);
