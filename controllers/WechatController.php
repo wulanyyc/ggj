@@ -147,7 +147,7 @@ class WechatController extends Controller
             if (!empty($eventKey)) {
 
                 if (preg_match('/uid_/', $eventKey)) {
-                    return PriceHelper::handleShare($eventKey, $openid);
+                    $str = PriceHelper::handleShare($eventKey, $openid);
                 } else {
                     $keyArr = explode('_', $eventKey);
                     $key = $keyArr[1];
