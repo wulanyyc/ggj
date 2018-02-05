@@ -515,8 +515,8 @@ class PriceHelper extends Component {
         $get = Yii::$app->redis->get('prize_' . $key . '_get');
         $userGet = Yii::$app->redis->get('prize_' . $openid . '_get');
         if ($get > 0 || $userGet > 0) {
-            $remainDay = self::getPrizeRemainDay($key);
-            return '您已领取过奖品。请间隔' . $remainDay . '天再抽奖，有疑问请联系客服';
+            $remainDay = self::getPrizeRemainDay($info['uniq']);
+            return '您已领取过奖品。请' . $remainDay . '天再抽奖，有疑问请联系客服';
         }
 
         if (empty($data)) {
@@ -556,8 +556,8 @@ class PriceHelper extends Component {
         }
     }
 
-    private static function getPrizeRemainDay($key) {
-        $remainTime = Yii::$app->redis->ttl('prize_' . $key . '_get');
+    private static function getPrizeRemainDay($uniq) {
+        $remainTime = Yii::$app->redis->ttl($uniq . "_exsit");
         if ($remainTime > 0) {
             $remainDay = round($remainTime / 86400, 1);
         } else {

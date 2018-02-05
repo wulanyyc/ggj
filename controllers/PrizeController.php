@@ -147,14 +147,7 @@ class PrizeController extends Controller
     }
 
     private function getRemainDay($uniq) {
-        $remainTime = Yii::$app->redis->ttl($uniq . "_exsit");
-        if ($remainTime > 0) {
-            $remainDay = round($remainTime / 86400, 1);
-        } else {
-            $remainDay = $this->dayLimit;
-        }
-
-        return $remainDay;
+        return PriceHelper::getPrizeRemainDay($uniq);
     }
 
     public function actionSuc() {
@@ -174,32 +167,6 @@ class PrizeController extends Controller
         $cntKey = $uniq . '_cnt';
 
         $cnt = Yii::$app->redis->get($cntKey);
-
-        // $data = Yii::$app->redis->get($uniq . "_code");
-        // if ($cnt > $this->limit) {
-        //     if (!empty($data)) {
-        //         $data = json_decode($data, true);
-        //         $ticket = $data['ticket'];
-        //         $prizeCode = $data['code'];
-
-        //         return $this->render('suc', [
-        //             'controller' => Yii::$app->controller->id,
-        //             'ticket' => urlencode($ticket),
-        //             'text' => $prize['text'],
-        //             'code' => $prizeCode,
-        //             'day'  => $this->dayLimit,
-        //             'prizeLimit' => $this->prizeLimit,
-        //         ]);
-        //     } else {
-        //         $remainTime = Yii::$app->redis->ttl($cntKey);
-        //         $remainDay = round($remainTime / 86400, 1);
-
-        //         return $this->render('limit', [
-        //             'controller' => Yii::$app->controller->id,
-        //             'day' => $remainDay,
-        //         ]);
-        //     }
-        // }
 
         $data = Yii::$app->redis->get($uniq . "_code");
 
@@ -231,12 +198,7 @@ class PrizeController extends Controller
             Yii::$app->redis->setex($this->prefix . $prizeCode, 86400 * $this->prizeLimit, json_encode($prize));
         }
 
-        $remainTime = Yii::$app->redis->ttl($uniq . "_from");
-        if ($remainTime > 0) {
-            $remainDay = round($remainTime / 86400, 1);
-        } else {
-            $remainDay = $this->dayLimit;
-        }
+        $remainDay = $this->getRemainDay($uniq);
 
         return $this->render('suc', [
             'controller' => Yii::$app->controller->id,
