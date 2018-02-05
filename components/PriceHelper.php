@@ -516,7 +516,7 @@ class PriceHelper extends Component {
         $userGet = Yii::$app->redis->get('prize_' . $openid . '_get');
         if ($get > 0 || $userGet > 0) {
             $remainDay = self::getPrizeRemainDay($info['uniq']);
-            return '您已领取过奖品。请' . $remainDay . '天再抽奖，有疑问请联系客服';
+            return '您已领取过奖品。请' . $remainDay . '天后再抽奖，有疑问请联系客服';
         }
 
         if (empty($data)) {
@@ -525,12 +525,12 @@ class PriceHelper extends Component {
 
         if ($info['type'] == 'gift') {
             $ret = self::createGift($info['id'], $openid);
-            $str = '您的抽奖：' . $info['text'] . ', 已成功领取。查看菜单[聚优惠->礼品券], 使用[果果商城->逛商城]';
+            $str = '您的抽奖：' . $info['text'] . ', 已成功领取, 5天后可再抽奖。使用[果果商城->逛商城], 查看菜单[聚优惠->礼品券]。';
         }
 
         if ($info['type'] == 'coupon') {
             $ret = self::createCoupon($info['id'], $openid);
-            $str = '您的抽奖：' . $info['text'] . ', 已成功领取。查看菜单[聚优惠->优惠券], 使用[果果商城->逛商城]';
+            $str = '您的抽奖：' . $info['text'] . ', 已成功领取, 5天后可再抽奖。使用[果果商城->逛商城], 查看菜单[聚优惠->优惠券]。';
         }
 
         if ($ret > 0) {
