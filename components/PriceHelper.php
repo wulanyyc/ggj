@@ -573,7 +573,7 @@ class PriceHelper extends Component {
             WechatHelper::addWxCustomer($openid);
         }
 
-        $keyArr = explode('_', $eventKey);
+        $keyArr = explode('_', $key);
         $cid = $keyArr[1];
 
         $fromOpenid = Customer::find()->select('openid')->where(['id' => $cid])->scalar();
