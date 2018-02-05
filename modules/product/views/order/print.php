@@ -144,8 +144,6 @@ MsaView::registerJsFile($this,'/js/product/order/print.js',
     <div id="contact" style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
         <img src="/img/company.jpg" style="width: 180px;"></img>
         <div style="font-size: 24px;">
-            <label>客服电话：</label>18980457783（同微信号）
-            <br/>
             <label>老板电话：</label>13880494109（同微信号）
         </div>
     </div>
