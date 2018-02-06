@@ -37,7 +37,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     <div style="text-align:center; font-size: 18px;line-height: 28px;margin-top: 5px;">
         <div>恭喜您获得</div>
         <div style="color:red;font-size: 16px;"><?=$text ?></div>
-        <div style="font-size: 16px;color:red;">长按下图二维码，识别领取到账户</div>
+        <div style="font-size: 16px;color:red;">长按下方二维码，识别领取到账户</div>
     </div>
 
     <div style="text-align: center;font-size: 16px;line-height: 24px;">
