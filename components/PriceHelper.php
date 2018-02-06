@@ -462,7 +462,7 @@ class PriceHelper extends Component {
             1 => [
                 'type' => 'gift',
                 'id'   => 7,
-                'text' => '进口单J车厘子100g礼品券',
+                'text' => '100g进口单J车厘子礼品券',
             ],
             2 => [
                 'type' => 'coupon',
@@ -472,7 +472,7 @@ class PriceHelper extends Component {
             3 => [
                 'type' => 'gift',
                 'id'   => 2,
-                'text' => '香梨1斤礼品券',
+                'text' => '1斤香梨礼品券',
             ],
             4 => [
                 'type' => 'coupon',
@@ -482,7 +482,7 @@ class PriceHelper extends Component {
             5 => [
                 'type' => 'gift',
                 'id'   => 6,
-                'text' => '开心果125g礼品券',
+                'text' => '125g开心果礼品券',
             ],
             6 => [
                 'type' => 'coupon',
@@ -492,7 +492,7 @@ class PriceHelper extends Component {
             7 => [
                 'type' => 'gift',
                 'id'   => 4,
-                'text' => '皇帝柑1斤礼品券',
+                'text' => '1斤皇帝柑礼品券',
             ]
         ];
 

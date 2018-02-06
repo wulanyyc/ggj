@@ -69,8 +69,8 @@ $(document).ready(function () {
                     // $('#pan').css('-o-animation', 'rotation 4s ease 0s 1 alternate forwards');
 
                     $('#alert-content').html(data.msg);
-                    $('#cover').delay(4000).fadeIn();
-                    $('#alert').delay(4000).fadeIn();
+                    $('#cover').delay(4500).fadeIn();
+                    $('#alert').delay(4500).fadeIn();
                 }
 
                 $('#zhuanpan').attr('data-valid', 0);
