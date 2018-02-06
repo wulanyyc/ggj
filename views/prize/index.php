@@ -93,7 +93,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
 
     #alert {
         position: fixed;
-        top: 10% !important;
+        top: 8% !important;
         z-index: 199;
         display: none;
         text-align: center;
