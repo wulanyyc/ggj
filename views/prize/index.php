@@ -92,12 +92,12 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     }*/
 
     .modal {
-        top: 15% !important;
+        top: 12% !important;
         opacity: 0.9 !important;
     }
 
     .modal-body {
-        padding: 30px 10px !important;
+        padding: 10px !important;
     }
 
     .modal-footer {
