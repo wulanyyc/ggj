@@ -219,6 +219,9 @@ class WechatHelper extends Component{
             Yii::$app->redis->setex($key, $data['expires_in'] - 60, $data['access_token']);
             Yii::$app->redis->setex($keyRefresh, 30 * 86400 - 3600, $data['refresh_token']);
             setcookie('openid', $data['openid'], time() + 86400 * 30, '/');
+
+            session_start();
+            $_SESSION['openid'] = $data['openid'];
         }
     }
 

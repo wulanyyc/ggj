@@ -189,8 +189,9 @@ class SiteHelper extends Component{
             }
         }
 
-        if (!empty($_COOKIE['openid'])) {
-            $cid = Customer::find()->select('id')->where(['openid' => $_COOKIE['openid']])->scalar();
+        $openid = self::getOpenid();
+        if (!empty($openid)) {
+            $cid = Customer::find()->select('id')->where(['openid' => $openid])->scalar();
             if ($cid > 0) {
                 setcookie('cid', $cid, time() + 86400 * 30, '/');
                 return $cid;
@@ -206,6 +207,19 @@ class SiteHelper extends Component{
         }
 
         return 0;
+    }
+
+    public static function getOpenid() {
+        session_start();
+        if (!empty($_SESSION['openid'])) {
+            return $_SESSION['openid'];
+        }
+
+        if (!empty($_COOKIE['openid'])) {
+            return $_COOKIE['openid'];
+        }
+
+        return '';
     }
 
     public static function render($status, $data = '') {
