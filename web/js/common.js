@@ -35,6 +35,10 @@ $(document).ready(function () {
                         location.href = '/';
                     }
                 }
+
+                if (/\/share\/.+/.test(location.pathname)) {
+                    location.href = '/';
+                }
             }
         }
 

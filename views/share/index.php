@@ -36,7 +36,7 @@ MsaView::registerJsFile($this,'/js/share/index.js',
     </div>
 
     <div style="text-align: center;font-size: 16px;line-height: 24px;">
-        <div style="margin-top: 10px;font-size: 16px;">推荐您的专属二维码，享多重返利</div>
+        <div style="margin-top: 10px;font-size: 16px;">推荐您的专属二维码，享以上返利</div>
         <img src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=<?=$ticket ?>" style="width:60%;" />
     </div>
 </div>
