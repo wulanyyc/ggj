@@ -32,9 +32,10 @@ $(document).ready(function () {
                             callback: function(result){
                                 if (result) {
                                     location.href = "/prize/suc";
-                                } else {
-                                    location.href = "/prize?v=" + Math.random();
                                 }
+                                // else {
+                                //     location.href = "/prize?v=" + Math.random();
+                                // }
                             }
                         });
                         return ;
@@ -78,11 +79,11 @@ $(document).ready(function () {
         });
     });
 
-    $('#alert-repeat').click(function(){
-        $('#cover').hide();
-        $('#alert').hide();
-        location.href = "/prize?v=" + Math.random();
-    });
+    // $('#alert-repeat').click(function(){
+    //     $('#cover').hide();
+    //     $('#alert').hide();
+    //     location.href = "/prize?v=" + Math.random();
+    // });
 
     $('#alert-ok').click(function(){
         location.href = "/prize/suc";
