@@ -593,7 +593,7 @@ class PriceHelper extends Component {
     }
 
     public static function addParentFanli($customerId, $orderId) {
-        $percent = 3;
+        $percent = 1;
 
         $info = Customer::find()->select('from_openid, nick')->where(['id' => $customerId])->asArray()->one();
         if (!empty($info['from_openid'])) {

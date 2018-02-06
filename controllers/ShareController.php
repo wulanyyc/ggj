@@ -50,7 +50,7 @@ class ShareController extends Controller
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'share' => 2,
-            'percent' => 3,
+            'percent' => 1,
             'ticket' => urlencode($ticket),
         ]);
     }
