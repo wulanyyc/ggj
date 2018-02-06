@@ -573,6 +573,8 @@ class PriceHelper extends Component {
             WechatHelper::addWxCustomer($openid);
         }
 
+        Yii::error("key:" . $key);
+
         $keyArr = explode('_', $key);
         $cid = $keyArr[1];
 
