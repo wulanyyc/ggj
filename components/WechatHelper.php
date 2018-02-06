@@ -74,9 +74,9 @@ class WechatHelper extends Component{
         }
 
         $ar->openid = $userinfo['openid'];
-        $ar->sex = $userinfo['sex'];
-        $ar->headimgurl = $userinfo['headimgurl'];
-        $ar->city = $userinfo['city'];
+        $ar->sex = isset($userinfo['sex']) ? $userinfo['sex'] : '';
+        $ar->headimgurl = isset($userinfo['headimgurl']) ? $userinfo['headimgurl'] : '';
+        $ar->city = isset($userinfo['city']) ? $userinfo['city'] : '';
         $ar->nick = SiteHelper::handleNick($userinfo['nickname']);
         $ar->is_subscribe = $userinfo['subscribe'];
 
