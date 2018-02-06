@@ -71,6 +71,10 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         right: 0;
     }
 
+    .btn-default {
+        display: none;
+    }
+
 /*    @keyframes rotation{
       from {
         transform: rotate(0deg);
@@ -123,8 +127,8 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     <div id="alert-content" style="padding: 0px 5px;letter-spacing: 1px;"></div>
     <hr/>
     <div style="padding-bottom: 5px;">
-        <button type="button" class="btn btn-danger" id="alert-repeat">朕要重抽</button>
-        <button type="button" class="btn btn-success" style="margin-left:10px;" id="alert-ok">去领奖</button>
+        <!-- <button type="button" class="btn btn-danger" id="alert-repeat">朕要重抽</button> -->
+        <button type="button" class="btn btn-success" style="margin-left:10px;" id="alert-ok">朕要去领奖</button>
     </div>
 </div>
 

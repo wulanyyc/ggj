@@ -14,9 +14,9 @@ class PrizeController extends Controller
 {
     public $layout = 'blank';
     public $prefix = "prize_";
-    public $dayLimit = 5; // 抽奖天数限制
+    public $dayLimit = 2; // 抽奖天数限制
     public $prizeLimit = 5; // 领奖期限
-    public $limit = 2; // 抽奖次数限制
+    public $limit = 1; // 抽奖次数限制
 
     public function behaviors() {
         return [
@@ -34,12 +34,12 @@ class PrizeController extends Controller
 
         $openid = SiteHelper::getOpenid();
 
-        if ($from == 'timeline' || $from == 'singlemessage' || $from == 'groupmessage' || !empty($openid)){
-            if (empty($_COOKIE['aaguid'])) {
+        // if ($from == 'timeline' || $from == 'singlemessage' || $from == 'groupmessage' || !empty($openid)){
+            if (empty($_COOKIE['ggjuid'])) {
                 $uniq = uniqid();
-                setcookie('aaguid', $uniq, time() + 86400 * $this->dayLimit, '/');
+                setcookie('ggjuid', $uniq, time() + 86400 * $this->dayLimit, '/');
             } else {
-                $uniq = $_COOKIE['aaguid'];
+                $uniq = $_COOKIE['ggjuid'];
             }
 
             if (!empty($sid) && empty(Yii::$app->redis->get($uniq . '_from'))) {
@@ -53,7 +53,7 @@ class PrizeController extends Controller
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
             ]);
-        }
+        // }
 
         return $this->render('error', [
             'controller' => Yii::$app->controller->id,
@@ -63,7 +63,7 @@ class PrizeController extends Controller
     public function actionGetrotate() {
         $limit = $this->limit;
         $dayLimit = $this->dayLimit;
-        $uniq = $_COOKIE['aaguid'];
+        $uniq = $_COOKIE['ggjuid'];
         $customerId = SiteHelper::getCustomerId();
 
         // 判断参数
@@ -80,40 +80,27 @@ class PrizeController extends Controller
         $cntKey = $uniq . '_cnt';
         $cnt = Yii::$app->redis->get($cntKey);
 
-        // 设置抽奖次数
-        if ($cnt > 0) {
-            $cnt += 1;
-            Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
-        } else {
-            $cnt = 1;
-            Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
-        }
-
         // 抽奖控制
-        if ($cnt > $limit) {
+        if ($cnt >= $limit) {
             $remainDay = $this->getRemainDay($uniq);
-            // $rotate = Yii::$app->redis->get($uniq);
 
-            echo json_encode([
-                'status' => 'ok',
-                'rotate' => 0,
-                'msg'    => '您的抽奖次数已用尽，请' . $remainDay . '天后继续',
-            ]);
+            $rotate = Yii::$app->redis->get($uniq);
 
-            Yii::$app->end();
-        }
+            if ($rotate > 0) {
+                $prize = PriceHelper::getPrize($rotate);
+                echo json_encode([
+                    'status' => 'ok', 
+                    'rotate' => 0,
+                    'msg' => '您本轮的抽奖次数已用完，' . $remainDay . '天后继续<br/>请领取奖品：<span style="color:red">' . $prize['text'] . '</span>',
+                ]);
+            } else {
+                echo json_encode([
+                    'status' => 'ok',
+                    'rotate' => 0,
+                    'msg'    => '您本轮的抽奖次数已用完，请' . $remainDay . '天后继续',
+                ]);
+            }
 
-        // 抽奖控制
-        if ($cnt == $limit) {
-            $remainDay = $this->getRemainDay($uniq);
-            // $rotate = Yii::$app->redis->get($uniq);
-            $prize = PriceHelper::getPrize($rotate);
-
-            echo json_encode([
-                'status' => 'ok', 
-                'rotate' => 0,
-                'msg' => '您的抽奖次数已用尽，请领取最终奖品:' . $prize['text'] . '，' . $remainDay . '天后继续',
-            ]);
             Yii::$app->end();
         }
 
@@ -145,6 +132,10 @@ class PrizeController extends Controller
         // 记录旋转值
         Yii::$app->redis->setex($uniq, 86400 * $dayLimit, $rotate);
 
+        // 设置抽奖次数
+        $cnt += 1;
+        Yii::$app->redis->setex($cntKey, 86400 * $dayLimit, $cnt);
+
         $remain = $limit - $cnt;
 
         if ($remain < 0) {
@@ -154,7 +145,8 @@ class PrizeController extends Controller
         echo json_encode([
             'status' => 'ok',
             'rotate' => $rotate,
-            'msg' => '恭喜您获得：<span style="color:red">' . $prize['text'] . '</span><br/>您还剩'. $remain .'次抽奖机会',
+            'msg' => '恭喜您获得：<span style="color:red">' . $prize['text'] . '</span>',
+            // 'msg' => '恭喜您获得：<span style="color:red">' . $prize['text'] . '</span><br/>您还剩'. $remain .'次抽奖机会',
         ]);
     }
 
@@ -163,7 +155,7 @@ class PrizeController extends Controller
     }
 
     public function actionSuc() {
-        $uniq = isset($_COOKIE['aaguid']) ? $_COOKIE['aaguid'] : '';
+        $uniq = isset($_COOKIE['ggjuid']) ? $_COOKIE['ggjuid'] : '';
 
         if (empty($uniq)) {
             return $this->render('error', [
@@ -247,7 +239,7 @@ class PrizeController extends Controller
             return 2;
         }
 
-        // 1斤香梨
+        // 半斤香梨
         if ($rand >= 35 && $rand < 55) {
             return 3;
         }
@@ -263,13 +255,13 @@ class PrizeController extends Controller
         }
 
         // 2元优惠券
-        if ($rand >= 80 && $rand < 90) {
+        if ($rand >= 80 && $rand <= 100) {
             return 6;
         }
 
         // 1斤皇帝柑
-        if ($rand >= 90 && $rand <= 100) {
-            return 7;
-        }
+        // if ($rand >= 100 && $rand <= 100) {
+        //     return 7;
+        // }
     }
 }

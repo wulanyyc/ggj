@@ -472,7 +472,7 @@ class PriceHelper extends Component {
             3 => [
                 'type' => 'gift',
                 'id'   => 2,
-                'text' => '1斤香梨礼品券',
+                'text' => '半斤香梨礼品券',
             ],
             4 => [
                 'type' => 'coupon',
@@ -492,7 +492,7 @@ class PriceHelper extends Component {
             7 => [
                 'type' => 'gift',
                 'id'   => 4,
-                'text' => '1斤皇帝柑礼品券',
+                'text' => '半斤皇帝柑礼品券',
             ]
         ];
 
@@ -500,12 +500,13 @@ class PriceHelper extends Component {
     }
 
     public static function handlePrize($key, $openid) {
+        // 抽奖间隔
+        $prizeLimit = 2;
+
         $exsit = Customer::find()->where(['openid' => $openid])->count();
         if ($exsit == 0) {
             WechatHelper::addWxCustomer($openid);
         }
-
-        $prizeLimit = 5;
 
         $data = Yii::$app->redis->get('prize_' . $key);
         $ret  = 0;
