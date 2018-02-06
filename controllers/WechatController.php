@@ -156,11 +156,11 @@ class WechatController extends Controller
             }
 
             if (empty($str)) {
-                return '欢迎关注成都果果佳，新鲜佳果，保质保量，单果坏1赔3。关注享5元优惠券，
+                return '欢迎关注成都果果佳，新鲜佳果，保质保量。关注享5元优惠券。
 
 每周一次抽奖机会，抽奖查看菜单【聚优惠：抽奖】。';
             } else {
-                return '欢迎关注成都果果佳，新鲜佳果，保质保量，单果坏1赔3。关注享5元优惠券，
+                return '欢迎关注成都果果佳，新鲜佳果，保质保量。关注享5元优惠券。
 
 每周一次抽奖机会，抽奖查看菜单【聚优惠：抽奖】。
 
@@ -178,12 +178,12 @@ class WechatController extends Controller
                 if (preg_match('/uid_/', $eventKey)) {
                     // PriceHelper::handleShare($eventKey, $openid);
 
-                    return "欢迎关注成都果果佳，新鲜佳果，保质保量，单果坏1赔3";
+                    return "欢迎关注成都果果佳，新鲜佳果，保质保量";
                 }
 
                 return PriceHelper::handlePrize($eventKey, $openid);
             } else {
-                return "欢迎关注成都果果佳，新鲜佳果，保质保量，单果坏1赔3";
+                return "欢迎关注成都果果佳，新鲜佳果，保质保量";
             }
         }
 
