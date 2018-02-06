@@ -29,7 +29,7 @@ class PrizeController extends Controller
     public function actionIndex() {
         $params = Yii::$app->request->get();
 
-        $sid = isset($params['share_id']) ? $params['share_id'] : '';
+        $sid  = isset($params['share_id']) ? $params['share_id'] : '';
         $from = isset($params['from']) ? $params['from'] : '';
 
         $openid = SiteHelper::getOpenid();
@@ -64,7 +64,7 @@ class PrizeController extends Controller
         $limit = $this->limit;
         $dayLimit = $this->dayLimit;
         $uniq = $_COOKIE['ggjuid'];
-        $customerId = SiteHelper::getCustomerId();
+        // $customerId = SiteHelper::getCustomerId();
 
         // 判断参数
         if (empty($uniq)) {
@@ -73,9 +73,9 @@ class PrizeController extends Controller
             ]);
         }
 
-        if ($customerId == 27) {
-            $limit = 300;
-        }
+        // if ($customerId == 27) {
+        //     $limit = 300;
+        // }
 
         $cntKey = $uniq . '_cnt';
         $cnt = Yii::$app->redis->get($cntKey);
