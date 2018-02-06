@@ -34,7 +34,7 @@ class PrizeController extends Controller
 
         $openid = SiteHelper::getOpenid();
 
-        // if ($from == 'timeline' || $from == 'singlemessage' || $from == 'groupmessage' || !empty($openid)){
+        if ($from == 'timeline' || $from == 'singlemessage' || $from == 'groupmessage' || !empty($openid)){
             if (empty($_COOKIE['ggjuid'])) {
                 $uniq = uniqid();
                 setcookie('ggjuid', $uniq, time() + 86400 * $this->dayLimit, '/');
@@ -53,7 +53,7 @@ class PrizeController extends Controller
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
             ]);
-        // }
+        }
 
         return $this->render('error', [
             'controller' => Yii::$app->controller->id,
@@ -91,7 +91,7 @@ class PrizeController extends Controller
                 echo json_encode([
                     'status' => 'ok', 
                     'rotate' => 0,
-                    'msg' => '您本轮的抽奖次数已用完，' . $remainDay . '天后继续<br/>请领取奖品：<span style="color:red">' . $prize['text'] . '</span>',
+                    'msg' => '您本轮的抽奖次数已用完，' . $remainDay . '天后继续<br/>您的奖品：<span style="color:red">' . $prize['text'] . '</span>，是否已领取？',
                 ]);
             } else {
                 echo json_encode([
