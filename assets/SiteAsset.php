@@ -29,7 +29,7 @@ class SiteAsset extends AssetBundle
         'http://js.guoguojia.vip/js/lib/jquery-cookie/jquery.cookie.js',
         'http://js.guoguojia.vip/js/lib/bootbox/bootbox.min.js',
         'http://js.guoguojia.vip/js/base/yii.js',
-        '/js/common.js?v=8',
+        '/js/common.js?v=9',
     ];
     public $depends = [
 

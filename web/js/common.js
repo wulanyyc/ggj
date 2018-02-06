@@ -36,7 +36,7 @@ $(document).ready(function () {
                     }
                 }
 
-                if (/\/share\/.+/.test(location.pathname)) {
+                if (/\/share/.test(location.pathname)) {
                     location.href = '/';
                 }
             }
