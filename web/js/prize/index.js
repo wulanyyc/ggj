@@ -13,7 +13,6 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 var rotate = data.rotate;
-                // console.log(rotate);
 
                 if (data.status == 'fail') {
                     $.helper.alert(data.msg);
@@ -69,28 +68,48 @@ $(document).ready(function () {
                     // $('#pan').css('-moz-animation', 'rotation 4s ease 0s 1 alternate forwards');
                     // $('#pan').css('-o-animation', 'rotation 4s ease 0s 1 alternate forwards');
 
-                    setTimeout(function(){
-                            bootbox.confirm({
-                                message: data.msg,
-                                buttons: {
-                                    cancel: {
-                                        label: '朕要放弃重抽'
-                                    },
-                                    confirm: {
-                                        label: '去领奖'
-                                    }
+                    $('body').delay(4200).queue(function(){
+                        bootbox.confirm({
+                            message: data.msg,
+                            buttons: {
+                                cancel: {
+                                    label: '朕要放弃重抽'
                                 },
-                                callback: function(result){
-                                    if (result) {
-                                        location.href = "/prize/suc";
-                                    } else {
-                                        location.href = "/prize?v=" + Math.random();
-                                    }
+                                confirm: {
+                                    label: '去领奖'
                                 }
-                            });
-                        },
-                        4200
-                    );
+                            },
+                            callback: function(result){
+                                if (result) {
+                                    location.href = "/prize/suc";
+                                } else {
+                                    location.href = "/prize?v=" + Math.random();
+                                }
+                            }
+                        });
+                    });
+                    // setTimeout(function(){
+                    //         bootbox.confirm({
+                    //             message: data.msg,
+                    //             buttons: {
+                    //                 cancel: {
+                    //                     label: '朕要放弃重抽'
+                    //                 },
+                    //                 confirm: {
+                    //                     label: '去领奖'
+                    //                 }
+                    //             },
+                    //             callback: function(result){
+                    //                 if (result) {
+                    //                     location.href = "/prize/suc";
+                    //                 } else {
+                    //                     location.href = "/prize?v=" + Math.random();
+                    //                 }
+                    //             }
+                    //         });
+                    //     },
+                    //     4200
+                    // );
                 }
 
                 $('#zhuanpan').attr('data-valid', 0);
