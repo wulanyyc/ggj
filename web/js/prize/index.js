@@ -7,11 +7,17 @@ $(document).ready(function () {
             $(this).attr('data-valid', 1);
         }
 
+        $('#loading').show();
+        $('#cover').show();
+
         $.ajax({
             url: '/prize/getrotate',
             type: 'post',
             dataType: 'json',
             success: function (data) {
+                $('#loading').hide();
+                $('#cover').hide();
+
                 var rotate = data.rotate;
 
                 if (data.status == 'fail') {
@@ -70,6 +76,8 @@ $(document).ready(function () {
                     // $('#pan').css('-o-animation', 'rotation 4s ease 0s 1 alternate forwards');
 
                     $('#alert-content').html(data.msg);
+
+                    $('#loading').hide();
                     $('#cover').delay(4500).fadeIn();
                     $('#alert').delay(4500).fadeIn();
                 }

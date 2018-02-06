@@ -107,6 +107,16 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         opacity: 0.9;
         border-radius: 5px;
     }
+
+    #loading {
+        position: fixed;
+        top: 59% !important;
+        z-index: 100;
+        display: none;
+        text-align: center;
+        /*position: relative;*/
+        width: 100%;
+    }
 </style>
 
 
@@ -119,6 +129,10 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         <img id="pointer" src="/img/prize/arrow.png"/>
     </div>
   </div>
+</div>
+
+<div id="loading">
+    <img src="/img/icon/loading.gif" style="width:32px;margin: 0 auto;"/>
 </div>
 
 <div id="alert">
