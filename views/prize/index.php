@@ -92,16 +92,16 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
     }*/
 
     .modal {
-        top: 18% !important;
+        top: 15% !important;
         opacity: 0.9 !important;
     }
 
     .modal-body {
-        padding: 10px !important;
+        padding: 30px 10px !important;
     }
 
     .modal-footer {
-        padding: 5px !important;
+        padding: 10px !important;
     }
 
     .btn-primary {
@@ -109,8 +109,14 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         border-color: #1ba93b !important;
     }
 
+    .btn-default {
+        background-color: red !important;
+        border-color: red !important;
+        color: #fff !important;
+    }
+
     .bootbox-body {
-        font-size: 14px !important;
+        font-size: 16px !important;
     }
 </style>
 

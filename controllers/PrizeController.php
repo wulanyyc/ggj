@@ -32,7 +32,7 @@ class PrizeController extends Controller
         $sid = isset($params['share_id']) ? $params['share_id'] : '';
         $from = isset($params['from']) ? $params['from'] : '';
 
-        if ($from == 'timeline' || $from == 'singlemessage' || $from == 'groupmessage' || !empty($_COOKIE['openid'])) {
+        if ($from == 'timeline' || $from == 'singlemessage' || $from == 'groupmessage' || !empty($_COOKIE['openid'])){
             if (empty($_COOKIE['aaguid'])) {
                 $uniq = uniqid();
                 setcookie('aaguid', $uniq, time() + 86400 * $this->dayLimit, '/');
