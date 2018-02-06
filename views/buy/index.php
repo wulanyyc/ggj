@@ -349,7 +349,7 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div id="tongji">
-  <div style="display: inline-block;font-size: 25px;position: absolute;left:15px;top:-25px;background-color: #1ba93b;width:50px;height: 50px;border-radius: 25px;text-align: center;color:#fff;" id="filter" data-filter=0>
+  <div style="display: inline-block;font-size: 25px;position: absolute;left:15px;top:-30px;background-color: #1ba93b;width:50px;height: 50px;border-radius: 25px;text-align: center;color:#fff;" id="filter" data-filter=0>
     <span id="cart_icon"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span>
     <div id="cart_num" style="position: absolute;z-index:100;right:-5px; top:-5px;color:#fff;font-size: 12px;background-color: red;height:20px;width:20px;text-align: center;border-radius: 10px;line-height: 20px;">
       0
