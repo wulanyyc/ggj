@@ -152,7 +152,7 @@ class PrizeController extends Controller
         echo json_encode([
             'status' => 'ok',
             'rotate' => $rotate,
-            'msg' => '您还有'. $remain .'次抽奖机会<br/>本次奖品：<span style="color:red">' . $prize['text'] . '</span>',
+            'msg' => '恭喜您获得：<span style="color:red">' . $prize['text'] . '</span><br/>您还剩'. $remain .'次抽奖机会',
         ]);
     }
 
