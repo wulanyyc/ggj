@@ -210,7 +210,6 @@ class SiteHelper extends Component{
     }
 
     public static function getOpenid() {
-        session_start();
         if (!empty($_SESSION['openid'])) {
             return $_SESSION['openid'];
         }
