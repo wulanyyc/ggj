@@ -349,13 +349,13 @@ MsaView::registerJsFile($this,'/js/buy/index.js',
 </div>
 
 <div id="tongji">
-  <div style="display: inline-block;font-size: 25px;position: absolute;left:15px;top:-20px;background-color: #1ba93b;width:50px;height: 50px;border-radius: 25px;text-align: center;color:#fff;" id="filter" data-filter=0>
+  <div style="display: inline-block;font-size: 25px;position: absolute;left:15px;top:-25px;background-color: #1ba93b;width:50px;height: 50px;border-radius: 25px;text-align: center;color:#fff;" id="filter" data-filter=0>
     <span id="cart_icon"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span>
     <div id="cart_num" style="position: absolute;z-index:100;right:-5px; top:-5px;color:#fff;font-size: 12px;background-color: red;height:20px;width:20px;text-align: center;border-radius: 10px;line-height: 20px;">
       0
     </div>
   </div>
-  <div id="tips" style="color:#aaa;margin-left: 1px;margin-right: 1px;font-size: 12px;display: inline-block;">满<?=$buyGod ?>包邮</div>
+  <div id="tips" style="color:#aaa;margin-left: 1px;margin-right: 1px;font-size: 12px;display: inline-block;">顺丰<?=$expressFee ?>元 满<?=$buyGod ?>包邮</div>
   <div id="total" style="margin-left:5px;margin-right: 5px;opacity: 1;display: inline-block;">
     <div style="display: inline-block;color:red;width:80px;text-align: left;">
       <span class="money" style="font-size: 14px;font-weight: normal;">¥</span>
