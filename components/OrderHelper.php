@@ -147,6 +147,9 @@ class OrderHelper extends Component {
         //     PriceHelper::createCouponById(Yii::$app->params['coupon']['order'], $customerId);
         // }
 
+        // add order fanli
+        PriceHelper::addParentFanli($data['customer_id'], $data['order_id']);
+
         // 微信通知老板
         NotifyHelper::newOrder($data['order_id']);
     }

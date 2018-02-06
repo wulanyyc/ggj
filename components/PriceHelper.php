@@ -588,4 +588,19 @@ class PriceHelper extends Component {
 
         return '';
     }
+
+    public static function addParentFanli($customerId, $orderId) {
+        $percent = 2;
+
+        $info = Customer::find()->select('from_openid, nick')->where(['id' => $customerId])->asArray()->one();
+        if (!empty($info['from_openid'])) {
+            $payMoney = ProductOrder::find()->select('pay_money')->where(['id' => $orderId])->scalar();
+            $fanli = round($payMoney * 2 / 100, 1);
+            $text = '好友"' . $info['nick'] . '"下单返利';
+            $memo = '感谢您对果果佳的支持，分享给更多好友享更多返利。返利请查看钱包余额';
+
+            self::adjustWallet($customerId, $fanli, 'plus', '好友下单返利');
+            NotifyHelper::sendFriend($openid, $fanli, $text, $memo);
+        }
+    }
 }
