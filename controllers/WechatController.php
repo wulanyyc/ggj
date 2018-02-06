@@ -190,7 +190,7 @@ class WechatController extends Controller
         if ($event == 'CLICK') {
             $key = $data['EventKey'];
             if ($key == 'company') {
-                return '成都果果佳科技有限公司成立于2017年底，致力于为广大客户提供优质且价格合理的商品。
+                return '成都果果佳科技有限公司成立于2017年，致力于为广大客户提供优质且价格合理的商品。
 
 目前主营精品水果、干果等相关商品，采用零售、预约的方式服务于广大客户。
 
