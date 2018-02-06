@@ -374,6 +374,11 @@ $(document).ready(function () {
     });
 
     $('#coupon_items').delegate('.coupon_item', 'click', function(){
+        $('#coupon_items').each(function(){
+            $(this).find('.coupon_check').html('<i class="fa fa-square-o" aria-hidden="true"></i>');
+            $(this).find('.coupon_check').removeClass('text-danger');
+        });
+
         if ($(this).find('.fa-square-o').length > 0) {
             $(this).find('.coupon_check').html('<i class="fa fa-check-square-o" aria-hidden="true"></i>');
             $(this).find('.coupon_check').addClass('text-danger');
@@ -569,8 +574,8 @@ $(document).ready(function () {
     }
 
     function init() {
-        var rule      = $('#history_express_rule').val();
-        var cart_id   = $('#cart_id').val();
+        var rule    = $('#history_express_rule').val();
+        var cart_id = $('#cart_id').val();
         // var orderType = parseInt($('#order_type').val());
 
         // if (orderType == 1) {
