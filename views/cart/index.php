@@ -698,13 +698,13 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
   </div>
   <div style="padding: 5%;">
     <p>
-      <span style="padding-right: 5px;">预约订单: </span>
-      <span style="width:72%;">每周<?=Yii::$app->params['bookingSender'] ?>上午发货</span>
+      <span style="padding-right: 5px;">普通订单: </span>
+      <span style="width:72%;">24小时内发货</span>
     </p>
 
     <p>
-      <span style="padding-right: 5px;">普通订单: </span>
-      <span style="width:72%;">24小时内发货</span>
+      <span style="padding-right: 5px;">预约订单: </span>
+      <span style="width:72%;">每周<?=Yii::$app->params['bookingSender'] ?>上午发货</span>
     </p>
 
     <p>
