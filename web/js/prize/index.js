@@ -68,52 +68,23 @@ $(document).ready(function () {
                     // $('#pan').css('-moz-animation', 'rotation 4s ease 0s 1 alternate forwards');
                     // $('#pan').css('-o-animation', 'rotation 4s ease 0s 1 alternate forwards');
 
-                    $('body').delay(4200).queue(function(){
-                        bootbox.confirm({
-                            message: data.msg,
-                            buttons: {
-                                cancel: {
-                                    label: '朕要放弃重抽'
-                                },
-                                confirm: {
-                                    label: '去领奖'
-                                }
-                            },
-                            callback: function(result){
-                                if (result) {
-                                    location.href = "/prize/suc";
-                                } else {
-                                    location.href = "/prize?v=" + Math.random();
-                                }
-                            }
-                        });
-                    });
-                    // setTimeout(function(){
-                    //         bootbox.confirm({
-                    //             message: data.msg,
-                    //             buttons: {
-                    //                 cancel: {
-                    //                     label: '朕要放弃重抽'
-                    //                 },
-                    //                 confirm: {
-                    //                     label: '去领奖'
-                    //                 }
-                    //             },
-                    //             callback: function(result){
-                    //                 if (result) {
-                    //                     location.href = "/prize/suc";
-                    //                 } else {
-                    //                     location.href = "/prize?v=" + Math.random();
-                    //                 }
-                    //             }
-                    //         });
-                    //     },
-                    //     4200
-                    // );
+                    $('#alert-content').html(data.msg);
+                    $('#cover').delay(4000).fadeIn();
+                    $('#alert').delay(4000).fadeIn();
                 }
 
                 $('#zhuanpan').attr('data-valid', 0);
             }
         });
+    });
+
+    $('#alert-repeat').click(function(){
+        $('#cover').hide();
+        $('#alert').hide();
+        location.href = "/prize?v=" + Math.random();
+    });
+
+    $('#alert-ok').click(function(){
+        location.href = "/prize/suc";
     });
 });

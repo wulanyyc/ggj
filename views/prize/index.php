@@ -91,32 +91,17 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
       }
     }*/
 
-    .modal {
-        top: 12% !important;
-        opacity: 0.9 !important;
-    }
-
-    .modal-body {
-        padding: 10px !important;
-    }
-
-    .modal-footer {
-        padding: 10px !important;
-    }
-
-    .btn-primary {
-        background-color: #1ba93b !important;
-        border-color: #1ba93b !important;
-    }
-
-    .btn-default {
-        background-color: red !important;
-        border-color: red !important;
-        color: #fff !important;
-    }
-
-    .bootbox-body {
-        font-size: 16px !important;
+    #alert {
+        position: fixed;
+        top: 10% !important;
+        z-index: 199;
+        display: none;
+        text-align: center;
+        width: 90%;
+        margin-left: 5%;
+        background-color: #fff;
+        opacity: 0.9;
+        border-radius: 5px;
     }
 </style>
 
@@ -130,5 +115,16 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
         <img id="pointer" src="/img/prize/arrow.png"/>
     </div>
   </div>
+</div>
+
+<div id="alert">
+    <h5 style="padding-top: 15px;">抽奖提示</h5>
+    <hr/>
+    <div id="alert-content" style="padding: 0px 5px;letter-spacing: 1px;"></div>
+    <hr/>
+    <div style="padding-bottom: 5px;">
+        <button type="button" class="btn btn-danger" id="alert-repeat">朕要重抽</button>
+        <button type="button" class="btn btn-success" style="margin-left:10px;" id="alert-ok">去领奖</button>
+    </div>
 </div>
 

@@ -32,7 +32,7 @@ class PrizeController extends Controller
         $sid = isset($params['share_id']) ? $params['share_id'] : '';
         $from = isset($params['from']) ? $params['from'] : '';
 
-        // if ($from == 'timeline' || $from == 'singlemessage' || $from == 'groupmessage' || !empty($_COOKIE['openid'])){
+        if ($from == 'timeline' || $from == 'singlemessage' || $from == 'groupmessage' || !empty($_COOKIE['openid'])){
             if (empty($_COOKIE['aaguid'])) {
                 $uniq = uniqid();
                 setcookie('aaguid', $uniq, time() + 86400 * $this->dayLimit, '/');
@@ -51,7 +51,7 @@ class PrizeController extends Controller
             return $this->render('index', [
                 'controller' => Yii::$app->controller->id,
             ]);
-        // }
+        }
 
         return $this->render('error', [
             'controller' => Yii::$app->controller->id,
@@ -152,7 +152,7 @@ class PrizeController extends Controller
         echo json_encode([
             'status' => 'ok',
             'rotate' => $rotate,
-            'msg' => '您还有'. $remain .'次抽奖机会，本次奖品:' . $prize['text'],
+            'msg' => '您还有'. $remain .'次抽奖机会<br/>本次奖品：<span style="color:red">' . $prize['text'] . '</span>',
         ]);
     }
 

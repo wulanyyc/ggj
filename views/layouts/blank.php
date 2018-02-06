@@ -31,7 +31,7 @@ SiteAsset::register($this);
     <?= $content ?>
 </main>
 
-
+<div id="cover" class="cover"></div>
 <?php $this->endBody() ?>
 </body>
 </html>
