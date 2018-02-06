@@ -599,8 +599,10 @@ class PriceHelper extends Component {
             $text = '好友"' . $info['nick'] . '"下单返利';
             $memo = '感谢您对果果佳的支持，分享给更多好友享更多返利。返利请查看钱包余额';
 
-            self::adjustWallet($customerId, $fanli, 'plus', '好友下单返利');
-            NotifyHelper::sendFriend($openid, $fanli, $text, $memo);
+            $fromCustoerId = Customer::find()->select('id')->where(['openid' => $info['from_openid']])->scalar();
+            self::adjustWallet($fromCustoerId, $fanli, 'plus', '好友下单返利');
+
+            NotifyHelper::sendFriend($info['from_openid'], $fanli, $text, $memo);
         }
     }
 }
