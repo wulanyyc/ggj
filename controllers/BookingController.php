@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
+use app\filters\WechatFilter;
 
 class BookingController extends Controller
 {
@@ -17,6 +18,15 @@ class BookingController extends Controller
     private $configKeys = [
         'current-skin',
     ];
+
+
+    public function behaviors() {
+        return [
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ]
+        ];
+    }
 
     public function init() {
         $this->layout = SiteHelper::getLayout();

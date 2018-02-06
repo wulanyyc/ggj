@@ -14,6 +14,7 @@ use app\models\ProductOrder;
 use app\models\ProductCart;
 use app\filters\CustomerFilter;
 use app\models\Gift;
+use app\filters\WechatFilter;
 
 class CustomerController extends Controller
 {
@@ -35,7 +36,10 @@ class CustomerController extends Controller
                     'refund',
                     'login',
                 ]
-            ]
+            ],
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ],
         ];
     }
 

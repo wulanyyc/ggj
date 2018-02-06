@@ -13,6 +13,7 @@ use app\components\PriceHelper;
 use app\components\ProductHelper;
 use app\models\ProductCart;
 use app\models\ProductOrder;
+use app\filters\WechatFilter;
 
 class SiteController extends Controller
 {
@@ -21,6 +22,14 @@ class SiteController extends Controller
     private $configKeys = [
         'current-skin',
     ];
+
+    public function behaviors() {
+        return [
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ]
+        ];
+    }
 
     /**
      * 入口

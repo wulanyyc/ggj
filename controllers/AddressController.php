@@ -8,6 +8,7 @@ use app\components\SiteHelper;
 use app\models\Address;
 use app\models\Customer;
 use app\filters\CustomerFilter;
+use app\filters\WechatFilter;
 
 class AddressController extends Controller
 {
@@ -28,7 +29,10 @@ class AddressController extends Controller
                 'actions' => [
 
                 ]
-            ]
+            ],
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ],
         ];
     }
 

@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
+use app\filters\WechatFilter;
 
 class ContactController extends Controller
 {
@@ -16,6 +17,14 @@ class ContactController extends Controller
 
     public function init() {
         $this->layout = SiteHelper::getLayout();
+    }
+
+    public function behaviors() {
+        return [
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ]
+        ];
     }
 
     /**

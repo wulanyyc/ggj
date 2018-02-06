@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use app\components\SiteHelper;
 use app\components\WechatHelper;
+use app\filters\WechatFilter;
 
 class ShareController extends Controller
 {
@@ -17,6 +18,14 @@ class ShareController extends Controller
 
     public function init() {
         $this->layout = SiteHelper::getLayout();
+    }
+
+    public function behaviors() {
+        return [
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ]
+        ];
     }
 
     /**

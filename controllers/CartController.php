@@ -16,6 +16,7 @@ use app\models\Customer;
 use app\filters\CustomerFilter;
 use app\models\GiftUse;
 use app\models\Gift;
+use app\filters\WechatFilter;
 
 class CartController extends Controller
 {
@@ -36,7 +37,10 @@ class CartController extends Controller
                 'actions' => [
                    
                 ]
-            ]
+            ],
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ],
         ];
     }
 

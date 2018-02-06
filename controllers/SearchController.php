@@ -8,6 +8,7 @@ use app\components\SiteHelper;
 use app\modules\product\models\ProductList;
 use app\components\PriceHelper;
 use app\components\ProductHelper;
+use app\filters\WechatFilter;
 
 class SearchController extends Controller
 {
@@ -19,6 +20,14 @@ class SearchController extends Controller
 
     public function init() {
         $this->layout = SiteHelper::getLayout();
+    }
+
+    public function behaviors() {
+        return [
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ]
+        ];
     }
 
     /**

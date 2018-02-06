@@ -6,6 +6,8 @@ use Yii;
 use yii\web\Controller;
 use app\modules\product\models\ProductList;
 use app\components\SiteHelper;
+use app\filters\WechatFilter;
+
 
 class PromotionController extends Controller
 {
@@ -17,6 +19,14 @@ class PromotionController extends Controller
 
     public function init() {
         $this->layout = SiteHelper::getLayout();
+    }
+
+    public function behaviors() {
+        return [
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ]
+        ];
     }
 
     /**

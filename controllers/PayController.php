@@ -20,6 +20,8 @@ use app\components\NoCsrf;
 use app\components\WxpayHelper;
 use app\components\WechatHelper;
 use app\filters\CustomerFilter;
+use app\filters\WechatFilter;
+
 
 class PayController extends Controller
 {
@@ -55,6 +57,9 @@ class PayController extends Controller
                     'wxscan',
                 ]
             ],
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ]
         ];
     }
 

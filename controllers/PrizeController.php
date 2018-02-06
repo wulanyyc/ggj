@@ -7,6 +7,8 @@ use yii\web\Controller;
 use app\components\PriceHelper;
 use app\components\SiteHelper;
 use app\components\WechatHelper;
+use app\filters\WechatFilter;
+
 
 class PrizeController extends Controller
 {
@@ -15,6 +17,14 @@ class PrizeController extends Controller
     public $dayLimit = 5; // 抽奖天数限制
     public $prizeLimit = 5; // 领奖期限
     public $limit = 2; // 抽奖次数限制
+
+    public function behaviors() {
+        return [
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ]
+        ];
+    }
     
     public function actionIndex() {
         $params = Yii::$app->request->get();

@@ -31,7 +31,7 @@ MsaView::registerJsFile($this,'/js/share/index.js',
 
     <div style="text-align:center; font-size: 18px;line-height: 28px;margin-top: 5px;">
         <h5>免费吃水果</h5>
-        <div style="color:red;font-size: 16px;">推荐朋友圈或群，每一个好友关注，享<?=$share ?>元返利</div>
+        <div style="color:red;font-size: 16px;">推荐朋友圈或群，好友关注，享<?=$share ?>元返利</div>
         <div style="font-size: 16px;">好友下单后享每单金额的<?=$percent ?>%作为返利</span></div>
     </div>
 

@@ -7,6 +7,7 @@ use yii\web\Controller;
 use app\components\SiteHelper;
 use app\components\PriceHelper;
 use app\modules\product\models\ProductList;
+use app\filters\WechatFilter;
 
 class VipController extends Controller
 {
@@ -18,6 +19,14 @@ class VipController extends Controller
 
     public function init() {
         $this->layout = SiteHelper::getLayout();
+    }
+
+    public function behaviors() {
+        return [
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ]
+        ];
     }
 
     /**

@@ -10,6 +10,8 @@ use app\components\PriceHelper;
 use app\models\ProductCart;
 use app\widgets\CategoryWidget;
 use app\models\ProductOrder;
+use app\filters\WechatFilter;
+
 
 class BuyController extends Controller
 {
@@ -35,6 +37,14 @@ class BuyController extends Controller
         $this->buyGod = Yii::$app->params['buyGod'];
         $this->buyLimit = Yii::$app->params['buyLimit'];
         $this->expressFee = Yii::$app->params['expressFee'];
+    }
+
+    public function behaviors() {
+        return [
+            'wechat' => [
+                'class' => WechatFilter::className(),
+            ]
+        ];
     }
 
     /**
