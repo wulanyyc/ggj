@@ -592,6 +592,20 @@ class PriceHelper extends Component {
         return '';
     }
 
+    public static function handleCoupon($id, $openid) {
+        $customerId = Customer::find()->select('id')->where(['openid' => $openid])->scalar();
+
+        $exsit = CouponUse::find()->where(['cid' => $id, 'customer_id' => $customerId])->count();
+
+        if ($exsit > 0) {
+            return '该优惠券已领，不能重复领取';
+        }
+
+        self::createCouponById($id, $customerId);
+
+        return '优惠券领取成功，查看菜单【聚优惠-> 优惠券】';
+    }
+
     public static function addParentFanli($customerId, $orderId) {
         $percent = 1;
 

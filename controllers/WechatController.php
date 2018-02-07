@@ -149,7 +149,11 @@ class WechatController extends Controller
                     $str = PriceHelper::handleShare($eventKey, $openid);
                 }
                 else if (preg_match('/coupon_/', $eventKey)) {
-                    $str = $eventKey;
+                    // $str = $eventKey;
+                    $keyArr = explode('_', $eventKey);
+                    $key = $keyArr[2];
+
+                    $str = PriceHelper::handleCoupon($key, $openid);
                 }
                 else {
                     $keyArr = explode('_', $eventKey);
@@ -189,7 +193,10 @@ class WechatController extends Controller
                 }
 
                 if (preg_match('/coupon_/', $eventKey)) {
-                    return $eventKey;
+                    $keyArr = explode('_', $eventKey);
+                    $key = $keyArr[1];
+
+                    return PriceHelper::handleCoupon($key, $openid);
                 }
 
                 return PriceHelper::handlePrize($eventKey, $openid);
