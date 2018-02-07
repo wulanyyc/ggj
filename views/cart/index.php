@@ -682,7 +682,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
 
 <div class="card" id="gift_container" class="top-layer">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
-      我的礼品券
+      我的礼品券<span style="font-size: 14px;color: red;">（一次仅能使用一张）</span>
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_gift"></i>
   </div>
   <div id="gift_items" data-ids="">
