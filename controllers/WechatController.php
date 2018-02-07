@@ -147,7 +147,11 @@ class WechatController extends Controller
             if (!empty($eventKey)) {
                 if (preg_match('/uid_/', $eventKey)) {
                     $str = PriceHelper::handleShare($eventKey, $openid);
-                } else {
+                }
+                else if (preg_match('/coupon_/', $eventKey)) {
+                    $str = $eventKey;
+                }
+                else {
                     $keyArr = explode('_', $eventKey);
                     $key = $keyArr[1];
 
@@ -181,9 +185,11 @@ class WechatController extends Controller
         if ($event == 'SCAN') {
             if (!empty($eventKey)) {
                 if (preg_match('/uid_/', $eventKey)) {
-                    // PriceHelper::handleShare($eventKey, $openid);
-
                     return "欢迎关注成都果果佳，新鲜佳果，保质保量";
+                }
+
+                if (preg_match('/coupon_/', $eventKey)) {
+                    return $eventKey;
                 }
 
                 return PriceHelper::handlePrize($eventKey, $openid);

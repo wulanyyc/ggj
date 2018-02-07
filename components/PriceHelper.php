@@ -526,12 +526,12 @@ class PriceHelper extends Component {
 
         if ($info['type'] == 'gift') {
             $ret = self::createGift($info['id'], $openid);
-            $str = '您的抽奖：' . $info['text'] . ', 已成功领取, 5天后可再抽奖。使用[果果商城->逛商城], 查看菜单[聚优惠->礼品券]。';
+            $str = '您的抽奖：' . $info['text'] . ', 已成功领取, ' . $prizeLimit . '天后可再抽奖。使用[果果商城->逛商城], 查看[聚优惠->礼品券]。';
         }
 
         if ($info['type'] == 'coupon') {
             $ret = self::createCoupon($info['id'], $openid);
-            $str = '您的抽奖：' . $info['text'] . ', 已成功领取, 5天后可再抽奖。使用[果果商城->逛商城], 查看菜单[聚优惠->优惠券]。';
+            $str = '您的抽奖：' . $info['text'] . ', 已成功领取, ' . $prizeLimit . '天后可再抽奖。使用[果果商城->逛商城], 查看[聚优惠->优惠券]。';
         }
 
         if ($ret > 0) {

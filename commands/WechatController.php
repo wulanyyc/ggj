@@ -92,4 +92,12 @@ class WechatController extends Controller
             }
         }
     }
+
+    public function actionCoupon() {
+        $qrData = WechatHelper::getCouponqrcode(8);
+        $ticket = isset($qrData['ticket']) ? $qrData['ticket'] : '';
+        $url = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" . $ticket;
+
+        echo $url;
+    }
 }
