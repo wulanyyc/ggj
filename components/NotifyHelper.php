@@ -29,44 +29,49 @@ class NotifyHelper extends Component{
 
         $templateId = 'N671RZlQrYIhcFLGrh8d4NPs--cZFfOZATun9kvpado';
         $url = self::$api . WechatHelper::getAccessToken();
-        $myId = 'ogtchwuVyQbfINjjodQf9Ty8d0Is';
+
+        // $myId = 'ogtchwuVyQbfINjjodQf9Ty8d0Is';
 
         $customer = !empty($customerInfo['nick']) ? $customerInfo['nick'] : $customerInfo['phone'];
         $payMoney = Pay::find()->where(['order_id' => $id])->select('online_money, wallet_money')->asArray()->one();
 
-        $data = [
-            'touser' => $myId,
-            'template_id' => $templateId,
-            'data' => [
-                'first' => [
-                    'value' => '大吉大利，有新订单啦！',
-                    'color' => '#e83030',
-                ],
-                'keyword1' => [
-                    'value' => $customer,
-                    'color' => '#173177',
-                ],
-                'keyword2' => [
-                    'value' => $id,
-                    'color' => '#173177',
-                ],
-                'keyword3' => [
-                    'value' => $info['product_price'] . '_' . $info['express_fee'] . '_' . $info['coupon_fee'] . '_' . $payMoney['wallet_money'] . '_' . $payMoney['online_money'],
-                    'color' => '#e83030',
-                ],
-                'keyword4' => [
-                    'value' => $info['source'],
-                    'color' => '#173177',
-                ],
-                'remark' => [
-                    'value' => '备注：' . $info['memo'],
-                    'color' => '#173177',
-                ]
-            ],
-            'url' => 'http://guoguojia.vip/order/handle?id=' . $info['id'] . '&uid=' . $myId . '&token=' . md5($info['id'] . Yii::$app->params['salt']),
-        ];
+        $myIds = ['ogtchwuVyQbfINjjodQf9Ty8d0Is', 'ogtchwsLcJ0GleEw8WZsBiLPd-Ys', 'ogtchwutQFe3ZM0MTaUo62w7t-Ug'];
 
-        WechatHelper::curlRequest($url, json_encode($data));
+        foreach($myIds as $myId) {
+            $data = [
+                'touser' => $myId,
+                'template_id' => $templateId,
+                'data' => [
+                    'first' => [
+                        'value' => '大吉大利，有新订单啦！',
+                        'color' => '#e83030',
+                    ],
+                    'keyword1' => [
+                        'value' => $customer,
+                        'color' => '#173177',
+                    ],
+                    'keyword2' => [
+                        'value' => $id,
+                        'color' => '#173177',
+                    ],
+                    'keyword3' => [
+                        'value' => $info['product_price'] . '_' . $info['express_fee'] . '_' . $info['coupon_fee'] . '_' . $payMoney['wallet_money'] . '_' . $payMoney['online_money'],
+                        'color' => '#e83030',
+                    ],
+                    'keyword4' => [
+                        'value' => $info['source'],
+                        'color' => '#173177',
+                    ],
+                    'remark' => [
+                        'value' => '备注：' . $info['memo'],
+                        'color' => '#173177',
+                    ]
+                ],
+                'url' => 'http://guoguojia.vip/order/handle?id=' . $info['id'] . '&uid=' . $myId . '&token=' . md5($info['id'] . Yii::$app->params['salt']),
+            ];
+
+            WechatHelper::curlRequest($url, json_encode($data));
+        }
     }
 
     public static function sendFriend($openid, $money, $text, $memo) {
