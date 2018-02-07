@@ -115,6 +115,7 @@ MsaView::registerJsFile($this,'/js/product/coupon/index.js',
                         <option value=1>系统券</option>
                         <option value=2>用户券</option>
                         <option value=3>私有券</option>
+                        <option value=4>活动券</option>
                     </select>
                 </div>
                 <div class='form-group' style='margin-top:10px'>
