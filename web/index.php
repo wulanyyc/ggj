@@ -1,6 +1,6 @@
 <?php
 // comment out the following two lines when deployed to production
-defined('YII_DEBUG') || define('YII_DEBUG', true);
+defined('YII_DEBUG') || define('YII_DEBUG', false);
 // defined('YII_ENV') || define('YII_ENV', 'dev');
 
 // defined('NO_AUTH_RIGHTS') || define('NO_AUTH_RIGHTS', true);
@@ -11,6 +11,7 @@ if (YII_DEBUG) {
     defined('CACHE_PREFIX') || define('CACHE_PREFIX', 'ggj_prod');
 }
 
+session_start();
 
 // wechat
 require(__DIR__ . '/../lib/sha1.php');
