@@ -213,13 +213,17 @@ class PriceHelper extends Component {
 
         $coupons = explode(',', $ids);
         $fee = 0;
+
+        $valid = [];
         foreach($data as $item) {
-            foreach($coupons as $id) {
-                $cid = CouponUse::find()->select('cid')->where(['id' => $id])->scalar();
-                if ($item['cid'] == $cid) {
-                    $money = Coupon::find()->select('money')->where(['id' => $cid])->scalar();
-                    $fee += $money;
-                }
+            $valid[] = $item['cid'];
+        }
+
+        foreach($coupons as $id) {
+            $cid = CouponUse::find()->select('cid')->where(['id' => $id])->scalar();
+            if (in_array($cid, $valid)) {
+                $money = Coupon::find()->select('money')->where(['id' => $cid])->scalar();
+                $fee += $money;
             }
         }
 
