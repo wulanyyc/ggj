@@ -175,7 +175,7 @@ class PriceHelper extends Component {
 
         $currentDate = date('Ymd', time());
 
-        $data = CouponUse::find()->where(['customer_id' => $customer_id, 'use_status' => 1])->asArray()->all();
+        $data = CouponUse::find()->where(['customer_id' => $customer_id, 'use_status' => 1])->orderBy('id desc')->asArray()->all();
 
         foreach ($data as $key => $item) {
             $endDate = Coupon::find()->where(['id' => $item['cid']])->select('end_date')->scalar();
