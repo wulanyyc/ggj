@@ -344,7 +344,7 @@ class WechatHelper extends Component{
         return json_decode($ret, true);
     }
 
-    public static function getCouponqrcode($price) {
+    public static function getCouponqrcode($id) {
         $token = self::getAccessToken();
         $url = self::$api . '/cgi-bin/qrcode/create?access_token=' . $token;
 
@@ -352,7 +352,7 @@ class WechatHelper extends Component{
             'action_name' => 'QR_LIMIT_STR_SCENE',
             'action_info' => [
                 'scene' => [
-                    'scene_str' => "coupon_" . $scene
+                    'scene_str' => "coupon_" . $id,
                 ]
             ]
         ];
