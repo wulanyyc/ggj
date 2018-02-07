@@ -23,8 +23,9 @@ use app\modules\product\models\ProductList;
  */
 class SiteHelper extends Component{
     public static function addCustomer($phone) {
-        if (!empty($_COOKIE['openid'])) {
-            $id = WechatHelper::addWxCustomer($_COOKIE['openid']);
+        $openid = self::getOpenid();
+        if (!empty($openid)) {
+            $id = WechatHelper::addWxCustomer($openid);
 
             $up = Customer::findOne($id);
             $up->phone = $phone;
@@ -76,8 +77,9 @@ class SiteHelper extends Component{
     // TODO 完善微信来源
     public static function getSource() {
         $terminal = self::getTermimal();
+        $openid   = self::getOpenid();
 
-        if (!empty($_COOKIE['openid'])) {
+        if (!empty($openid)) {
             return 'wechat';
         }
 
@@ -100,7 +102,7 @@ class SiteHelper extends Component{
     public static function checkSecret() {
         $cid    = isset($_COOKIE['cid']) ? $_COOKIE['cid'] : '';
         $secret = isset($_COOKIE['secret']) ? $_COOKIE['secret'] : '';
-        $openid = isset($_COOKIE['openid']) ? $_COOKIE['openid'] : '';
+        $openid = self::getOpenid();
 
         if (empty($openid)) {
             if (empty($cid) || empty($secret)) {

@@ -244,7 +244,8 @@ class PayController extends Controller
                 $payData['online_money'] = $realPayMoney;
                 $payData['pay_type'] = 2;
 
-                $isWechat = !empty($_COOKIE['openid']) ? true : false;
+                $openid = SiteHelper::getOpenid();
+                $isWechat = !empty($openid) ? true : false;
 
                 if ($isWechat) {
                     $payData['terminal'] = 'wechat';
@@ -260,7 +261,7 @@ class PayController extends Controller
                 ];
 
                 if ($isWechat) {
-                    $wxpayParams['openid'] = $_COOKIE['openid'];
+                    $wxpayParams['openid'] = $openid;
                 } else {
                     if ($terminal == 'wap') { 
                         $wxpayParams['trade_type'] = 'MWEB';

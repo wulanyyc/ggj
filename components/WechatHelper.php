@@ -234,12 +234,12 @@ class WechatHelper extends Component{
             $code = $_GET['code'];
 
             // init weixin user
-            if (empty($_COOKIE['openid'])) {
+            if (empty($_SESSION['openid'])) {
                 self::initWxPageVisit($code);
             }
         }
 
-        if (!empty($_COOKIE['openid'])) {
+        if (!empty($_SESSION['openid'])) {
             $url = self::getCurrentUrl();
             $timestamp = time();
             $noncestr  = self::getNoncestr();

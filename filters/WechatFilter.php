@@ -38,7 +38,7 @@ class WechatFilter extends Behavior
                 $code = $_GET['code'];
 
                 // init weixin user
-                if (empty($_COOKIE['openid'])) {
+                if (empty($_SESSION['openid'])) {
                     WechatHelper::initWxPageVisit($code);
                 }
             }

@@ -74,7 +74,8 @@ class CustomerController extends Controller
         }
 
         $isWechat = false;
-        if (!empty($_COOKIE['openid'])) {
+        $openid = SiteHelper::getOpenid();
+        if (!empty($openid)) {
             $isWechat = true;
         }
 

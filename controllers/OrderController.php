@@ -258,7 +258,8 @@ class OrderController extends Controller
             Yii::$app->end();
         }
 
-        $isWechat = !empty($_COOKIE['openid']) ? 1 : 0;
+        $openid = SiteHelper::getOpenid();
+        $isWechat = !empty($openid) ? 1 : 0;
 
         $money = Customer::find()->select('money')->where(['id' => $cid])->scalar();
 
