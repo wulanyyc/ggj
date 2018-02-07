@@ -362,7 +362,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     <div style="display: table;width:100%;">
       <div class="promotion-item-left" style="background-color: #1ba93b;">
         <div class="promotion-item-left-content">
-          <div class="promotion-item-left-content-top">开业钜惠</div>
+          <div class="promotion-item-left-content-top">新春钜惠</div>
           <div class="promotion-item-left-content-bottom"><?=$newPromotion['text'] ?> ¥<?=$newPromotion['price'] ?></div>
         </div>
       </div>
