@@ -16,7 +16,7 @@ if (document.getElementById('we_appid')) {
         // wx.hideAllNonBaseMenuItem();
 
         wx.onMenuShareAppMessage({
-            title: '成都果果佳->新春钜惠, 好礼100%',
+            title: '成都果果佳->新春钜惠, 抽奖100%',
             desc: '新鲜佳果，保质保量，坏一赔三。顺丰配送，当日或隔日达', // 分享描述
             link: 'http://guoguojia.vip/prize/?share_id=' + $.cookie('openid'), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: 'http://img.guoguojia.vip/img/ggj.jpg', // 分享图标
@@ -35,7 +35,7 @@ if (document.getElementById('we_appid')) {
         });
 
         wx.onMenuShareTimeline({
-            title: '成都果果佳->新春钜惠, 好礼100%', // 分享标题
+            title: '成都果果佳->新春钜惠, 抽奖100%', // 分享标题
             link: 'http://guoguojia.vip/prize/?share_id=' + $.cookie('openid'), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: 'http://img.guoguojia.vip/img/ggj.jpg', // 分享图标
             success: function () {
