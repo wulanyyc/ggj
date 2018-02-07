@@ -406,6 +406,11 @@ $(document).ready(function () {
     });
 
     $('#gift_items').delegate('.gift_item', 'click', function(){
+        $('#gift_items').each(function(){
+            $(this).find('.gift_check').html('<i class="fa fa-square-o" aria-hidden="true"></i>');
+            $(this).find('.gift_check').removeClass('text-danger');
+        });
+
         if ($(this).find('.fa-square-o').length > 0) {
             $(this).find('.gift_check').html('<i class="fa fa-check-square-o" aria-hidden="true"></i>');
             $(this).find('.gift_check').addClass('text-danger');
