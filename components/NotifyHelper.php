@@ -35,7 +35,7 @@ class NotifyHelper extends Component{
         $customer = !empty($customerInfo['nick']) ? $customerInfo['nick'] : $customerInfo['phone'];
         $payMoney = Pay::find()->where(['order_id' => $id])->select('online_money, wallet_money')->asArray()->one();
 
-        $myIds = ['ogtchwuVyQbfINjjodQf9Ty8d0Is', 'ogtchwsLcJ0GleEw8WZsBiLPd-Ys', 'ogtchwutQFe3ZM0MTaUo62w7t-Ug'];
+        $myIds = ['ogtchwuVyQbfINjjodQf9Ty8d0Is', 'ogtchwsLcJ0GleEw8WZsBiLPd-Ys', 'ogtchwutQFe3ZM0MTaUo62w7t-Ug', 'ogtchwoCx0ocoUq7kVSjM0V0X30g'];
 
         foreach($myIds as $myId) {
             $data = [
