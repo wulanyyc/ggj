@@ -10,6 +10,28 @@ $(document).ready(function () {
     });
 
     // 状态刷新
+    $('#list').delegate('.order-express-send', 'click', function () {
+        var id = $(this).attr('data-id');
+
+        $.ajax({
+            url: '/product/order/track',
+            type: 'post',
+            data: {
+                'id': id
+            },
+            dataType: 'html',
+            success: function (status) {
+                if (status == 'ok') {
+                    bootbox.alert('发送成功');
+                    loadTable();
+                } else {
+                    bootbox.alert(data.msg);
+                }
+            }
+        });
+    });
+
+    // 状态刷新
     $('#list').delegate('.order-refresh', 'click', function () {
         var pid = $(this).attr('data-pid');
 

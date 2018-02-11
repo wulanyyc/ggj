@@ -191,4 +191,52 @@ class NotifyHelper extends Component{
 
         WechatHelper::curlRequest($url, json_encode($data));
     }
+
+    public static function sendExpress($id) {
+        $info = ProductOrder::find()->where(['id' => $id])->asArray()->one();
+        $customerInfo = Customer::find()->select('nick,phone,openid')
+            ->where(['id' => $info['customer_id']])->asArray()->one();
+
+        if (empty($customerInfo['openid']) && empty($info['express_num'])) {
+            return '';
+        }
+
+        $templateId = 'uxEsaXTxajfovY4GjSBaUAh3BqITRqP6vcVB1_I_iVs';
+        $url = self::$api . WechatHelper::getAccessToken();
+        $myId = $customerInfo['openid'];
+
+        $data = [
+            'touser' => $myId,
+            'template_id' => $templateId,
+            'data' => [
+                'first' => [
+                    'value' => '感谢您的购买，您的新鲜水果已发货，请注意及时查收',
+                    'color' => '#e83030',
+                ],
+                'keyword1' => [
+                    'value' => '顺丰快递',
+                    'color' => '#173177',
+                ],
+                'keyword2' => [
+                    'value' => $info['express_num'],
+                    'color' => '#173177',
+                ],
+                'keyword3' => [
+                    'value' => '商品详情，请点击查看详情',
+                    'color' => '#173177',
+                ],
+                'keyword4' => [
+                    'value' => '1箱',
+                    'color' => '#173177',
+                ],
+                'remark' => [
+                    'value' => '公众号内隔2天抽一次奖，好礼100%。分享抽奖活动享更多惊喜（菜单：聚优惠->抽奖）',
+                    'color' => '#173177',
+                ]
+            ],
+            'url' => 'http://guoguojia.vip/order/express?id=' . $info['id'] . '&token=' . md5($info['id'] . Yii::$app->params['salt']),
+        ];
+
+        WechatHelper::curlRequest($url, json_encode($data));
+    }
 }

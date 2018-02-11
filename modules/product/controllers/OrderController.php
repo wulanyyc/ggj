@@ -12,6 +12,7 @@ use yii\helpers\Html;
 use app\components\SiteHelper;
 use app\components\PriceHelper;
 use app\components\ExpressHelper;
+use app\components\NotifyHelper;
 use app\models\ProductCart;
 use app\models\Customer;
 use app\models\Gift;
@@ -290,6 +291,15 @@ class OrderController extends AuthController
         $data = ProductOrder::find()->select('express_num')->where(['id' => $id])->asArray()->one();
 
         echo json_encode($data);
+    }
+
+    public function actionTrack() {
+        $params = Yii::$app->request->post();
+        $id = $params['id'];
+
+        NotifyHelper::sendExpress($id);
+
+        echo 'ok';
     }
 
     public function actionExpressprint() {

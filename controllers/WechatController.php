@@ -164,14 +164,14 @@ class WechatController extends Controller
             }
 
             if (empty($str)) {
-                return '欢迎关注成都果果佳，新鲜佳果，保质保量。关注享5元优惠券。
+                return '欢迎关注成都果果佳，新鲜佳果，精品挑选，支持川内顺丰发货。关注享5元优惠券。
 
 每2天一次抽奖机会，菜单【聚优惠：抽奖】，长期优惠【聚优惠：免费吃果果】。
 
 买水果，菜单【果果商城：逛商城】。
 ';
             } else {
-                return '欢迎关注成都果果佳，新鲜佳果，保质保量。关注享5元优惠券。
+                return '欢迎关注成都果果佳，新鲜佳果，精品挑选，支持川内顺丰发货。关注享5元优惠券。
 
 每2天一次抽奖机会，菜单【聚优惠：抽奖】，长期优惠【聚优惠：免费吃果果】。
 
@@ -189,7 +189,7 @@ class WechatController extends Controller
         if ($event == 'SCAN') {
             if (!empty($eventKey)) {
                 if (preg_match('/uid_/', $eventKey)) {
-                    return "欢迎关注成都果果佳，新鲜佳果，保质保量";
+                    return "欢迎关注成都果果佳，新鲜佳果，精品挑选";
                 }
 
                 if (preg_match('/coupon_/', $eventKey)) {
@@ -201,7 +201,7 @@ class WechatController extends Controller
 
                 return PriceHelper::handlePrize($eventKey, $openid);
             } else {
-                return "欢迎关注成都果果佳，新鲜佳果，保质保量";
+                return "欢迎关注成都果果佳，新鲜佳果，精品挑选";
             }
         }
 
@@ -210,7 +210,7 @@ class WechatController extends Controller
             if ($key == 'company') {
                 return '成都果果佳科技有限公司成立于2017年，致力于为广大客户提供优质且价格合理的商品。
 
-目前主营精品水果、干果等相关商品，采用零售、预约的方式服务于广大客户。
+只做精品，让广大客户足不出户，就能吃到放心水果，支持川内顺丰发货。
 
 以诚为本，全心全意为大家服务';
             }

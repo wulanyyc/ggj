@@ -40,6 +40,7 @@ class OrderController extends Controller
                 'actions' => [
                    'login',
                    'handle',
+                   'handle',
                 ]
             ],
             'wechat' => [
@@ -398,5 +399,55 @@ class OrderController extends Controller
         } else {
             SiteHelper::render('fail', '验证失败');
         }
+    }
+
+
+    public function actionTrack() {
+        $params = Yii::$app->request->get();
+        $id    = isset($params['id']) ? $params['id'] : '';
+        $token = isset($params['token']) ? $params['token'] : '';
+
+        $checkToken = md5($id . Yii::$app->params['salt']);
+
+        if ($checkToken == $token) {
+            echo '没有查到相关信息';
+            Yii::$app->end();
+        }
+
+        $cid = SiteHelper::getCustomerId();
+        $expressNum = ProductOrder::find()->select('express_num')->where(['customer_id' => $cid, 'id' => $id])->scalar();
+
+        if (empty($expressNum)) {
+            SiteHelper::render('fail', '商家还未发货, 非预约单下单后24小时内发货');
+        }
+
+        $data = json_decode(OrderHelper::getExpressInfo($expressNum), true);
+
+        if ($data['status'] != 0) {
+            $expressHtml =  "<div id='unknown'>很抱歉，平台未查到物流信息，您的快递单号：<input id='express_copy_num' value='" . $expressNum . "' type='text' readonly style='display:inline-block;' />&nbsp;<button type='button' class='btn btn-danger btn-sm' id='copy' data-clipboard-target='#express_copy_num'>复制</button></div>";
+        } else {
+            $expressHtml = $this->buildExpressHtml($data);
+        }
+
+        $cartData = ProductCart::find()->where(['id' => $cid])->asArray()->one();
+
+        $ret = [];
+        $cart = json_decode($cartData['cart'], true);
+        foreach($cart as $item) {
+            $pid = $item['id'];
+            $tmp = ProductList::find()->select('id,name,unit,price,desc')->where(['id' => $pid])->asArray()->one();
+            $ret[] = $tmp;
+        }
+
+        $productHtml = '';
+        foreach($ret as $item) {
+            $productHtml .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] .$item['unit'] . "</td></tr>";
+        }
+
+        return $this->render('track', [
+            'controller' => Yii::$app->controller->id,
+            'express'    => $expressHtml,
+            'product'    => $productHtml,
+        ]);
     }
 }
