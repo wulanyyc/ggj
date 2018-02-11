@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('.show_detail').click(function() {
         $('#detail').show();
         $('#cover').show();
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
 
         var cid = $(this).attr('data-cid');
         var id = $(this).attr('data-id');
@@ -36,7 +36,7 @@ $(document).ready(function () {
 
     $('#close_detail').click(function(){
         $('#detail').hide();
-        $('body').removeClass('forbid');
+        $('html,body').removeClass('forbid');
         $('#cover').hide();
     });
 
@@ -115,7 +115,7 @@ $(document).ready(function () {
         $('#express_info').show();
         $('#cover').show();
 
-        $('body').addClass('forbid');
+        $('html,body').addClass('forbid');
 
         var id = $(this).attr('data-id');
         var express_num = $(this).attr('data-express-num');
@@ -142,7 +142,7 @@ $(document).ready(function () {
     $('#close_express').click(function(){
         $('#express_info').hide();
         $('#cover').hide();
-        $('body').removeClass('forbid');
+        $('html,body').removeClass('forbid');
     });
 
     var clipboard = new Clipboard('#copy');
