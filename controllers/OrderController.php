@@ -319,7 +319,7 @@ class OrderController extends Controller
 
         foreach($data['result']['list'] as $item) {
             $html .= "<div class='step'>";
-            $html .= '<div class="label"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i>&nbsp;{$item["time"]}</div>';
+            $html .= '<div class="label"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i>&nbsp;' . $item["time"] . '</div>';
             $html .= "<div class='step-content'>";
             $html .= "<div>{$item['status']}</div>";
             $html .= "</div>";
