@@ -409,8 +409,8 @@ class OrderController extends Controller
 
         $checkToken = md5($id . Yii::$app->params['salt']);
 
-        if ($checkToken == $token) {
-            echo '没有查到相关信息';
+        if ($checkToken != $token) {
+            echo '验证失败';
             Yii::$app->end();
         }
 
