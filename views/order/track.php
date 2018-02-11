@@ -49,21 +49,6 @@ ClipAsset::register($this);
     padding: 5px;
   }
 
-/*  #detail, #express_info {
-    position: fixed;
-    z-index: 100;
-    bottom: 0;
-    width: 100%;
-    border-radius: 0;
-    display: none;
-    height: 60%;
-    overflow-y: scroll;
-  }
-
-  #express_info {
-    height: 80%;
-  }*/
-
   .status-header {
     padding: 0 8px !important;
     background-color: #fff;
@@ -123,8 +108,13 @@ ClipAsset::register($this);
 
   .step .label {
     font-size: 20px;
-    width: 9%;
-    text-align: center;
+    /*width: 9%;*/
+    /*text-align: center;*/
+  }
+
+  .step .label span{
+    font-size: 16px;
+    /*text-align: center;*/
   }
 
   .step-content {
