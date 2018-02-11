@@ -183,7 +183,7 @@ class NotifyHelper extends Component{
                     'color' => '#173177',
                 ],
                 'remark' => [
-                    'value' => '参加公众号抽奖活动，获取更多优惠。分享抽奖活动享更多惊喜（菜单：聚优惠->抽奖）',
+                    'value' => '每2天抽一次奖，好礼100%。分享抽奖活动享返利（菜单：聚优惠->抽奖）',
                     'color' => '#173177',
                 ]
             ],
@@ -197,7 +197,7 @@ class NotifyHelper extends Component{
         $customerInfo = Customer::find()->select('nick,phone,openid')
             ->where(['id' => $info['customer_id']])->asArray()->one();
 
-        if (empty($customerInfo['openid']) && empty($info['express_num'])) {
+        if (empty($customerInfo['openid']) || empty($info['express_num'])) {
             return '';
         }
 
@@ -230,11 +230,11 @@ class NotifyHelper extends Component{
                     'color' => '#173177',
                 ],
                 'remark' => [
-                    'value' => '公众号内隔2天抽一次奖，好礼100%。分享抽奖活动享更多惊喜（菜单：聚优惠->抽奖）',
+                    'value' => '每2天抽一次奖，好礼100%。分享抽奖活动享返利（菜单：聚优惠->抽奖）',
                     'color' => '#173177',
                 ]
             ],
-            'url' => 'http://guoguojia.vip/order/express?id=' . $info['id'] . '&token=' . md5($info['id'] . Yii::$app->params['salt']),
+            'url' => 'http://guoguojia.vip/order/track?id=' . $info['id'] . '&token=' . md5($info['id'] . Yii::$app->params['salt']),
         ];
 
         WechatHelper::curlRequest($url, json_encode($data));
