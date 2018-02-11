@@ -20,7 +20,7 @@ class SiteAsset extends AssetBundle
     public $css = [
         'http://css.guoguojia.vip/js/base/bootstrap4/css/bootstrap.min.css',
         '/css/lib/font-awesome/css/font-awesome.min.css',
-        '/css/responsive.css?v=116',
+        '/css/responsive.css?v=117',
     ];
     public $js = [
         'http://js.guoguojia.vip/js/base/jquery.min.js',
