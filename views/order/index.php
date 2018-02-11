@@ -5,7 +5,7 @@ use app\assets\ClipAsset;
 
 $this->title = '订购详情';
 
-MsaView::registerJsFile($this,'/js/order/index.js', 
+MsaView::registerJsFile($this,'/js/order/index.js?v=1', 
     ['position' => View::POS_END, 
         'depends' => [
             'app\assets\SiteAsset',
