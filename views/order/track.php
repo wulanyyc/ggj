@@ -49,7 +49,7 @@ ClipAsset::register($this);
     padding: 5px;
   }
 
-  #detail, #express_info {
+/*  #detail, #express_info {
     position: fixed;
     z-index: 100;
     bottom: 0;
@@ -62,7 +62,7 @@ ClipAsset::register($this);
 
   #express_info {
     height: 80%;
-  }
+  }*/
 
   .status-header {
     padding: 0 8px !important;
