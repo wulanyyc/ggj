@@ -109,6 +109,7 @@ ClipAsset::register($this);
   .step .label {
     font-size: 20px;
     width: 100%;
+    color: red;
     /*width: 9%;*/
     /*text-align: center;*/
   }
@@ -122,9 +123,8 @@ ClipAsset::register($this);
     width: 90%;
   }
 
-  #unknown {
-    text-align: center;
-    padding: 2%;
+  #express_main {
+    display: none;
   }
 
 </style>
