@@ -3,7 +3,7 @@ use yii\web\View;
 use app\components\MsaView;
 use app\assets\ClipAsset;
 
-$this->title = '订单详情';
+$this->title = '订单追踪';
 
 MsaView::registerJsFile($this,'/js/order/track.js', 
     ['position' => View::POS_END, 
@@ -140,7 +140,7 @@ ClipAsset::register($this);
 
 <div class="card" id="detail">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
-      商品详情
+      订单详情
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_detail"></i>
   </div>
   <table class="table table-bordered" style="width: 98%;margin: 1% auto;font-size: 14px;">
@@ -159,6 +159,7 @@ ClipAsset::register($this);
   <div id="inner-gifts"></div>
 </div>
 
+<br/>
 
 <div class="card" id="express_info">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
