@@ -132,7 +132,6 @@ ClipAsset::register($this);
 <div class="card" id="detail">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       订单详情
-      <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_detail"></i>
   </div>
   <table class="table table-bordered" style="width: 98%;margin: 1% auto;font-size: 14px;">
     <thead>
@@ -155,7 +154,6 @@ ClipAsset::register($this);
 <div class="card" id="express_info">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       物流信息
-      <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_express"></i>
   </div>
   <div id="express_info_content" style="height: 80%;">
     <?=$express ?>
