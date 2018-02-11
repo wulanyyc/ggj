@@ -103,7 +103,7 @@ class OrderController extends AuthController
             if ($ret[$key]['status'] == 2) {
                  $ret[$key]['operation'] .= "  <a data-id='{$value['id']}' data-val='{$value['rec_name']}' style='margin-top:5px !important;'  class='order-express btn btn-xs btn-purple' href='javascript:void(0);'>获取快递号</a>";
 
-                // $ret[$key]['operation'] .= "  <a style='margin-top:5px !important;' class='order-express-print btn btn-xs btn-primary' href='/product/order/expressprint?id={$value['id']}'>电子面单</a>";
+                $ret[$key]['operation'] .= "  <button style='margin-top:5px !important;' class='order-express-send btn btn-xs btn-primary' data-id='{$value['id']}'>发货通知</button>";
             }
 
             $ret[$key]['status'] = Yii::$app->params['order_status'][$ret[$key]['status']];
