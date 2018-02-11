@@ -108,6 +108,7 @@ ClipAsset::register($this);
 
   .step .label {
     font-size: 20px;
+    width: 100%;
     /*width: 9%;*/
     /*text-align: center;*/
   }
