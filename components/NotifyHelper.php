@@ -210,7 +210,7 @@ class NotifyHelper extends Component{
             'template_id' => $templateId,
             'data' => [
                 'first' => [
-                    'value' => '感谢您的购买，您的新鲜水果已发货，请注意及时查收',
+                    'value' => '感谢您的购买，新鲜水果已发货，请注意及时查收',
                     'color' => '#e83030',
                 ],
                 'keyword1' => [
@@ -222,7 +222,7 @@ class NotifyHelper extends Component{
                     'color' => '#173177',
                 ],
                 'keyword3' => [
-                    'value' => '商品详情，请点击查看详情',
+                    'value' => '请点击查看',
                     'color' => '#173177',
                 ],
                 'keyword4' => [

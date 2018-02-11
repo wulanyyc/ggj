@@ -94,9 +94,9 @@ ClipAsset::register($this);
     padding: 0.65rem 1rem !important;
   }
 
-  .forbid {
+/*  .forbid {
     overflow-y: hidden;
-  }
+  }*/
 
   #express_main, #express_detail {
     padding: 2% 5%;

@@ -94,10 +94,10 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
     padding: 3px 15px;
   }
 
-  .forbid {
+/*  .forbid {
     overflow-y: hidden;
     height: 100%;
-  }
+  }*/
 
   .no_address, .show_address, .all_address_item {
     height: 100%;

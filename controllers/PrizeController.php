@@ -225,37 +225,37 @@ class PrizeController extends Controller
         $rand = rand(1, 100);
 
         // 5元优惠券
-        if ($rand >= 1 && $rand < 15) {
+        if ($rand >= 1 && $rand < 25) {
             return 0;
         }
 
         // 100g车厘子
-        if ($rand >= 15 && $rand < 35) {
+        if ($rand >= 25 && $rand < 45) {
             return 1;
         }
 
         // 10元优惠券
-        if ($rand >= 35 && $rand < 40) {
+        if ($rand >= 45 && $rand < 60) {
             return 2;
         }
 
         // 半斤香梨
-        if ($rand >= 40 && $rand < 55) {
+        if ($rand >= 60 && $rand < 75) {
             return 3;
         }
 
         // 20元优惠券
-        if ($rand >= 55 && $rand < 58) {
+        if ($rand >= 75 && $rand < 78) {
             return 4;
         }
 
         // 125g开心果
-        if ($rand >= 58 && $rand < 80) {
+        if ($rand >= 78 && $rand < 90) {
             return 5;
         }
 
         // 2元优惠券
-        if ($rand >= 80 && $rand <= 100) {
+        if ($rand >= 90 && $rand <= 100) {
             return 6;
         }
 

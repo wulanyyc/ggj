@@ -7,6 +7,11 @@ body {
     padding-top: 3.5rem;
 }
 
+.forbid {
+    overflow-y: hidden;
+    height: 100%;
+}
+
 .cover {
     position:fixed; top: 0px; right:0px; bottom:0px;filter: alpha(opacity=60); background-color: #777;
     z-index: 99; left: 0px; display:none;
