@@ -166,6 +166,6 @@ ClipAsset::register($this);
       <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_express"></i>
   </div>
   <div id="express_info_content" style="height: 80%;">
-    <?=$expressHtml ?>
+    <?=$express ?>
   </div>
 </div>
