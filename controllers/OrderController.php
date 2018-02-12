@@ -420,7 +420,7 @@ class OrderController extends Controller
 
         $expressHtml = '';
         if ($data['status'] != 0) {
-            $expressHtml =  "<div id='unknown'>很抱歉，平台未查到物流信息，您的快递单号：" . $expressNum . "</div>";
+            $expressHtml =  "<div id='unknown'>很抱歉，平台未查到物流信息，请在顺丰中重新查询，您的快递单号：" . $expressNum . "</div>";
         } else {
             $expressHtml = $this->buildExpressHtml($data);
         }
