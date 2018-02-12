@@ -406,8 +406,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
 <div class="card">
     <div class="card-header bg-white label-rec">
-        <span class="label-title">天天鲜果</span>
-        <div style="float: right;color:red;">新鲜佳果，坏1赔3</div>
+        <div class="label-title" style="text-align: center;width: 100%;">新鲜佳果，一样来一点</div>
     </div>
 
     <div class="product-items">
