@@ -40,7 +40,7 @@ class OrderController extends Controller
                 'actions' => [
                    'login',
                    'handle',
-                   'handle',
+                   'track',
                 ]
             ],
             'wechat' => [
