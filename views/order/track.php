@@ -145,7 +145,18 @@ ClipAsset::register($this);
     </tbody>
   </table>
 
-  <div id="inner-gifts"></div>
+  <div id="inner-gifts">
+    <?php if (!empty($giftInfos)) { ?>
+      <?php foreach($giftInfos as $v) { ?>
+      <div class="item" style="display: table;">
+        <p style="display: table-cell;font-size: 16px;">
+          <i class="fa fa-gift" aria-hidden="true" style="color:red;font-size: 20px;"></i>
+          <?=$v['name'] ?>
+        </p>
+      </div>
+      <?php } ?> 
+    <?php } ?>
+  </div>
 </div>
 
 <br/>

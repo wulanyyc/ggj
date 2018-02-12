@@ -441,10 +441,22 @@ class OrderController extends Controller
             $productHtml .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] .$item['unit'] . "</td></tr>";
         }
 
+        $gifts = $info['gift_ids'];
+        $gids  = explode(',', $gifts);
+        $gidInfos = GiftUse::find()->select('gid')->where(['id' => $gids])->asArray()->all();
+
+        $giftIds = [];
+        foreach($gidInfos as $item) {
+            $giftIds[] = $item['gid'];
+        }
+
+        $giftInfos = Gift::findBySql("select * from gift where id in (" . implode(',', $giftIds) . ")")->asArray()->all();
+
         return $this->render('track', [
             'controller' => Yii::$app->controller->id,
             'express'    => $expressHtml,
             'product'    => $productHtml,
+            'giftInfos'  => $giftInfos,
         ]);
     }
 }

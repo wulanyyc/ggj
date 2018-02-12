@@ -186,7 +186,7 @@ ClipAsset::register($this);
           <p class="label">备注：</p>
           <p><?=$item['memo'] ?></p>
         </div>
-        <?php } ?> 
+        <?php } ?>
 
         <div class="show_gifts">
           <?php if (!empty($item['gifts'])) { ?>
