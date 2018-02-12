@@ -144,7 +144,7 @@ class PriceHelper extends Component {
             if ($type == 3) {
                 $openid = Customer::find()->select('openid')->where(['id' => $customerId])->scalar();
                 if (!empty($openid)) {
-                    NotifyHelper::sendFriend($openid, $info['money'], '感谢您一直对果果佳的支持，特赠送您一张优惠券', '优惠券请在菜单【聚优惠】中查看');
+                    NotifyHelper::sendFriend($openid, $info['money'], '感谢您一直对果果佳的支持，特赠送您一张优惠券', '优惠券请在菜单【粉丝福利】中查看');
                 }
             }
 
@@ -525,17 +525,17 @@ class PriceHelper extends Component {
         }
 
         if (empty($data)) {
-            return '奖品已过期，请再次抽奖[聚优惠->抽奖]，有疑问请联系客服';
+            return '奖品已过期，请再次抽奖[粉丝福利->抽奖]，有疑问请联系客服';
         }
 
         if ($info['type'] == 'gift') {
             $ret = self::createGift($info['id'], $openid);
-            $str = '您的抽奖：' . $info['text'] . ', 已成功领取, ' . $prizeLimit . '天后可再抽奖。使用[果果商城->逛商城], 查看[聚优惠->礼品券]。';
+            $str = '您的抽奖：' . $info['text'] . ', 已成功领取, ' . $prizeLimit . '天后可再抽奖。使用[果果商城->逛商城], 查看[粉丝福利->礼品券]。';
         }
 
         if ($info['type'] == 'coupon') {
             $ret = self::createCoupon($info['id'], $openid);
-            $str = '您的抽奖：' . $info['text'] . ', 已成功领取, ' . $prizeLimit . '天后可再抽奖。使用[果果商城->逛商城], 查看[聚优惠->优惠券]。';
+            $str = '您的抽奖：' . $info['text'] . ', 已成功领取, ' . $prizeLimit . '天后可再抽奖。使用[果果商城->逛商城], 查看[粉丝福利->优惠券]。';
         }
 
         if ($ret > 0) {
@@ -607,7 +607,7 @@ class PriceHelper extends Component {
 
         self::createCouponById($id, $customerId);
 
-        return '优惠券领取成功，查看菜单【聚优惠-> 优惠券】';
+        return '优惠券领取成功，查看菜单【粉丝福利-> 优惠券】';
     }
 
     public static function addParentFanli($customerId, $orderId) {
