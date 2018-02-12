@@ -442,15 +442,20 @@ class OrderController extends Controller
         }
 
         $gifts = $info['gift_ids'];
-        $gids  = explode(',', $gifts);
-        $gidInfos = GiftUse::find()->select('gid')->where(['id' => $gids])->asArray()->all();
 
-        $giftIds = [];
-        foreach($gidInfos as $item) {
-            $giftIds[] = $item['gid'];
+        if (!empty($gifts)) {
+            $gids  = explode(',', $gifts);
+            $gidInfos = GiftUse::find()->select('gid')->where(['id' => $gids])->asArray()->all();
+
+            $giftIds = [];
+            foreach($gidInfos as $item) {
+                $giftIds[] = $item['gid'];
+            }
+
+            $giftInfos = Gift::findBySql("select * from gift where id in (" . implode(',', $giftIds) . ")")->asArray()->all();
+        } else {
+            $giftInfos = [];
         }
-
-        $giftInfos = Gift::findBySql("select * from gift where id in (" . implode(',', $giftIds) . ")")->asArray()->all();
 
         return $this->render('track', [
             'controller' => Yii::$app->controller->id,
