@@ -202,7 +202,7 @@ class NotifyHelper extends Component{
         }
 
         $templateId = 'uxEsaXTxajfovY4GjSBaUAh3BqITRqP6vcVB1_I_iVs';
-        $url = self::$api . WechatHelper::getAccessToken();
+        $url  = self::$api . WechatHelper::getAccessToken();
         $myId = $customerInfo['openid'];
 
         $data = [
@@ -210,7 +210,7 @@ class NotifyHelper extends Component{
             'template_id' => $templateId,
             'data' => [
                 'first' => [
-                    'value' => '感谢您的购买，新鲜水果已发货，请注意及时查收',
+                    'value' => '感谢您的购买，新鲜水果已发货，请及时查收',
                     'color' => '#e83030',
                 ],
                 'keyword1' => [
@@ -234,7 +234,7 @@ class NotifyHelper extends Component{
                     'color' => '#173177',
                 ]
             ],
-            'url' => 'http://guoguojia.vip/order/track?id=' . $info['id'] . '&token=' . md5($info['id'] . Yii::$app->params['salt']),
+            'url' => 'http://guoguojia.vip/order/track?id=' . $id . '&token=' . md5($id . Yii::$app->params['salt']),
         ];
 
         WechatHelper::curlRequest($url, json_encode($data));
