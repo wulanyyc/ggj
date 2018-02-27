@@ -123,7 +123,7 @@ MsaView::registerJsFile($this,'/js/prize/index.js',
 <div id="background">
   <div id="zhuanpan" data-valid="0">
     <div id="pan_container">
-        <img src="/img/prize/pan_new.png" id="pan" style="height: 100%;width:auto;"/>
+        <img src="/img/prize/pan_3.png" id="pan" style="height: 100%;width:auto;"/>
     </div>
     <div id="pointer_container">
         <img id="pointer" src="/img/prize/arrow.png"/>

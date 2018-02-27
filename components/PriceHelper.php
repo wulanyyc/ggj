@@ -464,9 +464,9 @@ class PriceHelper extends Component {
                 'text' => '5元优惠券',
             ],
             1 => [
-                'type' => 'gift',
-                'id'   => 7,
-                'text' => '100g智利双J车厘子礼品券',
+                'type' => 'coupon',
+                'id'   => 26,
+                'text' => '8元优惠券',
             ],
             2 => [
                 'type' => 'coupon',
@@ -474,9 +474,9 @@ class PriceHelper extends Component {
                 'text' => '10元优惠券',
             ],
             3 => [
-                'type' => 'gift',
-                'id'   => 2,
-                'text' => '半斤香梨礼品券',
+                'type' => 'coupon',
+                'id'   => 24,
+                'text' => '3元优惠券',
             ],
             4 => [
                 'type' => 'coupon',
@@ -484,9 +484,9 @@ class PriceHelper extends Component {
                 'text' => '20元优惠券',
             ],
             5 => [
-                'type' => 'gift',
-                'id'   => 6,
-                'text' => '125g开心果礼品券',
+                'type' => 'coupon',
+                'id'   => 25,
+                'text' => '6元优惠券',
             ],
             6 => [
                 'type' => 'coupon',
@@ -494,9 +494,9 @@ class PriceHelper extends Component {
                 'text' => '2元优惠券',
             ],
             7 => [
-                'type' => 'gift',
-                'id'   => 4,
-                'text' => '半斤皇帝柑礼品券',
+                'type' => 'coupon',
+                'id'   => 27,
+                'text' => '12元优惠券',
             ]
         ];
 
@@ -505,7 +505,7 @@ class PriceHelper extends Component {
 
     public static function handlePrize($key, $openid) {
         // 抽奖间隔
-        $prizeLimit = 2;
+        $prizeLimit = 5;
 
         $exsit = Customer::find()->where(['openid' => $openid])->count();
         if ($exsit == 0) {

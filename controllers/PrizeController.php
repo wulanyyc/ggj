@@ -14,7 +14,7 @@ class PrizeController extends Controller
 {
     public $layout = 'blank';
     public $prefix = "prize_";
-    public $dayLimit = 2; // 抽奖天数限制
+    public $dayLimit = 5; // 抽奖天数限制
     public $prizeLimit = 5; // 领奖期限
     public $limit = 1; // 抽奖次数限制
 
@@ -225,43 +225,43 @@ class PrizeController extends Controller
         $rand = rand(1, 100);
 
         // 5元优惠券
-        if ($rand >= 1 && $rand < 25) {
+        if ($rand >= 1 && $rand < 20) {
             return 0;
         }
 
-        // 100g车厘子
-        if ($rand >= 25 && $rand < 45) {
+        // 8元优惠券
+        if ($rand >= 20 && $rand < 25) {
             return 1;
         }
 
         // 10元优惠券
-        if ($rand >= 45 && $rand < 60) {
+        if ($rand >= 25 && $rand < 30) {
             return 2;
         }
 
-        // 半斤香梨
-        if ($rand >= 60 && $rand < 75) {
+        // 3元优惠券
+        if ($rand >= 30 && $rand < 50) {
             return 3;
         }
 
         // 20元优惠券
-        if ($rand >= 75 && $rand < 76) {
+        if ($rand >= 50 && $rand < 55) {
             return 4;
         }
 
-        // 125g开心果
-        if ($rand >= 76 && $rand < 90) {
+        // 6元优惠券
+        if ($rand >= 55 && $rand < 75) {
             return 5;
         }
 
         // 2元优惠券
-        if ($rand >= 90 && $rand <= 100) {
+        if ($rand >= 75 && $rand < 95) {
             return 6;
         }
 
-        // 1斤皇帝柑
-        // if ($rand >= 100 && $rand <= 100) {
-        //     return 7;
-        // }
+        // 12元优惠券
+        if ($rand >= 95 && $rand <= 100) {
+            return 7;
+        }
     }
 }
