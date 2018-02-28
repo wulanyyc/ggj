@@ -73,14 +73,6 @@ SiteAsset::register($this);
                 <a class="nav-link" href="/promotion">今日特价</a>
             </li>
 
-            <?php if ($controller == 'booking') { ?>
-            <li class="nav-item active">
-            <?php } else { ?>
-            <li class="nav-item">
-            <?php } ?>
-                <a class="nav-link" href="/buy/type">购买须知</a>
-            </li>
-
             <?php if ($controller == 'contact') { ?>
             <li class="nav-item active">
             <?php } else { ?>

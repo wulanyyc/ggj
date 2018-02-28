@@ -21,7 +21,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   #promotion {
     width: 100%;
-    margin: 0 auto;
+    margin: 3px auto;
     display: table;
   }
 
