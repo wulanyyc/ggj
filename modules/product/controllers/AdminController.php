@@ -72,9 +72,9 @@ class AdminController extends AuthController
             }
 
             if ($ret[$key]['booking_status'] == 1) {
-                $ret[$key]['booking_status'] = "<span style='color:green'>无限制</span>";
+                $ret[$key]['booking_status'] = "<span style='color:green'>现售</span>";
             } else {
-                $ret[$key]['booking_status'] = "<span style='color:red'>仅预约</span>";
+                $ret[$key]['booking_status'] = "<span style='color:red'>预约</span>";
             }
 
             $ret[$key]['seller_id'] = Seller::find()->select('name')->where(['id' => $value['seller_id']])->scalar();
@@ -83,7 +83,7 @@ class AdminController extends AuthController
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-edit btn btn-xs btn-primary' href='javascript:void(0);'>编辑</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-tag btn btn-xs btn-purple' href='javascript:void(0);'>标签</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-status btn btn-xs btn-info' href='javascript:void(0);'>销售状态</a>
-            <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='booking-status btn btn-xs btn-primary' href='javascript:void(0);'>预约状态</a>
+            <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='booking-status btn btn-xs btn-primary' href='javascript:void(0);'>销售方式</a>
             <a data-id='{$value['id']}' data-val='{$value['name']}' style='margin-top:5px !important;' class='product-del btn btn-xs btn-danger' href='javascript:void(0);'>删除</a>";
 
             if ($ret[$key]['category'] == 'package') {

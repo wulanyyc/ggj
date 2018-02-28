@@ -10,7 +10,7 @@ use yii\base\Widget;
  */
 class CategoryWidget extends Widget
 {
-    public static $categorys = ['fruit' => '新鲜水果', 'package' => '特惠套餐', 'vip' => '私人定制', 'nut' => '干果', 'tool' => '工具'];
+    public static $categorys = ['fruit' => '自营水果', 'package' => '特惠套餐', 'vip' => '私人定制', 'nut' => '干果', 'tool' => '工具'];
 
     /**
      * 初始化

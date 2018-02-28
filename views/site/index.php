@@ -27,7 +27,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
   a.promotion-item {
     display: table-cell;
-    width: 33%;
+    width: 48%;
     padding: 5px;
 
     border-radius: 3px;
@@ -49,12 +49,12 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   .promotion-item-left-content-top {
     text-align: center;
     font-size: 18px;
-    color:#fff;
+    color: #fff;
     height: 44px;
     line-height: 44px;
     border-bottom: 2px solid #fff;
     font-weight: 400;
-    width:100%;
+    width: 100%;
   }
 
   .promotion-item-left-content-bottom {
@@ -69,7 +69,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     display: table-cell;
     vertical-align: middle;
     width: 50%;
-    text-align:center;
+    text-align: center;
   }
 
   .promotion-item-right img {
@@ -117,15 +117,15 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-items {
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     width: 100%;
   }
 
   .product-item {
     display: inline-table;
     width: 33%;
-    border: 1px solid #f5f5f5;
-    margin-bottom: 5px;
+    /*border: 1px solid #f5f5f5;*/
+    /*margin-bottom: 5px;*/
   }
 
   a.product-item-content {
@@ -358,47 +358,32 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 <?php } ?>
 
 <div id="promotion">
-  <a class="promotion-item" href="<?=$newPromotion['link'] ?>">
-    <div style="display: table;width:100%;">
-      <div class="promotion-item-left" style="background-color: #1ba93b;">
-        <div class="promotion-item-left-content">
-          <div class="promotion-item-left-content-top">新春钜惠</div>
-          <div class="promotion-item-left-content-bottom"><?=$newPromotion['text'] ?> ¥<?=$newPromotion['price'] ?></div>
-        </div>
-      </div>
-
-      <div class="promotion-item-right" style="background-color: #D0E3DC;position: relative;">
-        <img src="<?=$newPromotion['img'] ?>"></img>
-      </div>
-    </div>
-  </a>
-
   <a class="promotion-item promotion-item-down" href="<?=$dayPromotion['link'] ?>">
     <div style="display: table;width:100%;">
-      <div class="promotion-item-left" style="background-color: #DD182B;">
+      <div class="promotion-item-left" style="background-color: #1ba93b;">
         <div class="promotion-item-left-content">
           <div class="promotion-item-left-content-top">今日特价</div>
           <div class="promotion-item-left-content-bottom"><?=$dayPromotion['text'] ?> ¥<?=$dayPromotion['price'] ?></div>
         </div>
       </div>
 
-      <div class="promotion-item-right" style="background-color: #F3CFD3;position: relative;">
+      <div class="promotion-item-right" style="background-color: #D0E3DC;position: relative;">
         <img src="<?=$dayPromotion['img'] ?>"></img>
       </div>
 
     </div>
   </a>
 
-  <a class="promotion-item" href="/buy/booking">
+  <a class="promotion-item" href="/prize">
     <div style="display: table;width:100%;">
-      <div class="promotion-item-left" style="background-color: #866D8D;">
+      <div class="promotion-item-left" style="background-color: #DD182B;">
         <div class="promotion-item-left-content">
-          <div class="promotion-item-left-content-top">预约新鲜佳果</div>
-          <div class="promotion-item-left-content-bottom">每周<?=$bookingSender ?>发顺丰</div>
+          <div class="promotion-item-left-content-top">抽奖100%</div>
+          <div class="promotion-item-left-content-bottom">隔<?=$prizeLimit ?>天抽一次</div>
         </div>
       </div>
-      <div class="promotion-item-right" style="background-color: #D5CCDB;">
-        <img src="http://img.guoguojia.vip/img/product/clz_box.png"></img>
+      <div class="promotion-item-right" style="background-color: #F3CFD3;">
+        <img src="http://img.guoguojia.vip/img/prize/pan_3.png"></img>
       </div>
     </div>
   </a>
@@ -411,7 +396,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
     <div class="product-items">
       <?php foreach($fruits as $product) { ?>
-          <div class="product-item <?=$product['tag'] ?>" style="position: relative;">
+          <div class="product-item" style="position: relative;">
             <a class="product-item-content" href="<?=$product['link'] ?>">
               <div class="product-card-img">
                 <img src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" class="prodcut_img" />
@@ -422,29 +407,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                 <p class="title"><?=$product['name'] ?></p>
                 <p class="desc"><?=$product['desc'] ?></p>
 
-                <?php if (isset($product['booking_price'])) { ?>
-                <div class="price booking_price" data-link="/buy/booking?id=<?=$product['id'] ?>">
-                  <div class="sale-badge" style="border:1px solid #866D8D;color:#866D8D;">预约新鲜</div>
-                  <div style="display: inline-block;">
-                    <span class="money" style="color:#866D8D;">¥</span>
-                    <span class="realprice" style="color:#866D8D;">
-                      <?=$product['booking_price'] ?>
-                      <span class="money">元/<?=$product['unit'] ?></span>
-                    </span>
-                  </div>
-
-                  <div class="discount">
-                    <?php if ($product['booking_price'] < $product['price']) { ?>
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <?=round($product['booking_price']/$product['price'], 2) * 10 ?>折
-                    <?php } ?>
-                  </div>
-                </div>
-                <?php } ?>
-
-                <?php if (isset($product['buy_price'])) { ?>
                 <div class="price buy_price" data-link="/buy/?id=<?=$product['id'] ?>">
-                  <div class="sale-badge" style="border:1px solid red;">现售</div>
+                  <!-- <div class="sale-badge" style="border:1px solid red;">现售</div> -->
                   <div style="display: inline-block;">
                     <span class="money">¥</span>
                     <span class="realprice">
@@ -455,12 +419,11 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 
                   <div class="discount">
                     <?php if ($product['buy_price'] < $product['price']) { ?>
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <!-- <i class="fa fa-shopping-cart" aria-hidden="true"></i> -->
                     <?=round($product['buy_price']/$product['price'], 2) * 10 ?>折
                     <?php } ?>
                   </div>
                 </div>
-                <?php } ?>
               </div>
               <!-- </div> -->
             </a>
@@ -477,56 +440,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       <?php } ?>
     </div>
 </div>
-
-<?php if (count($packages) > 0){ ?>
-<div class="card">
-    <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 2px solid #92BC2C;">
-        <span class="label-title">特惠套餐</span>
-    </div>
-
-    <div id="package">
-      <?php foreach($packages as $item) { ?>
-      <!-- <div class="package-container" style="display: table-cell;padding: 1%;"> -->
-      <a class="style_<?=$item['index'] ?> package-content" href="<?=$item['link'] ?>">
-          <div class="header_<?=$item['index'] ?> package-content-header">
-              <span><?=$item['name'] ?></span>
-              <span><?=$item['slogan'] ?></span>
-          </div>
-          <div class="package-item">
-            <div class="package-item-products">
-              <?php foreach($item['list'] as $product) { ?>
-              <div class="package-item-product">
-                <div style="display: table-cell;vertical-align: middle;width:40%;text-align: center;">
-                  <img src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" style="width: 40%;"/>
-                </div>
-                <div style="display: table-cell;vertical-align: middle;width:45%;"><?=$product['name'] ?></div>
-                <div style="display: table-cell;vertical-align: middle;text-align: center;"><?=$product['num'] ?><?=$product['unit'] ?></div>
-              </div>
-              <?php } ?>
-            </div>
-            <br/>
-            <br/>
-            <div class="package-price border_<?=$item['index'] ?>">
-                <span style="font-size: 14px;padding-right: 16px;"><?=$item['desc'] ?></span>
-                <?php if (isset($item['booking_price'])) { ?>
-                <div class="sale-badge" style="border:1px solid #866D8D;color:#866D8D;line-height: 20px;height: 20px;">预约</div>
-                <span style="font-size: 16px;font-weight: bold;color:#866D8D;"><?=$item['booking_price'] ?></span>
-                <span style="font-size: 14px;">&nbsp;元&nbsp;&nbsp;</span>
-                <?php } ?>
-
-                <?php if (isset($item['buy_price'])) { ?>
-                <div class="sale-badge" style="border:1px solid red;color: red; padding: 0px 3px;line-height: 20px;height: 20px;">现售</div>
-                <span style="font-size: 16px;font-weight: bold;color:red"><?=$item['buy_price'] ?></span>
-                <span style="font-size: 14px;">&nbsp;元&nbsp;&nbsp;</span>
-                <?php } ?>
-            </div>
-          </div>
-      </a>
-      <!-- </div> -->
-      <?php } ?>
-    </div>
-</div>
-<?php } ?>
 
 <?php if ($cartNum > 0) { ?>
 <a style="font-size: 25px;position: fixed;right:0px;top:50%;background-color: #866D8D;width:50px;height: 50px;border-radius: 25px;text-align: center;color:#fff;line-height: 50px;" href="<?=$cartLink ?>">

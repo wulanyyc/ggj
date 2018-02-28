@@ -26,34 +26,6 @@ class ProductHelper extends Component {
             return '/';
         }
 
-        $link = $data['link'];
-
-        if (!empty($link)) {
-            return $link;
-        }
-
-        if ($data['booking_status'] == 2) {
-            return '/buy/booking/?id=' . $data['id'];
-        }
-
-        if ($data['booking_status'] == 3) {
-            return '/buy/?id=' . $data['id'];
-        }
-
-        // if (empty($_COOKIE['order_type'])) {
-        //     return '/buy/type/?id=' . $data['id'];
-        // }
-
-        // if ($_COOKIE['order_type'] == 2) {
-        //     $link = '/buy/booking/?id=' . $data['id'];
-        // } else {
-            if ($data['num'] > 0) {
-                $link = '/buy/?id=' . $data['id'];
-            } else {
-                $link = '/buy/booking/?id=' . $data['id'];
-            }
-        // }
-
-        return $link;
+        return '/buy/?id=' . $data['id'];
     }
 }

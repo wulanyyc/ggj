@@ -51,8 +51,8 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
 
                     <select name='booking_status' id="search_booking" style='width:100px;height:30px;'>
                         <option value="0">全部</option>
-                        <option value="2">仅预约</option>
-                        <option value="3">仅现货</option>
+                        <option value="1">预约</option>
+                        <option value="2">现货</option>
                     </select>
                 </div>
                 <table id='list' class='hover grid' width='100%' cellspacing='0'>
@@ -257,11 +257,11 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
 <div id='booking_status_modal' style='display:none;min-width:600px'>
     <div class='row'>
         <div class='col-md-12'>
-            <label style='width:80px'>预约状态：</label>
+            <label style='width:80px'>销售方式：</label>
             <select name='booking_status' style='width:350px;min-width:100px;margin-right:12px;'>
-                <option value="1">无限制</option>
-                <option value="2">仅预约</option>
-                <option value="3">仅现货</option>
+                <option value="1">现货</option>
+                <option value="2">预约</option>
+                <!-- <option value="3">仅现货</option> -->
             </select>
         </div>
     </div>

@@ -245,22 +245,22 @@ class PrizeController extends Controller
         }
 
         // 20元优惠券
-        if ($rand >= 50 && $rand < 55) {
+        if ($rand >= 50 && $rand < 51) {
             return 4;
         }
 
         // 6元优惠券
-        if ($rand >= 55 && $rand < 75) {
+        if ($rand >= 51 && $rand < 75) {
             return 5;
         }
 
         // 2元优惠券
-        if ($rand >= 75 && $rand < 95) {
+        if ($rand >= 75 && $rand < 98) {
             return 6;
         }
 
         // 12元优惠券
-        if ($rand >= 95 && $rand <= 100) {
+        if ($rand >= 98 && $rand <= 100) {
             return 7;
         }
     }

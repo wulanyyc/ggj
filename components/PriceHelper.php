@@ -43,7 +43,7 @@ class PriceHelper extends Component {
         $price = self::getDayPromotion($id, $price);
 
         // 店铺特价
-        $price = self::getNewPromotion($id, $price);
+        // $price = self::getNewPromotion($id, $price);
 
         if ($type == 1) {
             return round(Yii::$app->params['buyDiscount'] * $price * $data['fresh_percent'] / 100, self::$precison);
@@ -56,14 +56,14 @@ class PriceHelper extends Component {
         return $price;
     }
 
-    public static function getNewPromotion($id, $price) {
-        $promotion = Yii::$app->params['new_promotion'];
-        if ($id == $promotion['id']) {
-            $price = round($price * $promotion['discount'], 2);
-        }
+    // public static function getNewPromotion($id, $price) {
+    //     $promotion = Yii::$app->params['new_promotion'];
+    //     if ($id == $promotion['id']) {
+    //         $price = round($price * $promotion['discount'], 2);
+    //     }
 
-        return $price;
-    }
+    //     return $price;
+    // }
 
     public static function getDayPromotion($id, $price) {
         $promotions = Yii::$app->params['day_promotion'];
