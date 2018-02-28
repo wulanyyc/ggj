@@ -51,8 +51,8 @@ MsaView::registerJsFile($this,'/js/product/admin/index.js',
 
                     <select name='booking_status' id="search_booking" style='width:100px;height:30px;'>
                         <option value="0">全部</option>
-                        <option value="1">预约</option>
-                        <option value="2">现货</option>
+                        <option value="1">现货</option>
+                        <option value="2">预约</option>
                     </select>
                 </div>
                 <table id='list' class='hover grid' width='100%' cellspacing='0'>
