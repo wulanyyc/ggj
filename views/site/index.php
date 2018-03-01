@@ -266,7 +266,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 <input type="hidden" value="<?=$buyGod ?>" id="buyGod" />
 <input type="hidden" value="<?=$buyLimit ?>" id="buyLimit" />
 <input type="hidden" value='<?=$cart ?>' id="buyCart" />
-<input type="hidden" value='<?=$cid ?>' id="order_id" />
+<input type="hidden" value='<?=$cartId ?>' id="cart_id" />
 
 <div style="position: fixed;top: 60px;width:100%;">
     <nav class="nav nav-pills nav-justified" style="width: 98%;margin: 0 auto;vertical-align: middle;">

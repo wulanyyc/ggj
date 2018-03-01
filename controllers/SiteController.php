@@ -53,29 +53,21 @@ class SiteController extends Controller
      */
     public function actionIndex() {
         $params = Yii::$app->request->get();
-        $id = isset($params['id']) ? $params['id'] : 0;
-        $cid = isset($params['cid']) ? $params['cid'] : 0;
+        $id  = isset($params['id']) ? $params['id'] : 0;
+        $cartId = isset($params['cid']) ? $params['cid'] : 0;
 
-        if ($cid == 0 && !empty($_COOKIE['cart_id'])) {
-            $orderType = ProductCart::find()->where(['id' => $_COOKIE['cart_id']])->select('order_type')->scalar();
-            if ($orderType == 1) {
-                $status = ProductOrder::find()->where(['cart_id' => $_COOKIE['cart_id']])->select('status')->scalar();
-                if ($status <= 1) {
-                    $cid = $_COOKIE['cart_id'];
-                }
-            }
+        if ($cartId == 0 && !empty($_COOKIE['cart_id'])) {
+            $cartId = $_COOKIE['cart_id'];
         }
 
-        $orderType = 1;
-
-        if ($cid != 0) {
-            $exsit = ProductCart::find()->where(['id' => $cid])->count();
+        if ($cartId != 0) {
+            $exsit = ProductCart::find()->where(['id' => $cartId])->count();
             if ($exsit == 0) {
-                Yii::$app->controller->redirect('/buy');
+                Yii::$app->controller->redirect('/');
                 Yii::$app->end();
             }
             
-            $cart = PriceHelper::getUpdateCart($cid);
+            $cart = PriceHelper::getUpdateCart($cartId);
         } else {
             $cart = '';
         }
@@ -84,15 +76,12 @@ class SiteController extends Controller
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
             'id' => $id,
-            'cid' => $cid,
+            'cartId' => $cartId,
             'buyGod' => $this->buyGod,
             'buyLimit' => $this->buyLimit,
             'expressFee' => $this->expressFee,
             'cart' => !empty($cart) ? json_encode($cart) : '',
             'products' => $this->getProducts(),
-            // 'categorys' => $this->getCategorys($orderType, $id),
-            'orderType' => $orderType,
-            'today' => Yii::$app->params['day_promotion'][$dayofweek]['id'],
             'prizeLimit' => Yii::$app->params['prizeLimit'],
         ]);
     }

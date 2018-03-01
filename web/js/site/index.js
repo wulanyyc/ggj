@@ -230,7 +230,7 @@ $(document).ready(function () {
 
     function order() {
         var cartStr = JSON.stringify(cart);
-        var oid = $('#order_id').val();
+        var cartid = $('#cart_id').val();
 
         var money = $('#tongji .realprice').html();
         var type = $('#order_type').val();
@@ -238,7 +238,7 @@ $(document).ready(function () {
         $.ajax({
             url: '/cart/add',
             type: 'post',
-            data: 'cart=' + cartStr + "&oid=" + oid + "&product_price=" + money + "&order_type=" + type,
+            data: 'cart=' + cartStr + "&id=" + cartid + "&product_price=" + money + "&order_type=" + type,
             dataType: 'json',
             success: function (ret) {
                 if (ret.data > 0) {

@@ -141,8 +141,8 @@ class CartController extends Controller
             SiteHelper::render('fail', '提交的价格数据，验证失败');
         }
 
-        $oid = $params['oid'];
-        unset($params['oid']);
+        $oid = $params['id'];
+        unset($params['id']);
 
         $params['customer_id'] = SiteHelper::getCustomerId();
 

@@ -328,7 +328,7 @@ class PriceHelper extends Component {
         $up->save();
     }
 
-    public static function getUpdateCart($cid) {
+    public static function getUpdateCart($cartId) {
         $data = ProductCart::find()->where(['id' => $cid])->asArray()->one();
         $cart = json_decode($data['cart'], true);
 
