@@ -261,11 +261,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 <input type="hidden" value="<?=$id ?>" id="scroll_id" />
 <input type="hidden" value="<?=$buyGod ?>" id="buyGod" />
 <input type="hidden" value="<?=$buyLimit ?>" id="buyLimit" />
-<input type="hidden" value="<?=$expressFee ?>" id="expressFee" />
 <input type="hidden" value='<?=$cart ?>' id="buyCart" />
 <input type="hidden" value='<?=$cid ?>' id="order_id" />
-<input type="hidden" value="<?=$orderType ?>" id="order_type" />
-<input type="hidden" value="<?=$today ?>" id="today" />
 
 <div style="position: fixed;top: 60px;width:100%;">
     <nav class="nav nav-pills nav-justified" style="width: 98%;margin: 0 auto;vertical-align: middle;">
@@ -316,7 +313,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                             <i class="fa fa-minus-square-o" aria-hidden="true"></i>
                           </span>
                           <span class="operator-num">0</span>
-                          <span class="operator-right operator-btn" data-limit="<?=$product['num'] ?>" data-buy-limit="<?=$product['buy_limit'] ?>"><i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                          <span class="operator-right operator-btn" data-buy-limit="<?=$product['buy_limit'] ?>"><i class="fa fa-plus-square-o" aria-hidden="true"></i>
                           </span>
                       </span>
                     </p>

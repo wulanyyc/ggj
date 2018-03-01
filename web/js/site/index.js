@@ -107,7 +107,7 @@ $(document).ready(function () {
 
         num = parseInt(num) + 1;
 
-        var limit = parseInt($(this).attr('data-limit'));
+        // var limit = parseInt($(this).attr('data-limit'));
         var buyLimit = parseInt($(this).attr('data-buy-limit'));
 
         if (isNaN(buyLimit)) {
