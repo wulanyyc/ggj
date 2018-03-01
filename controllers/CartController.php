@@ -175,7 +175,7 @@ class CartController extends Controller
                 $orignalPrice = ProductList::find()->where(['id' => $id])->select('price')->scalar();
                 $productPrice += ($item['num'] - $item['limit']) * $orignalPrice + $item['limit'] * PriceHelper::getProductPrice($id, $params['order_type']);
             } else {
-                $productPrice += $item['num'] * PriceHelper::getProductPrice($id, $params['order_type']);
+                $productPrice += $item['num'] * PriceHelper::getProductPrice($id);
             }
         }
 

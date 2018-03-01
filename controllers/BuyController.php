@@ -201,7 +201,7 @@ class BuyController extends Controller
 
         $ret = [];
         foreach($info as $key => $value) {
-            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id'], $orderType);
+            $info[$key]['promotion_price'] = PriceHelper::getProductPrice($value['id']);
             if (empty($value['img'])) {
                 $info[$key]['img'] = '/img/apple_4x3.png';
             }

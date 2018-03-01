@@ -31,7 +31,7 @@ class PriceHelper extends Component {
      * $id 产品id
      * $type 订购类型  1: 普通  2: 预订
      */
-    public static function getProductPrice($id, $type = 2) {
+    public static function getProductPrice($id) {
         $data = ProductList::find()->where(['id' => $id])->select('price, fresh_percent')->asArray()->one();
 
         $price = $data['price'];
@@ -42,28 +42,8 @@ class PriceHelper extends Component {
         // 天天特价
         $price = self::getDayPromotion($id, $price);
 
-        // 店铺特价
-        // $price = self::getNewPromotion($id, $price);
-
-        if ($type == 1) {
-            return round(Yii::$app->params['buyDiscount'] * $price * $data['fresh_percent'] / 100, self::$precison);
-        }
-
-        if ($type == 2) {
-            return round(Yii::$app->params['bookingDiscount'] * $price, self::$precison);
-        }
-
-        return $price;
+        return round(Yii::$app->params['buyDiscount'] * $price * $data['fresh_percent'] / 100, self::$precison);
     }
-
-    // public static function getNewPromotion($id, $price) {
-    //     $promotion = Yii::$app->params['new_promotion'];
-    //     if ($id == $promotion['id']) {
-    //         $price = round($price * $promotion['discount'], 2);
-    //     }
-
-    //     return $price;
-    // }
 
     public static function getDayPromotion($id, $price) {
         $promotions = Yii::$app->params['day_promotion'];
@@ -265,9 +245,9 @@ class PriceHelper extends Component {
             $id = $item['id'];
             if (isset($item['limit']) && $item['limit'] > 0 && $item['num'] > $item['limit']) {
                 $orignalPrice = ProductList::find()->where(['id' => $id])->select('price')->scalar();
-                $productPrice += ($item['num'] - $item['limit']) * $orignalPrice + $item['limit'] * PriceHelper::getProductPrice($id, $data['order_type']);
+                $productPrice += ($item['num'] - $item['limit']) * $orignalPrice + $item['limit'] * PriceHelper::getProductPrice($id);
             } else {
-                $productPrice += $item['num'] * PriceHelper::getProductPrice($id, $data['order_type']);
+                $productPrice += $item['num'] * PriceHelper::getProductPrice($id);
             }
         }
 
@@ -353,7 +333,7 @@ class PriceHelper extends Component {
         $cart = json_decode($data['cart'], true);
 
         foreach($cart as $key => $value) {
-            $cart[$key]['price'] = PriceHelper::getProductPrice($value['id'], $data['order_type']);
+            $cart[$key]['price'] = PriceHelper::getProductPrice($value['id']);
         }
 
         return $cart;

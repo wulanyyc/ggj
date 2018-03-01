@@ -55,7 +55,7 @@ class SearchController extends Controller
             $data[$key]['link'] = ProductHelper::getProductLink($value['id']);
 
             if ($value['booking_status'] != 2) {
-                $data[$key]['buy_price'] = PriceHelper::getProductPrice($value['id'], 1);
+                $data[$key]['buy_price'] = PriceHelper::getProductPrice($value['id']);
             }
 
             if ($value['booking_status'] != 3) {

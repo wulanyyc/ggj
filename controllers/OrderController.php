@@ -181,9 +181,6 @@ class OrderController extends Controller
         foreach($cart as $item) {
             $pid = $item['id'];
             $tmp = ProductList::find()->select('id,name,unit,price,desc')->where(['id' => $pid])->asArray()->one();
-            // if ($orderStatus == 1) {
-            //     $tmp['price'] = PriceHelper::getProductPrice($pid, $data['order_type']);
-            // }
             $ret[] = $tmp;
         }
 
