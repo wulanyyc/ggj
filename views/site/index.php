@@ -322,9 +322,9 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                     </p>
                     <div class="inventory">
                       <?php if ($product['seller_id'] == 1) { ?>
-                      &nbsp;&nbsp;自营满<?=$buyGod ?>元包邮，每周六发货
+                      自营满<?=$buyGod ?>元包邮，每周六发货
                       <?php } else { ?>
-                      &nbsp;&nbsp;包邮，2天内发货
+                      包邮，2天内发货
                       <?php } ?>
                     </div>
                   </div>
