@@ -61,7 +61,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-img {
-    width: 39%;
+    width: 44%;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -73,7 +73,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-desc {
-    width: 60%;
+    width: 55%;
     display: table-cell;
   }
 
@@ -323,7 +323,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                     </p>
                     <div class="inventory">
                       <?php if ($product['seller_id'] == 1) { ?>
-                      自营满<?=$buyGod ?>元包邮，每周六发货
+                      自营：满<?=$buyGod ?>元包邮，每周六发货
                       <?php } else { ?>
                       包邮，2天内发货
                       <?php } ?>
