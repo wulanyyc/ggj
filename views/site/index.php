@@ -287,7 +287,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                   <div class="product-img" data-id="<?=$product['id'] ?>" data-desc='<?=$product['slogan'] ?>'>
                     <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" style="width: 80%;"/>
                     <div style="position: absolute;right: 8px;bottom: 0px;font-size: 12px;color:#ccc;">
-                      <i class="fa fa-search-plus" aria-hidden="true"></i>大图
+                      <i class="fa fa-search-plus" aria-hidden="true"></i>
                     </div>
                   </div>
 
