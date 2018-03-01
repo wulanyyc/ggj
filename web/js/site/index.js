@@ -114,7 +114,7 @@ $(document).ready(function () {
             buyLimit = 0;
         }
 
-        if (num > buyLimit) {
+        if (num > buyLimit && buyLimit > 0) {
             num = num - 1;
         }
 
