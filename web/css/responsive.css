@@ -390,4 +390,9 @@ main {
     .order-product {
         width: 49% !important;
     }
+
+    .carousel-item img {
+        width: auto !important;
+        height: 80% !important;
+    }
 }

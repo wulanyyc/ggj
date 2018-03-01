@@ -175,7 +175,7 @@ class SiteController extends Controller
                 $imgHtml .= '<div class="carousel-item active"><img src="' .$item['img']. '" style="height:80%;"/></div>';
             } else {
                 $ctrHtml .= '<li data-target="#carouselIndicators" data-slide-to="'. $key .'"></li>';
-                $imgHtml .= '<div class="carousel-item"><img src="' .$item['img']. '" style="height:80%;"/></div>';
+                $imgHtml .= '<div class="carousel-item"><img src="' .$item['img']. '" /></div>';
             }
         }
 

@@ -61,7 +61,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-img {
-    width: 35%;
+    width: 39%;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -73,7 +73,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
   }
 
   .product-desc {
-    width: 64%;
+    width: 60%;
     display: table-cell;
   }
 
@@ -251,9 +251,13 @@ MsaView::registerJsFile($this,'/js/site/index.js',
       border-color: #1ba93b;
   }
 
-  .nav-link {
-    /*color: #1ba93b;*/
+  .nav-pills .nav-link {
     padding: .2rem .2rem !important;
+  }
+
+  .carousel-item img {
+    width: 80%;
+    height: 80%;
   }
 
 </style>
@@ -282,8 +286,8 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                 <div class="product-content">
                   <div class="product-img" data-id="<?=$product['id'] ?>" data-desc='<?=$product['slogan'] ?>'>
                     <img class="card-img-top" src="<?=$product['img'] ?>" alt="<?=$product['name'] ?>" style="width: 80%;"/>
-                    <div style="position: absolute;right: 8px;bottom: 0px;font-size: 13px;color:#ccc;">
-                      <i class="fa fa-search-plus" aria-hidden="true"></i>
+                    <div style="position: absolute;right: 8px;bottom: 0px;font-size: 12px;color:#ccc;">
+                      <i class="fa fa-search-plus" aria-hidden="true"></i>大图
                     </div>
                   </div>
 
@@ -387,7 +391,6 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     </div>
     <div style="width: 100%; display: table-row;height: 10%;">
       <div style="display: table-cell;vertical-align: middle;text-align: center;" class="img_slogan">
-      
       </div>
     </div>
     <div id="close_imgs">
