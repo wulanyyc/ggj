@@ -83,6 +83,7 @@ class SiteController extends Controller
             'cart' => !empty($cart) ? json_encode($cart) : '',
             'products' => $this->getProducts(),
             'prizeLimit' => Yii::$app->params['prizeLimit'],
+            'homeTip' => Yii::$app->params['hometip'],
         ]);
     }
 

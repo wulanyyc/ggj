@@ -269,11 +269,16 @@ MsaView::registerJsFile($this,'/js/site/index.js',
 <input type="hidden" value='<?=$cartId ?>' id="cart_id" />
 
 <div style="position: fixed;top: 60px;width:100%;">
+    <?php if (strlen($homeTip) > 0) { ?>
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        <?=$homeTip ?>
+    </div>
+    <?php } ?>
     <nav class="nav nav-pills nav-justified" style="width: 98%;margin: 0 auto;vertical-align: middle;">
       <span class="nav-item nav-link active" id="self" seller-id=0>全部</span>
       <span class="nav-item nav-link" id="guoyuan" seller-id=2>汇农果园</span>
       <span class="nav-item nav-link" id="pzh" seller-id=3>产地直销</span>
-      <span class="nav-item nav-link" id="self" seller-id=1>自营</span>
+      <span class="nav-item nav-link" id="self" seller-id=1>零售</span>
     </nav>
     <div class="card">
       <div id="items" style="margin-top: 10px;">
@@ -323,7 +328,7 @@ MsaView::registerJsFile($this,'/js/site/index.js',
                     </p>
                     <div class="inventory">
                       <?php if ($product['seller_id'] == 1) { ?>
-                      满<?=$buyGod ?>元包邮，每周六发货
+                      零售：满<?=$buyGod ?>元包邮，2天内发货
                       <?php } else { ?>
                       包邮，2天内发货
                       <?php } ?>
