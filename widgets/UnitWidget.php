@@ -21,7 +21,7 @@ class UnitWidget extends Widget
      * 执行
      */
     public function run(){
-        $units = ['个','斤','盒', '份', '把', '周', '袋'];
+        $units = ['个','斤','盒', '份', '把', '周', '袋', '箱'];
 
         $html = '<select name="unit" class="unit" style="min-width:60px;">';
         foreach($units as $unit) {

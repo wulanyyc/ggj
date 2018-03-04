@@ -358,60 +358,29 @@ $(document).ready(function () {
             return ;
         }
 
-        var orderType = $('#order_type').val();
-
-        if (orderType == 2) {
-            $.helper.confirm('您的订单类型为“预约”，请注意发货时间，预约单每周2、4、6上午发货，请知晓!（预约的水果最新鲜）', function(result) {
-                if (!result) return ;
-                $.ajax({
-                    url: '/order/add',
-                    type: 'post',
-                    dataType: 'json',
-                    data: {
-                        address_id: address_id,
-                        cart_id: $('#cart_id').val(),
-                        cart_num: $('#cart_num').val(),
-                        memo: $('#memo').val(),
-                        product_price: $('#product_price').html(),
-                        express_fee: $('#express_fee_show').html(),
-                        pay_money: $('#realprice').html(),
-                        coupon_ids: $('#coupon_items').attr('data-ids'),
-                        coupon_fee: $('#coupon_fee').html()
-                    },
-                    success: function (data) {
-                        if (data.status == 'ok') {
-                            location.href = "/order/pay?oid=" + data.data;
-                        } else {
-                            $.helper.alert(data.msg);
-                        }
-                    }
-                });
-            });
-        } else {
-            $.ajax({
-                url: '/order/add',
-                type: 'post',
-                dataType: 'json',
-                data: {
-                    address_id: address_id,
-                    cart_id: $('#cart_id').val(),
-                    cart_num: $('#cart_num').val(),
-                    memo: $('#memo').val(),
-                    product_price: $('#product_price').html(),
-                    pay_money: $('#realprice').html(),
-                    express_fee: $('#express_fee_show').html(),
-                    coupon_ids: $('#coupon_items').attr('data-ids'),
-                    coupon_fee: $('#coupon_fee').html()
-                },
-                success: function (data) {
-                    if (data.status == 'ok') {
-                        location.href = "/order/pay?oid=" + data.data;
-                    } else {
-                        $.helper.alert(data.msg);
-                    }
+        $.ajax({
+            url: '/order/add',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                address_id: address_id,
+                cart_id: $('#cart_id').val(),
+                cart_num: $('#cart_num').val(),
+                memo: $('#memo').val(),
+                product_price: $('#product_price').html(),
+                pay_money: $('#realprice').html(),
+                express_fee: $('#express_fee_show').html(),
+                coupon_ids: $('#coupon_items').attr('data-ids'),
+                coupon_fee: $('#coupon_fee').html()
+            },
+            success: function (data) {
+                if (data.status == 'ok') {
+                    location.href = "/order/pay?oid=" + data.data;
+                } else {
+                    $.helper.alert(data.msg);
                 }
-            });
-        }
+            }
+        });
     });
 
     $('#rec_city').change(function() {
