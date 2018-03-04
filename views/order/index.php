@@ -160,9 +160,6 @@ ClipAsset::register($this);
         <span style="font-size: 12px;margin-right: 6px;padding:6px;color:red;">
           <?=$status[$item['status']] ?>
         </span>
-        <span style="font-size: 14px;margin-right: 6px;padding:6px;color:green;">
-          <?=$type[$item['order_type']] ?>单
-        </span>
         <?php if ($item['status'] == 5) { ?>
         <span data-id=<?=$item['id'] ?> class="del_forever" style="font-size: 20px;"><i class="fa fa-trash" aria-hidden="true"></i></span>
         <?php } ?>

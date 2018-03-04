@@ -31,10 +31,6 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
       padding: 10px 15px;
       display: table;
       width: 100%;
-/*      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;*/
       text-decoration: none;
       color: black;
     }
@@ -76,17 +72,10 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
 </div>
 
 <div class="card" id="order" style="padding: 5px 15px;display: table;width: 100%;">
-  <?php if ($cartid > 0) { ?>
-  <a href="/cart?id=<?=$cartid ?>" style="color:black;text-decoration: none;display: table-cell;;">
+  <a href="/" style="color:black;text-decoration: none;display: table-cell;;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
     <div style="font-size: 13px;text-align: center;">购物车</div>
   </a>
-  <?php } else { ?>
-  <a href="/buy" style="color:black;text-decoration: none;display: table-cell;">
-    <div style="font-size: 25px;text-align: center;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-    <div style="font-size: 13px;text-align: center;">购物车</div>
-  </a>
-  <?php } ?>
 
   <a href="/order?type=1" style="color:black;text-decoration: none;display: table-cell;">
     <div style="font-size: 25px;text-align: center;"><i class="fa fa-credit-card" aria-hidden="true"></i></div>
@@ -123,12 +112,6 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   <div class="show-item-text">积分商场</div>
   <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
 </a>
-
-<a href="/buy/type" class="card show-item" id="score">
-  <div class="show-item-text">购买须知</div>
-  <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
-</a>
-
 
 <a href="/customer/info" class="card show-item" id="info">
   <div class="show-item-text">个人信息</div>
