@@ -647,7 +647,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
   <div style="padding: 5%;">
     <p>
       <span style="padding-right: 5px;">自营: </span>
-      <span style="width:72%;">原则上星期六发货</span>
+      <span style="width:72%;">2天内发货</span>
     </p>
 
     <p>
