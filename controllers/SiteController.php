@@ -58,6 +58,10 @@ class SiteController extends Controller
 
         if ($cartId == 0 && !empty($_COOKIE['cart_id'])) {
             $cartId = $_COOKIE['cart_id'];
+            $status = ProductOrder::find()->where(['cart_id' => $cartId])->select('status')->scalar();
+            if ($status > 1) {
+                $cartId = 0;
+            }
         }
 
         if ($cartId != 0) {
