@@ -1,7 +1,7 @@
 <?php
 // comment out the following two lines when deployed to production
-defined('YII_DEBUG') || define('YII_DEBUG', false);
-// defined('YII_ENV') || define('YII_ENV', 'dev');
+defined('YII_DEBUG') || define('YII_DEBUG', true);
+defined('YII_ENV') || define('YII_ENV', 'dev');
 
 // defined('NO_AUTH_RIGHTS') || define('NO_AUTH_RIGHTS', true);
 

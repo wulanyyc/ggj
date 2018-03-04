@@ -326,14 +326,8 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
   }
 </style>
 
-<input type="hidden" name="order_type" id="order_type" value="<?=$data['order_type'] ?>" />
 <input type="hidden" name="cart_id" id="cart_id" value="<?=$data['id'] ?>" />
-<input type="hidden" name="history_express_rule" id="history_express_rule" value="<?=$data['express_rule'] ?>" />
-<input type="hidden" name="express_fee" id="express_fee" value="<?=$data['express_fee'] ?>" />
 <input type="hidden" name="cart_num" id="cart_num" value="<?=count($data['product']) ?>" />
-<input type="hidden" name="std_express_fee" id="std_express_fee" value="<?=$stdExpressFee ?>" />
-<input type="hidden" name="buy_god" id="buy_god" value="<?=$buyGod ?>" />
-<input type="hidden" name="history_product_price" id="history_product_price" value="<?=$data['product_price'] ?>" />
 
 <!-- address start -->
 <div class="card">
@@ -420,30 +414,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
 </div>
 
 <div class="card">
-  <div id="gift_show" class="card-content">
-    <div style="margin-bottom:3px;display: table;height: 36px;position: relative;width: 100%;line-height: 36px;" id="choose_gift">
-      <div class="label" style="width:68%;display: inline-block;color:red;">礼品券</div>
-      <div id="gift_detail">
-        <?php if ($gift > 0) { ?>
-        可领<span class="text-danger" style="font-weight: bold;font-size: 14px;">&nbsp;<?=$gift ?>&nbsp;</span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
-        <?php } else { ?>
-        可领<span class="text-danger">0</span>张&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
-        <?php } ?>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="card">
   <div id="discount" class="card-content">
-<!--     <div style="margin-top:5px;display: table;">
-      <div class="left-content">
-        <input type="text" class="form-control input-sm" name="code" id="code" placeholder="好友的手机号码" maxlength=11 style="width: 128px;font-size: 14px;height: 40px;display: inline-block;" />
-        <button data-id="<?=$data['id'] ?>" type="button" id="use_discount" class="btn btn-outline-success btn-sm" style="height:30px;margin-left:5px;display: inline-block;">优惠码</button>
-      </div>
-      <div id="ask" class="right-arrow" style="color:red;cursor: pointer;font-size: 13px;width:20%;">减<?=$discount_start ?>%-<?=$discount_end ?>% <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>
-    </div>
-    <hr style="margin-top: 8px;margin-bottom: 8px;"/> -->
     <div style="margin-bottom:3px;display: table;height: 36px;position: relative;width: 100%;line-height: 36px;" id="choose_coupon">
       <div class="label" style="width:68%;display: inline-block;color:red;">优惠券</div>
       <div id="coupon_detail">
@@ -464,12 +435,7 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
         <p class="label" style="display: inline-block;">配送：</p>
         <div style="display: inline-block;margin-right: 5px;" data-id="1" class="express_rule" id="express_rule_1">
           <div class="icon" data-id="1"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
-          <span class="badge badge-success" style="font-size: 14px;line-height: 18px;font-weight: normal;">顺丰快递</span>
-        </div>
-
-        <div style="display: inline-block;" data-id="2" class="express_rule" id="express_rule_2">
-          <span class="icon" data-id="2"><i class="fa fa-square-o" aria-hidden="true"></i></span>
-          <span class="badge badge-info" style="font-size: 13px;line-height: 16px;font-weight: normal;">朋友自提</span>
+          <span class="badge badge-success" style="font-size: 14px;line-height: 18px;font-weight: normal;">快递</span>
         </div>
       </div>
 
@@ -492,17 +458,9 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
         <p class="label">运费：</p>
         <p class="price">+ ¥<span id="express_fee_show"><?=$data['express_fee'] ?></span></p>
     </div>
-    <div class="item" style="display: none;">
-        <p class="label">优惠码：</p>
-        <p class="price">- ¥<span id="discount_fee">0</span></p>
-    </div>
     <div class="item">
         <p class="label">优惠券：</p>
         <p class="price">- ¥<span id="coupon_fee">0</span></p>
-    </div>
-    <div class="item">
-        <p class="label">礼品券：</p>
-        <p class="price" style="width:70%;text-align: right;height:24px;line-height: 24px;overflow-x: hidden;text-overflow: ellipsis;" id="selected_gifts">尚未领取</p>
     </div>
   </div>
 </div>
@@ -528,47 +486,48 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
   <div class='btn btn-success' id='order' style="margin-right: 10px;display: inline-block;">去下单</div>
 </div>
 
-<div class="card" id="question">
-  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
-      优惠码
-      <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right: 10px;" id="close_question"></i>
-  </div>
-  <div style="padding: 5%;">
-    <p style="text-align: center;">
-      <span>好友的手机号码即为优惠码</span>
-    </p>
-    <div class='btn btn-success btn-sm' id='close_question_bottom' style="width:40%;margin-left:30%;position: absolute;bottom: 20px;">关闭</div>
-  </div>
-</div>
-
 <div class="card" id="detail">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
       商品详情<i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_detail"></i>
   </div>
   <div style="margin-top: 10px;font-size: 14px;width:98%;margin:1% auto;height: 68%;overflow-y: scroll;">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">商品</th>
-          <th scope="col">描述</th>
-          <th scope="col">数量</th>
-        </tr>
-      </thead>
+    <?php foreach($data['group_product'] as $item) { ?>
+    <div style="color:#1ba93b;">
+      商家：<?=$item['seller']['name'] ?>&nbsp;&nbsp;&nbsp;&nbsp;
+      商品价格：<?=$item['seller']['total'] ?>&nbsp;&nbsp;&nbsp;&nbsp;
+      <?php if ($item['seller']['total'] < $item['seller']['express_free_limit']) { ?>
+      快递费：<?=$item['seller']['express_fee'] ?>
+      <?php } else { ?>
+      快递费：0
+      <?php } ?>
+    </div>
+    <table class="table table-bordered" style="font-size: 12px;">
       <tbody>
-        <?php foreach($data['product'] as $item) { ?>
-          <tr>
-            <td><?=$item['name'] ?></td>
-            <td><?=$item['desc'] ?></td>
-            <td><?=$data['product_cart'][$item['id']]['num'] ?><?=$item['unit'] ?></td>
-          </tr>
-        <?php } ?>
+      <?php foreach($item['data'] as $product) { ?>
+        <tr>
+          <td><?=$product['name'] ?></td>
+          <td><?=$product['desc'] ?></td>
+          <td><?=$data['product_cart'][$product['id']]['num'] ?><?=$product['unit'] ?></td>
+          <td><?=$data['product_cart'][$product['id']]['num'] * $product['price'] ?>元</td>
+        </tr>
+      <?php } ?>
       </tbody>
     </table>
+    <?php if ($item['seller']['id'] == 1) { ?>
+    <div style="font-size: 14px;color:red;">注：自营商品满<?=$item['seller']['express_free_limit'] ?>元包邮</div>
+    <?php } ?>
+    <br/>
+    <?php } ?>
   </div>
 
-  <div class='btn btn-danger btn-sm' id='inner_edit_product' style="width:40%;margin-left:30%;margin-top: 1%;">修改商品</div>
+  <div>
+    <br/>
+    <div class='btn btn-danger btn-sm' id='inner_edit_product' style="width:40%;margin-left:30%;margin-top: 1%;display: inline-block;">
+    修改商品</div>
+    <span id='close_detail_bottom' style="width:20%;padding: 2px 15px;">关闭</span>
+  </div>
 
-  <div class='btn btn-success btn-sm' id='close_detail_bottom' style="width:40%;margin-left:30%;margin-top: 3%;">关闭</div>
+  
 </div>
 
 <div class="card" id="all_address_info">
@@ -680,17 +639,6 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
   <span id='close_coupon_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 14px;color:#0C58B0;">关闭</span>
 </div>
 
-<div class="card" id="gift_container" class="top-layer">
-  <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
-      我的礼品券<span style="font-size: 14px;color: red;">（一次仅能使用一张）</span>
-      <i class="fa fa-times" aria-hidden="true" style="cursor: pointer;position: absolute;right:15px;" id="close_gift"></i>
-  </div>
-  <div id="gift_items" data-ids="">
-  </div>
-  <button id="ok_gift" type="button" class="btn btn-success btn-sm" style="position: absolute;bottom:3%;width:40%;left:30%;">选中并领取</button>
-  <span id='close_gift_bottom' style="position: absolute;bottom:4%;left:78%;font-size: 14px;color:#0C58B0;">关闭</span>
-</div>
-
 
 <div class="card" id="express_info">
   <div class="card-header bg-white" style="color: #1ba93b;border-radius: 0;border-bottom: 1px solid #92BC2C;">
@@ -698,18 +646,18 @@ MsaView::registerJsFile($this,'/js/cart/index.js?v=2',
   </div>
   <div style="padding: 5%;">
     <p>
-      <span style="padding-right: 5px;">普通订单: </span>
-      <span style="width:72%;">24小时内发货</span>
+      <span style="padding-right: 5px;">自营: </span>
+      <span style="width:72%;">原则上星期六发货</span>
     </p>
 
     <p>
-      <span style="padding-right: 5px;">预约订单: </span>
-      <span style="width:72%;">每周<?=Yii::$app->params['bookingSender'] ?>上午发货</span>
+      <span style="padding-right: 5px;">汇农果园: </span>
+      <span style="width:72%;">2天内发货</span>
     </p>
 
     <p>
-      <span style="padding-right: 5px;">特殊要求: </span>
-      <span style="width:72%;">请留言或直接联系我们</span>
+      <span style="padding-right: 5px;">攀枝花直销: </span>
+      <span style="width:72%;">1-2天内发货</span>
     </p>
 
     <div class='btn btn-success btn-sm' id='close_express_info_bottom' style="width:40%;margin-left:30%;position: absolute;bottom: 20px;">关闭</div>

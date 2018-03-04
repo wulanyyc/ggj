@@ -121,7 +121,7 @@ class OrderHelper extends Component {
         }
 
         // 更新支付积分
-        self::addCustomerScore(round($data['online_money'] + $data['wallet_money']), $data['customer_id']);
+        self::addCustomerScore(round(($data['online_money'] + $data['wallet_money']) * 0.5), $data['customer_id']);
 
         // 更新折扣, 此功能暂时屏蔽
         // $discountData = ProductOrder::find()->where(['id' => $data['order_id']])

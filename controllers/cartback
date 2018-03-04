@@ -66,6 +66,7 @@ class CartController extends Controller
 
         // 修正购物车内为最新价格
         $data = $this->getFixedData($id);
+        // print_r($data);exit;
 
         // 安全校验
         $cid = SiteHelper::getCustomerId();
@@ -74,8 +75,9 @@ class CartController extends Controller
             Yii::$app->end();
         }
 
-        // $buyLimit = Yii::$app->params['buyLimit'];
-        // $buyGod   = Yii::$app->params['buyGod'];
+
+        $buyLimit = Yii::$app->params['buyLimit'];
+        $buyGod   = Yii::$app->params['buyGod'];
 
         return $this->render('index', [
             'controller' => Yii::$app->controller->id,
@@ -84,12 +86,11 @@ class CartController extends Controller
             'city' => array_keys(Yii::$app->params['citymap']),
             'citymap' => Yii::$app->params['citymap']['成都市'],
             'coupon' => count(PriceHelper::getValidCartCoupon($exsit['id'])),
-            // 'gift' => count(PriceHelper::getValidGift()),
-            // 'discount_start' => Yii::$app->params['discount']['start'],
-            // 'discount_end'   => Yii::$app->params['discount']['end'],
-            // 'buyLimit' => $buyLimit,
-            // 'buyGod'   => $buyGod,
-            // 'stdExpressFee' => Yii::$app->params['expressFee'],
+            'discount_start' => Yii::$app->params['discount']['start'],
+            'discount_end'   => Yii::$app->params['discount']['end'],
+            'buyLimit' => $buyLimit,
+            'buyGod'   => $buyGod,
+            'stdExpressFee' => Yii::$app->params['expressFee'],
         ]);
     }
 
@@ -98,32 +99,20 @@ class CartController extends Controller
         $cart = json_decode($data['cart'], true);
 
         $data['product'] = [];
-        $data['group_product'] = [];
         foreach($cart as $key => $value) {
             $tmpProduct = ProductList::find()->where(['id' => $value['id']])->asArray()->one();
             $tmpProduct['price'] = PriceHelper::getProductPrice($tmpProduct['id']);
-            $tmpProduct['seller'] = Seller::find()->where(['id' => $tmpProduct['seller_id']])->select('name')->scalar();
             $cart[$key]['price'] = $tmpProduct['price'];
-            $data['product'][] = $tmpProduct;
+            $tmpProduct['total'] = round($cart[$key]['price'] * $value['num'], PriceHelper::$precison);
 
-            $data['group_product'][$tmpProduct['seller_id']]['data'][] = $tmpProduct;
-            if (!isset($data['group_product'][$tmpProduct['seller_id']]['seller'])) {
-                $data['group_product'][$tmpProduct['seller_id']]['seller'] = Seller::find()->where(['id' => $tmpProduct['seller_id']])->asArray()->one();
-                $data['group_product'][$tmpProduct['seller_id']]['seller']['total'] = $cart[$key]['price'] * $cart[$key]['num'];
-            } else {
-                $data['group_product'][$tmpProduct['seller_id']]['seller']['total'] += $cart[$key]['price'] * $cart[$key]['num'];
+            $data['product'][$tmpProduct['seller_id']]['data'][] = $tmpProduct;
+            if (!isset($data['product'][$tmpProduct['seller_id']]['seller'])) {
+                $data['product'][$tmpProduct['seller_id']]['seller'] = Seller::find()->where(['id' => $tmpProduct['seller_id']])->asArray()->one();
             }
         }
 
-        if (count($data['product']) > 3) {
-            $data['show_product'] = array_slice($data['product'], 0, 3);
-        } else {
-            $data['show_product'] = $data['product'];
-        }
-
-        $data['product_cart'] = $cart;
+        $data['product_cart']  = $cart;
         $data['product_price'] = PriceHelper::calculateProductPrice($id);
-        $data['express_fee'] = PriceHelper::calculateExpressFee($id);
 
         return $data;
     }
@@ -229,33 +218,33 @@ EOF;
         SiteHelper::render('ok', $html);
     }
 
-    public function actionGift() {
-        $html = '';
-        $data = PriceHelper::getValidGift();
+//     public function actionGift() {
+//         $html = '';
+//         $data = PriceHelper::getValidGift();
 
-        if (empty($data)) {
-            SiteHelper::render('fail', '很抱歉，账户里没有可用的礼品券，抽奖请到公众号（成都果果佳）菜单：粉丝福利->抽奖');
-        } else {
-            foreach($data as $key => $value) {
-                $info = Gift::find()->where(['id' => $value['gid']])->asArray()->one();
-                $html .= <<<EOF
-                    <div class="gift_item">
-                        <div class="gift_item_content">
-                            <div class="gift_item_label">
-                                <i class="fa fa-gift" aria-hidden="true" style="color:red;font-size:20px;"></i>
-                                {$info['name']}
-                            </div>
-                        </div>
-                        <div class="gift_check" style="font-size:20px;" id="gift_{$value['id']}" data-id={$value['id']} data-name={$info['name']}>
-                            <i class="fa fa-square-o" aria-hidden="true"></i>
-                        </div>
-                    </div>
-EOF;
-            }
-        }
+//         if (empty($data)) {
+//             SiteHelper::render('fail', '很抱歉，账户里没有可用的礼品券，抽奖请到公众号（成都果果佳）菜单：粉丝福利->抽奖');
+//         } else {
+//             foreach($data as $key => $value) {
+//                 $info = Gift::find()->where(['id' => $value['gid']])->asArray()->one();
+//                 $html .= <<<EOF
+//                     <div class="gift_item">
+//                         <div class="gift_item_content">
+//                             <div class="gift_item_label">
+//                                 <i class="fa fa-gift" aria-hidden="true" style="color:red;font-size:20px;"></i>
+//                                 {$info['name']}
+//                             </div>
+//                         </div>
+//                         <div class="gift_check" style="font-size:20px;" id="gift_{$value['id']}" data-id={$value['id']} data-name={$info['name']}>
+//                             <i class="fa fa-square-o" aria-hidden="true"></i>
+//                         </div>
+//                     </div>
+// EOF;
+//             }
+//         }
 
-        SiteHelper::render('ok', $html);
-    }
+//         SiteHelper::render('ok', $html);
+//     }
 
     /*
      * 使用好友手机号码，获取折扣

@@ -119,16 +119,6 @@ MsaView::registerJsFile($this,'/js/customer/index.js',
   </div>
 </a>
 
-<a href="/customer/gift" class="card show-item" id="coupon">
-  <div class="show-item-text">礼品券</div>
-  <div class="show-item-arrow">
-    <?php if ($giftNum > 0) { ?>
-    <span class="badge badge-danger"><?=$giftNum ?></span>
-    <?php } ?>
-    <i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i>
-  </div>
-</a>
-
 <a href="/customer/score" class="card show-item" id="score">
   <div class="show-item-text">积分商场</div>
   <div class="show-item-arrow"><i class="fa fa-chevron-right" aria-hidden="true" style="color:#ccc;"></i></div>

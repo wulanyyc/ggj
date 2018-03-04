@@ -18,6 +18,7 @@ use app\components\SiteHelper;
 use app\components\WechatHelper;
 use app\components\NotifyHelper;
 use app\models\GiftUse;
+use app\models\Seller;
 
 /**
  * 基础帮助类
@@ -210,45 +211,47 @@ class PriceHelper extends Component {
         return $fee;
     }
 
-    // 计算邮费 $type: 运输类型
-    public static function calculateExpressFee($expressRule, $type, $productPrice) {
-        if ($expressRule == 2) {
-            return 0;
-        }
+    // 计算快递费
+    public static function calculateExpressFee($cartId) {
+        $data = ProductCart::find()->where(['id' => $cartId])->select('cart')->asArray()->one();
 
-        if ($type == 1) {
-            if ($productPrice < Yii::$app->params['buyGod']) {
-                return Yii::$app->params['expressFee'];
+        // 计算产品价格
+        $carts = json_decode($data['cart'], true);
+
+        // $productPrice = 0;
+        $seller = [];
+        foreach($carts as $key => $item) {
+            $sellerId = ProductList::find()->where(['id' => $item['id']])->select('seller_id')->asArray()->scalar();
+            if (!isset($seller[$sellerId])) {
+                $seller[$sellerId] = $item['num'] * PriceHelper::getProductPrice($item['id']);
             } else {
-                return 0;
+                $seller[$sellerId] += $item['num'] * PriceHelper::getProductPrice($item['id']);
             }
         }
 
-        if ($type == 2) {
-            if ($productPrice < Yii::$app->params['bookingGod']) {
-                return Yii::$app->params['expressFee'];
-            } else {
-                return 0;
+        $expressFee = 0;
+        foreach($seller as $key => $value) {
+            $info = Seller::find()->select('express_free_limit,express_fee')
+                ->where(['id' => $key])->asArray()->one();
+            if ($value < $info['express_free_limit']) {
+                $expressFee += $info['express_fee'];
             }
         }
+
+        return $expressFee;
     }
 
     // 计算产品价格
-    public static function calculateProductPrice($cartid) {
-        $data = ProductCart::find()->where(['id' => $cartid])->select('cart,order_type')->asArray()->one();
+    public static function calculateProductPrice($cartId) {
+        $data = ProductCart::find()->where(['id' => $cartId])->select('cart')->asArray()->one();
+
         // 计算产品价格
         $carts = json_decode($data['cart'], true);
 
         $productPrice = 0;
-        
         foreach($carts as $key => $item) {
             $id = $item['id'];
-            if (isset($item['limit']) && $item['limit'] > 0 && $item['num'] > $item['limit']) {
-                $orignalPrice = ProductList::find()->where(['id' => $id])->select('price')->scalar();
-                $productPrice += ($item['num'] - $item['limit']) * $orignalPrice + $item['limit'] * PriceHelper::getProductPrice($id);
-            } else {
-                $productPrice += $item['num'] * PriceHelper::getProductPrice($id);
-            }
+            $productPrice += $item['num'] * PriceHelper::getProductPrice($id);
         }
 
         $productPrice = round($productPrice, 2);
@@ -261,11 +264,11 @@ class PriceHelper extends Component {
         $data = ProductOrder::find()->where(['id' => $orderid])->asArray()->one();
 
         $productPrice = self::calculateProductPrice($data['cart_id']);
-        $expressFee   = self::calculateExpressFee($data['express_rule'], $data['order_type'], $productPrice);
+        $expressFee   = self::calculateExpressFee($data['cart_id']);
         $couponFee    = self::calculateCounponFee($data['coupon_ids']);
-        $discountFee  = $data['discount_fee'];
+        // $discountFee  = $data['discount_fee'];
 
-        return round($productPrice + $expressFee - $couponFee - $discountFee, 2);
+        return round($productPrice + $expressFee - $couponFee, 2);
     }
 
     /**

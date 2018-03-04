@@ -131,25 +131,12 @@ class OrderController extends Controller
 
     private function checkParams($params) {
         $cartid = $params['cart_id'];
-        $expressRule = $params['express_rule'];
 
         $productPrice = PriceHelper::calculateProductPrice($cartid);
-        $expressFee   = PriceHelper::calculateExpressFee($expressRule, $params['order_type'], $productPrice);
+        $expressFee   = PriceHelper::calculateExpressFee($cartid);
 
         $params['product_price'] = $productPrice;
         $params['express_fee'] = $expressFee;
-
-        // check 朋友折扣
-        if ($params['discount_fee'] > 0) {
-            $discountPhone = $params['discount_phone'];
-
-            $key = $params['customer_id'] . '_' . $discountPhone . '_discount';
-            $percent = Yii::$app->redis->get($key);
-            // 过期了设置为0
-            if (empty($percent)) $percent = 0;
-            $discountFee = round($productPrice * $percent, PriceHelper::$precison);
-            $params['discount_fee'] = $discountFee;
-        }
 
         // check coupon
         if ($params['coupon_fee'] > 0) {
@@ -157,7 +144,7 @@ class OrderController extends Controller
             $params['coupon_fee'] = $couponFee;
         }
 
-        $params['pay_money'] = round($productPrice + $expressFee - $params['coupon_fee'] - $params['discount_fee'], PriceHelper::$precison);
+        $params['pay_money'] = round($productPrice + $expressFee - $params['coupon_fee'], PriceHelper::$precison);
 
         return $params;
     }
@@ -186,13 +173,6 @@ class OrderController extends Controller
 
         $html = '';
         foreach($ret as $item) {
-            // 待支付订单获取实时价格
-            // if ($orderStatus == 1) {
-            //     $html .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $item['price'] . "元/" . $item['unit'] . "</td></tr>";
-            // } else {
-            //     $html .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] . "</td><td>" . $cart[$item['id']]['price'] . "元/" . $item['unit'] . "</td></tr>";
-            // }
-
             $html .= "<tr><td>" . $item['name'] . "</td><td>" . $item['desc'] . "</td><td>" . $cart[$item['id']]['num'] .$item['unit'] . "</td></tr>";
         }
         

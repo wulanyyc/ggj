@@ -33,7 +33,7 @@ MsaView::registerJsFile($this,'/js/pay/index.js',
       <div style="margin-left:10px;font-size: 14px;">
         <div class="text-light">支付方式：<?=$data['pay_type'] ?></div>
         <div class="text-light">支付金额：¥<?=$data['wallet_money'] ?></div>
-        <div class="text-light">赠送积分：<?=round($data['wallet_money']) ?></div>
+        <div class="text-light">赠送积分：<?=round($data['wallet_money'] * 0.5) ?></div>
       </div>
     </div>
     <a href="/order?type=2" class="btn btn-outline-light btn-sm" style="width:66%;margin-left:17%;">查看订单</a>

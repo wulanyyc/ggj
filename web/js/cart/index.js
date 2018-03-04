@@ -2,10 +2,9 @@ $(document).ready(function () {
     function calculateRealPrice() {
         var product_price = parseFloat($('#product_price').html());
         var express_fee = parseFloat($('#express_fee_show').html());
-        var discount = parseFloat($('#discount_fee').html());
         var coupon = parseFloat($('#coupon_fee').html());
 
-        var real_price = parseFloat(product_price + express_fee - discount - coupon);
+        var real_price = parseFloat(product_price + express_fee - coupon);
         var real_price = $.helper.round(real_price, 1);
 
         if (real_price < 0) {
@@ -46,32 +45,6 @@ $(document).ready(function () {
         var cid = $('#cart_id').val();
 
         location.href="/site?cid=" + cid;
-    });
-
-    $('.express_rule').click(function(){
-        $('.express_rule .icon').each(function(){
-            $(this).html('<i class="fa fa-square-o" aria-hidden="true"></i>');
-        });
-
-        $(this).find('.icon').html('<i class="fa fa-check-square-o" aria-hidden="true"></i>');
-
-        if ($(this).attr('data-id') == 1) {
-            var product_price = parseFloat($('#history_product_price').val());
-            var buy_god = parseFloat($('#buy_god').val());
-
-            $('#history_express_rule').val(1);
-
-            if (product_price > buy_god) {
-                $('#express_fee_show').html(0);
-            } else {
-                $('#express_fee_show').html($('#std_express_fee').val());
-            }
-        } else {
-            $('#history_express_rule').val($(this).attr('data-id'));
-            $('#express_fee_show').html(0);
-        }
-
-        calculateRealPrice();
     });
 
     $('#product_detail').click(function() {
@@ -310,31 +283,6 @@ $(document).ready(function () {
         });
     });
 
-    $('#use_discount').click(function(){
-        var phone = $('#code').val();
-        var cid = $(this).attr('data-id');
-
-        if ($.helper.validatePhone(phone)) {
-            $.ajax({
-                url: '/cart/discount',
-                type: 'post',
-                dataType: 'json',
-                data: "phone=" + phone + '&cid=' + cid,
-                success: function (data) {
-                    console.log(data);
-                    if (data.status == 'ok') {
-                        $('#discount_fee').html(data.data);
-                        calculateRealPrice();
-                    } else {
-                        $.helper.alert(data.msg);
-                    }
-                }
-            });
-        } else {
-            $.helper.alert('手机格式不正确');
-        }
-    });
-
     $('#choose_coupon').click(function() {
         var id = $('#cart_id').val();
         $.ajax({
@@ -402,75 +350,6 @@ $(document).ready(function () {
         $('#coupon_items').attr('data-ids', coupons.toString());
     });
 
-    $('#gift_items').delegate('.gift_item', 'click', function(){
-        $('#gift_items').each(function(){
-            $(this).find('.gift_check').html('<i class="fa fa-square-o" aria-hidden="true"></i>');
-            $(this).find('.gift_check').removeClass('text-danger');
-        });
-
-        if ($(this).find('.fa-square-o').length > 0) {
-            $(this).find('.gift_check').html('<i class="fa fa-check-square-o" aria-hidden="true"></i>');
-            $(this).find('.gift_check').addClass('text-danger');
-        } else {
-            $(this).find('.gift_check').html('<i class="fa fa-square-o" aria-hidden="true"></i>');
-            $(this).find('.gift_check').removeClass('text-danger');
-        }
-    });
-
-    $('#choose_gift').click(function() {
-        $.ajax({
-            url: '/cart/gift',
-            type: 'post',
-            dataType: 'json',
-            success: function (data) {
-                if (data.status == 'fail') {
-                    $('#gift_items').html(data.msg);
-                    return ;
-                }
-
-                $('#gift_items').html(data.data);
-                var choosed = $('#gift_items').attr('data-ids');
-                // console.log(choosed);
-                if (choosed.length > 0) {
-                    var arr = choosed.split(',');
-                    for(var i = 0; i < arr.length; i++) {
-                        $('#gift_' + arr[i]).click();
-                    }
-                }
-            }
-        });
-
-        $('#gift_container').show();
-        $('html,body').addClass('forbid');
-        $('#cover').show();
-    });
-
-    $('#close_gift, #close_gift_bottom').click(function(){
-        $('#gift_container').hide();
-        $('html,body').removeClass('forbid');
-        $('#cover').hide();
-    });
-
-    $('#ok_gift').click(function(){
-        $('#close_gift').click();
-        var gifts = [];
-        var giftNames = [];
-        $('.gift_check').each(function(){
-            if ($(this).find('.fa-check-square-o').length > 0) {
-                gifts.push($(this).attr('data-id'));
-                giftNames.push($(this).attr('data-name'));
-            }
-        });
-
-        $('#gift_items').attr('data-ids', gifts.toString());
-
-        var nameStr = giftNames.join(';');
-        if (nameStr.length > 15) {
-            nameStr = nameStr.substring(0, 15) + '...';
-        }
-        $('#selected_gifts').html(nameStr);
-    });
-
     $('#order').click(function(){
         var address_id = $('.show_address').attr('data-id');
 
@@ -489,20 +368,15 @@ $(document).ready(function () {
                     type: 'post',
                     dataType: 'json',
                     data: {
-                        order_type: $('#order_type').val(),
                         address_id: address_id,
                         cart_id: $('#cart_id').val(),
                         cart_num: $('#cart_num').val(),
                         memo: $('#memo').val(),
                         product_price: $('#product_price').html(),
-                        pay_money: $('#realprice').html(),
-                        express_rule: $('#history_express_rule').val(),
                         express_fee: $('#express_fee_show').html(),
-                        discount_phone: $('#code').val(),
-                        discount_fee: $('#discount_fee').html(),
+                        pay_money: $('#realprice').html(),
                         coupon_ids: $('#coupon_items').attr('data-ids'),
-                        coupon_fee: $('#coupon_fee').html(),
-                        gift_ids: $('#gift_items').attr('data-ids')
+                        coupon_fee: $('#coupon_fee').html()
                     },
                     success: function (data) {
                         if (data.status == 'ok') {
@@ -519,20 +393,15 @@ $(document).ready(function () {
                 type: 'post',
                 dataType: 'json',
                 data: {
-                    order_type: $('#order_type').val(),
                     address_id: address_id,
                     cart_id: $('#cart_id').val(),
                     cart_num: $('#cart_num').val(),
                     memo: $('#memo').val(),
                     product_price: $('#product_price').html(),
                     pay_money: $('#realprice').html(),
-                    express_rule: $('#history_express_rule').val(),
                     express_fee: $('#express_fee_show').html(),
-                    discount_phone: $('#code').val(),
-                    discount_fee: $('#discount_fee').html(),
                     coupon_ids: $('#coupon_items').attr('data-ids'),
-                    coupon_fee: $('#coupon_fee').html(),
-                    gift_ids: $('#gift_items').attr('data-ids')
+                    coupon_fee: $('#coupon_fee').html()
                 },
                 success: function (data) {
                     if (data.status == 'ok') {
@@ -578,13 +447,8 @@ $(document).ready(function () {
     function init() {
         var rule    = $('#history_express_rule').val();
         var cart_id = $('#cart_id').val();
-        // var orderType = parseInt($('#order_type').val());
 
-        // if (orderType == 1) {
         $.cookie('cart_id', cart_id, {expires: 7, path: '/'});
-        // } else {
-        //     $.cookie('booking_cart_id', cart_id, {expires: 7, path: '/'});
-        // }
 
         $.ajax({
             url: '/cart/getexpressrule',
