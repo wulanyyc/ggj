@@ -130,7 +130,7 @@ class SiteController extends Controller
 
     private function getProducts() {
         $info = ProductList::find()->select('id,seller_id,name,price,num,buy_limit,desc,slogan,link,img,unit,category')
-            ->where(['status' => 1, 'deleteflag' =>  0])->asArray()->all();
+            ->where(['status' => 1, 'deleteflag' =>  0])->orderBy('id desc')->asArray()->all();
 
 
         $ret = [];
