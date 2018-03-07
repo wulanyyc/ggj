@@ -29,7 +29,7 @@ class SiteController extends Controller
     ];
 
     public function init() {
-        $this->layout = SiteHelper::getLayout();
+        // $this->layout = SiteHelper::getLayout();
         $this->bookingDiscount = Yii::$app->params['bookingDiscount'];
         $this->bookingLimit = Yii::$app->params['bookingLimit'];
         $this->bookingGod = Yii::$app->params['bookingGod'];
