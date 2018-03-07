@@ -15,7 +15,7 @@ use app\filters\WechatFilter;
 
 class SiteController extends Controller
 {
-    public $layout = 'wap';
+    public $layout = 'pc';
     public $bookingDiscount = 0.9; // 预订优惠折扣
     public $bookingLimit = 39; // 预订最低消费
     public $bookingGod = 59; // 预订免运费限额
