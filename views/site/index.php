@@ -275,9 +275,9 @@ MsaView::registerJsFile($this,'/js/site/index.js',
     </div>
     <?php } ?>
     <nav class="nav nav-pills nav-justified" style="width: 98%;margin: 0 auto;vertical-align: middle;">
-      <span class="nav-item nav-link active" id="self" seller-id=0>全部</span>
+      <span class="nav-item nav-link active" id="self" seller-id=0>热销</span>
       <span class="nav-item nav-link" id="guoyuan" seller-id=2>汇农果园</span>
-      <span class="nav-item nav-link" id="pzh" seller-id=3>攀枝花直销</span>
+      <span class="nav-item nav-link" id="pzh" seller-id=3>攀枝花</span>
       <span class="nav-item nav-link" id="self" seller-id=1>自营</span>
     </nav>
     <div class="card">
